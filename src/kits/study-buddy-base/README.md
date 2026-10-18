@@ -90,11 +90,12 @@ Run on a Pico 2 W with everything wired as above:
 
 | Test | Result |
 |---|---|
+| 01 | PASS. The LED blinks. |
 | 02 | No warnings. Its pin rules also caught a real mis-wiring (see the microphone gotchas above). |
 | 03 | PASS. All three buttons reported presses and releases. |
+| 04 | PASS. "Hello World!" is drawn inside the ring. |
 | 05 | PASS. The beep, the scale, and the three volumes were all heard, and the sound quality was good. |
-| 06 | Calibrates a noise floor of about 12.5 bits in a quiet room. Its response to speech has not been recorded here. |
+| 06 | PASS. Calibrates a noise floor of about 12.5 bits in a quiet room, and the meter responds to speech. |
 | 07 | PASS. A 1.50 s recording (19,200 samples) played back; the microphone's DC offset measured about 15,000. |
 
-Test 04 (the display) has not been recorded here. Test 01 has not been
-recorded either.
+All seven tests pass on this kit.
