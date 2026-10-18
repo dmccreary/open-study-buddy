@@ -86,8 +86,15 @@ quiet. Test 02 never makes a sound.
 
 ### What has been checked on hardware
 
-Tests 02 and 06 were run on a Pico 2 W with the microphone wired as above:
-test 02 reports no warnings, and test 06 calibrates a noise floor of about
-12.5 bits in a quiet room. The pin rules in test 02 also caught a real
-mis-wiring (see the microphone gotchas above). Tests 03, 05, and 07 need a
-person pressing buttons or listening, so they are still to be checked.
+Run on a Pico 2 W with everything wired as above:
+
+| Test | Result |
+|---|---|
+| 02 | No warnings. Its pin rules also caught a real mis-wiring (see the microphone gotchas above). |
+| 03 | PASS. All three buttons reported presses and releases. |
+| 05 | PASS. The beep, the scale, and the three volumes were all heard, and the sound quality was good. |
+| 06 | Calibrates a noise floor of about 12.5 bits in a quiet room. Its response to speech has not been recorded here. |
+| 07 | PASS. A 1.50 s recording (19,200 samples) played back; the microphone's DC offset measured about 15,000. |
+
+Test 04 (the display) has not been recorded here. Test 01 has not been
+recorded either.
