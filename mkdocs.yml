@@ -38,8 +38,24 @@ nav:
 
   - Chapters:
       - List of Chapters: chapters/index.md
-      # Add chapter entries here as content is generated, e.g.:
-      # - 1. Introduction: chapters/01-introduction/index.md
+      - 1. Personal Agents and the Open Study Buddy Architecture: chapters/01-personal-agents-architecture/index.md
+      - 2. MicroPython Review for Embedded Systems: chapters/02-micropython-review/index.md
+      - 3. Sound and Digital Audio Basics: chapters/03-sound-and-digital-audio/index.md
+      - 4. The Pico Kit Hardware and Wiring: chapters/04-pico-kit-hardware/index.md
+      - "5. Display Basics: Pixels, Color, and Frame Size": chapters/05-display-basics/index.md
+      - 6. Drawing Directly to Display Regions: chapters/06-display-regions-and-drawing/index.md
+      - 7. Buttons, State Machines, and Device Modes: chapters/07-buttons-and-device-modes/index.md
+      - "8. I2S Audio: Recording and Playing Sound": chapters/08-i2s-audio/index.md
+      - 9. Signal Processing and the FFT: chapters/09-signal-processing-fft/index.md
+      - 10. High-Performance MicroPython: chapters/10-high-performance-micropython/index.md
+      - 11. Microphone Calibration and Push-to-Talk: chapters/11-mic-calibration-push-to-talk/index.md
+      - 12. Wake-Word Detection: chapters/12-wake-word-detection/index.md
+      - 13. Wi-Fi, HTTP, and Connecting to the Agent: chapters/13-wifi-http-agent-link/index.md
+      - 14. Streaming Speech, Security, and Network Resilience: chapters/14-streaming-security-resilience/index.md
+      - 15. MQTT and Push Alerts: chapters/15-mqtt-push-alerts/index.md
+      - 16. Configuring the School Agent and Calendar: chapters/16-school-agent-calendar/index.md
+      - 17. Privacy, Safety, and Responsible Listening: chapters/17-privacy-responsible-listening/index.md
+      - 18. Testing, Integration, and Capstone Projects: chapters/18-testing-integration-capstones/index.md
 
   - Learning Graph:
       - Introduction: learning-graph/index.md
@@ -48,9 +64,11 @@ nav:
       - Concept Taxonomy: learning-graph/concept-taxonomy.md
       - Graph Quality Analysis: learning-graph/quality-metrics.md
       - Taxonomy Distribution: learning-graph/taxonomy-distribution.md
+      - Mascot Test: learning-graph/mascot-test.md
 
   - MicroSims:
       - List of MicroSims: sims/index.md
+      - Learning Graph Viewer: sims/graph-viewer/index.md
 
   - License: license.md
   - Contact: contact.md
@@ -58,11 +76,10 @@ nav:
 # Theme configuration
 theme:
   name: material
-  # Once a logo is generated, point this at docs/img/logo.png or a mascot pose:
-  # logo: img/logo.png
-  # favicon: img/favicon.ico
+  logo: img/mascot/neutral.png
+  favicon: img/favicon.ico
   palette:
-    primary: 'indigo'
+    primary: 'amber'
     accent: 'orange'
   include_sidebar: true
   features:
@@ -126,6 +143,7 @@ markdown_extensions:
 # Custom CSS — file is created by init-textbook
 extra_css:
   - css/extra.css
+  - css/mascot.css
 
 # Custom JavaScript — uncomment once a corresponding file exists
 # extra_javascript:
@@ -136,6 +154,7 @@ exclude_docs: |
   **/image-prompt*.md
   **/image-prompts*.md
   **/cover-prompt.md
+  **/character-sheet.md
   **/TODO.md
 
 # Rebuild on changes during `mkdocs serve`

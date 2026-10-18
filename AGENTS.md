@@ -23,7 +23,9 @@ CONTENT-GENERATION-GUIDE.md
 
 It defines the concept-depth and word-count targets, the anti-padding and
 writing-style rules, the MicroSim expectations, and the Markdown formatting
-rules for this book. Content that ignores it produces broken layouts and an
+rules for this book. It also defines the Sage the Owl
+learning mascot; teacher guides, instructor guides, and other instructor-facing
+content do not use the mascot. Content that ignores it produces broken layouts and an
 inconsistent student experience.
 
 ## Project facts
