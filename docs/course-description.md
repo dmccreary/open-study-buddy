@@ -1,7 +1,7 @@
 ---
 title: Course Description for Open Study Buddy
 description: A detailed course description for Open Study Buddy including overview, topics covered and learning objectives in the format of the 2001 Bloom Taxonomy
-quality_score: 98
+quality_score: 99
 ---
 # Open Study Buddy
 
@@ -17,7 +17,7 @@ Open Study Buddy is a hands-on course for building a **low-cost, fully open, per
 
 The course follows the fast-growing trend of **personal agents**: always-on AI software that carries out multi-step work on a person's behalf, such as checking calendars, summarizing information, and coming back when it needs a decision. Most commercial personal agents are closed, run on a vendor's cloud computer, and bill a monthly subscription. Open Study Buddy takes the opposite approach. The device is **totally open**. Each person, class, or school sets up and configures the agent behind it, chooses where that agent runs, and decides which data it may touch. A school can connect its agent to the school calendar to announce events, upcoming tests, and project due dates, and can give its device its own **school mascot** (for example, a griffin) that appears on the round display.
 
-The device is capable because several technologies meet on one inexpensive board. The Pico 2's dual cores and DSP-friendly instructions run a real-time **FFT** on live microphone audio, which supports volume meters, spectrum displays, and **wake-word detection** ("Hey Pico"). The Wi-Fi radio on the Pico 2 W connects the device to the agent software. The large round display, speaker, and buttons give the agent a face, a voice, and a physical interface. That display carries a lot of information for a microcontroller: 360 × 360 is 129,600 pixels, or about 259 KB per frame at 16 bits per pixel, so pushing a full frame buffer to the screen on every update is far too slow for a responsive device. Students therefore learn to **write directly to the display, one region at a time**, redrawing only the part of the screen that changed (the time digits, a spectrum bar, a status icon) instead of the whole frame. The default listening mode is **push-to-talk**; an always-on wake-word mode is an advanced option that requires explicit approval from a parent, teacher, or school before it is enabled.
+The device is capable because several technologies meet on one inexpensive board. The Pico 2's dual cores and DSP-friendly instructions run a real-time **FFT** on live microphone audio, which supports volume meters, spectrum displays, and **wake-word detection** ("Hey Pico"). The Wi-Fi radio on the Pico 2 W connects the device to the agent software, and to **MQTT**, the lightweight publish/subscribe protocol at the core of many open home-automation and alert systems, so that a school can push "test tomorrow" alerts to every device. The large round display, speaker, and buttons give the agent a face, a voice, and a physical interface. That display carries a lot of information for a microcontroller: 360 × 360 is 129,600 pixels, or about 259 KB per frame at 16 bits per pixel, so pushing a full frame buffer to the screen on every update is far too slow for a responsive device. Students therefore learn to **write directly to the display, one region at a time**, redrawing only the part of the screen that changed (the time digits, a spectrum bar, a status icon) instead of the whole frame. The default listening mode is **push-to-talk**; an always-on wake-word mode is an advanced option that requires explicit approval from a parent, teacher, or school before it is enabled.
 
 The book is also a gentle, step-by-step tutorial on getting the most out of MicroPython. Each chapter adds one idea on top of the previous chapter and ends with a working device feature. Students learn the techniques that make real embedded systems work: I2S audio, direct-memory-access style buffering, assembly-accelerated inner loops, non-blocking event loops, timers, and talking to a network service. Students also learn the responsibilities that come with a listening device: privacy, consent, data minimization, and the difference between a device that stays local and one that sends data away.
 
@@ -34,8 +34,9 @@ The book is also a gentle, step-by-step tutorial on getting the most out of Micr
 - **High-performance MicroPython** — pure-Python versus `@micropython.viper` and assembly inner loops, `array` buffers passed by address, avoiding allocation in real-time code, and benchmarking against a real-time frame budget
 - **Microphone calibration and push-to-talk** — measuring the noise floor and speech level, signal-to-noise ratio, level gates, clipping, and recording an utterance on a button press
 - **Wake-word detection** — enrolling a phrase, feature extraction, template correlation, rolling windows, thresholds, false-accept and false-reject trade-offs, and the honest limits of template matching versus trained models
-- **Networking and connecting to an agent** — Wi-Fi, HTTP and WebSocket clients, JSON, streaming audio to a local or school-hosted agent, receiving text and audio replies, authentication, and handling network failure
-- **Configuring the school agent** — connecting an open-source agent to a school calendar, reading events, test dates and project due dates, daily briefings, reminders, and per-school customization
+- **Networking and connecting to an agent** — Wi-Fi, HTTP clients and JSON on the school LAN, a swappable "brain" behind one small request contract, push-to-talk audio sent in chunks to stay inside the Pico's memory, WebSocket streaming for always-on mode, authentication, handling network failure, and why plain HTTP is acceptable only on a trusted classroom network (with an introduction to HTTPS)
+- **MQTT and push alerts** — publish/subscribe versus request/response, brokers (running Mosquitto on a school Raspberry Pi), topics and topic naming per school and classroom, QoS levels, retained messages, last-will, `umqtt` on MicroPython, non-blocking `check_msg` inside the audio loop, authentication, keeping the broker off the public internet, and how MQTT connects the device to open home-automation dashboards such as Home Assistant
+- **Configuring the school agent** — a progression from a small rule-based buddy server (about 100 lines, no LLM), to the same server with speech-to-text, text-to-speech and one LLM call, to an optional open-source self-hosted agent behind the same contract; reading school events from a hand-edited JSON file, then an iCalendar (.ics) feed (parsed on the server, never on the Pico), using `TEST:` and `DUE:` title conventions for tests and project due dates, daily briefings, reminders, and per-school customization
 - **School mascots and personalization** — preparing mascot images for a round display, themes, voices, and wake-phrase choices
 - **Privacy, safety, and responsible listening** — consent, parent and school approval for always-on listening, local versus cloud processing, data retention, student-privacy law concepts, a hardware mute, and visible "listening" indicators
 - **Testing, debugging, and system integration** — probes and self-test programs, measuring frame overruns, logging, and combining the clock, audio, DSP, and agent features into one finished device
@@ -44,7 +45,7 @@ The book is also a gentle, step-by-step tutorial on getting the most out of Micr
 
 - Building or training large language models, neural-network keyword-spotting models, or speech-recognition models (the course uses template correlation for wake words and relies on a separate service for transcription)
 - Installation and administration details of any single commercial personal-agent product (the course treats commercial agents only as context)
-- Cloud server administration, container orchestration, and production-grade web hosting
+- Cloud server administration, container orchestration, and production-grade web hosting (running a single MQTT broker and buddy server on a school Raspberry Pi is covered; clustering and high availability are not)
 - Printed-circuit-board design, soldering, surface-mount assembly, and custom enclosure design (the kit uses a breadboard and plug-in wires)
 - The C/C++ Pico SDK, Arduino toolchain, and custom firmware builds (the course uses stock MicroPython only)
 - Advanced DSP theory such as filter design mathematics, wavelets, and the derivation of the FFT algorithm
@@ -62,6 +63,7 @@ After completing this course, students will be able to:
 - Name the five hardware parts of the Open Study Buddy kit and state the job of each
 - State the pixel count and approximate byte size of a full 360 × 360 RGB565 frame
 - Identify the Pico 2 W pins used for the display (SPI), the microphone (I2S RX), the amplifier (I2S TX), and the three buttons
+- Define *publisher*, *subscriber*, *broker*, *topic*, *retained message*, and *QoS level* in MQTT
 - Recall the three I2S signals (bit clock, word select, serial data) and what each carries
 - List the Mode, Up, and Down button roles used in each device mode
 - Recall the default wake phrase ("Hey Pico") and the steps needed to approve always-on listening
@@ -76,6 +78,7 @@ After completing this course, students will be able to:
 - Explain what an FFT bin represents and calculate the frequency of a given bin from the sample rate and FFT size
 - Summarize why a real-time audio loop has a fixed time budget and what an overrun means
 - Explain why updating the whole 360 × 360 display for every change is too slow, and how writing directly to a defined region avoids the cost
+- Explain publish/subscribe messaging and how it differs from HTTP request/response, and why it suits alerts
 - Explain how template correlation detects a wake word and why mean-subtraction is needed
 - Describe why always-on listening raises privacy concerns that push-to-talk does not
 
@@ -89,8 +92,10 @@ After completing this course, students will be able to:
 - Play tones and recorded audio through the MAX98357A amplifier and control the volume with buttons
 - Run the assembly-accelerated FFT on a live audio frame and draw a live spectrum on the display
 - Calibrate the microphone, enroll the phrase "Hey Pico," and tune the detection threshold
-- Connect the Pico 2 W to Wi-Fi and exchange JSON or audio with an agent service
-- Configure an agent to read a school calendar and announce upcoming tests and due dates on the device
+- Connect the Pico 2 W to Wi-Fi and exchange JSON with a school-hosted buddy server over HTTP POST, then send push-to-talk audio to it in chunks
+- Subscribe the Pico to an MQTT topic with `umqtt` and show incoming alerts on the display without blocking the audio loop
+- Publish device status (online, last wake, volume) to an MQTT topic on a school broker
+- Configure the buddy server to read events from a JSON file and then an iCalendar (.ics) feed, and announce events whose titles start with `TEST:` or `DUE:` on the device
 
 ### Analyze
 *Breaking material into constituent parts and determining how the parts relate to one another and to an overall structure or purpose.*
@@ -102,6 +107,7 @@ After completing this course, students will be able to:
 - Analyze a spectrum to tell silence, steady noise, a tone, and speech apart
 - Examine wake-word score traces and distinguish false accepts from false rejects and their likely causes
 - Analyze where memory and CPU time go in a running program and find sources of garbage-collection pauses
+- Compare HTTP polling, MQTT, and WebSocket for delivering a "test tomorrow" alert and for streaming audio, in terms of latency, memory use, and complexity
 - Compare push-to-talk with always-on wake-word listening in terms of privacy, power use, reliability, and user experience
 
 ### Evaluate
@@ -110,6 +116,8 @@ After completing this course, students will be able to:
 - Judge whether a wake-word detector is good enough using measured false-accept and false-reject rates at several thresholds
 - Critique the limits of template correlation compared with a trained keyword-spotting model
 - Evaluate the privacy and safety risks of a classroom listening device and decide which safeguards are required before it is turned on
+- Choose MQTT QoS levels, retained messages, and last-will settings for classroom alerts and justify the choices
+- Evaluate the risk of exposing an MQTT broker or agent to the internet and decide which authentication and encryption are required
 - Assess the trade-offs of running the agent locally, on a school server, or in a vendor's cloud in terms of cost, control, latency, and data exposure
 - Evaluate the answers an agent gives about school events for accuracy, and decide when the device should ask for confirmation
 - Justify the design choices for the button scheme, display layout, and audio levels based on user testing with classmates
@@ -120,8 +128,10 @@ After completing this course, students will be able to:
 - Design and build a complete Open Study Buddy device that combines the clock display, push-to-talk, speaker responses, and spectrum visualization
 - Create a personalized school edition with its own mascot, colors, wake phrase, and voice prompts
 - Design a screen layout divided into independently updated regions (time, mascot, spectrum, agent message, status bar) that keeps the display responsive while audio is processed
+- Build an alert pipeline in which a school server publishes upcoming tests and due dates to MQTT and several devices subscribe and display them
 - Write a state machine that moves the device between clock, listening, thinking, speaking, and settings modes
 - Design a configuration for a school agent that reports the next test, upcoming project due dates, and daily events from a school calendar
+- Connect the device to an open home-automation dashboard, such as Home Assistant, through MQTT
 - Develop a new DSP-based feature, such as a clap detector, a noise-level monitor for a classroom, or a tuner
 - Capstone project ideas: a homework-reminder buddy for a class, a study-timer buddy that listens for questions, a classroom noise-meter buddy, or a school-event announcer with a custom mascot
 - Produce a privacy and consent plan that a teacher or parent could review before a device is deployed
