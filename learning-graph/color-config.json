@@ -1,0 +1,17 @@
+{
+  "FND": "SteelBlue",
+  "MPY": "DarkSlateBlue",
+  "HWK": "DarkGreen",
+  "DISP": "LimeGreen",
+  "BTN": "Khaki",
+  "AUD": "Gold",
+  "DSP": "DarkGoldenrod",
+  "PERF": "Teal",
+  "CAL": "LightSkyBlue",
+  "WAKE": "Crimson",
+  "NET": "DodgerBlue",
+  "MQTT": "Orange",
+  "SCH": "OliveDrab",
+  "PRIV": "DarkRed",
+  "TEST": "DimGray"
+}

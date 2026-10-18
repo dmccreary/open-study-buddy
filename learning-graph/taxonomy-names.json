@@ -1,0 +1,17 @@
+{
+  "FND": "Personal Agents and Architecture",
+  "MPY": "MicroPython Review",
+  "HWK": "Pico Kit Hardware",
+  "DISP": "Round Display Graphics",
+  "BTN": "Buttons and Device Modes",
+  "AUD": "Digital Audio and I2S",
+  "DSP": "Signal Processing and FFT",
+  "PERF": "High-Performance MicroPython",
+  "CAL": "Mic Calibration and Push-to-Talk",
+  "WAKE": "Wake-Word Detection",
+  "NET": "Networking and Agent Link",
+  "MQTT": "MQTT and Push Alerts",
+  "SCH": "School Agent and Calendar",
+  "PRIV": "Privacy and Responsible Listening",
+  "TEST": "Testing, Integration and Capstones"
+}

@@ -1,0 +1,2968 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="What a personal agent is, how open school-hosted agents differ from vendor cloud agents, and how the Open Study Buddy terminal, buddy server, and swappable brain fit together.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/chapters/01-personal-agents-architecture/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../02-micropython-review/">
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Personal Agents and the Open Study Buddy Architecture - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#personal-agents-and-the-open-study-buddy-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Personal Agents and the Open Study Buddy Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Chapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    1. Personal Agents and the Open Study Buddy Architecture
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    1. Personal Agents and the Open Study Buddy Architecture
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concepts Covered
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-desk-companion-you-build-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Desk Companion You Build Yourself
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-personal-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Is a Personal Agent?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Is a Personal Agent?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-worked-example-getting-ready-for-friday" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Worked Example: Getting Ready for Friday
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-versus-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chatbot Versus Agent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chatbot Versus Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-chatbot-or-agent-sorter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Chatbot or Agent Sorter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-an-agent-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where an Agent Lives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where an Agent Lives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-devices-and-always-on-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edge Devices and Always-On Devices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-hosted-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Hosted Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#school-hosted-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      School-Hosted Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparing-the-three-hosting-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparing the Three Hosting Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparing the Three Hosting Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-agent-hosting-trade-off-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Agent Hosting Trade-Off Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-open-means-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      What "Open" Means Here
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What "Open" Means Here">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-source-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open Source Software
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-open-study-buddy-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Open Study Buddy Device
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Open Study Buddy Device">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-agent-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Agent Terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-buddy-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Buddy Server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Buddy Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-study-buddy-architecture-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Study Buddy Architecture Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-terminal-and-server-talk" class="md-nav__link">
+    <span class="md-ellipsis">
+      How the Terminal and Server Talk
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How the Terminal and Server Talk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-request-reply-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Request-Reply Contract
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-agent-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Agent Data Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Agent Data Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-agent-data-flow-step-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Agent Data Flow Step-Through
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-swappable-brain" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Swappable Brain
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Swappable Brain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule-based-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rule-Based Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-backed-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM-Backed Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-approval-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Approval Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-source-agent-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open-Source Agent Frameworks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-progression-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Progression Levels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent Progression Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-agent-progression-level-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Agent Progression Level Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-micropython-review/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. MicroPython Review for Embedded Systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-sound-and-digital-audio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. Sound and Digital Audio Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-pico-kit-hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. The Pico Kit Hardware and Wiring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-display-basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5. Display Basics: Pixels, Color, and Frame Size
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-display-regions-and-drawing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6. Drawing Directly to Display Regions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-buttons-and-device-modes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7. Buttons, State Machines, and Device Modes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-i2s-audio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8. I2S Audio: Recording and Playing Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-signal-processing-fft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9. Signal Processing and the FFT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-high-performance-micropython/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10. High-Performance MicroPython
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-mic-calibration-push-to-talk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11. Microphone Calibration and Push-to-Talk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-wake-word-detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Wake-Word Detection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-wifi-http-agent-link/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13. Wi-Fi, HTTP, and Connecting to the Agent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-streaming-security-resilience/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14. Streaming Speech, Security, and Network Resilience
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-mqtt-push-alerts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15. MQTT and Push Alerts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-school-agent-calendar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16. Configuring the School Agent and Calendar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-privacy-responsible-listening/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17. Privacy, Safety, and Responsible Listening
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-testing-integration-capstones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18. Testing, Integration, and Capstone Projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concepts Covered
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-desk-companion-you-build-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Desk Companion You Build Yourself
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-personal-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Is a Personal Agent?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Is a Personal Agent?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-worked-example-getting-ready-for-friday" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Worked Example: Getting Ready for Friday
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatbot-versus-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chatbot Versus Agent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chatbot Versus Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-chatbot-or-agent-sorter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Chatbot or Agent Sorter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-an-agent-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where an Agent Lives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Where an Agent Lives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-devices-and-always-on-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edge Devices and Always-On Devices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-hosted-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Hosted Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#school-hosted-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      School-Hosted Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparing-the-three-hosting-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparing the Three Hosting Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparing the Three Hosting Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-agent-hosting-trade-off-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Agent Hosting Trade-Off Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-open-means-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      What "Open" Means Here
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What "Open" Means Here">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-source-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open Source Software
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-open-study-buddy-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Open Study Buddy Device
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Open Study Buddy Device">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-agent-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Agent Terminal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-buddy-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Buddy Server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Buddy Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-study-buddy-architecture-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Study Buddy Architecture Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-terminal-and-server-talk" class="md-nav__link">
+    <span class="md-ellipsis">
+      How the Terminal and Server Talk
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How the Terminal and Server Talk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-request-reply-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Request-Reply Contract
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-agent-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Agent Data Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Agent Data Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-agent-data-flow-step-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Agent Data Flow Step-Through
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-swappable-brain" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Swappable Brain
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Swappable Brain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule-based-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rule-Based Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-backed-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM-Backed Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-approval-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Approval Rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-source-agent-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open-Source Agent Frameworks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-progression-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Progression Levels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent Progression Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-agent-progression-level-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Agent Progression Level Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/chapters/01-personal-agents-architecture/index.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="personal-agents-and-the-open-study-buddy-architecture">Personal Agents and the Open Study Buddy Architecture<a class="headerlink" href="#personal-agents-and-the-open-study-buddy-architecture" title="Permanent link">&para;</a></h1>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>This chapter explains what a personal agent is and how an open, school-hosted agent differs from a vendor-hosted cloud agent. It then introduces the Open Study Buddy device, which acts as an agent terminal that listens, shows, and speaks, and the buddy server behind it. By the end, students can trace the data flow from a spoken question to a spoken answer and describe the swappable-brain progression from a rule-based server to an LLM-backed agent.</p>
+<h2 id="concepts-covered">Concepts Covered<a class="headerlink" href="#concepts-covered" title="Permanent link">&para;</a></h2>
+<p>This chapter covers the following 22 concepts from the learning graph:</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Concept Impact Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Personal Agent</td>
+<td>1329</td>
+</tr>
+<tr>
+<td>Chatbot Versus Agent</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cloud Agent</td>
+<td>192</td>
+</tr>
+<tr>
+<td>Open Hardware</td>
+<td>843</td>
+</tr>
+<tr>
+<td>Open Source Software</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Edge Device</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Self-Hosted Agent</td>
+<td>183</td>
+</tr>
+<tr>
+<td>Always-On Device</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Open Study Buddy Device</td>
+<td>74</td>
+</tr>
+<tr>
+<td>Agent Terminal</td>
+<td>72</td>
+</tr>
+<tr>
+<td>Buddy Server</td>
+<td>70</td>
+</tr>
+<tr>
+<td>Request-Reply Contract</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Rule-Based Agent</td>
+<td>12</td>
+</tr>
+<tr>
+<td>School-Hosted Agent</td>
+<td>34</td>
+</tr>
+<tr>
+<td>Agent Data Flow</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Swappable Brain</td>
+<td>2</td>
+</tr>
+<tr>
+<td>LLM-Backed Agent</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Agent Tools</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Open-Source Agent Framework</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Agent Memory</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Agent Approval Rules</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Agent Progression Levels</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>This chapter assumes only the prerequisites listed in the <a href="../../course-description/">course description</a>.</p>
+<hr />
+<h2 id="a-desk-companion-you-build-yourself">A Desk Companion You Build Yourself<a class="headerlink" href="#a-desk-companion-you-build-yourself" title="Permanent link">&para;</a></h2>
+<p>Picture a small round screen on your desk. You press a button and ask, "When is my next test?" A moment later the device answers out loud and shows a countdown on its display. It costs a few tens of dollars, you wired it yourself, and you wrote every line of code that runs on it.</p>
+<p>That device is the <strong>Open Study Buddy</strong>, and this book teaches you to build it one feature at a time. Before we touch any wires, we need a shared vocabulary. This chapter defines the words that the rest of the book uses (agent, terminal, server, brain) and shows how they fit together.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Hello, Builders! I'm Sage</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+I'm Sage, an owl who loves listening closely, and I'll be your guide through this book. Here is what I do, in the order you will usually meet me in a chapter:</p>
+<ol>
+<li><strong>Welcome:</strong> I open a chapter and tell you what you will be able to build.</li>
+<li><strong>Think:</strong> I mark a big idea that is worth a pause.</li>
+<li><strong>Tip:</strong> I hand you a shortcut that saves time.</li>
+<li><strong>Warn:</strong> I flag a common trap and show you the way out.</li>
+<li><strong>Encourage:</strong> I cheer you on at a hard spot.</li>
+<li><strong>Celebrate:</strong> I close a chapter by naming what you just learned.</li>
+</ol>
+<p>If I'm not doing one of those six things, I'm not in the chapter. Let's listen closely!</p>
+</div>
+<p>By the end of this chapter, you will be able to name every part of the device, explain which parts run on the desk and which run on a school computer, and trace one spoken question all the way to a spoken answer.</p>
+<h2 id="what-is-a-personal-agent">What Is a Personal Agent?<a class="headerlink" href="#what-is-a-personal-agent" title="Permanent link">&para;</a></h2>
+<p>A <strong>personal agent</strong> is software that carries out multi-step work on one person's behalf. Three traits set it apart from other programs:</p>
+<ul>
+<li><strong>It works for you.</strong> It acts on your calendar, your homework, and your reminders, not on a generic task.</li>
+<li><strong>It takes several steps.</strong> One request can trigger a chain of actions, such as looking something up, deciding, and then sending an alert.</li>
+<li><strong>It comes back when it needs a decision.</strong> If an action affects you, the agent asks before it goes ahead.</li>
+</ul>
+<p>To do those steps, an agent uses <strong>tools</strong>, which are small programs it is allowed to run, such as "read the school calendar" or "send an alert." We define tools carefully later in this chapter. For now, think of a tool as one thing the agent can do.</p>
+<h3 id="a-worked-example-getting-ready-for-friday">A Worked Example: Getting Ready for Friday<a class="headerlink" href="#a-worked-example-getting-ready-for-friday" title="Permanent link">&para;</a></h3>
+<p>Suppose Maya says, "Get me ready for Friday's test." A personal agent could handle that request in five steps:</p>
+<ol>
+<li>It reads the school calendar and finds an event titled "TEST: Biology" on Friday.</li>
+<li>It checks for other deadlines and finds "DUE: Lab report" on Thursday.</li>
+<li>It builds a short plan: finish the lab report Thursday, review notes Thursday night.</li>
+<li>It schedules a reminder for Thursday at 7 pm.</li>
+<li>It asks Maya, "Should I move your study session to 6 pm?" and waits for her answer before changing anything.</li>
+</ol>
+<p>Notice that Maya made one request, the agent did the multi-step work, and the agent came back with a question before it changed Maya's schedule. Those are the three traits in action.</p>
+<h3 id="chatbot-versus-agent">Chatbot Versus Agent<a class="headerlink" href="#chatbot-versus-agent" title="Permanent link">&para;</a></h3>
+<p>A <strong>chatbot</strong> answers one message at a time. You type, it replies, and then it waits for your next message. It does not read your calendar, it does not set reminders, and it does not act when you are away. A chatbot's reply is the whole job, while for an agent the reply is often just the last step.</p>
+<p>The table below summarizes the difference using the traits we just defined.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Chatbot</th>
+<th>Personal agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who starts each piece of work?</td>
+<td>You, with every message</td>
+<td>You for the first request, then the agent on its own</td>
+</tr>
+<tr>
+<td>How many steps per request?</td>
+<td>One reply</td>
+<td>Several steps in a chain</td>
+</tr>
+<tr>
+<td>Does it use tools?</td>
+<td>Usually not</td>
+<td>Yes, such as calendar and alerts</td>
+</tr>
+<tr>
+<td>Does it act when you are away?</td>
+<td>No</td>
+<td>Yes, such as a morning reminder</td>
+</tr>
+<tr>
+<td>Does it ask before acting?</td>
+<td>Not needed, it only talks</td>
+<td>Yes, before actions that affect you</td>
+</tr>
+</tbody>
+</table>
+<p>Many agents contain a chatbot-style language model inside, so the line can look blurry. The test is simple: if the software only produces a reply, it is a chatbot, and if it takes actions for you, it is acting as an agent.</p>
+<p>The next activity lets you practice that test on ten described behaviors.</p>
+<h4 id="diagram-chatbot-or-agent-sorter">Diagram: Chatbot or Agent Sorter<a class="headerlink" href="#diagram-chatbot-or-agent-sorter" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Chatbot or Agent Sorter</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> chatbot-or-agent-sorter<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Template:</strong> https://github.com/dmccreary/conversational-ai/tree/main/docs/sims/chat-interface-anatomy<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> distinguish<br/>
+<strong>Learning Objective:</strong> The learner will distinguish chatbot behaviors from personal-agent behaviors by classifying 10 described behaviors, with at least 8 of 10 correct on the first attempt.</p>
+<p><strong>Prerequisites:</strong> personal agent, chatbot, tool, multi-step work (all defined in the section "What Is a Personal Agent?" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 10 behaviors, the learner commits to one of two bins, "Chatbot behavior" or "Agent behavior". A classification is correct when it matches the Correct bin column in Content. Mastery is 8 of 10 correct. Reading a behavior without committing is not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) Any program that talks is an agent. (2) A chatbot that sounds smart is an agent. (3) An agent must be a robot or a physical device.</p>
+<p><strong>Instructional Rationale:</strong> Analyze-level distinguishing requires the learner to apply the three traits to new cases rather than recite them. A forced two-way choice on concrete behaviors makes the learner decide which trait is present, and the one-sentence reason after each answer names the trait.</p>
+<p><strong>Content:</strong></p>
+<p>The learner sees the behaviors one at a time in this fixed order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Behavior shown to the learner</th>
+<th>Correct bin</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Answers one typed question, then waits for the next message.</td>
+<td>Chatbot behavior</td>
+<td>It replies to a single message and takes no further action.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Reads the school calendar, finds a test, and adds a reminder for the night before.</td>
+<td>Agent behavior</td>
+<td>It uses a tool and acts in several steps without being asked for each one.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Explains what a "TEST:" event is when asked, with no access to any calendar.</td>
+<td>Chatbot behavior</td>
+<td>It gives information only and takes no action for the person.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Asks "Should I move your study session to 6 pm?" before changing the schedule.</td>
+<td>Agent behavior</td>
+<td>It comes back for a decision before an action that affects the person.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Rewrites a paragraph that the student pastes in.</td>
+<td>Chatbot behavior</td>
+<td>One request produces one reply, and the work ends there.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Checks every morning for new due dates and announces them.</td>
+<td>Agent behavior</td>
+<td>It acts on its own over time on the person's behalf.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Tells a joke when asked.</td>
+<td>Chatbot behavior</td>
+<td>It produces a reply only.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Sends an alert to the student's desk device when a test is one day away.</td>
+<td>Agent behavior</td>
+<td>It takes an action through a tool, without being asked at that moment.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Remembers that the student prefers 7 pm reminders and schedules the next reminder for 7 pm.</td>
+<td>Agent behavior</td>
+<td>It uses what it remembers to take an action on the person's behalf.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Summarizes a news article that the student pastes in.</td>
+<td>Chatbot behavior</td>
+<td>One request produces one reply, and no action follows.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> Illustrative behaviors written for this sim from the chapter section "What Is a Personal Agent?". The sim labels them "illustrative".</p>
+<p><strong>Rules:</strong> A behavior belongs in "Agent behavior" when it includes at least one of these: it uses a tool to take an action, it works in more than one step, it acts without being prompted at that moment, or it asks for approval before an action. Otherwise it belongs in "Chatbot behavior". The score is the count of correct classifications, from 0 to 10.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads behavior 1 and chooses a bin.</li>
+<li>The sim shows whether the choice was correct and the reason from the Why column, then the learner continues to the next behavior.</li>
+<li>After behavior 10, the sim shows the score and lists each missed behavior with its reason.</li>
+<li>The learner can restart with the same 10 behaviors in a new random order. Only the first run counts as evidence.</li>
+</ol>
+<p><strong>Feedback:</strong> Ten items, fixed order on the first run, one attempt per item. Correct: "Correct: <Why>". Incorrect: "Not quite: <Why>". The correct bin is revealed immediately after each answer. A running score "n of 10" is shown after every answer.</p>
+<p><strong>Starting State:</strong> Behavior 1 is shown with the two bins and the question "Is this a chatbot behavior or an agent behavior?"</p>
+<p><strong>Chapter Anchors:</strong> A chatbot answers one message at a time. An agent uses tools, works in several steps, and comes back when it needs a decision.</p>
+</details>
+<h2 id="where-an-agent-lives">Where an Agent Lives<a class="headerlink" href="#where-an-agent-lives" title="Permanent link">&para;</a></h2>
+<p>An agent is software, so it has to run on a computer somewhere. Where it runs decides who controls it, what it costs, and what happens to your data. This section defines the computing terms first and then compares the three places an agent can live.</p>
+<h3 id="edge-devices-and-always-on-devices">Edge Devices and Always-On Devices<a class="headerlink" href="#edge-devices-and-always-on-devices" title="Permanent link">&para;</a></h3>
+<p>An <strong>edge device</strong> is a small computer at the "edge" of the network, close to the person who uses it, instead of in a distant data center. Phones, smart speakers, and your Raspberry Pi Pico are all edge devices. Their strengths are speed and presence: a button press is handled right where you are.</p>
+<p>The Pico has a catch. It has only about half a megabyte of working memory, thousands of times less than a typical phone. That is plenty for reading buttons and driving a display, but far too little to run a large AI model.</p>
+<p><em>Worked example.</em> When you press the volume button on your Study Buddy, the Pico changes the volume immediately, because that decision needs no network and no server. When you ask a question about your test schedule, the Pico cannot answer alone. It must pass the question to a bigger computer. Keep that split in mind, because it explains the whole architecture of this book.</p>
+<p>An <strong>always-on device</strong> stays powered and ready to respond whenever you need it. Your desk Study Buddy is always on in this sense: it plugs into USB power and waits, so there is no boot time when you want an answer.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Two Phrases, Two Meanings</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+Watch out for mixing up "always-on" and "always-listening." Always-on means the device has power and is ready, while always-listening means its microphone is being processed all the time. This book's default is push-to-talk, and always-listening needs approval from a parent, teacher, or school first.</p>
+</div>
+<p><em>Worked example.</em> Your Study Buddy sits on the desk all night, always on. Its microphone is not being processed until you switch it to listening. A different device with a wake word, such as "Hey Pico," would need to process sound continuously to hear it, which is why Chapters 12 and 17 treat that mode with extra care.</p>
+<h3 id="cloud-agents">Cloud Agents<a class="headerlink" href="#cloud-agents" title="Permanent link">&para;</a></h3>
+<p>A <strong>cloud agent</strong> is an agent that runs on a vendor's computers in a remote data center and that you reach over the Internet. The vendor owns the hardware, writes and updates the software, and usually charges a monthly subscription. Cloud agents are popular because they are easy to start: you sign up and begin.</p>
+<p>The price of that ease is control. The vendor decides what the agent can do, what happens to the audio and text you send, and how long the service lasts.</p>
+<p><em>Worked example.</em> Suppose you ask a cloud agent about your test. Your question travels over the Internet to the vendor's data center and is processed there, under the vendor's rules about storage and use. If you stop paying, or the vendor changes the service, your agent changes or disappears. None of this is bad by itself, but you should know it is happening, and you cannot inspect or change the software.</p>
+<h3 id="self-hosted-agents">Self-Hosted Agents<a class="headerlink" href="#self-hosted-agents" title="Permanent link">&para;</a></h3>
+<p>A <strong>self-hosted agent</strong> is an agent that runs on a computer you or your organization controls, such as a laptop, a spare Raspberry Pi, or a school server. You choose the software, you decide which data it may touch, and you can read and change how it works. The price of control is responsibility: you keep it updated and secure.</p>
+<p><em>Worked example.</em> Alex's coding club runs a small agent on a spare Raspberry Pi in the lab. The hardware cost is paid once, the club decides what the agent can read, and members can change how it answers. The trade-off is time. When a software update arrives, someone in the club has to install it.</p>
+<h3 id="school-hosted-agents">School-Hosted Agents<a class="headerlink" href="#school-hosted-agents" title="Permanent link">&para;</a></h3>
+<p>A <strong>school-hosted agent</strong> is a self-hosted agent that a school runs for its students. One school computer runs the agent, and every student's device connects to it. The school configures it for school needs: which calendar it reads, what voice and mascot it uses, and how long it keeps any data.</p>
+<p><em>Worked example.</em> A school sets up one agent that reads the school calendar. Every classroom device asks that one server for the next event. When the calendar contains "TEST: Biology" for Friday, every device can announce it, and the school decides whether any request is saved or deleted. This is the setup the Open Study Buddy is designed for.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">The Real Question: Who Controls It?</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Notice that "cloud or not" matters less than "who controls it." Ask who can see your requests, who can change the agent's behavior, and who can switch it off.</p>
+</div>
+<h3 id="comparing-the-three-hosting-options">Comparing the Three Hosting Options<a class="headerlink" href="#comparing-the-three-hosting-options" title="Permanent link">&para;</a></h3>
+<p>With the three terms defined, the table below summarizes how they differ.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Cloud agent</th>
+<th>Self-hosted agent</th>
+<th>School-hosted agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who runs the computer?</td>
+<td>The vendor, in a data center</td>
+<td>You or your group</td>
+<td>The school</td>
+</tr>
+<tr>
+<td>Who decides what data it can touch?</td>
+<td>The vendor's terms and settings</td>
+<td>You</td>
+<td>The school</td>
+</tr>
+<tr>
+<td>Typical cost pattern</td>
+<td>A recurring subscription fee</td>
+<td>Hardware you already own, plus your own time</td>
+<td>Shared school hardware and staff time, used by every student's device</td>
+</tr>
+<tr>
+<td>Who keeps it running?</td>
+<td>The vendor</td>
+<td>You</td>
+<td>School staff</td>
+</tr>
+</tbody>
+</table>
+<p>The next activity asks you to choose an option for four situations and name the deciding factor.</p>
+<h4 id="diagram-agent-hosting-trade-off-explorer">Diagram: Agent Hosting Trade-Off Explorer<a class="headerlink" href="#diagram-agent-hosting-trade-off-explorer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Agent Hosting Trade-Off Explorer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> agent-hosting-tradeoff-explorer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Evaluate<br/>
+<strong>Bloom Verb:</strong> recommend<br/>
+<strong>Learning Objective:</strong> The learner will recommend one of three hosting options (cloud agent, self-hosted agent, school-hosted agent) for each of four scenarios and identify the deciding factor, with at least 3 of 4 scenarios fully correct.</p>
+<p><strong>Prerequisites:</strong> cloud agent, self-hosted agent, school-hosted agent, and the four comparison questions (all defined in the section "Where an Agent Lives" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each scenario, the learner first commits to a hosting option and then commits to the deciding factor from four choices. A scenario is fully correct when both choices match the Correct columns in Content. Mastery is 3 of 4 scenarios fully correct. Reading the comparison table is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) A cloud agent is always the best choice because it is easiest. (2) Self-hosting is only for experts. (3) Hosting only affects cost, not who sees the data.</p>
+<p><strong>Instructional Rationale:</strong> Evaluate-level recommending requires the learner to weigh criteria against a situation. Choosing the option and then naming the one factor that decides it makes the learner justify the choice, and committing before the table is highlighted prevents simply reading the answer off.</p>
+<p><strong>Content:</strong></p>
+<p>The learner sees the four comparison questions as the factors, labeled A to D:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Who runs the computer?</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Who decides what data it can touch?</td>
+</tr>
+<tr>
+<td>C</td>
+<td>What is the typical cost pattern?</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Who keeps it running?</td>
+</tr>
+</tbody>
+</table>
+<p>The three options and their answers to the four factors are exactly the values in the chapter table "Comparing the Three Hosting Options". The learner sees four scenarios in this fixed order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Scenario shown to the learner</th>
+<th>Correct option</th>
+<th>Correct factor</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>A student wants an agent today, with no setup, and the questions contain nothing private.</td>
+<td>Cloud agent</td>
+<td>D</td>
+<td>The vendor keeps it running, so the student has nothing to maintain.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>A coding club wants to learn how agents work by reading and changing the agent's code.</td>
+<td>Self-hosted agent</td>
+<td>A</td>
+<td>The club runs the computer, so it can open and change the software.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>A school wants every classroom device to announce the school calendar, with the school deciding what is kept.</td>
+<td>School-hosted agent</td>
+<td>B</td>
+<td>One school server serves every device, and the school decides what data it touches.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>A family wants an assistant whose audio never leaves their home network.</td>
+<td>Self-hosted agent</td>
+<td>B</td>
+<td>The family decides what data the agent touches, and nothing goes to a vendor.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The options and factors come from the chapter section "Where an Agent Lives". The four scenarios are illustrative, written for this sim, and the sim labels them "illustrative".</p>
+<p><strong>Rules:</strong> An option answer is correct when it equals the Correct option for that scenario. A factor answer is correct when it equals the Correct factor. A scenario is fully correct only when both are correct. The score is the number of fully correct scenarios, from 0 to 4.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads scenario 1 and chooses one of the three options.</li>
+<li>The learner chooses the deciding factor, A to D.</li>
+<li>The sim then highlights the matching cells of the comparison table and shows the Why text.</li>
+<li>The learner continues through scenarios 2 to 4 in the same way.</li>
+<li>After scenario 4 the sim shows the score and the cells of the comparison table that were decisive in each scenario.</li>
+</ol>
+<p><strong>Feedback:</strong> Four scenarios, fixed order, one attempt for the option and one for the factor. Correct: "Correct: <Why>". Incorrect option: "Not quite: <Why>". Incorrect factor with a correct option: "Right option. The deciding factor is <factor letter and question>: <Why>". The correct answers are revealed after both choices are made. A running count "Scenarios fully correct: n of 4" is shown.</p>
+<p><strong>Starting State:</strong> The comparison table is visible without highlights, scenario 1 is shown, and the question on screen is "Which option would you recommend?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter table "Comparing the Three Hosting Options" has four questions and three options with the exact values used in the Content. The chapter states that a cloud agent is run by a vendor, and that a school-hosted agent is a self-hosted agent run by a school.</p>
+</details>
+<h2 id="what-open-means-here">What "Open" Means Here<a class="headerlink" href="#what-open-means-here" title="Permanent link">&para;</a></h2>
+<p>The Open Study Buddy is open in two senses: its hardware and its software. These two ideas look similar but mean different things.</p>
+<h3 id="open-hardware">Open Hardware<a class="headerlink" href="#open-hardware" title="Permanent link">&para;</a></h3>
+<p><strong>Open hardware</strong> is hardware whose design is published, so anyone can study it, build it, repair it, and change it. The kit is open in a practical way too: it uses common, documented parts that you can buy from many sellers, instead of a sealed box that only one company can service.</p>
+<p><em>Worked example.</em> Suppose your speaker cracks. Because the speaker connects through a standard amplifier board, you can unplug it and wire in another small speaker that suits that amplifier. You do not need the vendor's permission, a special part number, or a replacement for the whole device. Chapter 4 shows the wiring for each part.</p>
+<p>The table below contrasts the two approaches.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Closed hardware</th>
+<th>Open hardware</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can you see how it is built?</td>
+<td>No</td>
+<td>Yes, the design is published</td>
+</tr>
+<tr>
+<td>Can you replace a broken part?</td>
+<td>Often only with the maker's part</td>
+<td>Yes, with any compatible part</td>
+</tr>
+<tr>
+<td>Can you add a feature?</td>
+<td>Only if the maker allows it</td>
+<td>Yes, you can modify it</td>
+</tr>
+<tr>
+<td>Who can repair it?</td>
+<td>Usually the maker</td>
+<td>You, your club, or your school</td>
+</tr>
+</tbody>
+</table>
+<h3 id="open-source-software">Open Source Software<a class="headerlink" href="#open-source-software" title="Permanent link">&para;</a></h3>
+<p><strong>Open source software</strong> is software whose source code is published under a license that lets you read it, run it, change it, and share it. MicroPython, the language you will use throughout this book, is open source, and so is the code you will write for the buddy server.</p>
+<p><em>Worked example.</em> Open the buddy server's rule file and find the line that says "Sorry, I only know about tests and due dates." If you want a friendlier message, you can change that sentence and restart the server. With closed software, the same change would mean filing a request and waiting.</p>
+<p>Two cautions keep "open" honest. Open source does not mean free of work, because someone still has to maintain it. It also does not mean automatically safe, because anyone can publish code, including code with mistakes.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Read Before You Run</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+Before you run code someone else wrote, search it for network calls and see where it sends data. That one check tells you what leaves your device.</p>
+</div>
+<h2 id="the-open-study-buddy-device">The Open Study Buddy Device<a class="headerlink" href="#the-open-study-buddy-device" title="Permanent link">&para;</a></h2>
+<p>Now we can describe the device itself. The <strong>Open Study Buddy device</strong> is a desk-sized hardware kit built around a Raspberry Pi Pico 2 W microcontroller, which is a small, low-cost computer on a single chip, with Wi-Fi built in. It has five groups of parts:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Its job on the desk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi Pico 2 W</td>
+<td>Runs your MicroPython program and connects to Wi-Fi</td>
+</tr>
+<tr>
+<td>Round color display (360 × 360 pixels)</td>
+<td>Shows the clock, the agent's words, and status</td>
+</tr>
+<tr>
+<td>INMP441 microphone</td>
+<td>Turns sound into digital numbers the Pico can read</td>
+</tr>
+<tr>
+<td>MAX98357A amplifier and a small speaker</td>
+<td>Turns digital audio numbers back into sound</td>
+</tr>
+<tr>
+<td>Mode, Up, and Down buttons</td>
+<td>Let you change modes, move through menus, and adjust values</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> Here is a day in the life of one device. You press the Mode button to switch from the clock to listening, and ask your question. The display shows a "thinking" message while the answer is prepared, then the speaker reads the answer aloud. Afterward you press Up and Down to adjust the volume. Every step in that story uses one of the five groups of parts.</p>
+<p>The whole kit costs a few tens of dollars, and Chapter 4 lists every part and its wiring.</p>
+<h3 id="the-agent-terminal">The Agent Terminal<a class="headerlink" href="#the-agent-terminal" title="Permanent link">&para;</a></h3>
+<p>The Pico cannot think like a large AI system, so the Study Buddy does not try to. It works as an <strong>agent terminal</strong>, a device that gives an agent ears, a voice, and a face, but not its brain. The terminal collects your input from the microphone and buttons, shows output on the display and speaker, and sends your requests to the computer where the agent actually runs.</p>
+<p>An everyday comparison is a walkie-talkie. The walkie-talkie lets you speak and listen, but the helpful person you are talking to is in another room. Keeping the terminal "thin" has two benefits. It fits within the Pico's small memory, and you can upgrade the agent's brain without rewriting the device's code.</p>
+<p><em>Worked example.</em> When you ask for your next test, the terminal does three things: it captures your voice, it sends the request to the server, and it plays the reply it receives. It does not search the calendar or write the answer. If the school changes the calendar, nothing on the terminal needs to change.</p>
+<h3 id="the-buddy-server">The Buddy Server<a class="headerlink" href="#the-buddy-server" title="Permanent link">&para;</a></h3>
+<p>The <strong>buddy server</strong> is the program that receives the terminal's requests, decides on a reply, and sends it back. It runs on a nearby computer, such as a Raspberry Pi that the school keeps on its network. The buddy server holds the school's configuration, the calendar data, and the agent's decision logic.</p>
+<p>One buddy server can serve many terminals at once.</p>
+<p><em>Worked example.</em> Three students in the same classroom ask for the next test at the same moment. Each device sends its own request with its own device name. The buddy server answers each request separately and sends each reply back to the device that asked, so three students hear three answers at the same time.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Ears and Voice Here, Brain There</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Here is the big mental shift: the device on your desk is not where the thinking happens. It is the face, ears, and voice, and the brain can live in another room.</p>
+</div>
+<p>The next activity lets you explore the parts of the system and test yourself on each one's job.</p>
+<h4 id="diagram-study-buddy-architecture-explorer">Diagram: Study Buddy Architecture Explorer<a class="headerlink" href="#diagram-study-buddy-architecture-explorer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Study Buddy Architecture Explorer</summary>
+<p>Type: graph-model
+<strong>sim-id:</strong> study-buddy-architecture-explorer<br/>
+<strong>Library:</strong> vis-network<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Template:</strong> https://github.com/dmccreary/bioinformatics/tree/main/docs/sims/profile-hmm-architecture<br/>
+<strong>Bloom Level:</strong> Remember<br/>
+<strong>Bloom Verb:</strong> identify<br/>
+<strong>Learning Objective:</strong> The learner will identify the job of each of the five kit parts and of the buddy server by matching six described jobs to the correct part, with at least 5 of 6 correct.</p>
+<p><strong>Prerequisites:</strong> Open Study Buddy device, agent terminal, buddy server, and the five kit parts (all defined in the section "The Open Study Buddy Device" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> In quiz mode the sim shows one job description and the learner clicks the part that does that job. A click is correct when it matches the Correct part column in Content. Mastery is 5 of 6 correct on the first attempt. Hovering and clicking in explore mode is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) The speaker and the amplifier are the same thing. (2) The buddy server is part of the desk device. (3) The Pico sends sound straight to the display.</p>
+<p><strong>Instructional Rationale:</strong> Remember-level identification needs retrieval, so the learner first explores each part and then retrieves the matching part from a job description. Showing the connections reveals which parts talk to the Pico and which talk across the network, which is the structure the chapter describes.</p>
+<p><strong>Content:</strong></p>
+<p>Six nodes, in two groups. The group "Agent terminal (the desk device)" contains five nodes, and the group "School network" contains one node. Each node shows this text when hovered or clicked:</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Group</th>
+<th>Job text revealed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi Pico 2 W</td>
+<td>Agent terminal</td>
+<td>Runs the terminal program, reads the microphone and buttons, drives the display and speaker, and talks to the buddy server over Wi-Fi.</td>
+</tr>
+<tr>
+<td>Round color display</td>
+<td>Agent terminal</td>
+<td>Shows the clock, the agent's words, and status as a 360 by 360 pixel round picture.</td>
+</tr>
+<tr>
+<td>INMP441 microphone</td>
+<td>Agent terminal</td>
+<td>Turns sound into digital numbers that the Pico can read.</td>
+</tr>
+<tr>
+<td>MAX98357A amplifier and speaker</td>
+<td>Agent terminal</td>
+<td>Turns digital audio numbers into sound that the student hears.</td>
+</tr>
+<tr>
+<td>Mode, Up, and Down buttons</td>
+<td>Agent terminal</td>
+<td>Let the student change modes, move through menus, and adjust values by hand.</td>
+</tr>
+<tr>
+<td>Buddy server</td>
+<td>School network</td>
+<td>Receives requests, decides on a reply, and sends it back. It runs on a school computer and is not part of the desk device.</td>
+</tr>
+</tbody>
+</table>
+<p>Five edges. The meaning of each edge is shown when either of its two nodes is selected:</p>
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INMP441 microphone</td>
+<td>Raspberry Pi Pico 2 W</td>
+<td>Sends digital sound numbers to the Pico.</td>
+</tr>
+<tr>
+<td>Mode, Up, and Down buttons</td>
+<td>Raspberry Pi Pico 2 W</td>
+<td>Send button presses to the Pico.</td>
+</tr>
+<tr>
+<td>Raspberry Pi Pico 2 W</td>
+<td>Round color display</td>
+<td>Sends text and pictures to show.</td>
+</tr>
+<tr>
+<td>Raspberry Pi Pico 2 W</td>
+<td>MAX98357A amplifier and speaker</td>
+<td>Sends digital audio numbers to play.</td>
+</tr>
+<tr>
+<td>Raspberry Pi Pico 2 W</td>
+<td>Buddy server</td>
+<td>Sends requests and receives replies over Wi-Fi on the school network.</td>
+</tr>
+</tbody>
+</table>
+<p>Quiz questions, in this fixed order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Job description shown</th>
+<th>Correct part</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Turns sound into digital numbers.</td>
+<td>INMP441 microphone</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Turns digital audio numbers into sound the student hears.</td>
+<td>MAX98357A amplifier and speaker</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Shows the clock and the agent's words as a round picture.</td>
+<td>Round color display</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Runs the terminal program and connects to Wi-Fi.</td>
+<td>Raspberry Pi Pico 2 W</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Lets the student change modes and adjust values by hand.</td>
+<td>Mode, Up, and Down buttons</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Decides on a reply and sends it back, from a school computer.</td>
+<td>Buddy server</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> From the chapter section "The Open Study Buddy Device" and the table of five kit parts there. The sim labels the quiz wording "written for this sim".</p>
+<p><strong>Rules:</strong> A quiz answer is correct when the clicked node equals the Correct part. The score is the number of correct answers, from 0 to 6. Selecting a node in explore mode highlights that node and every edge connected to it.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>In explore mode, the learner hovers or clicks each of the six nodes to read its job text.</li>
+<li>The learner selects a node and sees its connected edges and their meanings.</li>
+<li>The learner answers the question: "Which part must the Pico talk to over Wi-Fi?" (answer: the buddy server).</li>
+<li>The learner switches to quiz mode and clicks the matching part for each of the six job descriptions.</li>
+<li>After question 6 the sim shows the score and lists each missed part with its job text.</li>
+</ol>
+<p><strong>Feedback:</strong> Six questions, fixed order, one attempt per question. Correct: "Correct: <job text>". Incorrect: "Not quite. The part that does this is <correct part>: <job text>". The correct part is revealed immediately after each answer, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> All six nodes and five edges are visible with no node selected, in explore mode, with the instruction "Click a part to learn its job."</p>
+<p><strong>Chapter Anchors:</strong> The device has five groups of parts. The buddy server is not part of the desk device. The terminal talks to the buddy server over Wi-Fi on the school network.</p>
+</details>
+<h2 id="how-the-terminal-and-server-talk">How the Terminal and Server Talk<a class="headerlink" href="#how-the-terminal-and-server-talk" title="Permanent link">&para;</a></h2>
+<p>The terminal and the buddy server are separate programs on separate computers, so they need an agreement about how to talk. That agreement has a name, and it makes the rest of the architecture possible.</p>
+<h3 id="the-request-reply-contract">The Request-Reply Contract<a class="headerlink" href="#the-request-reply-contract" title="Permanent link">&para;</a></h3>
+<p>The <strong>request-reply contract</strong> is the agreed format of what the terminal sends (the request) and what the server returns (the reply). The terminal does not need to know how the server decides its answer. It only needs to know what to send and what shape of reply to expect.</p>
+<p>Before we look at an example, one definition: <strong>JSON</strong> is a plain-text format for labeled values, written as names and values inside curly braces. Chapter 13 teaches it properly. In the example below, the names <code>device</code>, <code>kind</code>, and <code>text</code> are illustrative, because the real contract is defined in Chapter 13. The request says which device is asking, what kind of request it is, and what the student said, already converted to text.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"desk-07"</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"question"</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"when is my next test"</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The reply says what to speak, what to show on the display, and which mode the device should go to next:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"speak"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your next test is Biology on Friday."</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"show"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Biology test: Friday"</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"next_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clock"</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><em>Worked example.</em> Notice what the terminal does with this reply. It sends the <code>speak</code> text to the speaker, puts the <code>show</code> text on the display, and switches to the mode in <code>next_mode</code>. It never needed to know that the reply came from a calendar lookup. If a different server sent an identical reply shape, the terminal would work the same way.</p>
+<h3 id="the-agent-data-flow">The Agent Data Flow<a class="headerlink" href="#the-agent-data-flow" title="Permanent link">&para;</a></h3>
+<p>The <strong>agent data flow</strong> is the path one request takes from the student's voice to the spoken answer. Here are the eight steps, with the part that does each step in brackets. We use two new terms. <strong>Speech-to-text</strong> is a service that turns recorded speech into written words, and <strong>text-to-speech</strong> is a service that turns written words into speech. Chapter 14 shows how both are used.</p>
+<ol>
+<li>The student speaks. <em>(Student)</em></li>
+<li>The microphone captures the sound as digital numbers. <em>(Terminal)</em></li>
+<li>The request travels from the terminal to the server over Wi-Fi. <em>(Network)</em></li>
+<li>The server converts the speech to text: "when is my next test". <em>(Server)</em></li>
+<li>The brain decides on the reply: "Your next test is Biology on Friday." <em>(Server)</em></li>
+<li>The server converts the reply to speech and packages the reply. <em>(Server)</em></li>
+<li>The reply travels back to the terminal over Wi-Fi. <em>(Network)</em></li>
+<li>The terminal shows the text on the display and plays the speech. <em>(Terminal)</em></li>
+</ol>
+<p>Step 1 is yours. Two steps happen on the terminal, three happen on the server, and two happen on the network between them. The word "brain" in step 5 means whatever logic decides the reply, and we examine it in the next section.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Check the Signal First</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+When your buddy stays silent, test the steps in order: microphone, Wi-Fi, server, then reply. Finding the first silent step is much faster than guessing.</p>
+</div>
+<p>The next activity walks through the eight steps and asks you to predict who does each one.</p>
+<h4 id="diagram-agent-data-flow-step-through">Diagram: Agent Data Flow Step-Through<a class="headerlink" href="#diagram-agent-data-flow-step-through" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Agent Data Flow Step-Through</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> agent-data-flow-step-through<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Template:</strong> https://github.com/dmccreary/conversational-ai/tree/main/docs/sims/response-generation-architecture<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> explain<br/>
+<strong>Learning Objective:</strong> The learner will explain which of three parts (terminal, network, server) performs each of the eight steps that carry a spoken question to a spoken answer, by predicting the owner of steps 2 to 8 with at least 6 of 7 correct.</p>
+<p><strong>Prerequisites:</strong> agent terminal, buddy server, request-reply contract, speech-to-text, text-to-speech (all defined in the section "How the Terminal and Server Talk" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> Before each of steps 2 to 8 is revealed, the learner commits to the part that performs it: Terminal, Network, or Server. A prediction is correct when it matches the Owner column in Content. Mastery is 6 of 7 correct. Pressing Next without predicting is not allowed.</p>
+<p><strong>Misconceptions:</strong> (1) The Pico decides the answer. (2) The microphone sends sound straight to the speaker. (3) The Wi-Fi link understands the question.</p>
+<p><strong>Instructional Rationale:</strong> Understand-level explanation needs the learner to trace the process with concrete data. Step-through with prediction before reveal makes the learner reason about which part has the memory and the job, and the concrete values shown at each step prevent a vague answer. There is no animation, because animation would hide the data at each step.</p>
+<p><strong>Content:</strong></p>
+<p>The scenario is the question "When is my next test?" The learner sees these eight steps in order, with the data shown at each step:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What happens</th>
+<th>Data shown</th>
+<th>Owner</th>
+<th>Why the owner (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>The student speaks</td>
+<td>The spoken words "When is my next test?"</td>
+<td>Student</td>
+<td>Shown to start the scenario, and not predicted.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The microphone captures sound as digital numbers</td>
+<td>Illustrative sample values: 12, -40, 85, 130, 60, -25</td>
+<td>Terminal</td>
+<td>The microphone is wired to the Pico, so the terminal captures the sound.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The request travels to the server</td>
+<td>The request fields: device = desk-07, kind = question, plus the sound numbers</td>
+<td>Network</td>
+<td>The Wi-Fi link only carries the request. It does not read or change it.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>The server converts speech to text</td>
+<td>The text "when is my next test"</td>
+<td>Server</td>
+<td>Speech-to-text needs more memory than the Pico has, so the server does it.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>The brain decides the reply</td>
+<td>Event found: "TEST: Biology, Friday". Reply text: "Your next test is Biology on Friday."</td>
+<td>Server</td>
+<td>The calendar and the decision logic live on the server.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>The server converts the reply to speech and packages it</td>
+<td>The reply fields: speak = the sentence as audio, show = "Biology test: Friday"</td>
+<td>Server</td>
+<td>Text-to-speech also needs more memory than the Pico has.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>The reply travels back to the terminal</td>
+<td>The same reply fields moving from the server to desk-07</td>
+<td>Network</td>
+<td>The Wi-Fi link only carries the reply.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>The terminal shows and plays the reply</td>
+<td>The display shows "Biology test: Friday". The speaker says "Your next test is Biology on Friday."</td>
+<td>Terminal</td>
+<td>The display and speaker are wired to the Pico, so the terminal outputs the reply.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> An illustrative scenario written for this sim from the chapter section "How the Terminal and Server Talk". The sample values are illustrative and the sim labels them "illustrative".</p>
+<p><strong>Rules:</strong> There are eight steps and three owners. The prediction applies to steps 2 to 8, which is 7 predictions. A prediction is correct when it equals the Owner of that step. The score is the number of correct predictions, from 0 to 7. The correct owner is always revealed after the prediction, and the data for that step is then shown.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>Step 1 is shown. The learner sees the spoken question.</li>
+<li>For step 2 the learner chooses Terminal, Network, or Server.</li>
+<li>The sim reveals the correct owner, the step description, and the data shown for that step, with the reason if the prediction was wrong.</li>
+<li>The learner presses Next and repeats for steps 3 to 8.</li>
+<li>After step 8, the sim shows a summary that groups the eight steps by owner and shows the score.</li>
+</ol>
+<p><strong>Feedback:</strong> Seven predictions, fixed order, one attempt each. Correct: "Correct: <Owner>. <Why the owner>". Incorrect: "Not quite. The <Owner> does this step. <Why the owner>". The owner is revealed immediately after each prediction. A running score "n of 7" is shown.</p>
+<p><strong>Starting State:</strong> Step 1 is shown with the spoken question, the terminal and the server shown as separate parts, and the question "Which part performs step 2?"</p>
+<p><strong>Chapter Anchors:</strong> There are eight steps. Step 1 is the student's, two steps happen on the terminal (2 and 8), three happen on the server (4, 5, 6), and two happen on the network (3 and 7). The example question is "When is my next test?" and the example reply is "Your next test is Biology on Friday."</p>
+</details>
+<h2 id="the-swappable-brain">The Swappable Brain<a class="headerlink" href="#the-swappable-brain" title="Permanent link">&para;</a></h2>
+<p>Look again at step 5 of the data flow. Because the request-reply contract keeps the terminal separate from the decision logic, you can replace the logic without touching the terminal. That property is the <strong>swappable brain</strong>: the same device can talk to a very simple brain today and a much more capable brain next month.</p>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">A Lot of Words at Once</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+If eight new terms in a row feels like a lot, that is normal. You will build the simplest level first, and it uses only two of them: rules and tools. Come back to this section when each term shows up in code.</p>
+</div>
+<p>This section introduces the possible brains and the ideas around them, starting with the simplest.</p>
+<h3 id="rule-based-agents">Rule-Based Agents<a class="headerlink" href="#rule-based-agents" title="Permanent link">&para;</a></h3>
+<p>A <strong>rule-based agent</strong> decides using rules that a person wrote in advance, such as "if the question mentions a test, look up the next test event." It is small, predictable, and needs no AI model. It can run comfortably on a Raspberry Pi. Its weakness is that it only handles what its rules anticipated.</p>
+<p>Before we look at code, here is what the example does. It lowercases the question text so that capital letters do not matter, checks for the word "test" or "due," and falls back to an apology otherwise. The helper <code>next_event_with_prefix</code> is illustrative, and Chapter 16 builds the real ones.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">decide</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">events</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">if</span> <span class="s2">"test"</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="n">event</span> <span class="o">=</span> <span class="n">next_event_with_prefix</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="s2">"TEST:"</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Your next test is </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">day</span><span class="si">}</span><span class="s2">."</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">if</span> <span class="s2">"due"</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">event</span> <span class="o">=</span> <span class="n">next_event_with_prefix</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="s2">"DUE:"</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2"> is due on </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">day</span><span class="si">}</span><span class="s2">."</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">return</span> <span class="s2">"Sorry, I only know about tests and due dates."</span>
+</span></code></pre></div>
+<p><em>Worked example.</em> The question "When is my next test?" matches the first rule and gets a correct answer. The question "Do I have anything big coming up this week?" contains neither word, so the agent falls through to the apology, even though the answer is sitting in the calendar. That gap is exactly what the next kind of brain tries to close.</p>
+<h3 id="llm-backed-agents">LLM-Backed Agents<a class="headerlink" href="#llm-backed-agents" title="Permanent link">&para;</a></h3>
+<p>A <strong>large language model</strong>, or <strong>LLM</strong>, is an AI program trained on huge amounts of text that predicts and writes text. An <strong>LLM-backed agent</strong> uses an LLM to interpret questions phrased in many different ways and to write natural answers. The LLM does not run on the Pico, and usually not on a small buddy server either. It runs on a more powerful computer or a vendor's service.</p>
+<p><em>Worked example.</em> Ask the LLM-backed agent, "Do I have anything big coming up this week?" It can interpret "big" to mean tests and project deadlines, find "TEST: Biology" on Friday and "DUE: Lab report" on Thursday, and answer, "You have a lab report due Thursday and a Biology test on Friday." No rule was written for that phrasing.</p>
+<p>The trade-offs are real. An LLM-backed agent needs more computing power. If the LLM is hosted by a vendor, your text leaves your school network. And an LLM can produce a confident answer that is wrong.</p>
+<h3 id="agent-tools">Agent Tools<a class="headerlink" href="#agent-tools" title="Permanent link">&para;</a></h3>
+<p><strong>Agent tools</strong> are the functions an agent is allowed to call to fetch facts or take actions, such as "list upcoming events" or "send an alert." A rule-based agent calls a tool when a rule says to. An LLM-backed agent can choose which tool to call for a request it has never seen before.</p>
+<p>Tools matter for two reasons. They give the agent real facts to work from, and they set limits, because the agent can only do what its tools allow.</p>
+<p><em>Worked example.</em> For "When is my next test?" the agent calls a tool named something like <code>get_events</code> with the filter "TEST:". The tool returns the real list from the school calendar, and the agent turns the first item into a sentence. The date came from the calendar, not from the model's imagination.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Confident Is Not Correct</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+An LLM can sound sure and still be wrong about a date. Make the agent read dates through a tool, and show the source on the display so you can check it.</p>
+</div>
+<h3 id="agent-memory">Agent Memory<a class="headerlink" href="#agent-memory" title="Permanent link">&para;</a></h3>
+<p><strong>Agent memory</strong> is information an agent keeps between requests, such as your preferred reminder time or the topic of the last question. Short-term memory covers the current conversation, while long-term memory is stored and survives restarts. Memory is also data, so the privacy chapter treats it carefully.</p>
+<h3 id="agent-approval-rules">Agent Approval Rules<a class="headerlink" href="#agent-approval-rules" title="Permanent link">&para;</a></h3>
+<p><strong>Agent approval rules</strong> state which actions an agent may take on its own and which need a human "yes" first. For example: reading the calendar is allowed, sending a message to a classmate needs approval, and deleting an event is never allowed. These rules are how you apply the third trait of an agent, coming back for a decision.</p>
+<h3 id="open-source-agent-frameworks">Open-Source Agent Frameworks<a class="headerlink" href="#open-source-agent-frameworks" title="Permanent link">&para;</a></h3>
+<p>An <strong>open-source agent framework</strong> is a published, reusable toolkit that supplies the common pieces of an agent, such as a loop that plans steps, tool calling, memory, and approval rules, so you do not write them from scratch. A school can self-host one and put it behind the same request-reply contract. This book treats frameworks as optional and does not teach a specific product, because the landscape changes quickly.</p>
+<h3 id="agent-progression-levels">Agent Progression Levels<a class="headerlink" href="#agent-progression-levels" title="Permanent link">&para;</a></h3>
+<p>Putting the pieces together gives a three-step ladder. The <strong>agent progression levels</strong> are the stages through which the buddy server grows, and each level keeps the same terminal and the same contract.</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Brain</th>
+<th>What it adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rule-based buddy server (about 100 lines, no LLM)</td>
+<td>Fixed rules and tools that read the school calendar</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The same server plus speech-to-text, text-to-speech, and one LLM call</td>
+<td>Spoken input and output, and free-form questions</td>
+</tr>
+<tr>
+<td>3</td>
+<td>An optional open-source agent framework behind the same contract</td>
+<td>Ready-made planning loop, memory, and approval rules</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> Take the question "Do I have anything big coming up this week?" At Level 1 the server replies, "Sorry, I only know about tests and due dates." At Level 2 it replies, "You have a lab report due Thursday and a Biology test on Friday." At Level 3 it can add, "I can set a reminder for Thursday at 7 pm. Should I?" which uses the approval rules before it acts. The terminal code is identical at all three levels.</p>
+<p>The last activity asks you to place abilities on the ladder.</p>
+<h4 id="diagram-agent-progression-level-explorer">Diagram: Agent Progression Level Explorer<a class="headerlink" href="#diagram-agent-progression-level-explorer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Agent Progression Level Explorer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> agent-progression-level-explorer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Template:</strong> https://github.com/dmccreary/ai-strategy-for-education/tree/main/docs/sims/ai-agent-anatomy<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> differentiate<br/>
+<strong>Learning Objective:</strong> The learner will differentiate the three agent progression levels by placing 8 abilities at the lowest level where each first appears, with at least 7 of 8 correct.</p>
+<p><strong>Prerequisites:</strong> rule-based agent, LLM-backed agent, agent tools, agent memory, agent approval rules, open-source agent framework, and the three levels (all defined in the section "The Swappable Brain" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 8 abilities, the learner commits to Level 1, Level 2, or Level 3. A placement is correct when it matches the Correct level column in Content. Mastery is 7 of 8 on the first attempt. Comparing the three replies in the second part is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) Only Level 3 can use tools. (2) A higher level needs a different terminal. (3) An LLM always gives a correct answer.</p>
+<p><strong>Instructional Rationale:</strong> Analyze-level differentiation requires the learner to tell which capability comes from which kind of brain. Placing each ability on the ladder after predicting, and then comparing the replies of all three levels to the same question, shows that the abilities differ while the request-reply contract stays the same.</p>
+<p><strong>Content:</strong></p>
+<p>The three levels are the values in the chapter table "Agent Progression Levels". The learner sees the abilities one at a time in this fixed order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Ability shown to the learner</th>
+<th>Correct level</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Matches the question text against fixed rules a person wrote.</td>
+<td>Level 1</td>
+<td>A rule-based server is made of exactly these rules.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Reads events from the school calendar using a tool.</td>
+<td>Level 1</td>
+<td>Even the rule-based server calls tools when a rule says to.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Answers a question worded in a way no rule anticipated.</td>
+<td>Level 2</td>
+<td>Interpreting free-form wording is what the LLM call adds.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Converts the student's speech to text and the reply back to speech.</td>
+<td>Level 2</td>
+<td>Level 2 adds speech-to-text and text-to-speech.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Chooses for itself which tool to call for a new kind of request.</td>
+<td>Level 2</td>
+<td>An LLM-backed agent can choose tools instead of following a rule.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Remembers a preferred reminder time between conversations using a ready-made memory feature.</td>
+<td>Level 3</td>
+<td>A framework supplies memory so you do not build it yourself.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Asks for approval before a risky action using ready-made approval rules.</td>
+<td>Level 3</td>
+<td>A framework supplies approval rules that apply before an action.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Runs a planning loop with tools, memory, and approvals supplied by a published toolkit.</td>
+<td>Level 3</td>
+<td>That combination is what an open-source agent framework provides.</td>
+</tr>
+</tbody>
+</table>
+<p>After the eight placements, the learner compares replies. The question is "Do I have anything big coming up this week?" and the learner chooses a level to see its reply:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Reply shown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>"Sorry, I only know about tests and due dates."</td>
+</tr>
+<tr>
+<td>2</td>
+<td>"You have a lab report due Thursday and a Biology test on Friday."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>"You have a lab report due Thursday and a Biology test on Friday. I can set a reminder for Thursday at 7 pm. Should I?"</td>
+</tr>
+</tbody>
+</table>
+<p>For every level the sim also shows the same request and the same reply shape, with the fields <code>device</code>, <code>kind</code>, and <code>text</code> in the request and <code>speak</code>, <code>show</code>, and <code>next_mode</code> in the reply.</p>
+<p><strong>Provenance:</strong> The levels and the replies come from the chapter sections "Agent Progression Levels" and "The Swappable Brain". The calendar events are illustrative, and the sim labels them "illustrative".</p>
+<p><strong>Rules:</strong> A placement is correct when it equals the Correct level for that ability. The score is the number of correct placements, from 0 to 8. The request and reply fields are identical for all three levels. Only the reply text differs.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads ability 1 and chooses Level 1, 2, or 3.</li>
+<li>The sim shows whether it was correct and the Why text, then the learner continues through ability 8.</li>
+<li>After ability 8, the sim shows the score.</li>
+<li>The learner chooses a level and reads its reply to the sample question, and does the same for the other two levels.</li>
+<li>The learner should notice that the request and reply fields never change between levels.</li>
+</ol>
+<p><strong>Feedback:</strong> Eight abilities, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. This first appears at <correct level>: <Why>". The correct level is revealed immediately after each answer, and a running score "n of 8" is shown.</p>
+<p><strong>Starting State:</strong> Ability 1 is shown with the three levels, and the question "At which level does this ability first appear?"</p>
+<p><strong>Chapter Anchors:</strong> There are three levels. Level 1 is about 100 lines and uses no LLM. Level 2 adds speech-to-text, text-to-speech, and one LLM call. Level 3 is an optional open-source agent framework. The terminal and the request-reply contract do not change between levels.</p>
+</details>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>You now have the full picture. A personal agent is software that works for you in several steps and comes back for decisions. It can live in a vendor's cloud, on a computer you control, or on a school server. Your Open Study Buddy is a thin agent terminal, built from open hardware, that sends requests to a buddy server over a request-reply contract. The decision logic behind the server is a swappable brain that can grow from simple rules to an LLM to a full framework.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>A chatbot replies, and an agent acts for you, uses tools, and asks before it changes something.</li>
+<li>Cloud, self-hosted, and school-hosted agents differ mainly in who runs the computer and who decides what data it touches.</li>
+<li>Open hardware and open source software let you study, repair, and change the whole system.</li>
+<li>The Open Study Buddy device is an agent terminal with a Pico, a round display, a microphone, an amplifier with a speaker, and three buttons.</li>
+<li>The buddy server receives requests, decides on a reply, and returns it, and one server can serve many terminals.</li>
+<li>One spoken question travels through eight steps: one is yours, two happen on the terminal, three on the server, and two on the network.</li>
+<li>Because of the request-reply contract, the brain can be swapped from rules to an LLM to a framework without changing the terminal.</li>
+</ul>
+<p>Test yourself with these two questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>A student asks a question worded in a way that no written rule anticipated. Which agent progression level first handles it? Click to expand</summary>
+<p>Level 2. An LLM-backed agent can interpret free-form wording, while a Level 1 rule-based server only handles questions that match its rules.</p>
+</details>
+<details class="question">
+<summary>Which steps of the data flow does the terminal perform, and why does the server do the rest of the work? Click to expand</summary>
+<p>The terminal captures the sound (step 2) and later shows and plays the reply (step 8). The server does speech-to-text, the brain's decision, and text-to-speech (steps 4 to 6) because those jobs need far more memory than the Pico has, and the Wi-Fi link only carries the request and the reply (steps 3 and 7).</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Vocabulary Unlocked</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just learned the vocabulary of a personal agent and traced one question from your voice to an answer on the display. From here on, when you read terminal, server, or brain, you will know exactly which job each one does.</p>
+</div>
+<p>In Chapter 2 we refresh the MicroPython skills you will use to program the terminal.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: List of Chapters">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                List of Chapters
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../02-micropython-review/" class="md-footer__link md-footer__link--next" aria-label="Next: 2. MicroPython Review for Embedded Systems">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2. MicroPython Review for Embedded Systems
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

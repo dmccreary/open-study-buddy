@@ -1,0 +1,10 @@
+{
+  "title": "Open Study Buddy",
+  "description": "An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students: a Raspberry Pi Pico 2 W with a round color display, I2S microphone and speaker, FFT-based wake word detection, MQTT alerts, and an open, school-configured agent.",
+  "creator": "Dan McCreary",
+  "date": "2026-10-18",
+  "version": "1.0",
+  "format": "Learning Graph JSON v1.0",
+  "schema": "https://raw.githubusercontent.com/dmccreary/learning-graphs/refs/heads/main/src/schema/learning-graph-schema.json",
+  "license": "CC BY-NC-SA 4.0 DEED"
+}
