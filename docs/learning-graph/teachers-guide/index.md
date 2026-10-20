@@ -222,8 +222,8 @@ then swap in a spare.
 
 ### MAX98357A I2S Amplifier
 
-<!-- TODO: image needed — see max98357a-amplifier-image-description.md -->
-*Photo pending. See the [image brief](./max98357a-amplifier-image-description.md).*
+![MAX98357A I2S amplifier breakout, top side](./amp-max98357a-top.jpg){ width="300" }
+![MAX98357A I2S amplifier breakout, bottom side](./amp-max98357a-bottom.jpg){ width="300" }
 
 **Used in:** Study Buddy base kit (×1)
 
