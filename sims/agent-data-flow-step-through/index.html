@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/agent-data-flow-step-through/agent-data-flow-step-through.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/agent-data-flow-step-through/agent-data-flow-step-through.png">
+</head>
   
   
     
@@ -703,7 +705,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -744,7 +746,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -773,7 +775,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -802,7 +804,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -831,7 +833,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1795,18 +1797,114 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#specification" class="md-nav__link">
+  <a href="#embed-this-microsim" class="md-nav__link">
     <span class="md-ellipsis">
-      Specification
+      Embed This MicroSim
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-resources" class="md-nav__link">
+  <a href="#description" class="md-nav__link">
     <span class="md-ellipsis">
-      Related Resources
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions-addressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Misconceptions Addressed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specification
     </span>
   </a>
   
@@ -1836,66 +1934,138 @@
 
 
 <h1 id="agent-data-flow-step-through">Agent Data Flow Step-Through<a class="headerlink" href="#agent-data-flow-step-through" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="582px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/01-personal-agents-architecture/">Chapter 1: Personal Agents and the Open Study Buddy Architecture</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** agent-data-flow-step-through&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Template:** https://github.com/dmccreary/conversational-ai/tree/main/docs/sims/response-generation-architecture&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Level:** Understand&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Bloom Verb:** explain&lt;br/&gt;
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>**Learning Objective:** The learner will explain which of three parts (terminal, network, server) performs each of the eight steps that carry a spoken question to a spoken answer, by predicting the owner of steps 2 to 8 with at least 6 of 7 correct.
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>**Prerequisites:** agent terminal, buddy server, request-reply contract, speech-to-text, text-to-speech (all defined in the section "How the Terminal and Server Talk" above this block).
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>**Evidence of Mastery:** Before each of steps 2 to 8 is revealed, the learner commits to the part that performs it: Terminal, Network, or Server. A prediction is correct when it matches the Owner column in Content. Mastery is 6 of 7 correct. Pressing Next without predicting is not allowed.
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>**Misconceptions:** (1) The Pico decides the answer. (2) The microphone sends sound straight to the speaker. (3) The Wi-Fi link understands the question.
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>**Instructional Rationale:** Understand-level explanation needs the learner to trace the process with concrete data. Step-through with prediction before reveal makes the learner reason about which part has the memory and the job, and the concrete values shown at each step prevent a vague answer. There is no animation, because animation would hide the data at each step.
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>**Content:**
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>The scenario is the question "When is my next test?" The learner sees these eight steps in order, with the data shown at each step:
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>| Step | What happens | Data shown | Owner | Why the owner (shown as feedback) |
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>|---|---|---|---|---|
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>| 1 | The student speaks | The spoken words "When is my next test?" | Student | Shown to start the scenario, and not predicted. |
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| 2 | The microphone captures sound as digital numbers | Illustrative sample values: 12, -40, 85, 130, 60, -25 | Terminal | The microphone is wired to the Pico, so the terminal captures the sound. |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| 3 | The request travels to the server | The request fields: device = desk-07, kind = question, plus the sound numbers | Network | The Wi-Fi link only carries the request. It does not read or change it. |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| 4 | The server converts speech to text | The text "when is my next test" | Server | Speech-to-text needs more memory than the Pico has, so the server does it. |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| 5 | The brain decides the reply | Event found: "TEST: Biology, Friday". Reply text: "Your next test is Biology on Friday." | Server | The calendar and the decision logic live on the server. |
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>| 6 | The server converts the reply to speech and packages it | The reply fields: speak = the sentence as audio, show = "Biology test: Friday" | Server | Text-to-speech also needs more memory than the Pico has. |
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>| 7 | The reply travels back to the terminal | The same reply fields moving from the server to desk-07 | Network | The Wi-Fi link only carries the reply. |
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>| 8 | The terminal shows and plays the reply | The display shows "Biology test: Friday". The speaker says "Your next test is Biology on Friday." | Terminal | The display and speaker are wired to the Pico, so the terminal outputs the reply. |
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>**Provenance:** An illustrative scenario written for this sim from the chapter section "How the Terminal and Server Talk". The sample values are illustrative and the sim labels them "illustrative".
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>**Rules:** There are eight steps and three owners. The prediction applies to steps 2 to 8, which is 7 predictions. A prediction is correct when it equals the Owner of that step. The score is the number of correct predictions, from 0 to 7. The correct owner is always revealed after the prediction, and the data for that step is then shown.
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>**Learner Activity:**
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>1. Step 1 is shown. The learner sees the spoken question.
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>2. For step 2 the learner chooses Terminal, Network, or Server.
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>3. The sim reveals the correct owner, the step description, and the data shown for that step, with the reason if the prediction was wrong.
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>4. The learner presses Next and repeats for steps 3 to 8.
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>5. After step 8, the sim shows a summary that groups the eight steps by owner and shows the score.
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>**Feedback:** Seven predictions, fixed order, one attempt each. Correct: "Correct: &lt;Owner&gt;. &lt;Why the owner&gt;". Incorrect: "Not quite. The &lt;Owner&gt; does this step. &lt;Why the owner&gt;". The owner is revealed immediately after each prediction. A running score "n of 7" is shown.
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>**Starting State:** Step 1 is shown with the spoken question, the terminal and the server shown as separate parts, and the question "Which part performs step 2?"
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>**Chapter Anchors:** There are eight steps. Step 1 is the student's, two steps happen on the terminal (2 and 8), three happen on the server (4, 5, 6), and two happen on the network (3 and 7). The example question is "When is my next test?" and the example reply is "Your next test is Biology on Friday."
+<p><a class="md-button md-button--primary" href="main.html">Run the Agent Data Flow Step-Through MicroSim Fullscreen</a></p>
+<h2 id="embed-this-microsim">Embed This MicroSim<a class="headerlink" href="#embed-this-microsim" title="Permanent link">&para;</a></h2>
+<p>Place the following line in your website to include this MicroSim:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/agent-data-flow-step-through/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"582px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
-<h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>When you ask your Study Buddy "When is my next test?", the answer takes eight
+steps to reach you, and three different parts do the work: the <strong>terminal</strong> on
+your desk, the <strong>network</strong> (Wi-Fi) between the computers, and the <strong>buddy server</strong>
+on a school computer. This MicroSim walks through those eight steps one at a time.</p>
+<p>Before each of steps 2 to 8 is revealed, you predict which part performs it. The
+sim then shows the owner, a one-line description of the step, and the concrete
+data at that step, such as the sample sound values (illustrative), the request
+fields <code>device = desk-07</code> and <code>kind = question</code>, the text "when is my next test",
+and the reply "Your next test is Biology on Friday." Each revealed step becomes a
+numbered chip under the part that performed it, so by the end the steps are
+grouped by owner. There is no animation: each step waits for you.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Read the previous step and the next job on the card.</li>
+<li>Predict the part that performs it: press <strong>Terminal</strong>, <strong>Network</strong>, or <strong>Server</strong>.
+   Each step gets one prediction.</li>
+<li>Read the owner, the description, the data, and the feedback. Then press <strong>Next</strong>.
+   <strong>Next</strong> stays disabled until you make a prediction.</li>
+<li>After step 8, press <strong>See summary</strong> to see your score and the steps grouped by owner.</li>
+<li>Press <strong>Restart</strong> to start again from step 1.</li>
+</ol>
+<p>Mastery is 6 of 7 predictions correct. The running score is shown at the top right.</p>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>Students will explain which of three parts (terminal, network, server) performs
+each of the eight steps that carry a spoken question to a spoken answer, by
+predicting the owner of steps 2 to 8 with at least 6 of 7 correct (Bloom's
+Taxonomy: Understand, verb <em>explain</em>).</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>Students should have read the chapter section
+<a href="../../chapters/01-personal-agents-architecture/#how-the-terminal-and-server-talk">How the Terminal and Server Talk</a>,
+which defines the agent terminal, the buddy server, the request-reply contract,
+speech-to-text, and text-to-speech.</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Predict before you look (8 minutes).</strong> Students step through all eight steps
+   individually, committing to a prediction each time.</li>
+<li><strong>Explain the pattern (5 minutes).</strong> Using the summary screen, students write one
+   sentence explaining why the server owns steps 4, 5, and 6. The word "memory"
+   should appear in a good answer.</li>
+<li><strong>Trace a new question (5 minutes).</strong> Students write the data at each of the eight
+   steps for a different question, such as "When is my lab report due?"</li>
+</ol>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>The network carries the request in step 3 but never reads it. Why is it useful
+   that the Wi-Fi link does not need to understand the question?</li>
+<li>Which steps would change if the school replaced the brain in step 5 with a
+   smarter one? Which steps would stay exactly the same?</li>
+<li>If your buddy stays silent, which step would you test first, and why?</li>
+</ol>
+<h3 id="common-misconceptions-addressed">Common Misconceptions Addressed<a class="headerlink" href="#common-misconceptions-addressed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><em>The Pico decides the answer.</em> Step 5 is owned by the server.</li>
+<li><em>The microphone sends sound straight to the speaker.</em> Six steps separate them.</li>
+<li><em>The Wi-Fi link understands the question.</em> Steps 3 and 7 only carry data.</li>
+</ul>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>A student who predicts 6 or more of the 7 owners correctly has met the objective.
+Ask students below 6 to explain, for each missed step, which part has the needed
+memory or hardware.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/01-personal-agents-architecture/">Chapter 1: Personal Agents and the Open Study Buddy Architecture</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Speech_recognition">Speech recognition</a> on Wikipedia</li>
+<li><a href="https://en.wikipedia.org/wiki/Speech_synthesis">Speech synthesis</a> on Wikipedia</li>
+<li><a href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">Client-server model</a> on Wikipedia</li>
 </ul>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<p>The specification below is extracted from
+<a href="../../chapters/01-personal-agents-architecture/">Chapter 1: Personal Agents and the Open Study Buddy Architecture</a>.</p>
+<details>
+<summary>Show the full specification</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** agent-data-flow-step-through&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Template:** https://github.com/dmccreary/conversational-ai/tree/main/docs/sims/response-generation-architecture&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Level:** Understand&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Bloom Verb:** explain&lt;br/&gt;
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>**Learning Objective:** The learner will explain which of three parts (terminal, network, server) performs each of the eight steps that carry a spoken question to a spoken answer, by predicting the owner of steps 2 to 8 with at least 6 of 7 correct.
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>**Prerequisites:** agent terminal, buddy server, request-reply contract, speech-to-text, text-to-speech (all defined in the section "How the Terminal and Server Talk" above this block).
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>**Evidence of Mastery:** Before each of steps 2 to 8 is revealed, the learner commits to the part that performs it: Terminal, Network, or Server. A prediction is correct when it matches the Owner column in Content. Mastery is 6 of 7 correct. Pressing Next without predicting is not allowed.
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>**Misconceptions:** (1) The Pico decides the answer. (2) The microphone sends sound straight to the speaker. (3) The Wi-Fi link understands the question.
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>**Instructional Rationale:** Understand-level explanation needs the learner to trace the process with concrete data. Step-through with prediction before reveal makes the learner reason about which part has the memory and the job, and the concrete values shown at each step prevent a vague answer. There is no animation, because animation would hide the data at each step.
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>**Content:**
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>The scenario is the question "When is my next test?" The learner sees these eight steps in order, with the data shown at each step:
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>| Step | What happens | Data shown | Owner | Why the owner (shown as feedback) |
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>|---|---|---|---|---|
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>| 1 | The student speaks | The spoken words "When is my next test?" | Student | Shown to start the scenario, and not predicted. |
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| 2 | The microphone captures sound as digital numbers | Illustrative sample values: 12, -40, 85, 130, 60, -25 | Terminal | The microphone is wired to the Pico, so the terminal captures the sound. |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| 3 | The request travels to the server | The request fields: device = desk-07, kind = question, plus the sound numbers | Network | The Wi-Fi link only carries the request. It does not read or change it. |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| 4 | The server converts speech to text | The text "when is my next test" | Server | Speech-to-text needs more memory than the Pico has, so the server does it. |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>| 5 | The brain decides the reply | Event found: "TEST: Biology, Friday". Reply text: "Your next test is Biology on Friday." | Server | The calendar and the decision logic live on the server. |
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>| 6 | The server converts the reply to speech and packages it | The reply fields: speak = the sentence as audio, show = "Biology test: Friday" | Server | Text-to-speech also needs more memory than the Pico has. |
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>| 7 | The reply travels back to the terminal | The same reply fields moving from the server to desk-07 | Network | The Wi-Fi link only carries the reply. |
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>| 8 | The terminal shows and plays the reply | The display shows "Biology test: Friday". The speaker says "Your next test is Biology on Friday." | Terminal | The display and speaker are wired to the Pico, so the terminal outputs the reply. |
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>**Provenance:** An illustrative scenario written for this sim from the chapter section "How the Terminal and Server Talk". The sample values are illustrative and the sim labels them "illustrative".
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>**Rules:** There are eight steps and three owners. The prediction applies to steps 2 to 8, which is 7 predictions. A prediction is correct when it equals the Owner of that step. The score is the number of correct predictions, from 0 to 7. The correct owner is always revealed after the prediction, and the data for that step is then shown.
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>**Learner Activity:**
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>1. Step 1 is shown. The learner sees the spoken question.
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>2. For step 2 the learner chooses Terminal, Network, or Server.
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>3. The sim reveals the correct owner, the step description, and the data shown for that step, with the reason if the prediction was wrong.
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>4. The learner presses Next and repeats for steps 3 to 8.
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>5. After step 8, the sim shows a summary that groups the eight steps by owner and shows the score.
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>**Feedback:** Seven predictions, fixed order, one attempt each. Correct: "Correct: &lt;Owner&gt;. &lt;Why the owner&gt;". Incorrect: "Not quite. The &lt;Owner&gt; does this step. &lt;Why the owner&gt;". The owner is revealed immediately after each prediction. A running score "n of 7" is shown.
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>**Starting State:** Step 1 is shown with the spoken question, the terminal and the server shown as separate parts, and the question "Which part performs step 2?"
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>**Chapter Anchors:** There are eight steps. Step 1 is the student's, two steps happen on the terminal (2 and 8), three happen on the server (4, 5, 6), and two happen on the network (3 and 7). The example question is "When is my next test?" and the example reply is "Your next test is Biology on Friday."
+</span></code></pre></div>
+</details>
 
 
 

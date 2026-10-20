@@ -11,13 +11,100 @@
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "study-buddy-architecture-explorer",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/study-buddy-architecture-explorer/",
   "library": "vis-network",
   "bloomLevel": "Remember",
   "bloomVerb": "identify",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 1,
   "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
   "chapter_dir": "01-personal-agents-architecture",
-  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture",
+  "contributor": [
+    "Claude Code"
+  ],
+  "dateModified": "2026-10-20",
+  "educationalLevel": "High School",
+  "audience": "Students, Educators",
+  "learningResourceType": "simulation",
+  "concepts": [
+    "Open Study Buddy Device",
+    "Agent Terminal",
+    "Buddy Server",
+    "Raspberry Pi Pico 2 W",
+    "Round Color Display",
+    "INMP441 Microphone",
+    "MAX98357A Amplifier"
+  ],
+  "prerequisites": [
+    "Open Study Buddy device",
+    "agent terminal",
+    "buddy server",
+    "the five kit parts"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "topic": "Parts of the Open Study Buddy device and the buddy server",
+    "learningObjectives": [
+      "The learner will identify the job of each of the five kit parts and of the buddy server by matching six described jobs to the correct part, with at least 5 of 6 correct."
+    ],
+    "bloomsTaxonomy": [
+      "Remember"
+    ],
+    "bloomVerb": "identify",
+    "duration": "10-15 minutes",
+    "prerequisites": [
+      "Open Study Buddy device",
+      "agent terminal",
+      "buddy server",
+      "the five kit parts"
+    ]
+  },
+  "pedagogical": {
+    "pattern": "Explore-then-retrieve network diagram with a click-the-part quiz",
+    "interactivityType": "active",
+    "misconceptionsAddressed": [
+      "The speaker and the amplifier are the same thing.",
+      "The buddy server is part of the desk device.",
+      "The Pico sends sound straight to the display."
+    ],
+    "assessment": "Mastery is 5 of 6 job descriptions matched to the correct part on the first attempt.",
+    "defaultState": "Opens at the first item with nothing answered; there is no animation or timer."
+  },
+  "technical": {
+    "framework": "vis-network",
+    "canvasHeight": 620,
+    "responsive": "Width-responsive",
+    "dependencies": [
+      "vis-network 9.1.9 (unpkg)"
+    ]
+  },
+  "controls": [
+    {
+      "type": "button",
+      "label": "Explore / Quiz",
+      "purpose": "Switch between exploring parts and the six-question quiz"
+    },
+    {
+      "type": "button",
+      "label": "Show answer",
+      "purpose": "Reveal the answer to the Check yourself question"
+    },
+    {
+      "type": "button",
+      "label": "Next question / See results",
+      "purpose": "Advance after answering a quiz question"
+    },
+    {
+      "type": "button",
+      "label": "Restart quiz",
+      "purpose": "Start the quiz again"
+    },
+    {
+      "type": "click",
+      "label": "Diagram nodes",
+      "purpose": "Explore: show a part's job and connections; Quiz: answer the question"
+    }
+  ]
 }

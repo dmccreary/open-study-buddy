@@ -11,13 +11,92 @@
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "chatbot-or-agent-sorter",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/chatbot-or-agent-sorter/",
   "library": "p5.js",
   "bloomLevel": "Analyze",
   "bloomVerb": "distinguish",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 1,
   "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
   "chapter_dir": "01-personal-agents-architecture",
-  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture",
+  "contributor": [
+    "Claude Code"
+  ],
+  "dateModified": "2026-10-20",
+  "educationalLevel": "High School",
+  "audience": "Students, Educators",
+  "learningResourceType": "simulation",
+  "concepts": [
+    "Personal Agent",
+    "Chatbot",
+    "Agent Tools",
+    "Multi-Step Work"
+  ],
+  "prerequisites": [
+    "personal agent",
+    "chatbot",
+    "tool",
+    "multi-step work"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "topic": "Chatbot versus personal agent",
+    "learningObjectives": [
+      "The learner will distinguish chatbot behaviors from personal-agent behaviors by classifying 10 described behaviors, with at least 8 of 10 correct on the first attempt."
+    ],
+    "bloomsTaxonomy": [
+      "Analyze"
+    ],
+    "bloomVerb": "distinguish",
+    "duration": "10-15 minutes",
+    "prerequisites": [
+      "personal agent",
+      "chatbot",
+      "tool",
+      "multi-step work"
+    ]
+  },
+  "pedagogical": {
+    "pattern": "Classification quiz with immediate feedback (two bins, ten items)",
+    "interactivityType": "active",
+    "misconceptionsAddressed": [
+      "Any program that talks is an agent.",
+      "A chatbot that sounds smart is an agent.",
+      "An agent must be a robot or a physical device."
+    ],
+    "assessment": "Mastery is 8 of 10 behaviors sorted correctly on the first run.",
+    "defaultState": "Opens at the first item with nothing answered; there is no animation or timer."
+  },
+  "technical": {
+    "framework": "p5.js",
+    "canvasHeight": 564,
+    "responsive": "Width-responsive",
+    "dependencies": [
+      "p5.js 2.3.2 (jsdelivr)"
+    ]
+  },
+  "controls": [
+    {
+      "type": "button",
+      "label": "Chatbot behavior",
+      "purpose": "Sort the current behavior into the Chatbot bin (one attempt)"
+    },
+    {
+      "type": "button",
+      "label": "Agent behavior",
+      "purpose": "Sort the current behavior into the Agent bin (one attempt)"
+    },
+    {
+      "type": "button",
+      "label": "Next / See results",
+      "purpose": "Advance after answering; disabled until an answer is given"
+    },
+    {
+      "type": "button",
+      "label": "Restart",
+      "purpose": "Practice run with the same ten behaviors in a new random order"
+    }
+  ]
 }

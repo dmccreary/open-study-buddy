@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/dirty-region-planner/dirty-region-planner.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/dirty-region-planner/dirty-region-planner.png">
+</head>
   
   
     
@@ -961,7 +963,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1674,9 +1676,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embed This MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audience-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audience and Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions-addressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Misconceptions Addressed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#specification" class="md-nav__link">
     <span class="md-ellipsis">
       Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1715,61 +1831,108 @@
 
 
 <h1 id="dirty-region-planner">Dirty Region Planner<a class="headerlink" href="#dirty-region-planner" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="552px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/06-display-regions-and-drawing/">Chapter 6: Drawing Directly to Display Regions</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** dirty-region-planner&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Apply&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** apply&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** dirty region, region layout, direct region write (all defined in the sections above this block, including the five regions in the table "Region Layout").
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 6 events the learner selects zero or more of the five regions. A selection is correct when the set of selected regions equals the Dirty regions column in Content. Mastery is 5 of 6 correct on the first attempt. Viewing the region sizes before answering is allowed and is not scored.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) Any event requires a full-screen redraw. (2) A region should be redrawn on every frame whether or not its content changed. (3) Changing the mascot's pose does not require redrawing the mascot region.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** Apply-level use of a rule requires the learner to carry it out on new cases. Deciding the set of dirty regions for each event, and then seeing the byte cost of the choice next to the cost of a full frame, ties the rule to the bandwidth reason for it.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>The sim shows the five regions of the table "Region Layout" with their byte sizes: Status bar 4,800; Time 6,400; Mascot 8,192; Spectrum 16,000; Agent message 15,360. A full frame is 259,200 bytes.
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>Events, in this order:
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>| # | Event shown to the learner | Dirty regions | Bytes sent | Why (shown as feedback) |
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>|---|---|---|---|---|
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| 1 | A new audio frame arrives and the spectrum values are different from the last frame. | Spectrum | 16,000 | Only the spectrum content changed. |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| 2 | The clock minute changes from 12:34 to 12:35. | Time | 6,400 | Only the clock digits changed. |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| 3 | The Pico connects to Wi-Fi and the status icon changes. | Status bar | 4,800 | The icon lives in the status bar. |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| 4 | The student presses Mode and the device enters Listening mode, which changes the mascot's pose and the status text. | Status bar, Mascot | 12,992 | Both the pose and the status text changed. |
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>| 5 | The agent replies "Test on Friday" and the mascot switches to a speaking pose. | Agent message, Mascot | 23,552 | The words and the pose changed. |
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>| 6 | A silent room produces an audio frame whose spectrum values equal the last frame. | none | 0 | Nothing changed, so nothing is sent. |
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>**Provenance:** The regions and bytes come from the chapter table "Region Layout." The events are illustrative, and the sim labels them "illustrative."
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>**Rules:** A region is dirty when the content shown in it would be different after the event. The bytes sent are the sum of the sizes of the dirty regions. The full frame is 259,200 bytes. The saving shown is 259,200 minus the bytes sent.
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>**Learner Activity:**
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>1. The learner reads event 1 and selects the regions that must be redrawn (none is allowed).
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>2. The learner submits.
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>3. The sim shows the correct set, the bytes sent, how that compares to 259,200, and the Why text.
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>4. The learner continues through event 6, then sees the score.
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>5. The learner should notice that event 6 sends nothing and that event 5 is the most expensive at 23,552 bytes, still far less than a full frame.
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>**Feedback:** 6 events, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt; (&lt;bytes&gt; bytes, &lt;percent of full frame&gt;%)". Incorrect: "Not quite. The dirty regions are &lt;set&gt;: &lt;Why&gt;". The correct set is revealed after each submission, and a running score "n of 6" is shown.
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>**Starting State:** The five regions are shown unselected with their sizes, and event 1 is shown with the question "Which regions must be redrawn?"
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>**Chapter Anchors:** The chapter states that the five regions are the status bar, time, mascot, spectrum, and agent message; that redrawing all five costs 50,752 bytes (16.9 ms of wire time, 28.1 ms measured); and that a full frame is 259,200 bytes.
+<p><a class="md-button md-button--primary" href="main.html">Run the Dirty Region Planner MicroSim Fullscreen</a></p>
+<h2 id="embed-this-microsim">Embed This MicroSim<a class="headerlink" href="#embed-this-microsim" title="Permanent link">&para;</a></h2>
+<p>Place the following line in your website to include this MicroSim:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/dirty-region-planner/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"552px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>The Study Buddy's round 360 x 360 display is split into five regions: status bar, time, mascot, spectrum and agent message. Redrawing the whole screen sends 259,200 bytes; redrawing all five regions sends 50,752. The dirty-region rule says a region is redrawn only when the content shown in it changes.</p>
+<p>This MicroSim gives you six device events, one at a time. For each event you tick the regions that must be redrawn (none is allowed) and submit. The sim then colors each region (green: needed and chosen, orange: needed but missed, red: chosen but not needed), shows the bytes the correct choice sends, and compares that with a full frame. The region positions and byte sizes come from the chapter table "Region Layout"; the six events are illustrative.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>The MicroSim opens in its starting state and nothing moves until you act.</p>
+<ul>
+<li><strong>Redraw checkboxes</strong>: Tick each region whose content changes for the event shown. Leave all unticked if nothing changes.</li>
+<li><strong>Submit</strong>: Check your selection. One attempt per event.</li>
+<li><strong>Next event / See score</strong>: Move to the next event, or see the score after event 6.</li>
+<li><strong>Start over</strong>: Return to event 1 with a fresh score.</li>
+</ul>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.</p>
+<p><strong>Bloom's Taxonomy level:</strong> Apply (apply)</p>
+<h3 id="audience-and-duration">Audience and Duration<a class="headerlink" href="#audience-and-duration" title="Permanent link">&para;</a></h3>
+<p>High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>dirty region, region layout, direct region write (all defined in the sections above this block, including the five regions in the table "Region Layout").</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Exploration (5 min):</strong> Before submitting event 1, read the five region sizes on the display and the full-frame marker on the bytes bar.</li>
+<li><strong>Guided practice (5 min):</strong> Work through events 1 to 3 aloud with a partner: for each, name what changes on the screen and which region it lives in.</li>
+<li><strong>Assessment (5 min):</strong> Complete all six events. Mastery is 5 of 6 correct on the first attempt.</li>
+</ol>
+<h3 id="common-misconceptions-addressed">Common Misconceptions Addressed<a class="headerlink" href="#common-misconceptions-addressed" title="Permanent link">&para;</a></h3>
+<p>(1) Any event requires a full-screen redraw. (2) A region should be redrawn on every frame whether or not its content changed. (3) Changing the mascot's pose does not require redrawing the mascot region.</p>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Which event sent no bytes at all, and why is that still a correct "redraw"?</li>
+<li>Event 5 is the most expensive. What fraction of a full frame does it cost?</li>
+<li>Why is redrawing every region on every frame a waste even though it is 4.6 times cheaper than a full frame?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<details>
+<summary>Full specification from Chapter 6</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** dirty-region-planner&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Bloom Level:** Apply&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Verb:** apply&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Learning Objective:** The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>**Prerequisites:** dirty region, region layout, direct region write (all defined in the sections above this block, including the five regions in the table "Region Layout").
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>**Evidence of Mastery:** For each of the 6 events the learner selects zero or more of the five regions. A selection is correct when the set of selected regions equals the Dirty regions column in Content. Mastery is 5 of 6 correct on the first attempt. Viewing the region sizes before answering is allowed and is not scored.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>**Misconceptions:** (1) Any event requires a full-screen redraw. (2) A region should be redrawn on every frame whether or not its content changed. (3) Changing the mascot's pose does not require redrawing the mascot region.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>**Instructional Rationale:** Apply-level use of a rule requires the learner to carry it out on new cases. Deciding the set of dirty regions for each event, and then seeing the byte cost of the choice next to the cost of a full frame, ties the rule to the bandwidth reason for it.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>**Content:**
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>The sim shows the five regions of the table "Region Layout" with their byte sizes: Status bar 4,800; Time 6,400; Mascot 8,192; Spectrum 16,000; Agent message 15,360. A full frame is 259,200 bytes.
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>Events, in this order:
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>| # | Event shown to the learner | Dirty regions | Bytes sent | Why (shown as feedback) |
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>|---|---|---|---|---|
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| 1 | A new audio frame arrives and the spectrum values are different from the last frame. | Spectrum | 16,000 | Only the spectrum content changed. |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| 2 | The clock minute changes from 12:34 to 12:35. | Time | 6,400 | Only the clock digits changed. |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| 3 | The Pico connects to Wi-Fi and the status icon changes. | Status bar | 4,800 | The icon lives in the status bar. |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>| 4 | The student presses Mode and the device enters Listening mode, which changes the mascot's pose and the status text. | Status bar, Mascot | 12,992 | Both the pose and the status text changed. |
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>| 5 | The agent replies "Test on Friday" and the mascot switches to a speaking pose. | Agent message, Mascot | 23,552 | The words and the pose changed. |
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>| 6 | A silent room produces an audio frame whose spectrum values equal the last frame. | none | 0 | Nothing changed, so nothing is sent. |
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>**Provenance:** The regions and bytes come from the chapter table "Region Layout." The events are illustrative, and the sim labels them "illustrative."
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>**Rules:** A region is dirty when the content shown in it would be different after the event. The bytes sent are the sum of the sizes of the dirty regions. The full frame is 259,200 bytes. The saving shown is 259,200 minus the bytes sent.
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>**Learner Activity:**
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>1. The learner reads event 1 and selects the regions that must be redrawn (none is allowed).
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>2. The learner submits.
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>3. The sim shows the correct set, the bytes sent, how that compares to 259,200, and the Why text.
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>4. The learner continues through event 6, then sees the score.
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>5. The learner should notice that event 6 sends nothing and that event 5 is the most expensive at 23,552 bytes, still far less than a full frame.
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>**Feedback:** 6 events, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt; (&lt;bytes&gt; bytes, &lt;percent of full frame&gt;%)". Incorrect: "Not quite. The dirty regions are &lt;set&gt;: &lt;Why&gt;". The correct set is revealed after each submission, and a running score "n of 6" is shown.
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>**Starting State:** The five regions are shown unselected with their sizes, and event 1 is shown with the question "Which regions must be redrawn?"
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>**Chapter Anchors:** The chapter states that the five regions are the status bar, time, mascot, spectrum, and agent message; that redrawing all five costs 50,752 bytes (16.9 ms of wire time, 28.1 ms measured); and that a full frame is 259,200 bytes.
+</span></code></pre></div>
+</details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Framebuffer">Framebuffer</a> - Wikipedia - What a frame of pixels is and why rewriting it costs bandwidth.</li>
+<li><a href="https://en.wikipedia.org/wiki/High_color">High color (RGB565)</a> - Wikipedia - The 2-bytes-per-pixel format behind every byte count in this sim.</li>
+<li><a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface">Serial Peripheral Interface</a> - Wikipedia - The bus that carries each region write to the display.</li>
+<li><a href="https://docs.micropython.org/en/latest/library/framebuf.html">framebuf: frame buffer manipulation</a> - MicroPython documentation - Drawing into a small buffer before writing one region.</li>
+</ol>
 <h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/06-display-regions-and-drawing/">Chapter 6: Drawing Directly to Display Regions</a></li>

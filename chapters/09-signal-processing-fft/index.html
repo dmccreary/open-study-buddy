@@ -2304,6 +2304,8 @@ The bit-reversal trick only works when N is a power of 2, so <code>make_tables(5
 </table>
 <p>The bin width is the finest pitch distinction the frame can make: two tones closer together than about one bin width, 25 Hz, merge into one lump. The worst-case error when you read a pitch off the nearest bin is half a bin, 12.5 Hz. Both numbers come straight from <span class="arithmatex">\( R/N \)</span>. Use the explorer below to practice the arithmetic.</p>
 <h4 id="diagram-fft-bin-calculator">Diagram: FFT Bin Calculator<a class="headerlink" href="#diagram-fft-bin-calculator" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/fft-bin-calculator/main.html" width="100%" height="532px" scrolling="no"></iframe>
+<p><a href="../../sims/fft-bin-calculator/main.html">Run FFT Bin Calculator Fullscreen</a></p>
 <details>
 <summary>FFT Bin Calculator</summary>
 <p>Type: microsim
@@ -2493,6 +2495,8 @@ If your spectrum has a wide skirt around every note, you probably forgot the win
 </div>
 <p>Try the explorer to see leakage change as you slide a tone across a bin.</p>
 <h4 id="diagram-spectral-leakage-explorer">Diagram: Spectral Leakage Explorer<a class="headerlink" href="#diagram-spectral-leakage-explorer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/spectral-leakage-explorer/main.html" width="100%" height="552px" scrolling="no"></iframe>
+<p><a href="../../sims/spectral-leakage-explorer/main.html">Run Spectral Leakage Explorer Fullscreen</a></p>
 <details>
 <summary>Spectral Leakage Explorer</summary>
 <p>Type: microsim
@@ -2766,6 +2770,8 @@ If your spectrum has a wide skirt around every note, you probably forgot the win
 <p>The rounding is visible at the bottom: bands 0 to 3 are all one or two bins wide, because a 25 Hz bin is a large share of a 25 to 50 Hz band. The bands start at 100 Hz, not 0, because the lowest bins hold the DC residue and rumble.</p>
 <p><em>Worked example.</em> The 1,000 Hz Hann-windowed test tone of amplitude 1,000 has magnitudes 64,000, 128,000 and 64,000 at bins 39, 40 and 41. Bins 39 and 40 are in band 8 and bin 41 is in band 9. Band 8's energy is <span class="arithmatex">\( 64{,}000^2 + 128{,}000^2 = 2.048 \times 10^{10} \)</span> and band 9's is <span class="arithmatex">\( 64{,}000^2 = 4.096 \times 10^{9} \)</span>. Band 8 is five times stronger, <span class="arithmatex">\( 10\log_{10} 5 = 7.0 \)</span> dB. In dBFS, band 8 reads <span class="arithmatex">\( 10\log_{10}\left(2.048\times10^{10} / (1.0737\times10^{9})^2\right) = -77.5 \)</span> dBFS: a little higher than the -78.5 dBFS peak because the band also holds a neighbor bin.</p>
 <h4 id="diagram-log-band-layout-explorer">Diagram: Log Band Layout Explorer<a class="headerlink" href="#diagram-log-band-layout-explorer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/log-band-layout-explorer/main.html" width="100%" height="562px" scrolling="no"></iframe>
+<p><a href="../../sims/log-band-layout-explorer/main.html">Run Log Band Layout Explorer Fullscreen</a></p>
 <details>
 <summary>Log Band Layout Explorer</summary>
 <p>Type: microsim

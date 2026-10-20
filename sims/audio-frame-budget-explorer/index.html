@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/audio-frame-budget-explorer/audio-frame-budget-explorer.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/audio-frame-budget-explorer/audio-frame-budget-explorer.png">
+</head>
   
   
     
@@ -1061,7 +1063,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1102,7 +1104,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1708,9 +1710,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embed This MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audience-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audience and Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions-addressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Misconceptions Addressed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#specification" class="md-nav__link">
     <span class="md-ellipsis">
       Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1749,61 +1865,107 @@
 
 
 <h1 id="audio-frame-time-budget-explorer">Audio Frame Time Budget Explorer<a class="headerlink" href="#audio-frame-time-budget-explorer" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="552px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/08-i2s-audio/">Chapter 8: I2S Audio: Recording and Playing Sound</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** audio-frame-budget-explorer&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Analyze&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** examine&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** audio frame, ring buffer, frame time budget, backlog (all defined in the sections above this block). The model is stated in the Rules field and shown on screen.
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 6 timings the learner types the seconds until the first sample is lost, or "never". An answer is correct when it equals "never" where the Answer column says never, or is within 0.1 s of the number in the Answer column. Mastery is 5 of 6 correct on the first attempt. Changing the exploration slider and watching the backlog is exploration, not evidence.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) A loop that takes slightly longer than the frame is fine because the buffer is big. (2) A loop that is faster than the frame wastes audio. (3) The ring holds all the audio forever.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** Analyze-level examination requires the learner to relate parts of the system (the producer, the ring, the consumer) and reason about how a small rate difference accumulates. Using the same formula on six timings lets the learner see which one is the borderline case and why.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>The model: one audio frame is 2,048 bytes and arrives every 40 ms. The ring holds 9.765625 frames (the depth measured in `03-ring-latency.py`, equal to 40,000 bytes at 8 bytes per sample time: 5,000 sample times, or 0.390625 s). Each pass of the loop takes P milliseconds of work and then reads one frame. If the loop is faster than 40 ms, it waits for the frame.
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>| # | Time per pass P (ms) | Answer | Why (shown as feedback) |
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>|---|---|---|---|
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>| 1 | 30 | never | The loop is faster than 40 ms, so it waits for each frame and the backlog stays at zero. |
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>| 2 | 40 | never | The loop exactly matches the audio rate, so there is no growth. |
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| 3 | 45 | 3.56 | Growth 0.125 frames per pass, so it passes 9.77 frames on pass 79, and 79 x 45 ms = 3.56 s. |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| 4 | 50 | 2.0 | Growth 0.25 frames per pass, so it passes 9.77 on pass 40, and 40 x 50 ms = 2.0 s. |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| 5 | 60 | 1.2 | Growth 0.5 frames per pass, so it passes 9.77 on pass 20, and 20 x 60 ms = 1.2 s. |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| 6 | 130 | 0.65 | Growth 2.25 frames per pass, so it passes 9.77 on pass 5, and 5 x 130 ms = 0.65 s. |
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>For exploration the learner sets P from 10 to 100 ms in steps of 0.1 ms, default 40.0 ms. The sim shows the backlog in frames growing against the capacity of 9.765625 frames.
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>**Provenance:** The frame size and ring size are the values in `src/kits/study-buddy-base/config.py` (`FFT_SIZE`, `MIC_SAMPLE_RATE`, `MIC_BUFFER_BYTES`). The ring depth of 9.765625 frames comes from a measurement on the test board at 50 ms per pass (the delay stopped growing near 460 ms), and its cause is not confirmed. The model is a simplification, and the sim labels it "model, based on one board's measurement." The 130 ms value is the measured full-screen update time from Chapter 5.
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>**Rules:** Let T be the larger of P and 40 ms. The backlog after n passes is n x (T / 40 - 1) frames. The first sample is lost at the first whole number n for which the backlog is greater than 9.765625, and the time is n x T. If T equals 40, nothing is ever lost. Times are shown in seconds to two decimal places.
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>**Learner Activity:**
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>1. The learner moves the slider and watches the backlog line rise or stay flat against the capacity line.
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>2. The learner starts the 6 timings. Timing 1 is shown.
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>3. The learner types the seconds until the first loss, or "never," and submits.
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>4. The sim draws the backlog line for that timing and shows the Why text.
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>5. After timing 6, the sim shows the score. The learner should notice that a loop only 5 ms too slow still loses audio within 3.6 seconds.
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>**Feedback:** 6 timings, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The answer is &lt;answer&gt;: &lt;Why&gt;". The answer is revealed right after each submission, and a running score "n of 6" is shown.
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>**Starting State:** The slider is at 40.0 ms with the backlog flat at zero, and the question "How long can this loop run before audio is lost?"
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>**Chapter Anchors:** The chapter states that a frame is 512 samples, 2,048 bytes, and 40 ms; that the microphone ring was created with 40,000 bytes but measured about 9.8 frames (0.4 s) deep; and that a 50 ms pass loses audio after about 2.0 s while a 130 ms pass loses it after about 0.65 s.
+<p><a class="md-button md-button--primary" href="main.html">Run the Audio Frame Time Budget Explorer MicroSim Fullscreen</a></p>
+<h2 id="embed-this-microsim">Embed This MicroSim<a class="headerlink" href="#embed-this-microsim" title="Permanent link">&para;</a></h2>
+<p>Place the following line in your website to include this MicroSim:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/audio-frame-budget-explorer/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"552px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>The microphone delivers one 2,048-byte frame every 40 ms into a ring buffer that holds about 9.77 frames (0.39 s). The main loop does P milliseconds of work and then reads one frame. If P is 40 ms or less the loop keeps up; if it is longer, a backlog grows by (P / 40 - 1) frames every pass until the ring overflows and audio is lost.</p>
+<p>The graph shows the backlog after each pass against the ring capacity, and marks the pass and time of the first lost audio. In explore mode you move P from 10 to 100 ms. In the quiz you calculate, for six loop timings, how many seconds pass before audio is lost, or type "never". This is a model based on one board's measurement of the ring depth; the 130 ms timing is the measured full-screen update time from Chapter 5.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>The MicroSim opens in its starting state and nothing moves until you act.</p>
+<ul>
+<li><strong>Start the 6 timings / Back to explore</strong>: Switch between the slider and the quiz.</li>
+<li><strong>Answer box and Submit</strong>: Type seconds (within 0.1 s) or never. One attempt per timing.</li>
+<li><strong>Next timing / See score</strong>: Move on after the feedback.</li>
+<li><strong>Time per pass P slider</strong>: Explore only: 10 to 100 ms in steps of 0.1 ms, default 40.0 ms.</li>
+</ul>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s.</p>
+<p><strong>Bloom's Taxonomy level:</strong> Analyze (examine)</p>
+<h3 id="audience-and-duration">Audience and Duration<a class="headerlink" href="#audience-and-duration" title="Permanent link">&para;</a></h3>
+<p>High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>audio frame, ring buffer, frame time budget, backlog (all defined in the sections above this block). The model is stated in the Rules field and shown on screen.</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Exploration (5 min):</strong> Move P from 40.0 to 41.0 ms and then to 60 ms. Record how long each runs before audio is lost.</li>
+<li><strong>Guided practice (5 min):</strong> For timing 3, write the growth per pass, divide the ring capacity by it, and multiply the pass count by 45 ms before submitting.</li>
+<li><strong>Assessment (5 min):</strong> Complete all six timings. Mastery is 5 of 6 correct on the first attempt.</li>
+</ol>
+<h3 id="common-misconceptions-addressed">Common Misconceptions Addressed<a class="headerlink" href="#common-misconceptions-addressed" title="Permanent link">&para;</a></h3>
+<p>(1) A loop that takes slightly longer than the frame is fine because the buffer is big. (2) A loop that is faster than the frame wastes audio. (3) The ring holds all the audio forever.</p>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>A loop only 5 ms too slow still loses audio within 3.6 s. Why does a big ring not save it?</li>
+<li>Why does a loop faster than 40 ms not waste audio?</li>
+<li>What changes in the graph if the ring were twice as deep?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<details>
+<summary>Full specification from Chapter 8</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** audio-frame-budget-explorer&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Bloom Level:** Analyze&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Verb:** examine&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Learning Objective:** The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>**Prerequisites:** audio frame, ring buffer, frame time budget, backlog (all defined in the sections above this block). The model is stated in the Rules field and shown on screen.
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>**Evidence of Mastery:** For each of the 6 timings the learner types the seconds until the first sample is lost, or "never". An answer is correct when it equals "never" where the Answer column says never, or is within 0.1 s of the number in the Answer column. Mastery is 5 of 6 correct on the first attempt. Changing the exploration slider and watching the backlog is exploration, not evidence.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>**Misconceptions:** (1) A loop that takes slightly longer than the frame is fine because the buffer is big. (2) A loop that is faster than the frame wastes audio. (3) The ring holds all the audio forever.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>**Instructional Rationale:** Analyze-level examination requires the learner to relate parts of the system (the producer, the ring, the consumer) and reason about how a small rate difference accumulates. Using the same formula on six timings lets the learner see which one is the borderline case and why.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>**Content:**
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>The model: one audio frame is 2,048 bytes and arrives every 40 ms. The ring holds 9.765625 frames (the depth measured in `03-ring-latency.py`, equal to 40,000 bytes at 8 bytes per sample time: 5,000 sample times, or 0.390625 s). Each pass of the loop takes P milliseconds of work and then reads one frame. If the loop is faster than 40 ms, it waits for the frame.
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>| # | Time per pass P (ms) | Answer | Why (shown as feedback) |
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>|---|---|---|---|
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>| 1 | 30 | never | The loop is faster than 40 ms, so it waits for each frame and the backlog stays at zero. |
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>| 2 | 40 | never | The loop exactly matches the audio rate, so there is no growth. |
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| 3 | 45 | 3.56 | Growth 0.125 frames per pass, so it passes 9.77 frames on pass 79, and 79 x 45 ms = 3.56 s. |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| 4 | 50 | 2.0 | Growth 0.25 frames per pass, so it passes 9.77 on pass 40, and 40 x 50 ms = 2.0 s. |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| 5 | 60 | 1.2 | Growth 0.5 frames per pass, so it passes 9.77 on pass 20, and 20 x 60 ms = 1.2 s. |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>| 6 | 130 | 0.65 | Growth 2.25 frames per pass, so it passes 9.77 on pass 5, and 5 x 130 ms = 0.65 s. |
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>For exploration the learner sets P from 10 to 100 ms in steps of 0.1 ms, default 40.0 ms. The sim shows the backlog in frames growing against the capacity of 9.765625 frames.
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>**Provenance:** The frame size and ring size are the values in `src/kits/study-buddy-base/config.py` (`FFT_SIZE`, `MIC_SAMPLE_RATE`, `MIC_BUFFER_BYTES`). The ring depth of 9.765625 frames comes from a measurement on the test board at 50 ms per pass (the delay stopped growing near 460 ms), and its cause is not confirmed. The model is a simplification, and the sim labels it "model, based on one board's measurement." The 130 ms value is the measured full-screen update time from Chapter 5.
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>**Rules:** Let T be the larger of P and 40 ms. The backlog after n passes is n x (T / 40 - 1) frames. The first sample is lost at the first whole number n for which the backlog is greater than 9.765625, and the time is n x T. If T equals 40, nothing is ever lost. Times are shown in seconds to two decimal places.
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>**Learner Activity:**
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>1. The learner moves the slider and watches the backlog line rise or stay flat against the capacity line.
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>2. The learner starts the 6 timings. Timing 1 is shown.
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>3. The learner types the seconds until the first loss, or "never," and submits.
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>4. The sim draws the backlog line for that timing and shows the Why text.
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>5. After timing 6, the sim shows the score. The learner should notice that a loop only 5 ms too slow still loses audio within 3.6 seconds.
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>**Feedback:** 6 timings, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The answer is &lt;answer&gt;: &lt;Why&gt;". The answer is revealed right after each submission, and a running score "n of 6" is shown.
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>**Starting State:** The slider is at 40.0 ms with the backlog flat at zero, and the question "How long can this loop run before audio is lost?"
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>**Chapter Anchors:** The chapter states that a frame is 512 samples, 2,048 bytes, and 40 ms; that the microphone ring was created with 40,000 bytes but measured about 9.8 frames (0.4 s) deep; and that a 50 ms pass loses audio after about 2.0 s while a 130 ms pass loses it after about 0.65 s.
+</span></code></pre></div>
+</details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Circular_buffer">Circular buffer</a> - Wikipedia - How a ring buffer holds data between a producer and a consumer.</li>
+<li><a href="https://en.wikipedia.org/wiki/Real-time_computing">Real-time computing</a> - Wikipedia - Deadlines and why missing one loses data.</li>
+<li><a href="https://docs.micropython.org/en/latest/library/machine.I2S.html">machine.I2S</a> - MicroPython documentation - The ibuf ring buffer used by the microphone driver.</li>
+</ol>
 <h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/08-i2s-audio/">Chapter 8: I2S Audio: Recording and Playing Sound</a></li>

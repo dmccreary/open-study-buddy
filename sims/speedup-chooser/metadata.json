@@ -1,23 +1,110 @@
 {
   "title": "Speed-Up Chooser",
-  "description": "The learner will recommend, for 6 scenarios, the simplest implementation whose worst-case pass time fits within the frame budget minus the display reserve, or state that none fits, with at least 5 of 6 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "Faster code is not always better code. Each 40 ms audio frame leaves 30 ms for the audio work after a 10 ms display reserve, and the right implementation is the simplest one whose worst-case pass time fits that limit: plain Python first, then viper, then inline assembly. If even assembly is too slow, the work itself must shrink.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "High-Performance MicroPython",
+    "Frame Budget",
+    "Display Reserve",
+    "Worst-Case Pass Time",
+    "Viper Code",
+    "Inline Assembly",
+    "Performance Trade-Offs"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "speedup-chooser",
-  "library": "p5.js",
-  "bloomLevel": "Evaluate",
-  "bloomVerb": "recommend",
-  "completion_status": "scaffold",
-  "chapter_number": 10,
-  "chapter_title": "High-Performance MicroPython",
-  "chapter_dir": "10-high-performance-micropython",
-  "chapter_rel_dir": "chapters/10-high-performance-micropython"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/speedup-chooser/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 555,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Speed-Up Chooser",
+    "learningObjectives": [
+      "The learner will recommend, for 6 scenarios, the simplest implementation whose worst-case pass time fits within the frame budget minus the display reserve, or state that none fits, with at least 5 of 6 correct."
+    ],
+    "bloomsTaxonomy": "Evaluate",
+    "bloomVerb": "recommend",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "frame budget, display reserve, worst-case pass time, viper code, inline assembly, performance trade-offs (all defined in this chapter above the block)."
+    ],
+    "concepts": [
+      "Frame Budget",
+      "Display Reserve",
+      "Worst-Case Pass Time",
+      "Viper Code",
+      "Inline Assembly",
+      "Performance Trade-Offs"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 555
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 scenarios / Back to explore",
+        "purpose": "Switch between the sliders and the quiz."
+      },
+      {
+        "name": "Recommendation menu and Submit",
+        "purpose": "Choose Plain Python, Viper, Assembly or None fits. One attempt per scenario."
+      },
+      {
+        "name": "Next scenario / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Budget, Reserve, Plain, Viper and Asm sliders",
+        "purpose": "Explore only: budget 10 to 80 ms (step 5), reserve 0 to 20 ms (step 5), times 1 to 300 ms."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "In scenario 2 the fastest option was not the right one. Why?",
+      "Why does the average pass time not decide whether an option fits?",
+      "What should you do when no option fits?"
+    ],
+    "commonMisconceptions": [
+      "(1) The fastest implementation is always the best choice. (2) An implementation that fits on average fits the deadline. (3) Assembly is always needed for real-time audio."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six scenarios. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "10-high-performance-micropython",
+  "chapter_number": 10
 }

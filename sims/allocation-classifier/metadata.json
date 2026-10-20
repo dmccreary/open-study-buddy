@@ -1,23 +1,106 @@
 {
   "title": "Allocation Classifier",
-  "description": "The learner will distinguish 12 MicroPython statements that allocate heap memory from those that do not, with at least 10 of 12 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "In MicroPython, a statement allocates heap memory when it creates a new object that is not a small integer. Small integers (from -2**30 to 2**30 - 1 on the Pico's 32-bit port) live inside the value itself, and storing into an existing buffer never allocates. Everything else (floats, slices, lists, tuples, strings, big integers) creates garbage that the collector must clean up later.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "High-Performance MicroPython",
+    "Heap Allocation",
+    "Garbage Collection",
+    "Small Integer",
+    "Float Object",
+    "Pre-Allocated Buffer",
+    "memoryview"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "allocation-classifier",
-  "library": "p5.js",
-  "bloomLevel": "Analyze",
-  "bloomVerb": "distinguish",
-  "completion_status": "scaffold",
-  "chapter_number": 10,
-  "chapter_title": "High-Performance MicroPython",
-  "chapter_dir": "10-high-performance-micropython",
-  "chapter_rel_dir": "chapters/10-high-performance-micropython"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/allocation-classifier/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 480,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Allocation Classifier",
+    "learningObjectives": [
+      "The learner will distinguish 12 MicroPython statements that allocate heap memory from those that do not, with at least 10 of 12 correct."
+    ],
+    "bloomsTaxonomy": "Analyze",
+    "bloomVerb": "distinguish",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "heap, garbage collection, small integer, float object, typed array, pre-allocated buffer, memoryview (defined in Chapter 2 and in this chapter above the block)."
+    ],
+    "concepts": [
+      "Heap Allocation",
+      "Garbage Collection",
+      "Small Integer",
+      "Float Object",
+      "Pre-Allocated Buffer",
+      "memoryview"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 480
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Allocates / Does not allocate",
+        "purpose": "Choose your answer. One attempt per statement."
+      },
+      {
+        "name": "Next statement / See results",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Start over",
+        "purpose": "Return to statement 1 with a fresh score."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "What do all the statements that do not allocate have in common?",
+      "A memoryview slice copies no data. Why does it still allocate?",
+      "Why would statement 11 give a different answer on a 64-bit computer?"
+    ],
+    "commonMisconceptions": [
+      "(1) Any arithmetic is free. (2) A slice never copies. (3) Floats are stored inside the value, like small integers. (4) Writing into an array allocates."
+    ],
+    "assessmentOpportunities": [
+      "Complete all twelve statements. Mastery is 10 of 12 correct on the first attempt."
+    ]
+  },
+  "chapter": "10-high-performance-micropython",
+  "chapter_number": 10
 }

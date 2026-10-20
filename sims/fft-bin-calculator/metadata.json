@@ -1,23 +1,106 @@
 {
   "title": "FFT Bin Calculator",
-  "description": "The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "With a sample rate of 12,800 Hz and an FFT size of 512, every FFT bin is 12,800 / 512 = 25 Hz wide, and the useful bins run from 0 to 255 (the Nyquist limit of 6,400 Hz would be bin 256). Two formulas cover everything: bin = frequency / 25, and bin center = bin number x 25.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Signal Processing and the FFT",
+    "Frequency Bin",
+    "Bin Width",
+    "FFT Size",
+    "Nyquist Limit"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "fft-bin-calculator",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "calculate",
-  "completion_status": "scaffold",
-  "chapter_number": 9,
-  "chapter_title": "Signal Processing and the FFT",
-  "chapter_dir": "09-signal-processing-fft",
-  "chapter_rel_dir": "chapters/09-signal-processing-fft"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/fft-bin-calculator/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 530,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "FFT Bin Calculator",
+    "learningObjectives": [
+      "The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "frequency bin, bin width, sample rate, FFT size, Nyquist limit (all defined in this chapter above the block, and in Chapter 3 for sample rate and Nyquist limit)."
+    ],
+    "concepts": [
+      "Frequency Bin",
+      "Bin Width",
+      "FFT Size",
+      "Nyquist Limit"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 530
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 challenges / Back to explore",
+        "purpose": "Switch between the slider and the quiz."
+      },
+      {
+        "name": "Answer box and Submit",
+        "purpose": "Type a whole number. One attempt per challenge."
+      },
+      {
+        "name": "Next challenge / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Tone frequency slider",
+        "purpose": "Explore only: 0 to 6,400 Hz in steps of 12.5 Hz, default 1,000 Hz."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Is a tone between two bins lost?",
+      "Does a louder tone change the bin width?",
+      "Why is there no bin 256 in the useful range?"
+    ],
+    "commonMisconceptions": [
+      "(1) The bin number equals the frequency in hertz. (2) The bin width depends on the loudness of the tone. (3) A tone between two bins is lost."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six challenges. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "09-signal-processing-fft",
+  "chapter_number": 9
 }

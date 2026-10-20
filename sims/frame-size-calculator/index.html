@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/frame-size-calculator/frame-size-calculator.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/frame-size-calculator/frame-size-calculator.png">
+</head>
   
   
     
@@ -915,7 +917,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -956,7 +958,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1708,18 +1710,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#specification" class="md-nav__link">
+  <a href="#description" class="md-nav__link">
     <span class="md-ellipsis">
-      Specification
+      Description
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#related-resources" class="md-nav__link">
+  <a href="#how-to-use" class="md-nav__link">
     <span class="md-ellipsis">
-      Related Resources
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specification
     </span>
   </a>
   
@@ -1749,65 +1811,140 @@
 
 
 <h1 id="frame-size-and-update-time-calculator">Frame Size and Update Time Calculator<a class="headerlink" href="#frame-size-and-update-time-calculator" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="622px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
+<p><a class="md-button md-button--primary" href="main.html">Run the Frame Size and Update Time Calculator MicroSim Fullscreen</a></p>
+<p>You can include this MicroSim on your website using the following <code>iframe</code>:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/frame-size-calculator/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"622px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>Every picture you send to the kit's 360 by 360 round display is a rectangle of
+pixels, and every pixel costs bytes. This calculator turns the two formulas from
+Chapter 5 into something you can change and watch:</p>
+<ul>
+<li><strong>bytes</strong> = width x height x bytes per pixel</li>
+<li><strong>bits</strong> = bytes x 8</li>
+<li><strong>time in milliseconds</strong> = bits / baud rate x 1000</li>
+</ul>
+<p>The picture on the left shows the 360 by 360 frame with the visible round glass
+in black and the corners hidden under the bezel. The orange rectangle is the
+part you are sending, drawn at its center. Note that a full frame sends the
+hidden corners too, so the time depends on the pixels sent, not on the pixels
+you can see.</p>
+<p>The time shown is <strong>wire time only</strong>. It leaves out the command bytes that set
+the drawing window and the Python overhead between SPI calls, so a real
+<code>display.fill()</code> takes longer than the number here.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Move the <strong>Width</strong> and <strong>Height</strong> sliders (1 to 360 pixels), and choose the
+   <strong>Bytes per pixel</strong> (1, 2, or 3) and the <strong>Baud rate</strong> (8, 12, or 24 million
+   bits per second). The sim opens on a full frame at 2 bytes per pixel and
+   24,000,000 bits per second: 259,200 bytes and 86.40 ms.</li>
+<li>Press <strong>Start Challenges</strong>. Each challenge sets the controls to match the
+   question, locks them, and hides the results.</li>
+<li>Type a number (no units; commas are fine) and press <strong>Check</strong> or Enter. Byte
+   answers must be exact. Time answers must be within 0.1 ms.</li>
+<li>The sim shows whether you were right, the worked calculation, and the formula
+   lines. Press <strong>Next</strong> for the next challenge.</li>
+<li>After challenge 6 the sim shows your score out of 6. Mastery is 5 of 6.</li>
+</ol>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<p><strong>Learning objective:</strong> Students will calculate the number of bytes in a
+rectangle of pixels and the time to send it over SPI at a given baud rate, for
+six challenges, with at least 5 of 6 correct (Bloom's Taxonomy: Apply).</p>
+<p><strong>Audience:</strong> High school students building the Open Study Buddy kit (grades 9-12).</p>
+<p><strong>Duration:</strong> 15 to 20 minutes.</p>
+<p><strong>Prerequisites:</strong> pixels, RGB565, frame size calculation, baud rate (Chapter 5).</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Predict (3 minutes).</strong> With the default full frame showing, cover the
+   result and ask: "How long does it take to send this?" Collect guesses, then
+   reveal 86.40 ms.</li>
+<li><strong>Explore (5 minutes).</strong> Set the rectangle to the 100 by 30 clock-digit box
+   and then to the 200 by 22 level meter from test 06. Compare their times with
+   the full frame. How many small boxes could you redraw in the time of one full frame?</li>
+<li><strong>Bytes per pixel (2 minutes).</strong> Switch between 1, 2, and 3 bytes per pixel.
+   Which setting does the kit use, and what would 3 bytes cost?</li>
+<li><strong>Challenges (8 minutes).</strong> Students work the six challenges and write the
+   multiplication and division for each one.</li>
+</ol>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>A 24 MHz SPI clock sends 24 million <em>bits</em> per second. How many <em>bytes</em> per
+   second is that?</li>
+<li>Why does sending only the part of the screen that changed make an animation
+   smoother?</li>
+<li>The calculator leaves out command bytes and Python overhead. Would the real
+   time be longer or shorter, and why?</li>
+<li>At 12,000,000 bits per second, how many full frames per second could the
+   wire carry at most?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The challenge score (target 5 of 6 on the first attempt) is the evidence of
+  mastery. Moving the controls is exploration and is not scored.</li>
+<li>Exit ticket: "How many milliseconds does it take to send a 16 by 32 letter at
+  2 bytes per pixel at 24,000,000 bits per second?" (Answer: 1,024 bytes,
+  8,192 bits, about 0.34 ms.)</li>
+</ul>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../chapters/05-display-basics/">Chapter 5: Display Basics: Pixels, Color, and Frame Size</a> - the Frame Size Calculation and Update Bandwidth sections give the formulas used here.</li>
+<li><a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface">Serial Peripheral Interface (Wikipedia)</a> - how SPI clocks one bit per pulse.</li>
+<li><a href="https://en.wikipedia.org/wiki/Framebuffer">Framebuffer (Wikipedia)</a> - why a full frame buffer is costly on a small microcontroller.</li>
+</ul>
 <h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
 <p>The full specification below is extracted from
 <a href="../../chapters/05-display-basics/">Chapter 5: Display Basics: Pixels, Color, and Frame Size</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** frame-size-calculator&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Apply&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** calculate&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will calculate the number of bytes in a rectangle of pixels and the time to send it over SPI at a given baud rate, for 6 challenges, with at least 5 of 6 correct.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** pixel, RGB565, frame size calculation, baud rate (all defined in the sections above this block). The time formula is given in the Rules field and shown to the learner after the first challenge.
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 6 challenges the learner types one number. An answer is correct when it is within the tolerance in the Content table. Mastery is 5 of 6 correct on the first attempt. Changing the exploration controls and watching the totals is exploration, not evidence.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) A pixel is one byte. (2) Sending data at 24 MHz means 24 million bytes per second. (3) Time depends on how many pixels are visible rather than how many are sent.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** Apply-level calculation of bytes and time needs repetition with immediate checking. Linking each answer to the same two formulas shows the learner that every display question reduces to a multiplication and a division.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>For exploration, the learner sets the width (1 to 360, step 1, unit pixels, default 360), the height (1 to 360, step 1, unit pixels, default 360), the bytes per pixel (1, 2, or 3, default 2), and the baud rate (8,000,000, 12,000,000, or 24,000,000 bits per second, default 24,000,000). The sim shows the bytes, the bits, and the time in milliseconds.
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>Challenges, in this order:
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>| # | Question | Answer | Tolerance | Why (shown as feedback) |
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>|---|---|---|---|---|
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| 1 | Bytes in a full 360 by 360 frame at 2 bytes per pixel | 259200 | exactly | 360 x 360 x 2 = 259,200. |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| 2 | Bytes in the 100 by 30 clock-digit box at 2 bytes per pixel | 6000 | exactly | 100 x 30 x 2 = 6,000. |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| 3 | Bytes in a full 360 by 360 frame at 3 bytes per pixel | 388800 | exactly | 360 x 360 x 3 = 388,800. |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| 4 | Bytes in the 200 by 22 level meter at 2 bytes per pixel | 8800 | exactly | 200 x 22 x 2 = 8,800. |
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>| 5 | Milliseconds to send the 100 by 30 box at 24,000,000 bits per second | 2.0 | within 0.1 | 6,000 bytes x 8 = 48,000 bits, divided by 24,000,000 is 0.002 s. |
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>| 6 | Milliseconds to send a full 2-byte frame at 12,000,000 bits per second | 172.8 | within 0.1 | 259,200 x 8 = 2,073,600 bits, divided by 12,000,000 is 0.1728 s. |
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>**Provenance:** The sizes come from the chapter sections "Pixels and Coordinates" and "Frame Size Calculation," and the 200 by 22 meter is the `METER_WIDTH` by `METER_HEIGHT` of test 06. The times use the formula in Rules and ignore command overhead.
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>**Rules:** bytes = width x height x bytes per pixel. bits = bytes x 8. time in seconds = bits / baud rate. Milliseconds = seconds x 1000. The sim does not include command bytes or Python overhead, and says so.
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>**Learner Activity:**
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>1. The learner changes the width, height, bytes per pixel, and baud rate, and sees the bytes, bits, and milliseconds update.
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>2. The learner starts the challenges. Challenge 1 is shown.
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>3. The learner types a number and submits.
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>4. The sim shows whether it is correct and the Why text, then moves to the next challenge.
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>5. After challenge 6, the sim shows the score. The learner should notice that a full frame takes about 86 ms of wire time at 24 MHz with the default settings, while the small box takes about 2 ms. The calculator leaves out Python overhead, and says so.
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>**Feedback:** 6 challenges, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The answer is &lt;answer&gt;: &lt;Why&gt;". The answer is revealed right after each submission, and a running score "n of 6" is shown.
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>**Starting State:** The calculator shows the full frame at 2 bytes per pixel and 24,000,000 bits per second, with the question "How long does it take to send this?"
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>**Chapter Anchors:** The chapter states a full frame is 259,200 bytes, a full frame at 24 MHz takes 86.4 ms, the 100 by 30 box is 6,000 bytes, and the 200 by 22 meter is 8,800 bytes.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** frame-size-calculator&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Bloom Level:** Apply&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Verb:** calculate&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Learning Objective:** The learner will calculate the number of bytes in a rectangle of pixels and the time to send it over SPI at a given baud rate, for 6 challenges, with at least 5 of 6 correct.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>**Prerequisites:** pixel, RGB565, frame size calculation, baud rate (all defined in the sections above this block). The time formula is given in the Rules field and shown to the learner after the first challenge.
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>**Evidence of Mastery:** For each of the 6 challenges the learner types one number. An answer is correct when it is within the tolerance in the Content table. Mastery is 5 of 6 correct on the first attempt. Changing the exploration controls and watching the totals is exploration, not evidence.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>**Misconceptions:** (1) A pixel is one byte. (2) Sending data at 24 MHz means 24 million bytes per second. (3) Time depends on how many pixels are visible rather than how many are sent.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>**Instructional Rationale:** Apply-level calculation of bytes and time needs repetition with immediate checking. Linking each answer to the same two formulas shows the learner that every display question reduces to a multiplication and a division.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>**Content:**
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>For exploration, the learner sets the width (1 to 360, step 1, unit pixels, default 360), the height (1 to 360, step 1, unit pixels, default 360), the bytes per pixel (1, 2, or 3, default 2), and the baud rate (8,000,000, 12,000,000, or 24,000,000 bits per second, default 24,000,000). The sim shows the bytes, the bits, and the time in milliseconds.
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>Challenges, in this order:
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>| # | Question | Answer | Tolerance | Why (shown as feedback) |
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>|---|---|---|---|---|
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| 1 | Bytes in a full 360 by 360 frame at 2 bytes per pixel | 259200 | exactly | 360 x 360 x 2 = 259,200. |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| 2 | Bytes in the 100 by 30 clock-digit box at 2 bytes per pixel | 6000 | exactly | 100 x 30 x 2 = 6,000. |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| 3 | Bytes in a full 360 by 360 frame at 3 bytes per pixel | 388800 | exactly | 360 x 360 x 3 = 388,800. |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>| 4 | Bytes in the 200 by 22 level meter at 2 bytes per pixel | 8800 | exactly | 200 x 22 x 2 = 8,800. |
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>| 5 | Milliseconds to send the 100 by 30 box at 24,000,000 bits per second | 2.0 | within 0.1 | 6,000 bytes x 8 = 48,000 bits, divided by 24,000,000 is 0.002 s. |
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>| 6 | Milliseconds to send a full 2-byte frame at 12,000,000 bits per second | 172.8 | within 0.1 | 259,200 x 8 = 2,073,600 bits, divided by 12,000,000 is 0.1728 s. |
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>**Provenance:** The sizes come from the chapter sections "Pixels and Coordinates" and "Frame Size Calculation," and the 200 by 22 meter is the `METER_WIDTH` by `METER_HEIGHT` of test 06. The times use the formula in Rules and ignore command overhead.
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>**Rules:** bytes = width x height x bytes per pixel. bits = bytes x 8. time in seconds = bits / baud rate. Milliseconds = seconds x 1000. The sim does not include command bytes or Python overhead, and says so.
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>**Learner Activity:**
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>1. The learner changes the width, height, bytes per pixel, and baud rate, and sees the bytes, bits, and milliseconds update.
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>2. The learner starts the challenges. Challenge 1 is shown.
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>3. The learner types a number and submits.
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>4. The sim shows whether it is correct and the Why text, then moves to the next challenge.
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>5. After challenge 6, the sim shows the score. The learner should notice that a full frame takes about 86 ms of wire time at 24 MHz with the default settings, while the small box takes about 2 ms. The calculator leaves out Python overhead, and says so.
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>**Feedback:** 6 challenges, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The answer is &lt;answer&gt;: &lt;Why&gt;". The answer is revealed right after each submission, and a running score "n of 6" is shown.
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>**Starting State:** The calculator shows the full frame at 2 bytes per pixel and 24,000,000 bits per second, with the question "How long does it take to send this?"
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>**Chapter Anchors:** The chapter states a full frame is 259,200 bytes, a full frame at 24 MHz takes 86.4 ms, the 100 by 30 box is 6,000 bytes, and the 200 by 22 meter is 8,800 bytes.
 </span></code></pre></div>
-<h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../../chapters/05-display-basics/">Chapter 5: Display Basics: Pixels, Color, and Frame Size</a></li>
-</ul>
 
 
 

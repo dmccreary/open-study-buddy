@@ -1,23 +1,104 @@
 {
   "title": "Log Band Layout Explorer",
-  "description": "The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The display groups the 256 FFT bins into a few bands. Because the ear judges pitch by ratio, the bands are log-spaced: each band's top edge is a fixed multiple of its bottom edge. For 16 bands from 100 Hz to 6,400 Hz that ratio is 64^(1/16) = 1.2968. The edges are rounded to whole bins, and a band narrower than one bin is stretched to one bin.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Signal Processing and the FFT",
+    "Band Energy",
+    "Log-Spaced Bands",
+    "Frequency Bin"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "log-band-layout-explorer",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "use",
-  "completion_status": "scaffold",
-  "chapter_number": 9,
-  "chapter_title": "Signal Processing and the FFT",
-  "chapter_dir": "09-signal-processing-fft",
-  "chapter_rel_dir": "chapters/09-signal-processing-fft"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/log-band-layout-explorer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 560,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Log Band Layout Explorer",
+    "learningObjectives": [
+      "The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "use",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "frequency bin, bin width, band energy, log-spaced bands (all defined in this chapter above the block)."
+    ],
+    "concepts": [
+      "Band Energy",
+      "Log-Spaced Bands",
+      "Frequency Bin"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 560
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 challenges / Back to explore",
+        "purpose": "Switch between exploring and the quiz."
+      },
+      {
+        "name": "Answer box and Submit",
+        "purpose": "Type a whole number. One attempt per challenge."
+      },
+      {
+        "name": "Next challenge / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Bands and Lowest sliders",
+        "purpose": "Explore only: 4 to 32 bands in steps of 4; lowest frequency 50 to 400 Hz in steps of 50."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Why does every band have a different number of bins?",
+      "Would equal-width bands put 1,000 Hz in the same band number as log bands?",
+      "Why do the bands start at 100 Hz instead of 0 Hz?"
+    ],
+    "commonMisconceptions": [
+      "(1) Every band has the same number of bins. (2) Equal-width bands and log-spaced bands put 1,000 Hz in the same band. (3) The highest band is the narrowest."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six challenges. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "09-signal-processing-fft",
+  "chapter_number": 9
 }

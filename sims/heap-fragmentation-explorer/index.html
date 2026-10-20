@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/heap-fragmentation-explorer/heap-fragmentation-explorer.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/heap-fragmentation-explorer/heap-fragmentation-explorer.png">
+</head>
   
   
     
@@ -757,7 +759,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -798,7 +800,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -827,7 +829,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1737,9 +1739,96 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#specification" class="md-nav__link">
+  <a href="#description" class="md-nav__link">
     <span class="md-ellipsis">
-      Specification
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#warm-up-3-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Warm-Up (3 minutes)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guided-exploration-10-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guided Exploration (10 minutes)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allocation-order-experiment-5-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Allocation-Order Experiment (5 minutes)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1778,69 +1867,183 @@
 
 
 <h1 id="heap-fragmentation-explorer">Heap Fragmentation Explorer<a class="headerlink" href="#heap-fragmentation-explorer" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="517px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/02-micropython-review/">Chapter 2: MicroPython Review for Embedded Systems</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** heap-fragmentation-explorer&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Understand&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** explain&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will explain why a memory request can fail when enough total memory is free, by predicting the outcome of 6 allocation requests on a fragmented 16-cell heap and choosing the reason.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** heap, garbage collection, heap fragmentation, MemoryError (all defined in the section "Memory: The Resource That Runs Out" above this block).
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 6 requests, the learner predicts "succeeds" or "MemoryError." For a request predicted to fail, the learner also picks the reason from two choices: "not enough free cells in total" or "no single gap is big enough." A request is correct when the prediction matches the Result column and, for failures, the reason matches the Correct reason column. Mastery is 5 of 6 correct on the first attempt. Pressing the collect and restart controls to watch the heap change is exploration, not evidence.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) If the total free memory is large enough, the request succeeds. (2) Garbage collection pushes the remaining objects together. (3) Restarting is the only way to get a big buffer.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** An Understand-level explanation needs the learner to connect a failure to its cause. Predicting the outcome and then naming the reason separates "not enough memory" from "no single gap big enough," which is the misconception that makes fragmentation confusing.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>The heap is a row of 16 cells numbered 1 to 16. Each cell is either free or used. A request for n cells succeeds when some run of n or more consecutive free cells exists, and takes the first such run starting from cell 1.
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>State X (the starting heap): cells 1, 3, 5, 7, 9, 11, 13, 15 hold the objects A, B, C, D, E, F, G, H (one cell each). Cells 2, 4, 6, 8, 10, 12, 14, 16 are free. That is 8 free cells in total, and the longest run of free cells is 1.
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>State Y (after "Collect garbage" from state X): the objects B, D, F, and H are garbage and are freed. Objects A, C, E, and G stay where they are. Free cells are 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16. That is 12 free cells, and the longest run is 3.
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| # | Heap state | Request (cells) | Result | Correct reason | Why (shown as feedback) |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>|---|---|---|---|---|---|
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| 1 | X | 1 | succeeds | none asked | Any free cell is a gap of at least 1. |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| 2 | X | 2 | MemoryError | no single gap is big enough | 8 cells are free in total, but every gap is 1 cell wide. |
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>| 3 | X | 8 | MemoryError | no single gap is big enough | 8 cells are free in total, which equals the request, but they are not together. |
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>| 4 | Y | 3 | succeeds | none asked | Cells 2 to 4 form a run of 3. |
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>| 5 | Y | 4 | MemoryError | no single gap is big enough | 12 cells are free, but the longest run is 3. |
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>| 6 | Y | 13 | MemoryError | not enough free cells in total | Only 12 cells are free in total. |
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>After the six requests, the learner can restart the heap (all 16 cells free) and allocate in the order "one 8-cell buffer, then the eight 1-cell objects A to H." Everything fits. In the opposite order (A to H spaced one cell apart first), the 8-cell buffer fails.
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>**Provenance:** The heap size and objects are illustrative, and the sim labels them "illustrative." The statement that MicroPython's collector frees objects but does not move them comes from the chapter section "Heap Fragmentation."
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>**Rules:** A request for n cells succeeds when the heap has a run of at least n consecutive free cells, and it takes the lowest-numbered such run. "Collect garbage" frees only the cells of objects marked as garbage and never moves any other object. "Restart" frees all 16 cells.
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>**Learner Activity:**
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>1. The learner sees state X and reads request 1, then predicts the outcome and, if the prediction is a failure, picks a reason.
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>2. The sim attempts the allocation on the heap picture and shows the result and the Why text.
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>3. After request 3, the learner presses "Collect garbage" to reach state Y and continues with requests 4 to 6.
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>4. After request 6, the learner presses "Restart," then allocates the 8-cell buffer first and the eight objects second, and tries the opposite order.
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>5. The learner should notice that collecting garbage increased the free total from 8 to 12 but only grew the longest gap from 1 to 3.
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>**Feedback:** 6 requests, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. &lt;Why&gt;". The result is revealed right after each answer, and a running score "n of 6" is shown.
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>**Starting State:** State X is shown with request 1 and the question "Will this request succeed?"
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>**Chapter Anchors:** The chapter states that the collector frees garbage but does not move remaining objects, and that the practical fix is to allocate the biggest buffers first.
+<p><a class="md-button md-button--primary" href="main.html">Run the Heap Fragmentation Explorer MicroSim Fullscreen</a></p>
+<p>Place the following line in your website to include this MicroSim in your course:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/heap-fragmentation-explorer/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"517px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>This MicroSim shows an illustrative MicroPython heap as a row of 16 cells.
+Objects A to H sit one cell apart, and B, D, F and H are garbage that has not
+been collected yet. You predict whether six memory requests succeed or raise
+<code>MemoryError</code>, and for each failure you choose the reason: there are not
+enough free cells in total, or no single gap is big enough.</p>
+<p>Every result is computed from the heap picture with the same rule MicroPython's
+allocator follows: a request for <em>n</em> cells needs <em>n</em> free cells <strong>in a row</strong>,
+and it takes the first such run from cell 1. The stats line under the heap
+shows the free total and the longest free run, so you can see that the two
+numbers are not the same thing.</p>
+<p>The key idea: MicroPython's garbage collector frees dead objects but never
+moves the live ones. Collecting garbage raises the free total from 8 to 12
+cells, yet the longest gap only grows from 1 to 3.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Read request 1 and the heap state it uses (X or Y).</li>
+<li>Press <strong>Succeeds</strong> or <strong>MemoryError</strong>. If you choose MemoryError, pick the
+   reason: <strong>Not enough free cells in total</strong> or <strong>No single gap is big enough</strong>.</li>
+<li>The sim tries the allocation. A successful request is shown in orange as a
+   trial allocation, which is released before the next request. A failure
+   outlines the heap in red.</li>
+<li>After request 3, press <strong>Collect garbage</strong> to free B, D, F and H and move
+   on to state Y for requests 4 to 6.</li>
+<li>After request 6, press <strong>Finish</strong>, then <strong>Restart</strong> to empty the heap.
+   Try <strong>Buffer first, then A to H</strong>, press <strong>Restart</strong> again, and try
+   <strong>A to H spaced first, then buffer</strong>.</li>
+</ol>
+<p>Each request allows one answer, and the running score is shown as "n of 6".
+Mastery is 5 of 6 correct.</p>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>Students will explain why a memory request can fail when enough total memory
+is free, by predicting the outcome of 6 allocation requests on a fragmented
+16-cell heap and choosing the reason.</p>
+<h3 id="warm-up-3-minutes">Warm-Up (3 minutes)<a class="headerlink" href="#warm-up-3-minutes" title="Permanent link">&para;</a></h3>
+<p>Ask: "If a parking lot has 8 empty spaces scattered around, can a bus that
+needs 8 spaces in a row park there?" Collect answers, then connect the parking
+lot to the heap.</p>
+<h3 id="guided-exploration-10-minutes">Guided Exploration (10 minutes)<a class="headerlink" href="#guided-exploration-10-minutes" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Students work through all six requests, committing to a prediction and a
+   reason before each reveal.</li>
+<li>Pause after request 3 and ask: "8 cells are free and you asked for 8. Why
+   did it fail?"</li>
+<li>After collecting garbage, have students write down the free total and the
+   longest run before and after. Ask why the objects A, C, E and G did not
+   slide together.</li>
+</ol>
+<h3 id="allocation-order-experiment-5-minutes">Allocation-Order Experiment (5 minutes)<a class="headerlink" href="#allocation-order-experiment-5-minutes" title="Permanent link">&para;</a></h3>
+<p>Students restart the heap and run both allocation orders. Ask them to state a
+rule for their own MicroPython programs. The expected answer: allocate the
+biggest buffers first, at the start of the program.</p>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Request 6 fails for a different reason than requests 2, 3 and 5. What is
+   the difference?</li>
+<li>Why does garbage collection not fix fragmentation on MicroPython?</li>
+<li>Restarting the device clears fragmentation. Why is allocating big buffers
+   first a better fix than restarting?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>The sim records 6 first-attempt answers. Mastery is 5 of 6 correct. Pressing
+Collect garbage and Restart is exploration, not evidence.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Fragmentation_(computing)">Fragmentation (computing)</a> -
+   Wikipedia overview of external fragmentation, the kind shown in this sim.</li>
+<li><a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">Garbage collection (computer science)</a> -
+   Wikipedia article on how collectors find and free unreachable objects.</li>
+<li><a href="https://docs.micropython.org/en/latest/reference/constrained.html">MicroPython on microcontrollers: Heap fragmentation</a> -
+   official MicroPython guidance on fragmentation and allocating large buffers early.</li>
+</ol>
 <h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/02-micropython-review/">Chapter 2: MicroPython Review for Embedded Systems</a></li>
 </ul>
+<details class="note">
+<summary>Original specification</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> heap-fragmentation-explorer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> explain<br/>
+<strong>Learning Objective:</strong> The learner will explain why a memory request can fail when enough total memory is free, by predicting the outcome of 6 allocation requests on a fragmented 16-cell heap and choosing the reason.</p>
+<p><strong>Prerequisites:</strong> heap, garbage collection, heap fragmentation, MemoryError (all defined in the section "Memory: The Resource That Runs Out" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 requests, the learner predicts "succeeds" or "MemoryError." For a request predicted to fail, the learner also picks the reason from two choices: "not enough free cells in total" or "no single gap is big enough." A request is correct when the prediction matches the Result column and, for failures, the reason matches the Correct reason column. Mastery is 5 of 6 correct on the first attempt. Pressing the collect and restart controls to watch the heap change is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) If the total free memory is large enough, the request succeeds. (2) Garbage collection pushes the remaining objects together. (3) Restarting is the only way to get a big buffer.</p>
+<p><strong>Instructional Rationale:</strong> An Understand-level explanation needs the learner to connect a failure to its cause. Predicting the outcome and then naming the reason separates "not enough memory" from "no single gap big enough," which is the misconception that makes fragmentation confusing.</p>
+<p><strong>Content:</strong></p>
+<p>The heap is a row of 16 cells numbered 1 to 16. Each cell is either free or used. A request for n cells succeeds when some run of n or more consecutive free cells exists, and takes the first such run starting from cell 1.</p>
+<p>State X (the starting heap): cells 1, 3, 5, 7, 9, 11, 13, 15 hold the objects A, B, C, D, E, F, G, H (one cell each). Cells 2, 4, 6, 8, 10, 12, 14, 16 are free. That is 8 free cells in total, and the longest run of free cells is 1.</p>
+<p>State Y (after "Collect garbage" from state X): the objects B, D, F, and H are garbage and are freed. Objects A, C, E, and G stay where they are. Free cells are 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16. That is 12 free cells, and the longest run is 3.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Heap state</th>
+<th>Request (cells)</th>
+<th>Result</th>
+<th>Correct reason</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>X</td>
+<td>1</td>
+<td>succeeds</td>
+<td>none asked</td>
+<td>Any free cell is a gap of at least 1.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>X</td>
+<td>2</td>
+<td>MemoryError</td>
+<td>no single gap is big enough</td>
+<td>8 cells are free in total, but every gap is 1 cell wide.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>X</td>
+<td>8</td>
+<td>MemoryError</td>
+<td>no single gap is big enough</td>
+<td>8 cells are free in total, which equals the request, but they are not together.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Y</td>
+<td>3</td>
+<td>succeeds</td>
+<td>none asked</td>
+<td>Cells 2 to 4 form a run of 3.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Y</td>
+<td>4</td>
+<td>MemoryError</td>
+<td>no single gap is big enough</td>
+<td>12 cells are free, but the longest run is 3.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Y</td>
+<td>13</td>
+<td>MemoryError</td>
+<td>not enough free cells in total</td>
+<td>Only 12 cells are free in total.</td>
+</tr>
+</tbody>
+</table>
+<p>After the six requests, the learner can restart the heap (all 16 cells free) and allocate in the order "one 8-cell buffer, then the eight 1-cell objects A to H." Everything fits. In the opposite order (A to H spaced one cell apart first), the 8-cell buffer fails.</p>
+<p><strong>Provenance:</strong> The heap size and objects are illustrative, and the sim labels them "illustrative." The statement that MicroPython's collector frees objects but does not move them comes from the chapter section "Heap Fragmentation."</p>
+<p><strong>Rules:</strong> A request for n cells succeeds when the heap has a run of at least n consecutive free cells, and it takes the lowest-numbered such run. "Collect garbage" frees only the cells of objects marked as garbage and never moves any other object. "Restart" frees all 16 cells.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner sees state X and reads request 1, then predicts the outcome and, if the prediction is a failure, picks a reason.</li>
+<li>The sim attempts the allocation on the heap picture and shows the result and the Why text.</li>
+<li>After request 3, the learner presses "Collect garbage" to reach state Y and continues with requests 4 to 6.</li>
+<li>After request 6, the learner presses "Restart," then allocates the 8-cell buffer first and the eight objects second, and tries the opposite order.</li>
+<li>The learner should notice that collecting garbage increased the free total from 8 to 12 but only grew the longest gap from 1 to 3.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 requests, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. <Why>". The result is revealed right after each answer, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> State X is shown with request 1 and the question "Will this request succeed?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that the collector frees garbage but does not move remaining objects, and that the practical fix is to allocate the biggest buffers first.</p>
+</details>
 
 
 

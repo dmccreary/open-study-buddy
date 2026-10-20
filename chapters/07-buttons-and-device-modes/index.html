@@ -1910,6 +1910,8 @@ By the end of this chapter, three buttons will start a recording, change the vol
 <p><em>Worked example.</em> The pin is sampled every 5 ms and reads 1, 1, 0, 1, 0, 1, 0, 0, 0, 0. The first 0 appears at 10 ms. With no debounce, every change counts: three presses (at 10, 20, and 30 ms). With a 30 ms debounce, the press is accepted at 10 ms and the flicker at 15 to 30 ms is ignored, so one press is counted.</p>
 <p>The right debounce time is a balance. Too short (10 ms) and a noisy switch gets through. Too long (100 ms) and two quick taps merge into one. Try the visualizer to see where each setting fails.</p>
 <h4 id="diagram-button-bounce-and-debounce-visualizer">Diagram: Button Bounce and Debounce Visualizer<a class="headerlink" href="#diagram-button-bounce-and-debounce-visualizer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/debounce-bounce-visualizer/main.html" width="100%" height="522px" scrolling="no"></iframe>
+<p><a href="../../sims/debounce-bounce-visualizer/main.html">Run Button Bounce and Debounce Visualizer Fullscreen</a></p>
 <details>
 <summary>Button Bounce and Debounce Visualizer</summary>
 <p>Type: microsim
@@ -2290,6 +2292,8 @@ Without a state machine, a program accumulates flags like <code>is_recording</co
 </div>
 <p>Practice following the table with the next activity.</p>
 <h4 id="diagram-device-mode-state-machine">Diagram: Device Mode State Machine<a class="headerlink" href="#diagram-device-mode-state-machine" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/device-mode-state-machine/main.html" width="100%" height="582px" scrolling="no"></iframe>
+<p><a href="../../sims/device-mode-state-machine/main.html">Run Device Mode State Machine Fullscreen</a></p>
 <details>
 <summary>Device Mode State Machine</summary>
 <p>Type: microsim

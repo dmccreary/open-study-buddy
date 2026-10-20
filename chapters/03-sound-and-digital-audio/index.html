@@ -1904,6 +1904,8 @@ If a tone you generate in code sounds lower than you asked for, check its freque
 </div>
 <p>Now test the folding rule yourself.</p>
 <h4 id="diagram-sampling-explorer">Diagram: Sampling Explorer<a class="headerlink" href="#diagram-sampling-explorer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/sampling-explorer/main.html" width="100%" height="517px" scrolling="no"></iframe>
+
 <details>
 <summary>Sampling Explorer</summary>
 <p>Type: microsim
@@ -2041,6 +2043,8 @@ If a tone you generate in code sounds lower than you asked for, check its freque
 <p><em>Worked example.</em> A signed 16-bit sample holds whole numbers from -32,768 to 32,767. A sample of 0 is the resting level. A loud peak is near 32,767. In test 05 the amplitude of a tone is <code>32767 * volume / 100</code>, so a volume of 40 produces peaks of about 13,107, which is 40 percent of full scale.</p>
 <p>The INMP441 reports 24 bits of audio inside a 32-bit word. This is why the kit's code shifts each microphone sample right by 8 (<code>MIC_SAMPLE_SHIFT = 8</code>): the 24 real bits sit in the top of the 32-bit number, and shifting by 8 puts them where Python expects. The next activity lets you see what the number of levels does to a wave.</p>
 <h4 id="diagram-bit-depth-quantizer">Diagram: Bit Depth Quantizer<a class="headerlink" href="#diagram-bit-depth-quantizer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/bit-depth-quantizer/main.html" width="100%" height="502px" scrolling="no"></iframe>
+
 <details>
 <summary>Bit Depth Quantizer</summary>
 <p>Type: microsim
@@ -2251,6 +2255,8 @@ If a tone you generate in code sounds lower than you asked for, check its freque
 Seeing a sound as bars instead of a wiggly line feels odd at first, and that is normal. You already read maps and graphs; this is one more way to look at the same data. Try the viewer below and change one control at a time.</p>
 </div>
 <h4 id="diagram-time-and-frequency-domain-viewer">Diagram: Time and Frequency Domain Viewer<a class="headerlink" href="#diagram-time-and-frequency-domain-viewer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/time-and-frequency-domain-viewer/main.html" width="100%" height="577px" scrolling="no"></iframe>
+
 <details>
 <summary>Time and Frequency Domain Viewer</summary>
 <p>Type: microsim

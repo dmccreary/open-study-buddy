@@ -3,138 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- microsim-scaffold-stub -->
-    <title>Log Band Layout Explorer</title>
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>Log Band Layout Explorer MicroSim using p5.js 2.3.2</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #212529;
-        }
-        #container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #1a3a6c;
-        }
-        .placeholder {
-            border: 2px dashed #adb5bd;
-            border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #6c757d;
-            margin: 20px 0;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .placeholder .badge {
-            display: inline-block;
-            background: #ffc107;
-            color: #212529;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .placeholder h2 {
-            font-size: 18px;
-            color: #495057;
-            margin-bottom: 8px;
-        }
-        .placeholder p {
-            font-size: 14px;
-            max-width: 480px;
-        }
-        .meta {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            padding-top: 12px;
-        }
-        .meta strong { color: #495057; }
+        body { margin: 0px; padding: 0px; font-family: Arial, Helvetica, sans-serif; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+    <script src="log-band-layout-explorer.js"></script>
 </head>
 <body>
-    <div id="container">
-        <h1>Log Band Layout Explorer</h1>
-        <div class="placeholder">
-            <span class="badge">SCAFFOLD</span>
-            <h2>MicroSim Not Yet Implemented</h2>
-            <p>This MicroSim has been scaffolded from its specification but the
-            interactive content has not been built yet. See the chapter source
-            and the <code>index.md</code> in this directory for the full spec.</p>
-        </div>
-        <div class="meta">
-            <p><strong>Sim ID:</strong> log-band-layout-explorer</p>
-            <p><strong>Library:</strong> p5.js</p>
-            <p><strong>Bloom Level:</strong> Apply</p>
-            <p><strong>Learning Objective:</strong> The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct.</p>
-        </div>
-    </div>
-
-    <!--
-    SPECIFICATION (from chapter index.md):
-
-    Type: microsim
-    **sim-id:** log-band-layout-explorer<br/>
-    **Library:** p5.js<br/>
-    **Status:** Specified<br/>
-    **Bloom Level:** Apply<br/>
-    **Bloom Verb:** use<br/>
-    **Learning Objective:** The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct.
-    
-    **Prerequisites:** frequency bin, bin width, band energy, log-spaced bands (all defined in this chapter above the block).
-    
-    **Evidence of Mastery:** For each of the 6 challenges the learner types a whole number (a band number for challenges 1 to 3, a bin count for challenges 4 to 6) and submits. An answer is correct when it equals the Answer column in Content. Mastery is 5 of 6 correct on the first attempt. Changing the number of bands or the lowest frequency in exploration is exploration, not evidence.
-    
-    **Misconceptions:** (1) Every band has the same number of bins. (2) Equal-width bands and log-spaced bands put 1,000 Hz in the same band. (3) The highest band is the narrowest.
-    
-    **Instructional Rationale:** Apply-level use of a layout requires reading a table of edges and mapping a frequency through bins to a band. Changing the number of bands during exploration shows how the layout depends on the ratio between neighboring edges, before the learner uses the fixed 16-band layout for the challenges.
-    
-    **Content:**
-    
-    The fixed layout for the challenges is the 16-band table in the chapter section "Band Energy and Log-Spaced Bands", with bin width 25 Hz. A tone belongs to the band that contains its nearest bin.
-    
-    | # | Question shown | Answer | Why (shown as feedback) |
-    |---|---|---|---|
-    | 1 | Which band contains a 1,000 Hz tone? | 8 | 1,000 / 25 = bin 40, and band 8 holds bins 32 to 40. |
-    | 2 | Which band contains a 440 Hz tone? | 5 | 440 / 25 = 17.6, nearest bin 18, and band 5 holds bins 15 to 18. |
-    | 3 | Which band contains a 3,000 Hz tone? | 13 | 3,000 / 25 = bin 120, and band 13 holds bins 117 to 151. |
-    | 4 | How many bins are in band 10? | 16 | Band 10 holds bins 54 to 69, which is 69 - 54 + 1 = 16. |
-    | 5 | How many bins are in band 15? | 59 | Band 15 holds bins 197 to 255, which is 59. |
-    | 6 | How many bins are in band 0? | 1 | Band 0 holds only bin 4, because the band between 100 and 129.7 Hz is narrower than one 25 Hz bin and is stretched to one bin. |
-    
-    For exploration the learner changes the number of bands and the lowest frequency, and the sim shows the edge in hertz, the bins, and the bin count of every band.
-    
-    **Provenance:** The 16-band layout and its bin ranges are printed by `src/chapters/09-signal-processing-fft/03-bin-calculator.py`, which calls `dsp.log_band_edges(16, 100, 6400, 12800, 512)`. The chapter section reproduces the same table.
-    
-    **Rules:** Edge i is round(f_low x r^i x 512 / 12,800) with r = (6,400 / f_low)^(1 / bands); halves round to the nearest even whole number. If an edge is not greater than the previous edge, it is set to the previous edge plus 1. Band i holds bins edge[i] to edge[i+1] - 1. Number of bands: min 4, max 32, step 4, default 16. Lowest frequency: min 50, max 400, step 50, default 100, unit Hz. The highest frequency is always 6,400 Hz.
-    
-    **Learner Activity:**
-    
-    1. The learner changes the number of bands and the lowest frequency and watches the edges and bin counts update.
-    2. The learner notices that the lowest bands always shrink to one bin.
-    3. The learner starts the 6 challenges with the default layout. Challenge 1 is shown.
-    4. The learner types a whole number and submits.
-    5. The sim highlights the band or the bins involved and shows the Why text.
-    
-    **Feedback:** 6 challenges, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.
-    
-    **Starting State:** The default 16-band layout is shown, with the question "Which band holds this tone?"
-    
-    **Chapter Anchors:** The chapter states that the 16 bands run from 100 Hz to 6,400 Hz with a ratio of 1.2968 per band, that band 8 holds bins 32 to 40, that band 10 holds 16 bins, and that band 15 holds 59 bins.
-    -->
+    <main></main>
+    <br/>
+    <a href=".">Back to Lesson Plan</a>
 </body>
 </html>

@@ -1,23 +1,106 @@
 {
   "title": "Audio Frame Time Budget Explorer",
-  "description": "The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The microphone delivers one 2,048-byte frame every 40 ms into a ring buffer that holds about 9.77 frames (0.39 s). The main loop does P milliseconds of work and then reads one frame. If P is 40 ms or less the loop keeps up; if it is longer, a backlog grows by (P / 40 - 1) frames every pass until the ring overflows and audio is lost.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "I2S Audio: Recording and Playing Sound",
+    "Audio Frame",
+    "Ring Buffer",
+    "Frame Time Budget",
+    "Backlog"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "audio-frame-budget-explorer",
-  "library": "p5.js",
-  "bloomLevel": "Analyze",
-  "bloomVerb": "examine",
-  "completion_status": "scaffold",
-  "chapter_number": 8,
-  "chapter_title": "I2S Audio: Recording and Playing Sound",
-  "chapter_dir": "08-i2s-audio",
-  "chapter_rel_dir": "chapters/08-i2s-audio"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/audio-frame-budget-explorer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 550,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Audio Frame Time Budget Explorer",
+    "learningObjectives": [
+      "The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s."
+    ],
+    "bloomsTaxonomy": "Analyze",
+    "bloomVerb": "examine",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "audio frame, ring buffer, frame time budget, backlog (all defined in the sections above this block). The model is stated in the Rules field and shown on screen."
+    ],
+    "concepts": [
+      "Audio Frame",
+      "Ring Buffer",
+      "Frame Time Budget",
+      "Backlog"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 550
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 timings / Back to explore",
+        "purpose": "Switch between the slider and the quiz."
+      },
+      {
+        "name": "Answer box and Submit",
+        "purpose": "Type seconds (within 0.1 s) or never. One attempt per timing."
+      },
+      {
+        "name": "Next timing / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Time per pass P slider",
+        "purpose": "Explore only: 10 to 100 ms in steps of 0.1 ms, default 40.0 ms."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "A loop only 5 ms too slow still loses audio within 3.6 s. Why does a big ring not save it?",
+      "Why does a loop faster than 40 ms not waste audio?",
+      "What changes in the graph if the ring were twice as deep?"
+    ],
+    "commonMisconceptions": [
+      "(1) A loop that takes slightly longer than the frame is fine because the buffer is big. (2) A loop that is faster than the frame wastes audio. (3) The ring holds all the audio forever."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six timings. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "08-i2s-audio",
+  "chapter_number": 8
 }

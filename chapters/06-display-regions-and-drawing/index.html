@@ -1875,6 +1875,8 @@ Pick the longest string a text region will ever show, and pad every string to th
 <p>Redrawing <em>every</em> region costs 50,752 bytes: 16.9 ms of wire time, and 28.1 ms when measured on the test board (<code>07-region-layout.py</code>). That is about 4.6 times faster than the 129 ms measured for the 259,200-byte full frame, but it is still 70 percent of one 40 ms audio frame, which is why a frame should redraw only the regions that changed. In practice most frames redraw one or two regions, and the spectrum region alone takes 8.5 ms when measured (5.3 ms of wire time).</p>
 <p>Now apply the dirty-region rule to six events. For each, decide which regions need redrawing.</p>
 <h4 id="diagram-dirty-region-planner">Diagram: Dirty Region Planner<a class="headerlink" href="#diagram-dirty-region-planner" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/dirty-region-planner/main.html" width="100%" height="552px" scrolling="no"></iframe>
+<p><a href="../../sims/dirty-region-planner/main.html">Run Dirty Region Planner Fullscreen</a></p>
 <details>
 <summary>Dirty Region Planner</summary>
 <p>Type: microsim

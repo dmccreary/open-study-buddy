@@ -1973,6 +1973,8 @@ If <code>mpremote</code> says it cannot open the port, Thonny is probably still 
 <p><em>Worked example.</em> Suppose <code>shapes.py</code> is missing from the Pico. Running test 04, which contains <code>import shapes</code>, stops with <code>ImportError: no module named 'shapes'</code>. The error names the file, so the fix is to upload <code>lib/shapes.py</code> (the <code>upload-code.sh</code> script does this). Reading the last line of an error first, and looking for a name, solves most import problems in under a minute.</p>
 <p>The diagram below shows how the kit's files point at each other. Each box is a file, and each arrow is an <code>import</code>.</p>
 <h4 id="diagram-kit-import-map">Diagram: Kit Import Map<a class="headerlink" href="#diagram-kit-import-map" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/kit-import-map/main.html" width="100%" height="562px" scrolling="no"></iframe>
+
 <details>
 <summary>Kit Import Map</summary>
 <p>Type: graph-model
@@ -2217,6 +2219,8 @@ A code bug that looks like a broken button is often a flipped test: writing <cod
 <p>The function <code>on_press</code> is the ISR. It does one tiny thing, setting a flag, and the main loop does the real work when it notices the flag. That split is the rule for every ISR you will write: keep it short, do not print or allocate memory inside it, and leave the real work to the main loop.</p>
 <p>Polling, which means asking the pin over and over in a loop, can miss a press that starts and ends between two checks. An interrupt cannot miss it, because the hardware notices the edge on its own. The activity below lets you predict which presses a polling loop would catch.</p>
 <h4 id="diagram-polling-versus-interrupt-timeline">Diagram: Polling Versus Interrupt Timeline<a class="headerlink" href="#diagram-polling-versus-interrupt-timeline" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/polling-versus-interrupt-timeline/main.html" width="100%" height="482px" scrolling="no"></iframe>
+
 <details>
 <summary>Polling Versus Interrupt Timeline</summary>
 <p>Type: microsim
@@ -2378,6 +2382,8 @@ Treat your ISR like a note on a sticky pad: set a flag, store one number, and ge
 <p>MicroPython's collector frees garbage but does not move the objects that remain, so it cannot squeeze the gaps together. The practical fix is to allocate your biggest buffers first, right after startup, before the heap has been cut into pieces.</p>
 <p>The activity below makes this concrete with a tiny heap of 16 cells.</p>
 <h4 id="diagram-heap-fragmentation-explorer">Diagram: Heap Fragmentation Explorer<a class="headerlink" href="#diagram-heap-fragmentation-explorer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/heap-fragmentation-explorer/main.html" width="100%" height="517px" scrolling="no"></iframe>
+
 <details>
 <summary>Heap Fragmentation Explorer</summary>
 <p>Type: microsim

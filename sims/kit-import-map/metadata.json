@@ -5,7 +5,12 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Open Study Buddy",
+    "Computer Science",
+    "module",
+    "import",
+    "import path",
+    "/lib folder"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
@@ -15,9 +20,37 @@
   "library": "vis-network",
   "bloomLevel": "Understand",
   "bloomVerb": "interpret",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 2,
   "chapter_title": "MicroPython Review for Embedded Systems",
   "chapter_dir": "02-micropython-review",
-  "chapter_rel_dir": "chapters/02-micropython-review"
+  "chapter_rel_dir": "chapters/02-micropython-review",
+  "canvasHeight": 560,
+  "educationalLevel": "High School (grades 9-12)",
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "bloomLevel": "Understand",
+    "bloomVerb": "interpret",
+    "learningObjective": "The learner will interpret the kit's import map by naming, for 5 selected files, which other files it imports and which folder each file belongs in on the Pico.",
+    "concepts": [
+      "module",
+      "import",
+      "import path",
+      "/lib folder"
+    ],
+    "duration": "15-20 minutes"
+  },
+  "pedagogical": {
+    "pattern": "predict-then-reveal challenge with exploration mode",
+    "controls": [
+      "Click a file node: show its Pico folder and description",
+      "Start check / Submit / Next file button",
+      "Checkboxes: select the kit files a file imports",
+      "Navigation buttons: pan and zoom the graph"
+    ],
+    "model": "Directed graph of the 8 kit files in src/kits/study-buddy-base with an edge from each importing file to each imported kit file.",
+    "opensPaused": true
+  },
+  "url": "https://dmccreary.github.io/open-study-buddy/sims/kit-import-map/"
 }

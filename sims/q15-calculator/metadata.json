@@ -1,23 +1,106 @@
 {
   "title": "Q15 Calculator",
-  "description": "The learner will calculate the Q15 product (a x b) >> 15 of 6 pairs of Q15 integers, and state whether the result fits in 16 bits, with at least 5 of 6 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "Q15 stores a number from -1.0 up to just under +1.0 as a 16-bit integer q that stands for q / 32,768, so 16,384 is 0.5. Multiplying two Q15 numbers gives a 30-bit product that must be shifted right by 15 bits to return to Q15: result = (a x b) >> 15. The shift keeps the sign and rounds toward minus infinity, and one product (-1.0 x -1.0) does not fit back into 16 bits.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "High-Performance MicroPython",
+    "Fixed-Point Math",
+    "Q15 Format",
+    "Arithmetic Shift Right",
+    "Overflow"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "q15-calculator",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "calculate",
-  "completion_status": "scaffold",
-  "chapter_number": 10,
-  "chapter_title": "High-Performance MicroPython",
-  "chapter_dir": "10-high-performance-micropython",
-  "chapter_rel_dir": "chapters/10-high-performance-micropython"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/q15-calculator/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 530,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Q15 Calculator",
+    "learningObjectives": [
+      "The learner will calculate the Q15 product (a x b) >> 15 of 6 pairs of Q15 integers, and state whether the result fits in 16 bits, with at least 5 of 6 correct."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "fixed-point math, Q15 format, arithmetic shift right (all defined in this chapter above the block)."
+    ],
+    "concepts": [
+      "Fixed-Point Math",
+      "Q15 Format",
+      "Arithmetic Shift Right",
+      "Overflow"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 530
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 pairs / Back to explore",
+        "purpose": "Switch between the calculator and the quiz."
+      },
+      {
+        "name": "Result box, fit menu (pair 6) and Submit",
+        "purpose": "Type the whole-number result; for pair 6 also choose whether it fits. One attempt per pair."
+      },
+      {
+        "name": "Next pair / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "a and b boxes",
+        "purpose": "Explore only: any whole numbers from -32,768 to 32,767 (out-of-range values are clamped)."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Is the product of two Q15 numbers already a Q15 number?",
+      "Why is (-3 x 3) >> 15 equal to -1 and not 0?",
+      "Why can Q15 hold -1.0 but not +1.0?"
+    ],
+    "commonMisconceptions": [
+      "(1) The product of two Q15 numbers is already Q15. (2) A shift right always rounds toward zero. (3) Q15 can hold exactly 1.0."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six pairs. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "10-high-performance-micropython",
+  "chapter_number": 10
 }

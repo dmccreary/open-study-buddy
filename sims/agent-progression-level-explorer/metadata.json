@@ -11,13 +11,95 @@
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "agent-progression-level-explorer",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/agent-progression-level-explorer/",
   "library": "p5.js",
   "bloomLevel": "Analyze",
   "bloomVerb": "differentiate",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 1,
   "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
   "chapter_dir": "01-personal-agents-architecture",
-  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture",
+  "contributor": [
+    "Claude Code"
+  ],
+  "dateModified": "2026-10-20",
+  "educationalLevel": "High School",
+  "audience": "Students, Educators",
+  "learningResourceType": "simulation",
+  "concepts": [
+    "Agent Progression Levels",
+    "Rule-Based Agent",
+    "LLM-Backed Agent",
+    "Agent Tools",
+    "Agent Memory",
+    "Agent Approval Rules",
+    "Open-Source Agent Framework",
+    "Swappable Brain"
+  ],
+  "prerequisites": [
+    "rule-based agent",
+    "LLM-backed agent",
+    "agent tools",
+    "agent memory",
+    "agent approval rules",
+    "open-source agent framework"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "topic": "Agent progression levels and the swappable brain",
+    "learningObjectives": [
+      "The learner will differentiate the three agent progression levels by placing 8 abilities at the lowest level where each first appears, with at least 7 of 8 correct."
+    ],
+    "bloomsTaxonomy": [
+      "Analyze"
+    ],
+    "bloomVerb": "differentiate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "rule-based agent",
+      "LLM-backed agent",
+      "agent tools",
+      "agent memory",
+      "agent approval rules",
+      "open-source agent framework"
+    ]
+  },
+  "pedagogical": {
+    "pattern": "Placement quiz on a three-level ladder followed by side-by-side comparison of replies",
+    "interactivityType": "active",
+    "misconceptionsAddressed": [
+      "Only Level 3 can use tools.",
+      "A higher level needs a different terminal.",
+      "An LLM always gives a correct answer."
+    ],
+    "assessment": "Mastery is 7 of 8 abilities placed at the correct level on the first attempt.",
+    "defaultState": "Opens at the first item with nothing answered; there is no animation or timer."
+  },
+  "technical": {
+    "framework": "p5.js",
+    "canvasHeight": 610,
+    "responsive": "Width-responsive",
+    "dependencies": [
+      "p5.js 2.3.2 (jsdelivr)"
+    ]
+  },
+  "controls": [
+    {
+      "type": "button",
+      "label": "Level 1 / Level 2 / Level 3",
+      "purpose": "Part 1: place the current ability; Part 2: show that level's reply"
+    },
+    {
+      "type": "button",
+      "label": "Next / Compare replies",
+      "purpose": "Advance after answering; disabled until an answer is given"
+    },
+    {
+      "type": "button",
+      "label": "Restart",
+      "purpose": "Start Part 1 again"
+    }
+  ]
 }

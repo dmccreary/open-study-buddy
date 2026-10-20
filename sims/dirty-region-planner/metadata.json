@@ -1,23 +1,106 @@
 {
   "title": "Dirty Region Planner",
-  "description": "The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The Study Buddy's round 360 x 360 display is split into five regions: status bar, time, mascot, spectrum and agent message. Redrawing the whole screen sends 259,200 bytes; redrawing all five regions sends 50,752. The dirty-region rule says a region is redrawn only when the content shown in it changes.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Drawing Directly to Display Regions",
+    "Dirty Region",
+    "Region Layout",
+    "Direct Region Write",
+    "Display Bandwidth"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "dirty-region-planner",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "apply",
-  "completion_status": "scaffold",
-  "chapter_number": 6,
-  "chapter_title": "Drawing Directly to Display Regions",
-  "chapter_dir": "06-display-regions-and-drawing",
-  "chapter_rel_dir": "chapters/06-display-regions-and-drawing"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/dirty-region-planner/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 550,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Dirty Region Planner",
+    "learningObjectives": [
+      "The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "apply",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "dirty region, region layout, direct region write (all defined in the sections above this block, including the five regions in the table \"Region Layout\")."
+    ],
+    "concepts": [
+      "Dirty Region",
+      "Region Layout",
+      "Direct Region Write",
+      "Display Bandwidth"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 550
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Redraw checkboxes",
+        "purpose": "Tick each region whose content changes for the event shown. Leave all unticked if nothing changes."
+      },
+      {
+        "name": "Submit",
+        "purpose": "Check your selection. One attempt per event."
+      },
+      {
+        "name": "Next event / See score",
+        "purpose": "Move to the next event, or see the score after event 6."
+      },
+      {
+        "name": "Start over",
+        "purpose": "Return to event 1 with a fresh score."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Which event sent no bytes at all, and why is that still a correct \"redraw\"?",
+      "Event 5 is the most expensive. What fraction of a full frame does it cost?",
+      "Why is redrawing every region on every frame a waste even though it is 4.6 times cheaper than a full frame?"
+    ],
+    "commonMisconceptions": [
+      "(1) Any event requires a full-screen redraw. (2) A region should be redrawn on every frame whether or not its content changed. (3) Changing the mascot's pose does not require redrawing the mascot region."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six events. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "06-display-regions-and-drawing",
+  "chapter_number": 6
 }

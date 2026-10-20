@@ -3,139 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- microsim-scaffold-stub -->
-    <title>Device Mode State Machine</title>
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>Device Mode State Machine MicroSim using p5.js 2.3.2</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #212529;
-        }
-        #container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #1a3a6c;
-        }
-        .placeholder {
-            border: 2px dashed #adb5bd;
-            border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #6c757d;
-            margin: 20px 0;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .placeholder .badge {
-            display: inline-block;
-            background: #ffc107;
-            color: #212529;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .placeholder h2 {
-            font-size: 18px;
-            color: #495057;
-            margin-bottom: 8px;
-        }
-        .placeholder p {
-            font-size: 14px;
-            max-width: 480px;
-        }
-        .meta {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            padding-top: 12px;
-        }
-        .meta strong { color: #495057; }
+        body { margin: 0px; padding: 0px; font-family: Arial, Helvetica, sans-serif; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+    <script src="device-mode-state-machine.js"></script>
 </head>
 <body>
-    <div id="container">
-        <h1>Device Mode State Machine</h1>
-        <div class="placeholder">
-            <span class="badge">SCAFFOLD</span>
-            <h2>MicroSim Not Yet Implemented</h2>
-            <p>This MicroSim has been scaffolded from its specification but the
-            interactive content has not been built yet. See the chapter source
-            and the <code>index.md</code> in this directory for the full spec.</p>
-        </div>
-        <div class="meta">
-            <p><strong>Sim ID:</strong> device-mode-state-machine</p>
-            <p><strong>Library:</strong> p5.js</p>
-            <p><strong>Bloom Level:</strong> Apply</p>
-            <p><strong>Learning Objective:</strong> The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt.</p>
-        </div>
-    </div>
-
-    <!--
-    SPECIFICATION (from chapter index.md):
-
-    Type: microsim
-    **sim-id:** device-mode-state-machine<br/>
-    **Library:** p5.js<br/>
-    **Status:** Specified<br/>
-    **Template:** https://github.com/dmccreary/automating-instructional-design/tree/main/docs/sims/state-machine-template<br/>
-    **Bloom Level:** Apply<br/>
-    **Bloom Verb:** use<br/>
-    **Learning Objective:** The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt.
-    
-    **Prerequisites:** device mode, state, event, transition, short press, long press, volume clamping (all defined in the sections above this block, with the table in the section "The State Machine").
-    
-    **Evidence of Mastery:** For each of the 6 sequences the learner picks the final mode from the five modes and the final volume from the values 30, 40, 50, and 60. An answer is correct when both match the Final mode and Final volume columns in Content. Mastery is 5 of 6 on the first attempt. Stepping through the example sequence in exploration is exploration, not evidence.
-    
-    **Misconceptions:** (1) A button does the same thing in every mode. (2) Releasing MODE always sends the recording to the server. (3) A long press of UP in CLOCK also changes the volume.
-    
-    **Instructional Rationale:** Apply-level use of a table requires the learner to carry the state forward one event at a time. Keeping volume as a second answer makes the learner track more than one thing, as a real state machine does.
-    
-    **Content:**
-    
-    The sim starts every sequence in CLOCK with a volume of 40. The transition table is the one in the chapter section "The State Machine." The volume changes by 10 for each volume-up or volume-down step, between 0 and 100.
-    
-    Sequences, in this order:
-    
-    | # | Event sequence shown | Final mode | Final volume | Why (shown as feedback) |
-    |---|---|---|---|---|
-    | 1 | MODE pressed; MODE released after 1.5 s | THINKING | 40 | The hold is at least 0.2 s, so releasing sends the question and waits for the reply. |
-    | 2 | MODE pressed; MODE released after 0.1 s | CLOCK | 40 | The hold is under 0.2 s, so it was a bump, and the device returns to the clock. |
-    | 3 | MODE pressed; MODE released after 1.5 s; reply arrives | SPEAKING | 40 | A reply in THINKING moves the device to SPEAKING. |
-    | 4 | UP held for 1 s (a long press); DOWN pressed; MODE pressed and released after 0.1 s | SETTINGS | 30 | The long press of UP opens SETTINGS, DOWN lowers the value of the first setting (volume) by 10, and a short MODE press only moves to the next setting. |
-    | 5 | MODE pressed; MODE released after 1.5 s; MODE pressed again | CLOCK | 40 | A MODE press in THINKING cancels and returns to the clock. |
-    | 6 | UP pressed and released after 0.1 s; UP pressed and released after 0.1 s | CLOCK | 60 | Each short UP press in CLOCK raises the volume by 10, from 40 to 50 to 60. |
-    
-    **Provenance:** The table and rules come from the chapter section "The State Machine." The sequences are illustrative, and the sim labels them "illustrative."
-    
-    **Rules:** The mode changes only as the transition table says. Volume is limited to the range 0 to 100 and changes in steps of 10. A long press is 800 ms or more. In SETTINGS the first setting is Volume. A mode is unchanged by an event the table lists as "ignored."
-    
-    **Learner Activity:**
-    
-    1. The learner explores a sample sequence and steps through it, watching the mode highlight on a diagram of the five modes and the volume number change.
-    2. The learner starts the 6 sequences. Sequence 1 is shown as a list of events.
-    3. The learner picks a final mode and a final volume, then submits.
-    4. The sim replays the sequence on the diagram, showing the mode after each event, and shows the Why text.
-    5. After sequence 6, the sim shows the score. The learner should notice that the same button has different effects in CLOCK, THINKING, and SETTINGS.
-    
-    **Feedback:** 6 sequences, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The device ends in <mode> at volume <volume>: <Why>". The replay is shown after every submission, and a running score "n of 6" is shown.
-    
-    **Starting State:** The five modes are shown with CLOCK highlighted and volume 40, with the first sequence and the question "Where does the device end up?"
-    
-    **Chapter Anchors:** The chapter states that the device has five modes (CLOCK, LISTENING, THINKING, SPEAKING, SETTINGS), that a long press is 800 ms or more, that a hold shorter than 0.2 s returns to CLOCK, and that the volume starts at 40 and moves in steps of 10 between 0 and 100.
-    -->
+    <main></main>
+    <br/>
+    <a href=".">Back to Lesson Plan</a>
 </body>
 </html>

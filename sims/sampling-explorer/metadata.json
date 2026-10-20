@@ -5,7 +5,13 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Open Study Buddy",
+    "Computer Science",
+    "sampling",
+    "sample rate",
+    "frequency",
+    "Nyquist limit",
+    "aliasing"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
@@ -15,9 +21,39 @@
   "library": "p5.js",
   "bloomLevel": "Apply",
   "bloomVerb": "calculate",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 3,
   "chapter_title": "Sound and Digital Audio Basics",
   "chapter_dir": "03-sound-and-digital-audio",
-  "chapter_rel_dir": "chapters/03-sound-and-digital-audio"
+  "chapter_rel_dir": "chapters/03-sound-and-digital-audio",
+  "canvasHeight": 515,
+  "educationalLevel": "High School (grades 9-12)",
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "bloomLevel": "Apply",
+    "bloomVerb": "calculate",
+    "learningObjective": "The learner will calculate the frequency a sampled tone appears to have, given its true frequency and the sample rate, for 6 challenge tones, with at least 5 of 6 correct.",
+    "concepts": [
+      "sampling",
+      "sample rate",
+      "frequency",
+      "Nyquist limit",
+      "aliasing"
+    ],
+    "duration": "15-20 minutes"
+  },
+  "pedagogical": {
+    "pattern": "predict-then-reveal challenge with exploration mode",
+    "controls": [
+      "True frequency slider: 100 to 9,000 Hz in 100 Hz steps, default 1,000 Hz",
+      "Sample rate select: 4,000, 8,000, 12,800 or 16,000 Hz, default 12,800 Hz",
+      "Start challenges / Next challenge / Show score button",
+      "Answer text input (Hz)",
+      "Submit button"
+    ],
+    "model": "Samples of sin(2 pi f t) at t = n/fs; apparent frequency f if f < fs/2, fs - f if fs/2 < f < fs; the suggested wave is the phase-inverted alias, which passes through every sample.",
+    "opensPaused": true
+  },
+  "url": "https://dmccreary.github.io/open-study-buddy/sims/sampling-explorer/"
 }

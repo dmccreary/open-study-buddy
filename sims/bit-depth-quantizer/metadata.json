@@ -5,7 +5,12 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Open Study Buddy",
+    "Computer Science",
+    "bit depth",
+    "levels",
+    "quantization error",
+    "powers of two"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
@@ -15,9 +20,37 @@
   "library": "p5.js",
   "bloomLevel": "Apply",
   "bloomVerb": "calculate",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 3,
   "chapter_title": "Sound and Digital Audio Basics",
   "chapter_dir": "03-sound-and-digital-audio",
-  "chapter_rel_dir": "chapters/03-sound-and-digital-audio"
+  "chapter_rel_dir": "chapters/03-sound-and-digital-audio",
+  "canvasHeight": 500,
+  "educationalLevel": "High School (grades 9-12)",
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "bloomLevel": "Apply",
+    "bloomVerb": "calculate",
+    "learningObjective": "The learner will calculate the number of levels available at a given bit depth, and the smallest bit depth that provides a required number of levels, for 5 challenge questions, with all 5 correct within two attempts each.",
+    "concepts": [
+      "bit depth",
+      "levels",
+      "quantization error",
+      "powers of two"
+    ],
+    "duration": "15-20 minutes"
+  },
+  "pedagogical": {
+    "pattern": "predict-then-reveal challenge with exploration mode",
+    "controls": [
+      "Bit depth slider: 1 to 16 bits, default 4",
+      "Start challenges / Next question / Show score button",
+      "Answer text input",
+      "Submit button"
+    ],
+    "model": "levels = 2^n evenly spaced from -1 to +1 with spacing 2/(levels-1); each point of one sine cycle is rounded to the nearest level, halfway rounds up.",
+    "opensPaused": true
+  },
+  "url": "https://dmccreary.github.io/open-study-buddy/sims/bit-depth-quantizer/"
 }

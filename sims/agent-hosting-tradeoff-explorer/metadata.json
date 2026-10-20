@@ -11,13 +11,91 @@
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "agent-hosting-tradeoff-explorer",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/agent-hosting-tradeoff-explorer/",
   "library": "p5.js",
   "bloomLevel": "Evaluate",
   "bloomVerb": "recommend",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 1,
   "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
   "chapter_dir": "01-personal-agents-architecture",
-  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture",
+  "contributor": [
+    "Claude Code"
+  ],
+  "dateModified": "2026-10-20",
+  "educationalLevel": "High School",
+  "audience": "Students, Educators",
+  "learningResourceType": "simulation",
+  "concepts": [
+    "Cloud Agent",
+    "Self-Hosted Agent",
+    "School-Hosted Agent"
+  ],
+  "prerequisites": [
+    "cloud agent",
+    "self-hosted agent",
+    "school-hosted agent",
+    "the four hosting comparison questions"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "topic": "Choosing where an agent is hosted",
+    "learningObjectives": [
+      "The learner will recommend one of three hosting options (cloud agent, self-hosted agent, school-hosted agent) for each of four scenarios and identify the deciding factor, with at least 3 of 4 scenarios fully correct."
+    ],
+    "bloomsTaxonomy": [
+      "Evaluate"
+    ],
+    "bloomVerb": "recommend",
+    "duration": "15-20 minutes",
+    "prerequisites": [
+      "cloud agent",
+      "self-hosted agent",
+      "school-hosted agent",
+      "the four hosting comparison questions"
+    ]
+  },
+  "pedagogical": {
+    "pattern": "Recommend-then-justify scenarios with a comparison table revealed after commitment",
+    "interactivityType": "active",
+    "misconceptionsAddressed": [
+      "A cloud agent is always the best choice because it is easiest.",
+      "Self-hosting is only for experts.",
+      "Hosting only affects cost, not who sees the data."
+    ],
+    "assessment": "Mastery is 3 of 4 scenarios fully correct (option and deciding factor both correct).",
+    "defaultState": "Opens at the first item with nothing answered; there is no animation or timer."
+  },
+  "technical": {
+    "framework": "p5.js",
+    "canvasHeight": 665,
+    "responsive": "Width-responsive",
+    "dependencies": [
+      "p5.js 2.3.2 (jsdelivr)"
+    ]
+  },
+  "controls": [
+    {
+      "type": "button",
+      "label": "Cloud agent / Self-hosted agent / School-hosted agent",
+      "purpose": "Recommend a hosting option (one attempt)"
+    },
+    {
+      "type": "button",
+      "label": "A / B / C / D",
+      "purpose": "Choose the deciding factor after the option (one attempt)"
+    },
+    {
+      "type": "button",
+      "label": "Next scenario / See results",
+      "purpose": "Advance after both choices"
+    },
+    {
+      "type": "button",
+      "label": "Restart",
+      "purpose": "Start again at scenario 1"
+    }
+  ]
 }

@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/debounce-bounce-visualizer/debounce-bounce-visualizer.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/debounce-bounce-visualizer/debounce-bounce-visualizer.png">
+</head>
   
   
     
@@ -1011,7 +1013,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1052,7 +1054,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1708,9 +1710,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embed This MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audience-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audience and Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions-addressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Misconceptions Addressed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#specification" class="md-nav__link">
     <span class="md-ellipsis">
       Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1749,69 +1865,115 @@
 
 
 <h1 id="button-bounce-and-debounce-visualizer">Button Bounce and Debounce Visualizer<a class="headerlink" href="#button-bounce-and-debounce-visualizer" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="522px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/07-buttons-and-device-modes/">Chapter 7: Buttons, State Machines, and Device Modes</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** debounce-bounce-visualizer&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Apply&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** execute&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will execute the debounce rule on 6 recorded pin traces by counting the presses accepted at a given debounce time, with at least 5 of 6 correct on the first attempt.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** bounce, debounce time, falling edge, `ticks_diff` (all defined in the sections above this block). The debounce rule is shown in the Rules field and on screen throughout.
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 6 items the learner types the number of presses the rule counts for the trace and debounce time shown. An answer is correct when it equals the Presses counted column in Content. Mastery is 5 of 6 on the first attempt. Changing the debounce time in the exploration trace is exploration, not evidence.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) Every 0 in the trace is a separate press. (2) A longer debounce time is always safer. (3) Debouncing is only needed when a button is pressed, not when it is released.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** Apply-level execution of a rule requires the learner to step through data by hand. Seeing both a too-short and a too-long debounce time fail on the same kind of trace makes the learner see the trade-off, rather than memorize a number.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Each trace is the pin value (1 released, 0 down) sampled every 5 ms starting at 0 ms. The traces are listed with the sample number starting at 0.
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>| Trace | Samples (every 5 ms) | Description |
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>|---|---|---|
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>| A | 1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1 | A clean press |
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>| B | 1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0 | Press with 20 ms of bounce |
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| C | 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1 | Clean press, then a bouncy release |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| D | 1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1 | Two real presses 40 ms apart |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| E | 1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0 | A noisy switch that chatters for 55 ms |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>Items, in this order:
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>| # | Trace | Debounce time (ms) | Presses counted | Why (shown as feedback) |
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>|---|---|---|---|---|
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>| 1 | A | 30 | 1 | A clean press has no bounce, so one press is counted. |
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>| 2 | B | 0 | 3 | With no debounce every flicker to 0 counts: at 10, 20, and 30 ms. |
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>| 3 | B | 30 | 1 | The press is accepted at 10 ms and the flicker up to 30 ms is ignored. |
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>| 4 | D | 100 | 1 | The release at 50 ms is ignored because it is within 100 ms of the press at 10 ms, so the second press is never separate. |
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>| 5 | E | 30 | 2 | The chatter lasts 55 ms, which is longer than 30 ms, so a later flicker is counted as a second press at 75 ms. |
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>| 6 | C | 10 | 2 | The bounce on release lasts longer than 10 ms, so the release is accepted and a second press is counted at 90 ms. |
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>**Provenance:** The traces are illustrative, and the sim labels them "illustrative." The rule is the logic of the debounce in `src/kits/study-buddy-base/03-buttons.py`. The counts were computed by executing the rule on each trace.
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>**Rules:** The state starts as released with the last accepted change set to a time long before 0 ms. At each sample time t with pin value v: if (v equals 0) differs from the state, and t minus the time of the last accepted change is greater than the debounce time, the state flips and the last accepted change becomes t; a flip to pressed adds 1 to the press count. For exploration the debounce time ranges from 0 to 100 ms in steps of 10 ms, default 30 ms.
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>**Learner Activity:**
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>1. The learner explores trace B: changes the debounce time and watches the accepted presses (marked on the trace) change.
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>2. The learner starts the 6 items. Item 1 shows trace A and the debounce time.
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>3. The learner types the number of presses and submits.
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>4. The sim marks each accepted change on the trace and shows the Why text.
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>5. After item 6, the sim shows the score. The learner should notice that traces D and E break a debounce time that is too long or too short.
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>**Feedback:** 6 items, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The rule counts &lt;answer&gt;: &lt;Why&gt;". The accepted changes are shown after each submission, and a running score "n of 6" is shown.
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>**Starting State:** Trace B is shown with a debounce time of 30 ms and the question "How many presses does the rule count?"
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>**Chapter Anchors:** The chapter states that test 03 uses a 30 ms debounce, that an unfiltered bouncy press can count three times, and that too long a debounce merges quick taps.
+<p><a class="md-button md-button--primary" href="main.html">Run the Button Bounce and Debounce Visualizer MicroSim Fullscreen</a></p>
+<h2 id="embed-this-microsim">Embed This MicroSim<a class="headerlink" href="#embed-this-microsim" title="Permanent link">&para;</a></h2>
+<p>Place the following line in your website to include this MicroSim:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/debounce-bounce-visualizer/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"522px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>A real button does not go cleanly from released (1) to pressed (0): its contacts bounce for a few milliseconds. The debounce rule from test 03 accepts a change only when the pin state differs from the accepted state and more than the debounce time has passed since the last accepted change.</p>
+<p>The trace shows the pin sampled every 5 ms. Green lines mark accepted presses, blue lines accepted releases, the gold band after each accepted change is the debounce window, and orange dots are changes the rule ignored. In explore mode you change the debounce time on trace B. In the quiz you count the presses the rule accepts for six trace and debounce-time pairs, then see the accepted changes marked. The traces are illustrative; the rule is the logic in <code>src/kits/study-buddy-base/03-buttons.py</code>.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>The MicroSim opens in its starting state and nothing moves until you act.</p>
+<ul>
+<li><strong>Start the 6 items / Back to explore</strong>: Switch between exploring trace B and the six-item quiz.</li>
+<li><strong>Answer box and Submit</strong>: Type the number of presses the rule counts and submit (Enter also submits). One attempt per item.</li>
+<li><strong>Next item / See score</strong>: Move on after the feedback.</li>
+<li><strong>Debounce time slider</strong>: Explore only: 0 to 100 ms in steps of 10 ms, default 30 ms.</li>
+</ul>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>The learner will execute the debounce rule on 6 recorded pin traces by counting the presses accepted at a given debounce time, with at least 5 of 6 correct on the first attempt.</p>
+<p><strong>Bloom's Taxonomy level:</strong> Apply (execute)</p>
+<h3 id="audience-and-duration">Audience and Duration<a class="headerlink" href="#audience-and-duration" title="Permanent link">&para;</a></h3>
+<p>High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>bounce, debounce time, falling edge, <code>ticks_diff</code> (all defined in the sections above this block). The debounce rule is shown in the Rules field and on screen throughout.</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Exploration (5 min):</strong> Set the debounce time to 0, 10, 30 and 100 ms on trace B and record how many presses are counted each time.</li>
+<li><strong>Guided practice (5 min):</strong> Before item 1, step through trace A sample by sample on paper with a 30 ms debounce, writing down the accepted state and the time of the last accepted change.</li>
+<li><strong>Assessment (5 min):</strong> Complete all six items. Mastery is 5 of 6 correct on the first attempt.</li>
+</ol>
+<h3 id="common-misconceptions-addressed">Common Misconceptions Addressed<a class="headerlink" href="#common-misconceptions-addressed" title="Permanent link">&para;</a></h3>
+<p>(1) Every 0 in the trace is a separate press. (2) A longer debounce time is always safer. (3) Debouncing is only needed when a button is pressed, not when it is released.</p>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Item 4 used 100 ms and item 5 used 30 ms. Which was too long and which was too short?</li>
+<li>Why does the rule need debouncing on release as well as on press (item 6)?</li>
+<li>What debounce time would count trace D as two presses and trace E as one?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<details>
+<summary>Full specification from Chapter 7</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** debounce-bounce-visualizer&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Bloom Level:** Apply&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Verb:** execute&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Learning Objective:** The learner will execute the debounce rule on 6 recorded pin traces by counting the presses accepted at a given debounce time, with at least 5 of 6 correct on the first attempt.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>**Prerequisites:** bounce, debounce time, falling edge, `ticks_diff` (all defined in the sections above this block). The debounce rule is shown in the Rules field and on screen throughout.
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>**Evidence of Mastery:** For each of the 6 items the learner types the number of presses the rule counts for the trace and debounce time shown. An answer is correct when it equals the Presses counted column in Content. Mastery is 5 of 6 on the first attempt. Changing the debounce time in the exploration trace is exploration, not evidence.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>**Misconceptions:** (1) Every 0 in the trace is a separate press. (2) A longer debounce time is always safer. (3) Debouncing is only needed when a button is pressed, not when it is released.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>**Instructional Rationale:** Apply-level execution of a rule requires the learner to step through data by hand. Seeing both a too-short and a too-long debounce time fail on the same kind of trace makes the learner see the trade-off, rather than memorize a number.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>**Content:**
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>Each trace is the pin value (1 released, 0 down) sampled every 5 ms starting at 0 ms. The traces are listed with the sample number starting at 0.
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>| Trace | Samples (every 5 ms) | Description |
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>|---|---|---|
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>| A | 1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1 | A clean press |
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>| B | 1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0 | Press with 20 ms of bounce |
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| C | 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1 | Clean press, then a bouncy release |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| D | 1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1 | Two real presses 40 ms apart |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| E | 1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0 | A noisy switch that chatters for 55 ms |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>Items, in this order:
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>| # | Trace | Debounce time (ms) | Presses counted | Why (shown as feedback) |
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>|---|---|---|---|---|
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>| 1 | A | 30 | 1 | A clean press has no bounce, so one press is counted. |
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>| 2 | B | 0 | 3 | With no debounce every flicker to 0 counts: at 10, 20, and 30 ms. |
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>| 3 | B | 30 | 1 | The press is accepted at 10 ms and the flicker up to 30 ms is ignored. |
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>| 4 | D | 100 | 1 | The release at 50 ms is ignored because it is within 100 ms of the press at 10 ms, so the second press is never separate. |
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>| 5 | E | 30 | 2 | The chatter lasts 55 ms, which is longer than 30 ms, so a later flicker is counted as a second press at 75 ms. |
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>| 6 | C | 10 | 2 | The bounce on release lasts longer than 10 ms, so the release is accepted and a second press is counted at 90 ms. |
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>**Provenance:** The traces are illustrative, and the sim labels them "illustrative." The rule is the logic of the debounce in `src/kits/study-buddy-base/03-buttons.py`. The counts were computed by executing the rule on each trace.
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>**Rules:** The state starts as released with the last accepted change set to a time long before 0 ms. At each sample time t with pin value v: if (v equals 0) differs from the state, and t minus the time of the last accepted change is greater than the debounce time, the state flips and the last accepted change becomes t; a flip to pressed adds 1 to the press count. For exploration the debounce time ranges from 0 to 100 ms in steps of 10 ms, default 30 ms.
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>**Learner Activity:**
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>1. The learner explores trace B: changes the debounce time and watches the accepted presses (marked on the trace) change.
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>2. The learner starts the 6 items. Item 1 shows trace A and the debounce time.
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>3. The learner types the number of presses and submits.
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>4. The sim marks each accepted change on the trace and shows the Why text.
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>5. After item 6, the sim shows the score. The learner should notice that traces D and E break a debounce time that is too long or too short.
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>**Feedback:** 6 items, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The rule counts &lt;answer&gt;: &lt;Why&gt;". The accepted changes are shown after each submission, and a running score "n of 6" is shown.
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>**Starting State:** Trace B is shown with a debounce time of 30 ms and the question "How many presses does the rule count?"
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>**Chapter Anchors:** The chapter states that test 03 uses a 30 ms debounce, that an unfiltered bouncy press can count three times, and that too long a debounce merges quick taps.
+</span></code></pre></div>
+</details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Switch#Contact_bounce">Switch: contact bounce</a> - Wikipedia - Why mechanical contacts bounce and the common fixes.</li>
+<li><a href="https://docs.micropython.org/en/latest/library/time.html">time: time related functions (ticks_ms, ticks_diff)</a> - MicroPython documentation - The wrap-safe timing functions the debounce rule uses.</li>
+<li><a href="https://en.wikipedia.org/wiki/Signal_edge">Signal edge</a> - Wikipedia - Rising and falling edges, the moments the rule reacts to.</li>
+</ol>
 <h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/07-buttons-and-device-modes/">Chapter 7: Buttons, State Machines, and Device Modes</a></li>
