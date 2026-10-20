@@ -1,0 +1,23 @@
+{
+  "title": "Speed-Up Chooser",
+  "description": "The learner will recommend, for 6 scenarios, the simplest implementation whose worst-case pass time fits within the frame budget minus the display reserve, or state that none fits, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "speedup-chooser",
+  "library": "p5.js",
+  "bloomLevel": "Evaluate",
+  "bloomVerb": "recommend",
+  "completion_status": "scaffold",
+  "chapter_number": 10,
+  "chapter_title": "High-Performance MicroPython",
+  "chapter_dir": "10-high-performance-micropython",
+  "chapter_rel_dir": "chapters/10-high-performance-micropython"
+}

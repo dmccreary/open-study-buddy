@@ -81,6 +81,68 @@ nav:
   - MicroSims:
       - List of MicroSims: sims/index.md
       - Learning Graph Viewer: sims/graph-viewer/index.md
+      - "Ch 1: Personal Agents and the Open Study Buddy Architecture":
+          - "Agent Data Flow Step-Through": sims/agent-data-flow-step-through/index.md
+          - "Agent Hosting Trade-Off Explorer": sims/agent-hosting-tradeoff-explorer/index.md
+          - "Agent Progression Level Explorer": sims/agent-progression-level-explorer/index.md
+          - "Chatbot or Agent Sorter": sims/chatbot-or-agent-sorter/index.md
+          - "Study Buddy Architecture Explorer": sims/study-buddy-architecture-explorer/index.md
+      - "Ch 2: MicroPython Review for Embedded Systems":
+          - "Heap Fragmentation Explorer": sims/heap-fragmentation-explorer/index.md
+          - "Kit Import Map": sims/kit-import-map/index.md
+          - "Polling Versus Interrupt Timeline": sims/polling-versus-interrupt-timeline/index.md
+      - "Ch 3: Sound and Digital Audio Basics":
+          - "Bit Depth Quantizer": sims/bit-depth-quantizer/index.md
+          - "Sampling Explorer": sims/sampling-explorer/index.md
+          - "Time and Frequency Domain Viewer": sims/time-and-frequency-domain-viewer/index.md
+      - "Ch 4: The Pico Kit Hardware and Wiring":
+          - "Kit Parts Infographic": sims/kit-parts-infographic/index.md
+          - "Kit Wiring Fault Finder": sims/kit-wiring-fault-finder/index.md
+          - "Pull-Up Button Circuit": sims/pull-up-button-circuit/index.md
+      - "Ch 5: Display Basics: Pixels, Color, and Frame Size":
+          - "Frame Size and Update Time Calculator": sims/frame-size-calculator/index.md
+          - "RGB565 Color Mixer": sims/rgb565-color-mixer/index.md
+      - "Ch 6: Drawing Directly to Display Regions":
+          - "Dirty Region Planner": sims/dirty-region-planner/index.md
+      - "Ch 7: Buttons, State Machines, and Device Modes":
+          - "Button Bounce and Debounce Visualizer": sims/debounce-bounce-visualizer/index.md
+          - "Device Mode State Machine": sims/device-mode-state-machine/index.md
+      - "Ch 8: I2S Audio: Recording and Playing Sound":
+          - "Audio Frame Time Budget Explorer": sims/audio-frame-budget-explorer/index.md
+          - "I2S Signal Reader": sims/i2s-signal-reader/index.md
+      - "Ch 9: Signal Processing and the FFT":
+          - "FFT Bin Calculator": sims/fft-bin-calculator/index.md
+          - "Log Band Layout Explorer": sims/log-band-layout-explorer/index.md
+          - "Spectral Leakage Explorer": sims/spectral-leakage-explorer/index.md
+      - "Ch 10: High-Performance MicroPython":
+          - "Allocation Classifier": sims/allocation-classifier/index.md
+          - "Q15 Calculator": sims/q15-calculator/index.md
+          - "Speed-Up Chooser": sims/speedup-chooser/index.md
+      - "Ch 11: Microphone Calibration and Push-to-Talk":
+          - "Level Gate Hysteresis Explorer": sims/level-gate-hysteresis-explorer/index.md
+          - "VAD Boundary Finder": sims/vad-boundary-finder/index.md
+      - "Ch 12: Wake-Word Detection":
+          - "Template Score Explorer": sims/template-score-explorer/index.md
+          - "Threshold Trade-Off Explorer": sims/threshold-tradeoff-explorer/index.md
+      - "Ch 13: Wi-Fi, HTTP, and Connecting to the Agent":
+          - "HTTP Request Reader": sims/http-request-reader/index.md
+          - "Same-Subnet Checker": sims/same-subnet-checker/index.md
+      - "Ch 14: Streaming Speech, Security, and Network Resilience":
+          - "Chunk-Size and Heap Explorer": sims/chunk-heap-explorer/index.md
+          - "Retry and Backoff Timeline Explorer": sims/retry-backoff-explorer/index.md
+      - "Ch 15: MQTT and Push Alerts":
+          - "MQTT Topic Router": sims/mqtt-topic-router/index.md
+          - "QoS Handshake Stepper": sims/mqtt-qos-handshake-stepper/index.md
+      - "Ch 16: Configuring the School Agent and Calendar":
+          - "Daily Briefing Composer": sims/daily-briefing-composer/index.md
+          - "ICS Line Parser Stepper": sims/ics-line-parser-stepper/index.md
+          - "Time Zone and UTC Converter": sims/school-time-utc-converter/index.md
+      - "Ch 17: Privacy, Safety, and Responsible Listening":
+          - "Data Flow Explorer": sims/data-flow-explorer/index.md
+          - "Threat Model Sorter": sims/threat-model-sorter/index.md
+      - "Ch 18: Testing, Integration, and Capstone Projects":
+          - "Diagnosis Decision Tree Trainer": sims/diagnosis-decision-tree-trainer/index.md
+          - "Frame Budget Scheduler Timeline": sims/frame-budget-scheduler-timeline/index.md
 
   - License: license.md
   - Contact: contact.md

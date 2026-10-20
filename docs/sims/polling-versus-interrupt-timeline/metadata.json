@@ -1,0 +1,23 @@
+{
+  "title": "Polling Versus Interrupt Timeline",
+  "description": "The learner will compare a polling loop with an interrupt by predicting, for 6 button presses, whether a loop that checks the pin every P milliseconds sees the press, and observing that an interrupt sees all 6.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "polling-versus-interrupt-timeline",
+  "library": "p5.js",
+  "bloomLevel": "Understand",
+  "bloomVerb": "compare",
+  "completion_status": "scaffold",
+  "chapter_number": 2,
+  "chapter_title": "MicroPython Review for Embedded Systems",
+  "chapter_dir": "02-micropython-review",
+  "chapter_rel_dir": "chapters/02-micropython-review"
+}

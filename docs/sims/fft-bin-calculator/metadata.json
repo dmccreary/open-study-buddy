@@ -1,0 +1,23 @@
+{
+  "title": "FFT Bin Calculator",
+  "description": "The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "fft-bin-calculator",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 9,
+  "chapter_title": "Signal Processing and the FFT",
+  "chapter_dir": "09-signal-processing-fft",
+  "chapter_rel_dir": "chapters/09-signal-processing-fft"
+}

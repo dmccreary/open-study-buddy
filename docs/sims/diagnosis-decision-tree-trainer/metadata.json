@@ -1,0 +1,23 @@
+{
+  "title": "Diagnosis Decision Tree Trainer",
+  "description": "The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "diagnosis-decision-tree-trainer",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "differentiate",
+  "completion_status": "scaffold",
+  "chapter_number": 18,
+  "chapter_title": "Testing, Integration, and Capstone Projects",
+  "chapter_dir": "18-testing-integration-capstones",
+  "chapter_rel_dir": "chapters/18-testing-integration-capstones"
+}

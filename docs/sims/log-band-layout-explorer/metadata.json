@@ -1,0 +1,23 @@
+{
+  "title": "Log Band Layout Explorer",
+  "description": "The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "log-band-layout-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "use",
+  "completion_status": "scaffold",
+  "chapter_number": 9,
+  "chapter_title": "Signal Processing and the FFT",
+  "chapter_dir": "09-signal-processing-fft",
+  "chapter_rel_dir": "chapters/09-signal-processing-fft"
+}

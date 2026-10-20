@@ -1,0 +1,23 @@
+{
+  "title": "Kit Import Map",
+  "description": "The learner will interpret the kit's import map by naming, for 5 selected files, which other files it imports and which folder each file belongs in on the Pico.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "kit-import-map",
+  "library": "vis-network",
+  "bloomLevel": "Understand",
+  "bloomVerb": "interpret",
+  "completion_status": "scaffold",
+  "chapter_number": 2,
+  "chapter_title": "MicroPython Review for Embedded Systems",
+  "chapter_dir": "02-micropython-review",
+  "chapter_rel_dir": "chapters/02-micropython-review"
+}

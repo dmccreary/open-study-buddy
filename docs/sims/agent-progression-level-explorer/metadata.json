@@ -1,0 +1,23 @@
+{
+  "title": "Agent Progression Level Explorer",
+  "description": "The learner will differentiate the three agent progression levels by placing 8 abilities at the lowest level where each first appears, with at least 7 of 8 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "agent-progression-level-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "differentiate",
+  "completion_status": "scaffold",
+  "chapter_number": 1,
+  "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
+  "chapter_dir": "01-personal-agents-architecture",
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+}

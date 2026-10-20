@@ -1,0 +1,23 @@
+{
+  "title": "Spectral Leakage Explorer",
+  "description": "The learner will compare the spectra of 6 test tones taken with no window and with the Hann window, and choose for each the window that gives the narrower peak, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "spectral-leakage-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "compare",
+  "completion_status": "scaffold",
+  "chapter_number": 9,
+  "chapter_title": "Signal Processing and the FFT",
+  "chapter_dir": "09-signal-processing-fft",
+  "chapter_rel_dir": "chapters/09-signal-processing-fft"
+}

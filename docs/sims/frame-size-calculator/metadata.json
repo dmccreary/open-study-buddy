@@ -1,0 +1,23 @@
+{
+  "title": "Frame Size and Update Time Calculator",
+  "description": "The learner will calculate the number of bytes in a rectangle of pixels and the time to send it over SPI at a given baud rate, for 6 challenges, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "frame-size-calculator",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 5,
+  "chapter_title": "Display Basics: Pixels, Color, and Frame Size",
+  "chapter_dir": "05-display-basics",
+  "chapter_rel_dir": "chapters/05-display-basics"
+}

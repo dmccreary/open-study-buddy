@@ -1,0 +1,23 @@
+{
+  "title": "Pull-Up Button Circuit",
+  "description": "The learner will infer the value a GPIO input pin reads for 6 button circuits, given the pin's pull setting, what the button's other leg connects to, and whether the button is pressed, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "pull-up-button-circuit",
+  "library": "p5.js",
+  "bloomLevel": "Understand",
+  "bloomVerb": "infer",
+  "completion_status": "scaffold",
+  "chapter_number": 4,
+  "chapter_title": "The Pico Kit Hardware and Wiring",
+  "chapter_dir": "04-pico-kit-hardware",
+  "chapter_rel_dir": "chapters/04-pico-kit-hardware"
+}

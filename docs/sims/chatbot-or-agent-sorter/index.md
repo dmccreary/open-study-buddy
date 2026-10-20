@@ -1,0 +1,77 @@
+---
+title: "Chatbot or Agent Sorter"
+description: "The learner will distinguish chatbot behaviors from personal-agent behaviors by classifying 10 described behaviors, with at least 8 of 10 correct on the first attempt."
+status: scaffold
+library: p5.js
+bloom_level: Analyze
+---
+
+# Chatbot or Agent Sorter
+
+
+
+<iframe src="main.html" width="100%" height="600"></iframe>
+
+[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+
+## Specification
+
+The full specification below is extracted from
+[Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md).
+
+```text
+Type: microsim
+**sim-id:** chatbot-or-agent-sorter<br/>
+**Library:** p5.js<br/>
+**Status:** Specified<br/>
+**Template:** https://github.com/dmccreary/conversational-ai/tree/main/docs/sims/chat-interface-anatomy<br/>
+**Bloom Level:** Analyze<br/>
+**Bloom Verb:** distinguish<br/>
+**Learning Objective:** The learner will distinguish chatbot behaviors from personal-agent behaviors by classifying 10 described behaviors, with at least 8 of 10 correct on the first attempt.
+
+**Prerequisites:** personal agent, chatbot, tool, multi-step work (all defined in the section "What Is a Personal Agent?" above this block).
+
+**Evidence of Mastery:** For each of the 10 behaviors, the learner commits to one of two bins, "Chatbot behavior" or "Agent behavior". A classification is correct when it matches the Correct bin column in Content. Mastery is 8 of 10 correct. Reading a behavior without committing is not evidence.
+
+**Misconceptions:** (1) Any program that talks is an agent. (2) A chatbot that sounds smart is an agent. (3) An agent must be a robot or a physical device.
+
+**Instructional Rationale:** Analyze-level distinguishing requires the learner to apply the three traits to new cases rather than recite them. A forced two-way choice on concrete behaviors makes the learner decide which trait is present, and the one-sentence reason after each answer names the trait.
+
+**Content:**
+
+The learner sees the behaviors one at a time in this fixed order:
+
+| # | Behavior shown to the learner | Correct bin | Why (shown as feedback) |
+|---|---|---|---|
+| 1 | Answers one typed question, then waits for the next message. | Chatbot behavior | It replies to a single message and takes no further action. |
+| 2 | Reads the school calendar, finds a test, and adds a reminder for the night before. | Agent behavior | It uses a tool and acts in several steps without being asked for each one. |
+| 3 | Explains what a "TEST:" event is when asked, with no access to any calendar. | Chatbot behavior | It gives information only and takes no action for the person. |
+| 4 | Asks "Should I move your study session to 6 pm?" before changing the schedule. | Agent behavior | It comes back for a decision before an action that affects the person. |
+| 5 | Rewrites a paragraph that the student pastes in. | Chatbot behavior | One request produces one reply, and the work ends there. |
+| 6 | Checks every morning for new due dates and announces them. | Agent behavior | It acts on its own over time on the person's behalf. |
+| 7 | Tells a joke when asked. | Chatbot behavior | It produces a reply only. |
+| 8 | Sends an alert to the student's desk device when a test is one day away. | Agent behavior | It takes an action through a tool, without being asked at that moment. |
+| 9 | Remembers that the student prefers 7 pm reminders and schedules the next reminder for 7 pm. | Agent behavior | It uses what it remembers to take an action on the person's behalf. |
+| 10 | Summarizes a news article that the student pastes in. | Chatbot behavior | One request produces one reply, and no action follows. |
+
+**Provenance:** Illustrative behaviors written for this sim from the chapter section "What Is a Personal Agent?". The sim labels them "illustrative".
+
+**Rules:** A behavior belongs in "Agent behavior" when it includes at least one of these: it uses a tool to take an action, it works in more than one step, it acts without being prompted at that moment, or it asks for approval before an action. Otherwise it belongs in "Chatbot behavior". The score is the count of correct classifications, from 0 to 10.
+
+**Learner Activity:**
+
+1. The learner reads behavior 1 and chooses a bin.
+2. The sim shows whether the choice was correct and the reason from the Why column, then the learner continues to the next behavior.
+3. After behavior 10, the sim shows the score and lists each missed behavior with its reason.
+4. The learner can restart with the same 10 behaviors in a new random order. Only the first run counts as evidence.
+
+**Feedback:** Ten items, fixed order on the first run, one attempt per item. Correct: "Correct: <Why>". Incorrect: "Not quite: <Why>". The correct bin is revealed immediately after each answer. A running score "n of 10" is shown after every answer.
+
+**Starting State:** Behavior 1 is shown with the two bins and the question "Is this a chatbot behavior or an agent behavior?"
+
+**Chapter Anchors:** A chatbot answers one message at a time. An agent uses tools, works in several steps, and comes back when it needs a decision.
+```
+
+## Related Resources
+
+- [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md)

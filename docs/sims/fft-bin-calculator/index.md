@@ -1,0 +1,75 @@
+---
+title: "FFT Bin Calculator"
+description: "The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct."
+status: scaffold
+library: p5.js
+bloom_level: Apply
+---
+
+# FFT Bin Calculator
+
+
+
+<iframe src="main.html" width="100%" height="600"></iframe>
+
+[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+
+## Specification
+
+The full specification below is extracted from
+[Chapter 9: Signal Processing and the FFT](../../chapters/09-signal-processing-fft/index.md).
+
+```text
+Type: microsim
+**sim-id:** fft-bin-calculator<br/>
+**Library:** p5.js<br/>
+**Status:** Specified<br/>
+**Bloom Level:** Apply<br/>
+**Bloom Verb:** calculate<br/>
+**Learning Objective:** The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct.
+
+**Prerequisites:** frequency bin, bin width, sample rate, FFT size, Nyquist limit (all defined in this chapter above the block, and in Chapter 3 for sample rate and Nyquist limit).
+
+**Evidence of Mastery:** For each of the 6 challenges the learner types a whole number (a bin number for challenges 1 to 4, a frequency in hertz for challenges 5 and 6) and submits. An answer is correct when it equals the Answer column in Content exactly. Mastery is 5 of 6 correct on the first attempt. Moving the exploration slider is exploration, not evidence.
+
+**Misconceptions:** (1) The bin number equals the frequency in hertz. (2) The bin width depends on the loudness of the tone. (3) A tone between two bins is lost.
+
+**Instructional Rationale:** Apply-level calculation needs repeated practice with a check. The learner commits a number before the result is shown, and the exploration slider first makes the two formulas visible on a tone the learner controls.
+
+**Content:**
+
+The model has a sample rate of 12,800 Hz, an FFT size of 512 samples, a bin width of 25 Hz, and 256 useful bins numbered 0 to 255. The formulas shown on screen are: bin = frequency / 25, and bin center = bin number x 25. The nearest bin is the bin whose center is closest to the tone.
+
+| # | Question shown | Answer | Why (shown as feedback) |
+|---|---|---|---|
+| 1 | Nearest bin for a 1,000 Hz tone | 40 | 1,000 / 25 = 40.0, exactly on a bin center. |
+| 2 | Nearest bin for a 440 Hz tone | 18 | 440 / 25 = 17.6, which is closer to 18 than to 17. |
+| 3 | Nearest bin for a 262 Hz tone | 10 | 262 / 25 = 10.48, which is closer to 10 than to 11. |
+| 4 | Nearest bin for a 3,300 Hz tone | 132 | 3,300 / 25 = 132.0, exactly on a bin center. |
+| 5 | Center frequency of bin 100, in Hz | 2500 | 100 x 25 = 2,500 Hz. |
+| 6 | Center frequency of bin 255, in Hz | 6375 | 255 x 25 = 6,375 Hz, the top bin; the Nyquist limit of 6,400 Hz would be bin 256. |
+
+For exploration the learner moves a tone-frequency slider from 0 to 6,400 Hz in steps of 12.5 Hz, default 1,000 Hz. The sim shows the tone on a row of bins with the two formulas filled in, the bin number as a decimal, the nearest bin, and the difference in hertz between the tone and the nearest bin center.
+
+**Provenance:** The sample rate, FFT size, and bin width are the values in `src/kits/study-buddy-base/config.py` (`MIC_SAMPLE_RATE`, `FFT_SIZE`). The answers are computed from the formulas in Rules, and they match the table in the chapter section "Frequency Bins and Bin Width".
+
+**Rules:** Bin = frequency x 512 / 12,800. The nearest bin is the bin number rounded to the nearest whole number; a tone exactly halfway between two bins is shown as a tie and is not used in any challenge. Bin center = bin number x 12,800 / 512. Slider values from 0 to 6,400 Hz; at 6,400 Hz the bin is 256, which is outside the 256 useful bins, and the sim says so.
+
+**Learner Activity:**
+
+1. The learner moves the slider and watches the decimal bin number and the nearest bin change.
+2. The learner notices that a tone at 1,000 Hz lands exactly on bin 40, while 440 Hz lands between bins 17 and 18.
+3. The learner starts the 6 challenges. Challenge 1 is shown.
+4. The learner types a whole number and submits.
+5. The sim shows the correct answer with the Why text, and a running score.
+
+**Feedback:** 6 challenges, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.
+
+**Starting State:** The slider is at 1,000 Hz, showing bin 40.0 and an exact match, with the question "Which bin does this tone land in?"
+
+**Chapter Anchors:** The chapter states that the bin width is 25 Hz, that there are 256 useful bins (0 to 255, the top bin being 6,375 Hz), that 1,000 Hz is bin 40.0, that 440 Hz is bin 17.6, and that 262 Hz is bin 10.48.
+```
+
+## Related Resources
+
+- [Chapter 9: Signal Processing and the FFT](../../chapters/09-signal-processing-fft/index.md)

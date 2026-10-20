@@ -1,0 +1,23 @@
+{
+  "title": "QoS Handshake Stepper",
+  "description": "The learner will infer, for 6 scenarios of a publisher sending one alert to a broker, how many copies of the alert the broker processes, with at least 5 of the 6 inferences right.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "mqtt-qos-handshake-stepper",
+  "library": "p5.js",
+  "bloomLevel": "Understand",
+  "bloomVerb": "infer",
+  "completion_status": "scaffold",
+  "chapter_number": 15,
+  "chapter_title": "MQTT and Push Alerts",
+  "chapter_dir": "15-mqtt-push-alerts",
+  "chapter_rel_dir": "chapters/15-mqtt-push-alerts"
+}

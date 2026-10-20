@@ -1,0 +1,23 @@
+{
+  "title": "Agent Data Flow Step-Through",
+  "description": "The learner will explain which of three parts (terminal, network, server) performs each of the eight steps that carry a spoken question to a spoken answer, by predicting the owner of steps 2 to 8 with at least 6 of 7 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "agent-data-flow-step-through",
+  "library": "p5.js",
+  "bloomLevel": "Understand",
+  "bloomVerb": "explain",
+  "completion_status": "scaffold",
+  "chapter_number": 1,
+  "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
+  "chapter_dir": "01-personal-agents-architecture",
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+}

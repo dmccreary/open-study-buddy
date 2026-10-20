@@ -1,0 +1,23 @@
+{
+  "title": "VAD Boundary Finder",
+  "description": "The learner will execute the voice activity detection rules on 5 loudness traces to find each trace's first and last speech frame, matching both frames in at least 4 of 5 traces.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "vad-boundary-finder",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "execute",
+  "completion_status": "scaffold",
+  "chapter_number": 11,
+  "chapter_title": "Microphone Calibration and Push-to-Talk",
+  "chapter_dir": "11-mic-calibration-push-to-talk",
+  "chapter_rel_dir": "chapters/11-mic-calibration-push-to-talk"
+}

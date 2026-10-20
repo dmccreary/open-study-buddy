@@ -1,0 +1,23 @@
+{
+  "title": "Retry and Backoff Timeline Explorer",
+  "description": "The learner will calculate the longest time a request can take under 8 retry settings, to within 0.05 s, with at least 7 of 8 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "retry-backoff-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 14,
+  "chapter_title": "Streaming Speech, Security, and Network Resilience",
+  "chapter_dir": "14-streaming-security-resilience",
+  "chapter_rel_dir": "chapters/14-streaming-security-resilience"
+}

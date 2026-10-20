@@ -1,0 +1,23 @@
+{
+  "title": "Kit Parts Infographic",
+  "description": "The learner will identify which of the five kit parts performs each of 5 described jobs, with at least 4 of 5 correct on the first attempt.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "kit-parts-infographic",
+  "library": "html",
+  "bloomLevel": "Remember",
+  "bloomVerb": "identify",
+  "completion_status": "scaffold",
+  "chapter_number": 4,
+  "chapter_title": "The Pico Kit Hardware and Wiring",
+  "chapter_dir": "04-pico-kit-hardware",
+  "chapter_rel_dir": "chapters/04-pico-kit-hardware"
+}

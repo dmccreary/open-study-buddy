@@ -1,0 +1,23 @@
+{
+  "title": "Kit Wiring Fault Finder",
+  "description": "The learner will examine 6 wiring listings against the pin assignment table and identify the one wrong connection in each, with at least 5 of 6 correct on the first attempt.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "kit-wiring-fault-finder",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "examine",
+  "completion_status": "scaffold",
+  "chapter_number": 4,
+  "chapter_title": "The Pico Kit Hardware and Wiring",
+  "chapter_dir": "04-pico-kit-hardware",
+  "chapter_rel_dir": "chapters/04-pico-kit-hardware"
+}

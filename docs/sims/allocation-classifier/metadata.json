@@ -1,0 +1,23 @@
+{
+  "title": "Allocation Classifier",
+  "description": "The learner will distinguish 12 MicroPython statements that allocate heap memory from those that do not, with at least 10 of 12 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "allocation-classifier",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "distinguish",
+  "completion_status": "scaffold",
+  "chapter_number": 10,
+  "chapter_title": "High-Performance MicroPython",
+  "chapter_dir": "10-high-performance-micropython",
+  "chapter_rel_dir": "chapters/10-high-performance-micropython"
+}

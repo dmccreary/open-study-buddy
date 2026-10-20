@@ -1,0 +1,23 @@
+{
+  "title": "Same-Subnet Checker",
+  "description": "The learner will calculate whether two IPv4 addresses are on the same network, given a netmask, in 8 cases, with at least 7 of 8 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "same-subnet-checker",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 13,
+  "chapter_title": "Wi-Fi, HTTP, and Connecting to the Agent",
+  "chapter_dir": "13-wifi-http-agent-link",
+  "chapter_rel_dir": "chapters/13-wifi-http-agent-link"
+}
