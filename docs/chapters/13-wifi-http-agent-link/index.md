@@ -168,6 +168,10 @@ Because the Pico gets its address from DHCP, the *server's* address can change w
 
 #### Diagram: Same-Subnet Checker
 
+
+<iframe src="../../sims/same-subnet-checker/main.html" width="100%" height="597px" scrolling="no"></iframe>
+[Run Same-Subnet Checker Fullscreen](../../sims/same-subnet-checker/main.html)
+
 <details markdown="1">
 <summary>Same-Subnet Checker</summary>
 Type: microsim
@@ -356,6 +360,10 @@ finally:
 `read_response` reads until it sees the blank line, splits the head into a status code and headers, then reads exactly `Content-Length` more bytes. It refuses a reply whose `Content-Length` is above 2,048, so a wrong server cannot fill the Pico's memory.
 
 #### Diagram: HTTP Request Reader
+
+
+<iframe src="../../sims/http-request-reader/main.html" width="100%" height="522px" scrolling="no"></iframe>
+[Run HTTP Request Reader Fullscreen](../../sims/http-request-reader/main.html)
 
 <details markdown="1">
 <summary>HTTP Request Reader</summary>

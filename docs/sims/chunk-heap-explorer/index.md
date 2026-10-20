@@ -1,23 +1,86 @@
 ---
 title: "Chunk-Size and Heap Explorer"
 description: "The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Analyze
+image: /sims/chunk-heap-explorer/chunk-heap-explorer.png
+og:image: /sims/chunk-heap-explorer/chunk-heap-explorer.png
+twitter:image: /sims/chunk-heap-explorer/chunk-heap-explorer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Chunk-Size and Heap Explorer
 
+<iframe src="main.html" width="100%" height="597px" scrolling="no"></iframe>
 
+[Run the Chunk-Size and Heap Explorer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/chunk-heap-explorer/main.html" width="100%" height="597px" scrolling="no"></iframe>
+```
+
+## Description
+
+A 5-second recording is 128,000 bytes in 16-bit form, so how it is sent matters on a Pico. Joining the header and the body copies the whole recording into a second block; sending memoryview slices of K bytes needs only the recording plus a small staging area; and streaming each 1,024-byte frame needs no recording at all.
+
+Each of the four designs is drawn as a bar of the memory it needs against the free heap, with a 40,000-byte reserve for the code, display and network buffers. In explore mode you set the length, the chunk size and the free heap. In the quiz you decide whether a design fits and, if it does, how many sends it needs, for eight cases. The reserve and free-heap values are illustrative.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 8 cases / Back to explore**: Switch between the sliders and the quiz.
+- **Answer menu, Sends box, Submit**: Choose fits or does not fit; for a fit, type the number of sends. One attempt per case.
+- **Next case / See score**: Move on after the feedback.
+- **Length, Chunk K and Free F**: Explore only: 1 to 10 s, the five chunk sizes from 512 to 8,192 bytes, and 100,000 to 260,000 bytes.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct.
+
+**Bloom's Taxonomy level:** Analyze (examine)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+16-bit and 32-bit recording sizes, memoryview slice, chunk, free heap, contiguous block (all defined in this chapter above this block and in Chapter 2).
+
+### Activities
+
+1. **Exploration (5 min):** Set the length to 3 s, then 5 s, then 10 s and note which designs stop fitting at each.
+2. **Guided practice (5 min):** For case 2, write R16, add K, compare with F - 40,000, then divide R16 by K and round up.
+3. **Assessment (5 min):** Complete all eight cases. Mastery is 7 of 8 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) Sending in chunks makes the recording itself smaller. (2) Joining the header and body is harmless because the recording is already in memory. (3) A bigger free heap total always means a big block is available. (4) Streaming needs the whole recording in memory.
+
+### Discussion Questions
+
+1. Does sending in chunks make the recording smaller?
+2. Why is joining the header and the body costly?
+3. Why does design D fit at any length of speech?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 14: Streaming Speech, Security, and Network Resilience](../../chapters/14-streaming-security-resilience/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 14</summary>
 
 ```text
 Type: microsim
@@ -80,6 +143,14 @@ For exploration the learner sets S from 1 to 10 s in steps of 1 s (default 5), K
 
 **Chapter Anchors:** The chapter states that a 5 s recording is 128,000 bytes in 16-bit and 256,000 in 32-bit, that joining the head and body needs a second block as large as the recording, that 2,048-byte chunks make 63 sends for 5 s, and that a WebSocket frame header is 8 bytes.
 ```
+
+</details>
+
+## References
+
+1. [memoryview](https://docs.micropython.org/en/latest/library/builtins.html#memoryview) - MicroPython documentation - Slicing a buffer without copying it.
+2. [Fragmentation (computing)](https://en.wikipedia.org/wiki/Fragmentation_(computing)) - Wikipedia - Why a large contiguous block is hard to find.
+3. [Chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) - Wikipedia - The HTTP alternative the book does not use.
 
 ## Related Resources
 

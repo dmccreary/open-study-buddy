@@ -262,6 +262,10 @@ Step through the parser yourself on a small feed before you trust it.
 
 #### Diagram: ICS Line Parser Stepper
 
+
+<iframe src="../../sims/ics-line-parser-stepper/main.html" width="100%" height="602px" scrolling="no"></iframe>
+[Run ICS Line Parser Stepper Fullscreen](../../sims/ics-line-parser-stepper/main.html)
+
 <details markdown="1">
 <summary>ICS Line Parser Stepper</summary>
 Type: microsim
@@ -372,6 +376,10 @@ The same care applies to the word "today". A server computer is often set to UTC
 Try the conversions yourself, including the two awkward hours.
 
 #### Diagram: Time Zone and UTC Converter
+
+
+<iframe src="../../sims/school-time-utc-converter/main.html" width="100%" height="597px" scrolling="no"></iframe>
+[Run Time Zone and UTC Converter Fullscreen](../../sims/school-time-utc-converter/main.html)
 
 <details markdown="1">
 <summary>Time Zone and UTC Converter</summary>
@@ -533,6 +541,10 @@ Which reminders fire is set by `[reminders]`: Cedar Ridge sends a test reminder 
 Now apply the briefing rules to a day.
 
 #### Diagram: Daily Briefing Composer
+
+
+<iframe src="../../sims/daily-briefing-composer/main.html" width="100%" height="637px" scrolling="no"></iframe>
+[Run Daily Briefing Composer Fullscreen](../../sims/daily-briefing-composer/main.html)
 
 <details markdown="1">
 <summary>Daily Briefing Composer</summary>

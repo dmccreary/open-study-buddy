@@ -1,23 +1,86 @@
 ---
 title: "Threshold Trade-Off Explorer"
-description: "The learner will judge which detection threshold, if any, meets stated limits on false rejects and false accepts in 4 scenarios, choosing the correct threshold or \"none\" in at least 3 of 4."
-status: scaffold
+description: "The learner will judge which detection threshold, if any, meets stated limits on false rejects and false accepts in 4 scenarios, choosing the correct threshold or 'none' in at least 3 of 4."
+status: built
 library: p5.js
 bloom_level: Evaluate
+image: /sims/threshold-tradeoff-explorer/threshold-tradeoff-explorer.png
+og:image: /sims/threshold-tradeoff-explorer/threshold-tradeoff-explorer.png
+twitter:image: /sims/threshold-tradeoff-explorer/threshold-tradeoff-explorer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Threshold Trade-Off Explorer
 
+<iframe src="main.html" width="100%" height="562px" scrolling="no"></iframe>
 
+[Run the Threshold Trade-Off Explorer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/threshold-tradeoff-explorer/main.html" width="100%" height="562px" scrolling="no"></iframe>
+```
+
+## Description
+
+Every wake-word detector needs a threshold: a score at or above it wakes the device. Raising the threshold cuts false accepts (other sounds that wake it by mistake) but adds false rejects (real "Hey Pico" phrases it misses). No setting removes both, so choosing a threshold is a judgment against stated limits.
+
+The histograms show 1,000 synthetic "Hey Pico" scores and 1,000 other-sound scores, regenerated in the browser with the same fixed-seed generator as `01-detector-math-test.py`, so the error rates match the chapter's table exactly. The bright bars are the errors at the current threshold. In explore mode you move the threshold. In the quiz you choose the best threshold, or none, for four scenarios.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 4 scenarios / Back to explore**: Switch between the slider and the quiz.
+- **Threshold menu and Submit**: Choose a threshold from 0.50 to 0.90, or none. One attempt per scenario.
+- **Next scenario / See score**: Move on after the feedback.
+- **Threshold slider**: Explore only: 0.50 to 0.90 in steps of 0.05, default 0.70.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will judge which detection threshold, if any, meets stated limits on false rejects and false accepts in 4 scenarios, choosing the correct threshold or "none" in at least 3 of 4.
+
+**Bloom's Taxonomy level:** Evaluate (judge)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+detection threshold, score, false accept, false reject, threshold trade-off (all defined in this chapter above the block).
+
+### Activities
+
+1. **Exploration (5 min):** Move the threshold from 0.50 to 0.90 and record both error rates at 0.60, 0.70 and 0.80.
+2. **Guided practice (5 min):** For scenario 3, mark every threshold that meets each limit separately, then look for one that meets both.
+3. **Assessment (5 min):** Complete all four scenarios. Mastery is 3 of 4 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) A higher threshold is always safer. (2) There is always a threshold that satisfies both limits. (3) A false-accept rate per attempt is the same as per hour.
+
+### Discussion Questions
+
+1. Is a higher threshold always safer?
+2. Why can no threshold satisfy scenario 3, and what would?
+3. Why is a false-accept rate per attempt not the same as per hour?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 12: Wake-Word Detection](../../chapters/12-wake-word-detection/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 12</summary>
 
 ```text
 Type: microsim
@@ -79,6 +142,14 @@ Scenarios, in this order. Among the thresholds that meet every limit, the answer
 
 **Chapter Anchors:** The chapter's trade-off table has the same 9 rows. It states that 0.70 gives 11.2% false rejects and 0.8% false accepts.
 ```
+
+</details>
+
+## References
+
+1. [False positives and false negatives](https://en.wikipedia.org/wiki/False_positives_and_false_negatives) - Wikipedia - The two kinds of detection error.
+2. [Receiver operating characteristic](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) - Wikipedia - The standard picture of a threshold trade-off.
+3. [Keyword spotting](https://en.wikipedia.org/wiki/Keyword_spotting) - Wikipedia - Wake-word detection in speech systems.
 
 ## Related Resources
 

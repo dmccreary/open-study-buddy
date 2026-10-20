@@ -1,23 +1,106 @@
 {
   "title": "Same-Subnet Checker",
-  "description": "The learner will calculate whether two IPv4 addresses are on the same network, given a netmask, in 8 cases, with at least 7 of 8 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The Pico can talk directly to the buddy server only when both are on the same network. To check, AND each of the four numbers of an address with the matching number of the netmask; the result is the network address, and two addresses are on the same network when their network addresses are equal.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Wi-Fi, HTTP, and Connecting to the Agent",
+    "IP Address",
+    "Netmask",
+    "Network Address",
+    "Same Network"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "same-subnet-checker",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "calculate",
-  "completion_status": "scaffold",
-  "chapter_number": 13,
-  "chapter_title": "Wi-Fi, HTTP, and Connecting to the Agent",
-  "chapter_dir": "13-wifi-http-agent-link",
-  "chapter_rel_dir": "chapters/13-wifi-http-agent-link"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/same-subnet-checker/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 595,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Same-Subnet Checker",
+    "learningObjectives": [
+      "The learner will calculate whether two IPv4 addresses are on the same network, given a netmask, in 8 cases, with at least 7 of 8 correct."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "IP address, netmask, network address, same network, binary form of a number from 0 to 255 (all defined in this chapter above this block; binary numbers are in Chapter 3)."
+    ],
+    "concepts": [
+      "IP Address",
+      "Netmask",
+      "Network Address",
+      "Same Network"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 595
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 8 cases / Back to explore",
+        "purpose": "Switch between the explorer and the quiz."
+      },
+      {
+        "name": "Answer menu, Network address box, Submit",
+        "purpose": "Choose same or different and type the first network address. One attempt per case."
+      },
+      {
+        "name": "Next case / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "First, Second and Mask",
+        "purpose": "Explore only: two addresses (each number 0 to 255; invalid changes are ignored) and a mask."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Are addresses that start with the same number always on the same network?",
+      "Why can a mask such as 255.255.240.0 split the third number?",
+      "Why can no device use the all-zeros or all-ones host address?"
+    ],
+    "commonMisconceptions": [
+      "(1) Addresses that start with the same number are always on the same network. (2) A mask can only fall between whole numbers. (3) The all-zeros and all-ones device addresses can be given to a device."
+    ],
+    "assessmentOpportunities": [
+      "Complete all eight cases. Mastery is 7 of 8 fully correct on the first attempt."
+    ]
+  },
+  "chapter": "13-wifi-http-agent-link",
+  "chapter_number": 13
 }

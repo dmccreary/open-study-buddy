@@ -1,23 +1,108 @@
 {
   "title": "HTTP Request Reader",
-  "description": "The learner will interpret the parts of an HTTP POST request and its reply by answering 8 questions about the request text, with at least 7 of 8 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "When the Pico asks the buddy server a question, it sends a short HTTP POST: a request line, four headers, a blank line, and a 73-byte JSON body, 194 bytes in all. Each part has one job, and getting a single number wrong, such as Content-Length, changes what the server does.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Wi-Fi, HTTP, and Connecting to the Agent",
+    "HTTP POST",
+    "Request Line",
+    "Header",
+    "Content-Length",
+    "Status Code"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "http-request-reader",
-  "library": "p5.js",
-  "bloomLevel": "Understand",
-  "bloomVerb": "interpret",
-  "completion_status": "scaffold",
-  "chapter_number": 13,
-  "chapter_title": "Wi-Fi, HTTP, and Connecting to the Agent",
-  "chapter_dir": "13-wifi-http-agent-link",
-  "chapter_rel_dir": "chapters/13-wifi-http-agent-link"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/http-request-reader/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 520,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "HTTP Request Reader",
+    "learningObjectives": [
+      "The learner will interpret the parts of an HTTP POST request and its reply by answering 8 questions about the request text, with at least 7 of 8 correct."
+    ],
+    "bloomsTaxonomy": "Understand",
+    "bloomVerb": "interpret",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "HTTP protocol, request line, header, blank line, body, Content-Length, status code, HTTP POST (all defined in this chapter above this block)."
+    ],
+    "concepts": [
+      "HTTP POST",
+      "Request Line",
+      "Header",
+      "Content-Length",
+      "Status Code"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 520
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Answer A, B, C",
+        "purpose": "Choose an answer. One attempt per question."
+      },
+      {
+        "name": "Next question / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Start over",
+        "purpose": "Return to question 1 with a fresh score."
+      },
+      {
+        "name": "Hover over a line",
+        "purpose": "Read what the line is called (exploration, not scored)."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Why must the blank line be there?",
+      "Why does a too-small Content-Length fail fast while a too-large one hangs?",
+      "Whose mistake is a 4xx status, and whose a 5xx?"
+    ],
+    "commonMisconceptions": [
+      "(1) The blank line is optional decoration. (2) A wrong Content-Length is harmless. (3) A 4xx status means the server is broken. (4) The body can be longer than Content-Length says."
+    ],
+    "assessmentOpportunities": [
+      "Answer all eight questions. Mastery is 7 of 8 correct on the first attempt."
+    ]
+  },
+  "chapter": "13-wifi-http-agent-link",
+  "chapter_number": 13
 }

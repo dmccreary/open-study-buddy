@@ -191,6 +191,10 @@ The single threshold flips 12 times. The gate flips twice, once to open at frame
 
 #### Diagram: Level Gate Hysteresis Explorer
 
+
+<iframe src="../../sims/level-gate-hysteresis-explorer/main.html" width="100%" height="587px" scrolling="no"></iframe>
+[Run Level Gate Hysteresis Explorer Fullscreen](../../sims/level-gate-hysteresis-explorer/main.html)
+
 <details markdown="1">
 <summary>Level Gate Hysteresis Explorer</summary>
 Type: microsim
@@ -424,6 +428,10 @@ Because push-to-talk records from the button press, the pre-roll is free: the fr
 Use the boundary finder to check your reading of the rules.
 
 #### Diagram: VAD Boundary Finder
+
+
+<iframe src="../../sims/vad-boundary-finder/main.html" width="100%" height="637px" scrolling="no"></iframe>
+[Run VAD Boundary Finder Fullscreen](../../sims/vad-boundary-finder/main.html)
 
 <details markdown="1">
 <summary>VAD Boundary Finder</summary>

@@ -1,23 +1,106 @@
 {
   "title": "Threshold Trade-Off Explorer",
-  "description": "The learner will judge which detection threshold, if any, meets stated limits on false rejects and false accepts in 4 scenarios, choosing the correct threshold or \"none\" in at least 3 of 4.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "Every wake-word detector needs a threshold: a score at or above it wakes the device. Raising the threshold cuts false accepts (other sounds that wake it by mistake) but adds false rejects (real \"Hey Pico\" phrases it misses). No setting removes both, so choosing a threshold is a judgment against stated limits.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Wake-Word Detection",
+    "Detection Threshold",
+    "False Accept",
+    "False Reject",
+    "Threshold Trade-Off"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "threshold-tradeoff-explorer",
-  "library": "p5.js",
-  "bloomLevel": "Evaluate",
-  "bloomVerb": "judge",
-  "completion_status": "scaffold",
-  "chapter_number": 12,
-  "chapter_title": "Wake-Word Detection",
-  "chapter_dir": "12-wake-word-detection",
-  "chapter_rel_dir": "chapters/12-wake-word-detection"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/threshold-tradeoff-explorer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 560,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Threshold Trade-Off Explorer",
+    "learningObjectives": [
+      "The learner will judge which detection threshold, if any, meets stated limits on false rejects and false accepts in 4 scenarios, choosing the correct threshold or \"none\" in at least 3 of 4."
+    ],
+    "bloomsTaxonomy": "Evaluate",
+    "bloomVerb": "judge",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "detection threshold, score, false accept, false reject, threshold trade-off (all defined in this chapter above the block)."
+    ],
+    "concepts": [
+      "Detection Threshold",
+      "False Accept",
+      "False Reject",
+      "Threshold Trade-Off"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 560
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 4 scenarios / Back to explore",
+        "purpose": "Switch between the slider and the quiz."
+      },
+      {
+        "name": "Threshold menu and Submit",
+        "purpose": "Choose a threshold from 0.50 to 0.90, or none. One attempt per scenario."
+      },
+      {
+        "name": "Next scenario / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Threshold slider",
+        "purpose": "Explore only: 0.50 to 0.90 in steps of 0.05, default 0.70."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Is a higher threshold always safer?",
+      "Why can no threshold satisfy scenario 3, and what would?",
+      "Why is a false-accept rate per attempt not the same as per hour?"
+    ],
+    "commonMisconceptions": [
+      "(1) A higher threshold is always safer. (2) There is always a threshold that satisfies both limits. (3) A false-accept rate per attempt is the same as per hour."
+    ],
+    "assessmentOpportunities": [
+      "Complete all four scenarios. Mastery is 3 of 4 correct on the first attempt."
+    ]
+  },
+  "chapter": "12-wake-word-detection",
+  "chapter_number": 12
 }

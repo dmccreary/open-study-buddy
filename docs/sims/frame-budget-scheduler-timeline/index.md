@@ -1,23 +1,86 @@
 ---
 title: "Frame Budget Scheduler Timeline"
 description: "The learner will examine 6 loop passes against the 40 ms frame budget by calculating each pass's total time to within 0.1 ms and deciding whether it overruns, with at least 5 of 6 fully correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Analyze
+image: /sims/frame-budget-scheduler-timeline/frame-budget-scheduler-timeline.png
+og:image: /sims/frame-budget-scheduler-timeline/frame-budget-scheduler-timeline.png
+twitter:image: /sims/frame-budget-scheduler-timeline/frame-budget-scheduler-timeline.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Frame Budget Scheduler Timeline
 
+<iframe src="main.html" width="100%" height="587px" scrolling="no"></iframe>
 
+[Run the Frame Budget Scheduler Timeline MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/frame-budget-scheduler-timeline/main.html" width="100%" height="587px" scrolling="no"></iframe>
+```
+
+## Description
+
+Once every subsystem runs in one loop, each pass must fit in the 40 ms audio frame. A pass's total is simply the sum of the costs of the tasks that run, and a pass overruns when the total is over 40.0 ms. A cooperative scheduler considers tasks in order of importance and defers any task whose budget no longer fits in what is left of the frame.
+
+The timeline lays each task that runs end to end against the 40 ms frame line, shades any overrun, and lists deferred tasks. In explore mode you switch the eight tasks and the scheduler on and off. In the quiz you calculate the total and decide fits or overruns for six passes. The costs are model inputs from earlier chapters and `08-scheduler-demo.py`, not a measurement of your program.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 passes / Back to explore**: Switch between building passes and the quiz.
+- **Total ms box, fits/overruns menu, Submit**: Type the total (within 0.1 ms) and choose fits or overruns. One attempt per pass.
+- **Next pass / See score**: Move on after the feedback.
+- **Scheduler on and the eight task checkboxes**: Explore only: build any pass.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will examine 6 loop passes against the 40 ms frame budget by calculating each pass's total time to within 0.1 ms and deciding whether it overruns, with at least 5 of 6 fully correct.
+
+**Bloom's Taxonomy level:** Analyze (examine)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+frame, frame budget, task, task budget, cooperative scheduler, deferral, overrun (all defined in the sections above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Turn on status, network and slice with the scheduler off, then turn the scheduler on and compare.
+2. **Guided practice (5 min):** For pass 5, track what is left of the 40 ms after each task before checking the slice's budget.
+3. **Assessment (5 min):** Complete all six passes. Mastery is 5 of 6 fully correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) A task with a big budget only costs its budget. (2) The scheduler can interrupt a task that runs too long. (3) A pass that fits in 40 ms on average cannot overrun. (4) Turning the scheduler on always makes every task run.
+
+### Discussion Questions
+
+1. Does a task with a big budget cost its budget?
+2. Can the scheduler interrupt a task that runs too long?
+3. Does turning the scheduler on make every task run?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 18: Testing, Integration, and Capstone Projects](../../chapters/18-testing-integration-capstones/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 18</summary>
 
 ```text
 Type: microsim
@@ -80,6 +143,14 @@ The frame budget is 40 ms. The 6 passes, in this order:
 
 **Chapter Anchors:** The chapter states the task costs in the table "The Time Budget in Numbers"; that a typical pass is 19.0 ms and the worst scheduled pass is 27.8 ms; that a full-screen redraw makes a pass 148.4 ms; that the slice is about 16.2 ms and a pass with status, network, and the slice would be 40.2 ms; and that the scheduler defers the slice, leaving 24.0 ms.
 ```
+
+</details>
+
+## References
+
+1. [Cooperative multitasking](https://en.wikipedia.org/wiki/Cooperative_multitasking) - Wikipedia - Tasks that yield instead of being interrupted.
+2. [Real-time computing](https://en.wikipedia.org/wiki/Real-time_computing) - Wikipedia - Deadlines and overruns.
+3. [asyncio](https://docs.micropython.org/en/latest/library/asyncio.html) - MicroPython documentation - MicroPython's cooperative scheduler.
 
 ## Related Resources
 

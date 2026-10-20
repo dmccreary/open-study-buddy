@@ -1,23 +1,86 @@
 ---
 title: "QoS Handshake Stepper"
 description: "The learner will infer, for 6 scenarios of a publisher sending one alert to a broker, how many copies of the alert the broker processes, with at least 5 of the 6 inferences right."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Understand
+image: /sims/mqtt-qos-handshake-stepper/mqtt-qos-handshake-stepper.png
+og:image: /sims/mqtt-qos-handshake-stepper/mqtt-qos-handshake-stepper.png
+twitter:image: /sims/mqtt-qos-handshake-stepper/mqtt-qos-handshake-stepper.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # QoS Handshake Stepper
 
+<iframe src="main.html" width="100%" height="552px" scrolling="no"></iframe>
 
+[Run the QoS Handshake Stepper MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/mqtt-qos-handshake-stepper/main.html" width="100%" height="552px" scrolling="no"></iframe>
+```
+
+## Description
+
+MQTT offers three delivery promises. QoS 0 sends a PUBLISH once and never repeats it. QoS 1 repeats the PUBLISH until a PUBACK comes back, so the broker may process a repeat. QoS 2 uses a four-packet handshake (PUBLISH, PUBREC, PUBREL, PUBCOMP) so the broker processes each packet number exactly once.
+
+The sequence diagram shows one hop from the publisher to the broker. Each step draws one packet; a lost packet is crossed out, and a counter shows how many copies of the alert the broker has processed. In explore mode you step through the no-loss case of each QoS level. In the quiz you predict the number of copies for six scenarios, then step through the packets. The scenarios are illustrative and the model does not reproduce timing.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 scenarios / Back to explore**: Switch between exploring and the quiz.
+- **Copies processed menu and Submit**: Choose 0, 1 or 2. One attempt per scenario.
+- **Next scenario / See score**: Move on after the feedback.
+- **QoS menu, Step, Back to start**: Choose the QoS level (explore only) and step through the packets.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will infer, for 6 scenarios of a publisher sending one alert to a broker, how many copies of the alert the broker processes, with at least 5 of the 6 inferences right.
+
+**Bloom's Taxonomy level:** Understand (infer)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+publisher, broker, QoS 0, QoS 1, QoS 2, PUBLISH, PUBACK, PUBREC, PUBREL, PUBCOMP, duplicate (all defined in the section "Delivery Promises" above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Step through QoS 0, 1 and 2 with nothing lost and count the packets each needs.
+2. **Guided practice (5 min):** Before scenario 5, say which side is waiting for which packet when the PUBACK is lost.
+3. **Assessment (5 min):** Complete all six scenarios. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) QoS 0 retries until the message gets through. (2) QoS 1 guarantees exactly one copy. (3) A lost acknowledgement means the message was lost. (4) QoS 2 never sends a packet twice.
+
+### Discussion Questions
+
+1. Does QoS 1 guarantee exactly one copy?
+2. Does a lost acknowledgement mean the message was lost?
+3. Why do alerts carry an id?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 15: MQTT and Push Alerts](../../chapters/15-mqtt-push-alerts/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 15</summary>
 
 ```text
 Type: microsim
@@ -75,6 +138,14 @@ The 6 scenarios, in order. "Lost" means that packet never arrives and the sender
 
 **Chapter Anchors:** The chapter states that QoS 0 is at most once, QoS 1 is at least once and may deliver a repeat, QoS 2 is exactly once with a four-packet handshake, that `umqtt.simple` supports QoS 0 and 1 only, and that alerts carry an id so repeats can be ignored.
 ```
+
+</details>
+
+## References
+
+1. [MQTT](https://en.wikipedia.org/wiki/MQTT) - Wikipedia - The publish/subscribe protocol and its QoS levels.
+2. [MQTT Version 3.1.1](https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html) - OASIS standard - The packet flows for QoS 0, 1 and 2.
+3. [umqtt.simple](https://github.com/micropython/micropython-lib/tree/master/micropython/umqtt.simple) - micropython-lib - The MicroPython MQTT client (QoS 0 and 1).
 
 ## Related Resources
 

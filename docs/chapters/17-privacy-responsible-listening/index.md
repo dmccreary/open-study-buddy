@@ -158,6 +158,10 @@ Use the explorer below to see how the answer changes when encryption is off or t
 
 #### Diagram: Data Flow Explorer
 
+
+<iframe src="../../sims/data-flow-explorer/main.html" width="100%" height="612px" scrolling="no"></iframe>
+[Run Data Flow Explorer Fullscreen](../../sims/data-flow-explorer/main.html)
+
 <details markdown="1">
 <summary>Data Flow Explorer</summary>
 Type: microsim
@@ -346,6 +350,10 @@ Six of ten threats tie at 6, which is normal, and it is why the effort column ex
     A list like this can feel heavy, and that is normal. You already do this when you lock a bike: you decide what could go wrong, then do the cheap things first. Start with the three effort-1 items at the top, and the list gets shorter fast.
 
 #### Diagram: Threat Model Sorter
+
+
+<iframe src="../../sims/threat-model-sorter/main.html" width="100%" height="622px" scrolling="no"></iframe>
+[Run Threat Model Sorter Fullscreen](../../sims/threat-model-sorter/main.html)
 
 <details markdown="1">
 <summary>Threat Model Sorter</summary>

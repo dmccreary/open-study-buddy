@@ -1,23 +1,86 @@
 ---
 title: "Time Zone and UTC Converter"
 description: "The learner will calculate the UTC time of 8 school-local times, including 3 that fall at a daylight-saving change, with at least 7 of the 8 exactly right."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/school-time-utc-converter/school-time-utc-converter.png
+og:image: /sims/school-time-utc-converter/school-time-utc-converter.png
+twitter:image: /sims/school-time-utc-converter/school-time-utc-converter.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Time Zone and UTC Converter
 
+<iframe src="main.html" width="100%" height="597px" scrolling="no"></iframe>
 
+[Run the Time Zone and UTC Converter MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/school-time-utc-converter/main.html" width="100%" height="597px" scrolling="no"></iframe>
+```
+
+## Description
+
+The server stores times in UTC and converts school-local times with the offset in force on that date: in Chicago, CDT (UTC-5) from the second Sunday in March to the first Sunday in November, and CST (UTC-6) otherwise. On the two change days some local times are awkward: 2:30 AM on the spring day does not exist, and 1:30 AM on the fall day happens twice. Two fixed rules decide them.
+
+The cards show a local time and the same instant in UTC with the offset used. Below them the 24 hours of the local day are colored by offset, so the missing and repeated hours are visible on change days. In explore mode you pick a zone, date and time. In the quiz you calculate the UTC date and time of eight local times, three of them at a daylight-saving change. The results match Python's zoneinfo.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 8 items / Back to explore**: Switch between the clock and the quiz.
+- **UTC date and UTC time boxes, Submit**: Type the UTC date (YYYY-MM-DD) and time (24-hour HH:MM). One attempt per item.
+- **Next item / See score**: Move on after the feedback.
+- **Zone, Local date, Local time**: Explore only: America/Chicago or America/New_York, any date and time.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will calculate the UTC time of 8 school-local times, including 3 that fall at a daylight-saving change, with at least 7 of the 8 exactly right.
+
+**Bloom's Taxonomy level:** Apply (calculate)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+UTC, time zone, daylight saving time, offset, CDT, CST, EDT, a time that does not exist, a time that happens twice (all defined in the section "Time Zones and Daylight Saving" above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Try 2027-03-14 at 01:30, 02:30 and 03:30 in Chicago and compare the three UTC times.
+2. **Guided practice (5 min):** For item 3, find the first Sunday in November 2026 before choosing the offset.
+3. **Assessment (5 min):** Complete all eight items. Mastery is 7 of 8 exactly right on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) The offset from UTC is the same all year. (2) A time that does not exist is an error. (3) A time that happens twice has no answer. (4) The same wall-clock time in two cities is the same instant.
+
+### Discussion Questions
+
+1. Is the offset from UTC the same all year?
+2. What happens to a local time that does not exist?
+3. Why are 8:00 in Chicago and 9:00 in New York the same instant on October 20?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 16: Configuring the School Agent and Calendar](../../chapters/16-school-agent-calendar/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 16</summary>
 
 ```text
 Type: microsim
@@ -71,6 +134,14 @@ The 8 items, in order:
 
 **Chapter Anchors:** The chapter states that 8:00 AM on Oct 20, 2026 in Chicago is 13:00 UTC and on Dec 1, 2026 is 14:00 UTC, that 2:30 AM on 2027-03-14 does not exist and is read with the offset from before the gap, and that 1:30 AM on 2026-11-01 happens twice and the first is taken.
 ```
+
+</details>
+
+## References
+
+1. [Daylight saving time in the United States](https://en.wikipedia.org/wiki/Daylight_saving_time_in_the_United_States) - Wikipedia - The change dates used here.
+2. [zoneinfo: IANA time zone support](https://docs.python.org/3/library/zoneinfo.html) - Python documentation - Fold and the rules for awkward times.
+3. [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time) - Wikipedia - The reference time everything converts to.
 
 ## Related Resources
 

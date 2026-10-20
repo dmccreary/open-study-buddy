@@ -1,23 +1,112 @@
 {
   "title": "ICS Line Parser Stepper",
-  "description": "The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The server reads the school calendar as an iCalendar feed, one line at a time. A few rules do most of the work: a line that starts with a space continues the line before it; everything inside a VTIMEZONE block is skipped; a DTSTART with TZID is a local time to convert to UTC; and an all-day DTEND is exclusive, so the last day is one day earlier.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Configuring the School Agent and Calendar",
+    "iCalendar",
+    "VEVENT",
+    "VTIMEZONE",
+    "Line Folding",
+    "All-Day Date",
+    "Exclusive End Date",
+    "TZID"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "ics-line-parser-stepper",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "execute",
-  "completion_status": "scaffold",
-  "chapter_number": 16,
-  "chapter_title": "Configuring the School Agent and Calendar",
-  "chapter_dir": "16-school-agent-calendar",
-  "chapter_rel_dir": "chapters/16-school-agent-calendar"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/ics-line-parser-stepper/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 600,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "ICS Line Parser Stepper",
+    "learningObjectives": [
+      "The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "execute",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "property, parameter, VEVENT, VTIMEZONE, line folding, all-day date, exclusive end date, UTC, TZID (all defined in the section \"Step Two: An iCalendar Feed, Parsed on the Server\" above this block)."
+    ],
+    "concepts": [
+      "iCalendar",
+      "VEVENT",
+      "VTIMEZONE",
+      "Line Folding",
+      "All-Day Date",
+      "Exclusive End Date",
+      "TZID"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 600
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 14 lines / Back to explore",
+        "purpose": "Switch between stepping and the quiz."
+      },
+      {
+        "name": "Action menu and Submit",
+        "purpose": "Choose one of the actions A to K. One attempt per line."
+      },
+      {
+        "name": "Next line / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Step and Back to start",
+        "purpose": "Explore only: parse one line at a time."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Why is the DTSTART on line 2 not an event?",
+      "Why is the last day of Thanksgiving Break November 27 and not 28?",
+      "Is a time with a TZID already in UTC?"
+    ],
+    "commonMisconceptions": [
+      "(1) The DTSTART inside a VTIMEZONE is an event. (2) A line that starts with a space is a new property. (3) The end date of an all-day event is its last day. (4) A time with a TZID is already in UTC."
+    ],
+    "assessmentOpportunities": [
+      "Complete all fourteen lines. Mastery is 12 of 14 correct on the first attempt."
+    ]
+  },
+  "chapter": "16-school-agent-calendar",
+  "chapter_number": 16
 }

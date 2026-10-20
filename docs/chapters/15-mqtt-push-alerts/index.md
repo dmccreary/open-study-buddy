@@ -150,6 +150,10 @@ Now try the rules yourself, and then check them against the table.
 
 #### Diagram: MQTT Topic Router
 
+
+<iframe src="../../sims/mqtt-topic-router/main.html" width="100%" height="562px" scrolling="no"></iframe>
+[Run MQTT Topic Router Fullscreen](../../sims/mqtt-topic-router/main.html)
+
 <details markdown="1">
 <summary>MQTT Topic Router</summary>
 Type: microsim
@@ -306,6 +310,10 @@ Here is how the book assigns levels, with the reason for each. The choice follow
     "At least once" and "at most once" are easy to mix up, and most people need to see the packets move to keep them straight. Step through the handshake below, predicting the answer each time, and the pattern will stick.
 
 #### Diagram: QoS Handshake Stepper
+
+
+<iframe src="../../sims/mqtt-qos-handshake-stepper/main.html" width="100%" height="552px" scrolling="no"></iframe>
+[Run QoS Handshake Stepper Fullscreen](../../sims/mqtt-qos-handshake-stepper/main.html)
 
 <details markdown="1">
 <summary>QoS Handshake Stepper</summary>

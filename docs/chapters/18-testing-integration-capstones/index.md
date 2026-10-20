@@ -255,6 +255,10 @@ The next activity checks that you can follow a symptom to a cause.
 
 #### Diagram: Diagnosis Decision Tree Trainer
 
+
+<iframe src="../../sims/diagnosis-decision-tree-trainer/main.html" width="100%" height="642px" scrolling="no"></iframe>
+[Run Diagnosis Decision Tree Trainer Fullscreen](../../sims/diagnosis-decision-tree-trainer/main.html)
+
 <details markdown="1">
 <summary>Diagnosis Decision Tree Trainer</summary>
 Type: microsim
@@ -419,6 +423,10 @@ Read the table in order. The *stall* scenario overruns five times but loses noth
 The activity below lets you build a pass and see whether it fits.
 
 #### Diagram: Frame Budget Scheduler Timeline
+
+
+<iframe src="../../sims/frame-budget-scheduler-timeline/main.html" width="100%" height="587px" scrolling="no"></iframe>
+[Run Frame Budget Scheduler Timeline Fullscreen](../../sims/frame-budget-scheduler-timeline/main.html)
 
 <details markdown="1">
 <summary>Frame Budget Scheduler Timeline</summary>

@@ -1,23 +1,86 @@
 ---
 title: "Diagnosis Decision Tree Trainer"
 description: "The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Analyze
+image: /sims/diagnosis-decision-tree-trainer/diagnosis-decision-tree-trainer.png
+og:image: /sims/diagnosis-decision-tree-trainer/diagnosis-decision-tree-trainer.png
+twitter:image: /sims/diagnosis-decision-tree-trainer/diagnosis-decision-tree-trainer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Diagnosis Decision Tree Trainer
 
+<iframe src="main.html" width="100%" height="642px" scrolling="no"></iframe>
 
+[Run the Diagnosis Decision Tree Trainer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/diagnosis-decision-tree-trainer/main.html" width="100%" height="642px" scrolling="no"></iframe>
+```
+
+## Description
+
+Three failures cause most "it doesn't work" reports on the kit: a silent microphone, distorted audio, and a blank display. The chapter writes each as a flat decision tree: ask the first row's question; yes ends at that row's likely cause, quick test and fix, and no moves to the next row, so the cheapest questions rule out whole branches first.
+
+In explore mode you pick a symptom and answer the tree's questions one at a time until you reach a cause. In the quiz you read six reported failures and choose the likely cause from four candidates in the same tree; the tree is then walked to the right row and the quick test and fix are shown. The rows are the chapter's tables M1 to M6, A1 to A7 and D1 to D8; the cases are illustrative.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 cases / Back to explore**: Switch between walking a tree and the quiz.
+- **Cause A, B, C, D**: Choose the likely cause. One attempt per case.
+- **Next case / See score**: Move on after the feedback.
+- **Symptom menu, Yes, No, Restart tree**: Explore only: walk one tree by answering its questions.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases.
+
+**Bloom's Taxonomy level:** Analyze (differentiate)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+flat line, backlight, sample rate, frame overrun, wire swap (all defined in the sections of this chapter above this block and in Chapters 4 and 8); the three diagnosis tables in this chapter, whose rows are named M1 to M6, A1 to A7, and D1 to D8.
+
+### Activities
+
+1. **Exploration (5 min):** Walk the blank-display tree for a screen that is lit but speckled, then for one that is completely dark.
+2. **Guided practice (5 min):** For case 2, underline the detail in the report that rules out each of the other three candidates.
+3. **Assessment (5 min):** Complete all six cases. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) Any failure of the microphone means the microphone is broken. (2) A program that runs without an error has no wiring fault. (3) A dark screen is always a software bug. (4) The answer to a distorted sound is always to lower the volume.
+
+### Discussion Questions
+
+1. Does a silent microphone always mean a broken microphone?
+2. Can a program that runs with no error still have a wiring fault?
+3. Why does each tree ask "Is it completely dark?" before anything else?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 18: Testing, Integration, and Capstone Projects](../../chapters/18-testing-integration-capstones/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 18</summary>
 
 ```text
 Type: microsim
@@ -90,6 +153,14 @@ The 6 cases, in this order. Each case lists the 3 other candidate causes, which 
 
 **Chapter Anchors:** The chapter names three failures (silent microphone, distorted audio, blank display); states that the microphone tree has rows M1 to M6, the audio tree A1 to A7, and the display tree D1 to D8; that a swapped microphone starts with no error and sends zeros; that the sck+1 rule applies to the microphone and the amplifier; and that BAUDRATE 12,000,000 is the fix for speckle.
 ```
+
+</details>
+
+## References
+
+1. [Troubleshooting](https://en.wikipedia.org/wiki/Troubleshooting) - Wikipedia - Systematic diagnosis, cheapest check first.
+2. [Decision tree](https://en.wikipedia.org/wiki/Decision_tree) - Wikipedia - Yes/no questions that lead to a decision.
+3. [machine.I2S](https://docs.micropython.org/en/latest/library/machine.I2S.html) - MicroPython documentation - The pin rules behind the sck+1 error.
 
 ## Related Resources
 

@@ -1,23 +1,87 @@
 ---
 title: "VAD Boundary Finder"
 description: "The learner will execute the voice activity detection rules on 5 loudness traces to find each trace's first and last speech frame, matching both frames in at least 4 of 5 traces."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/vad-boundary-finder/vad-boundary-finder.png
+og:image: /sims/vad-boundary-finder/vad-boundary-finder.png
+twitter:image: /sims/vad-boundary-finder/vad-boundary-finder.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # VAD Boundary Finder
 
+<iframe src="main.html" width="100%" height="637px" scrolling="no"></iframe>
 
+[Run the VAD Boundary Finder MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/vad-boundary-finder/main.html" width="100%" height="637px" scrolling="no"></iframe>
+```
+
+## Description
+
+Voice activity detection finds where speech starts and ends inside a push-to-talk recording. The chapter's VAD is a four-state machine (SILENCE, STARTING, SPEECH, ENDING) driven by the hysteresis gate: 3 loud frames in a row start speech, 15 quiet frames in a row end it. The start is the first loud frame of that run and the end is the last loud frame, and the device keeps 4 frames of pre-roll and 5 of hang-over around them.
+
+The bar chart shows each frame's loudness colored loud or quiet, with the gate levels drawn. Stepping processes one frame at a time while the state machine highlights the current state and shows the loud and quiet counts; the start, end and kept range appear as they are found. In explore mode you can also change START_FRAMES and END_FRAMES. In the quiz you find the start and end frames, or none, for five synthetic traces.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 5 traces / Back to explore**: Switch between exploring and the quiz.
+- **Start frame and End frame boxes, Submit**: Type two frame numbers, or none in both boxes. One attempt per trace.
+- **Next trace / See score**: Move on after the feedback.
+- **Step, Back to start, Run to end**: Step through the frames (in the quiz, after submitting).
+- **START and END sliders**: Explore only: START_FRAMES 1 to 6, END_FRAMES 5 to 30.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will execute the voice activity detection rules on 5 loudness traces to find each trace's first and last speech frame, matching both frames in at least 4 of 5 traces.
+
+**Bloom's Taxonomy level:** Apply (execute)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+loudness in bits, frame, level gate, hysteresis, voice activity detection, start frames, end frames, state machine (all defined in this chapter above the block).
+
+### Activities
+
+1. **Exploration (5 min):** Step through trace 1 and note the frame at which the start is signaled and the frame at which the end is signaled.
+2. **Guided practice (5 min):** For trace 5, write the length of every loud and quiet run before deciding whether the pause ends the speech.
+3. **Assessment (5 min):** Complete all five traces. Mastery is 4 of 5 traces fully correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) Speech starts at the frame where the VAD signals "start". (2) Any loud frame starts speech. (3) Any quiet frame ends speech. (4) A trace that is still loud at its last frame has no end.
+
+### Discussion Questions
+
+1. Why is the start reported earlier than the frame at which it is signaled?
+2. Why does a single loud click never start speech?
+3. What is the end of a trace that is still loud at its last frame?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 11: Microphone Calibration and Push-to-Talk](../../chapters/11-mic-calibration-push-to-talk/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 11</summary>
 
 ```text
 Type: microsim
@@ -70,6 +134,14 @@ The state machine has 4 states, SILENCE, STARTING, SPEECH, and ENDING, with the 
 
 **Chapter Anchors:** The chapter states that START_FRAMES is 3 (120 ms), END_FRAMES is 15 (600 ms), the pre-roll is 4 frames, and the hang-over is 5 frames; that the start is signaled 2 frames after the first loud frame; that the end is reported at the last loud frame; and that a click and a 240 ms pause do not break an utterance.
 ```
+
+</details>
+
+## References
+
+1. [Voice activity detection](https://en.wikipedia.org/wiki/Voice_activity_detection) - Wikipedia - What a VAD does and where it is used.
+2. [Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine) - Wikipedia - The four-state machine behind the rules.
+3. [Hysteresis](https://en.wikipedia.org/wiki/Hysteresis) - Wikipedia - Why the gate uses separate open and close levels.
 
 ## Related Resources
 

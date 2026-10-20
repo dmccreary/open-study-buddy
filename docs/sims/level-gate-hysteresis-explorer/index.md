@@ -1,23 +1,86 @@
 ---
 title: "Level Gate Hysteresis Explorer"
 description: "The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/level-gate-hysteresis-explorer/level-gate-hysteresis-explorer.png
+og:image: /sims/level-gate-hysteresis-explorer/level-gate-hysteresis-explorer.png
+twitter:image: /sims/level-gate-hysteresis-explorer/level-gate-hysteresis-explorer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Level Gate Hysteresis Explorer
 
+<iframe src="main.html" width="100%" height="587px" scrolling="no"></iframe>
 
+[Run the Level Gate Hysteresis Explorer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/level-gate-hysteresis-explorer/main.html" width="100%" height="587px" scrolling="no"></iframe>
+```
+
+## Description
+
+A level gate decides frame by frame whether the microphone hears speech. A single threshold opens at 15.0 bits and closes the moment the level dips back under it, so a voice that wobbles around the line makes the gate flutter. A hysteresis gate opens at the open level but closes only below a lower close level, so small dips inside a phrase do not close it.
+
+The plot shows a 20-frame loudness trace with the open and close levels as dashed lines. Below it, one row of cells shows when the single-threshold gate is open and another shows the hysteresis gate, with each state change marked and counted. In explore mode you pick a trace and move both levels. In the quiz you count the state changes of both gates on three traces before the rows are revealed. The traces are synthetic; trace A is the wobble trace from `09-calibration-selftest.py`.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 3 challenges / Back to explore**: Switch between exploring and the quiz.
+- **Single changes and Hysteresis changes boxes, Submit**: Type both counts and submit. One attempt per challenge, two answers each.
+- **Next challenge / See score**: Move on after the feedback.
+- **Trace menu, Open and Close sliders**: Explore only: traces A to C; open 13.0 to 18.0 bits and close 12.0 to 18.0 bits in steps of 0.1 (close is kept at or below open).
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers.
+
+**Bloom's Taxonomy level:** Apply (calculate)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+loudness in bits, frame, speech floor gate, level gate, hysteresis (all defined in this chapter above the block).
+
+### Activities
+
+1. **Exploration (5 min):** On trace A, raise the close level until it equals the open level and watch the hysteresis row become the single-threshold row.
+2. **Guided practice (5 min):** For challenge 1, write each frame's state for both gates in two rows on paper before counting the changes.
+3. **Assessment (5 min):** Complete all three challenges. Mastery is 5 of the 6 counts correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) Hysteresis makes a gate less sensitive to speech. (2) Hysteresis removes every false opening. (3) The gate closes at the same level that it opens at.
+
+### Discussion Questions
+
+1. Does hysteresis make the gate less sensitive to speech? What does it change?
+2. Why did hysteresis not help in challenge 3?
+3. Why does the gate open with >= and close with < ?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 11: Microphone Calibration and Push-to-Talk](../../chapters/11-mic-calibration-push-to-talk/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 11</summary>
 
 ```text
 Type: microsim
@@ -87,6 +150,14 @@ The sim shows one loudness trace of 20 frames at a time, as a line of bits again
 
 **Chapter Anchors:** The chapter states that the single threshold flips 12 times and the gate flips twice on trace A (open at frame 1, close at frame 16), that the gate opens with `>=` and closes with `<`, and that hysteresis does not remove spikes that fall back to the floor.
 ```
+
+</details>
+
+## References
+
+1. [Hysteresis](https://en.wikipedia.org/wiki/Hysteresis) - Wikipedia - Why two thresholds stop a switch from chattering.
+2. [Schmitt trigger](https://en.wikipedia.org/wiki/Schmitt_trigger) - Wikipedia - The electronic circuit that uses the same open and close idea.
+3. [Noise gate](https://en.wikipedia.org/wiki/Noise_gate) - Wikipedia - Audio gates with separate open and close levels.
 
 ## Related Resources
 

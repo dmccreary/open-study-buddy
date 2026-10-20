@@ -3,162 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- microsim-scaffold-stub -->
-    <title>ICS Line Parser Stepper</title>
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>ICS Line Parser Stepper MicroSim using p5.js 2.3.2</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #212529;
-        }
-        #container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #1a3a6c;
-        }
-        .placeholder {
-            border: 2px dashed #adb5bd;
-            border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #6c757d;
-            margin: 20px 0;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .placeholder .badge {
-            display: inline-block;
-            background: #ffc107;
-            color: #212529;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .placeholder h2 {
-            font-size: 18px;
-            color: #495057;
-            margin-bottom: 8px;
-        }
-        .placeholder p {
-            font-size: 14px;
-            max-width: 480px;
-        }
-        .meta {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            padding-top: 12px;
-        }
-        .meta strong { color: #495057; }
+        body { margin: 0px; padding: 0px; font-family: Arial, Helvetica, sans-serif; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+    <script src="ics-line-parser-stepper.js"></script>
 </head>
 <body>
-    <div id="container">
-        <h1>ICS Line Parser Stepper</h1>
-        <div class="placeholder">
-            <span class="badge">SCAFFOLD</span>
-            <h2>MicroSim Not Yet Implemented</h2>
-            <p>This MicroSim has been scaffolded from its specification but the
-            interactive content has not been built yet. See the chapter source
-            and the <code>index.md</code> in this directory for the full spec.</p>
-        </div>
-        <div class="meta">
-            <p><strong>Sim ID:</strong> ics-line-parser-stepper</p>
-            <p><strong>Library:</strong> p5.js</p>
-            <p><strong>Bloom Level:</strong> Apply</p>
-            <p><strong>Learning Objective:</strong> The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct.</p>
-        </div>
-    </div>
-
-    <!--
-    SPECIFICATION (from chapter index.md):
-
-    Type: microsim
-    **sim-id:** ics-line-parser-stepper<br/>
-    **Library:** p5.js<br/>
-    **Status:** Specified<br/>
-    **Bloom Level:** Apply<br/>
-    **Bloom Verb:** execute<br/>
-    **Learning Objective:** The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct.
-    
-    **Prerequisites:** property, parameter, VEVENT, VTIMEZONE, line folding, all-day date, exclusive end date, UTC, TZID (all defined in the section "Step Two: An iCalendar Feed, Parsed on the Server" above this block).
-    
-    **Evidence of Mastery:** For each of the 14 lines, in order, the learner chooses one action from the Actions list, then submits. A choice is correct when it equals the Answer column. Mastery is 12 of 14 correct on the first submission of each line. Stepping through the finished parse in exploration is not evidence.
-    
-    **Misconceptions:** (1) The DTSTART inside a VTIMEZONE is an event. (2) A line that starts with a space is a new property. (3) The end date of an all-day event is its last day. (4) A time with a TZID is already in UTC.
-    
-    **Instructional Rationale:** Executing a procedure means following its rules on concrete input. The learner commits each line's action before the parser state is revealed, so a wrong rule shows as a wrong action, and the running state of the parse (inside a time zone or not, the event being built) shows why.
-    
-    **Content:**
-    
-    The Actions, always shown:
-    
-    | Id | Action |
-    |----|--------|
-    | A | Start skipping a time-zone definition |
-    | B | Skip: it is inside a time-zone definition |
-    | C | Stop skipping |
-    | D | Start a new event |
-    | E | Set the title |
-    | F | Join onto the line before it (a fold) |
-    | G | Set a timed start, converted to UTC |
-    | H | Set an all-day first day |
-    | I | Set the last day (the end date minus one day) |
-    | J | Set the location |
-    | K | Finish the event |
-    
-    The 14 lines, in order. A line that begins with a space is shown with a visible space marker ("␣").
-    
-    | # | Line | Answer | Why (shown as feedback) |
-    |---|------|--------|-------------------------|
-    | 1 | `BEGIN:VTIMEZONE` | A | Everything until the matching END belongs to a time-zone definition. |
-    | 2 | `DTSTART:19701101T020000` | B | This DTSTART describes a rule of the zone, not an event, so it is skipped. |
-    | 3 | `END:VTIMEZONE` | C | The zone definition is over; events count again. |
-    | 4 | `BEGIN:VEVENT` | D | A new event starts with empty fields. |
-    | 5 | `SUMMARY:TEST: Biology Unit 2 - Gene` | E | The title so far is "TEST: Biology Unit 2 - Gene". The second colon belongs to the value. |
-    | 6 | `␣tics` | F | A line that starts with a space continues the line before it, and that one space is dropped, even in the middle of a word. The title becomes "TEST: Biology Unit 2 - Genetics". |
-    | 7 | `DTSTART;TZID=America/Chicago:20261110T100200` | G | 10:02 in Chicago on Nov 10 is CST, UTC minus 6 hours, so 16:02 UTC. |
-    | 8 | `LOCATION:Lab 130` | J | Plain text property. |
-    | 9 | `END:VEVENT` | K | The event is complete. Its title begins "TEST:", so its category is test, and its course is Biology. |
-    | 10 | `BEGIN:VEVENT` | D | A second event starts. |
-    | 11 | `SUMMARY:NO SCHOOL: Thanksgiving Break` | E | The prefix "NO SCHOOL:" will make its category no-school. |
-    | 12 | `DTSTART;VALUE=DATE:20261125` | H | VALUE=DATE means all-day: the date is Nov 25 with no time and no time zone. |
-    | 13 | `DTEND;VALUE=DATE:20261128` | I | The end date is exclusive, so the last day is Nov 27. |
-    | 14 | `END:VEVENT` | K | The event is complete: Nov 25 to Nov 27. |
-    
-    After line 14 the sim shows the two finished events: "TEST: Biology Unit 2 - Genetics", category test, course Biology, 2026-11-10 16:02 UTC, location Lab 130; and "NO SCHOOL: Thanksgiving Break", category no-school, all-day, 2026-11-25 to 2026-11-27.
-    
-    **Provenance:** The line forms come from the real Cedar Ridge feed (`docs/schools/cedar-ridge-high-school/calendar.ics`) and from the parser rules in `src/chapters/16-school-agent-calendar/server/ics_parser.py`. The title of the Biology test is adapted by hand to include a fold. The sim labels the feed "adapted from the Cedar Ridge feed."
-    
-    **Rules:** Lines are processed in order. While inside a VTIMEZONE (between A and C), every property is skipped. A line that starts with a space or tab is joined to the previous line with its first character removed, before any other rule applies. A DTSTART with a TZID is a local time in that zone and is converted to UTC. A DTSTART with VALUE=DATE is an all-day date and is not converted. A DTEND with VALUE=DATE gives the last day as the date minus one day. A title starting TEST: has category test, DUE: has category due, NO SCHOOL: has category no-school.
-    
-    **Learner Activity:**
-    
-    1. The learner reads the Actions list and the feed, then steps through a finished example parse once, seeing the state after each line.
-    2. The learner starts the 14 lines. Line 1 is highlighted, with the parser state ("outside any event, not in a zone") shown.
-    3. The learner chooses an action and submits.
-    4. The sim applies the correct action, updates the parser state and the event being built, and shows the Why text.
-    5. After line 14, the sim shows the score and the two finished events. The learner should notice that lines 2 and 6 are the two that look like events or properties but are not.
-    
-    **Feedback:** 14 lines, fixed order, one choice each. Correct: "Correct: <Why>". Incorrect: "Not quite. The parser does this: <the answer's action>. <Why>". The answer is revealed right after each submission, and a running score "n of 14" is shown.
-    
-    **Starting State:** The 14 lines are shown with line 1 highlighted, nothing parsed, and the question "What does the parser do with this line?"
-    
-    **Chapter Anchors:** The chapter states that a line starting with a space continues the line before it, that a DTSTART inside a VTIMEZONE is not an event, that all-day events have an exclusive end date, and that a TZID time is converted to UTC.
-    -->
+    <main></main>
+    <br/>
+    <a href=".">Back to Lesson Plan</a>
 </body>
 </html>

@@ -1,23 +1,86 @@
 ---
 title: "Template Score Explorer"
 description: "The learner will calculate the template score of 4 small windows by mean subtraction, unit normalization and a dot product, within 0.02 of the correct value in at least 3 of the 4."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/template-score-explorer/template-score-explorer.png
+og:image: /sims/template-score-explorer/template-score-explorer.png
+twitter:image: /sims/template-score-explorer/template-score-explorer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Template Score Explorer
 
+<iframe src="main.html" width="100%" height="552px" scrolling="no"></iframe>
 
+[Run the Template Score Explorer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/template-score-explorer/main.html" width="100%" height="552px" scrolling="no"></iframe>
+```
+
+## Description
+
+The wake-word detector compares a window of features with an enrolled template. It first subtracts each band's mean over the window, so a steady offset does not matter; then divides by the length of what is left, so loudness does not matter; and finally takes the dot product with the template, which is already mean-subtracted and length 1. The score runs from -1 (the opposite pattern) to +1 (the same pattern).
+
+This MicroSim uses tiny windows of 3 frames and 2 bands so every number can be checked by hand. In explore mode you step through the worked window E in three stages. In the quiz you calculate the score of four windows, each built to break one misconception. All windows are synthetic.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 4 challenges / Back to explore**: Switch between the worked window and the quiz.
+- **Score box and Submit**: Type the score to 2 decimals; within 0.02 counts. One attempt per window.
+- **Next challenge / See score**: Move on after the feedback.
+- **Next stage / Back to start**: Explore only: reveal the three stages of the worked window.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will calculate the template score of 4 small windows by mean subtraction, unit normalization and a dot product, within 0.02 of the correct value in at least 3 of the 4.
+
+**Bloom's Taxonomy level:** Apply (calculate)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+feature, window, mean subtraction, unit normalization, dot product score, template (all defined in this chapter above the block).
+
+### Activities
+
+1. **Exploration (5 min):** Step through window E. After stage 1, explain why band 0 contributes nothing to the score.
+2. **Guided practice (5 min):** Before challenge 4, write the two band means as fractions (13/3 and 21/3) to keep the arithmetic exact.
+3. **Assessment (5 min):** Complete all four challenges. Mastery is 3 of 4 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) A louder or stronger window scores higher. (2) A steady offset in a band changes the score. (3) A negative score means "no similarity" instead of "the opposite pattern". (4) The order of the frames does not matter.
+
+### Discussion Questions
+
+1. Why do W1 and W2 score the same even though W2 is twice as strong?
+2. What does a score of -1 mean?
+3. Why does the order of the frames matter?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 12: Wake-Word Detection](../../chapters/12-wake-word-detection/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 12</summary>
 
 ```text
 Type: microsim
@@ -67,6 +130,14 @@ The worked window, used in exploration: E = (10, 2), (10, 4), (10, 6). Band mean
 
 **Chapter Anchors:** The chapter states that W1 and W2 score 1.00, W3 scores -1.00, W4 scores 0.39, and that the template is (-0.5, 0.5), (0, 0), (0.5, -0.5).
 ```
+
+</details>
+
+## References
+
+1. [Dot product](https://en.wikipedia.org/wiki/Dot_product) - Wikipedia - The sum of products at the heart of the score.
+2. [Cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) - Wikipedia - Why dividing by the length makes strength irrelevant.
+3. [Template matching](https://en.wikipedia.org/wiki/Template_matching) - Wikipedia - Comparing a signal with a stored pattern.
 
 ## Related Resources
 

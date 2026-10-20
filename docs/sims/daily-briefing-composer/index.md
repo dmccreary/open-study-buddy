@@ -1,23 +1,86 @@
 ---
 title: "Daily Briefing Composer"
-description: "The learner will apply the daily briefing rules to 8 Cedar Ridge events on the morning of Monday, October 19, 2026, by sorting each into the part of the briefing it appears in or \"Not mentioned,\" with at least 7 of the 8 correct."
-status: scaffold
+description: "The learner will apply the daily briefing rules to 8 Cedar Ridge events on the morning of Monday, October 19, 2026, by sorting each into the part of the briefing it appears in or 'Not mentioned,' with at least 7 of the 8 correct."
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/daily-briefing-composer/daily-briefing-composer.png
+og:image: /sims/daily-briefing-composer/daily-briefing-composer.png
+twitter:image: /sims/daily-briefing-composer/daily-briefing-composer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Daily Briefing Composer
 
+<iframe src="main.html" width="100%" height="637px" scrolling="no"></iframe>
 
+[Run the Daily Briefing Composer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/daily-briefing-composer/main.html" width="100%" height="637px" scrolling="no"></iframe>
+```
+
+## Description
+
+Each school morning the agent speaks a short briefing: today's events, the next test within the window, and the work due soon, then a mascot line. Most of the calendar is left out on purpose: sports and academic events are mentioned only on their own day, and nothing outside the upcoming_days window is read.
+
+The composer in this MicroSim is a line-by-line port of `compose.daily_briefing()` and `query.py`, running on the real Cedar Ridge 2026-2027 calendar; it reproduces the Python composer's text for every school day. In explore mode you change the date, max_items and upcoming_days and the briefing is rebuilt. In the quiz you place eight events from Monday, October 19, 2026 into Today, Next test, Due soon or Not mentioned while the briefing is built.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 8 events / Back to explore**: Switch between exploring and the quiz.
+- **Place menu and Submit**: Choose Today, Next test, Due soon or Not mentioned. One attempt per event.
+- **Next event / See score**: Move on after the feedback.
+- **Briefing date, max_items, upcoming_days**: Explore only: any day of the 2026-2027 school year; 1 to 5 items; 1 to 14 days.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will apply the daily briefing rules to 8 Cedar Ridge events on the morning of Monday, October 19, 2026, by sorting each into the part of the briefing it appears in or "Not mentioned," with at least 7 of the 8 correct.
+
+**Bloom's Taxonomy level:** Apply (apply)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+daily briefing, event category, today's events, next test, due soon, upcoming_days, max_items (all defined in the section "The Daily Briefing and Reminders" above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Set upcoming_days to 14 on October 19 and note which events join the briefing; then pick a Saturday and a no-school day.
+2. **Guided practice (5 min):** For event 6, count the days from Monday, October 19 to Monday, October 26 and check its category.
+3. **Assessment (5 min):** Complete all eight events. Mastery is 7 of 8 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) The briefing lists every upcoming event. (2) A test on the same day goes under "Next test." (3) A due date 10 days away is "due soon." (4) A test tomorrow is not mentioned because it is not today.
+
+### Discussion Questions
+
+1. Does the briefing list every upcoming event?
+2. Where does a test on the same day go?
+3. Why is a test tomorrow mentioned when a football game in 4 days is not?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 16: Configuring the School Agent and Calendar](../../chapters/16-school-agent-calendar/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 16</summary>
 
 ```text
 Type: microsim
@@ -73,6 +136,14 @@ After the last event, the sim shows the composed briefing for these rules: "Good
 
 **Chapter Anchors:** The chapter's briefing for 2026-10-19 is the text shown above, 361 bytes as published; the sim reproduces its wording. The chapter states that the briefing is not sent on weekends or no-school days, and that the mascot line is added last.
 ```
+
+</details>
+
+## References
+
+1. [iCalendar](https://en.wikipedia.org/wiki/ICalendar) - Wikipedia - The calendar format the school publishes.
+2. [Speech synthesis](https://en.wikipedia.org/wiki/Speech_synthesis) - Wikipedia - Why the wording is written to be spoken.
+3. [Python datetime](https://docs.python.org/3/library/datetime.html) - Python documentation - The date arithmetic the composer uses.
 
 ## Related Resources
 

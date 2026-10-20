@@ -1,23 +1,86 @@
 ---
 title: "ICS Line Parser Stepper"
 description: "The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/ics-line-parser-stepper/ics-line-parser-stepper.png
+og:image: /sims/ics-line-parser-stepper/ics-line-parser-stepper.png
+twitter:image: /sims/ics-line-parser-stepper/ics-line-parser-stepper.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # ICS Line Parser Stepper
 
+<iframe src="main.html" width="100%" height="602px" scrolling="no"></iframe>
 
+[Run the ICS Line Parser Stepper MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/ics-line-parser-stepper/main.html" width="100%" height="602px" scrolling="no"></iframe>
+```
+
+## Description
+
+The server reads the school calendar as an iCalendar feed, one line at a time. A few rules do most of the work: a line that starts with a space continues the line before it; everything inside a VTIMEZONE block is skipped; a DTSTART with TZID is a local time to convert to UTC; and an all-day DTEND is exclusive, so the last day is one day earlier.
+
+The 14 lines of a small feed adapted from the Cedar Ridge calendar are listed with the eleven possible parser actions and the parser state (inside a time zone or not, the event being built, and the finished events). In explore mode you step through the finished parse. In the quiz you choose the action for each line in turn, and the parser applies the correct one and shows why.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 14 lines / Back to explore**: Switch between stepping and the quiz.
+- **Action menu and Submit**: Choose one of the actions A to K. One attempt per line.
+- **Next line / See score**: Move on after the feedback.
+- **Step and Back to start**: Explore only: parse one line at a time.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct.
+
+**Bloom's Taxonomy level:** Apply (execute)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+property, parameter, VEVENT, VTIMEZONE, line folding, all-day date, exclusive end date, UTC, TZID (all defined in the section "Step Two: An iCalendar Feed, Parsed on the Server" above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Step through all 14 lines once, reading the parser state after lines 2, 6, 7 and 13.
+2. **Guided practice (5 min):** Before line 6, decide what the space at the start of the line means.
+3. **Assessment (5 min):** Complete all fourteen lines. Mastery is 12 of 14 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) The DTSTART inside a VTIMEZONE is an event. (2) A line that starts with a space is a new property. (3) The end date of an all-day event is its last day. (4) A time with a TZID is already in UTC.
+
+### Discussion Questions
+
+1. Why is the DTSTART on line 2 not an event?
+2. Why is the last day of Thanksgiving Break November 27 and not 28?
+3. Is a time with a TZID already in UTC?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 16: Configuring the School Agent and Calendar](../../chapters/16-school-agent-calendar/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 16</summary>
 
 ```text
 Type: microsim
@@ -93,6 +156,14 @@ After line 14 the sim shows the two finished events: "TEST: Biology Unit 2 - Gen
 
 **Chapter Anchors:** The chapter states that a line starting with a space continues the line before it, that a DTSTART inside a VTIMEZONE is not an event, that all-day events have an exclusive end date, and that a TZID time is converted to UTC.
 ```
+
+</details>
+
+## References
+
+1. [iCalendar](https://en.wikipedia.org/wiki/ICalendar) - Wikipedia - VEVENT, VTIMEZONE and line folding.
+2. [RFC 5545: Internet Calendaring and Scheduling](https://datatracker.ietf.org/doc/html/rfc5545) - IETF - The exact rules for folding, DATE values and TZID.
+3. [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time) - Wikipedia - Why timed events are stored in UTC.
 
 ## Related Resources
 

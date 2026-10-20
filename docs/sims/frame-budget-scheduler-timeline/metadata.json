@@ -1,23 +1,108 @@
 {
   "title": "Frame Budget Scheduler Timeline",
-  "description": "The learner will examine 6 loop passes against the 40 ms frame budget by calculating each pass's total time to within 0.1 ms and deciding whether it overruns, with at least 5 of 6 fully correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "Once every subsystem runs in one loop, each pass must fit in the 40 ms audio frame. A pass's total is simply the sum of the costs of the tasks that run, and a pass overruns when the total is over 40.0 ms. A cooperative scheduler considers tasks in order of importance and defers any task whose budget no longer fits in what is left of the frame.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Testing, Integration, and Capstone Projects",
+    "Frame Budget",
+    "Task Budget",
+    "Cooperative Scheduler",
+    "Deferral",
+    "Frame Overrun"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "frame-budget-scheduler-timeline",
-  "library": "p5.js",
-  "bloomLevel": "Analyze",
-  "bloomVerb": "examine",
-  "completion_status": "scaffold",
-  "chapter_number": 18,
-  "chapter_title": "Testing, Integration, and Capstone Projects",
-  "chapter_dir": "18-testing-integration-capstones",
-  "chapter_rel_dir": "chapters/18-testing-integration-capstones"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/frame-budget-scheduler-timeline/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 585,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Frame Budget Scheduler Timeline",
+    "learningObjectives": [
+      "The learner will examine 6 loop passes against the 40 ms frame budget by calculating each pass's total time to within 0.1 ms and deciding whether it overruns, with at least 5 of 6 fully correct."
+    ],
+    "bloomsTaxonomy": "Analyze",
+    "bloomVerb": "examine",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "frame, frame budget, task, task budget, cooperative scheduler, deferral, overrun (all defined in the sections above this block)."
+    ],
+    "concepts": [
+      "Frame Budget",
+      "Task Budget",
+      "Cooperative Scheduler",
+      "Deferral",
+      "Frame Overrun"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 585
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 passes / Back to explore",
+        "purpose": "Switch between building passes and the quiz."
+      },
+      {
+        "name": "Total ms box, fits/overruns menu, Submit",
+        "purpose": "Type the total (within 0.1 ms) and choose fits or overruns. One attempt per pass."
+      },
+      {
+        "name": "Next pass / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Scheduler on and the eight task checkboxes",
+        "purpose": "Explore only: build any pass."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Does a task with a big budget cost its budget?",
+      "Can the scheduler interrupt a task that runs too long?",
+      "Does turning the scheduler on make every task run?"
+    ],
+    "commonMisconceptions": [
+      "(1) A task with a big budget only costs its budget. (2) The scheduler can interrupt a task that runs too long. (3) A pass that fits in 40 ms on average cannot overrun. (4) Turning the scheduler on always makes every task run."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six passes. Mastery is 5 of 6 fully correct on the first attempt."
+    ]
+  },
+  "chapter": "18-testing-integration-capstones",
+  "chapter_number": 18
 }

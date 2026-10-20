@@ -1,23 +1,87 @@
 ---
 title: "Threat Model Sorter"
 description: "The learner will prioritize 10 classroom threats into the correct fix order using each threat's likelihood, impact, and effort to fix, with at least 8 of 10 threats in the correct position."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Evaluate
+image: /sims/threat-model-sorter/threat-model-sorter.png
+og:image: /sims/threat-model-sorter/threat-model-sorter.png
+twitter:image: /sims/threat-model-sorter/threat-model-sorter.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Threat Model Sorter
 
+<iframe src="main.html" width="100%" height="622px" scrolling="no"></iframe>
 
+[Run the Threat Model Sorter MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/threat-model-sorter/main.html" width="100%" height="622px" scrolling="no"></iframe>
+```
+
+## Description
+
+A threat model lists what could go wrong and decides what to fix first. Here each classroom threat has a likelihood and an impact from 1 to 3, and the risk score is their product. Threats are fixed from the highest score down; equal scores put the cheaper fix first, and a final tie goes to the lower threat number, so the order is unique.
+
+The ten threats are shown in a scrambled order with their ratings. You select a row and move it up or down until the list runs from first to fix to last, then submit once; the sim reveals each threat's score and correct position and explains any misplaced threat. A small example lets you try a likelihood and an impact first. The ratings are reasoned judgments for a classroom, not statistics.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Selected menu, or click a row**: Choose the threat to move.
+- **Move up / Move down**: Move the selected threat one place.
+- **Submit order**: Submit the whole order once.
+- **Start over**: Return to the scrambled order.
+- **Example likelihood and impact sliders**: Try a risk score on an example threat.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will prioritize 10 classroom threats into the correct fix order using each threat's likelihood, impact, and effort to fix, with at least 8 of 10 threats in the correct position.
+
+**Bloom's Taxonomy level:** Evaluate (prioritize)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+threat model, asset, actor, attack surface, likelihood, impact, risk score, effort to fix (all defined in the section "The Threat Model" above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Use the example sliders to list every possible risk score from 1 to 9.
+2. **Guided practice (5 min):** Before arranging, compute every threat's score and group the six threats that tie at 6.
+3. **Assessment (5 min):** Submit one order. Mastery is 8 of 10 threats in the correct position.
+
+### Common Misconceptions Addressed
+
+(1) The most technical-sounding threat is always the most important. (2) Likelihood alone decides priority. (3) Equal scores mean the order does not matter. (4) A threat caused by our own bug is not a real threat.
+
+### Discussion Questions
+
+1. Is the most technical-sounding threat always the most important?
+2. Why does effort decide the order of the six threats that tie at 6?
+3. Is a threat caused by our own bug a real threat?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 17: Privacy, Safety, and Responsible Listening](../../chapters/17-privacy-responsible-listening/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 17</summary>
 
 ```text
 Type: microsim
@@ -73,6 +137,14 @@ The 10 threats, shown in this scrambled order, with their ratings (likelihood an
 
 **Chapter Anchors:** The chapter states that the ratings are judgments, that six of the ten threats tie at a score of 6, that effort breaks ties, and that the first three to fix are T3, T4, and T6.
 ```
+
+</details>
+
+## References
+
+1. [Threat model](https://en.wikipedia.org/wiki/Threat_model) - Wikipedia - Listing assets, actors and attack surfaces.
+2. [Risk matrix](https://en.wikipedia.org/wiki/Risk_matrix) - Wikipedia - Likelihood times impact.
+3. [Prompt injection](https://en.wikipedia.org/wiki/Prompt_injection) - Wikipedia - One of the ten threats, explained.
 
 ## Related Resources
 

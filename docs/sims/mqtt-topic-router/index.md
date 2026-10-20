@@ -1,23 +1,85 @@
 ---
 title: "MQTT Topic Router"
-description: "The learner will apply the \"+\" and \"#\" wildcard rules to decide which of 7 subscription filters select each of 8 topics, with at least 7 of the 8 selections exactly right."
-status: scaffold
+description: "The learner will apply the '+' and '#' wildcard rules to decide which of 7 subscription filters select each of 8 topics, with at least 7 of the 8 selections exactly right."
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/mqtt-topic-router/mqtt-topic-router.png
+og:image: /sims/mqtt-topic-router/mqtt-topic-router.png
+twitter:image: /sims/mqtt-topic-router/mqtt-topic-router.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # MQTT Topic Router
 
+<iframe src="main.html" width="100%" height="562px" scrolling="no"></iframe>
 
+[Run the MQTT Topic Router MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/mqtt-topic-router/main.html" width="100%" height="562px" scrolling="no"></iframe>
+```
+
+## Description
+
+An MQTT broker delivers a message to every subscriber whose filter selects its topic. Topics and filters are split at "/" into levels. A "+" matches exactly one level, a "#" at the end matches the rest (including no levels at all), any other level must match exactly, and a topic that starts with "$" is never selected by a filter that starts with a wildcard.
+
+The topic and each of the seven filters are drawn as level boxes. Green levels matched; a red level is where the filter fails, and each filter says whether it selects the topic. In explore mode you type any topic. In the quiz you tick the filters that select each of eight topics; the answer must be the exact set.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **S1 to S7 checkboxes and Submit**: Tick every filter that selects the topic (it may be none). One submission per topic.
+- **Start the 8 topics / Back to explore, Next topic**: Switch modes and move on after the feedback.
+- **Try a topic box**: Explore only: type any topic and see which filters select it.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will apply the "+" and "#" wildcard rules to decide which of 7 subscription filters select each of 8 topics, with at least 7 of the 8 selections exactly right.
+
+**Bloom's Taxonomy level:** Apply (apply)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+topic, topic level, subscription filter, "+" wildcard, "#" wildcard, topics beginning with "$" (all defined in the section "Topics and How to Name Them" above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Type school/crhs, then school/crhs/class/214/alert, then $SYS/x and compare which filters select each.
+2. **Guided practice (5 min):** For topic 2, count the levels between school and alert before deciding about S6.
+3. **Assessment (5 min):** Complete all eight topics. Mastery is 7 of 8 exactly right on the first submission.
+
+### Common Misconceptions Addressed
+
+(1) "+" matches any number of levels. (2) "school/crhs/#" does not select "school/crhs". (3) "#" selects every topic, including those starting with "$".
+
+### Discussion Questions
+
+1. Can "+" match more than one level?
+2. Does school/crhs/# select school/crhs?
+3. Does # select every topic?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 15: MQTT and Push Alerts](../../chapters/15-mqtt-push-alerts/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 15</summary>
 
 ```text
 Type: microsim
@@ -81,6 +143,14 @@ The 8 topics, in order, with the filters that select each and the reason shown a
 
 **Chapter Anchors:** The chapter's table of 8 topics against filters S1 to S7 has the same answers. The chapter states that "school/crhs/#" selects "school/crhs", that "#" does not select "$SYS/broker/uptime", and that "+" matches exactly one level.
 ```
+
+</details>
+
+## References
+
+1. [MQTT](https://en.wikipedia.org/wiki/MQTT) - Wikipedia - Topics and subscriptions.
+2. [MQTT Version 3.1.1: Topic wildcards](https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Toc398718106) - OASIS standard - The exact "+", "#" and "$" rules.
+3. [Publish-subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) - Wikipedia - Why filters decide who receives a message.
 
 ## Related Resources
 

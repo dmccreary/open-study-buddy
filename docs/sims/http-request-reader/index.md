@@ -1,23 +1,86 @@
 ---
 title: "HTTP Request Reader"
 description: "The learner will interpret the parts of an HTTP POST request and its reply by answering 8 questions about the request text, with at least 7 of 8 correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Understand
+image: /sims/http-request-reader/http-request-reader.png
+og:image: /sims/http-request-reader/http-request-reader.png
+twitter:image: /sims/http-request-reader/http-request-reader.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # HTTP Request Reader
 
+<iframe src="main.html" width="100%" height="522px" scrolling="no"></iframe>
 
+[Run the HTTP Request Reader MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/http-request-reader/main.html" width="100%" height="522px" scrolling="no"></iframe>
+```
+
+## Description
+
+When the Pico asks the buddy server a question, it sends a short HTTP POST: a request line, four headers, a blank line, and a 73-byte JSON body, 194 bytes in all. Each part has one job, and getting a single number wrong, such as Content-Length, changes what the server does.
+
+The request is shown as seven numbered lines; hovering over a line names it. Eight questions ask what a line does or what happens when a value is wrong, and two show the server's reply. You answer each with A, B or C, and the lines involved are highlighted with the reason. The request is the one printed by `04-raw-http-post.py`.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Answer A, B, C**: Choose an answer. One attempt per question.
+- **Next question / See score**: Move on after the feedback.
+- **Start over**: Return to question 1 with a fresh score.
+- **Hover over a line**: Read what the line is called (exploration, not scored).
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will interpret the parts of an HTTP POST request and its reply by answering 8 questions about the request text, with at least 7 of 8 correct.
+
+**Bloom's Taxonomy level:** Understand (interpret)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+HTTP protocol, request line, header, blank line, body, Content-Length, status code, HTTP POST (all defined in this chapter above this block).
+
+### Activities
+
+1. **Exploration (5 min):** Hover over all seven lines before question 1 and say aloud what each one does.
+2. **Guided practice (5 min):** Before questions 4 and 5, count the body's 73 bytes against each wrong Content-Length.
+3. **Assessment (5 min):** Answer all eight questions. Mastery is 7 of 8 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) The blank line is optional decoration. (2) A wrong Content-Length is harmless. (3) A 4xx status means the server is broken. (4) The body can be longer than Content-Length says.
+
+### Discussion Questions
+
+1. Why must the blank line be there?
+2. Why does a too-small Content-Length fail fast while a too-large one hangs?
+3. Whose mistake is a 4xx status, and whose a 5xx?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 13: Wi-Fi, HTTP, and Connecting to the Agent](../../chapters/13-wifi-http-agent-link/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 13</summary>
 
 ```text
 Type: microsim
@@ -81,6 +144,14 @@ The 8 questions, each with three choices:
 
 **Chapter Anchors:** The chapter states that the request is 194 bytes in all, 121 of head and 73 of body; that the reply is 103 bytes of body; that a Content-Length smaller than the body gives a 400 and a larger one makes the server wait; and that a first status digit of 4 means the client's mistake.
 ```
+
+</details>
+
+## References
+
+1. [HTTP](https://en.wikipedia.org/wiki/HTTP) - Wikipedia - Requests, headers and replies.
+2. [List of HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) - Wikipedia - What 200, 400 and 500 mean.
+3. [POST (HTTP)](https://en.wikipedia.org/wiki/POST_(HTTP)) - Wikipedia - Sending a body to the server.
 
 ## Related Resources
 

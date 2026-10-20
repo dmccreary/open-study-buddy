@@ -139,6 +139,10 @@ The book's defaults come from two numbers already in this book. For the HTTP upl
 
 #### Diagram: Chunk-Size and Heap Explorer
 
+
+<iframe src="../../sims/chunk-heap-explorer/main.html" width="100%" height="597px" scrolling="no"></iframe>
+[Run Chunk-Size and Heap Explorer Fullscreen](../../sims/chunk-heap-explorer/main.html)
+
 <details markdown="1">
 <summary>Chunk-Size and Heap Explorer</summary>
 Type: microsim
@@ -433,6 +437,10 @@ The longest a request can take is every attempt timing out plus every wait at it
     Doubling the wait spaces retries *out in time*, and jitter keeps many devices from choosing the *same* moment. Neither idea helps alone: doubling without jitter keeps the herd in step, and jitter without doubling never gives a struggling server room to breathe.
 
 #### Diagram: Retry and Backoff Timeline Explorer
+
+
+<iframe src="../../sims/retry-backoff-explorer/main.html" width="100%" height="577px" scrolling="no"></iframe>
+[Run Retry and Backoff Timeline Explorer Fullscreen](../../sims/retry-backoff-explorer/main.html)
 
 <details markdown="1">
 <summary>Retry and Backoff Timeline Explorer</summary>

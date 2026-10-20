@@ -196,6 +196,10 @@ W1 and W2 differ from the template in colouring and strength and still score 1.0
 
 #### Diagram: Template Score Explorer
 
+
+<iframe src="../../sims/template-score-explorer/main.html" width="100%" height="552px" scrolling="no"></iframe>
+[Run Template Score Explorer Fullscreen](../../sims/template-score-explorer/main.html)
+
 <details markdown="1">
 <summary>Template Score Explorer</summary>
 Type: microsim
@@ -362,6 +366,10 @@ The **threshold trade-off** is that moving the detection threshold changes the t
     The two score distributions overlap, and the threshold only decides which error you accept more of. Lowering the false accepts always costs some false rejects, and the only way to improve both at once is a better detector, not a better number.
 
 #### Diagram: Threshold Trade-Off Explorer
+
+
+<iframe src="../../sims/threshold-tradeoff-explorer/main.html" width="100%" height="562px" scrolling="no"></iframe>
+[Run Threshold Trade-Off Explorer Fullscreen](../../sims/threshold-tradeoff-explorer/main.html)
 
 <details markdown="1">
 <summary>Threshold Trade-Off Explorer</summary>
