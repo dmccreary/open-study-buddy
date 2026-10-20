@@ -306,6 +306,10 @@ The bin width is the finest pitch distinction the frame can make: two tones clos
 
 #### Diagram: FFT Bin Calculator
 
+
+<iframe src="../../sims/fft-bin-calculator/main.html" width="100%" height="532px" scrolling="no"></iframe>
+[Run FFT Bin Calculator Fullscreen](../../sims/fft-bin-calculator/main.html)
+
 <details markdown="1">
 <summary>FFT Bin Calculator</summary>
 Type: microsim
@@ -418,6 +422,10 @@ All six rows come from running `04-leakage-hann.py` on a test tone of amplitude 
 Try the explorer to see leakage change as you slide a tone across a bin.
 
 #### Diagram: Spectral Leakage Explorer
+
+
+<iframe src="../../sims/spectral-leakage-explorer/main.html" width="100%" height="552px" scrolling="no"></iframe>
+[Run Spectral Leakage Explorer Fullscreen](../../sims/spectral-leakage-explorer/main.html)
 
 <details markdown="1">
 <summary>Spectral Leakage Explorer</summary>
@@ -542,6 +550,10 @@ The rounding is visible at the bottom: bands 0 to 3 are all one or two bins wide
 *Worked example.* The 1,000 Hz Hann-windowed test tone of amplitude 1,000 has magnitudes 64,000, 128,000 and 64,000 at bins 39, 40 and 41. Bins 39 and 40 are in band 8 and bin 41 is in band 9. Band 8's energy is \( 64{,}000^2 + 128{,}000^2 = 2.048 \times 10^{10} \) and band 9's is \( 64{,}000^2 = 4.096 \times 10^{9} \). Band 8 is five times stronger, \( 10\log_{10} 5 = 7.0 \) dB. In dBFS, band 8 reads \( 10\log_{10}\left(2.048\times10^{10} / (1.0737\times10^{9})^2\right) = -77.5 \) dBFS: a little higher than the -78.5 dBFS peak because the band also holds a neighbor bin.
 
 #### Diagram: Log Band Layout Explorer
+
+
+<iframe src="../../sims/log-band-layout-explorer/main.html" width="100%" height="562px" scrolling="no"></iframe>
+[Run Log Band Layout Explorer Fullscreen](../../sims/log-band-layout-explorer/main.html)
 
 <details markdown="1">
 <summary>Log Band Layout Explorer</summary>

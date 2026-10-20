@@ -113,6 +113,10 @@ The right debounce time is a balance. Too short (10 ms) and a noisy switch gets 
 
 #### Diagram: Button Bounce and Debounce Visualizer
 
+
+<iframe src="../../sims/debounce-bounce-visualizer/main.html" width="100%" height="522px" scrolling="no"></iframe>
+[Run Button Bounce and Debounce Visualizer Fullscreen](../../sims/debounce-bounce-visualizer/main.html)
+
 <details markdown="1">
 <summary>Button Bounce and Debounce Visualizer</summary>
 Type: microsim
@@ -381,6 +385,10 @@ The `on_button` method reads like the table: each branch is a state, and each in
 Practice following the table with the next activity.
 
 #### Diagram: Device Mode State Machine
+
+
+<iframe src="../../sims/device-mode-state-machine/main.html" width="100%" height="582px" scrolling="no"></iframe>
+[Run Device Mode State Machine Fullscreen](../../sims/device-mode-state-machine/main.html)
 
 <details markdown="1">
 <summary>Device Mode State Machine</summary>

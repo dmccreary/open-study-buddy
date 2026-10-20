@@ -1,23 +1,86 @@
 ---
 title: "I2S Signal Reader"
 description: "The learner will interpret simplified I2S waveforms by reading the value of the left-channel sample from the serial data line in 6 waveforms, with at least 5 of 6 correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Understand
+image: /sims/i2s-signal-reader/i2s-signal-reader.png
+og:image: /sims/i2s-signal-reader/i2s-signal-reader.png
+twitter:image: /sims/i2s-signal-reader/i2s-signal-reader.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # I2S Signal Reader
 
+<iframe src="main.html" width="100%" height="542px" scrolling="no"></iframe>
 
+[Run the I2S Signal Reader MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/i2s-signal-reader/main.html" width="100%" height="542px" scrolling="no"></iframe>
+```
+
+## Description
+
+I2S carries audio on three wires. The bit clock ticks once per bit, the word select line says which channel the bits belong to (low = left, high = right), and the serial data line carries the bits themselves, most significant bit first. A bit is sampled at each rising edge of the bit clock.
+
+This simplified waveform uses 8-bit words so you can read them by eye; the real microphone uses 32-bit slots. In explore mode you step one bit-clock tick at a time and watch each bit drop into the left-word register, whose weights (-128, 64, 32 ... 1) show how a signed two's-complement value is built. In the quiz you read the signed value of the left-channel word from six waveforms; after you submit, the left word is highlighted and its bits are written under the data line. The word length and values are illustrative.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 waveforms / Back to explore**: Switch between the example waveform and the quiz.
+- **Answer box and Submit**: Type the signed left value (-128 to 127). One attempt per waveform.
+- **Next waveform / See score**: Move on after the feedback.
+- **Step one tick / Back to start**: Explore only: advance one rising edge, or return to tick 0.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will interpret simplified I2S waveforms by reading the value of the left-channel sample from the serial data line in 6 waveforms, with at least 5 of 6 correct.
+
+**Bloom's Taxonomy level:** Understand (interpret)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+I2S, bit clock, word select, serial data line, most significant bit first, signed 8-bit numbers (all defined in this chapter above the block, and in Chapter 3 for bit depth).
+
+### Activities
+
+1. **Exploration (5 min):** Step through all 16 ticks of the example. Note on which tick the word select line changes and what that means.
+2. **Guided practice (5 min):** For waveform 2, write the 8 bits, multiply each by its weight, and add them before submitting.
+3. **Assessment (5 min):** Complete all six waveforms. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) The word select line carries audio. (2) The least significant bit is sent first. (3) Both channels are always sent in the same word.
+
+### Discussion Questions
+
+1. Which wire tells the receiver whose sample the bits are?
+2. Waveforms 5 and 6 are 45 and -45. How do you get one bit pattern from the other?
+3. What would go wrong if the receiver read the bits least significant bit first?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 8: I2S Audio: Recording and Playing Sound](../../chapters/08-i2s-audio/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 8</summary>
 
 ```text
 Type: microsim
@@ -69,6 +132,14 @@ The right-channel word for each waveform is 00000000 (silent) and is shown so th
 
 **Chapter Anchors:** The chapter states that the three wires are the bit clock, the word select, and the serial data line, that word select low means the left channel, and that the most significant bit is sent first.
 ```
+
+</details>
+
+## References
+
+1. [I2S](https://en.wikipedia.org/wiki/I%C2%B2S) - Wikipedia - The three-wire audio bus and its timing.
+2. [Two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) - Wikipedia - How signed samples are stored.
+3. [machine.I2S](https://docs.micropython.org/en/latest/library/machine.I2S.html) - MicroPython documentation - The class the kit uses to read the microphone.
 
 ## Related Resources
 

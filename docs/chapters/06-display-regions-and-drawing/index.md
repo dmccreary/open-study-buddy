@@ -217,6 +217,10 @@ Now apply the dirty-region rule to six events. For each, decide which regions ne
 
 #### Diagram: Dirty Region Planner
 
+
+<iframe src="../../sims/dirty-region-planner/main.html" width="100%" height="552px" scrolling="no"></iframe>
+[Run Dirty Region Planner Fullscreen](../../sims/dirty-region-planner/main.html)
+
 <details markdown="1">
 <summary>Dirty Region Planner</summary>
 Type: microsim

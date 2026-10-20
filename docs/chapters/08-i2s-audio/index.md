@@ -90,6 +90,10 @@ Before you read the next activity, one detail: real I2S shifts the data by one c
 
 #### Diagram: I2S Signal Reader
 
+
+<iframe src="../../sims/i2s-signal-reader/main.html" width="100%" height="542px" scrolling="no"></iframe>
+[Run I2S Signal Reader Fullscreen](../../sims/i2s-signal-reader/main.html)
+
 <details markdown="1">
 <summary>I2S Signal Reader</summary>
 Type: microsim
@@ -310,6 +314,10 @@ Suppose each pass takes 50 ms because of a slow display update. Each pass, the m
 Use the budget explorer to check your arithmetic.
 
 #### Diagram: Audio Frame Time Budget Explorer
+
+
+<iframe src="../../sims/audio-frame-budget-explorer/main.html" width="100%" height="552px" scrolling="no"></iframe>
+[Run Audio Frame Time Budget Explorer Fullscreen](../../sims/audio-frame-budget-explorer/main.html)
 
 <details markdown="1">
 <summary>Audio Frame Time Budget Explorer</summary>

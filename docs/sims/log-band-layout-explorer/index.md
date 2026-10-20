@@ -1,23 +1,86 @@
 ---
 title: "Log Band Layout Explorer"
 description: "The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/log-band-layout-explorer/log-band-layout-explorer.png
+og:image: /sims/log-band-layout-explorer/log-band-layout-explorer.png
+twitter:image: /sims/log-band-layout-explorer/log-band-layout-explorer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Log Band Layout Explorer
 
+<iframe src="main.html" width="100%" height="562px" scrolling="no"></iframe>
 
+[Run the Log Band Layout Explorer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/log-band-layout-explorer/main.html" width="100%" height="562px" scrolling="no"></iframe>
+```
+
+## Description
+
+The display groups the 256 FFT bins into a few bands. Because the ear judges pitch by ratio, the bands are log-spaced: each band's top edge is a fixed multiple of its bottom edge. For 16 bands from 100 Hz to 6,400 Hz that ratio is 64^(1/16) = 1.2968. The edges are rounded to whole bins, and a band narrower than one bin is stretched to one bin.
+
+The strip shows every band along the bin axis, and the table lists each band's bins, bin count and edges in hertz. In explore mode you change the number of bands (4 to 32) and the lowest frequency (50 to 400 Hz). In the quiz, which always uses the default 16-band layout, you find the band that holds three tones and the number of bins in three bands. The layout reproduces `dsp.log_band_edges(16, 100, 6400, 12800, 512)`.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 challenges / Back to explore**: Switch between exploring and the quiz.
+- **Answer box and Submit**: Type a whole number. One attempt per challenge.
+- **Next challenge / See score**: Move on after the feedback.
+- **Bands and Lowest sliders**: Explore only: 4 to 32 bands in steps of 4; lowest frequency 50 to 400 Hz in steps of 50.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct.
+
+**Bloom's Taxonomy level:** Apply (use)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+frequency bin, bin width, band energy, log-spaced bands (all defined in this chapter above the block).
+
+### Activities
+
+1. **Exploration (5 min):** Set 32 bands and 50 Hz, then 8 bands and 400 Hz. Count how many bands hold only one bin in each layout.
+2. **Guided practice (5 min):** For challenge 2 (440 Hz), find the nearest bin first, then look it up in the table.
+3. **Assessment (5 min):** Complete all six challenges. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) Every band has the same number of bins. (2) Equal-width bands and log-spaced bands put 1,000 Hz in the same band. (3) The highest band is the narrowest.
+
+### Discussion Questions
+
+1. Why does every band have a different number of bins?
+2. Would equal-width bands put 1,000 Hz in the same band number as log bands?
+3. Why do the bands start at 100 Hz instead of 0 Hz?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 9: Signal Processing and the FFT](../../chapters/09-signal-processing-fft/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 9</summary>
 
 ```text
 Type: microsim
@@ -69,6 +132,14 @@ For exploration the learner changes the number of bands and the lowest frequency
 
 **Chapter Anchors:** The chapter states that the 16 bands run from 100 Hz to 6,400 Hz with a ratio of 1.2968 per band, that band 8 holds bins 32 to 40, that band 10 holds 16 bins, and that band 15 holds 59 bins.
 ```
+
+</details>
+
+## References
+
+1. [Octave band](https://en.wikipedia.org/wiki/Octave_band) - Wikipedia - Log-spaced frequency bands used in acoustics.
+2. [Logarithmic scale](https://en.wikipedia.org/wiki/Logarithmic_scale) - Wikipedia - Why equal ratios look like equal steps.
+3. [Spectrum analyzer](https://en.wikipedia.org/wiki/Spectrum_analyzer) - Wikipedia - Band displays like the one on the Study Buddy screen.
 
 ## Related Resources
 

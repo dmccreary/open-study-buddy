@@ -3,138 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- microsim-scaffold-stub -->
-    <title>Q15 Calculator</title>
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>Q15 Calculator MicroSim using p5.js 2.3.2</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #212529;
-        }
-        #container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #1a3a6c;
-        }
-        .placeholder {
-            border: 2px dashed #adb5bd;
-            border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #6c757d;
-            margin: 20px 0;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .placeholder .badge {
-            display: inline-block;
-            background: #ffc107;
-            color: #212529;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .placeholder h2 {
-            font-size: 18px;
-            color: #495057;
-            margin-bottom: 8px;
-        }
-        .placeholder p {
-            font-size: 14px;
-            max-width: 480px;
-        }
-        .meta {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            padding-top: 12px;
-        }
-        .meta strong { color: #495057; }
+        body { margin: 0px; padding: 0px; font-family: Arial, Helvetica, sans-serif; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+    <script src="q15-calculator.js"></script>
 </head>
 <body>
-    <div id="container">
-        <h1>Q15 Calculator</h1>
-        <div class="placeholder">
-            <span class="badge">SCAFFOLD</span>
-            <h2>MicroSim Not Yet Implemented</h2>
-            <p>This MicroSim has been scaffolded from its specification but the
-            interactive content has not been built yet. See the chapter source
-            and the <code>index.md</code> in this directory for the full spec.</p>
-        </div>
-        <div class="meta">
-            <p><strong>Sim ID:</strong> q15-calculator</p>
-            <p><strong>Library:</strong> p5.js</p>
-            <p><strong>Bloom Level:</strong> Apply</p>
-            <p><strong>Learning Objective:</strong> The learner will calculate the Q15 product (a x b) &gt;&gt; 15 of 6 pairs of Q15 integers, and state whether the result fits in 16 bits, with at least 5 of 6 correct.</p>
-        </div>
-    </div>
-
-    <!--
-    SPECIFICATION (from chapter index.md):
-
-    Type: microsim
-    **sim-id:** q15-calculator<br/>
-    **Library:** p5.js<br/>
-    **Status:** Specified<br/>
-    **Bloom Level:** Apply<br/>
-    **Bloom Verb:** calculate<br/>
-    **Learning Objective:** The learner will calculate the Q15 product (a x b) >> 15 of 6 pairs of Q15 integers, and state whether the result fits in 16 bits, with at least 5 of 6 correct.
-    
-    **Prerequisites:** fixed-point math, Q15 format, arithmetic shift right (all defined in this chapter above the block).
-    
-    **Evidence of Mastery:** For each of the 6 pairs the learner types the whole-number result and submits. A result is correct when it equals the Answer column in Content. For pair 6 the learner must also choose "Fits in 16 bits" or "Does not fit", and the pair counts as correct only when both are right. Mastery is 5 of 6 correct on the first attempt. Using the exploration calculator is exploration, not evidence.
-    
-    **Misconceptions:** (1) The product of two Q15 numbers is already Q15. (2) A shift right always rounds toward zero. (3) Q15 can hold exactly 1.0.
-    
-    **Instructional Rationale:** Apply-level calculation needs practice on cases that differ in kind: a normal product, a vanishing product, a negative rounding case, and an overflow. Committing a number before the result is shown makes the learner carry out the shift, not recognize it.
-    
-    **Content:**
-    
-    The sim shows the formula result = (a x b) >> 15, where >> is an arithmetic shift right that keeps the sign and rounds toward minus infinity. A 16-bit signed Q15 number fits when it is from -32768 to 32767.
-    
-    | # | a | b | Answer | Fits in 16 bits? | Why (shown as feedback) |
-    |---|---|---|---|---|---|
-    | 1 | 16384 | 16384 | 8192 | yes | 16384 x 16384 = 268,435,456, and 268,435,456 >> 15 = 8192. |
-    | 2 | 32767 | 32767 | 32766 | yes | 32767 x 32767 = 1,073,676,289, and >> 15 gives 32766. |
-    | 3 | -16384 | 16384 | -8192 | yes | The product -268,435,456 >> 15 is -8192. |
-    | 4 | 3 | 3 | 0 | yes | 3 x 3 = 9, and 9 >> 15 is 0: the result is smaller than one Q15 step. |
-    | 5 | -3 | 3 | -1 | yes | -9 >> 15 rounds toward minus infinity, giving -1, not 0. |
-    | 6 | -32768 | -32768 | 32768 | no | The product is +1,073,741,824, and >> 15 gives 32768, one more than the largest 16-bit value. |
-    
-    For exploration the learner enters any two Q15 integers from -32768 to 32767 (step 1, default 16384 and 16384) and sees the full product, the shifted result, the real values (integer / 32768) and whether the result fits.
-    
-    **Provenance:** The six pairs are the rows of the table in the chapter section "Fixed-Point Math", produced by `src/chapters/10-high-performance-micropython/08-q15-fixed-point.py`.
-    
-    **Rules:** result = floor(a x b / 32768). real value = integer / 32768. A result fits in 16 bits when -32768 <= result <= 32767. Inputs: min -32768, max 32767, step 1, unit none (Q15 integer).
-    
-    **Learner Activity:**
-    
-    1. The learner enters pairs in the exploration calculator and watches the full product and the shifted result.
-    2. The learner tries 32767 x 32767 and -32768 x -32768 and notices that one fits and the other does not.
-    3. The learner starts the 6 pairs. Pair 1 is shown.
-    4. The learner types the result (and, for pair 6, the fit choice) and submits.
-    5. The sim shows the correct answer and the Why text.
-    
-    **Feedback:** 6 pairs, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.
-    
-    **Starting State:** The exploration calculator shows 16384 x 16384 = 8192 with the real values 0.5 x 0.5 = 0.25, and the question "What do you get when you multiply two Q15 numbers?"
-    
-    **Chapter Anchors:** The chapter states that 16384 stands for 0.5, that 16384 x 16384 >> 15 is 8192, that 3 x 3 >> 15 is 0, and that -32768 x -32768 >> 15 is 32768, which does not fit in 16 bits.
-    -->
+    <main></main>
+    <br/>
+    <a href=".">Back to Lesson Plan</a>
 </body>
 </html>

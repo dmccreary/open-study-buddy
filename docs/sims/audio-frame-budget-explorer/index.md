@@ -1,23 +1,86 @@
 ---
 title: "Audio Frame Time Budget Explorer"
 description: "The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Analyze
+image: /sims/audio-frame-budget-explorer/audio-frame-budget-explorer.png
+og:image: /sims/audio-frame-budget-explorer/audio-frame-budget-explorer.png
+twitter:image: /sims/audio-frame-budget-explorer/audio-frame-budget-explorer.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Audio Frame Time Budget Explorer
 
+<iframe src="main.html" width="100%" height="552px" scrolling="no"></iframe>
 
+[Run the Audio Frame Time Budget Explorer MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/audio-frame-budget-explorer/main.html" width="100%" height="552px" scrolling="no"></iframe>
+```
+
+## Description
+
+The microphone delivers one 2,048-byte frame every 40 ms into a ring buffer that holds about 9.77 frames (0.39 s). The main loop does P milliseconds of work and then reads one frame. If P is 40 ms or less the loop keeps up; if it is longer, a backlog grows by (P / 40 - 1) frames every pass until the ring overflows and audio is lost.
+
+The graph shows the backlog after each pass against the ring capacity, and marks the pass and time of the first lost audio. In explore mode you move P from 10 to 100 ms. In the quiz you calculate, for six loop timings, how many seconds pass before audio is lost, or type "never". This is a model based on one board's measurement of the ring depth; the 130 ms timing is the measured full-screen update time from Chapter 5.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 timings / Back to explore**: Switch between the slider and the quiz.
+- **Answer box and Submit**: Type seconds (within 0.1 s) or never. One attempt per timing.
+- **Next timing / See score**: Move on after the feedback.
+- **Time per pass P slider**: Explore only: 10 to 100 ms in steps of 0.1 ms, default 40.0 ms.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s.
+
+**Bloom's Taxonomy level:** Analyze (examine)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+audio frame, ring buffer, frame time budget, backlog (all defined in the sections above this block). The model is stated in the Rules field and shown on screen.
+
+### Activities
+
+1. **Exploration (5 min):** Move P from 40.0 to 41.0 ms and then to 60 ms. Record how long each runs before audio is lost.
+2. **Guided practice (5 min):** For timing 3, write the growth per pass, divide the ring capacity by it, and multiply the pass count by 45 ms before submitting.
+3. **Assessment (5 min):** Complete all six timings. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) A loop that takes slightly longer than the frame is fine because the buffer is big. (2) A loop that is faster than the frame wastes audio. (3) The ring holds all the audio forever.
+
+### Discussion Questions
+
+1. A loop only 5 ms too slow still loses audio within 3.6 s. Why does a big ring not save it?
+2. Why does a loop faster than 40 ms not waste audio?
+3. What changes in the graph if the ring were twice as deep?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 8: I2S Audio: Recording and Playing Sound](../../chapters/08-i2s-audio/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 8</summary>
 
 ```text
 Type: microsim
@@ -69,6 +132,14 @@ For exploration the learner sets P from 10 to 100 ms in steps of 0.1 ms, default
 
 **Chapter Anchors:** The chapter states that a frame is 512 samples, 2,048 bytes, and 40 ms; that the microphone ring was created with 40,000 bytes but measured about 9.8 frames (0.4 s) deep; and that a 50 ms pass loses audio after about 2.0 s while a 130 ms pass loses it after about 0.65 s.
 ```
+
+</details>
+
+## References
+
+1. [Circular buffer](https://en.wikipedia.org/wiki/Circular_buffer) - Wikipedia - How a ring buffer holds data between a producer and a consumer.
+2. [Real-time computing](https://en.wikipedia.org/wiki/Real-time_computing) - Wikipedia - Deadlines and why missing one loses data.
+3. [machine.I2S](https://docs.micropython.org/en/latest/library/machine.I2S.html) - MicroPython documentation - The ibuf ring buffer used by the microphone driver.
 
 ## Related Resources
 

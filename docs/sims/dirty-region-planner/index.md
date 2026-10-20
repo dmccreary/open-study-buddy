@@ -1,23 +1,86 @@
 ---
 title: "Dirty Region Planner"
 description: "The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/dirty-region-planner/dirty-region-planner.png
+og:image: /sims/dirty-region-planner/dirty-region-planner.png
+twitter:image: /sims/dirty-region-planner/dirty-region-planner.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Dirty Region Planner
 
+<iframe src="main.html" width="100%" height="552px" scrolling="no"></iframe>
 
+[Run the Dirty Region Planner MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/dirty-region-planner/main.html" width="100%" height="552px" scrolling="no"></iframe>
+```
+
+## Description
+
+The Study Buddy's round 360 x 360 display is split into five regions: status bar, time, mascot, spectrum and agent message. Redrawing the whole screen sends 259,200 bytes; redrawing all five regions sends 50,752. The dirty-region rule says a region is redrawn only when the content shown in it changes.
+
+This MicroSim gives you six device events, one at a time. For each event you tick the regions that must be redrawn (none is allowed) and submit. The sim then colors each region (green: needed and chosen, orange: needed but missed, red: chosen but not needed), shows the bytes the correct choice sends, and compares that with a full frame. The region positions and byte sizes come from the chapter table "Region Layout"; the six events are illustrative.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Redraw checkboxes**: Tick each region whose content changes for the event shown. Leave all unticked if nothing changes.
+- **Submit**: Check your selection. One attempt per event.
+- **Next event / See score**: Move to the next event, or see the score after event 6.
+- **Start over**: Return to event 1 with a fresh score.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.
+
+**Bloom's Taxonomy level:** Apply (apply)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+dirty region, region layout, direct region write (all defined in the sections above this block, including the five regions in the table "Region Layout").
+
+### Activities
+
+1. **Exploration (5 min):** Before submitting event 1, read the five region sizes on the display and the full-frame marker on the bytes bar.
+2. **Guided practice (5 min):** Work through events 1 to 3 aloud with a partner: for each, name what changes on the screen and which region it lives in.
+3. **Assessment (5 min):** Complete all six events. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) Any event requires a full-screen redraw. (2) A region should be redrawn on every frame whether or not its content changed. (3) Changing the mascot's pose does not require redrawing the mascot region.
+
+### Discussion Questions
+
+1. Which event sent no bytes at all, and why is that still a correct "redraw"?
+2. Event 5 is the most expensive. What fraction of a full frame does it cost?
+3. Why is redrawing every region on every frame a waste even though it is 4.6 times cheaper than a full frame?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 6: Drawing Directly to Display Regions](../../chapters/06-display-regions-and-drawing/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 6</summary>
 
 ```text
 Type: microsim
@@ -69,6 +132,15 @@ Events, in this order:
 
 **Chapter Anchors:** The chapter states that the five regions are the status bar, time, mascot, spectrum, and agent message; that redrawing all five costs 50,752 bytes (16.9 ms of wire time, 28.1 ms measured); and that a full frame is 259,200 bytes.
 ```
+
+</details>
+
+## References
+
+1. [Framebuffer](https://en.wikipedia.org/wiki/Framebuffer) - Wikipedia - What a frame of pixels is and why rewriting it costs bandwidth.
+2. [High color (RGB565)](https://en.wikipedia.org/wiki/High_color) - Wikipedia - The 2-bytes-per-pixel format behind every byte count in this sim.
+3. [Serial Peripheral Interface](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface) - Wikipedia - The bus that carries each region write to the display.
+4. [framebuf: frame buffer manipulation](https://docs.micropython.org/en/latest/library/framebuf.html) - MicroPython documentation - Drawing into a small buffer before writing one region.
 
 ## Related Resources
 

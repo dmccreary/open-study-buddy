@@ -1,23 +1,86 @@
 ---
 title: "FFT Bin Calculator"
 description: "The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/fft-bin-calculator/fft-bin-calculator.png
+og:image: /sims/fft-bin-calculator/fft-bin-calculator.png
+twitter:image: /sims/fft-bin-calculator/fft-bin-calculator.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # FFT Bin Calculator
 
+<iframe src="main.html" width="100%" height="532px" scrolling="no"></iframe>
 
+[Run the FFT Bin Calculator MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/fft-bin-calculator/main.html" width="100%" height="532px" scrolling="no"></iframe>
+```
+
+## Description
+
+With a sample rate of 12,800 Hz and an FFT size of 512, every FFT bin is 12,800 / 512 = 25 Hz wide, and the useful bins run from 0 to 255 (the Nyquist limit of 6,400 Hz would be bin 256). Two formulas cover everything: bin = frequency / 25, and bin center = bin number x 25.
+
+The top strip shows the whole spectrum; the zoom row shows eleven bins around the tone, each with its number and center frequency, and the red line is the tone. In explore mode you move the tone from 0 to 6,400 Hz and read the decimal bin, the nearest bin and the difference from its center. In the quiz you find the nearest bin for four tones and the center frequency of two bins. The values match `src/kits/study-buddy-base/config.py`.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 challenges / Back to explore**: Switch between the slider and the quiz.
+- **Answer box and Submit**: Type a whole number. One attempt per challenge.
+- **Next challenge / See score**: Move on after the feedback.
+- **Tone frequency slider**: Explore only: 0 to 6,400 Hz in steps of 12.5 Hz, default 1,000 Hz.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct.
+
+**Bloom's Taxonomy level:** Apply (calculate)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+frequency bin, bin width, sample rate, FFT size, Nyquist limit (all defined in this chapter above the block, and in Chapter 3 for sample rate and Nyquist limit).
+
+### Activities
+
+1. **Exploration (5 min):** Set the tone to 1,000 Hz, then 440 Hz, then 437.5 Hz. Compare where the tone sits in each case.
+2. **Guided practice (5 min):** For challenge 3 (262 Hz), compute 262 / 25 on paper and decide which neighbor is nearer before submitting.
+3. **Assessment (5 min):** Complete all six challenges. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) The bin number equals the frequency in hertz. (2) The bin width depends on the loudness of the tone. (3) A tone between two bins is lost.
+
+### Discussion Questions
+
+1. Is a tone between two bins lost?
+2. Does a louder tone change the bin width?
+3. Why is there no bin 256 in the useful range?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 9: Signal Processing and the FFT](../../chapters/09-signal-processing-fft/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 9</summary>
 
 ```text
 Type: microsim
@@ -69,6 +132,14 @@ For exploration the learner moves a tone-frequency slider from 0 to 6,400 Hz in 
 
 **Chapter Anchors:** The chapter states that the bin width is 25 Hz, that there are 256 useful bins (0 to 255, the top bin being 6,375 Hz), that 1,000 Hz is bin 40.0, that 440 Hz is bin 17.6, and that 262 Hz is bin 10.48.
 ```
+
+</details>
+
+## References
+
+1. [Discrete Fourier transform](https://en.wikipedia.org/wiki/Discrete_Fourier_transform) - Wikipedia - What each bin of the transform measures.
+2. [Fast Fourier transform](https://en.wikipedia.org/wiki/Fast_Fourier_transform) - Wikipedia - The algorithm the kit runs on every audio frame.
+3. [Nyquist frequency](https://en.wikipedia.org/wiki/Nyquist_frequency) - Wikipedia - Why the top useful frequency is half the sample rate.
 
 ## Related Resources
 

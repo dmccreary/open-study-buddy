@@ -1,23 +1,108 @@
 {
   "title": "I2S Signal Reader",
-  "description": "The learner will interpret simplified I2S waveforms by reading the value of the left-channel sample from the serial data line in 6 waveforms, with at least 5 of 6 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "I2S carries audio on three wires. The bit clock ticks once per bit, the word select line says which channel the bits belong to (low = left, high = right), and the serial data line carries the bits themselves, most significant bit first. A bit is sampled at each rising edge of the bit clock.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "I2S Audio: Recording and Playing Sound",
+    "I2S",
+    "Bit Clock",
+    "Word Select",
+    "Serial Data Line",
+    "Two's Complement"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "i2s-signal-reader",
-  "library": "p5.js",
-  "bloomLevel": "Understand",
-  "bloomVerb": "interpret",
-  "completion_status": "scaffold",
-  "chapter_number": 8,
-  "chapter_title": "I2S Audio: Recording and Playing Sound",
-  "chapter_dir": "08-i2s-audio",
-  "chapter_rel_dir": "chapters/08-i2s-audio"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/i2s-signal-reader/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 540,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "I2S Signal Reader",
+    "learningObjectives": [
+      "The learner will interpret simplified I2S waveforms by reading the value of the left-channel sample from the serial data line in 6 waveforms, with at least 5 of 6 correct."
+    ],
+    "bloomsTaxonomy": "Understand",
+    "bloomVerb": "interpret",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "I2S, bit clock, word select, serial data line, most significant bit first, signed 8-bit numbers (all defined in this chapter above the block, and in Chapter 3 for bit depth)."
+    ],
+    "concepts": [
+      "I2S",
+      "Bit Clock",
+      "Word Select",
+      "Serial Data Line",
+      "Two's Complement"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 540
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 waveforms / Back to explore",
+        "purpose": "Switch between the example waveform and the quiz."
+      },
+      {
+        "name": "Answer box and Submit",
+        "purpose": "Type the signed left value (-128 to 127). One attempt per waveform."
+      },
+      {
+        "name": "Next waveform / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Step one tick / Back to start",
+        "purpose": "Explore only: advance one rising edge, or return to tick 0."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Which wire tells the receiver whose sample the bits are?",
+      "Waveforms 5 and 6 are 45 and -45. How do you get one bit pattern from the other?",
+      "What would go wrong if the receiver read the bits least significant bit first?"
+    ],
+    "commonMisconceptions": [
+      "(1) The word select line carries audio. (2) The least significant bit is sent first. (3) Both channels are always sent in the same word."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six waveforms. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "08-i2s-audio",
+  "chapter_number": 8
 }

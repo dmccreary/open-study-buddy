@@ -1,23 +1,86 @@
 ---
 title: "Device Mode State Machine"
 description: "The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: /sims/device-mode-state-machine/device-mode-state-machine.png
+og:image: /sims/device-mode-state-machine/device-mode-state-machine.png
+twitter:image: /sims/device-mode-state-machine/device-mode-state-machine.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Device Mode State Machine
 
+<iframe src="main.html" width="100%" height="582px" scrolling="no"></iframe>
 
+[Run the Device Mode State Machine MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/device-mode-state-machine/main.html" width="100%" height="582px" scrolling="no"></iframe>
+```
+
+## Description
+
+The Study Buddy has five modes (CLOCK, LISTENING, THINKING, SPEAKING, SETTINGS) and three buttons. Which mode the device is in decides what each button does. The rules are a transition table, and this MicroSim runs the same `Device` class as the chapter: a long press is 800 ms or more, releasing MODE before 0.2 s returns to CLOCK, and the volume starts at 40 and moves in steps of 10 between 0 and 100.
+
+The diagram shows the five modes with the events that move between them; the current mode is filled blue and the transition just taken is highlighted. The list on the right shows a sequence of button events. In explore mode you step through a sample sequence. In the quiz you predict the final mode and volume for six sequences, then the list shows the mode and volume after every event and you can replay it on the diagram. The sequences are illustrative.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 sequences / Back to explore**: Switch between the sample sequence and the quiz.
+- **Final mode and Volume menus, Submit**: Choose your prediction and submit. One attempt per sequence.
+- **Next sequence / See score**: Move on after the feedback.
+- **Step and Back to start**: Walk through the sample, or replay a sequence after submitting.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt.
+
+**Bloom's Taxonomy level:** Apply (use)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+device mode, state, event, transition, short press, long press, volume clamping (all defined in the sections above this block, with the table in the section "The State Machine").
+
+### Activities
+
+1. **Exploration (5 min):** Step through the sample sequence. Before each Step, say which row of the transition table applies.
+2. **Guided practice (5 min):** For sequence 4, write the mode and volume after each low-level event (press, long, release) before submitting.
+3. **Assessment (5 min):** Complete all six sequences. Mastery is 5 of 6 correct (both mode and volume) on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) A button does the same thing in every mode. (2) Releasing MODE always sends the recording to the server. (3) A long press of UP in CLOCK also changes the volume.
+
+### Discussion Questions
+
+1. Why does a long press of UP in CLOCK not change the volume?
+2. MODE did three different things in CLOCK, THINKING and SETTINGS. Which row of the table explains each?
+3. Why is go() the right place to update the status indicator?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 7: Buttons, State Machines, and Device Modes](../../chapters/07-buttons-and-device-modes/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 7</summary>
 
 ```text
 Type: microsim
@@ -70,6 +133,14 @@ Sequences, in this order:
 
 **Chapter Anchors:** The chapter states that the device has five modes (CLOCK, LISTENING, THINKING, SPEAKING, SETTINGS), that a long press is 800 ms or more, that a hold shorter than 0.2 s returns to CLOCK, and that the volume starts at 40 and moves in steps of 10 between 0 and 100.
 ```
+
+</details>
+
+## References
+
+1. [Finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine) - Wikipedia - States, events and transitions in general.
+2. [State-transition table](https://en.wikipedia.org/wiki/State-transition_table) - Wikipedia - The table format used by the chapter.
+3. [UML state machine](https://en.wikipedia.org/wiki/UML_state_machine) - Wikipedia - How state diagrams like this one are drawn.
 
 ## Related Resources
 

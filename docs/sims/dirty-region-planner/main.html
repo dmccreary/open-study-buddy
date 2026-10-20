@@ -3,138 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- microsim-scaffold-stub -->
-    <title>Dirty Region Planner</title>
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>Dirty Region Planner MicroSim using p5.js 2.3.2</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #212529;
-        }
-        #container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #1a3a6c;
-        }
-        .placeholder {
-            border: 2px dashed #adb5bd;
-            border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #6c757d;
-            margin: 20px 0;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .placeholder .badge {
-            display: inline-block;
-            background: #ffc107;
-            color: #212529;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .placeholder h2 {
-            font-size: 18px;
-            color: #495057;
-            margin-bottom: 8px;
-        }
-        .placeholder p {
-            font-size: 14px;
-            max-width: 480px;
-        }
-        .meta {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            padding-top: 12px;
-        }
-        .meta strong { color: #495057; }
+        body { margin: 0px; padding: 0px; font-family: Arial, Helvetica, sans-serif; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+    <script src="dirty-region-planner.js"></script>
 </head>
 <body>
-    <div id="container">
-        <h1>Dirty Region Planner</h1>
-        <div class="placeholder">
-            <span class="badge">SCAFFOLD</span>
-            <h2>MicroSim Not Yet Implemented</h2>
-            <p>This MicroSim has been scaffolded from its specification but the
-            interactive content has not been built yet. See the chapter source
-            and the <code>index.md</code> in this directory for the full spec.</p>
-        </div>
-        <div class="meta">
-            <p><strong>Sim ID:</strong> dirty-region-planner</p>
-            <p><strong>Library:</strong> p5.js</p>
-            <p><strong>Bloom Level:</strong> Apply</p>
-            <p><strong>Learning Objective:</strong> The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.</p>
-        </div>
-    </div>
-
-    <!--
-    SPECIFICATION (from chapter index.md):
-
-    Type: microsim
-    **sim-id:** dirty-region-planner<br/>
-    **Library:** p5.js<br/>
-    **Status:** Specified<br/>
-    **Bloom Level:** Apply<br/>
-    **Bloom Verb:** apply<br/>
-    **Learning Objective:** The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.
-    
-    **Prerequisites:** dirty region, region layout, direct region write (all defined in the sections above this block, including the five regions in the table "Region Layout").
-    
-    **Evidence of Mastery:** For each of the 6 events the learner selects zero or more of the five regions. A selection is correct when the set of selected regions equals the Dirty regions column in Content. Mastery is 5 of 6 correct on the first attempt. Viewing the region sizes before answering is allowed and is not scored.
-    
-    **Misconceptions:** (1) Any event requires a full-screen redraw. (2) A region should be redrawn on every frame whether or not its content changed. (3) Changing the mascot's pose does not require redrawing the mascot region.
-    
-    **Instructional Rationale:** Apply-level use of a rule requires the learner to carry it out on new cases. Deciding the set of dirty regions for each event, and then seeing the byte cost of the choice next to the cost of a full frame, ties the rule to the bandwidth reason for it.
-    
-    **Content:**
-    
-    The sim shows the five regions of the table "Region Layout" with their byte sizes: Status bar 4,800; Time 6,400; Mascot 8,192; Spectrum 16,000; Agent message 15,360. A full frame is 259,200 bytes.
-    
-    Events, in this order:
-    
-    | # | Event shown to the learner | Dirty regions | Bytes sent | Why (shown as feedback) |
-    |---|---|---|---|---|
-    | 1 | A new audio frame arrives and the spectrum values are different from the last frame. | Spectrum | 16,000 | Only the spectrum content changed. |
-    | 2 | The clock minute changes from 12:34 to 12:35. | Time | 6,400 | Only the clock digits changed. |
-    | 3 | The Pico connects to Wi-Fi and the status icon changes. | Status bar | 4,800 | The icon lives in the status bar. |
-    | 4 | The student presses Mode and the device enters Listening mode, which changes the mascot's pose and the status text. | Status bar, Mascot | 12,992 | Both the pose and the status text changed. |
-    | 5 | The agent replies "Test on Friday" and the mascot switches to a speaking pose. | Agent message, Mascot | 23,552 | The words and the pose changed. |
-    | 6 | A silent room produces an audio frame whose spectrum values equal the last frame. | none | 0 | Nothing changed, so nothing is sent. |
-    
-    **Provenance:** The regions and bytes come from the chapter table "Region Layout." The events are illustrative, and the sim labels them "illustrative."
-    
-    **Rules:** A region is dirty when the content shown in it would be different after the event. The bytes sent are the sum of the sizes of the dirty regions. The full frame is 259,200 bytes. The saving shown is 259,200 minus the bytes sent.
-    
-    **Learner Activity:**
-    
-    1. The learner reads event 1 and selects the regions that must be redrawn (none is allowed).
-    2. The learner submits.
-    3. The sim shows the correct set, the bytes sent, how that compares to 259,200, and the Why text.
-    4. The learner continues through event 6, then sees the score.
-    5. The learner should notice that event 6 sends nothing and that event 5 is the most expensive at 23,552 bytes, still far less than a full frame.
-    
-    **Feedback:** 6 events, fixed order, one attempt each. Correct: "Correct: <Why> (<bytes> bytes, <percent of full frame>%)". Incorrect: "Not quite. The dirty regions are <set>: <Why>". The correct set is revealed after each submission, and a running score "n of 6" is shown.
-    
-    **Starting State:** The five regions are shown unselected with their sizes, and event 1 is shown with the question "Which regions must be redrawn?"
-    
-    **Chapter Anchors:** The chapter states that the five regions are the status bar, time, mascot, spectrum, and agent message; that redrawing all five costs 50,752 bytes (16.9 ms of wire time, 28.1 ms measured); and that a full frame is 259,200 bytes.
-    -->
+    <main></main>
+    <br/>
+    <a href=".">Back to Lesson Plan</a>
 </body>
 </html>

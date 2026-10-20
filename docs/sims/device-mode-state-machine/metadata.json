@@ -1,23 +1,112 @@
 {
   "title": "Device Mode State Machine",
-  "description": "The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The Study Buddy has five modes (CLOCK, LISTENING, THINKING, SPEAKING, SETTINGS) and three buttons. Which mode the device is in decides what each button does. The rules are a transition table, and this MicroSim runs the same `Device` class as the chapter: a long press is 800 ms or more, releasing MODE before 0.2 s returns to CLOCK, and the volume starts at 40 and moves in steps of 10 between 0 and 100.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Buttons, State Machines, and Device Modes",
+    "Device Mode",
+    "State Machine",
+    "State",
+    "Event",
+    "Transition",
+    "Long Press",
+    "Volume Control"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "device-mode-state-machine",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "use",
-  "completion_status": "scaffold",
-  "chapter_number": 7,
-  "chapter_title": "Buttons, State Machines, and Device Modes",
-  "chapter_dir": "07-buttons-and-device-modes",
-  "chapter_rel_dir": "chapters/07-buttons-and-device-modes"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/device-mode-state-machine/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 580,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Device Mode State Machine",
+    "learningObjectives": [
+      "The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "use",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "device mode, state, event, transition, short press, long press, volume clamping (all defined in the sections above this block, with the table in the section \"The State Machine\")."
+    ],
+    "concepts": [
+      "Device Mode",
+      "State Machine",
+      "State",
+      "Event",
+      "Transition",
+      "Long Press",
+      "Volume Control"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 580
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 sequences / Back to explore",
+        "purpose": "Switch between the sample sequence and the quiz."
+      },
+      {
+        "name": "Final mode and Volume menus, Submit",
+        "purpose": "Choose your prediction and submit. One attempt per sequence."
+      },
+      {
+        "name": "Next sequence / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Step and Back to start",
+        "purpose": "Walk through the sample, or replay a sequence after submitting."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Why does a long press of UP in CLOCK not change the volume?",
+      "MODE did three different things in CLOCK, THINKING and SETTINGS. Which row of the table explains each?",
+      "Why is go() the right place to update the status indicator?"
+    ],
+    "commonMisconceptions": [
+      "(1) A button does the same thing in every mode. (2) Releasing MODE always sends the recording to the server. (3) A long press of UP in CLOCK also changes the volume."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six sequences. Mastery is 5 of 6 correct (both mode and volume) on the first attempt."
+    ]
+  },
+  "chapter": "07-buttons-and-device-modes",
+  "chapter_number": 7
 }

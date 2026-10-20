@@ -1,23 +1,86 @@
 ---
 title: "Speed-Up Chooser"
 description: "The learner will recommend, for 6 scenarios, the simplest implementation whose worst-case pass time fits within the frame budget minus the display reserve, or state that none fits, with at least 5 of 6 correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Evaluate
+image: /sims/speedup-chooser/speedup-chooser.png
+og:image: /sims/speedup-chooser/speedup-chooser.png
+twitter:image: /sims/speedup-chooser/speedup-chooser.png
+social:
+   cards: false
+quality_score: 95
 ---
 
 # Speed-Up Chooser
 
+<iframe src="main.html" width="100%" height="557px" scrolling="no"></iframe>
 
+[Run the Speed-Up Chooser MicroSim Fullscreen](main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/speedup-chooser/main.html" width="100%" height="557px" scrolling="no"></iframe>
+```
+
+## Description
+
+Faster code is not always better code. Each 40 ms audio frame leaves 30 ms for the audio work after a 10 ms display reserve, and the right implementation is the simplest one whose worst-case pass time fits that limit: plain Python first, then viper, then inline assembly. If even assembly is too slow, the work itself must shrink.
+
+The bar at the top splits one frame into the audio-work limit and the display reserve. Below it, three bars show the worst-case time of each option against the limit (dashed green) and the budget (gray). In explore mode you set the budget, reserve and three times. In the quiz you recommend an option, or None fits, for six scenarios. All times are illustrative, not measurements of the kit.
+
+## How to Use
+
+The MicroSim opens in its starting state and nothing moves until you act.
+
+- **Start the 6 scenarios / Back to explore**: Switch between the sliders and the quiz.
+- **Recommendation menu and Submit**: Choose Plain Python, Viper, Assembly or None fits. One attempt per scenario.
+- **Next scenario / See score**: Move on after the feedback.
+- **Budget, Reserve, Plain, Viper and Asm sliders**: Explore only: budget 10 to 80 ms (step 5), reserve 0 to 20 ms (step 5), times 1 to 300 ms.
+
+## Lesson Plan
+
+### Learning Objective
+
+The learner will recommend, for 6 scenarios, the simplest implementation whose worst-case pass time fits within the frame budget minus the display reserve, or state that none fits, with at least 5 of 6 correct.
+
+**Bloom's Taxonomy level:** Evaluate (recommend)
+
+### Audience and Duration
+
+High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.
+
+### Prerequisites
+
+frame budget, display reserve, worst-case pass time, viper code, inline assembly, performance trade-offs (all defined in this chapter above the block).
+
+### Activities
+
+1. **Exploration (5 min):** Starting from scenario 1's numbers, raise the reserve until Viper stops fitting. Note the reserve at which it changes.
+2. **Guided practice (5 min):** For each scenario, write limit = budget - reserve first, then check the options from the top down.
+3. **Assessment (5 min):** Complete all six scenarios. Mastery is 5 of 6 correct on the first attempt.
+
+### Common Misconceptions Addressed
+
+(1) The fastest implementation is always the best choice. (2) An implementation that fits on average fits the deadline. (3) Assembly is always needed for real-time audio.
+
+### Discussion Questions
+
+1. In scenario 2 the fastest option was not the right one. Why?
+2. Why does the average pass time not decide whether an option fits?
+3. What should you do when no option fits?
+
+### Assessment
+
+The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.
 
 ## Specification
 
-The full specification below is extracted from
-[Chapter 10: High-Performance MicroPython](../../chapters/10-high-performance-micropython/index.md).
+<details markdown="1">
+<summary>Full specification from Chapter 10</summary>
 
 ```text
 Type: microsim
@@ -69,6 +132,14 @@ For exploration the learner sets the budget (10 to 80 ms, step 5, default 40), t
 
 **Chapter Anchors:** The chapter states that the audio work gets 30 ms of the 40 ms frame after a 10 ms display reserve, that the simplest approach that passes timing verification on the worst pass is the right one, and that the numbers in this activity are illustrative.
 ```
+
+</details>
+
+## References
+
+1. [Maximising MicroPython speed](https://docs.micropython.org/en/latest/reference/speed_python.html) - MicroPython documentation - The native and viper code emitters.
+2. [Inline assembler for Thumb2 architectures](https://docs.micropython.org/en/latest/reference/asm_thumb2_index.html) - MicroPython documentation - Writing assembly functions in MicroPython.
+3. [Real-time computing](https://en.wikipedia.org/wiki/Real-time_computing) - Wikipedia - Why the worst case, not the average, sets the deadline.
 
 ## Related Resources
 

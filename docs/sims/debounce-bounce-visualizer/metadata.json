@@ -1,23 +1,108 @@
 {
   "title": "Button Bounce and Debounce Visualizer",
-  "description": "The learner will execute the debounce rule on 6 recorded pin traces by counting the presses accepted at a given debounce time, with at least 5 of 6 correct on the first attempt.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "A real button does not go cleanly from released (1) to pressed (0): its contacts bounce for a few milliseconds. The debounce rule from test 03 accepts a change only when the pin state differs from the accepted state and more than the debounce time has passed since the last accepted change.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Buttons, State Machines, and Device Modes",
+    "Bounce",
+    "Button Debouncing",
+    "Debounce Time",
+    "Falling Edge Detection",
+    "ticks_diff"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "debounce-bounce-visualizer",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "execute",
-  "completion_status": "scaffold",
-  "chapter_number": 7,
-  "chapter_title": "Buttons, State Machines, and Device Modes",
-  "chapter_dir": "07-buttons-and-device-modes",
-  "chapter_rel_dir": "chapters/07-buttons-and-device-modes"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/debounce-bounce-visualizer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 520,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Button Bounce and Debounce Visualizer",
+    "learningObjectives": [
+      "The learner will execute the debounce rule on 6 recorded pin traces by counting the presses accepted at a given debounce time, with at least 5 of 6 correct on the first attempt."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "execute",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "bounce, debounce time, falling edge, `ticks_diff` (all defined in the sections above this block). The debounce rule is shown in the Rules field and on screen throughout."
+    ],
+    "concepts": [
+      "Bounce",
+      "Button Debouncing",
+      "Debounce Time",
+      "Falling Edge Detection",
+      "ticks_diff"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 520
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 items / Back to explore",
+        "purpose": "Switch between exploring trace B and the six-item quiz."
+      },
+      {
+        "name": "Answer box and Submit",
+        "purpose": "Type the number of presses the rule counts and submit (Enter also submits). One attempt per item."
+      },
+      {
+        "name": "Next item / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Debounce time slider",
+        "purpose": "Explore only: 0 to 100 ms in steps of 10 ms, default 30 ms."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Item 4 used 100 ms and item 5 used 30 ms. Which was too long and which was too short?",
+      "Why does the rule need debouncing on release as well as on press (item 6)?",
+      "What debounce time would count trace D as two presses and trace E as one?"
+    ],
+    "commonMisconceptions": [
+      "(1) Every 0 in the trace is a separate press. (2) A longer debounce time is always safer. (3) Debouncing is only needed when a button is pressed, not when it is released."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six items. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "07-buttons-and-device-modes",
+  "chapter_number": 7
 }

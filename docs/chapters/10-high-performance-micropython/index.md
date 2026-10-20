@@ -234,6 +234,10 @@ Run the allocation quiz to test your own predictions before you look at the tabl
 
 #### Diagram: Allocation Classifier
 
+
+<iframe src="../../sims/allocation-classifier/main.html" width="100%" height="482px" scrolling="no"></iframe>
+[Run Allocation Classifier Fullscreen](../../sims/allocation-classifier/main.html)
+
 <details markdown="1">
 <summary>Allocation Classifier</summary>
 Type: microsim
@@ -313,6 +317,10 @@ The 12 statements are shown one at a time in this order, each with its answer. T
 Two hazards follow. A result can fall outside the range (the last row), and the intermediate product must fit in the 32-bit register that holds it: two products near \( 32768^2 \) add up to \( 2^{31} \), one more than a signed 32-bit register can hold. The fixed-point FFT later in this chapter avoids both with a scale-down at every stage.
 
 #### Diagram: Q15 Calculator
+
+
+<iframe src="../../sims/q15-calculator/main.html" width="100%" height="532px" scrolling="no"></iframe>
+[Run Q15 Calculator Fullscreen](../../sims/q15-calculator/main.html)
 
 <details markdown="1">
 <summary>Q15 Calculator</summary>
@@ -524,6 +532,10 @@ Each speed-up buys time and charges something else. **Performance trade-offs** a
 The rule that comes out of the table is to use the *simplest* approach that keeps the **worst** pass inside the budget (less the display reserve). Start with plain Python and measure. If the profile shows one loop dominating, move only that loop to viper. Move to assembly or a second core only when viper still does not fit. Stop at the first row that passes timing verification: speed past the deadline is not worth any cost.
 
 #### Diagram: Speed-Up Chooser
+
+
+<iframe src="../../sims/speedup-chooser/main.html" width="100%" height="557px" scrolling="no"></iframe>
+[Run Speed-Up Chooser Fullscreen](../../sims/speedup-chooser/main.html)
 
 <details markdown="1">
 <summary>Speed-Up Chooser</summary>
