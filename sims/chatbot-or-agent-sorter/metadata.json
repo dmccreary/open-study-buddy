@@ -1,0 +1,23 @@
+{
+  "title": "Chatbot or Agent Sorter",
+  "description": "The learner will distinguish chatbot behaviors from personal-agent behaviors by classifying 10 described behaviors, with at least 8 of 10 correct on the first attempt.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "chatbot-or-agent-sorter",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "distinguish",
+  "completion_status": "scaffold",
+  "chapter_number": 1,
+  "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
+  "chapter_dir": "01-personal-agents-architecture",
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+}

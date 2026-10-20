@@ -1,0 +1,23 @@
+{
+  "title": "Threat Model Sorter",
+  "description": "The learner will prioritize 10 classroom threats into the correct fix order using each threat's likelihood, impact, and effort to fix, with at least 8 of 10 threats in the correct position.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "threat-model-sorter",
+  "library": "p5.js",
+  "bloomLevel": "Evaluate",
+  "bloomVerb": "prioritize",
+  "completion_status": "scaffold",
+  "chapter_number": 17,
+  "chapter_title": "Privacy, Safety, and Responsible Listening",
+  "chapter_dir": "17-privacy-responsible-listening",
+  "chapter_rel_dir": "chapters/17-privacy-responsible-listening"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Study Buddy Architecture Explorer",
+  "description": "The learner will identify the job of each of the five kit parts and of the buddy server by matching six described jobs to the correct part, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "study-buddy-architecture-explorer",
+  "library": "vis-network",
+  "bloomLevel": "Remember",
+  "bloomVerb": "identify",
+  "completion_status": "scaffold",
+  "chapter_number": 1,
+  "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
+  "chapter_dir": "01-personal-agents-architecture",
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Data Flow Explorer",
+  "description": "The learner will examine the 8 hops of a spoken question under two settings (network encryption on or off, services on the school server or at an outside vendor) and count how many hops each observer can see, answering 6 what-if questions with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "data-flow-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "examine",
+  "completion_status": "scaffold",
+  "chapter_number": 17,
+  "chapter_title": "Privacy, Safety, and Responsible Listening",
+  "chapter_dir": "17-privacy-responsible-listening",
+  "chapter_rel_dir": "chapters/17-privacy-responsible-listening"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Audio Frame Time Budget Explorer",
+  "description": "The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "audio-frame-budget-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Analyze",
+  "bloomVerb": "examine",
+  "completion_status": "scaffold",
+  "chapter_number": 8,
+  "chapter_title": "I2S Audio: Recording and Playing Sound",
+  "chapter_dir": "08-i2s-audio",
+  "chapter_rel_dir": "chapters/08-i2s-audio"
+}

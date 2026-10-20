@@ -1,0 +1,23 @@
+{
+  "title": "Q15 Calculator",
+  "description": "The learner will calculate the Q15 product (a x b) >> 15 of 6 pairs of Q15 integers, and state whether the result fits in 16 bits, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "q15-calculator",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 10,
+  "chapter_title": "High-Performance MicroPython",
+  "chapter_dir": "10-high-performance-micropython",
+  "chapter_rel_dir": "chapters/10-high-performance-micropython"
+}

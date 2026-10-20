@@ -1,0 +1,23 @@
+{
+  "title": "Dirty Region Planner",
+  "description": "The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "dirty-region-planner",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "apply",
+  "completion_status": "scaffold",
+  "chapter_number": 6,
+  "chapter_title": "Drawing Directly to Display Regions",
+  "chapter_dir": "06-display-regions-and-drawing",
+  "chapter_rel_dir": "chapters/06-display-regions-and-drawing"
+}

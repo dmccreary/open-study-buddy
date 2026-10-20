@@ -1,0 +1,23 @@
+{
+  "title": "Device Mode State Machine",
+  "description": "The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "device-mode-state-machine",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "use",
+  "completion_status": "scaffold",
+  "chapter_number": 7,
+  "chapter_title": "Buttons, State Machines, and Device Modes",
+  "chapter_dir": "07-buttons-and-device-modes",
+  "chapter_rel_dir": "chapters/07-buttons-and-device-modes"
+}

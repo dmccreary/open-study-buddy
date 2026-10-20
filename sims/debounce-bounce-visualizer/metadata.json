@@ -1,0 +1,23 @@
+{
+  "title": "Button Bounce and Debounce Visualizer",
+  "description": "The learner will execute the debounce rule on 6 recorded pin traces by counting the presses accepted at a given debounce time, with at least 5 of 6 correct on the first attempt.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "debounce-bounce-visualizer",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "execute",
+  "completion_status": "scaffold",
+  "chapter_number": 7,
+  "chapter_title": "Buttons, State Machines, and Device Modes",
+  "chapter_dir": "07-buttons-and-device-modes",
+  "chapter_rel_dir": "chapters/07-buttons-and-device-modes"
+}

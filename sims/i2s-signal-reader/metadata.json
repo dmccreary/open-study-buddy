@@ -1,0 +1,23 @@
+{
+  "title": "I2S Signal Reader",
+  "description": "The learner will interpret simplified I2S waveforms by reading the value of the left-channel sample from the serial data line in 6 waveforms, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "i2s-signal-reader",
+  "library": "p5.js",
+  "bloomLevel": "Understand",
+  "bloomVerb": "interpret",
+  "completion_status": "scaffold",
+  "chapter_number": 8,
+  "chapter_title": "I2S Audio: Recording and Playing Sound",
+  "chapter_dir": "08-i2s-audio",
+  "chapter_rel_dir": "chapters/08-i2s-audio"
+}

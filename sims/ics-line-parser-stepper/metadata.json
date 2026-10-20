@@ -1,0 +1,23 @@
+{
+  "title": "ICS Line Parser Stepper",
+  "description": "The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "ics-line-parser-stepper",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "execute",
+  "completion_status": "scaffold",
+  "chapter_number": 16,
+  "chapter_title": "Configuring the School Agent and Calendar",
+  "chapter_dir": "16-school-agent-calendar",
+  "chapter_rel_dir": "chapters/16-school-agent-calendar"
+}

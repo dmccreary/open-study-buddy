@@ -1,0 +1,23 @@
+{
+  "title": "Agent Hosting Trade-Off Explorer",
+  "description": "The learner will recommend one of three hosting options (cloud agent, self-hosted agent, school-hosted agent) for each of four scenarios and identify the deciding factor, with at least 3 of 4 scenarios fully correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "agent-hosting-tradeoff-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Evaluate",
+  "bloomVerb": "recommend",
+  "completion_status": "scaffold",
+  "chapter_number": 1,
+  "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
+  "chapter_dir": "01-personal-agents-architecture",
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+}

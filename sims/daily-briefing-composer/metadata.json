@@ -1,0 +1,23 @@
+{
+  "title": "Daily Briefing Composer",
+  "description": "The learner will apply the daily briefing rules to 8 Cedar Ridge events on the morning of Monday, October 19, 2026, by sorting each into the part of the briefing it appears in or \"Not mentioned,\" with at least 7 of the 8 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "daily-briefing-composer",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "apply",
+  "completion_status": "scaffold",
+  "chapter_number": 16,
+  "chapter_title": "Configuring the School Agent and Calendar",
+  "chapter_dir": "16-school-agent-calendar",
+  "chapter_rel_dir": "chapters/16-school-agent-calendar"
+}

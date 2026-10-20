@@ -1,0 +1,23 @@
+{
+  "title": "Heap Fragmentation Explorer",
+  "description": "The learner will explain why a memory request can fail when enough total memory is free, by predicting the outcome of 6 allocation requests on a fragmented 16-cell heap and choosing the reason.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "heap-fragmentation-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Understand",
+  "bloomVerb": "explain",
+  "completion_status": "scaffold",
+  "chapter_number": 2,
+  "chapter_title": "MicroPython Review for Embedded Systems",
+  "chapter_dir": "02-micropython-review",
+  "chapter_rel_dir": "chapters/02-micropython-review"
+}

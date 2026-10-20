@@ -1,0 +1,23 @@
+{
+  "title": "Threshold Trade-Off Explorer",
+  "description": "The learner will judge which detection threshold, if any, meets stated limits on false rejects and false accepts in 4 scenarios, choosing the correct threshold or \"none\" in at least 3 of 4.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "threshold-tradeoff-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Evaluate",
+  "bloomVerb": "judge",
+  "completion_status": "scaffold",
+  "chapter_number": 12,
+  "chapter_title": "Wake-Word Detection",
+  "chapter_dir": "12-wake-word-detection",
+  "chapter_rel_dir": "chapters/12-wake-word-detection"
+}

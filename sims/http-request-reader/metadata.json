@@ -1,0 +1,23 @@
+{
+  "title": "HTTP Request Reader",
+  "description": "The learner will interpret the parts of an HTTP POST request and its reply by answering 8 questions about the request text, with at least 7 of 8 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "http-request-reader",
+  "library": "p5.js",
+  "bloomLevel": "Understand",
+  "bloomVerb": "interpret",
+  "completion_status": "scaffold",
+  "chapter_number": 13,
+  "chapter_title": "Wi-Fi, HTTP, and Connecting to the Agent",
+  "chapter_dir": "13-wifi-http-agent-link",
+  "chapter_rel_dir": "chapters/13-wifi-http-agent-link"
+}

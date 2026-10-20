@@ -1,0 +1,23 @@
+{
+  "title": "Template Score Explorer",
+  "description": "The learner will calculate the template score of 4 small windows by mean subtraction, unit normalization and a dot product, within 0.02 of the correct value in at least 3 of the 4.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "template-score-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 12,
+  "chapter_title": "Wake-Word Detection",
+  "chapter_dir": "12-wake-word-detection",
+  "chapter_rel_dir": "chapters/12-wake-word-detection"
+}

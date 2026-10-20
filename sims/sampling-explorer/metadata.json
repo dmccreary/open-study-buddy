@@ -1,0 +1,23 @@
+{
+  "title": "Sampling Explorer",
+  "description": "The learner will calculate the frequency a sampled tone appears to have, given its true frequency and the sample rate, for 6 challenge tones, with at least 5 of 6 correct.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "sampling-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 3,
+  "chapter_title": "Sound and Digital Audio Basics",
+  "chapter_dir": "03-sound-and-digital-audio",
+  "chapter_rel_dir": "chapters/03-sound-and-digital-audio"
+}

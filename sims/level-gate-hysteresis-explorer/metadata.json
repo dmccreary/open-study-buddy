@@ -1,0 +1,23 @@
+{
+  "title": "Level Gate Hysteresis Explorer",
+  "description": "The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers.",
+  "creator": "Open Study Buddy",
+  "author": "Dan McCreary",
+  "date": "2026-10-20",
+  "subject": [
+    "Open Study Buddy"
+  ],
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY-NC-SA 4.0",
+  "identifier": "level-gate-hysteresis-explorer",
+  "library": "p5.js",
+  "bloomLevel": "Apply",
+  "bloomVerb": "calculate",
+  "completion_status": "scaffold",
+  "chapter_number": 11,
+  "chapter_title": "Microphone Calibration and Push-to-Talk",
+  "chapter_dir": "11-mic-calibration-push-to-talk",
+  "chapter_rel_dir": "chapters/11-mic-calibration-push-to-talk"
+}
