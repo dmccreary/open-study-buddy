@@ -323,7 +323,17 @@ That construction creates a common mistake. If you wire the button with both of 
 
 ### The Pull-Up Resistor
 
-A **pull-up resistor** is a resistor that gently connects a pin to 3.3 V, so the pin has a definite value when nothing else is driving it. Without it, a button that is not pressed leaves the pin *floating*, which means it picks up stray signals and reads randomly. With the pull-up, the pin reads 1 until the button connects it to ground, and then reads 0. The Pico has pull-up resistors built in, which `Pin.PULL_UP` turns on, so the buttons need no extra parts.
+A **pull-up resistor** is a resistor that gently connects a pin to 3.3 V, so the pin has a definite value when nothing else is driving it. Without it, a button that is not pressed leaves the pin *floating*, which means it picks up stray signals and reads unpredictably. (On the board used to test this book, an unconnected GP16 happened to hold steady at 0, but nothing guarantees that.) With the pull-up, the pin reads 1 until the button connects it to ground, and then reads 0. The Pico has pull-up resistors built in, which `Pin.PULL_UP` turns on, so the buttons need no extra parts.
+
+A **pull-down resistor** is the mirror image: it gently connects the pin to ground, so the pin reads 0 until something connects it to 3.3 V. The Pico has these built in too (`Pin.PULL_DOWN`), but there is a catch on the Pico 2 W. On the test board, GP16 and GP17 kept reading 1 with the pull-down turned on once the pin had been driven or pulled high, and did not fall back to 0. A third pin, GP9, did not do this. Driving the pin low first made it read 0. The pull-ups showed no problem, reading 1 every time. This looks like a known quirk of the RP2350 pads (check Raspberry Pi's RP2350 errata for the details). It is one more reason the kit's buttons use pull-ups, and if you ever need a pull-down, drive the pin low for a moment first or use a real resistor.
+
+| Test on GP16 | Readings (40 each) |
+|--------------|-------------------|
+| Pull-up | 40 ones |
+| Pull-down, pin driven low first | 40 zeros |
+| Pull-down, pin driven high first | 40 ones (the pull-down did not pull it low) |
+
+`src/chapters/04-pico-kit-hardware/03-floating-pin-demo.py` repeats this test on your board.
 
 #### Diagram: Pull-Up Button Circuit
 
@@ -341,7 +351,7 @@ Type: microsim
 
 **Evidence of Mastery:** For each of the 6 circuits the learner commits to "reads 1", "reads 0", or "unpredictable" before the result is shown. A prediction is correct when it matches the Pin reads column in Content. Mastery is 5 of 6 on the first attempt. Pressing the button in the example circuit and watching the reading is exploration, not evidence.
 
-**Misconceptions:** (1) A button always reads 1 when pressed. (2) A pin with nothing attached reads 0. (3) The pull-up is what makes the pin read 1 even while the button is pressed to ground.
+**Misconceptions:** (1) A button always reads 1 when pressed. (2) A pin with nothing attached reads 0. (3) The pull-up is what makes the pin read 1 even while the button is pressed to ground. (4) A pull-down always pulls the pin to 0, even after the pin has been high.
 
 **Instructional Rationale:** An Understand-level inference needs the learner to reason from a circuit's parts to a result. Predicting before the result is shown makes the learner apply the rule that a connected path wins over a pull.
 
@@ -356,11 +366,11 @@ The circuit shows a Pico input pin, an optional internal pull, and a button whos
 | 3 | None (floating) | GND | Released | unpredictable | With no pull and no connection, the pin picks up stray signals. |
 | 4 | Pull-up | 3V3 | Pressed | 1 | Both the pull-up and the button push the pin toward 3.3 V. |
 | 5 | Pull-down | 3V3 | Pressed | 1 | The button connects the pin to 3V3, which beats the weak pull-down. |
-| 6 | Pull-down | 3V3 | Released | 0 | Nothing pulls the pin up, so the pull-down holds it at 0. |
+| 6 | Pull-down (pin was low before) | 3V3 | Released | 0 | Nothing pulls the pin up, so the pull-down holds it at 0, as long as the pin was low before. |
 
-**Provenance:** The reasoning rule comes from the chapter section "The Pull-Up Resistor." The six circuits are illustrative, and the sim labels them "illustrative."
+**Provenance:** The reasoning rule comes from the chapter section "The Pull-Up Resistor." The six circuits are illustrative, and the sim labels them "illustrative." The reality check after circuit 6 comes from the measurement on GP16 and GP17 in the same section.
 
-**Rules:** A connection from the pin to GND or 3V3 through a pressed button overrides the pin's internal pull (pull-up or pull-down). With a released button and a pull setting, the pin reads the pull's level (1 for pull-up, 0 for pull-down). With a released button and no pull, the pin reads an unpredictable value that the sim shows as alternating 0 and 1.
+**Rules:** A connection from the pin to GND or 3V3 through a pressed button overrides the pin's internal pull (pull-up or pull-down). With a released button and a pull setting, the pin reads the pull's level (1 for pull-up, 0 for pull-down). With a released button and no pull, the pin reads an unpredictable value that the sim shows as alternating 0 and 1. A pull-down only pulls the pin to 0 if the pin was low before; the reality check shows the case where it was high.
 
 **Learner Activity:**
 
@@ -369,12 +379,13 @@ The circuit shows a Pico input pin, an optional internal pull, and a button whos
 3. The learner picks "reads 1," "reads 0," or "unpredictable."
 4. The sim shows the reading and the Why text, then moves to the next circuit.
 5. After circuit 6, the sim shows the score. The learner should notice that circuit 4 is the wiring mistake that makes a button seem dead.
+6. The sim then shows an unscored reality check: a pin set to pull-down after it was driven high still reads 1 on the test board (GP16 and GP17), while a pull-up always reads 1. The learner is asked to explain, from a choice of two sentences, why the kit uses pull-ups. The correct sentence is "Pull-ups worked every time on the test board, and the pull-down did not." The other sentence is "Pull-ups and pull-downs behaved the same on the test board."
 
-**Feedback:** 6 circuits, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The pin reads <answer>: <Why>". The answer is revealed right after each pick, and a running score "n of 6" is shown.
+**Feedback:** 6 circuits, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The pin reads <answer>: <Why>". The answer is revealed right after each pick, and a running score "n of 6" is shown. The reality check is not scored: a wrong choice shows the correct sentence and the table of readings.
 
 **Starting State:** The sample circuit is shown with the button released and the pin reading 1, with the question "What will the pin read when the button is pressed?"
 
-**Chapter Anchors:** The chapter states that with a pull-up and the button to ground, a released button reads 1 and a pressed button reads 0, and that the kit uses the pull-up built into the Pico.
+**Chapter Anchors:** The chapter states that with a pull-up and the button to ground, a released button reads 1 and a pressed button reads 0, and that the kit uses the pull-up built into the Pico. The chapter also states that on the test board a pull-down on GP16 and GP17 kept reading 1 after the pin had been driven high, and that pull-ups were not affected.
 </details>
 
 ## Wiring It Up

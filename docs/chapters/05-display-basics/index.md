@@ -300,7 +300,7 @@ Challenges, in this order:
 2. The learner starts the challenges. Challenge 1 is shown.
 3. The learner types a number and submits.
 4. The sim shows whether it is correct and the Why text, then moves to the next challenge.
-5. After challenge 6, the sim shows the score. The learner should notice that a full frame takes about 86 ms at 24 MHz with the default settings, while the small box takes about 2 ms.
+5. After challenge 6, the sim shows the score. The learner should notice that a full frame takes about 86 ms of wire time at 24 MHz with the default settings, while the small box takes about 2 ms. The calculator leaves out Python overhead, and says so.
 
 **Feedback:** 6 challenges, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.
 
@@ -334,16 +334,27 @@ print("full-screen fill took", elapsed, "ms")
 
 Your result will be at least 86 ms. At 86.4 ms per frame, the best possible rate is \( 1000 / 86.4 \approx 11.6 \) full frames per second.
 
+The measurements below are from the board used to test this book. The measured times are about 1.5 times the wire time, and the gap is MicroPython's overhead: every SPI call, and every 256-pixel chunk, costs time on top of the bits.
+
+| You ask for (Hz) | You get (Hz) | Best case (ms) | Measured (ms) | Frames per second |
+|------------------|--------------|----------------|---------------|-------------------|
+| 8,000,000 | 8,000,000 | 259.2 | 334.6 | 3.0 |
+| 12,000,000 | 12,000,000 | 172.8 | 231.9 | 4.3 |
+| 20,000,000 | 12,000,000 | 172.8 | 232.0 | 4.3 |
+| 24,000,000 | 24,000,000 | 86.4 | 129.4 | 7.7 |
+
+So on this board a full-screen fill at the fastest speed takes about 129 ms, which is 7.7 full frames per second, not 11.6. Your own numbers will differ a little. Run `src/chapters/05-display-basics/01-fill-timing.py` and compare.
+
 *Worked example.* Suppose you want the screen to update 10 times a second with full frames. The bandwidth needed is \( 259{,}200 \times 8 \times 10 = 20{,}736{,}000 \) bits per second, which is 86 percent of the 24 MHz link and leaves almost nothing for anything else. At 30 frames per second you would need 62.2 million bits per second, which is more than twice what the bus can carry. Smooth full-screen video is simply not possible on this link.
 
-Now compare with the audio. The microphone frames from Chapter 3 are 40 ms long, and your program must read each one before the next arrives. A single full-frame update takes at least 86.4 ms, which is more than two whole audio frames. While the Pico is busy pushing pixels to the display, the microphone keeps producing samples that no one is reading.
+Now compare with the audio. The microphone frames from Chapter 3 are 40 ms long, and your program must read each one before the next arrives. A single full-frame update takes at least 86.4 ms, and 129 ms when measured, which is more than three whole audio frames. While the Pico is busy pushing pixels to the display, the microphone keeps producing samples that no one is reading.
 
-| Update | Minimum time at 24 MHz | Fits in a 40 ms audio frame? |
-|--------|------------------------|------------------------------|
-| Full frame (259,200 bytes) | 86.4 ms | No, over two frames |
-| Level meter (8,800 bytes) | 2.9 ms | Yes |
-| Clock-digit box (6,000 bytes) | 2.0 ms | Yes |
-| One big-font letter (1,024 bytes) | 0.34 ms | Yes |
+| Update | Minimum time at 24 MHz | Measured | Fits in a 40 ms audio frame? |
+|--------|------------------------|----------|------------------------------|
+| Full frame (259,200 bytes) | 86.4 ms | 129 ms | No, over three frames |
+| Level meter (8,800 bytes) | 2.9 ms | not measured | Yes |
+| Clock-digit box (6,000 bytes) | 2.0 ms | not measured (a 100 by 32 box: 3.8 ms) | Yes |
+| One big-font letter (1,024 bytes) | 0.34 ms | not measured | Yes |
 
 !!! mascot-thinking "Send Only What Changed"
     ![Sage thinking](../../img/mascot/thinking.png){ class="mascot-admonition-img" }
@@ -406,7 +417,7 @@ A good theme keeps strong contrast between text and background, so words stay re
 
 ## Putting It All Together
 
-You can now describe the screen from the wires up. The Pico sends bytes over an SPI bus at up to 24 million bits per second. The driver wraps those bytes in commands, and each pixel is a 16-bit RGB565 value. A full frame is 259,200 bytes, which takes at least 86.4 ms to send, and that is more than two audio frames. No frame buffer lives on the Pico, because it would use about half of all SRAM.
+You can now describe the screen from the wires up. The Pico sends bytes over an SPI bus at up to 24 million bits per second. The driver wraps those bytes in commands, and each pixel is a 16-bit RGB565 value. A full frame is 259,200 bytes, which takes at least 86.4 ms to send (129 ms when measured), and that is more than three audio frames. No frame buffer lives on the Pico, because it would use about half of all SRAM.
 
 Key takeaways:
 
@@ -414,7 +425,7 @@ Key takeaways:
 - A pixel is addressed by (x, y), with (0, 0) at the top left and y increasing downward; the center is (180, 180).
 - RGB565 packs a color into 16 bits (5 red, 6 green, 5 blue), giving 65,536 colors.
 - The frame size formula is width times height times bytes per pixel, so a full frame is 259,200 bytes.
-- The best-case time for a full frame at 24 MHz is 86.4 ms, about 11.6 frames per second.
+- The best-case time for a full frame at 24 MHz is 86.4 ms, about 11.6 frames per second; measured on the test board it is 129 ms, about 7.7 frames per second.
 - Update bandwidth, not drawing logic, is what limits the screen, so send only what changed.
 - Polar to Cartesian conversion places clock marks: \( x = c_x + r\sin\theta \), \( y = c_y - r\cos\theta \).
 
@@ -428,6 +439,6 @@ Test yourself with these two questions, and click each one to reveal its answer.
 
 !!! mascot-celebration "From Pixels to Bandwidth"
     ![Sage celebrating](../../img/mascot/celebration.png){ class="mascot-admonition-img" }
-    You just calculated that a full frame is 259,200 bytes and takes at least 86.4 ms, and you packed colors into RGB565. That arithmetic is the reason the next chapter's region updates exist.
+    You just calculated that a full frame is 259,200 bytes and takes 86.4 ms at best and 129 ms measured, and you packed colors into RGB565. That arithmetic is the reason the next chapter's region updates exist.
 
 In Chapter 6 we stop redrawing everything and write only the pieces that changed.

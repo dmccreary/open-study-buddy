@@ -4,8 +4,9 @@
 # set. Hold MODE for one second to quit. Needs the display, the three buttons,
 # and the amplifier and speaker.
 #
-# PASS: each tap of UP makes the beep louder and the number bigger; at 100 and
-# at 0 the number stops. Keep the speaker away from your ear at high volumes.
+# PASS: each tap of UP makes the beep louder and the number bigger; at MAX_VOLUME
+# (60) and at 0 the number stops. Raise MAX_VOLUME only if you need to, and keep
+# the speaker away from your ear.
 
 NAME = "06-volume-beep.py"
 VERSION = "1.0"
@@ -19,6 +20,7 @@ from machine import I2S, Pin
 import config
 from buttons import Button
 
+MAX_VOLUME = 60           # the cap; 100 is very loud at close range
 RATE = 16000
 IBUF = 8192
 N = 256
@@ -79,7 +81,7 @@ try:
             if name == "mode" and event == "long":
                 running = False
             elif event == "press" and name != "mode":
-                volume = max(0, min(100, volume + (10 if name == "up" else -10)))
+                volume = max(0, min(MAX_VOLUME, volume + (10 if name == "up" else -10)))
                 print("volume", volume)
                 show()
                 beep()

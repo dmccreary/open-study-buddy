@@ -5,15 +5,21 @@
 # the click the loud frame was READ. That delay is the backlog waiting in the
 # microphone's ring buffer.
 #
-# Chapter 8's model says: if LOOP_MS <= 40 the delay stays small (about one
-# frame, 40 to 80 ms). If LOOP_MS = 50 the backlog grows 10 ms per pass,
-# so the delay grows by about 200 ms per second until the ring (40,000 bytes,
-# about 0.78 s of audio) is full, about 3.95 s into the run. Then it should
-# stop growing, or something else should happen. THAT is what to find out.
+# What Chapter 8 says, from the first measurements on the test board:
+#   LOOP_MS = 30: the delay stays flat at about 50 ms.
+#   LOOP_MS = 50: the delay grows about 10 ms per pass (about 200 ms per second),
+#                 then stops near 460 ms, and some clicks are never heard (lost).
+# So the ring is only about 0.4 s deep (about 9.8 frames), not the 0.78 s that
+# 40,000 bytes would hold at 4 bytes per sample. Chapter 8 offers one
+# explanation, still unconfirmed: MONO mode stores 8 bytes per sample time.
+# Runs at LOOP_MS = 40, 60 and 130 are still needed. At 130 ms (a full-screen
+# redraw) the model predicts audio is lost after about 0.65 s.
 #
 # Needs the INMP441 microphone AND the amplifier + speaker, close to each
-# other (a few centimeters). Raise VOLUME in config.py if clicks are not heard.
-# Try LOOP_MS = 30, 40, 50, 60, 86 in turn and write down the delay curves.
+# other (a few centimeters). The click is QUIET on purpose: it plays at 75% of
+# VOLUME in config.py, for 80 ms, once a second. If clicks are not heard, move
+# the speaker closer to the microphone before raising the volume.
+# Try LOOP_MS = 30, 40, 50, 60, 130 in turn and write down the delay curves.
 
 NAME = "03-ring-latency.py"
 VERSION = "1.0"
@@ -26,10 +32,12 @@ from machine import I2S, Pin
 
 import config
 
-LOOP_MS = 50              # <- change me: 30, 40, 50, 60, 86
+LOOP_MS = 50              # <- change me: 30, 40, 50, 60, 130
 RUN_SECONDS = 14
 CLICK_EVERY_MS = 1000
-THRESHOLD_BITS = 3        # a click must be this many bits above the floor
+THRESHOLD_BITS = 2        # a click must be this many bits above the floor
+CLICK_VOLUME = config.VOLUME * 3 // 4     # percent of full scale; quiet on purpose
+CLICK_MS = 80
 RATE = config.MIC_SAMPLE_RATE
 FRAME_SAMPLES = 512
 LOG2 = math.log(2)
@@ -42,11 +50,11 @@ def loudness(buf):
     return math.log(average + 1) / LOG2
 
 
-def make_click(ms=8, freq=1500):
+def make_click(ms=CLICK_MS, freq=1000):
     count = RATE * ms // 1000
     out = bytearray(count * 2)
     for i in range(count):
-        value = int(32000 * math.sin(2 * math.pi * freq * i / RATE))
+        value = int(32767 * CLICK_VOLUME / 100 * math.sin(2 * math.pi * freq * i / RATE))
         struct.pack_into("<h", out, i * 2, value)
     return out
 
@@ -99,8 +107,8 @@ try:
             pass                                   # pretend to do slow work
     print()
     print("clicks heard {}, missed {}".format(heard, missed))
-    print("If the delay keeps growing then levels off near 780 ms, the ring behaves")
-    print("like the chapter says. Note what it does at the top.")
+    print("Chapter 8 expects the delay to level off near 460 ms (a ring about 0.4 s deep),")
+    print("with some clicks lost. Note where yours levels off and how many clicks are missed.")
 finally:
     mic.deinit()
     speaker.deinit()

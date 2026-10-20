@@ -16,5 +16,6 @@ cd src/chapters
 | `05-frame-size-calc.py` | none (also runs on a computer) | 259,200 bytes; 86.4 ms; PASS |
 
 **Record this number:** the measured full-screen fill time at 24 MHz from `01`.
-The chapter says "at least 86 ms"; the real figure tells you how much overhead
-MicroPython adds on top of the wire time.
+The chapter says "at least 86 ms"; on the test board it was 129 ms (232 ms at
+12 MHz, 335 ms at 8 MHz). Compare yours: the gap is MicroPython's overhead on top
+of the wire time.

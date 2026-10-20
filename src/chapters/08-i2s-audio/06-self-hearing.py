@@ -1,5 +1,5 @@
 # Chapter 8, Test 06: Measure the self-hearing problem
-# Plays a 1 kHz tone through the speaker while reading the microphone, and
+# Plays a 1 kHz tone (at most 30% of full scale: it is kept quiet) through the speaker while reading the microphone, and
 # prints the microphone's loudness for every 40 ms frame: before the tone, while
 # it plays, and after it stops. Tells you how loud the device hears itself and
 # how long the "quiet tail" must be before the microphone can be trusted again.
@@ -29,6 +29,7 @@ TONE_FRAMES = 25            # one second of tone
 LEAD_FRAMES = 10
 TAIL_FRAMES = 25
 LOG2 = math.log(2)
+TONE_VOLUME = min(config.VOLUME, 30)     # percent of full scale; kept low on purpose
 
 
 def loudness(buf):
@@ -42,7 +43,7 @@ def loudness(buf):
 chunk = bytearray(FRAME_SAMPLES * 2)
 for i in range(FRAME_SAMPLES):
     struct.pack_into("<h", chunk, i * 2,
-                     int(32767 * config.VOLUME / 100 * math.sin(2 * math.pi * 1000 * i / RATE)))
+                     int(32767 * TONE_VOLUME / 100 * math.sin(2 * math.pi * 1000 * i / RATE)))
 silence = bytes(FRAME_SAMPLES * 2)
 
 config.set_gain()
@@ -80,14 +81,17 @@ try:
     print("Average while the tone plays: {:.1f} bits = {:.1f} above the floor "
           "({:.0f}x louder)".format(heard_bits, heard_bits - floor, 2 ** (heard_bits - floor)))
 
-    last_loud = None
-    for n in range(LEAD_FRAMES + TONE_FRAMES, len(levels)):
-        if levels[n] > floor + 1:
-            last_loud = n
-    if last_loud is None:
-        tail = 0
-    else:
-        tail = (last_loud - (LEAD_FRAMES + TONE_FRAMES) + 1) * 40
+    # The tail ends at the first run of 3 quiet frames in a row, so one noisy
+    # frame in a room does not stretch the answer.
+    tone_end = LEAD_FRAMES + TONE_FRAMES
+    tail = None
+    for n in range(tone_end, len(levels) - 2):
+        if all(levels[n + k] <= floor + 1 for k in range(3)):
+            tail = (n - tone_end) * 40
+            break
+    if tail is None:
+        tail = TAIL_FRAMES * 40
+        print("(the microphone never settled within {} ms)".format(tail))
     print("Quiet tail needed after the last write: about {} ms".format(tail))
     print("PASS if the tone was clearly louder than the floor." if heard_bits - floor > 2
           else "CHECK: the microphone barely heard the speaker (it may be far away or the volume low).")

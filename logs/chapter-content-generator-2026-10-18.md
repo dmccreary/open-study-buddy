@@ -79,3 +79,45 @@
 - docs/chapters/02-micropython-review/index.md through docs/chapters/08-i2s-audio/index.md
 - logs/ch-02-content-generation.md through logs/ch-08-content-generation.md
 - logs/chapter-content-generator-2026-10-18.md
+
+---
+
+# Session 3: Chapters 9 to 18
+
+**Skill Version:** 1.11
+**Execution Mode:** Five parallel writers, two chapters each (9-10, 11-12, 13-14, 15-16, 17-18). Per-chapter logs: `logs/ch-09-content-generation.md` to `logs/ch-18-content-generation.md`.
+
+## Results
+
+| Ch | Title | Words (file) | Tiers A/B/C | Mascots |
+|----|-------|--------------|-------------|---------|
+| 9 | Signal Processing and the FFT | 10,611 | 6/5/13 | 9 |
+| 10 | High-Performance MicroPython | 9,898 | 0/8/12 | 6 |
+| 11 | Microphone Calibration and Push-to-Talk | 9,300 | 5/4/5 | 7 |
+| 12 | Wake-Word Detection | 8,741 | 0/10/14 | 9 |
+| 13 | Wi-Fi, HTTP, and Connecting to the Agent | 7,038 | 4/3/4 | 7 |
+| 14 | Streaming Speech, Security, and Network Resilience | 9,276 | 0/6/9 | 8 |
+| 15 | MQTT and Push Alerts | 9,365 | 0/7/15 | 9 |
+| 16 | Configuring the School Agent and Calendar | 11,272 | 0/6/18 | 8 |
+| 17 | Privacy, Safety, and Responsible Listening | 9,409 | 0/4/14 | 7 |
+| 18 | Testing, Integration, and Capstone Projects | 10,760 | 0/5/11 | 8 |
+
+- Word counts are as reported by each writer (file totals, including code and specification blocks). Nearly every chapter is above the budget from the Elaboration Budget; the specification blocks and code account for most of the excess.
+- `validate-chapter-mascots.py`: no violations in chapters 9 to 18.
+- `mkdocs build --strict`: clean.
+- Nothing in chapters 9 to 18 was run on the Pico. Measured values are left as labelled estimates, synthetic or illustrative numbers, or blanks; see `TODO.md` (about 90 items).
+
+## Code verified off-device
+
+- Fake `machine`/`time`/`gc9b72`/I2S layers ran the Pico scripts for every chapter.
+- Chapter 10: real MicroPython unix port (built from source) ran the viper kernels; Q15 FFT checked in a CPython model.
+- Chapters 13 and 14: the buddy servers (HTTP, HTTPS, WebSocket) tested over real sockets.
+- Chapter 15: topic matcher checked against paho-mqtt on 4,095 pairs; Pico scripts ran against a toy broker with the real `umqtt.simple`. Mosquitto and Home Assistant were not available.
+- Chapter 16: 78-check pipeline test on Cedar Ridge's real `events.json` and `calendar.ics`.
+- Chapters 17 and 18: listening-indicator test (mutation-checked), detectors and logging on synthetic data.
+
+## Known follow-ups
+
+- Chapter 12's fast-FFT hook is not wired to Chapter 10's Q15 FFT (TODO.md).
+- Chapters 17 and 18 refer to Chapter 16 details written in parallel; cross-references were checked by the writers against the other chapters as they appeared.
+- Chapter 17's SOPIPA and BIPA descriptions were written without a web check; FERPA only against secondary sources. A privacy officer or counsel should review them.

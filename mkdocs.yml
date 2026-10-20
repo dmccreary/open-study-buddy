@@ -57,6 +57,17 @@ nav:
       - 17. Privacy, Safety, and Responsible Listening: chapters/17-privacy-responsible-listening/index.md
       - 18. Testing, Integration, and Capstone Projects: chapters/18-testing-integration-capstones/index.md
 
+  - Synthetic Schools:
+      - Overview: schools/index.md
+      - Cedar Ridge High School:
+          - School Overview: schools/cedar-ridge-high-school/index.md
+          - Gale the Griffin: schools/cedar-ridge-high-school/mascot.md
+          - Calendar: schools/cedar-ridge-high-school/calendar.md
+      - University of Minnesota: schools/u-of-mn/index.md
+      - Groves Learning Organization: schools/glo/index.md
+      - The Thinking Spot: schools/the-thinking-spot/index.md
+      - Two Rivers High School: schools/two-rivers-high-school/index.md
+
   - Learning Graph:
       - Introduction: learning-graph/index.md
       - Course Description Assessment: learning-graph/course-description-assessment.md
@@ -153,6 +164,7 @@ extra_css:
 exclude_docs: |
   **/image-prompt*.md
   **/image-prompts*.md
+  **/mascot-image-prompt*.md
   **/cover-prompt.md
   **/character-sheet.md
   **/TODO.md

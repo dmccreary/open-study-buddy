@@ -58,7 +58,7 @@ try:
         t2 = time.ticks_us()
         wait_us += time.ticks_diff(t1, t0)
         work_us += time.ticks_diff(t2, t1)
-        if time.ticks_diff(t2, t0) > frame_us:
+        if time.ticks_diff(t2, t0) > frame_us + 2000:      # 2 ms of timing jitter is normal
             overruns += 1
         frames += 1
         if time.ticks_diff(t2, window) >= 1_000_000:
@@ -70,7 +70,7 @@ try:
             wait_us = work_us = 0
             window = t2
     print()
-    print("passes longer than one frame (overruns): {}".format(overruns))
+    print("passes more than 2 ms longer than one frame (overruns): {}".format(overruns))
 finally:
     mic.deinit()
 print("Done.")

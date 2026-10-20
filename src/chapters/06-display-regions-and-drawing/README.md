@@ -34,5 +34,7 @@ python3 png-to-rgb565.py my-mascot.png ../my-mascot.rgb565 120
 Then copy it with `mpremote fs cp ../my-mascot.rgb565 :my-mascot.rgb565` and
 change `PATH` in `08-show-image.py`.
 
-**Record these numbers:** the three times from `01`, the redraw time of all five
-regions from `07` (best case 16.9 ms), and bytes per frame from `03`.
+**Record these numbers:** the three times from `01` (test board: 1,593 ms, 4.3 ms,
+3.1 ms), the redraw time of all five regions from `07` (best case 16.9 ms; test
+board 28.1 ms), and bytes and time per frame from `03` (test board: 8,822 bytes and
+6.4 ms, 7,116 and 5.2 ms, 271 and 0.8 ms).

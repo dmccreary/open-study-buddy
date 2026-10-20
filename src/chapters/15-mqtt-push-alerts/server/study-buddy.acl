@@ -1,0 +1,22 @@
+# /etc/mosquitto/study-buddy.acl   (Chapter 15)
+#
+# "user" lines name accounts from the password file. "pattern" lines apply to
+# every account, and %u stands for the account's own user name. Give each
+# device a user name equal to its device id (for example desk-07), and the
+# patterns below let a device write only its own status topics.
+
+# The buddy server: may publish alerts and read anything about the school.
+user buddy-server
+topic readwrite school/crhs/#
+
+# A dashboard such as Home Assistant: read-only.
+user dashboard
+topic read school/crhs/#
+
+# Every device (user name = device id):
+pattern read school/crhs/alert
+pattern read school/crhs/class/+/alert
+pattern write school/crhs/device/%u/status
+pattern write school/crhs/device/%u/telemetry
+pattern write school/crhs/device/%u/echo
+pattern read school/crhs/device/%u/echo-reply

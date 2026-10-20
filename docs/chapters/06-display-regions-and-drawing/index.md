@@ -43,7 +43,7 @@ This chapter builds on concepts from:
 
 ## Send Only What Changed
 
-Chapter 5 ended with a hard number: a full-frame update costs at least 86.4 ms, and your audio frames arrive every 40 ms. The way out is not a faster wire. It is a smarter habit: whenever something on the screen changes, find the smallest rectangle that contains the change, and send only that.
+Chapter 5 ended with a hard number: a full-frame update costs at least 86.4 ms (129 ms when measured), and your audio frames arrive every 40 ms. The way out is not a faster wire. It is a smarter habit: whenever something on the screen changes, find the smallest rectangle that contains the change, and send only that.
 
 !!! mascot-welcome "Small Boxes, Fast Screen"
     ![Sage waving welcome](../../img/mascot/welcome.png){ class="mascot-admonition-img" }
@@ -72,11 +72,13 @@ The driver hides these steps inside its private `_set_window()` method. You will
 
 A **direct region write** is the technique built on that window: set the window to the rectangle you want, then stream all of its pixels in one go. Compare the cost of doing the same job two ways. To paint a 100 by 30 box one pixel at a time, you call `pixel()` 3,000 times, and each call sends 13 bytes (Chapter 4), a total of 39,000 bytes. To paint it with a single `fill_rect()`, the driver sets the window once (11 bytes of commands and ranges) and then sends 3,000 pixels at 2 bytes each, a total of 6,011 bytes, about one-sixth as much.
 
-| Method | Calls | Bytes on the wire | Minimum time at 24 MHz |
-|--------|-------|-------------------|------------------------|
-| `pixel()` 3,000 times | 3,000 | 39,000 | 13 ms |
-| `fill_rect()` once | 1 | 6,011 | 2.0 ms |
-| `blit_buffer()` once | 1 | 6,011 | 2.0 ms |
+| Method | Calls | Bytes on the wire | Minimum time at 24 MHz | Measured |
+|--------|-------|-------------------|------------------------|----------|
+| `pixel()` 3,000 times | 3,000 | 39,000 | 13 ms | 1,593 ms |
+| `fill_rect()` once | 1 | 6,011 | 2.0 ms | 4.3 ms |
+| `blit_buffer()` once | 1 | 6,011 | 2.0 ms | 3.1 ms |
+
+The last column was measured on the board used to test this book. The per-pixel loop took about 1.6 seconds, roughly 370 times as long as one `fill_rect()`, because each `pixel()` call makes six separate SPI writes and the wire time is a tiny part of it. The two single-call methods were within about 2 ms of their wire-time minimum. You can repeat the measurement with `src/chapters/06-display-regions-and-drawing/01-pixel-vs-fillrect.py`.
 
 For a region with different colors in it, you build the pixels in a buffer and send them with `blit_buffer(buffer, x, y, width, height)`. The buffer is a `bytearray` of `width * height * 2` bytes, ordered row by row, with each color as two bytes, high byte first.
 
@@ -116,6 +118,16 @@ if abs(width - drawn_width) >= 2:
 The `if` is the dirty test. If the meter has not moved by 2 pixels, nothing is sent at all. Otherwise two rectangles are drawn: the filled bar and the empty track after it. The 2-pixel margin stops the bar from flickering on tiny changes.
 
 The status line in the same test uses a different dirty test. It stores whether the room was loud on the last frame (`heard`) and redraws the words "I hear you!" or "Listening..." only when that value flips. Most frames, the status region sends zero bytes.
+
+The meter's savings are easy to measure. `src/chapters/06-display-regions-and-drawing/03-dirty-meter.py` drives the same meter three ways for 150 frames each. On the test board:
+
+| Method | Bytes per frame | Time per frame |
+|--------|-----------------|----------------|
+| Redraw the whole meter every frame | 8,822 | 6.4 ms |
+| Test 06's rule (redraw only if the width moved 2 or more pixels) | 7,116 | 5.2 ms |
+| Draw only the slice that changed | 271 | 0.8 ms |
+
+Test 06's rule helps a little because this wave moves quickly. Drawing only the changed slice cut the bytes by 97 percent and the time by a factor of eight.
 
 !!! mascot-thinking "Remember, Compare, Redraw"
     ![Sage thinking](../../img/mascot/thinking.png){ class="mascot-admonition-img" }
@@ -190,16 +202,16 @@ The picture changes at most as fast as your loop and your bandwidth allow. Frame
 
 A **region layout** is the plan that divides the screen into named rectangles, each updated on its own. With a layout, "the time changed" becomes "redraw the time region and nothing else." A layout for the Study Buddy needs five regions. The positions below were chosen so that all four corners of every rectangle are inside the safe circle of radius 168 around (180, 180).
 
-| Region | x | y | Width | Height | Bytes (RGB565) | Min time at 24 MHz |
-|--------|---|---|-------|--------|----------------|--------------------|
-| Status bar | 120 | 30 | 120 | 20 | 4,800 | 1.6 ms |
-| Time | 130 | 72 | 100 | 32 | 6,400 | 2.1 ms |
-| Mascot | 148 | 112 | 64 | 64 | 8,192 | 2.7 ms |
-| Spectrum | 80 | 190 | 200 | 40 | 16,000 | 5.3 ms |
-| Agent message | 60 | 240 | 240 | 32 | 15,360 | 5.1 ms |
-| All five together | | | | | 50,752 | 16.9 ms |
+| Region | x | y | Width | Height | Bytes (RGB565) | Min time at 24 MHz | Measured |
+|--------|---|---|-------|--------|----------------|--------------------|----------|
+| Status bar | 120 | 30 | 120 | 20 | 4,800 | 1.6 ms | 3.0 ms |
+| Time | 130 | 72 | 100 | 32 | 6,400 | 2.1 ms | 3.8 ms |
+| Mascot | 148 | 112 | 64 | 64 | 8,192 | 2.7 ms | 4.6 ms |
+| Spectrum | 80 | 190 | 200 | 40 | 16,000 | 5.3 ms | 8.5 ms |
+| Agent message | 60 | 240 | 240 | 32 | 15,360 | 5.1 ms | 8.2 ms |
+| All five together | | | | | 50,752 | 16.9 ms | 28.1 ms |
 
-Redrawing *every* region costs 50,752 bytes, about 16.9 ms, which is roughly five times cheaper than the 259,200-byte full frame. In practice most frames redraw only one or two regions, and the spectrum region alone costs 5.3 ms.
+Redrawing *every* region costs 50,752 bytes: 16.9 ms of wire time, and 28.1 ms when measured on the test board (`07-region-layout.py`). That is about 4.6 times faster than the 129 ms measured for the 259,200-byte full frame, but it is still 70 percent of one 40 ms audio frame, which is why a frame should redraw only the regions that changed. In practice most frames redraw one or two regions, and the spectrum region alone takes 8.5 ms when measured (5.3 ms of wire time).
 
 Now apply the dirty-region rule to six events. For each, decide which regions need redrawing.
 
@@ -254,7 +266,7 @@ Events, in this order:
 
 **Starting State:** The five regions are shown unselected with their sizes, and event 1 is shown with the question "Which regions must be redrawn?"
 
-**Chapter Anchors:** The chapter states that the five regions are the status bar, time, mascot, spectrum, and agent message; that redrawing all five costs 50,752 bytes (about 16.9 ms); and that a full frame is 259,200 bytes.
+**Chapter Anchors:** The chapter states that the five regions are the status bar, time, mascot, spectrum, and agent message; that redrawing all five costs 50,752 bytes (16.9 ms of wire time, 28.1 ms measured); and that a full frame is 259,200 bytes.
 </details>
 
 ## The Round Display Mask
@@ -319,7 +331,7 @@ def show_image(display, path, x, y, size, rows_per_chunk=10):
 
 The buffer `chunk` holds 10 rows, which is \( 120 \times 10 \times 2 = 2{,}400 \) bytes. `readinto` fills it from the file with no new allocation, and `blit_buffer` places it at the right row. Twelve chunks cover the 120 rows. The size must divide evenly by `rows_per_chunk`, which it does here. A call such as `show_image(display, "sage.rgb565", 120, 120, 120)` centers the image on the screen.
 
-Loading reads 28,800 bytes from flash and sends them over SPI, a minimum of \( 28{,}800 \times 8 / 24{,}000{,}000 \approx 9.6 \) ms. You do it once when a screen appears, not every frame.
+Loading reads 28,800 bytes from flash and sends them over SPI, a minimum of \( 28{,}800 \times 8 / 24{,}000{,}000 \approx 9.6 \) ms (20 ms when measured on the test board). You do it once when a screen appears, not every frame.
 
 ## The School Mascot
 
@@ -335,14 +347,14 @@ A mascot needs three design choices for a round display.
 
 The **display refresh rate** is how many times per second the picture on the screen is updated, measured in hertz. Two different rates are easy to confuse. The panel itself continuously redraws the glass from the controller's memory at a fixed rate that you cannot change. The rate that matters for animation is the *update* rate: how often your program sends new pixels.
 
-The update rate is limited by the regions you send. If the spectrum region costs at least 5.3 ms, the display could in theory be updated about 190 times a second, but the audio frame arrives every 40 ms, so the useful rate is 25 per second. That is more than enough to look smooth. Python overhead and time spent on other jobs bring the real number lower.
+The update rate is limited by the regions you send. If the spectrum region took its wire-time minimum of 5.3 ms, the display could in theory be updated about 190 times a second. Measured, it takes 8.5 ms, about 118 times a second. The audio frame arrives every 40 ms, so the useful rate is 25 per second either way. That is more than enough to look smooth, as long as the loop has time left over for the audio work.
 
-| Update | Minimum time | Theoretical maximum rate |
-|--------|--------------|--------------------------|
-| Full frame | 86.4 ms | 11.6 per second |
-| Spectrum region | 5.3 ms | 188 per second |
-| Time region | 2.1 ms | 469 per second |
-| Audio frame cadence | 40 ms | 25 per second |
+| Update | Minimum time | Measured | Maximum rate, measured |
+|--------|--------------|----------|------------------------|
+| Full frame | 86.4 ms | 129 ms | 7.7 per second |
+| Spectrum region | 5.3 ms | 8.5 ms | 118 per second |
+| Time region | 2.1 ms | 3.8 ms | 263 per second |
+| Audio frame cadence | 40 ms | | 25 per second |
 
 ## Putting It All Together
 
@@ -354,7 +366,7 @@ Key takeaways:
 - A single `fill_rect` of 100 by 30 pixels sends about one-sixth of the bytes of 3,000 `pixel()` calls.
 - A dirty region is a rectangle that is out of date; remember what you drew, compare, and redraw only where it differs.
 - Pad text to a fixed width so that one call draws and erases.
-- A region layout names the rectangles; the five-region layout costs 50,752 bytes if all are redrawn, 16.9 ms, versus 86.4 ms for a full frame.
+- A region layout names the rectangles; the five-region layout costs 50,752 bytes if all are redrawn, which took 28 ms when measured (16.9 ms of wire time), versus 129 ms measured for a full frame.
 - The round display mask means rectangles near the top or bottom must be narrow; images are masked to a circle when converted.
 - Image loading reads raw RGB565 from flash a few rows at a time and sends each chunk with `blit_buffer`.
 
@@ -368,6 +380,6 @@ Test yourself with these two questions, and click each one to reveal its answer.
 
 !!! mascot-celebration "Regions, Not Frames"
     ![Sage celebrating](../../img/mascot/celebration.png){ class="mascot-admonition-img" }
-    You just learned to set a drawing window, track dirty regions, lay out five independent regions that cost 16.9 ms instead of 86.4 ms, and load a masked mascot from flash. Your screen can now keep up with your microphone.
+    You just learned to set a drawing window, track dirty regions, lay out five independent regions that cost about 28 ms instead of 129 ms, and load a masked mascot from flash. Your screen can now keep up with your microphone.
 
 In Chapter 7 we give the device its hands: three buttons, a state machine, and device modes.

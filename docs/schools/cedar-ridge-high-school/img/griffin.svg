@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Gale the Griffin, mascot of Cedar Ridge High School</title>
+  <desc id="d">A round badge: a cream-feathered griffin head with a gold hooked beak and ear tufts, facing right, in front of green and gold wings.</desc>
+  <defs>
+    <clipPath id="disc"><circle cx="180" cy="180" r="180"/></clipPath>
+  </defs>
+  <g clip-path="url(#disc)" stroke-linejoin="round" stroke-linecap="round">
+    <!-- badge -->
+    <circle cx="180" cy="180" r="180" fill="#1F5D3A"/>
+    <circle cx="180" cy="180" r="166" fill="none" stroke="#F2B632" stroke-width="7"/>
+    <circle cx="180" cy="180" r="154" fill="none" stroke="#F2B632" stroke-width="2"/>
+
+    <!-- wings (behind head) -->
+    <g stroke="#0F3320" stroke-width="5">
+      <path d="M150 190 C95 170 55 120 40 60 C80 75 118 100 150 140 Z" fill="#17482C"/>
+      <path d="M150 200 C85 195 35 165 18 112 C60 118 105 135 150 168 Z" fill="#F2B632"/>
+      <path d="M152 215 C95 225 45 210 22 168 C62 168 108 178 152 195 Z" fill="#FFF1D0"/>
+      <path d="M155 232 C110 252 62 248 36 215 C70 210 112 214 155 224 Z" fill="#F2B632"/>
+    </g>
+
+    <!-- neck / chest feathers -->
+    <path d="M118 360 L118 250 C150 262 215 262 250 240 L292 360 Z" fill="#FFF1D0" stroke="#0F3320" stroke-width="5"/>
+    <g fill="none" stroke="#C98A00" stroke-width="4">
+      <path d="M140 300 q14 14 28 0"/><path d="M176 300 q14 14 28 0"/><path d="M212 300 q14 14 28 0"/>
+      <path d="M158 328 q14 14 28 0"/><path d="M194 328 q14 14 28 0"/><path d="M230 328 q14 14 28 0"/>
+    </g>
+
+    <!-- ear tufts / crest -->
+    <g stroke="#0F3320" stroke-width="5" fill="#F2B632">
+      <path d="M120 150 L98 58 L158 112 Z"/>
+      <path d="M158 118 L158 40 L205 108 Z"/>
+    </g>
+
+    <!-- head -->
+    <path d="M112 245 C98 195 108 140 150 115 C185 98 232 108 250 145 L252 190 C250 225 240 245 205 262 C170 270 135 266 112 245 Z"
+          fill="#FFF1D0" stroke="#0F3320" stroke-width="5"/>
+    <!-- cheek feather marks -->
+    <g fill="none" stroke="#C98A00" stroke-width="4">
+      <path d="M128 200 q10 10 22 2"/><path d="M130 228 q12 10 26 0"/><path d="M168 236 q12 8 24 -2"/>
+    </g>
+
+    <!-- beak: upper hook + lower -->
+    <path d="M238 150 C285 150 322 172 320 214 C318 232 304 240 296 232 C300 214 280 198 250 196 Z"
+          fill="#F2B632" stroke="#0F3320" stroke-width="5"/>
+    <path d="M244 200 C272 200 292 214 290 236 C270 248 246 244 232 232 Z"
+          fill="#E39A12" stroke="#0F3320" stroke-width="5"/>
+    <circle cx="272" cy="168" r="4" fill="#0F3320"/>
+
+    <!-- eye with brow -->
+    <circle cx="205" cy="165" r="21" fill="#FFFFFF" stroke="#0F3320" stroke-width="5"/>
+    <circle cx="211" cy="166" r="11" fill="#0F3320"/>
+    <circle cx="215" cy="162" r="4" fill="#FFFFFF"/>
+    <path d="M176 144 L240 134 L238 150 C222 144 196 146 180 156 Z" fill="#17482C" stroke="#0F3320" stroke-width="4"/>
+  </g>
+</svg>

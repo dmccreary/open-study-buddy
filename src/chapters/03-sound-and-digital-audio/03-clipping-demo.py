@@ -6,7 +6,7 @@
 #
 # PASS: gain 2 and gain 4 have 0 clipped samples; gain 8 and gain 24 have many,
 # and the peak stays at the limit (32,767 or 32,768). If PLAY is True you hear a smooth tone, then a
-# harsh one.
+# harsh one. Both play at only 25% of their size (PLAY_SCALE) so they are not loud.
 
 NAME = "03-clipping-demo.py"
 VERSION = "1.0"
@@ -16,6 +16,8 @@ import math
 import struct
 
 PLAY = True            # set False to only print the table
+PLAY_SCALE = 25        # percent: the clipped waves are played at this fraction so
+                       # they are not painfully loud (the crackle is still there)
 RATE = 12800
 FREQ = 440
 PEAK = 6000
@@ -59,7 +61,11 @@ if PLAY:
         try:
             for gain in (2, 8):
                 print("playing gain", gain, "(keep the speaker away from your ear)")
-                audio.write(tones[gain])
+                quiet = bytearray(len(tones[gain]))
+                for j in range(0, len(quiet), 2):
+                    v = struct.unpack_from("<h", tones[gain], j)[0] * PLAY_SCALE // 100
+                    struct.pack_into("<h", quiet, j, v)
+                audio.write(quiet)
                 audio.write(bytes(RATE * 300 // 1000 * 2))
             audio.write(bytes(RATE * 100 // 1000 * 2))
             time.sleep_ms(8192 * 1000 // (RATE * 2) + 50)

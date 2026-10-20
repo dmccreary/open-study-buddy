@@ -191,7 +191,7 @@ mic = I2S(1, sck=Pin(10), ws=Pin(11), sd=Pin(12),
 
 **I2S receive** is the direction from the microphone to the Pico. After you create the I2S object in `RX` mode, the hardware fills an internal buffer with samples in the background, and your program collects them with `readinto`.
 
-The INMP441 sends 24-bit samples inside 32-bit words, with the real audio in the top 24 bits. That is why the kit sets `bits=32` and shifts every sample right by `MIC_SAMPLE_SHIFT`, which is 8. The sample also has a constant offset added by the microphone, called the DC offset, which the code subtracts (the test 07 recording measured it at about 15,000). The loudness code from test 06 shows all of this in one function.
+The INMP441 sends 24-bit samples inside 32-bit words, with the real audio in the top 24 bits. That is why the kit sets `bits=32` and shifts every sample right by `MIC_SAMPLE_SHIFT`, which is 8. The samples also carry a small offset added by the microphone, called the DC offset, which the code subtracts. It is not a fixed number. On the test board the average of single 40 ms frames wandered between about -5,400 and +9,100 from one second to the next, while test 07's 1.5 second recording averaged about 15,000. So measure the offset over the frame or recording you are processing, and do not assume a value. The loudness code from test 06 shows all of this in one function.
 
 ```python
 def loudness_bits(buf):
@@ -217,7 +217,7 @@ An **audio buffer** is a block of memory that holds samples. In MicroPython it i
 | Frame buffer (`buf`) | 2,048 bytes | 512 samples, 40 ms | Test 06 |
 | Read chunk | 1,024 bytes | 256 samples, 20 ms | Test 07 recording loop |
 | Recording buffer (`raw`) | 153,600 bytes | 3 seconds | Test 07 |
-| Microphone internal buffer (`ibuf`) | 40,000 bytes | about 0.78 s | The I2S driver |
+| Microphone internal buffer (`ibuf`) | 40,000 bytes | about 0.4 s measured (0.78 s if every byte held microphone data) | The I2S driver |
 | Speaker internal buffer (`ibuf`) | 8,192 bytes | 256 ms at 16 kHz | The I2S driver |
 
 An **audio frame** is the fixed-size slice of audio your program processes in one pass of its loop. Using frames keeps the work regular: read a frame, analyze it, update the screen, repeat. The kit's frame is 512 samples, and at 12,800 samples per second that is exactly
@@ -292,16 +292,20 @@ if used > frame_us:
 
 `FFT_SIZE` is 512 in `config.py`, the same number as the frame, so `frame_us` is 40,000 microseconds. Printing `used` against it after each pass tells you how much room is left.
 
+On the test board (`src/chapters/08-i2s-audio/02-mic-frame-reader.py`), the plain-Python loudness calculation from test 06 used about 10 ms of every 40 ms frame, so `readinto` waited about 30 ms. The loop kept up at 25 frames per second, with about 30 ms to spare.
+
 Since `readinto` blocks until a frame arrives, a loop that takes less than 40 ms simply waits for the rest of the frame, and it stays in step. A loop that takes more than 40 ms never waits, and the backlog grows by the excess every pass.
 
-*Worked example.* The ring holds 40,000 bytes, which is \( 40{,}000 / 2{,}048 \approx 19.5 \) frames. Suppose each pass takes 50 ms because of a slow display update. Each pass, the microphone produces \( 50/40 = 1.25 \) frames but the loop consumes only 1, so the backlog grows by 0.25 frames per pass. It passes 19.5 frames after 79 passes, which is \( 79 \times 50 = 3.95 \) seconds. After that, audio is lost. If the pass took 86.4 ms, the time of a full-screen redraw from Chapter 5, the backlog would grow by 1.16 frames per pass and overflow in only 17 passes, about 1.5 seconds.
+*Worked example.* The ring was created with `ibuf=40000`, which would hold \( 40{,}000 / 2{,}048 \approx 19.5 \) frames if every byte held microphone data. Measurement says it holds about half that. `03-ring-latency.py` plays a click once a second and prints how long after the click the program read it. At 50 ms per pass, that delay grew by roughly 10 ms per pass, as the backlog model predicts, and then stopped growing at about 460 ms. Two of the 14 clicks were lost. So the usable depth is about 0.4 s, or 9.8 frames. One explanation, not yet confirmed, is that in MONO mode the driver stores both I2S slots for every sample, 8 bytes instead of 4, which gives \( 40{,}000 / 8 / 12{,}800 \approx 0.39 \) s. The rest of this chapter uses the measured depth of 9.77 frames.
+
+Suppose each pass takes 50 ms because of a slow display update. Each pass, the microphone produces \( 50/40 = 1.25 \) frames but the loop consumes only 1, so the backlog grows by 0.25 frames per pass. It passes 9.77 frames after 40 passes, which is \( 40 \times 50 = 2.0 \) seconds. After that, audio is lost. If the pass took 130 ms, about the measured time of a full-screen redraw from Chapter 5, the backlog would grow by 2.25 frames per pass and overflow in only 5 passes, about 0.65 seconds.
 
 | Time per pass | Keeps up? | Backlog growth per pass | First sample lost after |
 |---------------|-----------|------------------------|-------------------------|
 | 30 ms | Yes, waits 10 ms | none | never |
 | 40 ms | Yes, no spare time | none | never |
-| 50 ms | No | 0.25 frames | about 3.95 s |
-| 86.4 ms (full redraw) | No | 1.16 frames | about 1.5 s |
+| 50 ms | No | 0.25 frames | about 2.0 s |
+| 130 ms (full redraw) | No | 2.25 frames | about 0.65 s |
 
 Use the budget explorer to check your arithmetic.
 
@@ -327,22 +331,22 @@ Type: microsim
 
 **Content:**
 
-The model: one audio frame is 2,048 bytes and arrives every 40 ms. The ring holds 40,000 bytes, which is 19.53125 frames. Each pass of the loop takes P milliseconds of work and then reads one frame. If the loop is faster than 40 ms, it waits for the frame.
+The model: one audio frame is 2,048 bytes and arrives every 40 ms. The ring holds 9.765625 frames (the depth measured in `03-ring-latency.py`, equal to 40,000 bytes at 8 bytes per sample time: 5,000 sample times, or 0.390625 s). Each pass of the loop takes P milliseconds of work and then reads one frame. If the loop is faster than 40 ms, it waits for the frame.
 
 | # | Time per pass P (ms) | Answer | Why (shown as feedback) |
 |---|---|---|---|
 | 1 | 30 | never | The loop is faster than 40 ms, so it waits for each frame and the backlog stays at zero. |
 | 2 | 40 | never | The loop exactly matches the audio rate, so there is no growth. |
-| 3 | 45 | 7.07 | Growth 0.125 frames per pass, so it passes 19.53 frames on pass 157, and 157 x 45 ms = 7.07 s. |
-| 4 | 50 | 3.95 | Growth 0.25 frames per pass, so it passes 19.53 on pass 79, and 79 x 50 ms = 3.95 s. |
-| 5 | 60 | 2.4 | Growth 0.5 frames per pass, so it passes 19.53 on pass 40, and 40 x 60 ms = 2.4 s. |
-| 6 | 86.4 | 1.47 | Growth 1.16 frames per pass, so it passes 19.53 on pass 17, and 17 x 86.4 ms = 1.47 s. |
+| 3 | 45 | 3.56 | Growth 0.125 frames per pass, so it passes 9.77 frames on pass 79, and 79 x 45 ms = 3.56 s. |
+| 4 | 50 | 2.0 | Growth 0.25 frames per pass, so it passes 9.77 on pass 40, and 40 x 50 ms = 2.0 s. |
+| 5 | 60 | 1.2 | Growth 0.5 frames per pass, so it passes 9.77 on pass 20, and 20 x 60 ms = 1.2 s. |
+| 6 | 130 | 0.65 | Growth 2.25 frames per pass, so it passes 9.77 on pass 5, and 5 x 130 ms = 0.65 s. |
 
-For exploration the learner sets P from 10 to 100 ms in steps of 0.1 ms, default 40.0 ms. The sim shows the backlog in frames growing against the capacity of 19.53125 frames.
+For exploration the learner sets P from 10 to 100 ms in steps of 0.1 ms, default 40.0 ms. The sim shows the backlog in frames growing against the capacity of 9.765625 frames.
 
-**Provenance:** The frame size and ring size are the values in `src/kits/study-buddy-base/config.py` (`FFT_SIZE`, `MIC_SAMPLE_RATE`, `MIC_BUFFER_BYTES`). The model is a simplification, and the sim labels it "model, not a measurement." The 86.4 ms value is the full-frame update time from Chapter 5.
+**Provenance:** The frame size and ring size are the values in `src/kits/study-buddy-base/config.py` (`FFT_SIZE`, `MIC_SAMPLE_RATE`, `MIC_BUFFER_BYTES`). The ring depth of 9.765625 frames comes from a measurement on the test board at 50 ms per pass (the delay stopped growing near 460 ms), and its cause is not confirmed. The model is a simplification, and the sim labels it "model, based on one board's measurement." The 130 ms value is the measured full-screen update time from Chapter 5.
 
-**Rules:** Let T be the larger of P and 40 ms. The backlog after n passes is n x (T / 40 - 1) frames. The first sample is lost at the first whole number n for which the backlog is greater than 19.53125, and the time is n x T. If T equals 40, nothing is ever lost. Times are shown in seconds to two decimal places.
+**Rules:** Let T be the larger of P and 40 ms. The backlog after n passes is n x (T / 40 - 1) frames. The first sample is lost at the first whole number n for which the backlog is greater than 9.765625, and the time is n x T. If T equals 40, nothing is ever lost. Times are shown in seconds to two decimal places.
 
 **Learner Activity:**
 
@@ -350,13 +354,13 @@ For exploration the learner sets P from 10 to 100 ms in steps of 0.1 ms, default
 2. The learner starts the 6 timings. Timing 1 is shown.
 3. The learner types the seconds until the first loss, or "never," and submits.
 4. The sim draws the backlog line for that timing and shows the Why text.
-5. After timing 6, the sim shows the score. The learner should notice that a loop only 5 ms too slow still loses audio within 7.1 seconds.
+5. After timing 6, the sim shows the score. The learner should notice that a loop only 5 ms too slow still loses audio within 3.6 seconds.
 
 **Feedback:** 6 timings, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.
 
 **Starting State:** The slider is at 40.0 ms with the backlog flat at zero, and the question "How long can this loop run before audio is lost?"
 
-**Chapter Anchors:** The chapter states that a frame is 512 samples, 2,048 bytes, and 40 ms; that the microphone ring holds 40,000 bytes (about 19.5 frames); and that a 50 ms pass loses audio after about 3.95 s while an 86.4 ms pass loses it after about 1.5 s.
+**Chapter Anchors:** The chapter states that a frame is 512 samples, 2,048 bytes, and 40 ms; that the microphone ring was created with 40,000 bytes but measured about 9.8 frames (0.4 s) deep; and that a 50 ms pass loses audio after about 2.0 s while a 130 ms pass loses it after about 0.65 s.
 </details>
 
 ## Transmitting Sound
@@ -445,10 +449,22 @@ The simplest solution, and the one the kit uses, is to never listen while speaki
 |----------|--------------|------|
 | Push-to-talk | The microphone is only open while a button is held | None; this is what the kit does |
 | Half-duplex | Close the microphone (or ignore its frames) while playing | A little code |
-| A quiet tail | Keep ignoring the microphone for about 300 ms after playback ends | Slight delay |
+| A quiet tail | Keep ignoring the microphone for about 120 ms after the last sound leaves the speaker (measured; see below) | Slight delay |
 | Echo cancellation | Subtract the known speaker signal from the microphone signal | Far beyond a Pico; out of scope |
 
-The "quiet tail" matters because sound lingers in a room. The speaker may stop at one instant, but its echo keeps arriving at the microphone for a few hundred milliseconds.
+The "quiet tail" matters because sound lingers: the speaker keeps playing whatever is still queued in its buffer, and the room carries the sound a little longer.
+
+*Measured result.* `src/chapters/08-i2s-audio/06-self-hearing.py` plays a 1 kHz tone through the speaker while reading the microphone one 40 ms frame at a time. On the test board, with the speaker beside the microphone and the volume at 40 (the kit default):
+
+| Moment | Microphone loudness | Compared with the room |
+|--------|--------------------|------------------------|
+| Before the tone | 13.1 bits (the noise floor) | 1 times |
+| During the tone | 17.0 bits, steady | 3.9 bits louder, about 15 times |
+| First frame after the last tone write | 16.3 bits | 3.2 bits louder |
+| Second and third frames after | 13.7 and 13.6 bits | within 0.6 bits of the floor |
+| Fourth frame after, onward | at the floor | 0 |
+
+So the device hears itself clearly: the speaker is about 15 times louder to the microphone than the quiet room. And it goes quiet fast. In this test the writes to the speaker were paced one frame at a time, so very little sound was queued, and the microphone was back near the floor within about 2 frames, roughly 80 to 120 ms. If your program queues more audio in the speaker's buffer (up to 320 ms for the kit's 8,192-byte buffer at 12,800 Hz), add that time to the tail. Room noise can make a single frame read 1 bit high, so judge the tail by a run of three quiet frames, not by one.
 
 ### Mute and Resume
 
@@ -476,7 +492,7 @@ Key takeaways:
 - `machine.I2S` has `readinto`, `write`, and `deinit`, and blocking is what paces your loop.
 - The INMP441's 24-bit samples arrive in 32-bit words, so shift right by 8 and subtract the DC offset.
 - A frame of 512 samples at 12,800 Hz is 2,048 bytes and 40 ms; the whole pass has a 40 ms budget.
-- A ring buffer gives bounded grace: at 50 ms per pass the 40,000-byte ring overflows in about 3.95 s.
+- A ring buffer gives bounded grace: the microphone's ring held about 0.4 s of audio when measured, so at 50 ms per pass it overflows in about 2 s.
 - Drain the speaker's buffer before `deinit()`; use a sine table for fast tones; play stored audio in chunks.
 - Never listen while speaking: use push-to-talk or close the microphone during playback.
 
@@ -486,7 +502,7 @@ Test yourself with these two questions, and click each one to reveal its answer.
     The playback I2S object was created with a different sample rate (for example 16,000 Hz). The rate used to play must equal the rate used to record. Both come from `MIC_SAMPLE_RATE` in `config.py` in test 07.
 
 ??? question "Your loop does a 60 ms update every frame. About how long until the microphone ring starts losing audio? Click to expand"
-    About 2.4 seconds. The loop falls behind by 0.5 frames per pass, the ring holds about 19.5 frames, so it overflows on pass 40, and \( 40 \times 60 \text{ ms} = 2.4 \) s.
+    About 1.2 seconds. The loop falls behind by 0.5 frames per pass, the ring holds about 9.8 frames, so it overflows on pass 20, and \( 20 \times 60 \text{ ms} = 1.2 \) s.
 
 !!! mascot-celebration "Sound In, Sound Out"
     ![Sage celebrating](../../img/mascot/celebration.png){ class="mascot-admonition-img" }

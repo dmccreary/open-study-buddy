@@ -43,6 +43,16 @@ Files in a `tools/` folder run on your computer and are not uploaded.
 | 6 | `06-display-regions-and-drawing` | pixel vs fill vs blit, window order, dirty meter, text padding, sprite, animation, region layout, image loader | display |
 | 7 | `07-buttons-and-device-modes` | `buttons.py`, `device.py`, button events, bounce capture, device modes, self-test, non-blocking, volume beep | buttons, display, speaker |
 | 8 | `08-i2s-audio` | I2S pin rule, mic frame reader, ring latency, sine table, play file, self-hearing, ring class, amp shutdown | mic, speaker |
+| 9 | `09-signal-processing-fft` | `dsp.py`, DFT by hand, FFT vs DFT, bin calculator, Hann leakage, mic spectrum, volume meter, spectrum display | mic, display |
+| 10 | `10-high-performance-micropython` | benchmark harness, cycle counter, FFT benchmarks, allocation and floats, window kernels (list/array/viper/asm), Q15 viper FFT, frame-loop budget, dual core | mic, Pico |
+| 11 | `11-mic-calibration-push-to-talk` | bits and dB, noise floor, speech level, calibration file, gate meter, distance test, push-to-talk record, VAD record, self-test | mic, buttons, display |
+| 12 | `12-wake-word-detection` | detector math test, band table, feature timing, enrollment, self-test, score trace, threshold sweep, live detector | mic, speaker, buttons, display |
+| 13 | `13-wifi-http-agent-link` | Wi-Fi connect, raw HTTP and `requests` POST, ask the buddy, mDNS check; `server/` buddy server | Pico W, computer |
+| 14 | `14-streaming-security-resilience` | chunk arithmetic, recorder, voice upload, timeouts, retry and offline fallback, TLS probe, WebSocket; `server/` with token auth, STT/TTS hooks | mic, speaker, Pico W, computer |
+| 15 | `15-mqtt-push-alerts` | topic matcher, MQTT hello, link listener, `check_msg` cost, alert audio loop, status heartbeat, echo round trip; `server/` Mosquitto config and tools | Pico W, broker |
+| 16 | `16-school-agent-calendar` | school mascot and edition splash, briefing display; `server/` calendar pipeline (ICS and JSON), `agent.toml`, reminders | display, Pico W, computer |
+| 17 | `17-privacy-responsible-listening` | hardware mute switch, listening indicator and its test, buffer wipe; `tools/` data-flow, threat model, injection demo, plan checker | mic, display, switch |
+| 18 | `18-testing-integration-capstones` | `log.py`, probes, `selftest.py`, scheduler demo, detectors, clap detector, noise monitor, study timer, homework reminder | whole kit |
 
 ## Suggested order for a first pass
 
@@ -62,11 +72,11 @@ The chapters make claims that these files measure. The most useful ones:
 | File | What to record |
 |------|----------------|
 | `02/01-memory-report.py` | Free heap; whether a 3 s and a 5 s recording fit |
-| `05/01-fill-timing.py` | Measured full-screen fill time at 24 MHz (chapter: at least 86.4 ms) |
-| `06/07-region-layout.py` | Time to redraw all five regions (chapter best case: 16.9 ms) |
+| `05/01-fill-timing.py` | Measured full-screen fill time at 24 MHz (chapter: 86.4 ms best case; test board 129 ms) |
+| `06/07-region-layout.py` | Time to redraw all five regions (best case 16.9 ms; test board 28.1 ms) |
 | `07/02-bounce-capture.py` | Worst contact-bounce settle time on your buttons |
 | `08/02-mic-frame-reader.py` | "work ms" of the plain-Python loudness calculation |
-| `08/03-ring-latency.py` | How the microphone delay grows at `LOOP_MS` = 30, 40, 50, 60, 86 |
+| `08/03-ring-latency.py` | How the microphone delay grows at `LOOP_MS` = 30, 40, 50, 60, 130 (30 and 50 are done) |
 | `08/06-self-hearing.py` | The quiet tail, in milliseconds |
 
 If a result differs from what the chapter says, the chapter needs to change, not

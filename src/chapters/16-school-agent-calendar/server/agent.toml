@@ -1,0 +1,110 @@
+# agent.toml -- the one file that configures a school's agent (Chapter 16).
+# Edit this file for your school, then check it:   python3 check_config.py
+# TOML needs Python 3.11 or newer on the server (tomllib is in its standard library).
+
+schema = 1
+
+[school]
+name = "Cedar Ridge High School"
+short_name = "Cedar Ridge"             # used when speaking, so the sentence is shorter
+id = "crhs"                            # lowercase letters/digits; first level of every MQTT topic
+slogan = "Aim high. Listen closely."
+timezone = "America/Chicago"           # an IANA zone name, not "CST"
+primary_color = "#1F5D3A"              # forest green
+accent_color = "#F2B632"               # gold
+
+[calendar]
+source = "ics"                         # "json" (hand-edited events.json) or "ics" (an iCalendar feed)
+json_path = "../../../../docs/schools/cedar-ridge-high-school/events.json"
+ics_path = "../../../../docs/schools/cedar-ridge-high-school/calendar.ics"
+ics_url = ""                           # if set, the server fetches this instead of ics_path.
+                                       # A SECRET address belongs in the SCHOOL_ICS_URL environment
+                                       # variable instead, which wins over this line, so it is never committed
+poll_minutes = 60                      # never ask a feed more often than this
+cache_dir = "cache"
+
+# One block per course. The name must match how it appears after "TEST:" / "DUE:".
+# The room is where reminders for that course are sent.
+[[courses]]
+name = "Algebra II"
+teacher = "Ms. Okafor"
+room = "118"
+
+[[courses]]
+name = "English 10"
+teacher = "Mr. Lindqvist"
+room = "205"
+
+[[courses]]
+name = "Biology"
+teacher = "Dr. Tran"
+room = "Lab 130"
+
+[[courses]]
+name = "World History"
+teacher = "Ms. Alvarez"
+room = "220"
+
+[[courses]]
+name = "Spanish II"
+teacher = "Sr. Moreno"
+room = "226"
+
+[[courses]]
+name = "Physical Computing"
+teacher = "Mr. Brandt"
+room = "214"
+
+[features]
+questions = true                       # answer spoken questions about the calendar
+briefing = true                        # the morning briefing
+test_alerts = true                     # reminders before TEST: events
+due_alerts = true                      # reminders before DUE: events
+no_school_notices = true               # "No school tomorrow" notices
+
+[briefing]
+time = "07:30"                         # local time the daily job should run (a scheduler runs it)
+max_items = 3                          # most events read out in each part
+upcoming_days = 7                      # how far ahead "next test" and "due soon" look
+
+[reminders]
+test_days_before = [7, 1]              # a week ahead and the day before; 0 means the same day
+due_days_before = [1]
+no_school_days_before = [1]
+
+[voice]
+tone = "friendly"                      # friendly | neutral. Used by the LLM prompt below.
+greeting = "Good morning from {school}."
+mascot_flavor = true                   # add one short mascot line to briefings and reminders
+reminder_test = "Heads up. {sentence}"
+reminder_due = "Reminder. {sentence}"
+reminder_notice = "{sentence}"
+# The instruction an LLM-backed brain (Chapter 1, level 2) receives with every question.
+system_prompt = """You are the Cedar Ridge High School study buddy for students in grades 9 to 12. \
+Answer in one or two short sentences that sound natural when spoken aloud. \
+Use only the calendar facts you are given. If you do not know, say so. \
+Be friendly and calm, never scolding. Say times like '8 AM' and days like 'tomorrow'."""
+
+[voice.flavor]
+briefing = "Griffins aim high!"
+test = "You've got this."
+due = ""
+no-school = "Rest up, Griffin."
+
+# Text-to-speech replacements, applied before a sentence is spoken.
+[voice.say]
+"vs." = "versus"
+" - " = ", "
+"PSAT 10" = "P S A T ten"
+
+[mascot]
+name = "Gale"
+file = "griffin.rgb565"                # raw RGB565 on the Pico's flash (see mascot_check.py)
+size = 240                             # the file is size x size pixels, 2 bytes each
+source_png = "../../../../docs/schools/cedar-ridge-high-school/img/griffin-360.png"
+
+[wake]
+phrase = "Hey Pico"                    # the kit default; see the chapter before changing it
+
+[mqtt]
+alert_topic_scope = "room"             # reminders go to the course's room; "school" sends all to everyone

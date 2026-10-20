@@ -1,0 +1,42 @@
+# home-assistant.yaml   (Chapter 15)
+#
+# ILLUSTRATIVE: written from Home Assistant's MQTT documentation, NOT run
+# against a real Home Assistant. Home Assistant must already be connected to
+# the school broker (Settings > Devices & services > MQTT) with an account the
+# ACL allows to read school/crhs/#.
+
+# 1. Show one device in a dashboard, without MQTT discovery.
+#    Goes in configuration.yaml (merge with any existing "mqtt:" section).
+mqtt:
+  # The status topic holds exactly "online" or "offline".
+  - binary_sensor:
+      name: "Desk 07 online"
+      state_topic: "school/crhs/device/desk-07/status"
+      payload_on: "online"
+      payload_off: "offline"
+      device_class: connectivity
+  - sensor:
+      name: "Desk 07 volume"
+      state_topic: "school/crhs/device/desk-07/telemetry"
+      value_template: "{{ value_json.vol }}"
+      unit_of_measurement: "%"
+      availability_topic: "school/crhs/device/desk-07/status"
+      payload_available: "online"
+      payload_not_available: "offline"
+
+# 2. Send an alert to room 214 when a Home Assistant automation fires.
+#    Goes in automations.yaml. The payload follows alerts.py.
+automation:
+  - alias: "Study Buddy: homework reminder to room 214"
+    triggers:
+      - trigger: time
+        at: "15:30:00"
+    actions:
+      - action: mqtt.publish
+        data:
+          topic: "school/crhs/class/214/alert"
+          qos: 1
+          payload: >-
+            {"id":"ha-{{ now().strftime('%Y%m%d-%H%M') }}","type":"notice",
+            "title":"Homework time","when":"Now",
+            "text":"It is time to start your homework."}
