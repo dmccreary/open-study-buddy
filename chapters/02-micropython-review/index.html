@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="A refresher on the MicroPython skills the rest of the book assumes: the REPL, Thonny, mpremote, modules, the machine library, GPIO, timers, interrupts, and the memory limits of a microcontroller.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>2. MicroPython Review for Embedded Systems - Open Study Buddy</title>
+        <title>MicroPython Review for Embedded Systems - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2. MicroPython Review for Embedded Systems
+              MicroPython Review for Embedded Systems
             
           </span>
         </div>
@@ -518,6 +518,291 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#a-quick-tune-up-before-we-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Quick Tune-Up Before We Build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-for-talking-to-the-pico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools for Talking to the Pico
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools for Talking to the Pico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thonny-ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thonny IDE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-repl" class="md-nav__link">
+    <span class="md-ellipsis">
+      The REPL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpremote" class="md-nav__link">
+    <span class="md-ellipsis">
+      mpremote
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizing-code-with-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organizing Code with Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organizing Code with Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modules-and-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modules and Imports
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules and Imports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-kit-import-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Kit Import Map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-config-file-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Config File Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-and-main-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boot and Main Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-installing-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      mip: Installing Libraries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#talking-to-the-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Talking to the Hardware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Talking to the Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-machine-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      The machine Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpio-pins" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPIO Pins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interrupts-and-interrupt-service-routines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrupts and Interrupt Service Routines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interrupts and Interrupt Service Routines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-polling-versus-interrupt-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Polling Versus Interrupt Timeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-the-resource-that-runs-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory: The Resource That Runs Out
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory: The Resource That Runs Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Limits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Garbage Collection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-fragmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heap Fragmentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heap Fragmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-heap-fragmentation-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Heap Fragmentation Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#byte-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Byte Arrays
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memoryview" class="md-nav__link">
+    <span class="md-ellipsis">
+      memoryview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-flash-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Flash File System
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-the-tools-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting the Tools Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -886,6 +1171,69 @@
         
       
         
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
       
         
       
@@ -1069,6 +1417,291 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#a-quick-tune-up-before-we-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Quick Tune-Up Before We Build
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-for-talking-to-the-pico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools for Talking to the Pico
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools for Talking to the Pico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thonny-ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thonny IDE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-repl" class="md-nav__link">
+    <span class="md-ellipsis">
+      The REPL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mpremote" class="md-nav__link">
+    <span class="md-ellipsis">
+      mpremote
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizing-code-with-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organizing Code with Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organizing Code with Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modules-and-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modules and Imports
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules and Imports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-kit-import-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Kit Import Map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-config-file-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Config File Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-and-main-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boot and Main Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mip-installing-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      mip: Installing Libraries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#talking-to-the-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Talking to the Hardware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Talking to the Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-machine-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      The machine Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpio-pins" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPIO Pins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interrupts-and-interrupt-service-routines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrupts and Interrupt Service Routines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interrupts and Interrupt Service Routines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-polling-versus-interrupt-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Polling Versus Interrupt Timeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-the-resource-that-runs-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory: The Resource That Runs Out
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory: The Resource That Runs Out">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Limits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Garbage Collection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-fragmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heap Fragmentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heap Fragmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-heap-fragmentation-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Heap Fragmentation Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#byte-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Byte Arrays
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memoryview" class="md-nav__link">
+    <span class="md-ellipsis">
+      memoryview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-flash-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Flash File System
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-the-tools-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting the Tools Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1190,13 +1823,739 @@
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p>This chapter assumes only the prerequisites listed in the <a href="../../course-description/">course description</a>.</p>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="a-quick-tune-up-before-we-build">A Quick Tune-Up Before We Build<a class="headerlink" href="#a-quick-tune-up-before-we-build" title="Permanent link">&para;</a></h2>
+<p>You already know how to blink an LED, read a button, and draw on a display with MicroPython. This chapter does not teach those things from scratch. It gathers the handful of skills that every later chapter leans on, so that when Chapter 8 asks you to read audio samples into a <code>bytearray</code> you do not have to stop and remember what one is.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Tune-Up Time</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+By the end of this chapter your Pico will be set up the way the whole book expects, and you will know how to check its memory before a big recording. Let's listen closely! A small tune-up now saves hours of mystery bugs later.</p>
+</div>
+<p>The review is organized as a <strong>MicroPython review</strong> in the plain sense of the phrase: the set of skills for writing, running, and organizing programs on a Raspberry Pi Pico 2 W. We cover the tools you type into, the way code is split into files, the hardware library, the memory you have to work with, and the two ways a program can react to the outside world.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tools: Thonny, the REPL, and mpremote</td>
+<td>How do I get code onto the Pico and see what it does?</td>
+</tr>
+<tr>
+<td>Organizing code</td>
+<td>How do I split a program into files and keep pin numbers in one place?</td>
+</tr>
+<tr>
+<td>Talking to hardware</td>
+<td>How do I read a pin and wait for an event?</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>How much room do I have, and what happens when I run out?</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tools-for-talking-to-the-pico">Tools for Talking to the Pico<a class="headerlink" href="#tools-for-talking-to-the-pico" title="Permanent link">&para;</a></h2>
+<p>Three tools cover almost everything you will do. Each one solves a different problem, so it helps to know which to reach for.</p>
+<h3 id="thonny-ide">Thonny IDE<a class="headerlink" href="#thonny-ide" title="Permanent link">&para;</a></h3>
+<p><strong>Thonny</strong> is a free editor with a Python shell built in. Its Run button sends your file to the Pico and starts it, and its Stop button interrupts it. Choose the interpreter "MicroPython (Raspberry Pi Pico)" in the lower right corner so Thonny talks to the board instead of to Python on your computer.</p>
+<p>One detail trips up many builders. Run sends a <em>copy</em> of your script for that one run. It does not save the file on the Pico. To keep a file on the board, use File, Save as, and pick the Raspberry Pi Pico.</p>
+<h3 id="the-repl">The REPL<a class="headerlink" href="#the-repl" title="Permanent link">&para;</a></h3>
+<p>The <strong>REPL</strong> (read-eval-print loop) is the <code>&gt;&gt;&gt;</code> prompt where you type one line of Python and see the result immediately. It reads your line, evaluates it, prints the answer, and loops back for the next line. For hardware, the REPL is the fastest experiment you have, because nothing needs to be saved.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="s2">"LED"</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Three keys are worth knowing: Ctrl-C stops a running program, Ctrl-D restarts MicroPython (a soft reboot), and Ctrl-E opens paste mode so you can paste several lines at once.</p>
+<h3 id="mpremote">mpremote<a class="headerlink" href="#mpremote" title="Permanent link">&para;</a></h3>
+<p><strong>mpremote</strong> is a command-line tool that does what Thonny does from a terminal, which makes it easy to script. The most useful commands are shown below. Only one program can hold the Pico's serial port at a time, so quit Thonny before you run them.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mpremote<span class="w"> </span>run<span class="w"> </span><span class="m">02</span>-probe.py
+</span></code></pre></div>
+<p>That command runs a file from your computer on the Pico without saving it there. To list, copy, and open the shell, use these:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mpremote<span class="w"> </span>fs<span class="w"> </span>ls
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>mpremote<span class="w"> </span>fs<span class="w"> </span>cp<span class="w"> </span>config.py<span class="w"> </span>:config.py
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>mpremote<span class="w"> </span>repl
+</span></code></pre></div>
+<p>The colon in <code>:config.py</code> means "on the Pico." The kit's <code>upload-code.sh</code> script uses <code>mpremote</code> to copy every file the kit needs.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Thonny</th>
+<th>mpremote</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Try one line</td>
+<td>Type in the shell</td>
+<td><code>mpremote repl</code></td>
+</tr>
+<tr>
+<td>Run a file once</td>
+<td>Run button</td>
+<td><code>mpremote run file.py</code></td>
+</tr>
+<tr>
+<td>Save a file on the Pico</td>
+<td>Save as, Raspberry Pi Pico</td>
+<td><code>mpremote fs cp file.py :file.py</code></td>
+</tr>
+<tr>
+<td>Stop a program</td>
+<td>Stop button</td>
+<td>Ctrl-C</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-tip">
+<p class="admonition-title">One Program Owns the Port</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+If <code>mpremote</code> says it cannot open the port, Thonny is probably still connected. Quit Thonny (or press its Stop button and close the shell), then run the command again.</p>
+</div>
+<h2 id="organizing-code-with-modules">Organizing Code with Modules<a class="headerlink" href="#organizing-code-with-modules" title="Permanent link">&para;</a></h2>
+<p>A MicroPython program that does real work is too long for one file. The tool for splitting it up is the module, and it is one of the most important ideas in the book, because every kit lab depends on it.</p>
+<h3 id="modules-and-imports">Modules and Imports<a class="headerlink" href="#modules-and-imports" title="Permanent link">&para;</a></h3>
+<p>A <strong>module</strong> is a Python file that other files can use. When you write <code>import config</code>, MicroPython looks for a file named <code>config.py</code>, runs it once, and gives you its names under the prefix <code>config</code>. The <code>from</code> form brings individual names in directly.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>                   <span class="c1"># use as config.BAUDRATE</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>         <span class="c1"># use as Pin</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">shapes</span>                   <span class="c1"># lib/shapes.py from the kit</span>
+</span></code></pre></div>
+<p>MicroPython searches a short list of folders, called the import path, in order. The list always includes the folder the program runs from, and it includes a folder named <code>/lib</code> on the Pico. That is why the kit puts its drivers (<code>gc9b72.py</code>, <code>shapes.py</code>, and the fonts) in <code>lib/</code>, while <code>config.py</code> sits at the top level next to the tests.</p>
+<p>Two behaviors cause most import confusion.</p>
+<ul>
+<li><strong>A module runs once.</strong> The first <code>import config</code> executes the file. A second <code>import config</code> in another file reuses the result and does not run it again.</li>
+<li><strong>Editing does not reload.</strong> If you change <code>config.py</code> and re-upload it, a program that is already running still holds the old version. Stop it and run again.</li>
+</ul>
+<p><em>Worked example.</em> Suppose <code>shapes.py</code> is missing from the Pico. Running test 04, which contains <code>import shapes</code>, stops with <code>ImportError: no module named 'shapes'</code>. The error names the file, so the fix is to upload <code>lib/shapes.py</code> (the <code>upload-code.sh</code> script does this). Reading the last line of an error first, and looking for a name, solves most import problems in under a minute.</p>
+<p>The diagram below shows how the kit's files point at each other. Each box is a file, and each arrow is an <code>import</code>.</p>
+<h4 id="diagram-kit-import-map">Diagram: Kit Import Map<a class="headerlink" href="#diagram-kit-import-map" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Kit Import Map</summary>
+<p>Type: graph-model
+<strong>sim-id:</strong> kit-import-map<br/>
+<strong>Library:</strong> vis-network<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> interpret<br/>
+<strong>Learning Objective:</strong> The learner will interpret the kit's import map by naming, for 5 selected files, which other files it imports and which folder each file belongs in on the Pico.</p>
+<p><strong>Prerequisites:</strong> module, import, import path, <code>/lib</code> folder (all defined in the section "Modules and Imports" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 5 files in the table below, the learner selects the files it imports from the full list of 8 files. A selection is correct when it matches the "Kit files it imports" column exactly. Mastery is 4 of 5 correct. Clicking a file to read its description is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) Every file must be at the top level of the Pico. (2) A file imports everything that its imports import. (3) Editing a module on the computer updates the copy on the Pico.</p>
+<p><strong>Instructional Rationale:</strong> An Understand-level objective asks the learner to interpret a structure, so the learner reads arrows rather than reciting a rule. Choosing the imports of a file before the answer is shown makes the learner predict from the diagram.</p>
+<p><strong>Content:</strong></p>
+<p>The graph has 8 files. Each file shows its Pico folder and a one-sentence description when selected.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Pico folder</th>
+<th>Description</th>
+<th>Kit files it imports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>03-buttons.py</td>
+<td>top level</td>
+<td>Test 03, reports button presses</td>
+<td>config</td>
+</tr>
+<tr>
+<td>04-hello-world.py</td>
+<td>top level</td>
+<td>Test 04, draws "Hello World!"</td>
+<td>config, shapes</td>
+</tr>
+<tr>
+<td>06-listen-meter.py</td>
+<td>top level</td>
+<td>Test 06, a microphone level meter</td>
+<td>config</td>
+</tr>
+<tr>
+<td>config.py</td>
+<td>top level</td>
+<td>Every pin number and helper function for the kit</td>
+<td>gc9b72, vga1_8x16, vga1_bold_16x32</td>
+</tr>
+<tr>
+<td>shapes.py</td>
+<td>lib</td>
+<td>Circles, rings, polygons, sprites</td>
+<td>none</td>
+</tr>
+<tr>
+<td>gc9b72.py</td>
+<td>lib</td>
+<td>The display driver</td>
+<td>none</td>
+</tr>
+<tr>
+<td>vga1_8x16.py</td>
+<td>lib</td>
+<td>The small 8 by 16 font</td>
+<td>none</td>
+</tr>
+<tr>
+<td>vga1_bold_16x32.py</td>
+<td>lib</td>
+<td>The large 16 by 32 font</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>Standard-library modules such as <code>machine</code>, <code>time</code>, <code>math</code>, and <code>struct</code> are not drawn, and the learner is not asked about them.</p>
+<p><strong>Provenance:</strong> The files, folders, and imports are taken from the kit at <code>src/kits/study-buddy-base/</code> in this repository: the test files named, <code>config.py</code>, and the four files in <code>lib/</code>.</p>
+<p><strong>Rules:</strong> An arrow runs from the importing file to the imported file. A selection is correct when the set of files the learner selects equals the "Kit files it imports" set for that file. A file that imports no kit files is answered by selecting none. Order does not matter.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads the graph and clicks any file to see its folder and description.</li>
+<li>The learner starts the check. For each of 5 files (03-buttons.py, 04-hello-world.py, 06-listen-meter.py, config.py, shapes.py), the learner selects the kit files it imports and submits.</li>
+<li>The sim reveals the correct arrows for that file.</li>
+<li>After the fifth file, the sim shows the score.</li>
+</ol>
+<p><strong>Feedback:</strong> 5 files, fixed order, one attempt each. Correct: "Correct: <file> imports <list>." Incorrect: "Not quite. <file> imports <list>; <one-sentence reason>." The correct answer is shown right after each submission. A running score "n of 5" is shown.</p>
+<p><strong>Starting State:</strong> The full graph is shown with no file selected, and the question "Which files does 04-hello-world.py need?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that <code>config.py</code> is at the top level, that the drivers and fonts are in <code>lib/</code>, and that test 04 imports <code>shapes</code> and <code>config</code>.</p>
+</details>
+<h3 id="the-config-file-pattern">The Config File Pattern<a class="headerlink" href="#the-config-file-pattern" title="Permanent link">&para;</a></h3>
+<p>Every kit lab imports <code>config.py</code> rather than repeating pin numbers. That is the <strong>config file pattern</strong>: put every hardware fact in one module, and let every other file ask it. Here is a trimmed piece of the kit's <code>config.py</code>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">BUTTON_MODE_PIN</span> <span class="o">=</span> <span class="mi">13</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">BUTTON_INCREMENT_PIN</span> <span class="o">=</span> <span class="mi">14</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">BUTTON_DECREMENT_PIN</span> <span class="o">=</span> <span class="mi">15</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">init_buttons</span><span class="p">():</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">mode</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">BUTTON_MODE_PIN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">increment</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">BUTTON_INCREMENT_PIN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">decrement</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">BUTTON_DECREMENT_PIN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">mode</span><span class="p">,</span> <span class="n">increment</span><span class="p">,</span> <span class="n">decrement</span>
+</span></code></pre></div>
+<p>The three constants hold the pin numbers, and <code>init_buttons()</code> builds the three <code>Pin</code> objects and returns them. A lab then needs only one line, <code>mode, up, down = config.init_buttons()</code>. If you wire a button to a different pin, you change one number in one file and every lab follows.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Change It in One Place</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Think of <code>config.py</code> as the kit's address book. Programs look up where each part lives instead of memorizing it, so a rewired part is a one-line change instead of a hunt through ten files.</p>
+</div>
+<h3 id="boot-and-main-scripts">Boot and Main Scripts<a class="headerlink" href="#boot-and-main-scripts" title="Permanent link">&para;</a></h3>
+<p>When the Pico powers up, MicroPython runs two special files in order. <code>boot.py</code> runs first and is meant for setup, and <code>main.py</code> runs next and holds the program that should start by itself. If neither file exists, the Pico just waits at the REPL. A <code>main.py</code> left over from an old project will run at power-up even when you did not ask, which is why the kit's README warns that a Pico from a previous kit may start the wrong program. To stop it, delete <code>main.py</code> with <code>mpremote fs rm main.py</code>.</p>
+<h3 id="mip-installing-libraries">mip: Installing Libraries<a class="headerlink" href="#mip-installing-libraries" title="Permanent link">&para;</a></h3>
+<p>The <strong>mip package manager</strong> downloads a library and puts it in <code>/lib</code>. It needs the Pico to be on Wi-Fi when you run it from the board, or you can run it from your computer through mpremote, which is easier. Chapter 15 uses it to install the MQTT client.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mpremote<span class="w"> </span>mip<span class="w"> </span>install<span class="w"> </span>umqtt.simple
+</span></code></pre></div>
+<p>After that, <code>import umqtt.simple</code> works in any program. The kit files for this book are not installed with mip; they are plain files you copy.</p>
+<h2 id="talking-to-the-hardware">Talking to the Hardware<a class="headerlink" href="#talking-to-the-hardware" title="Permanent link">&para;</a></h2>
+<h3 id="the-machine-library">The machine Library<a class="headerlink" href="#the-machine-library" title="Permanent link">&para;</a></h3>
+<p>The <strong>machine library</strong> is MicroPython's window into the chip. Where ordinary Python knows nothing about pins, <code>machine</code> gives you a class for each kind of hardware. The kit uses five of them.</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>What it controls</th>
+<th>Where this book uses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Pin</code></td>
+<td>One GPIO pin</td>
+<td>Buttons, display control lines, the LED</td>
+</tr>
+<tr>
+<td><code>SPI</code></td>
+<td>A fast serial bus with a clock and data lines</td>
+<td>The display (Chapter 5)</td>
+</tr>
+<tr>
+<td><code>I2S</code></td>
+<td>A serial bus built for audio</td>
+<td>Microphone and speaker (Chapter 8)</td>
+</tr>
+<tr>
+<td><code>Timer</code></td>
+<td>A hardware timer that calls your function</td>
+<td>Periodic work (below)</td>
+</tr>
+<tr>
+<td><code>PWM</code>, <code>ADC</code>, <code>I2C</code></td>
+<td>Pulse output, analog input, a two-wire bus</td>
+<td>Not used in the kit</td>
+</tr>
+</tbody>
+</table>
+<p>Beyond the classes, <code>machine.freq()</code> returns the CPU speed in hertz, and <code>machine.reset()</code> restarts the board. Notice the pattern: you create an object for a piece of hardware, then call its methods. Test 02 begins by printing <code>machine.freq()</code> so you can see what clock your board runs at.</p>
+<p><em>Worked example.</em> The display's SPI bus is created with one line from the kit's <code>config.init_display()</code>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">spi</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">24_000_000</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">mosi</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div>
+<p>The first argument, <code>0</code>, picks SPI block 0. The <code>baudrate</code> is the requested clock speed in bits per second, <code>sck</code> is the clock pin, and <code>mosi</code> is the pin that carries data from the Pico to the display. Chapter 5 explains each of these. The point for now is that every piece of hardware follows the same recipe: choose a block, hand it the pins, and it returns an object you can use.</p>
+<h3 id="gpio-pins">GPIO Pins<a class="headerlink" href="#gpio-pins" title="Permanent link">&para;</a></h3>
+<p>A <strong>GPIO pin</strong> (general-purpose input/output) is a metal pin the program can either read as a 0 or a 1, or drive to a 0 or a 1. The Pico's pins are labeled GP0, GP1, and so on, and the number in <code>Pin(13)</code> is the GP number, not the physical position on the board.</p>
+<p>As an input, a pin reads a voltage and reports <code>1</code> for high (near 3.3 V) or <code>0</code> for low (near 0 V). As an output, it sets that voltage. A pin set up as an input with a <strong>pull-up</strong> is held at 1 by a built-in resistor until something connects it to ground. That is how the kit reads a button.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>   <span class="c1"># 1 when not pressed, 0 while pressed</span>
+</span></code></pre></div>
+<p>The button's other leg goes to ground, so pressing it connects the pin to 0 V and the reading flips from 1 to 0. This surprises many builders: <em>pressed</em> reads as 0. The kit's labs write <code>button.value() == 0</code> to mean "pressed."</p>
+<p>Three rules keep you out of trouble.</p>
+<ul>
+<li><strong>Use names for special pins.</strong> On a Pico W the onboard LED is not on GP25. Write <code>Pin("LED")</code>, which works on every board.</li>
+<li><strong>Leave the wireless pins alone.</strong> GP23, GP24, GP25, and GP29 belong to the wireless chip on a Pico 2 W. Do not wire anything to them.</li>
+<li><strong>Never connect a pin to more than 3.3 V.</strong> The Pico's pins are 3.3 V parts.</li>
+</ul>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Pressed Reads as Zero</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+A code bug that looks like a broken button is often a flipped test: writing <code>if button.value():</code> runs when the button is <em>not</em> pressed. Fix it by writing <code>if button.value() == 0:</code> and adding a comment that says "pressed."</p>
+</div>
+<p>The table below collects the pin facts from the kit, so you can see them in one place.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Pico pins</th>
+<th>Pin mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buttons MODE, UP, DOWN</td>
+<td>GP13, GP14, GP15</td>
+<td>Input with pull-up</td>
+</tr>
+<tr>
+<td>Display clock, data, reset, data/command, chip select, backlight</td>
+<td>GP2 to GP7</td>
+<td>SPI and outputs</td>
+</tr>
+<tr>
+<td>Microphone clock, word select, data</td>
+<td>GP10, GP11, GP12</td>
+<td>I2S receive</td>
+</tr>
+<tr>
+<td>Amplifier data, bit clock, left/right clock</td>
+<td>GP19, GP20, GP21</td>
+<td>I2S transmit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="timers">Timers<a class="headerlink" href="#timers" title="Permanent link">&para;</a></h3>
+<p>A <strong>timer</strong> is a hardware counter that calls a function for you after a delay, once or over and over. The program keeps doing other work, and the timer interrupts it at the right moment. The <code>period</code> is in milliseconds.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="s2">"LED"</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">blink</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">led</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">tick</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Timer</span><span class="o">.</span><span class="n">PERIODIC</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">blink</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This blinks the LED every 250 ms with no loop in your main program, so the main program is free to do something else, like draw on the display. <code>Timer.ONE_SHOT</code> runs the function once instead. The callback receives the timer object as its only argument, so the function must accept one parameter even if it ignores it. Stop a timer with <code>tick.deinit()</code>.</p>
+<h3 id="interrupts-and-interrupt-service-routines">Interrupts and Interrupt Service Routines<a class="headerlink" href="#interrupts-and-interrupt-service-routines" title="Permanent link">&para;</a></h3>
+<p>An <strong>interrupt</strong> is a signal from hardware that makes the processor pause what it is doing, run a short function, and then return to where it left off. The short function is the <strong>interrupt service routine</strong> (ISR). A pin can request an interrupt when its signal falls from 1 to 0, rises from 0 to 1, or both.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">pressed</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">on_press</span><span class="p">(</span><span class="n">pin</span><span class="p">):</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="k">global</span> <span class="n">pressed</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">pressed</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">button</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">IRQ_FALLING</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">on_press</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="k">if</span> <span class="n">pressed</span><span class="p">:</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>        <span class="n">pressed</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"MODE pressed"</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The function <code>on_press</code> is the ISR. It does one tiny thing, setting a flag, and the main loop does the real work when it notices the flag. That split is the rule for every ISR you will write: keep it short, do not print or allocate memory inside it, and leave the real work to the main loop.</p>
+<p>Polling, which means asking the pin over and over in a loop, can miss a press that starts and ends between two checks. An interrupt cannot miss it, because the hardware notices the edge on its own. The activity below lets you predict which presses a polling loop would catch.</p>
+<h4 id="diagram-polling-versus-interrupt-timeline">Diagram: Polling Versus Interrupt Timeline<a class="headerlink" href="#diagram-polling-versus-interrupt-timeline" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Polling Versus Interrupt Timeline</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> polling-versus-interrupt-timeline<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> compare<br/>
+<strong>Learning Objective:</strong> The learner will compare a polling loop with an interrupt by predicting, for 6 button presses, whether a loop that checks the pin every P milliseconds sees the press, and observing that an interrupt sees all 6.</p>
+<p><strong>Prerequisites:</strong> polling, interrupt, interrupt service routine, falling edge (all defined in the section "Interrupts and Interrupt Service Routines" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 cases, the learner commits to "seen" or "missed" for the polling loop before the result is shown. A prediction is correct when it matches the Polling result column in Content. Mastery is 5 of 6 correct. Switching to interrupt mode and watching is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) A faster loop always catches every press. (2) A very short press is always missed. (3) An interrupt makes the main loop run faster.</p>
+<p><strong>Instructional Rationale:</strong> An Understand-level comparison needs the learner to infer an outcome from a rule rather than watch it. Predicting before the result forces the learner to apply the rule "a poll sees the press only if a check lands inside it," and the interrupt mode then shows why that rule does not apply to hardware edges.</p>
+<p><strong>Content:</strong></p>
+<p>A timeline runs from 0 ms to 220 ms. Polling checks happen at 0 ms and then every P ms. A press is a time interval [start, end) during which the pin reads 0. The polling loop sees a press when at least one check time t satisfies start &lt;= t &lt; end.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>P (ms)</th>
+<th>Press start (ms)</th>
+<th>Press end (ms)</th>
+<th>Press length (ms)</th>
+<th>Check times inside the press</th>
+<th>Polling result</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+<td>12</td>
+<td>22</td>
+<td>10</td>
+<td>15, 20</td>
+<td>seen</td>
+<td>Two checks land inside the press.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20</td>
+<td>12</td>
+<td>22</td>
+<td>10</td>
+<td>20</td>
+<td>seen</td>
+<td>The check at 20 ms lands inside the press, by luck.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>20</td>
+<td>22</td>
+<td>32</td>
+<td>10</td>
+<td>none (checks at 20 and 40)</td>
+<td>missed</td>
+<td>The press starts just after one check and ends before the next.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>100</td>
+<td>30</td>
+<td>80</td>
+<td>50</td>
+<td>none (checks at 0 and 100)</td>
+<td>missed</td>
+<td>A 50 ms press fits entirely between two checks 100 ms apart.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>100</td>
+<td>90</td>
+<td>210</td>
+<td>120</td>
+<td>100, 200</td>
+<td>seen</td>
+<td>A press longer than P always contains a check.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>50</td>
+<td>55</td>
+<td>95</td>
+<td>40</td>
+<td>none (checks at 50 and 100)</td>
+<td>missed</td>
+<td>A press shorter than P can fall between two checks.</td>
+</tr>
+</tbody>
+</table>
+<p>In interrupt mode every case is seen at its press start, because the hardware notices the falling edge.</p>
+<p><strong>Provenance:</strong> The numbers are illustrative and the sim labels them "illustrative." The rule that a polling loop misses a press that fits between two checks comes from the chapter section "Interrupts and Interrupt Service Routines."</p>
+<p><strong>Rules:</strong> Checks occur at 0, P, 2P, and so on up to 220 ms. A press is seen by polling when start &lt;= kP &lt; end for some integer k &gt;= 0. In interrupt mode a press is seen at its start time for every case. A press longer than P is always seen by polling.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads case 1 (P and the press interval) and chooses "seen" or "missed."</li>
+<li>The sim draws the check times and the press, then shows the result and the Why text.</li>
+<li>The learner continues through case 6, then sees the score.</li>
+<li>The learner switches the display to interrupt mode and steps through the six cases again, noticing that every press is marked at its start time.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 cases, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The polling loop <seen or missed> this press: <Why>". The result is revealed after each answer, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> Case 1 is shown with the checks marked on the timeline and the question "Will the polling loop see this press?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that polling can miss a press that starts and ends between two checks, that an interrupt cannot miss it, and that an ISR should only set a flag.</p>
+</details>
+<div class="admonition mascot-tip">
+<p class="admonition-title">ISR Diet Rules</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+Treat your ISR like a note on a sticky pad: set a flag, store one number, and get out. If you catch yourself writing a loop, a <code>print</code>, or a list inside an ISR, move that code to the main loop.</p>
+</div>
+<h2 id="memory-the-resource-that-runs-out">Memory: The Resource That Runs Out<a class="headerlink" href="#memory-the-resource-that-runs-out" title="Permanent link">&para;</a></h2>
+<h3 id="memory-limits">Memory Limits<a class="headerlink" href="#memory-limits" title="Permanent link">&para;</a></h3>
+<p>A computer you use every day has gigabytes of memory. A Pico 2 W has about 520 KB of RAM in the whole chip, and MicroPython's own working area, the <strong>heap</strong>, is only part of that. A <strong>memory limit</strong> is the hard ceiling you hit when a program asks for more than is left. On a microcontroller you hit it quickly, so you plan for it.</p>
+<p>Plan with arithmetic. The kit's microphone produces 12,800 samples per second, and each sample is a 4-byte number. Test 07 records up to 3 seconds before playing back.</p>
+<div class="arithmatex">\[ \text{bytes} = 12{,}800 \;\tfrac{\text{samples}}{\text{s}} \times 4 \;\tfrac{\text{bytes}}{\text{sample}} \times 3 \text{ s} = 153{,}600 \text{ bytes} \approx 150 \text{ KB} \]</div>
+<p>That one buffer is roughly 29 percent of the chip's 520 KB of RAM, and a single unbroken block that big is hard to find once a program has been running a while. Asking for 5 seconds instead (256,000 bytes) is much riskier. Test 07's "Try This" invites you to try it, and test 02 reports how much heap is free so you can predict the result before you run it.</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Size on a Pico 2 W</th>
+<th>What uses it in this book</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAM (whole chip)</td>
+<td>about 520 KB</td>
+<td>Everything running</td>
+</tr>
+<tr>
+<td>Heap (MicroPython's share)</td>
+<td>printed by test 02</td>
+<td>Your lists, strings, and buffers</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td>about 4 MB</td>
+<td>Your program files, fonts, and recordings you save</td>
+</tr>
+<tr>
+<td>One 3-second recording</td>
+<td>150 KB</td>
+<td>Test 07</td>
+</tr>
+</tbody>
+</table>
+<p>Check free heap at any time with two functions from the <code>gc</code> module.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">mem_free</span><span class="p">(),</span> <span class="n">gc</span><span class="o">.</span><span class="n">mem_alloc</span><span class="p">())</span>
+</span></code></pre></div>
+<p><code>gc.mem_free()</code> is the number of heap bytes still available, and <code>gc.mem_alloc()</code> is the number in use. Printing them before and after a big allocation is the fastest way to learn what your code costs.</p>
+<h3 id="garbage-collection">Garbage Collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h3>
+<p>Python frees memory for you. When nothing refers to an object any more, it is <strong>garbage</strong>, and the <strong>garbage collector</strong> finds it and returns its memory to the heap. MicroPython runs the collector automatically when it runs short, and you can call <code>gc.collect()</code> yourself to run it now.</p>
+<p>Running the collector takes time, and the pause can be noticeable in code that must keep up with audio. So real-time programs collect on purpose at a calm moment, for example before they allocate a big buffer, as test 07 does with <code>gc.collect()</code> just before creating its 150 KB buffer.</p>
+<h3 id="heap-fragmentation">Heap Fragmentation<a class="headerlink" href="#heap-fragmentation" title="Permanent link">&para;</a></h3>
+<p>Freeing memory is not the same as having it in one piece. <strong>Heap fragmentation</strong> happens when free memory is split into many small gaps between objects that are still in use. The total free bytes may be large, but no single gap is big enough for a large request, and MicroPython raises <code>MemoryError</code>.</p>
+<p>MicroPython's collector frees garbage but does not move the objects that remain, so it cannot squeeze the gaps together. The practical fix is to allocate your biggest buffers first, right after startup, before the heap has been cut into pieces.</p>
+<p>The activity below makes this concrete with a tiny heap of 16 cells.</p>
+<h4 id="diagram-heap-fragmentation-explorer">Diagram: Heap Fragmentation Explorer<a class="headerlink" href="#diagram-heap-fragmentation-explorer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Heap Fragmentation Explorer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> heap-fragmentation-explorer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> explain<br/>
+<strong>Learning Objective:</strong> The learner will explain why a memory request can fail when enough total memory is free, by predicting the outcome of 6 allocation requests on a fragmented 16-cell heap and choosing the reason.</p>
+<p><strong>Prerequisites:</strong> heap, garbage collection, heap fragmentation, MemoryError (all defined in the section "Memory: The Resource That Runs Out" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 requests, the learner predicts "succeeds" or "MemoryError." For a request predicted to fail, the learner also picks the reason from two choices: "not enough free cells in total" or "no single gap is big enough." A request is correct when the prediction matches the Result column and, for failures, the reason matches the Correct reason column. Mastery is 5 of 6 correct on the first attempt. Pressing the collect and restart controls to watch the heap change is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) If the total free memory is large enough, the request succeeds. (2) Garbage collection pushes the remaining objects together. (3) Restarting is the only way to get a big buffer.</p>
+<p><strong>Instructional Rationale:</strong> An Understand-level explanation needs the learner to connect a failure to its cause. Predicting the outcome and then naming the reason separates "not enough memory" from "no single gap big enough," which is the misconception that makes fragmentation confusing.</p>
+<p><strong>Content:</strong></p>
+<p>The heap is a row of 16 cells numbered 1 to 16. Each cell is either free or used. A request for n cells succeeds when some run of n or more consecutive free cells exists, and takes the first such run starting from cell 1.</p>
+<p>State X (the starting heap): cells 1, 3, 5, 7, 9, 11, 13, 15 hold the objects A, B, C, D, E, F, G, H (one cell each). Cells 2, 4, 6, 8, 10, 12, 14, 16 are free. That is 8 free cells in total, and the longest run of free cells is 1.</p>
+<p>State Y (after "Collect garbage" from state X): the objects B, D, F, and H are garbage and are freed. Objects A, C, E, and G stay where they are. Free cells are 2, 3, 4, 6, 7, 8, 10, 11, 12, 14, 15, 16. That is 12 free cells, and the longest run is 3.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Heap state</th>
+<th>Request (cells)</th>
+<th>Result</th>
+<th>Correct reason</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>X</td>
+<td>1</td>
+<td>succeeds</td>
+<td>none asked</td>
+<td>Any free cell is a gap of at least 1.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>X</td>
+<td>2</td>
+<td>MemoryError</td>
+<td>no single gap is big enough</td>
+<td>8 cells are free in total, but every gap is 1 cell wide.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>X</td>
+<td>8</td>
+<td>MemoryError</td>
+<td>no single gap is big enough</td>
+<td>8 cells are free in total, which equals the request, but they are not together.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Y</td>
+<td>3</td>
+<td>succeeds</td>
+<td>none asked</td>
+<td>Cells 2 to 4 form a run of 3.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Y</td>
+<td>4</td>
+<td>MemoryError</td>
+<td>no single gap is big enough</td>
+<td>12 cells are free, but the longest run is 3.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Y</td>
+<td>13</td>
+<td>MemoryError</td>
+<td>not enough free cells in total</td>
+<td>Only 12 cells are free in total.</td>
+</tr>
+</tbody>
+</table>
+<p>After the six requests, the learner can restart the heap (all 16 cells free) and allocate in the order "one 8-cell buffer, then the eight 1-cell objects A to H." Everything fits. In the opposite order (A to H spaced one cell apart first), the 8-cell buffer fails.</p>
+<p><strong>Provenance:</strong> The heap size and objects are illustrative, and the sim labels them "illustrative." The statement that MicroPython's collector frees objects but does not move them comes from the chapter section "Heap Fragmentation."</p>
+<p><strong>Rules:</strong> A request for n cells succeeds when the heap has a run of at least n consecutive free cells, and it takes the lowest-numbered such run. "Collect garbage" frees only the cells of objects marked as garbage and never moves any other object. "Restart" frees all 16 cells.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner sees state X and reads request 1, then predicts the outcome and, if the prediction is a failure, picks a reason.</li>
+<li>The sim attempts the allocation on the heap picture and shows the result and the Why text.</li>
+<li>After request 3, the learner presses "Collect garbage" to reach state Y and continues with requests 4 to 6.</li>
+<li>After request 6, the learner presses "Restart," then allocates the 8-cell buffer first and the eight objects second, and tries the opposite order.</li>
+<li>The learner should notice that collecting garbage increased the free total from 8 to 12 but only grew the longest gap from 1 to 3.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 requests, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. <Why>". The result is revealed right after each answer, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> State X is shown with request 1 and the question "Will this request succeed?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that the collector frees garbage but does not move remaining objects, and that the practical fix is to allocate the biggest buffers first.</p>
+</details>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">Memory Bugs Feel Strange</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+If fragmentation feels slippery, that is normal, because the failure depends on what ran earlier. Rely on what you already do well: measure with <code>gc.mem_free()</code>, and allocate the big buffer first thing in your program.</p>
+</div>
+<h3 id="byte-arrays">Byte Arrays<a class="headerlink" href="#byte-arrays" title="Permanent link">&para;</a></h3>
+<p>Audio, display data, and network messages are all just sequences of bytes. MicroPython holds them in two types. A <code>bytes</code> object is <strong>immutable</strong>, so it cannot change after it is made. A <strong>bytearray</strong> is <strong>mutable</strong>: you can overwrite its contents in place, which is what you need for a buffer that a driver fills over and over.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">raw</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>       <span class="c1"># eight bytes, all zero</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">raw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x34</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">raw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x12</span>
+</span></code></pre></div>
+<p>Creating a buffer once and reusing it is far kinder to the heap than creating a new one in every loop. The kit does this everywhere, for example <code>buf = bytearray(FRAME_BYTES)</code> in test 06, which the microphone fills with <code>mic.readinto(buf)</code> again and again. The word <code>readinto</code> is the clue: the driver writes into memory you already own, so nothing new is allocated.</p>
+<p>Bytes become numbers with the <code>struct</code> module. A <em>format string</em> says how to read the bytes. The characters that matter here are in the table, where the <code>&lt;</code> at the start means the lowest byte comes first (little-endian, which is what the Pico uses).</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Size</th>
+<th>Meaning</th>
+<th>Where the kit uses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>b</code></td>
+<td>1 byte</td>
+<td>signed 8-bit number</td>
+<td>not used</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>2 bytes</td>
+<td>signed 16-bit number</td>
+<td>speaker samples</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>4 bytes</td>
+<td>signed 32-bit number</td>
+<td>microphone samples</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> The two bytes <code>0x34</code> and <code>0x12</code> in the buffer above are one 16-bit number. Reading them gives the high byte first because of little-endian order.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">struct</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="p">(</span><span class="n">value</span><span class="p">,)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">"&lt;h"</span><span class="p">,</span> <span class="n">raw</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>             <span class="c1"># 4660, which is 0x1234</span>
+</span></code></pre></div>
+<p>Test 06 does the same thing on a bigger scale: <code>struct.unpack("&lt;512i", buf)</code> turns 2,048 bytes into 512 microphone samples. When the numbers are all the same type, the <code>array</code> module (<code>array("h", ...)</code>) gives you a typed list that also acts like a buffer, and Chapter 10 uses it for speed.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Slicing Copies</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+Writing <code>raw[:2]</code> makes a new two-byte object. In a loop that runs every 20 ms, those copies pile up and trigger garbage collection pauses. Use a memoryview, described next, to point at part of a buffer without copying it.</p>
+</div>
+<h3 id="memoryview">memoryview<a class="headerlink" href="#memoryview" title="Permanent link">&para;</a></h3>
+<p>A <strong>memoryview</strong> is a window onto an existing buffer. Slicing a memoryview gives another window, not a copy, so you can hand a driver "the part of the buffer starting here" for free. Test 07 relies on it to fill a 150 KB buffer in 1,024-byte pieces.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">raw</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">MAX_SECONDS</span> <span class="o">*</span> <span class="n">RATE</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">view</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">got</span> <span class="o">=</span> <span class="n">mic</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">view</span><span class="p">[</span><span class="n">position</span><span class="p">:</span><span class="n">position</span> <span class="o">+</span> <span class="n">CHUNK</span><span class="p">])</span>
+</span></code></pre></div>
+<p>The <code>view[position:position + CHUNK]</code> slice names the next 1,024 bytes of <code>raw</code>, and <code>readinto</code> fills exactly that part. Because nothing is copied, the loop allocates no memory.</p>
+<h3 id="exceptions">Exceptions<a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h3>
+<p>An <strong>exception</strong> is Python's way of reporting that something went wrong. When code raises one, normal execution stops and Python looks for a matching <code>except</code> block. If none is found, the program ends and prints a traceback. Hardware code meets exceptions often: a wrong pin raises <code>ValueError</code>, a missing file raises <code>OSError</code>, and an oversized buffer raises <code>MemoryError</code>.</p>
+<p>The most important pattern for this book is <code>try</code> with <code>finally</code>. A <code>finally</code> block runs whether or not an exception happened, which makes it the right place to release hardware.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">mic</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">init_microphone</span><span class="p">()</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        <span class="n">mic</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        <span class="c1"># ... use the samples ...</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">mic</span><span class="o">.</span><span class="n">deinit</span><span class="p">()</span>
+</span></code></pre></div>
+<p>The microphone is created before the <code>try</code>, so <code>finally</code> can always call <code>deinit()</code> on it. If you press Stop in Thonny, the interrupt arrives as <code>KeyboardInterrupt</code>, the <code>finally</code> block runs, and the I2S hardware and its buffer are released cleanly instead of being left running half-finished.</p>
+<h3 id="the-flash-file-system">The Flash File System<a class="headerlink" href="#the-flash-file-system" title="Permanent link">&para;</a></h3>
+<p>Your files live in the Pico's flash memory, organized as a small <strong>flash file system</strong> (littlefs). It behaves like a normal drive: you can open, read, write, list, and delete files with the <code>open()</code> function and the <code>os</code> module.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">())</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">stats</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">statvfs</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">stats</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">"bytes free"</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>os.listdir()</code> shows the files, and <code>os.statvfs("/")</code> describes the drive. Multiplying the block size (item 0) by the number of free blocks (item 3) gives the free bytes. Test 02 prints the same information for the kit.</p>
+<p>Flash has one habit that RAM does not: each spot can be rewritten only a limited number of times, and writes are slow. So do not save to a file inside a fast loop. Write a setting when it changes, not every frame, and prefer RAM for anything temporary.</p>
+<h2 id="putting-the-tools-together">Putting the Tools Together<a class="headerlink" href="#putting-the-tools-together" title="Permanent link">&para;</a></h2>
+<p>Here is the whole workflow you will repeat in every chapter, using only what this chapter covered.</p>
+<ol>
+<li>Wire a part and add its pins to <code>config.py</code> (config file pattern).</li>
+<li>Upload with <code>upload-code.sh</code> (mpremote).</li>
+<li>Run the matching test file and read its output (REPL and shell).</li>
+<li>If something fails, read the last line of the error, check the imports and pins, and use <code>gc.mem_free()</code> if it says <code>MemoryError</code>.</li>
+<li>When the code works, keep it in a module and import it from the next lab.</li>
+</ol>
+<p>Key takeaways:</p>
+<ul>
+<li>Thonny, the REPL, and mpremote all reach the same Pico; use the REPL to experiment and a file to keep what works.</li>
+<li>A module runs once on import, and <code>config.py</code> holds every pin so wiring changes happen in one place.</li>
+<li>A pull-up input reads 1 when idle and 0 when pressed.</li>
+<li>A timer calls your function on a schedule, and an interrupt calls an ISR the moment hardware signals; both interrupt the main loop, so keep the callbacks short.</li>
+<li>Memory is scarce: compute buffer sizes, reuse <code>bytearray</code> buffers, slice with <code>memoryview</code>, and allocate the biggest buffer first.</li>
+<li>Use <code>try</code> and <code>finally</code> to release hardware when a program stops.</li>
+</ul>
+<p>Test yourself with these two questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>A button wired with a pull-up reads 1. Is it pressed or released? Click to expand</summary>
+<p>Released. A pull-up holds the pin at 1 until the button connects it to ground, so a pressed button reads 0.</p>
+</details>
+<details class="question">
+<summary>Free heap shows 100 KB, but a request for a 60 KB buffer raises MemoryError. What likely happened? Click to expand</summary>
+<p>The heap is fragmented. The 100 KB is split into smaller gaps, and no single gap is 60 KB. Allocate large buffers first, right after startup.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Ready to Build</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just refreshed modules, the config pattern, pull-up pins, timers, interrupts, and the memory arithmetic that decides whether a recording fits. Your toolbox is ready for the hardware.</p>
+</div>
+<p>In Chapter 3 we leave the code for a moment and turn sound into numbers.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="How the 360 by 360 round display works: SPI, pixels, RGB565 color, the display driver, frame size, and why redrawing a full frame on every change is too slow.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>5. Display Basics: Pixels, Color, and Frame Size - Open Study Buddy</title>
+        <title>Display Basics: Pixels, Color, and Frame Size - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5. Display Basics: Pixels, Color, and Frame Size
+              Display Basics: Pixels, Color, and Frame Size
             
           </span>
         </div>
@@ -581,6 +581,153 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#why-a-screen-is-a-math-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why a Screen Is a Math Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-spi-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      The SPI Bus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pixels-and-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pixels and Coordinates
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rgb565-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      RGB565 Color
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RGB565 Color">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-rgb565-color-mixer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: RGB565 Color Mixer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-spi-display-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      The SPI Display Driver
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-frame-buffer-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Buffer Idea
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-size-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frame Size Calculation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frame Size Calculation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-frame-size-and-update-time-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Frame Size and Update Time Calculator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-bandwidth-and-the-full-frame-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Bandwidth and the Full-Frame Update
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clock-face-geometry-and-polar-to-cartesian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clock Face Geometry and Polar to Cartesian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backlight-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlight Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Color Themes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -886,6 +1033,69 @@
         
       
         
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
       
         
       
@@ -1069,6 +1279,153 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#why-a-screen-is-a-math-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why a Screen Is a Math Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-spi-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      The SPI Bus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pixels-and-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pixels and Coordinates
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rgb565-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      RGB565 Color
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RGB565 Color">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-rgb565-color-mixer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: RGB565 Color Mixer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-spi-display-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      The SPI Display Driver
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-frame-buffer-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Buffer Idea
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-size-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frame Size Calculation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frame Size Calculation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-frame-size-and-update-time-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Frame Size and Update Time Calculator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-bandwidth-and-the-full-frame-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Bandwidth and the Full-Frame Update
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clock-face-geometry-and-polar-to-cartesian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clock Face Geometry and Polar to Cartesian
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backlight-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlight Control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Color Themes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1166,13 +1523,698 @@
 <li><a href="../04-pico-kit-hardware/">Chapter 4: The Pico Kit Hardware and Wiring</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="why-a-screen-is-a-math-problem">Why a Screen Is a Math Problem<a class="headerlink" href="#why-a-screen-is-a-math-problem" title="Permanent link">&para;</a></h2>
+<p>Your Study Buddy talks to people through a round screen. Putting a picture on it sounds simple, and in a few lines of code it is. The surprise comes when you ask for something smooth, like a moving level meter, while the microphone is also sending 40 ms of sound that must be handled on time. Then the screen turns out to be the slowest part of the whole device.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Pictures Cost Bytes</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+In this chapter you will draw on the round screen, and then do the arithmetic that explains why a full redraw is too slow for a device that must also listen. Let's listen closely! You will leave with a number you can calculate for yourself, and it will shape every display decision in the book.</p>
+</div>
+<h2 id="the-spi-bus">The SPI Bus<a class="headerlink" href="#the-spi-bus" title="Permanent link">&para;</a></h2>
+<p>The display connects to the Pico over an <strong>SPI bus</strong>. SPI (Serial Peripheral Interface) is a way for two chips to exchange bytes over a few wires, one bit at a time. One chip is the <em>controller</em> (the Pico), and the other is the <em>peripheral</em> (the display). Four signals make up a full SPI bus.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Also called</th>
+<th>Direction</th>
+<th>Display wire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCK</td>
+<td>Clock</td>
+<td>Pico to display</td>
+<td>SCL (GP2)</td>
+</tr>
+<tr>
+<td>MOSI</td>
+<td>Controller out, peripheral in</td>
+<td>Pico to display</td>
+<td>SDA (GP3)</td>
+</tr>
+<tr>
+<td>MISO</td>
+<td>Controller in, peripheral out</td>
+<td>Display to Pico</td>
+<td>Not used</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>Chip select</td>
+<td>Pico to display</td>
+<td>CS (GP6)</td>
+</tr>
+</tbody>
+</table>
+<p>The clock wire pulses once for every bit. On each pulse, the Pico puts the next bit on the MOSI wire, and the display reads it. This display never talks back, so the MISO wire (labeled SDO on the display board) is left unconnected.</p>
+<p>The speed of the bus is its <strong>baud rate</strong>, in bits per second. The kit asks for 24 million bits per second, which MicroPython sets up like this.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">spi</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">24_000_000</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">mosi</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div>
+<p>The <code>0</code> selects SPI block 0, <code>baudrate</code> is the speed you request, and <code>sck</code> and <code>mosi</code> name the two data pins.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">The Rate You Ask For Is Not Always the Rate You Get</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+MicroPython divides a 48 MHz clock and rounds down to the nearest rate it can make, so asking for 20 MHz gives 12 MHz, and nothing exists between 12 and 24 MHz. To see what you really got, print the SPI object. If the picture speckles on long wires, step down to 12,000,000.</p>
+</div>
+<p>The measurements in the kit's <code>config.py</code> show the pattern clearly.</p>
+<table>
+<thead>
+<tr>
+<th>You ask for (Hz)</th>
+<th>You get (Hz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10,000,000</td>
+<td>8,000,000</td>
+</tr>
+<tr>
+<td>16,000,000</td>
+<td>12,000,000</td>
+</tr>
+<tr>
+<td>20,000,000</td>
+<td>12,000,000</td>
+</tr>
+<tr>
+<td>24,000,000</td>
+<td>24,000,000 (the ceiling)</td>
+</tr>
+<tr>
+<td>62,500,000</td>
+<td>24,000,000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pixels-and-coordinates">Pixels and Coordinates<a class="headerlink" href="#pixels-and-coordinates" title="Permanent link">&para;</a></h2>
+<p>A <strong>pixel</strong> (picture element) is the smallest dot the screen can color. The 360 by 360 display has <span class="arithmatex">\( 360 \times 360 = 129{,}600 \)</span> of them. You address each by two numbers, written (x, y). The x number counts columns from the left, and the y number counts rows from the top. The top-left pixel is (0, 0), x increases to the right, and <strong>y increases downward</strong>, which is the opposite of the graphs you draw in math class. The last pixel is (359, 359) and the center of the round screen is (180, 180).</p>
+<p>Only the circle inside the square is visible. The kit stores the center in <code>config.CENTER_X</code> and <code>config.CENTER_Y</code> (both 180), the edge of the glass in <code>config.RADIUS</code> (180), and the largest circle you can see completely in <code>config.SAFE_RADIUS</code> (168).</p>
+<p><em>Worked example.</em> Is the pixel (20, 20) visible? Its distance from the center is <span class="arithmatex">\( \sqrt{(20-180)^2 + (20-180)^2} = \sqrt{25600 + 25600} \approx 226 \)</span>, which is larger than the radius 180, so it is hidden under the bezel in the corner. The pixel (180, 20) has distance <span class="arithmatex">\( |20 - 180| = 160 \)</span>, which is less than 168, so it is safely inside the visible ring.</p>
+<table>
+<thead>
+<tr>
+<th>Pixel</th>
+<th>Distance from center</th>
+<th>Visible?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(180, 180)</td>
+<td>0</td>
+<td>Yes, the center</td>
+</tr>
+<tr>
+<td>(180, 20)</td>
+<td>160</td>
+<td>Yes, inside the safe ring</td>
+</tr>
+<tr>
+<td>(20, 20)</td>
+<td>about 226</td>
+<td>No, in the corner</td>
+</tr>
+<tr>
+<td>(359, 180)</td>
+<td>179</td>
+<td>Barely, at the very edge</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rgb565-color">RGB565 Color<a class="headerlink" href="#rgb565-color" title="Permanent link">&para;</a></h2>
+<p>Each pixel needs a color. A computer makes a color by mixing red, green, and blue light, each with a strength. Many systems use one byte (0 to 255) per color, which takes 3 bytes per pixel. This display uses a smaller format called <strong>RGB565</strong> to save memory and time: it packs a color into just 16 bits (2 bytes).</p>
+<p>The name tells you the split. Red gets 5 bits, green gets 6 bits, and blue gets 5 bits, for <span class="arithmatex">\( 5 + 6 + 5 = 16 \)</span> bits. Five bits give 32 levels of red, 6 bits give 64 levels of green, and 5 bits give 32 levels of blue, so the format has <span class="arithmatex">\( 2^{16} = 65{,}536 \)</span> colors. Green gets the extra bit because human eyes are most sensitive to green.</p>
+<p>The kit builds a color with <code>color565(red, green, blue)</code>, where each argument runs from 0 to 255. It keeps the top bits of each value and packs them.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">color565</span><span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">green</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">blue</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">red</span> <span class="o">&amp;</span> <span class="mh">0xF8</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="p">(</span><span class="n">green</span> <span class="o">&amp;</span> <span class="mh">0xFC</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">blue</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span>
+</span></code></pre></div>
+<p>The <code>&amp; 0xF8</code> keeps the top 5 bits of red, <code>&amp; 0xFC</code> keeps the top 6 bits of green, and <code>blue &gt;&gt; 3</code> drops the low 3 bits of blue so that 5 remain. The shifts <code>&lt;&lt; 8</code> and <code>&lt;&lt; 3</code> slide each part to its place in the 16-bit number.</p>
+<p><em>Worked example.</em> Orange is (255, 128, 0). Red: <span class="arithmatex">\( 255 \,\&amp;\, 0xF8 = 0xF8 \)</span>, shifted left 8 bits gives 0xF800. Green: <span class="arithmatex">\( 128 \,\&amp;\, 0xFC = 0x80 \)</span>, shifted left 3 gives 0x0400. Blue is 0. Joining them gives <span class="arithmatex">\( 0xF800 + 0x0400 = 0xFC00 \)</span>. The driver sends the high byte first, so the two bytes on the wire are FC 00.</p>
+<table>
+<thead>
+<tr>
+<th>Color</th>
+<th>(R, G, B)</th>
+<th>RGB565 value</th>
+<th>Bytes sent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red</td>
+<td>(255, 0, 0)</td>
+<td>0xF800</td>
+<td>F8 00</td>
+</tr>
+<tr>
+<td>Green</td>
+<td>(0, 255, 0)</td>
+<td>0x07E0</td>
+<td>07 E0</td>
+</tr>
+<tr>
+<td>Blue</td>
+<td>(0, 0, 255)</td>
+<td>0x001F</td>
+<td>00 1F</td>
+</tr>
+<tr>
+<td>Yellow</td>
+<td>(255, 255, 0)</td>
+<td>0xFFE0</td>
+<td>FF E0</td>
+</tr>
+<tr>
+<td>Cyan</td>
+<td>(0, 255, 255)</td>
+<td>0x07FF</td>
+<td>07 FF</td>
+</tr>
+<tr>
+<td>Orange</td>
+<td>(255, 128, 0)</td>
+<td>0xFC00</td>
+<td>FC 00</td>
+</tr>
+<tr>
+<td>Gray</td>
+<td>(110, 110, 110)</td>
+<td>0x6B6D</td>
+<td>6B 6D</td>
+</tr>
+</tbody>
+</table>
+<p>Try the mixer to see how the bits move.</p>
+<h4 id="diagram-rgb565-color-mixer">Diagram: RGB565 Color Mixer<a class="headerlink" href="#diagram-rgb565-color-mixer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>RGB565 Color Mixer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> rgb565-color-mixer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Template:</strong> https://github.com/dmccreary/learning-python/tree/main/docs/sims/rgb-color-mixer<br/>
+<strong>Bloom Level:</strong> Apply<br/>
+<strong>Bloom Verb:</strong> calculate<br/>
+<strong>Learning Objective:</strong> The learner will calculate the 16-bit RGB565 value for 6 given colors, using the packing rule, with at least 5 of 6 correct within two attempts each.</p>
+<p><strong>Prerequisites:</strong> pixel, RGB565, bit masking and shifting (all defined in the section "RGB565 Color" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 colors the learner types the RGB565 value in hexadecimal. An answer is correct when it equals the RGB565 value column in Content, ignoring upper or lower case and a leading "0x". Mastery is 5 of 6 correct, with up to two attempts per color. Moving the exploration sliders and watching the bits is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) RGB565 stores 8 bits per color. (2) The extra bit goes to blue. (3) The low bits of each color are kept and the high bits are dropped.</p>
+<p><strong>Instructional Rationale:</strong> Apply-level calculation of a bit-packed value needs the learner to follow the masking and shifting rule step by step. Seeing the 16 bits change with the three color strengths gives the learner a way to check the arithmetic.</p>
+<p><strong>Content:</strong></p>
+<p>For exploration, the learner sets red, green, and blue strengths from 0 to 255 in steps of 1 (unit: none, default 255, 128, 0). The sim shows the color, the three kept bit groups (5, 6, and 5 bits), and the 16-bit value in binary and hexadecimal.</p>
+<p>Challenge colors, in this order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Color</th>
+<th>(R, G, B)</th>
+<th>RGB565 value</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Red</td>
+<td>(255, 0, 0)</td>
+<td>F800</td>
+<td>Red keeps its top 5 bits (11111) in the top of the number.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Green</td>
+<td>(0, 255, 0)</td>
+<td>07E0</td>
+<td>Green keeps its top 6 bits (111111) in the middle.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Blue</td>
+<td>(0, 0, 255)</td>
+<td>001F</td>
+<td>Blue keeps its top 5 bits (11111) in the bottom.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Yellow</td>
+<td>(255, 255, 0)</td>
+<td>FFE0</td>
+<td>Red 11111 and green 111111 together make FFE0.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Orange</td>
+<td>(255, 128, 0)</td>
+<td>FC00</td>
+<td>Green 128 keeps 100000, so the green bits are 0x0400 and red is 0xF800.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Gray</td>
+<td>(110, 110, 110)</td>
+<td>6B6D</td>
+<td>Red 01101, green 011011, and blue 01101 pack to 0110101101101101.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The packing rule is <code>color565</code> from <code>src/kits/study-buddy-base/lib/gc9b72.py</code>. The values in the table were computed with that function.</p>
+<p><strong>Rules:</strong> value = ((R AND 0xF8) shifted left 8) OR ((G AND 0xFC) shifted left 3) OR (B shifted right 3), with R, G, and B whole numbers from 0 to 255. The result is a number from 0 to 65535 shown as four hexadecimal digits.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner drags the red, green, and blue controls and sees the color, the kept bit groups, and the 16-bit value update together.</li>
+<li>The learner starts the challenges. Challenge 1 shows the color and its (R, G, B) numbers.</li>
+<li>The learner types the RGB565 value in hexadecimal and submits.</li>
+<li>If it is wrong the first time, the learner may try once more. After a second wrong answer the sim shows the correct value and the Why text.</li>
+<li>After challenge 6, the sim shows the score. The learner should notice that the 16-bit value only changes when a color crosses a multiple of 8 (or of 4 for green).</li>
+</ol>
+<p><strong>Feedback:</strong> 6 challenges, fixed order, two attempts each. Correct: "Correct: <Why>". First incorrect: "Not quite. Check which bits each color keeps (5, 6, 5). Try again." Second incorrect: "The value is <answer>: <Why>". A running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The mixer shows orange (255, 128, 0) with its bits, and the question "Which bits does each color keep?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that RGB565 uses 5, 6, and 5 bits, has 65,536 colors, and that orange (255, 128, 0) is 0xFC00.</p>
+</details>
+<h2 id="the-spi-display-driver">The SPI Display Driver<a class="headerlink" href="#the-spi-display-driver" title="Permanent link">&para;</a></h2>
+<p>Something has to turn "draw a rectangle" into the right commands and bytes. That something is the <strong>SPI display driver</strong>, a MicroPython module for the display's controller chip. The kit's driver is <code>lib/gc9b72.py</code>, and its class <code>GC9B72</code> takes the SPI bus and the control pins.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">display</span> <span class="o">=</span> <span class="n">gc9b72</span><span class="o">.</span><span class="n">GC9B72</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">dc</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">),</span> <span class="n">cs</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">),</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>                        <span class="n">reset</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">),</span> <span class="n">backlight</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">),</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>                        <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></div>
+<p>You do not write this yourself: <code>config.init_display()</code> builds the bus, the pins, and the driver and returns the display object. The <code>dc</code>, <code>cs</code>, and <code>reset</code> arguments are the control wires from Chapter 4, and <code>rotation</code> turns the picture in steps of 90 degrees.</p>
+<p>The driver's drawing methods all follow one pattern: they set a window on the screen, then stream the pixels for that window.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it draws</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pixel(x, y, color)</code></td>
+<td>One pixel</td>
+</tr>
+<tr>
+<td><code>fill_rect(x, y, width, height, color)</code></td>
+<td>A solid rectangle</td>
+</tr>
+<tr>
+<td><code>fill(color)</code></td>
+<td>The whole screen in one color</td>
+</tr>
+<tr>
+<td><code>hline</code>, <code>vline</code>, <code>rect</code></td>
+<td>Lines and an outline</td>
+</tr>
+<tr>
+<td><code>line(x0, y0, x1, y1, color)</code></td>
+<td>A slanted line, one pixel at a time</td>
+</tr>
+<tr>
+<td><code>text(font, string, x, y, color, background)</code></td>
+<td>Characters from a bitmap font</td>
+</tr>
+<tr>
+<td><code>blit_buffer(buffer, x, y, width, height)</code></td>
+<td>A block of ready-made pixels</td>
+</tr>
+</tbody>
+</table>
+<p>Notice what the table does not contain: a <code>show()</code> method. Many small displays hold a picture in the microcontroller's memory and send it all at once when you call <code>show()</code>. This driver has no such step. Every call streams its bytes to the display immediately, and the display's own memory keeps the result.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Print Your Sizes First</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+Before you call any draw method with a big rectangle, compute <code>width * height * 2</code>. That is how many bytes it will send, and it tells you in one second whether the call will be quick or slow.</p>
+</div>
+<h2 id="fonts">Fonts<a class="headerlink" href="#fonts" title="Permanent link">&para;</a></h2>
+<p>The driver has no built-in letters. Text comes from a <strong>font</strong>, which is a module that stores a small picture of each character. The kit includes two.</p>
+<table>
+<thead>
+<tr>
+<th>Font module</th>
+<th>Character size</th>
+<th>Characters across the screen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vga1_8x16</code> (called <code>SMALL_FONT</code>)</td>
+<td>8 by 16 pixels</td>
+<td>45</td>
+</tr>
+<tr>
+<td><code>vga1_bold_16x32</code> (called <code>BIG_FONT</code>)</td>
+<td>16 by 32 pixels</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<p>The width of a string is its length times the character width. Test 04's "Hello World!" has 12 letters in the big font, so it is <span class="arithmatex">\( 12 \times 16 = 192 \)</span> pixels wide, and the helper <code>config.centered_text()</code> computes the left edge as <span class="arithmatex">\( (360 - 192) / 2 = 84 \)</span>.</p>
+<h2 id="the-frame-buffer-idea">The Frame Buffer Idea<a class="headerlink" href="#the-frame-buffer-idea" title="Permanent link">&para;</a></h2>
+<p>A <strong>frame buffer</strong> is a block of memory that holds one complete picture, one value per pixel. A program draws into the frame buffer first, in memory, and then copies the whole thing to the screen. This approach is popular because drawing in memory is fast and the screen never shows a half-finished picture. MicroPython even includes a <code>framebuf</code> module for it.</p>
+<p>A frame buffer for our display would hold 360 by 360 pixels at 2 bytes each. Whether that is practical depends on a calculation, and the next two sections do it.</p>
+<h2 id="frame-size-calculation">Frame Size Calculation<a class="headerlink" href="#frame-size-calculation" title="Permanent link">&para;</a></h2>
+<p>The <strong>frame size</strong> is the number of bytes in one complete picture. The <strong>frame size calculation</strong> is a single multiplication:</p>
+<div class="arithmatex">\[ \text{frame bytes} = \text{width} \times \text{height} \times \text{bytes per pixel} \]</div>
+<p><em>Worked example.</em> For our display in RGB565, each pixel takes 2 bytes, so a full frame is</p>
+<div class="arithmatex">\[ 360 \times 360 \times 2 = 259{,}200 \text{ bytes} \approx 253 \text{ KB} \]</div>
+<p>The Pico has about 520 KB of SRAM in total. A frame buffer would claim nearly half of all the memory in the chip, and it must be one unbroken block, which Chapter 2 showed is hard to find on a heap that has been in use. MicroPython itself and the audio buffers need the rest. So this kit does not keep a frame buffer on the Pico at all. The display controller already has the picture in its own memory.</p>
+<p>The same formula works for any rectangle, and the answers differ enormously.</p>
+<table>
+<thead>
+<tr>
+<th>What is drawn</th>
+<th>Size</th>
+<th>Bytes (RGB565)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full frame</td>
+<td>360 by 360</td>
+<td>259,200</td>
+</tr>
+<tr>
+<td>Full frame at 3 bytes per pixel</td>
+<td>360 by 360</td>
+<td>388,800</td>
+</tr>
+<tr>
+<td>Visible circle only</td>
+<td>about 101,788 pixels</td>
+<td>about 203,575</td>
+</tr>
+<tr>
+<td>Level meter bar in test 06</td>
+<td>200 by 22</td>
+<td>8,800</td>
+</tr>
+<tr>
+<td>A clock-digit box</td>
+<td>100 by 30</td>
+<td>6,000</td>
+</tr>
+<tr>
+<td>One big-font letter</td>
+<td>16 by 32</td>
+<td>1,024</td>
+</tr>
+</tbody>
+</table>
+<p>Use the calculator below to practice the formula and to turn the bytes into a time.</p>
+<h4 id="diagram-frame-size-and-update-time-calculator">Diagram: Frame Size and Update Time Calculator<a class="headerlink" href="#diagram-frame-size-and-update-time-calculator" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Frame Size and Update Time Calculator</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> frame-size-calculator<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Apply<br/>
+<strong>Bloom Verb:</strong> calculate<br/>
+<strong>Learning Objective:</strong> The learner will calculate the number of bytes in a rectangle of pixels and the time to send it over SPI at a given baud rate, for 6 challenges, with at least 5 of 6 correct.</p>
+<p><strong>Prerequisites:</strong> pixel, RGB565, frame size calculation, baud rate (all defined in the sections above this block). The time formula is given in the Rules field and shown to the learner after the first challenge.</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 challenges the learner types one number. An answer is correct when it is within the tolerance in the Content table. Mastery is 5 of 6 correct on the first attempt. Changing the exploration controls and watching the totals is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) A pixel is one byte. (2) Sending data at 24 MHz means 24 million bytes per second. (3) Time depends on how many pixels are visible rather than how many are sent.</p>
+<p><strong>Instructional Rationale:</strong> Apply-level calculation of bytes and time needs repetition with immediate checking. Linking each answer to the same two formulas shows the learner that every display question reduces to a multiplication and a division.</p>
+<p><strong>Content:</strong></p>
+<p>For exploration, the learner sets the width (1 to 360, step 1, unit pixels, default 360), the height (1 to 360, step 1, unit pixels, default 360), the bytes per pixel (1, 2, or 3, default 2), and the baud rate (8,000,000, 12,000,000, or 24,000,000 bits per second, default 24,000,000). The sim shows the bytes, the bits, and the time in milliseconds.</p>
+<p>Challenges, in this order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Answer</th>
+<th>Tolerance</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Bytes in a full 360 by 360 frame at 2 bytes per pixel</td>
+<td>259200</td>
+<td>exactly</td>
+<td>360 x 360 x 2 = 259,200.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bytes in the 100 by 30 clock-digit box at 2 bytes per pixel</td>
+<td>6000</td>
+<td>exactly</td>
+<td>100 x 30 x 2 = 6,000.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Bytes in a full 360 by 360 frame at 3 bytes per pixel</td>
+<td>388800</td>
+<td>exactly</td>
+<td>360 x 360 x 3 = 388,800.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Bytes in the 200 by 22 level meter at 2 bytes per pixel</td>
+<td>8800</td>
+<td>exactly</td>
+<td>200 x 22 x 2 = 8,800.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Milliseconds to send the 100 by 30 box at 24,000,000 bits per second</td>
+<td>2.0</td>
+<td>within 0.1</td>
+<td>6,000 bytes x 8 = 48,000 bits, divided by 24,000,000 is 0.002 s.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Milliseconds to send a full 2-byte frame at 12,000,000 bits per second</td>
+<td>172.8</td>
+<td>within 0.1</td>
+<td>259,200 x 8 = 2,073,600 bits, divided by 12,000,000 is 0.1728 s.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The sizes come from the chapter sections "Pixels and Coordinates" and "Frame Size Calculation," and the 200 by 22 meter is the <code>METER_WIDTH</code> by <code>METER_HEIGHT</code> of test 06. The times use the formula in Rules and ignore command overhead.</p>
+<p><strong>Rules:</strong> bytes = width x height x bytes per pixel. bits = bytes x 8. time in seconds = bits / baud rate. Milliseconds = seconds x 1000. The sim does not include command bytes or Python overhead, and says so.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner changes the width, height, bytes per pixel, and baud rate, and sees the bytes, bits, and milliseconds update.</li>
+<li>The learner starts the challenges. Challenge 1 is shown.</li>
+<li>The learner types a number and submits.</li>
+<li>The sim shows whether it is correct and the Why text, then moves to the next challenge.</li>
+<li>After challenge 6, the sim shows the score. The learner should notice that a full frame takes about 86 ms of wire time at 24 MHz with the default settings, while the small box takes about 2 ms. The calculator leaves out Python overhead, and says so.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 challenges, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The calculator shows the full frame at 2 bytes per pixel and 24,000,000 bits per second, with the question "How long does it take to send this?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states a full frame is 259,200 bytes, a full frame at 24 MHz takes 86.4 ms, the 100 by 30 box is 6,000 bytes, and the 200 by 22 meter is 8,800 bytes.</p>
+</details>
+<h2 id="update-bandwidth-and-the-full-frame-update">Update Bandwidth and the Full-Frame Update<a class="headerlink" href="#update-bandwidth-and-the-full-frame-update" title="Permanent link">&para;</a></h2>
+<p>The size of a frame tells us how much data there is. The <strong>update bandwidth</strong> tells us how fast the link can carry it. For SPI, the bandwidth is simply the baud rate: at 24,000,000 bits per second the display can receive at most 3,000,000 bytes per second, because there are 8 bits in a byte.</p>
+<p>A <strong>full-frame update</strong> is a redraw of every pixel. Its minimum time is the bits in a frame divided by the bandwidth.</p>
+<div class="arithmatex">\[ t = \frac{259{,}200 \times 8}{24{,}000{,}000} = \frac{2{,}073{,}600}{24{,}000{,}000} = 0.0864 \text{ s} = 86.4 \text{ ms} \]</div>
+<p>That is the <em>best case</em>, with every bit of the link doing useful work. In MicroPython the real time is longer, because each SPI call has overhead and the driver sends the screen in small chunks (<code>fill_rect</code> sends 256 pixels at a time, so a full screen needs 507 separate data writes). You can measure your own board with a few lines.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">display</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">init_display</span><span class="p">()</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">config</span><span class="o">.</span><span class="n">set_backlight</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">display</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">(),</span> <span class="n">start</span><span class="p">)</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"full-screen fill took"</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">,</span> <span class="s2">"ms"</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Your result will be at least 86 ms. At 86.4 ms per frame, the best possible rate is <span class="arithmatex">\( 1000 / 86.4 \approx 11.6 \)</span> full frames per second.</p>
+<p>The measurements below are from the board used to test this book. The measured times are about 1.5 times the wire time, and the gap is MicroPython's overhead: every SPI call, and every 256-pixel chunk, costs time on top of the bits.</p>
+<table>
+<thead>
+<tr>
+<th>You ask for (Hz)</th>
+<th>You get (Hz)</th>
+<th>Best case (ms)</th>
+<th>Measured (ms)</th>
+<th>Frames per second</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8,000,000</td>
+<td>8,000,000</td>
+<td>259.2</td>
+<td>334.6</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>12,000,000</td>
+<td>12,000,000</td>
+<td>172.8</td>
+<td>231.9</td>
+<td>4.3</td>
+</tr>
+<tr>
+<td>20,000,000</td>
+<td>12,000,000</td>
+<td>172.8</td>
+<td>232.0</td>
+<td>4.3</td>
+</tr>
+<tr>
+<td>24,000,000</td>
+<td>24,000,000</td>
+<td>86.4</td>
+<td>129.4</td>
+<td>7.7</td>
+</tr>
+</tbody>
+</table>
+<p>So on this board a full-screen fill at the fastest speed takes about 129 ms, which is 7.7 full frames per second, not 11.6. Your own numbers will differ a little. Run <code>src/chapters/05-display-basics/01-fill-timing.py</code> and compare.</p>
+<p><em>Worked example.</em> Suppose you want the screen to update 10 times a second with full frames. The bandwidth needed is <span class="arithmatex">\( 259{,}200 \times 8 \times 10 = 20{,}736{,}000 \)</span> bits per second, which is 86 percent of the 24 MHz link and leaves almost nothing for anything else. At 30 frames per second you would need 62.2 million bits per second, which is more than twice what the bus can carry. Smooth full-screen video is simply not possible on this link.</p>
+<p>Now compare with the audio. The microphone frames from Chapter 3 are 40 ms long, and your program must read each one before the next arrives. A single full-frame update takes at least 86.4 ms, and 129 ms when measured, which is more than three whole audio frames. While the Pico is busy pushing pixels to the display, the microphone keeps producing samples that no one is reading.</p>
+<table>
+<thead>
+<tr>
+<th>Update</th>
+<th>Minimum time at 24 MHz</th>
+<th>Measured</th>
+<th>Fits in a 40 ms audio frame?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full frame (259,200 bytes)</td>
+<td>86.4 ms</td>
+<td>129 ms</td>
+<td>No, over three frames</td>
+</tr>
+<tr>
+<td>Level meter (8,800 bytes)</td>
+<td>2.9 ms</td>
+<td>not measured</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Clock-digit box (6,000 bytes)</td>
+<td>2.0 ms</td>
+<td>not measured (a 100 by 32 box: 3.8 ms)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>One big-font letter (1,024 bytes)</td>
+<td>0.34 ms</td>
+<td>not measured</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Send Only What Changed</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+A moving meter changes only a small bar, but a full redraw sends every pixel, and nearly all of them are unchanged. The fix is not a faster bus. It is to stop sending pixels that did not change, and that is the whole subject of the next chapter.</p>
+</div>
+<h2 id="clock-face-geometry-and-polar-to-cartesian">Clock Face Geometry and Polar to Cartesian<a class="headerlink" href="#clock-face-geometry-and-polar-to-cartesian" title="Permanent link">&para;</a></h2>
+<p>Many round-display designs, including the Chrono Smart Clock family this kit comes from, draw a clock face. A clock face is a good test of coordinate skills, because everything sits on a circle around the center (180, 180). <strong>Clock face geometry</strong> is the set of angles and distances you use to place marks and hands on that circle.</p>
+<p>An hour mark sits every 30 degrees, since <span class="arithmatex">\( 360 / 12 = 30 \)</span>. Angles on a clock are measured from the 12 o'clock position, going clockwise. To place a point at a distance <span class="arithmatex">\( r \)</span> from the center and an angle <span class="arithmatex">\( \theta \)</span>, you convert from polar coordinates (angle and distance) to Cartesian coordinates (x and y). This is <strong>polar to Cartesian</strong> conversion.</p>
+<div class="arithmatex">\[ x = c_x + r \sin\theta, \qquad y = c_y - r \cos\theta \]</div>
+<p>Here <span class="arithmatex">\( (c_x, c_y) = (180, 180) \)</span>. The minus sign in the second formula is there because y grows downward on the screen, as noted earlier.</p>
+<p><em>Worked example.</em> Place the 3 o'clock mark on a ring of radius 150. The angle is 90 degrees, so <span class="arithmatex">\( x = 180 + 150 \times 1 = 330 \)</span> and <span class="arithmatex">\( y = 180 - 150 \times 0 = 180 \)</span>. The 1 o'clock mark has angle 30 degrees: <span class="arithmatex">\( x = 180 + 150 \times 0.5 = 255 \)</span> and <span class="arithmatex">\( y = 180 - 150 \times 0.866 \approx 50 \)</span>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">shapes</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">display</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">init_display</span><span class="p">()</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">config</span><span class="o">.</span><span class="n">set_backlight</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">display</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">hour</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">CENTER_X</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="mi">150</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="n">y</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">CENTER_Y</span> <span class="o">-</span> <span class="nb">round</span><span class="p">(</span><span class="mi">150</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="n">shapes</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">display</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">FILL</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The loop visits each hour, turns it into an angle in radians with <code>math.radians</code>, converts to x and y, and draws a small filled circle there. Twelve dots appear around the screen.</p>
+<table>
+<thead>
+<tr>
+<th>Hour</th>
+<th>Angle</th>
+<th>Position on a radius-150 ring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td>0 degrees</td>
+<td>(180, 30)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>30 degrees</td>
+<td>(255, 50)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>90 degrees</td>
+<td>(330, 180)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>180 degrees</td>
+<td>(180, 330)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>270 degrees</td>
+<td>(30, 180)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backlight-control">Backlight Control<a class="headerlink" href="#backlight-control" title="Permanent link">&para;</a></h2>
+<p>The display's picture is only visible because of a light behind it, the <strong>backlight</strong>, which is controlled by the BL wire on GP7. <code>config.set_backlight(True)</code> drives that pin high to turn the light on, and <code>False</code> turns it off. Turning the backlight off does not erase the picture, because the controller still holds it, so turning it back on brings the old image back instantly. That makes it a handy way to implement a screen-off or sleep mode later.</p>
+<h2 id="color-themes">Color Themes<a class="headerlink" href="#color-themes" title="Permanent link">&para;</a></h2>
+<p>A <strong>color theme</strong> is a named set of colors used together, for example a background, a text color, and an accent. Putting them in one place lets you restyle the whole display by changing a single line, and it will let each school pick its own look in Chapter 16.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">NIGHT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"background"</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span> <span class="s2">"accent"</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">CYAN</span><span class="p">}</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">DAY</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"background"</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">WHITE</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">,</span> <span class="s2">"accent"</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">BLUE</span><span class="p">}</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">theme</span> <span class="o">=</span> <span class="n">NIGHT</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">display</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">theme</span><span class="p">[</span><span class="s2">"background"</span><span class="p">])</span>
+</span></code></pre></div>
+<p>A good theme keeps strong contrast between text and background, so words stay readable in a bright classroom.</p>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>You can now describe the screen from the wires up. The Pico sends bytes over an SPI bus at up to 24 million bits per second. The driver wraps those bytes in commands, and each pixel is a 16-bit RGB565 value. A full frame is 259,200 bytes, which takes at least 86.4 ms to send (129 ms when measured), and that is more than three audio frames. No frame buffer lives on the Pico, because it would use about half of all SRAM.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>SPI is a clocked serial bus; the display uses the clock and data wires only, at up to 24 MHz, but the rate you ask for may be rounded down.</li>
+<li>A pixel is addressed by (x, y), with (0, 0) at the top left and y increasing downward; the center is (180, 180).</li>
+<li>RGB565 packs a color into 16 bits (5 red, 6 green, 5 blue), giving 65,536 colors.</li>
+<li>The frame size formula is width times height times bytes per pixel, so a full frame is 259,200 bytes.</li>
+<li>The best-case time for a full frame at 24 MHz is 86.4 ms, about 11.6 frames per second; measured on the test board it is 129 ms, about 7.7 frames per second.</li>
+<li>Update bandwidth, not drawing logic, is what limits the screen, so send only what changed.</li>
+<li>Polar to Cartesian conversion places clock marks: <span class="arithmatex">\( x = c_x + r\sin\theta \)</span>, <span class="arithmatex">\( y = c_y - r\cos\theta \)</span>.</li>
+</ul>
+<p>Test yourself with these two questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>How many bytes does a 120 by 50 rectangle take in RGB565, and how long to send it at 24,000,000 bits per second? Click to expand</summary>
+<p><span class="arithmatex">\( 120 \times 50 \times 2 = 12{,}000 \)</span> bytes, which is 96,000 bits. Divided by 24,000,000 that is 0.004 s, or 4 ms.</p>
+</details>
+<details class="question">
+<summary>Why does the kit not keep a frame buffer on the Pico? Click to expand</summary>
+<p>A full frame buffer is 259,200 bytes, nearly half of the chip's 520 KB of SRAM, and it needs one unbroken block of memory. The display controller already holds the picture, so the Pico can send only the parts that change.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">From Pixels to Bandwidth</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just calculated that a full frame is 259,200 bytes and takes 86.4 ms at best and 129 ms measured, and you packed colors into RGB565. That arithmetic is the reason the next chapter's region updates exist.</p>
+</div>
+<p>In Chapter 6 we stop redrawing everything and write only the pieces that changed.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

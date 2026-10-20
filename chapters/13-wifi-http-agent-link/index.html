@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="How the Pico joins the school Wi-Fi in station mode, gets an IP address on the local network, and sends JSON to the buddy server with an HTTP POST to a REST endpoint, by hand and with the requests library, and why plain HTTP is acceptable only on a trusted classroom network.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>13. Wi-Fi, HTTP, and Connecting to the Agent - Open Study Buddy</title>
+        <title>Wi-Fi, HTTP, and Connecting to the Agent - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              13. Wi-Fi, HTTP, and Connecting to the Agent
+              Wi-Fi, HTTP, and Connecting to the Agent
             
           </span>
         </div>
@@ -749,6 +749,198 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-device-leaves-its-island" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Device Leaves Its Island
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#joining-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Joining the Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Joining the Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-station-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Station Mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ip-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      IP Addresses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IP Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-netmask" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Netmask
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-local-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Local Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Local Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-same-subnet-checker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Same-Subnet Checker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-a-shape-both-sides-agree-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON: A Shape Both Sides Agree On
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-the-language-of-the-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP: The Language of the Question
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP: The Language of the Question">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP POST
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP POST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-http-request-reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: HTTP Request Reader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-buddy-servers-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Buddy Server's Endpoint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-the-reply-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading the Reply Safely
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-requests-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      The requests Library
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#showing-the-link-on-the-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing the Link on the Display
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-the-server-by-name-mdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the Server by Name: mDNS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-plain-http-is-acceptable-here-and-only-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Plain HTTP Is Acceptable Here, and Only Here
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -865,6 +1057,69 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
       
     </li>
   
@@ -1069,6 +1324,198 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-device-leaves-its-island" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Device Leaves Its Island
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#joining-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Joining the Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Joining the Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-station-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Station Mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ip-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      IP Addresses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IP Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-netmask" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Netmask
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-local-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Local Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Local Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-same-subnet-checker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Same-Subnet Checker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-a-shape-both-sides-agree-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON: A Shape Both Sides Agree On
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-the-language-of-the-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP: The Language of the Question
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP: The Language of the Question">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http-post" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP POST
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP POST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-http-request-reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: HTTP Request Reader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-buddy-servers-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Buddy Server's Endpoint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-the-reply-safely" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading the Reply Safely
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-requests-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      The requests Library
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#showing-the-link-on-the-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing the Link on the Display
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-the-server-by-name-mdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding the Server by Name: mDNS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-plain-http-is-acceptable-here-and-only-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Plain HTTP Is Acceptable Here, and Only Here
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1158,13 +1605,956 @@
 <li><a href="../04-pico-kit-hardware/">Chapter 4: The Pico Kit Hardware and Wiring</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="the-device-leaves-its-island">The Device Leaves Its Island<a class="headerlink" href="#the-device-leaves-its-island" title="Permanent link">&para;</a></h2>
+<p>Until now everything ran on the Pico itself: the microphone, the display, the speaker. But the part that knows about tests and due dates, the buddy server, lives on another computer. This chapter builds the road between them: joining the school's Wi-Fi, finding the server, and sending it a question in a form it understands.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Let's Make the Call</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+By the end of this chapter your Pico will join the school Wi-Fi, ask the buddy server "when is my next test?", and print the answer on the round display. Let's listen closely! A network is just two programs agreeing on what to say.</p>
+</div>
+<p>Here is the whole trip in seven steps, with the part that does each one. Every step is a section of this chapter.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What happens</th>
+<th>Who does it</th>
+<th>Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>The Pico joins the Wi-Fi network and is given an address</td>
+<td>Pico and the access point</td>
+<td>Joining the Network</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The Pico works out where the server is</td>
+<td>Pico</td>
+<td>IP Addresses</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The question is written as JSON text</td>
+<td>Pico</td>
+<td>JSON: A Shape Both Sides Agree On</td>
+</tr>
+<tr>
+<td>4</td>
+<td>The Pico opens a connection and sends an HTTP POST</td>
+<td>Pico</td>
+<td>HTTP: The Language of the Question</td>
+</tr>
+<tr>
+<td>5</td>
+<td>The server reads the request and decides on a reply</td>
+<td>Buddy server</td>
+<td>The Buddy Server's Endpoint</td>
+</tr>
+<tr>
+<td>6</td>
+<td>The server sends the reply back</td>
+<td>Buddy server</td>
+<td>The Buddy Server's Endpoint</td>
+</tr>
+<tr>
+<td>7</td>
+<td>The Pico reads the reply, closes the connection, and shows the answer</td>
+<td>Pico</td>
+<td>Reading the Reply Safely</td>
+</tr>
+</tbody>
+</table>
+<h2 id="joining-the-network">Joining the Network<a class="headerlink" href="#joining-the-network" title="Permanent link">&para;</a></h2>
+<p>A <strong>Wi-Fi connection</strong> is the link between the Pico's radio and an <em>access point</em>, the box (or ceiling unit) that the school's network hangs from. The Pico 2 W's radio is the separate wireless chip from Chapter 4. It speaks 2.4 GHz Wi-Fi only, so a network that offers only 5 GHz will never appear in a scan.</p>
+<h3 id="network-station-mode">Network Station Mode<a class="headerlink" href="#network-station-mode" title="Permanent link">&para;</a></h3>
+<p><strong>Network station mode</strong> means the Pico joins somebody else's network, the way a phone or laptop does. MicroPython gives it a name, <code>network.STA_IF</code> ("station interface"). The other choice, <code>network.AP_IF</code>, makes the Pico an <em>access point</em> that other devices join. This book always uses station mode, because the buddy server is on the school's network, not on the Pico's.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">network</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">wlan</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span>    <span class="c1"># station mode</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">wlan</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>                      <span class="c1"># switch the radio on</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">wlan</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">ssid</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>           <span class="c1"># start joining; this returns at once</span>
+</span></code></pre></div>
+<p><code>connect()</code> does not wait. It starts the join and returns, and the join takes anywhere from a fraction of a second to several seconds. A program that assumes it is finished on the next line sends its first request into nothing. Instead, poll <code>wlan.status()</code> and give up after a time limit. The helper module <code>wifi_link.py</code> in <code>src/chapters/13-wifi-http-agent-link/</code> does exactly this, and every other file in the chapter uses it.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">code</span> <span class="o">=</span> <span class="n">wlan</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>                      <span class="c1"># connected, with an IP address</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">return</span> <span class="n">wlan</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">if</span> <span class="n">code</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>                       <span class="c1"># a definite failure</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="k">raise</span> <span class="n">WifiError</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">(),</span> <span class="n">start</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">timeout_ms</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="k">raise</span> <span class="n">WifiError</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="s2">"gave up"</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The loop has three ways out: success, a definite failure, and the clock running out. The code is a number from the CYW43 wireless driver, and each value means something you can show on the display.</p>
+<table>
+<thead>
+<tr>
+<th><code>status()</code></th>
+<th><code>network.STAT_</code> name</th>
+<th>Meaning</th>
+<th>What the device should do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>STAT_IDLE</code></td>
+<td>Not trying</td>
+<td>Call <code>connect()</code></td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>STAT_CONNECTING</code></td>
+<td>Joining</td>
+<td>Wait, with the time limit running</td>
+</tr>
+<tr>
+<td>2</td>
+<td>(none)</td>
+<td>Joined, no IP address yet</td>
+<td>Wait; the address is on its way</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>STAT_GOT_IP</code></td>
+<td>Connected</td>
+<td>Carry on</td>
+</tr>
+<tr>
+<td>-1</td>
+<td><code>STAT_CONNECT_FAIL</code></td>
+<td>Failed, reason unknown</td>
+<td>Show an error; retry later</td>
+</tr>
+<tr>
+<td>-2</td>
+<td><code>STAT_NO_AP_FOUND</code></td>
+<td>Network name not found</td>
+<td>Check the name, the distance, and the 2.4 GHz rule</td>
+</tr>
+<tr>
+<td>-3</td>
+<td><code>STAT_WRONG_PASSWORD</code></td>
+<td>Wrong password</td>
+<td>Stop and show it; retrying cannot help</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> A student mistypes the password in <code>secrets.py</code>. The loop starts at status 1, and after the access point rejects the password the driver reports -3. <code>wifi_link.connect()</code> raises <code>WifiError</code> with the text "wrong password", and the display's status region says so, instead of spinning for ever. A student whose school network is 5 GHz only gets -2, "network not found", even though the name is correct. The two fixes are very different, which is why the code keeps the numbers apart. <code>01-wifi-connect.py</code> prints each state with the milliseconds since the join began, so you can see how long your network takes. That is a measurement for you to make; the book does not know your access point.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Check the Signal First</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+When a connection is flaky, print <code>wlan.status("rssi")</code> before suspecting your code. It returns the signal strength in dBm, a negative number that gets more negative as the signal weakens. As a rule of thumb, a reading much weaker than -80 dBm is a poor link.</p>
+</div>
+<p>The Wi-Fi name and password come from <code>secrets.py</code> on the Pico (<code>wifi_ssid</code> and <code>wifi_pass</code>), the same file the kit's other programs use. It is listed in the repository's <code>.gitignore</code> so it is never committed.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Never Print the Password</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+A <code>print(secrets.wifi_pass)</code> left in a program ends up in screenshots, forum posts, and shared logs. Print the network <em>name</em> only, as <code>01-wifi-connect.py</code> does, and keep <code>secrets.py</code> out of every commit.</p>
+</div>
+<h2 id="ip-addresses">IP Addresses<a class="headerlink" href="#ip-addresses" title="Permanent link">&para;</a></h2>
+<p>Once the Pico is connected it has an <strong>IP address</strong>, the number that identifies it on the network, in the way a house number identifies a house on a street. An IPv4 address is four numbers from 0 to 255 separated by dots, such as <code>192.168.1.23</code>. That is 32 bits, packed as four bytes. The Pico does not choose its address. A <em>DHCP server</em>, usually built into the school's router, hands one out for a limited time (a <em>lease</em>) when the Pico joins.</p>
+<p><code>wlan.ifconfig()</code> returns four values, always in this order.</p>
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Name</th>
+<th>Example</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>IP address</td>
+<td><code>192.168.1.23</code></td>
+<td>This Pico's address</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Netmask</td>
+<td><code>255.255.255.0</code></td>
+<td>Says which part of an address names the network</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Gateway</td>
+<td><code>192.168.1.1</code></td>
+<td>The router: the way out of this network</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DNS server</td>
+<td><code>192.168.1.1</code></td>
+<td>Turns names like <code>example.com</code> into numbers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-netmask">The Netmask<a class="headerlink" href="#the-netmask" title="Permanent link">&para;</a></h3>
+<p>Part of every address names the <em>network</em> and part names the <em>device on it</em>. The <strong>netmask</strong> says where the line falls. Write the address and the mask in binary, and keep only the bits where the mask has a 1. The result, the <strong>network address</strong>, is the same for every device on the same network.</p>
+<p><em>Worked example.</em> The Pico is <code>192.168.1.23</code> and the server is <code>192.168.1.50</code>, both with mask <code>255.255.255.0</code>. The mask keeps the first three numbers and throws away the last one.</p>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Address</th>
+<th>Mask</th>
+<th>Kept (network address)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pico</td>
+<td>192.168.1.<strong>23</strong></td>
+<td>255.255.255.0</td>
+<td>192.168.1.0</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>192.168.1.<strong>50</strong></td>
+<td>255.255.255.0</td>
+<td>192.168.1.0</td>
+</tr>
+<tr>
+<td>Another room's device</td>
+<td>192.168.<strong>2</strong>.50</td>
+<td>255.255.255.0</td>
+<td>192.168.2.0</td>
+</tr>
+</tbody>
+</table>
+<p>The Pico and the server have the same network address, so they are on the <strong>same network</strong> and can talk directly. The third device keeps <code>192.168.2.0</code>, a different network, so a message to it must go through the gateway.</p>
+<p>Masks do not always fall between whole numbers. Take <code>255.255.240.0</code>, where the third number of the mask is <code>240</code>, which is <code>11110000</code> in binary. It keeps the top 4 bits of the third number and drops the bottom 4. Then <code>172.16.5.5</code> and <code>172.16.15.1</code> both keep <code>172.16.0.0</code>, because 5 and 15 are both below 16, while <code>172.16.16.1</code> keeps <code>172.16.16.0</code> and is on a different network. The number of host bits left over sets the size of the network: with <span class="arithmatex">\( h \)</span> host bits, there are <span class="arithmatex">\( 2^h - 2 \)</span> usable device addresses, because the all-zeros address names the network and the all-ones address is for broadcasting.</p>
+<table>
+<thead>
+<tr>
+<th>Netmask</th>
+<th>Host bits <span class="arithmatex">\( h \)</span></th>
+<th>Usable addresses <span class="arithmatex">\( 2^h - 2 \)</span></th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>255.255.255.0</td>
+<td>8</td>
+<td>254</td>
+<td>One classroom or lab</td>
+</tr>
+<tr>
+<td>255.255.255.128</td>
+<td>7</td>
+<td>126</td>
+<td>Half a classroom subnet</td>
+</tr>
+<tr>
+<td>255.255.240.0</td>
+<td>12</td>
+<td>4,094</td>
+<td>A school wing</td>
+</tr>
+<tr>
+<td>255.255.0.0</td>
+<td>16</td>
+<td>65,534</td>
+<td>A whole campus</td>
+</tr>
+</tbody>
+</table>
+<p><code>02-ip-and-subnet.py</code> does the arithmetic with shifts and masks, runs on your computer or the Pico, and on the Pico also checks whether your <code>BUDDY_HOST</code> is on the Pico's own network. If it is not, the first thing to suspect is a wrong address in <code>buddy_config.py</code>, or a server on a separate guest network.</p>
+<h3 id="the-local-network">The Local Network<a class="headerlink" href="#the-local-network" title="Permanent link">&para;</a></h3>
+<p>A <strong>local network</strong> (LAN, local area network) is a group of devices that can reach each other directly, without going through the internet. A classroom's Wi-Fi network is one. Local networks use <em>private</em> address ranges that internet routers refuse to forward, defined by a standard called RFC 1918.</p>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Netmask length</th>
+<th>Where you meet it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.0.0.0 to 10.255.255.255</td>
+<td>10.0.0.0/8</td>
+<td>Schools, campuses</td>
+</tr>
+<tr>
+<td>172.16.0.0 to 172.31.255.255</td>
+<td>172.16.0.0/12</td>
+<td>Some school districts</td>
+</tr>
+<tr>
+<td>192.168.0.0 to 192.168.255.255</td>
+<td>192.168.0.0/16</td>
+<td>Homes, small labs</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that <code>172.32.0.9</code> is <em>not</em> private even though it starts with <code>172</code>; the range stops at 172.31. If <code>ifconfig()</code> shows an address outside these ranges, the Pico is probably not on a classroom network at all.</p>
+<p>Because the Pico gets its address from DHCP, the <em>server's</em> address can change when the router restarts, which would silently break <code>BUDDY_HOST</code>. The fix is a <strong>DHCP reservation</strong> on the router (the router always hands the server the same address), or a fixed address outside the router's DHCP range. Ask the school's network administrator, who will want to know the server's MAC address.</p>
+<h4 id="diagram-same-subnet-checker">Diagram: Same-Subnet Checker<a class="headerlink" href="#diagram-same-subnet-checker" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Same-Subnet Checker</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> same-subnet-checker<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Apply<br/>
+<strong>Bloom Verb:</strong> calculate<br/>
+<strong>Learning Objective:</strong> The learner will calculate whether two IPv4 addresses are on the same network, given a netmask, in 8 cases, with at least 7 of 8 correct.</p>
+<p><strong>Prerequisites:</strong> IP address, netmask, network address, same network, binary form of a number from 0 to 255 (all defined in this chapter above this block; binary numbers are in Chapter 3).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 8 cases the learner chooses "same network" or "different networks", then types the network address of the first device. A case is correct when both answers match the Answer columns in Content. Mastery is 7 of 8 correct on the first attempt. Using the explorer (typing any addresses and watching the binary AND) is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) Addresses that start with the same number are always on the same network. (2) A mask can only fall between whole numbers. (3) The all-zeros and all-ones device addresses can be given to a device.</p>
+<p><strong>Instructional Rationale:</strong> Apply-level calculation requires the learner to carry out the mask-and-compare procedure on new numbers. Showing the two addresses and the mask in binary, with the mask's 1 bits highlighted, ties the procedure to what the mask keeps, and asking for the network address as well as the yes/no answer shows the work.</p>
+<p><strong>Content:</strong></p>
+<p>The explorer shows an address, a second address, and a netmask. Each is shown as four numbers and as four groups of 8 bits. The sim computes the network address of each as the bitwise AND of the address and the mask. The two addresses are on the same network when the two network addresses are equal.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>First address</th>
+<th>Netmask</th>
+<th>Second address</th>
+<th>Same network?</th>
+<th>Network address of the first</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>192.168.1.23</td>
+<td>255.255.255.0</td>
+<td>192.168.1.50</td>
+<td>same</td>
+<td>192.168.1.0</td>
+<td>The mask keeps the first three numbers, and both start 192.168.1.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>192.168.1.23</td>
+<td>255.255.255.0</td>
+<td>192.168.2.50</td>
+<td>different</td>
+<td>192.168.1.0</td>
+<td>The third numbers, 1 and 2, differ and the mask keeps them.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>10.4.7.88</td>
+<td>255.255.0.0</td>
+<td>10.4.200.9</td>
+<td>same</td>
+<td>10.4.0.0</td>
+<td>The mask keeps only 10.4, and both start 10.4.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>10.4.7.88</td>
+<td>255.255.255.0</td>
+<td>10.4.200.9</td>
+<td>different</td>
+<td>10.4.7.0</td>
+<td>The same two addresses, but this mask also keeps the third number, 7 and 200.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>172.16.5.5</td>
+<td>255.255.240.0</td>
+<td>172.16.15.1</td>
+<td>same</td>
+<td>172.16.0.0</td>
+<td>240 is 11110000, so only the top 4 bits of the third number are kept; 5 and 15 are both 0000.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>172.16.5.5</td>
+<td>255.255.240.0</td>
+<td>172.16.16.1</td>
+<td>different</td>
+<td>172.16.0.0</td>
+<td>16 is 00010000, so its kept bits are 0001, not 0000.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>192.168.1.200</td>
+<td>255.255.255.128</td>
+<td>192.168.1.20</td>
+<td>different</td>
+<td>192.168.1.128</td>
+<td>128 is 10000000: 200 keeps the top bit (1) and 20 keeps 0.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>192.168.1.130</td>
+<td>255.255.255.128</td>
+<td>192.168.1.200</td>
+<td>same</td>
+<td>192.168.1.128</td>
+<td>130 and 200 are both 128 or more, so both keep the top bit 1.</td>
+</tr>
+</tbody>
+</table>
+<p>For exploration the learner can type any two addresses (each number 0 to 255) and choose a netmask from 255.255.255.0, 255.255.255.128, 255.255.240.0 or 255.255.0.0. The default is 192.168.1.23, 255.255.255.0 and 192.168.1.50.</p>
+<p><strong>Provenance:</strong> The arithmetic is the chapter sections "The Netmask" and "The Local Network", and the same cases (1 to 6) are in the table printed by <code>02-ip-and-subnet.py</code>. The addresses are illustrative, and the sim labels them "illustrative."</p>
+<p><strong>Rules:</strong> The network address is the bitwise AND of each of the four numbers of the address with the matching number of the mask. Two addresses are on the same network when their network addresses are equal. If the learner types a number outside 0 to 255, the sim ignores the change and keeps the previous value.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner opens the explorer and changes the second address's last number, watching its bits and the kept bits change.</li>
+<li>The learner changes the netmask from 255.255.255.0 to 255.255.0.0 and notices which cases flip from different to same.</li>
+<li>The learner starts the 8 cases. Case 1 is shown.</li>
+<li>The learner chooses same or different, types the first address's network address, and submits.</li>
+<li>The sim highlights the kept bits of both addresses and shows the Why text.</li>
+<li>After case 8, the sim shows the score. The learner should notice that cases 3 and 4 use the same two addresses and have opposite answers.</li>
+</ol>
+<p><strong>Feedback:</strong> 8 cases, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. They are <same or different>, and the network address is <network address>: <Why>". The answer is revealed right after each submission, and a running score "n of 8" is shown.</p>
+<p><strong>Starting State:</strong> The explorer shows 192.168.1.23 and 192.168.1.50 with 255.255.255.0, with the question "Are these two on the same network?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that the netmask keeps the network part of an address, that 255.255.240.0 keeps the top 4 bits of the third number, that 172.16.5.5 and 172.16.15.1 are on the same network under that mask while 172.16.16.1 is not, and that a network with <span class="arithmatex">\( h \)</span> host bits has <span class="arithmatex">\( 2^h - 2 \)</span> usable addresses.</p>
+</details>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">Binary Makes Masks Click</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+Netmasks that fall inside a number, like 240, feel strange the first time. If the AND is slippery, write the two numbers out in eight bits, as you did for sample values in Chapter 3, and cross out the bits the mask throws away.</p>
+</div>
+<h2 id="json-a-shape-both-sides-agree-on">JSON: A Shape Both Sides Agree On<a class="headerlink" href="#json-a-shape-both-sides-agree-on" title="Permanent link">&para;</a></h2>
+<p>The Pico and the server are different programs in different places, so they need a shared way to write down a question. <strong>JSON</strong> (JavaScript Object Notation) is a plain-text format for labeled values. It has objects in curly braces <code>{ }</code> holding name and value pairs, lists in square brackets <code>[ ]</code>, strings in double quotes, numbers, <code>true</code>, <code>false</code>, and <code>null</code>. MicroPython reads and writes it with the same <code>json</code> module as a computer.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">request</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"device"</span><span class="p">:</span> <span class="s2">"desk-07"</span><span class="p">,</span> <span class="s2">"kind"</span><span class="p">:</span> <span class="s2">"question"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="s2">"when is my next test"</span><span class="p">}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>      <span class="c1"># dict -&gt; text, ready to send</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">back</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>         <span class="c1"># text -&gt; dict again</span>
+</span></code></pre></div>
+<p>This is the Chapter 1 request-reply contract, now defined for real. A request has exactly three fields, and a reply has exactly three.</p>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Field</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Request</td>
+<td><code>device</code></td>
+<td>string</td>
+<td>Which desk device is asking (<code>DEVICE_ID</code>)</td>
+</tr>
+<tr>
+<td>Request</td>
+<td><code>kind</code></td>
+<td>string</td>
+<td><code>"question"</code> in this chapter</td>
+</tr>
+<tr>
+<td>Request</td>
+<td><code>text</code></td>
+<td>string</td>
+<td>What the student said, already as text</td>
+</tr>
+<tr>
+<td>Reply</td>
+<td><code>speak</code></td>
+<td>string</td>
+<td>The sentence to say aloud</td>
+</tr>
+<tr>
+<td>Reply</td>
+<td><code>show</code></td>
+<td>string</td>
+<td>A short line for the display, 30 characters or fewer</td>
+</tr>
+<tr>
+<td>Reply</td>
+<td><code>next_mode</code></td>
+<td>string</td>
+<td>One of <code>clock</code>, <code>listening</code>, <code>thinking</code>, <code>speaking</code>, <code>settings</code> (Chapter 7's modes)</td>
+</tr>
+</tbody>
+</table>
+<p>Three habits keep JSON from causing trouble. First, <strong>count bytes, not characters</strong>: the text <code>{"device": "desk-07", "kind": "question", "text": "when is my next test"}</code> is 73 bytes, and HTTP will need that number. An accented letter such as the <code>é</code> in "café" takes two bytes in UTF-8, so call <code>.encode()</code> before you count. Second, <strong>expect bad input</strong>: single quotes, a trailing comma, or a missing brace all make <code>json.loads</code> raise <code>ValueError</code>, and a Pico must catch it instead of crashing on a bad reply. Third, <strong>do not rely on formatting</strong>: MicroPython's <code>json.dumps</code> has no <code>indent</code> option, so the output is always one line.</p>
+<p><code>03-json-contract.py</code> runs these checks on your computer or the Pico: the request is 73 bytes, the reply <code>{"speak": "Your next test is Biology on Friday.", "show": "Biology test: Friday", "next_mode": "clock"}</code> is 103, and four malformed texts are all rejected.</p>
+<h2 id="http-the-language-of-the-question">HTTP: The Language of the Question<a class="headerlink" href="#http-the-language-of-the-question" title="Permanent link">&para;</a></h2>
+<p>An address finds the server's computer, but a computer may run many programs. A <strong>port</strong> is a number that picks one: the buddy server listens on port 8080. The pair (address, port) is where the conversation happens.</p>
+<p>The <strong>HTTP protocol</strong> (HyperText Transfer Protocol) is the set of rules for what is said on that connection. It is a request and a reply, and the client always speaks first. The Pico is the <em>client</em>: it opens a TCP connection to the server, sends a request, and waits. The buddy server is the <em>server</em>: it answers one request and (in our version) closes the connection. HTTP is <em>stateless</em>: the server remembers nothing between requests, which is why every request carries <code>device</code>.</p>
+<p>An HTTP request is plain text with four parts, always in this order.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Example</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Request line</td>
+<td><code>POST /v1/ask HTTP/1.0</code></td>
+<td>Method (what to do), path (where), HTTP version</td>
+</tr>
+<tr>
+<td>Header lines</td>
+<td><code>Content-Length: 73</code></td>
+<td>Facts about the request, one <code>Name: value</code> per line</td>
+</tr>
+<tr>
+<td>Blank line</td>
+<td>(just <code>\r\n</code>)</td>
+<td>Marks the end of the headers</td>
+</tr>
+<tr>
+<td>Body</td>
+<td><code>{"device": ...}</code></td>
+<td>The data itself (empty for some methods)</td>
+</tr>
+</tbody>
+</table>
+<p>Each line ends with two characters, carriage return and line feed, written <code>\r\n</code>. Here is exactly what <code>04-raw-http-post.py</code> builds for the default settings. The <code>&lt;CRLF&gt;</code> marks are not sent as text; they show where <code>\r\n</code> goes.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>POST /v1/ask HTTP/1.0&lt;CRLF&gt;
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Host: 192.168.1.50:8080&lt;CRLF&gt;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Content-Type: application/json&lt;CRLF&gt;
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Content-Length: 73&lt;CRLF&gt;
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Connection: close&lt;CRLF&gt;
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>&lt;CRLF&gt;
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>{"device": "desk-07", "kind": "question", "text": "when is my next test"}
+</span></code></pre></div>
+<p>That is 121 bytes of head (119 for the five lines and 2 for the blank line) plus the 73-byte body, 194 bytes in all. The reply has the same shape, with a <em>status line</em> in place of the request line.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>HTTP/1.0 200 OK&lt;CRLF&gt;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Content-Type: application/json; charset=utf-8&lt;CRLF&gt;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Content-Length: 103&lt;CRLF&gt;
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>&lt;CRLF&gt;
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>{"speak": "Your next test is Biology on Friday.", "show": "Biology test: Friday", "next_mode": "clock"}
+</span></code></pre></div>
+<p>The three-digit <strong>status code</strong> tells the client how things went, by its first digit: 2 means success, 4 means the <em>client</em> made a mistake, and 5 means the <em>server</em> failed.</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>When the buddy server sends it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>The request fit the contract and here is the reply</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>The body is not valid JSON, or fields are missing or wrong</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>No such path</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+<td><code>GET</code> sent to a path that wants <code>POST</code></td>
+</tr>
+<tr>
+<td>411</td>
+<td>Length Required</td>
+<td>No <code>Content-Length</code> header</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Content Too Large</td>
+<td>The body is bigger than the server allows (2,048 bytes)</td>
+</tr>
+<tr>
+<td>500, 503</td>
+<td>Server error, busy</td>
+<td>The server failed; trying again later may work</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">A Request Is Just Text</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Notice how little magic there is: a web request is a few lines of text that you could type by hand. Once you can read one, a failed request stops being mysterious, because the status code and the headers tell you which side made the mistake.</p>
+</div>
+<h3 id="http-post">HTTP POST<a class="headerlink" href="#http-post" title="Permanent link">&para;</a></h3>
+<p>HTTP has several <em>methods</em>. <strong>HTTP GET</strong> asks for something and sends no body. <strong>HTTP POST</strong> sends data for the server to act on, with the data in the body. The buddy server needs the student's words, so the Pico uses POST. (A GET could carry the words in the URL, but URLs end up in logs and are limited in length, so the question belongs in the body.)</p>
+<p>The one number a POST must get right is <code>Content-Length</code>: the count of bytes in the body. The server reads that many and stops. Get it wrong and one of two things happens.</p>
+<table>
+<thead>
+<tr>
+<th>Header says</th>
+<th>Body really has</th>
+<th>What the buddy server does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>73</td>
+<td>73</td>
+<td>Reads all of it and answers 200</td>
+</tr>
+<tr>
+<td>60</td>
+<td>73</td>
+<td>Reads 60 bytes, finds the JSON cut off, and answers 400</td>
+</tr>
+<tr>
+<td>90</td>
+<td>73</td>
+<td>Waits for the 17 missing bytes while the Pico waits for an answer. Nothing happens until a timeout</td>
+</tr>
+</tbody>
+</table>
+<p>The third row is why every socket on the Pico needs a time limit, which Chapter 14 builds in properly.</p>
+<p><code>rawhttp.py</code> builds the request. It encodes the body first, so the number it writes is a byte count.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">build_post</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">extra_headers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        <span class="s2">"POST </span><span class="si">{}</span><span class="s2"> HTTP/1.0"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">),</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="s2">"Host: </span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">),</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="s2">"Content-Type: application/json"</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="s2">"Content-Length: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)),</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="s2">"Connection: close"</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="p">]</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">head</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\r\n\r\n</span><span class="s2">"</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="k">return</span> <span class="n">head</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="o">+</span> <span class="n">body</span>
+</span></code></pre></div>
+<p><code>"\r\n".join(lines)</code> puts the line break between lines, and the extra <code>"\r\n\r\n"</code> ends the last header and adds the blank line. We say <code>HTTP/1.0</code> and <code>Connection: close</code> on purpose: the server closes the connection after its reply, so the Pico never has to work out where one reply ends and the next begins.</p>
+<p><em>Worked example.</em> Sending it with only a socket takes eight steps, and <code>05-socket-post.py</code> does all of them.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">addr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># ask for the (address, port) pair</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">sock</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>                              <span class="c1"># every wait gives up after 8 seconds</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>                              <span class="c1"># the 194 bytes above</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">rawhttp</span><span class="o">.</span><span class="n">read_response</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="mi">2048</span><span class="p">)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>                                <span class="c1"># always, even after an error</span>
+</span></code></pre></div>
+<p><code>read_response</code> reads until it sees the blank line, splits the head into a status code and headers, then reads exactly <code>Content-Length</code> more bytes. It refuses a reply whose <code>Content-Length</code> is above 2,048, so a wrong server cannot fill the Pico's memory.</p>
+<h4 id="diagram-http-request-reader">Diagram: HTTP Request Reader<a class="headerlink" href="#diagram-http-request-reader" title="Permanent link">&para;</a></h4>
+<details>
+<summary>HTTP Request Reader</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> http-request-reader<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> interpret<br/>
+<strong>Learning Objective:</strong> The learner will interpret the parts of an HTTP POST request and its reply by answering 8 questions about the request text, with at least 7 of 8 correct.</p>
+<p><strong>Prerequisites:</strong> HTTP protocol, request line, header, blank line, body, Content-Length, status code, HTTP POST (all defined in this chapter above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 8 questions the learner chooses one of three answers. An answer is correct when it matches the Correct answer column in Content. Mastery is 7 of 8 correct on the first attempt. Hovering over a line of the request to read its label is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) The blank line is optional decoration. (2) A wrong Content-Length is harmless. (3) A 4xx status means the server is broken. (4) The body can be longer than Content-Length says.</p>
+<p><strong>Instructional Rationale:</strong> Understand-level interpretation requires the learner to explain what a part of the message means in a concrete example, not to name it. Choosing the effect of a changed or wrong value makes the learner use the meaning of each part.</p>
+<p><strong>Content:</strong></p>
+<p>The request shown on screen, with its lines numbered:</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1</td>
+<td><code>POST /v1/ask HTTP/1.0</code></td>
+</tr>
+<tr>
+<td>L2</td>
+<td><code>Host: 192.168.1.50:8080</code></td>
+</tr>
+<tr>
+<td>L3</td>
+<td><code>Content-Type: application/json</code></td>
+</tr>
+<tr>
+<td>L4</td>
+<td><code>Content-Length: 73</code></td>
+</tr>
+<tr>
+<td>L5</td>
+<td><code>Connection: close</code></td>
+</tr>
+<tr>
+<td>L6</td>
+<td>(blank line)</td>
+</tr>
+<tr>
+<td>L7</td>
+<td><code>{"device": "desk-07", "kind": "question", "text": "when is my next test"}</code></td>
+</tr>
+</tbody>
+</table>
+<p>The 8 questions, each with three choices:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Choices</th>
+<th>Correct answer</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Which line says what the client wants done, and where?</td>
+<td>L1, L2, L7</td>
+<td>L1</td>
+<td>The request line holds the method (POST), the path (/v1/ask) and the HTTP version.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Which line tells the server how many bytes of body to read?</td>
+<td>L3, L4, L5</td>
+<td>L4</td>
+<td>Content-Length counts the body's bytes.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>What does the blank line L6 do?</td>
+<td>It ends the headers, so the body starts after it; it is optional; it separates two requests</td>
+<td>It ends the headers, so the body starts after it</td>
+<td>Without it the server would keep reading header lines.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Content-Length says 60 but the body is 73 bytes. What does the buddy server do?</td>
+<td>Reads 60 bytes and answers 400 because the JSON is cut off; reads all 73 and answers 200; waits for 13 more bytes</td>
+<td>Reads 60 bytes and answers 400 because the JSON is cut off</td>
+<td>The server trusts the header, so it stops at 60 and the JSON is incomplete.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Content-Length says 90 but the body is 73 bytes. What happens?</td>
+<td>The server answers 200; the server answers 400; the server waits for 17 more bytes, and the Pico's timeout ends it</td>
+<td>The server waits for 17 more bytes, and the Pico's timeout ends it</td>
+<td>The server is still reading and the Pico is waiting for the reply, so neither moves.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Which line tells the server the body is JSON?</td>
+<td>L2, L3, L5</td>
+<td>L3</td>
+<td>Content-Type names the format of the body.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>The reply starts with HTTP/1.0 400 Bad Request. Whose mistake is it?</td>
+<td>The client's request was wrong; the server is broken; the Wi-Fi dropped</td>
+<td>The client's request was wrong</td>
+<td>A first digit of 4 means the client made the mistake; 5 means the server did.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>The reply has Content-Length: 103. How many body bytes should the Pico read?</td>
+<td>73, 103, as many as arrive until a timeout</td>
+<td>103</td>
+<td>The reply's Content-Length counts the reply's body, and the Pico stops there.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The request is the one printed by <code>src/chapters/13-wifi-http-agent-link/04-raw-http-post.py</code> with the default <code>buddy_config.py</code>. The reply length 103 is the length of the Chapter 1 reply as JSON. The server behaviors in questions 4 and 5 are those of <code>server/buddy_server.py</code>.</p>
+<p><strong>Rules:</strong> Question order is fixed and the choices of each question are shown in the order in the table. Each question has one attempt. The score is the number of correct answers.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner hovers over each of the lines L1 to L7 to read what it is called.</li>
+<li>The learner starts the 8 questions. Question 1 is shown.</li>
+<li>The learner picks an answer and submits.</li>
+<li>The sim shows the correct answer and the Why text, and highlights the lines involved in the request.</li>
+<li>After question 8, the sim shows the score. The learner should notice that questions 4 and 5 differ only in whether the header number is smaller or larger than the real body.</li>
+</ol>
+<p><strong>Feedback:</strong> 8 questions, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 8" is shown.</p>
+<p><strong>Starting State:</strong> The request is shown with numbered lines and nothing selected, with the question "Which line says what the client wants done, and where?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that the request is 194 bytes in all, 121 of head and 73 of body; that the reply is 103 bytes of body; that a Content-Length smaller than the body gives a 400 and a larger one makes the server wait; and that a first status digit of 4 means the client's mistake.</p>
+</details>
+<h2 id="the-buddy-servers-endpoint">The Buddy Server's Endpoint<a class="headerlink" href="#the-buddy-servers-endpoint" title="Permanent link">&para;</a></h2>
+<p>A <strong>REST endpoint</strong> is a path on a server that does one named job when it receives a request, such as <code>POST /v1/ask</code>. The <code>/v1/</code> is a version number: if the contract ever changes, <code>/v2/ask</code> can exist beside it and old devices keep working. The buddy server has two endpoints in this chapter.</p>
+<table>
+<thead>
+<tr>
+<th>Method and path</th>
+<th>Job</th>
+<th>Success</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /v1/ask</code></td>
+<td>Run the brain on a question</td>
+<td>200 and the three-field reply</td>
+</tr>
+<tr>
+<td><code>GET /v1/health</code></td>
+<td>Say that the server is up</td>
+<td>200 and <code>{"ok": true, ...}</code></td>
+</tr>
+</tbody>
+</table>
+<p>The server is <code>server/buddy_server.py</code>, about 190 lines of Python's standard library, so there is nothing to install. It runs on your computer, not on the Pico.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>src/chapters/13-wifi-http-agent-link/server
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>python3<span class="w"> </span>buddy_server.py
+</span></code></pre></div>
+<p>It prints the address that other devices on the network should use, and that address goes into <code>BUDDY_HOST</code> in <code>buddy_config.py</code>. The brain is Chapter 1's <code>decide()</code> function. The server asks it for an answer, and puts the answer into the three-field reply. That one function is the only place where "the brain" lives, so Chapter 16 can replace it with a school calendar and Chapter 14 can feed it transcribed speech without the Pico noticing.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">make_reply</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">events</span><span class="p">):</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">speak</span><span class="p">,</span> <span class="n">show</span> <span class="o">=</span> <span class="n">decide</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"speak"</span><span class="p">:</span> <span class="n">speak</span><span class="p">,</span> <span class="s2">"show"</span><span class="p">:</span> <span class="n">show</span><span class="p">[:</span><span class="mi">30</span><span class="p">],</span> <span class="s2">"next_mode"</span><span class="p">:</span> <span class="s2">"clock"</span><span class="p">}</span>
+</span></code></pre></div>
+<p>Before it calls the brain the server checks the request against the contract, and answers with a status code and a JSON body <code>{"error": "..."}</code> when something is wrong. <code>python3 server/test_server.py</code> runs 13 checks with no Pico, including a body that is not JSON (400), a missing field (400), an oversize body (413), and a <code>GET</code> where a <code>POST</code> belongs (405).</p>
+<h2 id="reading-the-reply-safely">Reading the Reply Safely<a class="headerlink" href="#reading-the-reply-safely" title="Permanent link">&para;</a></h2>
+<p>A request is not finished when the bytes leave the Pico. Two rules apply to the reply, and both protect the Pico's small memory (Chapter 2).</p>
+<p><strong>Read a bounded amount.</strong> The reply says how big its body is in <code>Content-Length</code>. The code compares that number with <code>MAX_REPLY_BYTES</code> (2,048) before reading anything, and never reads more. The whole exchange here is 194 bytes out and a little over 100 bytes of body back, tiny next to the Pico's heap. The danger is not these messages. It is the day a wrong server sends a megabyte.</p>
+<p><strong>Always close the socket.</strong> An open connection holds memory and one of the network stack's small, fixed number of sockets. If a program forgets to close one on every path, including the paths where an error was raised, it works for a while and then fails with an error that looks unrelated. That is why <code>socket.close()</code> is in a <code>finally</code> block, the same rule as <code>mic.deinit()</code> in Chapter 2.</p>
+<h2 id="the-requests-library">The requests Library<a class="headerlink" href="#the-requests-library" title="Permanent link">&para;</a></h2>
+<p>Writing <code>build_post</code> and <code>read_response</code> once teaches you what HTTP is, but you should not hand-write it in every program. The <strong>requests library</strong> wraps the same steps, and its call looks like this.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="s2">"http://192.168.1.50:8080/v1/ask"</span><span class="p">,</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">"device"</span><span class="p">:</span> <span class="s2">"desk-07"</span><span class="p">,</span> <span class="s2">"kind"</span><span class="p">:</span> <span class="s2">"question"</span><span class="p">,</span> <span class="s2">"text"</span><span class="p">:</span> <span class="s2">"when is my next test"</span><span class="p">},</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="n">timeout</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="n">reply</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">reply</span><span class="p">[</span><span class="s2">"show"</span><span class="p">])</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></div>
+<p><code>json=</code> turns the dictionary into JSON, sets <code>Content-Type</code>, and works out <code>Content-Length</code>. <code>timeout=</code> sets the socket time limit. <code>response.json()</code> reads the whole body and parses it. <code>response.close()</code> closes the socket, and is the line people forget.</p>
+<p>Whether the library is on your Pico depends on the firmware. The Raspberry Pi Pico 2 W builds of MicroPython do not include it as a built-in module, as far as the port's file list shows. Install it once, while connected to Wi-Fi.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">mip</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">mip</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="s2">"requests"</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>mip</code> downloads the package from the <code>micropython-lib</code> collection into the <code>lib</code> folder on the Pico, and <code>06-requests-post.py</code> runs this for you if the import fails. At the time of writing, <code>micropython-lib</code> lists the package as <code>requests</code> version 1.1.1. Older firmware called it <code>urequests</code>, which has no <code>timeout</code> argument, so <code>06-requests-post.py</code> says so if it hits that. Which version <code>mip</code> gave your Pico is a fact to write down.</p>
+<p>There is one more thing to know about this library, and it matters in Chapter 14. When a web address begins with <code>https://</code>, the library as we read it turns off certificate checking. For <code>http://</code> on a classroom network that does not matter. For <code>https://</code> it means the connection is encrypted but would also connect to an impostor, and Chapter 14 shows how to do better.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>By hand (<code>05-socket-post.py</code>)</th>
+<th><code>requests</code> (<code>06-requests-post.py</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lines of your code</td>
+<td>About 12</td>
+<td>About 5</td>
+</tr>
+<tr>
+<td>You see the raw text</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>You count it</td>
+<td>Done for you</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td><code>sock.settimeout()</code></td>
+<td><code>timeout=</code> (newer versions)</td>
+</tr>
+<tr>
+<td>Needs installing</td>
+<td>No</td>
+<td>Yes, with <code>mip</code></td>
+</tr>
+<tr>
+<td>Closes for you</td>
+<td>No: use <code>finally</code></td>
+<td>No: call <code>response.close()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="showing-the-link-on-the-display">Showing the Link on the Display<a class="headerlink" href="#showing-the-link-on-the-display" title="Permanent link">&para;</a></h2>
+<p>A device that fails silently feels broken. The status region from Chapter 6 (the top bar, 15 characters wide) is the right place to say what the link is doing, and the agent message region (30 characters) shows the answer. <code>07-ask-buddy-display.py</code> ties it together: the status bar walks through "joining", "online", "asking...", and "ok" with the elapsed milliseconds, and an error word if anything goes wrong.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">region</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">SMALL</span><span class="p">,</span> <span class="n">text</span><span class="p">[:</span><span class="n">width</span><span class="p">]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The function cuts the text to the region's width and pads it with spaces to exactly that width, so the new text covers the old without redrawing the screen. A full-screen fill takes at least 86 ms (Chapter 5), while a 15-character status redraw is <span class="arithmatex">\( 15 \times 8 \times 16 \times 2 = 3{,}840 \)</span> bytes. Each press of MODE sends the next question and shows the server's <code>show</code> field. Because the code catches <code>OSError</code>, <code>ValueError</code> and <code>KeyError</code>, stopping the server makes the status say "error" and the device carries on.</p>
+<h2 id="finding-the-server-by-name-mdns">Finding the Server by Name: mDNS<a class="headerlink" href="#finding-the-server-by-name-mdns" title="Permanent link">&para;</a></h2>
+<p>Typing <code>192.168.1.50</code> into a file is awkward if it changes. <strong>mDNS discovery</strong> (multicast DNS) lets a device find another by a name ending in <code>.local</code> instead, such as <code>buddy.local</code>. The device asks the whole local network "who is buddy.local?" and the owner answers with its address. No DNS server is needed. A Raspberry Pi running school software is usually reachable this way, and most laptops answer to their own <code>.local</code> names.</p>
+<p>Two different things hide behind "mDNS support", and the Pico's support for them differs.</p>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Meaning</th>
+<th>Status for the Pico 2 W</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Announcing</td>
+<td>The Pico answers to <code>study-buddy-07.local</code></td>
+<td>MicroPython's <code>network.hostname()</code> is documented as sent to DHCP and, if the port supports it, to mDNS. Reports from the project's issue tracker suggest the RP2 port gained this in 2025, and that it does not work in every mode. <strong>Unconfirmed on the kit.</strong></td>
+</tr>
+<tr>
+<td>Resolving</td>
+<td>The Pico looks up <code>buddy.local</code> and gets a number</td>
+<td>We found no documentation that <code>socket.getaddrinfo()</code> on the Pico sends mDNS queries; it uses the DNS server from <code>ifconfig()</code>. <strong>Unconfirmed, and probably not available.</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Because it is uncertain, the book's default does not depend on it. <code>08-mdns-check.py</code> tries to resolve each name in a list and prints the answer or the failure, with <code>sys.version</code>, and then states the fallback: the fixed address in <code>buddy_config.py</code>, protected by a DHCP reservation. If <code>buddy.local</code> does work on your firmware, you can set <code>BUDDY_HOST = "buddy.local"</code>, but keep the IP address in a comment beside it.</p>
+<h2 id="why-plain-http-is-acceptable-here-and-only-here">Why Plain HTTP Is Acceptable Here, and Only Here<a class="headerlink" href="#why-plain-http-is-acceptable-here-and-only-here" title="Permanent link">&para;</a></h2>
+<p>Everything in this chapter uses <code>http://</code>, and every byte of it travels unencrypted. <strong>Plain HTTP LAN use</strong> means using unencrypted HTTP only on a network the school controls. Anyone who can capture traffic on that network can read the questions in the 194-byte request. On a classroom network that is a small group of people the school manages, the questions are not secrets, and there are no passwords in the exchange, so the risk is low and the simplicity is worth it. The device also never sends anything the student did not just say.</p>
+<p>Plain HTTP is <em>not</em> acceptable when the data crosses the internet, or any network the school does not control, such as a public hotspot or a student's home network where a stranger's laptop could be connected. It is also not acceptable the moment the exchange carries a password or a login token, because someone watching the network would learn it and could use it. Chapter 14 adds a token and HTTPS, Chapter 17 asks which data should leave the room at all, and the buddy server's startup message reminds you every time: "plain HTTP, no login: trusted classroom network only."</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Do Not Port-Forward This</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+It is tempting to make the server reachable from home by opening a port on the router. Do not do this with the Chapter 13 server: it has no login and no encryption, so anyone on the internet could ask it questions. Keep it on the classroom network, and use Chapter 14 before anything else.</p>
+</div>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>You can now describe a request from end to end. The Pico joins Wi-Fi in station mode with a time limit, and gets an IP address, a netmask, a gateway and a DNS server from DHCP. It checks that the server's address is on its own local network. It writes the question as JSON, wraps it in an HTTP POST with the right <code>Content-Length</code>, and sends it to <code>/v1/ask</code>. The server's brain returns a three-field JSON reply, the Pico reads a bounded amount of it, closes the connection in a <code>finally</code> block, and draws the answer in the message region.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>Station mode joins someone else's network; <code>connect()</code> returns at once, so poll <code>status()</code> with a time limit and treat -3 and -2 differently.</li>
+<li>An IP address is four bytes given by DHCP; the netmask picks out the network part, and two devices are on the same network when their network addresses match.</li>
+<li>The local network uses RFC 1918 private ranges; keep the server's address stable with a DHCP reservation.</li>
+<li>JSON is the shared shape: three fields in, three fields out, and count the bytes.</li>
+<li>An HTTP request is plain text: request line, headers, a blank line, then the body; the status code's first digit says whose mistake it was.</li>
+<li>A POST must say the right <code>Content-Length</code>; too small gives a 400 and too large makes the server wait.</li>
+<li>A REST endpoint is a path that does one job; <code>POST /v1/ask</code> carries the Chapter 1 contract.</li>
+<li>Read a bounded reply and close the socket in <code>finally</code>; <code>requests</code> helps, but you still call <code>close()</code>.</li>
+<li><code>.local</code> names are uncertain on the Pico, so keep a fixed address as the fallback.</li>
+<li>Plain HTTP is for a trusted classroom network only, never the internet and never with a password.</li>
+</ul>
+<p>Test yourself with these two questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>The Pico's address is 10.4.7.88 with netmask 255.255.255.0 and the server is at 10.4.200.9. Why does the request fail, and what is the fix? Click to expand</summary>
+<p>The mask keeps the first three numbers, so the Pico is on <code>10.4.7.0</code> and the server is on <code>10.4.200.0</code>: different networks, and the request must go through the gateway, which may not forward it. Check that <code>BUDDY_HOST</code> is right and that both devices are on the same network, or ask the network administrator to allow the traffic.</p>
+</details>
+<details class="question">
+<summary>Your program prints the status code 200 but then fails with a memory error after about a dozen requests. What did you forget? Click to expand</summary>
+<p>Most likely the program never closed the response or the socket, so each request left a connection open. Put <code>response.close()</code> (or <code>sock.close()</code>) in a <code>finally</code> block so it runs on every path, and read at most <code>MAX_REPLY_BYTES</code> of the body.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Your Pico Is on the Network</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just joined a Wi-Fi network in station mode, read an IP address and netmask, wrote the Chapter 1 contract as JSON, and sent it as an HTTP POST to a REST endpoint. Your Pico can now ask the buddy server a question and show the answer.</p>
+</div>
+<p>In Chapter 14 we make the link carry real speech, lock it with a token, and survive a network that drops.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

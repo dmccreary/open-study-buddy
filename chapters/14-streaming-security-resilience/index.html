@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="How the Pico sends recorded speech to the buddy server in memory-safe chunks, uses speech-to-text and text-to-speech services, streams audio over a WebSocket, adds authentication tokens and HTTPS, and survives network failure with timeouts, retries with backoff, and an offline fallback.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>14. Streaming Speech, Security, and Network Resilience - Open Study Buddy</title>
+        <title>Streaming Speech, Security, and Network Resilience - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              14. Streaming Speech, Security, and Network Resilience
+              Streaming Speech, Security, and Network Resilience
             
           </span>
         </div>
@@ -770,6 +770,249 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#from-one-question-to-real-speech" class="md-nav__link">
+    <span class="md-ellipsis">
+      From One Question to Real Speech
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recording-an-utterance-for-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recording an Utterance for the Network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chunked-audio-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chunked Audio Upload
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chunked Audio Upload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-chunk-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audio Chunk Size
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audio Chunk Size">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-chunk-size-and-heap-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Chunk-Size and Heap Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speech-to-text-and-text-to-speech" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speech-to-Text and Text-to-Speech
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speech-to-Text and Text-to-Speech">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-speech-to-text-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Speech-to-Text Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-text-to-speech-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Text-to-Speech Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playing-the-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Playing the Answer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interrupting-barge-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrupting: Barge-In
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypting-the-link-tls-https-and-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encrypting the Link: TLS, HTTPS, and Certificates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Encrypting the Link: TLS, HTTPS, and Certificates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificate-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Certificate Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-book-recommends-and-what-is-untested" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the Book Recommends, and What Is Untested
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-network-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      When the Network Fails
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="When the Network Fails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#timeouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timeouts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-kinds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Failure Kinds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-and-backoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retry and Backoff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retry and Backoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-retry-and-backoff-timeline-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Retry and Backoff Timeline Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showing-the-links-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing the Link's State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Offline Fallback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-over-a-websocket" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Over a WebSocket
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -865,6 +1108,69 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
       
     </li>
   
@@ -1069,6 +1375,249 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#from-one-question-to-real-speech" class="md-nav__link">
+    <span class="md-ellipsis">
+      From One Question to Real Speech
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recording-an-utterance-for-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recording an Utterance for the Network
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chunked-audio-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chunked Audio Upload
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chunked Audio Upload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audio-chunk-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audio Chunk Size
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audio Chunk Size">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-chunk-size-and-heap-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Chunk-Size and Heap Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speech-to-text-and-text-to-speech" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speech-to-Text and Text-to-Speech
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speech-to-Text and Text-to-Speech">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-speech-to-text-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Speech-to-Text Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-text-to-speech-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Text-to-Speech Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#playing-the-answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Playing the Answer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interrupting-barge-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interrupting: Barge-In
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypting-the-link-tls-https-and-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encrypting the Link: TLS, HTTPS, and Certificates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Encrypting the Link: TLS, HTTPS, and Certificates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#certificate-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Certificate Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-book-recommends-and-what-is-untested" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the Book Recommends, and What Is Untested
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-network-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      When the Network Fails
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="When the Network Fails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#timeouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timeouts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-kinds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Failure Kinds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-and-backoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retry and Backoff
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retry and Backoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-retry-and-backoff-timeline-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Retry and Backoff Timeline Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showing-the-links-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing the Link's State
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Offline Fallback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streaming-over-a-websocket" class="md-nav__link">
+    <span class="md-ellipsis">
+      Streaming Over a WebSocket
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1178,13 +1727,1089 @@
 <li><a href="../13-wifi-http-agent-link/">Chapter 13: Wi-Fi, HTTP, and Connecting to the Agent</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="from-one-question-to-real-speech">From One Question to Real Speech<a class="headerlink" href="#from-one-question-to-real-speech" title="Permanent link">&para;</a></h2>
+<p>Chapter 13 sent a typed question and got a typed answer. A real device has to send a <em>recording</em> of someone talking, get back <em>speech</em>, keep working when the Wi-Fi hiccups, and keep strangers out. Each of those has a catch on a board with 520 KB of RAM, and this chapter is about the catches.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Let's Make It Talk</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+In this chapter you will hold a button, say a sentence, and hear the buddy server's answer come back through your own speaker, with a login, a plan for bad networks, and a way to interrupt. Let's listen closely! The trick is sending sound in pieces small enough for a tiny memory.</p>
+</div>
+<p>Chapter 1's data flow had eight steps, and Chapter 13 handled them with typed text. Step 1 is still the student speaking. Here is what steps 2 to 8 become.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What happens</th>
+<th>Where</th>
+<th>Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>The microphone's samples are made smaller (16-bit) and kept</td>
+<td>Pico</td>
+<td>Recording an Utterance for the Network</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The recording travels to the server in chunks, with a token</td>
+<td>Network</td>
+<td>Chunked Audio Upload; Authentication Tokens</td>
+</tr>
+<tr>
+<td>4</td>
+<td>The server turns speech into words</td>
+<td>Server</td>
+<td>Speech-to-Text and Text-to-Speech</td>
+</tr>
+<tr>
+<td>5</td>
+<td>The brain decides on a reply (Chapter 13's <code>decide()</code>)</td>
+<td>Server</td>
+<td>(unchanged)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>The server turns the reply into speech</td>
+<td>Server</td>
+<td>Speech-to-Text and Text-to-Speech</td>
+</tr>
+<tr>
+<td>7</td>
+<td>The speech comes back in pieces</td>
+<td>Network</td>
+<td>Playing the Answer</td>
+</tr>
+<tr>
+<td>8</td>
+<td>The Pico plays it, and the listener may interrupt</td>
+<td>Pico</td>
+<td>Interrupting: Barge-In</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recording-an-utterance-for-the-network">Recording an Utterance for the Network<a class="headerlink" href="#recording-an-utterance-for-the-network" title="Permanent link">&para;</a></h2>
+<p>Chapter 11 builds the full push-to-talk recorder with a noise floor and voice-activity detection. This chapter needs only a small one, <code>utterance.py</code>, so that it stands on its own: hold MODE, record, release.</p>
+<p>The microphone delivers 32-bit words, 4 bytes per sample (Chapter 8). A speech service does not need 24 bits of precision, and the Pico cannot afford them. Converting each sample to 16 bits as it arrives halves the memory.</p>
+<table>
+<thead>
+<tr>
+<th>Length</th>
+<th>32-bit words</th>
+<th>16-bit samples</th>
+<th>Share of the chip's 520 KB (532,480 bytes), 16-bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 s</td>
+<td><span class="arithmatex">\( 3 \times 12{,}800 \times 4 = 153{,}600 \)</span> bytes</td>
+<td>76,800 bytes</td>
+<td>14.4 %</td>
+</tr>
+<tr>
+<td>5 s</td>
+<td>256,000 bytes</td>
+<td>128,000 bytes</td>
+<td>24.0 %</td>
+</tr>
+<tr>
+<td>10 s</td>
+<td>512,000 bytes</td>
+<td>256,000 bytes</td>
+<td>48.1 %</td>
+</tr>
+</tbody>
+</table>
+<p>The 3 s row in 32-bit is Chapter 2's 29 percent figure. Five seconds in 32-bit words (256,000 bytes) is almost half the chip and almost certainly fails, as Chapter 2 warned. So <code>utterance.record()</code> converts each 20 ms read (1,024 bytes, 256 samples) into 512 bytes of 16-bit audio as it goes.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">shifted</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="o">&gt;&gt;</span> <span class="n">SHIFT</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">_UNPACK</span><span class="p">,</span> <span class="n">raw</span><span class="p">)]</span>   <span class="c1"># 32-bit word -&gt; 24-bit sample</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">shifted</span><span class="p">)</span> <span class="o">//</span> <span class="n">READ_SAMPLES</span>                           <span class="c1"># this chunk's DC offset</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span><span class="n">_PACK</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                     <span class="o">*</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">32768</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">32767</span><span class="p">,</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">*</span> <span class="n">GAIN</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">shifted</span><span class="p">])</span>
+</span></code></pre></div>
+<p>Each step has a reason from earlier chapters. The right shift by <code>MIC_SAMPLE_SHIFT</code> recovers the 24-bit value, subtracting the chunk's mean removes the microphone's wandering DC offset (Chapter 8 measured it moving between frames), and the multiply by <code>GAIN</code> of 8 followed by <code>&gt;&gt; 8</code> is the same 18 dB boost the kit's test 07 uses to bring speech up to a playable level. The <code>max/min</code> clips instead of wrapping around, which would sound like a crack (Chapter 3).</p>
+<p>The conversion has to finish inside the 20 ms between reads, or the microphone's ring buffer starts to fill (Chapter 8's frame budget). Chapter 8 measured about 10 ms for a similar loop over 512 samples, so there is reason to expect this one to fit, but no one has measured <em>this</em> code on the kit. <code>03-record-utterance.py</code> prints the worst conversion time against the 20,000 microsecond budget, and if it is over, the fix is the kit's test 07 method: record 32-bit words, convert after you let go, and limit the utterance to 3 s. Allocate the recording buffer first, before the heap fragments, with <code>utterance.make_buffer()</code>.</p>
+<h2 id="chunked-audio-upload">Chunked Audio Upload<a class="headerlink" href="#chunked-audio-upload" title="Permanent link">&para;</a></h2>
+<p><strong>Chunked audio upload</strong> means sending the recording to the server in pieces instead of in one write. Here is the reason. The obvious way to send a POST is to join the header and the body into one <code>bytes</code> object and call <code>send</code> once.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">request</span> <span class="o">=</span> <span class="n">head</span> <span class="o">+</span> <span class="n">body</span>          <span class="c1"># NEVER with a recording: this copies it</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Joining makes a <em>new</em> object as big as both. A 5 s recording is 128,000 bytes, so the join needs another 128,000 contiguous bytes while the recording still exists: 256,000 bytes in two blocks. Chapter 2's fragmentation rule says a block that size is hard to find. The fix costs nothing. Send the header first, then send the recording itself in slices of a <code>memoryview</code>, which points into the existing buffer without copying it.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">sock</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">view</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">pcm</span><span class="p">)[:</span><span class="n">nbytes</span><span class="p">]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">sent</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">while</span> <span class="n">sent</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">view</span><span class="p">):</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">piece</span> <span class="o">=</span> <span class="n">view</span><span class="p">[</span><span class="n">sent</span><span class="p">:</span><span class="n">sent</span> <span class="o">+</span> <span class="n">chunk</span><span class="p">]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">sock</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">piece</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">sent</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">piece</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>buddy_http.request()</code> does this, with a deadline check before every piece. Slicing a memoryview is free, so the only memory the upload needs beyond the recording is a few small objects. The server still sees one ordinary POST whose <code>Content-Length</code> was known up front.</p>
+<p>There is a second way to send a body of unknown length, called <code>Transfer-Encoding: chunked</code>, in which each piece is preceded by its size in hexadecimal. The <code>requests</code> library will do it for you when <code>data=</code> is a generator. The book does not use it, for three reasons. The Pico knows the total as soon as the button is released. Many simple servers do not accept chunked request bodies (ours answers 411, Length Required). And a request that fails halfway is simpler to reason about when the length is fixed.</p>
+<p><em>Worked example.</em> A 5 s utterance is 128,000 bytes. With 2,048-byte chunks that is <span class="arithmatex">\( \lceil 128{,}000 / 2{,}048 \rceil = 63 \)</span> calls to <code>write</code>. Each chunk is <span class="arithmatex">\( 2{,}048 / 25{,}600 = 0.08 \)</span> s, 80 ms, of audio. No more than 2,048 bytes is ever in flight beyond the recording itself.</p>
+<h3 id="audio-chunk-size">Audio Chunk Size<a class="headerlink" href="#audio-chunk-size" title="Permanent link">&para;</a></h3>
+<p>The <strong>audio chunk size</strong> is how many bytes go in each write. It is a trade-off among four things, and <code>01-chunk-arithmetic.py</code> prints all of them.</p>
+<table>
+<thead>
+<tr>
+<th>Chunk (bytes)</th>
+<th>Chunks for 5 s</th>
+<th>Audio per chunk</th>
+<th>Typical TCP segments</th>
+<th>WebSocket extra bytes</th>
+<th>Extra as %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>512</td>
+<td>250</td>
+<td>20 ms</td>
+<td>1</td>
+<td>8</td>
+<td>1.56 %</td>
+</tr>
+<tr>
+<td>1,024</td>
+<td>125</td>
+<td>40 ms</td>
+<td>1</td>
+<td>8</td>
+<td>0.78 %</td>
+</tr>
+<tr>
+<td>2,048</td>
+<td>63</td>
+<td>80 ms</td>
+<td>2</td>
+<td>8</td>
+<td>0.39 %</td>
+</tr>
+<tr>
+<td>4,096</td>
+<td>32</td>
+<td>160 ms</td>
+<td>3</td>
+<td>8</td>
+<td>0.20 %</td>
+</tr>
+<tr>
+<td>8,192</td>
+<td>16</td>
+<td>320 ms</td>
+<td>6</td>
+<td>8</td>
+<td>0.10 %</td>
+</tr>
+</tbody>
+</table>
+<p>The "segments" column assumes a TCP segment carries up to 1,460 bytes, the usual size on an Ethernet-style network; the real value on your network may differ. The "extra bytes" column is a WebSocket client frame's 8-byte header (2 for the opcode and length, 2 more when the length is 126 or over, and 4 for the mask), which the WebSocket section explains. Small chunks cost more calls and a little more overhead, and large chunks cost latency (the first sound cannot leave until the chunk is full) and cost more to lose when one fails.</p>
+<p>The book's defaults come from two numbers already in this book. For the HTTP upload, <code>UPLOAD_CHUNK_BYTES = 2048</code> (80 ms, two audio reads): large enough that the overhead is a rounding error, small enough that a stalled network is noticed within one deadline check. For streaming over a WebSocket, <code>STREAM_CHUNK_BYTES = 1024</code>, which is 512 samples, exactly Chapter 8's 40 ms frame, so each frame the loop produces is one message. Neither value was tuned on the kit.</p>
+<h4 id="diagram-chunk-size-and-heap-explorer">Diagram: Chunk-Size and Heap Explorer<a class="headerlink" href="#diagram-chunk-size-and-heap-explorer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Chunk-Size and Heap Explorer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> chunk-heap-explorer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> examine<br/>
+<strong>Learning Objective:</strong> The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct.</p>
+<p><strong>Prerequisites:</strong> 16-bit and 32-bit recording sizes, memoryview slice, chunk, free heap, contiguous block (all defined in this chapter above this block and in Chapter 2).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 8 cases the learner chooses "fits" or "does not fit", and for a case that fits, types the number of sends. A case is correct when the choice matches the Fits column and, for fitting cases, the number matches the Sends column exactly. Mastery is 7 of 8 correct on the first attempt. Moving the explorer's sliders is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) Sending in chunks makes the recording itself smaller. (2) Joining the header and body is harmless because the recording is already in memory. (3) A bigger free heap total always means a big block is available. (4) Streaming needs the whole recording in memory.</p>
+<p><strong>Instructional Rationale:</strong> Analyze-level examination requires the learner to break a design into the blocks it needs and compare them with what is available. Using the same rule on eight designs lets the learner see which designs move the memory problem, rather than remove it.</p>
+<p><strong>Content:</strong></p>
+<p>Four designs are described. In each, S is the length in seconds, R16 is the 16-bit recording size <span class="arithmatex">\( S \times 25{,}600 \)</span> bytes, and R32 is the 32-bit size <span class="arithmatex">\( S \times 51{,}200 \)</span> bytes.</p>
+<table>
+<thead>
+<tr>
+<th>Design</th>
+<th>Description</th>
+<th>Largest memory it needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Record 16-bit. Join the header and the body into one bytes object, then send it once.</td>
+<td>Two blocks of R16 at the same time: <span class="arithmatex">\( 2 \times R16 \)</span> in all, the largest single block R16</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Record 16-bit. Send the header, then send the recording in slices of a chunk size K bytes.</td>
+<td>R16 for the recording, plus a small K-byte staging area: <span class="arithmatex">\( R16 + K \)</span> in all, the largest single block R16</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Record 32-bit, convert in place after release, send the first half in slices of K bytes.</td>
+<td>R32 for the buffer, plus K: <span class="arithmatex">\( R32 + K \)</span> in all, the largest single block R32</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Stream each 1,024-byte frame as it is converted and keep nothing.</td>
+<td>One 1,024-byte staging frame, at any length of speech</td>
+</tr>
+</tbody>
+</table>
+<p>The rule: a case fits when the total memory the design needs is no more than the free heap F minus a reserve of 40,000 bytes, which stands for the code, display, and network buffers. The number of sends is the length divided by the chunk size, rounded up (for design D, the frames of 1,024 bytes).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Design</th>
+<th>S (s)</th>
+<th>K (bytes)</th>
+<th>F (bytes)</th>
+<th>Fits</th>
+<th>Sends</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>B</td>
+<td>3</td>
+<td>2,048</td>
+<td>180,000</td>
+<td>fits</td>
+<td>38</td>
+<td>R16 is 76,800; plus 2,048 is 78,848, under 140,000. 76,800 / 2,048 is 37.5, rounded up to 38.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>B</td>
+<td>5</td>
+<td>2,048</td>
+<td>180,000</td>
+<td>fits</td>
+<td>63</td>
+<td>R16 is 128,000; plus 2,048 is 130,048, under 140,000. 128,000 / 2,048 is 62.5, rounded up to 63.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>A</td>
+<td>5</td>
+<td>not used</td>
+<td>180,000</td>
+<td>does not fit</td>
+<td>none</td>
+<td>The join needs 128,000 + 128,000 = 256,000, over 140,000.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>C</td>
+<td>5</td>
+<td>2,048</td>
+<td>180,000</td>
+<td>does not fit</td>
+<td>none</td>
+<td>R32 is 256,000, over 140,000 by itself.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>C</td>
+<td>3</td>
+<td>2,048</td>
+<td>260,000</td>
+<td>fits</td>
+<td>38</td>
+<td>R32 is 153,600; plus 2,048 is 155,648, under 220,000. The first half to send is 76,800 bytes: 38 sends.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>B</td>
+<td>10</td>
+<td>2,048</td>
+<td>260,000</td>
+<td>does not fit</td>
+<td>none</td>
+<td>R16 is 256,000, over 220,000.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>D</td>
+<td>10</td>
+<td>1,024</td>
+<td>100,000</td>
+<td>fits</td>
+<td>250</td>
+<td>One 1,024-byte frame needs no recording. 10 s is 256,000 bytes: 256,000 / 1,024 is 250 frames.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>B</td>
+<td>5</td>
+<td>8,192</td>
+<td>180,000</td>
+<td>fits</td>
+<td>16</td>
+<td>R16 is 128,000; plus 8,192 is 136,192, under 140,000. 128,000 / 8,192 is 15.6, rounded up to 16.</td>
+</tr>
+</tbody>
+</table>
+<p>For exploration the learner sets S from 1 to 10 s in steps of 1 s (default 5), K from 512 to 8,192 bytes in the five sizes of the chapter's table (default 2,048), and F from 100,000 to 260,000 bytes in steps of 10,000 (default 180,000), and sees each design's memory need drawn against the free heap with the reserve.</p>
+<p><strong>Provenance:</strong> The recording sizes follow from the kit's 12,800 samples per second, with 4 bytes per sample for 32-bit words and 2 for 16-bit samples (<code>config.MIC_SAMPLE_RATE</code>). The reserve of 40,000 bytes and the free heap values are illustrative, and the sim labels them "illustrative." The learner's own free heap comes from Chapter 2's memory report.</p>
+<p><strong>Rules:</strong> Total need and largest block follow the Largest memory column. A case fits when the total need is at most <span class="arithmatex">\( F - 40{,}000 \)</span>. Sends are <span class="arithmatex">\( \lceil \text{bytes to send} / K \rceil \)</span>, where the bytes to send are R16 for designs A and B, R16 (the converted half) for design C, and <span class="arithmatex">\( S \times 25{,}600 \)</span> split into 1,024-byte frames for design D. A design that does not fit has no send count.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner moves the three sliders and watches each design's bar against the free heap line.</li>
+<li>The learner starts the 8 cases. Case 1 is shown.</li>
+<li>The learner chooses fits or does not fit and, if it fits, types the number of sends.</li>
+<li>The sim draws the case's memory need against the free heap and shows the Why text.</li>
+<li>After case 8, the sim shows the score. The learner should notice that designs A and C fail at 5 s where design B fits, and that design D fits at any length.</li>
+</ol>
+<p><strong>Feedback:</strong> 8 cases, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. It <fits or does not fit>&lt;, with N sends if it fits&gt;: <Why>". The answer is revealed right after each submission, and a running score "n of 8" is shown.</p>
+<p><strong>Starting State:</strong> Design B at 5 s, 2,048 bytes, and 180,000 free is drawn, with the question "Does this fit in the free heap, and how many sends does it need?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that a 5 s recording is 128,000 bytes in 16-bit and 256,000 in 32-bit, that joining the head and body needs a second block as large as the recording, that 2,048-byte chunks make 63 sends for 5 s, and that a WebSocket frame header is 8 bytes.</p>
+</details>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Chunks Move the Problem, Not the Data</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Sending in pieces does not make the recording smaller. It stops you from making a <em>second</em> copy, and only streaming (never keeping the whole recording) removes the big block entirely. Ask "how many copies of the data exist at once?" of every design.</p>
+</div>
+<h2 id="speech-to-text-and-text-to-speech">Speech-to-Text and Text-to-Speech<a class="headerlink" href="#speech-to-text-and-text-to-speech" title="Permanent link">&para;</a></h2>
+<p>The Pico does not understand speech and cannot make it. Both jobs belong to the buddy server, which has the memory and the processing power. In <code>server/buddy_server.py</code> the whole voice path is three function calls, and each one is a swappable piece.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">heard</span> <span class="o">=</span> <span class="n">stt</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">rate</span><span class="p">)</span>                      <span class="c1"># speech-to-text</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">reply</span> <span class="o">=</span> <span class="n">brain</span><span class="o">.</span><span class="n">make_reply</span><span class="p">(</span><span class="n">heard</span><span class="p">,</span> <span class="n">EVENTS</span><span class="p">)</span>                <span class="c1"># the brain: Chapter 13's decide()</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">speech</span> <span class="o">=</span> <span class="n">tts</span><span class="o">.</span><span class="n">synthesize</span><span class="p">(</span><span class="n">reply</span><span class="p">[</span><span class="s2">"speak"</span><span class="p">],</span> <span class="n">DEVICE_RATE</span><span class="p">)</span>   <span class="c1"># text-to-speech</span>
+</span></code></pre></div>
+<h3 id="the-speech-to-text-service">The Speech-to-Text Service<a class="headerlink" href="#the-speech-to-text-service" title="Permanent link">&para;</a></h3>
+<p>A <strong>speech-to-text service</strong> turns a recording into written words. Servers get it in one of two ways: a program running on the server's own computer, or a company's web service. The server's <code>stt.py</code> has two backends, chosen with the <code>BUDDY_STT</code> environment variable.</p>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>What it does</th>
+<th>Needs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stub</code> (default)</td>
+<td>Checks that the recording is not silent (an RMS loudness test), then returns a fixed phrase. <strong>It does not recognize speech.</strong></td>
+<td>Nothing</td>
+</tr>
+<tr>
+<td><code>service</code></td>
+<td>The place, clearly marked in the file, where you write the call to a real service</td>
+<td>A provider your school approved, and an API key in the server's <code>STT_API_KEY</code> environment variable</td>
+</tr>
+</tbody>
+</table>
+<p>The stub exists so every other part of the pipeline can be tested with no account and no internet. With the stub, whatever you say, the answer is about "when is my next test", and a silent recording gives "Sorry, I did not catch that." Most services want a WAV file rather than raw samples, so <code>stt.pcm_to_wav()</code> adds the 44-byte header from Chapter 3. Keys live only in the server's environment. They are never in a file you share and never on the Pico.</p>
+<p>A cloud service means the student's voice leaves the classroom. Chapter 17 asks the questions to answer before you do that, and the stub keeps this chapter from needing an answer.</p>
+<h3 id="the-text-to-speech-service">The Text-to-Speech Service<a class="headerlink" href="#the-text-to-speech-service" title="Permanent link">&para;</a></h3>
+<p>A <strong>text-to-speech service</strong> does the opposite: it turns the reply's <code>speak</code> sentence into audio. The same pattern applies: <code>tts.py</code> has a <code>stub</code> backend (one beep per word, rising in pitch, so you can hear that audio arrived and how long a sentence is) and a marked place for a <code>service</code> backend with its key in <code>TTS_API_KEY</code>.</p>
+<p>The catch is the <em>format</em>. The Pico's speaker is set up for 16-bit mono at 12,800 samples per second, the same settings as the kit's test 07. A real service usually returns something else, so the server must convert before it sends.</p>
+<table>
+<thead>
+<tr>
+<th>A service may return</th>
+<th>The Pico can play it?</th>
+<th>What the server must do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16-bit mono PCM at 12,800 Hz</td>
+<td>Yes</td>
+<td>Nothing</td>
+</tr>
+<tr>
+<td>16-bit mono PCM at another rate (22,050, 24,000)</td>
+<td>Only at the wrong speed</td>
+<td>Resample to 12,800 Hz with <code>tts.to_device_pcm()</code></td>
+</tr>
+<tr>
+<td>Stereo PCM</td>
+<td>No</td>
+<td>Mix to mono first</td>
+</tr>
+<tr>
+<td>WAV</td>
+<td>After the 44-byte header is removed</td>
+<td>Strip the header, then as above</td>
+</tr>
+<tr>
+<td>MP3 or Opus</td>
+<td>No: the Pico cannot decode them</td>
+<td>Decode on the server</td>
+</tr>
+</tbody>
+</table>
+<p>Resampling by linear interpolation is enough for speech, and going down to 12,800 Hz discards everything above 6,400 Hz (Chapter 3's Nyquist limit), which the speaker could not reproduce anyway. A common surprise is a sentence that plays too fast and too high: that is the wrong rate, the same chipmunk effect as Chapter 8. The server also applies the device's volume (<code>GET /v1/speech/&lt;id&gt;?volume=40</code> scales the samples), so the Pico does no per-sample work. At volume 40 the peak is <span class="arithmatex">\( 0.4 \times 32{,}767 \approx 13{,}107 \)</span>, the same figure as Chapter 8's tone.</p>
+<p><em>Worked example.</em> A sentence that takes 2.5 s to say is <span class="arithmatex">\( 2.5 \times 12{,}800 \times 2 = 64{,}000 \)</span> bytes of speech. The Pico never holds all of it. The next section shows why.</p>
+<h3 id="playing-the-answer">Playing the Answer<a class="headerlink" href="#playing-the-answer" title="Permanent link">&para;</a></h3>
+<p><strong>Streaming audio</strong> means playing sound while it is still arriving, instead of waiting for all of it. The server sends the speech with a <code>Content-Length</code> and <code>X-Audio-Rate: 12800</code>, and <code>buddy_http.request()</code> reads the body into one reusable 2,048-byte buffer and hands each filled buffer to a function, which writes it to the speaker.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">sink</span><span class="p">(</span><span class="n">view</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">speaker</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>         <span class="c1"># blocks until the chunk is in the speaker's buffer</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">buddy_client</span><span class="o">.</span><span class="n">speech</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">VOLUME</span><span class="p">,</span> <span class="n">sink</span><span class="p">,</span> <span class="n">chunk_buf</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The speaker's <code>write</code> blocks until its 8,192-byte buffer has room (Chapter 8), and the socket read blocks until the next chunk arrives, so the two pace each other. The network is the producer, the I2S buffer is the consumer, and one 2,048-byte buffer sits in the middle. This is the ring-buffer idea of Chapter 8 again, with the Wi-Fi link in place of the microphone. At the natural end of the sound the code lets the speaker's buffer drain before <code>deinit()</code>, and it closes the microphone for the whole time the speaker is open, which is Chapter 8's rule against the self-hearing problem. The speech request is deliberately <em>not</em> retried: a retry would start the sentence again after part of it had played.</p>
+<h2 id="interrupting-barge-in">Interrupting: Barge-In<a class="headerlink" href="#interrupting-barge-in" title="Permanent link">&para;</a></h2>
+<p><strong>Barge-in interruption</strong> is the listener cutting off the device while it is speaking. People do it all the time: the answer starts, they know what it will say, and they say "stop" or ask something else. A good device lets them.</p>
+<p>Voice barge-in would need the microphone open while the speaker plays, and Chapter 8 explained why that fails: the microphone hears the speaker, about 15 times louder than a quiet room in the kit's test. Telling the device's voice from the listener's would need echo cancellation, which Chapter 8 called out of scope for a Pico. So in this book barge-in is a <strong>button press</strong>: the device checks MODE between chunks, and if it is down, it stops.</p>
+<table>
+<thead>
+<tr>
+<th>What interrupts</th>
+<th>Works on the kit?</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pressing MODE</td>
+<td>Yes</td>
+<td>A button is not affected by sound</td>
+</tr>
+<tr>
+<td>Saying "stop"</td>
+<td>No</td>
+<td>The microphone is closed while speaking, and hearing over the speaker needs echo cancellation</td>
+</tr>
+<tr>
+<td>A new wake word</td>
+<td>Not in this book</td>
+<td>Same problem as saying "stop"</td>
+</tr>
+</tbody>
+</table>
+<p>Stopping takes three steps in <code>04-upload-voice.py</code>: raise an exception from the playback function (which also closes the socket, so the rest of the speech is not downloaded), call <code>speaker.finish(drain=False)</code> so <code>deinit()</code> discards what is queued, and wait out the quiet tail (120 ms, from Chapter 8's measurement) before the microphone is opened again. Skipping the drain matters. The speaker's buffer holds up to <span class="arithmatex">\( 8{,}192 / (12{,}800 \times 2) = 0.32 \)</span> s of sound, and left to drain it would keep talking for a third of a second after the press. Because the loop checks the button once per 2,048-byte chunk (80 ms of audio), the expected stop time is one chunk plus the discarded buffer, about 80 ms. That is an estimate from arithmetic; no one has measured it on the kit.</p>
+<p>On a WebSocket the same press also sends <code>{"event": "cancel"}</code>, so the <em>server</em> stops sending speech too.</p>
+<h2 id="authentication-tokens">Authentication Tokens<a class="headerlink" href="#authentication-tokens" title="Permanent link">&para;</a></h2>
+<p>Chapter 13's server answers anyone who can reach it. An <strong>authentication token</strong> is a secret string that the device presents with every request, so the server can tell the school's devices from everyone else. In this book it travels in an HTTP header, <code>X-Buddy-Token</code>, and it lives in <code>secrets.py</code> on the Pico next to the Wi-Fi password.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># secrets.py on the Pico  (never committed)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">buddy_token</span> <span class="o">=</span> <span class="s2">"a-long-random-string"</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"X-Buddy-Token"</span><span class="p">:</span> <span class="n">TOKEN</span><span class="p">,</span> <span class="s2">"X-Buddy-Device"</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">DEVICE_ID</span><span class="p">}</span>
+</span></code></pre></div>
+<p>On the server, <code>BUDDY_TOKENS</code> holds one or more accepted tokens, and every endpoint except <code>/v1/health</code> refuses a request with a missing or wrong one by answering <strong>401</strong> and doing nothing else. The check compares in constant time (<code>hmac.compare_digest</code>), so the time it takes does not reveal how many leading characters were right. The Pico treats 401 as <em>not worth retrying</em>: the same token will fail the same way, so the status region says "bad token" and stops.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Make a Token That Cannot Be Guessed</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+Run <code>python3 -c "import secrets; print(secrets.token_urlsafe(24))"</code> on your computer. It makes 24 random bytes, which is <span class="arithmatex">\( 24 \times 8 = 192 \)</span> bits of randomness, written as 32 characters. A word from a dictionary is far easier to guess.</p>
+</div>
+<p>Tokens should be <strong>rotated</strong>, replaced from time to time and whenever one might have leaked. The server's list makes rotation painless, because the old and new tokens work together for a while.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Server's <code>BUDDY_TOKENS</code></th>
+<th>Pico's <code>buddy_token</code></th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>old</code></td>
+<td><code>old</code></td>
+<td>Working</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>new,old</code></td>
+<td><code>old</code></td>
+<td>Still working: both accepted</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>new,old</code></td>
+<td><code>new</code></td>
+<td>Pico updated</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>new</code></td>
+<td><code>new</code></td>
+<td>Old token no longer works</td>
+</tr>
+</tbody>
+</table>
+<p>Two warnings go with tokens. First, keep the token out of the URL: web addresses are written to logs, browser histories, and error messages, while headers are not. Second, a token over plain HTTP is visible to anyone who can capture the network traffic, exactly like the question itself. It keeps strangers from <em>using</em> the server, but it does not hide anything from someone listening on the same Wi-Fi, which is what the next section addresses.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">A Token in Git Is a Token Given Away</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+If <code>buddy_token</code> ends up in a file you commit, anyone who can read the repository holds the key. It belongs in <code>secrets.py</code>, which is listed in <code>.gitignore</code>. If it ever gets out, rotate it as in the table above at once.</p>
+</div>
+<h2 id="encrypting-the-link-tls-https-and-certificates">Encrypting the Link: TLS, HTTPS, and Certificates<a class="headerlink" href="#encrypting-the-link-tls-https-and-certificates" title="Permanent link">&para;</a></h2>
+<p><strong>TLS encryption</strong> (Transport Layer Security) scrambles everything on a connection so that anyone capturing the traffic sees only noise, and it lets the client confirm which server it reached. <strong>HTTPS</strong> is ordinary HTTP carried inside a TLS connection, and by convention uses a different port; the book's server uses 8443 for HTTPS and 8080 for plain HTTP. Setting up TLS adds a <em>handshake</em> to the start of every connection, in which the two sides agree on keys and the server proves its identity with a certificate.</p>
+<p>The Pico can do this. MicroPython's <code>ssl</code> module wraps a connected socket, and <code>buddy_http.open_socket(..., tls=True)</code> is four lines of it.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">ctx</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">SSLContext</span><span class="p">(</span><span class="n">ssl</span><span class="o">.</span><span class="n">PROTOCOL_TLS_CLIENT</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">ctx</span><span class="o">.</span><span class="n">verify_mode</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">CERT_REQUIRED</span>               <span class="c1"># check the certificate</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">ctx</span><span class="o">.</span><span class="n">load_verify_locations</span><span class="p">(</span><span class="n">cadata</span><span class="o">=</span><span class="n">ca_bytes</span><span class="p">)</span>        <span class="c1"># ...against this one</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">sock</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">server_hostname</span><span class="o">=</span><span class="n">host</span><span class="p">)</span>
+</span></code></pre></div>
+<p>TLS costs memory and time. From MicroPython's TLS configuration (the <code>master</code> source we read), the library keeps a 16,384-byte input record buffer and a 4,096-byte output record buffer for each connection: <span class="arithmatex">\( 16{,}384 + 4{,}096 = 20{,}480 \)</span> bytes, before anything is spent on the handshake itself and on parsing the certificate. On top of a 5 s recording of 128,000 bytes that is already <span class="arithmatex">\( 128{,}000 + 20{,}480 = 148{,}480 \)</span> bytes. The handshake time and the rest of the heap use are not known for this kit, and <code>07-tls-probe.py</code> measures both so that you can replace this estimate. The same configuration lists TLS 1.2 and earlier, and no TLS 1.3, so a server must be willing to speak 1.2 (the book's server sets 1.2 as its minimum and negotiates upward with other clients).</p>
+<h3 id="certificate-handling">Certificate Handling<a class="headerlink" href="#certificate-handling" title="Permanent link">&para;</a></h3>
+<p><strong>Certificate handling</strong> is how the client decides whether to believe the server's certificate. Encryption alone is not enough. Without checking, a program on the same network could pretend to be the buddy server, accept the encrypted connection, and read everything. There are three choices.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>How</th>
+<th>Protects against an eavesdropper</th>
+<th>Protects against an impostor</th>
+<th>Cost to set up</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verify against a CA</td>
+<td>Trust the certificate authority that signed the server's certificate</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>A certificate from a CA, and a name for the server</td>
+</tr>
+<tr>
+<td>Pin the server's certificate</td>
+<td>Keep the server's own certificate on the Pico and accept only that</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Copy a ~400-byte file when the certificate is renewed</td>
+</tr>
+<tr>
+<td>Skip verification (<code>CERT_NONE</code>)</td>
+<td>Do not check</td>
+<td>Yes</td>
+<td><strong>No</strong></td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p>On the mbedTLS-based builds, MicroPython's documentation says plainly that <code>CERT_NONE</code> and <code>CERT_OPTIONAL</code> do not validate any certificate, and only <code>CERT_REQUIRED</code> does. Verifying also needs two things from the Pico: the correct date and time, because a certificate has a validity period (set the clock with NTP, or from your computer with <code>mpremote rtc --set</code>), and <code>server_hostname</code>, the name or address the certificate was issued for.</p>
+<p><code>server/make-cert.sh &lt;address&gt;</code> makes a certificate for the lab: an EC key, valid 365 days, with the server's address in the subject alternative name, plus <code>ca.der</code>, the same certificate in DER form. You copy <code>ca.der</code> (about 400 bytes) to the Pico and the Pico trusts that one certificate: pinning. Test 07 connects with no checking, then with <code>ca.der</code>, then with a deliberately damaged copy, which must be refused.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">CERT_NONE Is a Lock Without a Door Check</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+Skipping verification makes the connection <em>look</em> secure while anyone on the network can be the server. It is acceptable only for a lab demo that measures cost, as test 07's case 2 does. Note that the standard <code>requests</code> library on the Pico does this for every <code>https://</code> address, so do not use it for HTTPS and assume you are safe.</p>
+</div>
+<h3 id="what-the-book-recommends-and-what-is-untested">What the Book Recommends, and What Is Untested<a class="headerlink" href="#what-the-book-recommends-and-what-is-untested" title="Permanent link">&para;</a></h3>
+<p>For a classroom, keep the plain-HTTP-plus-token setup of this chapter on a trusted network, and add TLS when the traffic leaves it. The most practical way is to leave the Pico and the buddy server as they are and put a <em>reverse proxy</em> (a web server such as Caddy or nginx on the same computer) in front. It holds a real certificate and passes requests to the buddy server on the same machine, so the Pico's side of the problem is just "trust this CA". Pinning a single certificate, as the lab does, is a good second choice for one fixed server. Skipping verification is for measuring only.</p>
+<p>These parts of the TLS story are the least certain in the book, and are untested on the kit:</p>
+<ul>
+<li>Whether <code>CERT_REQUIRED</code> accepts a certificate that names the server by <strong>IP address</strong> (the lab certificate does), or whether a <code>.local</code> or DNS name is needed.</li>
+<li>Whether the Pico's date check passes without NTP, and what error you see when it does not.</li>
+<li>The real memory and time cost of the handshake: <code>07-tls-probe.py</code> measures it, and the 20,480 bytes above is only the buffer floor.</li>
+<li>The behavior of <code>ssl</code> on your firmware version; the notes here come from the current MicroPython documentation and source.</li>
+</ul>
+<p>If HTTPS will not work on your Pico, the fallback is to stay on plain HTTP with the token, on a network the school controls. That is a decision to make knowingly, not a failure.</p>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">TLS Is Fiddly for Everyone</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+Certificates, dates, hostnames, and memory all have to line up, so a first HTTPS attempt that fails is normal, even for professionals. You already know how to isolate a problem: run test 07's three cases in order, and the first one that fails tells you whether it is the network, the encryption, or the certificate check.</p>
+</div>
+<h2 id="when-the-network-fails">When the Network Fails<a class="headerlink" href="#when-the-network-fails" title="Permanent link">&para;</a></h2>
+<p>Wi-Fi in a school building drops, the server restarts, a router reboots, and a student walks out of range. A device that assumes the network always works will freeze, crash, or silently say nothing. <strong>Network failure handling</strong> is deciding in advance what the device does in each case, and showing the student what is happening. It has four tools that build on each other: time limits, a classification of what went wrong, patient retries, and a fallback.</p>
+<h3 id="timeouts">Timeouts<a class="headerlink" href="#timeouts" title="Permanent link">&para;</a></h3>
+<p>A <strong>timeout</strong> is a time limit on waiting. Without one, a socket call waits for ever when the other side goes quiet, and the whole device freezes with it, which a student sees as a dead gadget. Every network wait in this chapter has a limit.</p>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+<th>What it covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REQUEST_TIMEOUT_S</code></td>
+<td>8 s</td>
+<td>Each single wait: connecting, each <code>write</code>, each <code>read</code>. Set with <code>sock.settimeout()</code></td>
+</tr>
+<tr>
+<td><code>TOTAL_TIMEOUT_S</code></td>
+<td>20 s</td>
+<td>The whole request, checked between every chunk, so a server that trickles a byte at a time cannot hold the device</td>
+</tr>
+<tr>
+<td><code>CONNECT_TIMEOUT_MS</code></td>
+<td>15,000 ms</td>
+<td>Joining Wi-Fi</td>
+</tr>
+</tbody>
+</table>
+<p>Both layers are needed. <code>settimeout</code> limits one wait, but a server that sends one byte every 7 seconds would pass every single-wait limit for ever. The total deadline catches that. One gap remains: looking up a <em>name</em> with <code>getaddrinfo</code> has its own waiting that <code>settimeout</code> does not control, which is another reason the book uses IP addresses.</p>
+<p>How long should the limit be? It has to be longer than the slowest normal case. The server's speech-to-text and text-to-speech both run inside the wait for the reply, so with a real service that wait can be seconds. The upload time depends on a network speed no one has measured for your classroom, so here is the arithmetic for three assumed speeds.</p>
+<table>
+<thead>
+<tr>
+<th>Assumed upload speed</th>
+<th>Time to upload 128,000 bytes (5 s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10,000 bytes/s (very poor)</td>
+<td>12.8 s</td>
+</tr>
+<tr>
+<td>50,000 bytes/s</td>
+<td>2.6 s</td>
+</tr>
+<tr>
+<td>200,000 bytes/s</td>
+<td>0.64 s</td>
+</tr>
+</tbody>
+</table>
+<p>These speeds are assumptions, not measurements. The point is the first row: on a bad link the upload alone would pass 8 s, which is why <code>TOTAL_TIMEOUT_S</code> is 20 and the per-wait limit counts each piece separately. <code>05-timeouts-and-failures.py</code> makes requests that go wrong on purpose and prints how long each took to fail.</p>
+<h3 id="failure-kinds">Failure Kinds<a class="headerlink" href="#failure-kinds" title="Permanent link">&para;</a></h3>
+<p>Not every failure deserves a retry, so <code>buddy_http</code> turns each one into a <code>NetError</code> with a <strong>kind</strong> and a flag for whether trying again could help.</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>What it means</th>
+<th>Retry?</th>
+<th>The status region says</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timeout</code></td>
+<td>Nothing answered in time</td>
+<td>Yes</td>
+<td><code>retry 1/3</code></td>
+</tr>
+<tr>
+<td><code>dns</code></td>
+<td>A server name could not be looked up</td>
+<td>Yes</td>
+<td><code>retry 1/3</code></td>
+</tr>
+<tr>
+<td><code>refused</code></td>
+<td>Nothing is listening at that address and port (server not running)</td>
+<td>Yes</td>
+<td><code>retry 1/3</code></td>
+</tr>
+<tr>
+<td><code>unreachable</code></td>
+<td>No route to that address</td>
+<td>Yes</td>
+<td><code>retry 1/3</code></td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>The connection was cut</td>
+<td>Yes</td>
+<td><code>retry 1/3</code></td>
+</tr>
+<tr>
+<td><code>busy</code></td>
+<td>The server answered 408, 429, or 5xx</td>
+<td>Yes</td>
+<td><code>retry 1/3</code></td>
+</tr>
+<tr>
+<td><code>auth</code></td>
+<td>The server answered 401 or 403: bad token</td>
+<td><strong>No</strong></td>
+<td><code>bad token</code></td>
+</tr>
+<tr>
+<td><code>bad-request</code></td>
+<td>Another 4xx: the request itself is wrong (400, 411, 413)</td>
+<td><strong>No</strong></td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><code>bad-reply</code></td>
+<td>The reply was not HTTP or was too big</td>
+<td><strong>No</strong></td>
+<td><code>error</code></td>
+</tr>
+<tr>
+<td><code>tls</code></td>
+<td>The handshake or certificate check failed</td>
+<td><strong>No</strong></td>
+<td><code>error</code></td>
+</tr>
+</tbody>
+</table>
+<p>A wrong token will be just as wrong in a second, and a malformed request will be too, so retrying them only wastes time and hammers the server. A timeout or a refused connection may be gone in a moment.</p>
+<p>One more thing is easy to miss. A server that refuses an upload early, with a 413 or a 401, may close the connection while the Pico is still sending. The Pico's next write then fails with a reset, and the reason sits unread in the socket. <code>buddy_http.request()</code> reads the reply once a send fails, so the device shows "bad token" rather than a mysterious reset. Only requests that are safe to repeat should be retried: asking a question changes nothing on the server, so <code>/v1/ask</code> and <code>/v1/voice</code> are safe. The speech download is not retried, as discussed earlier.</p>
+<h3 id="retry-and-backoff">Retry and Backoff<a class="headerlink" href="#retry-and-backoff" title="Permanent link">&para;</a></h3>
+<p><strong>Retry and backoff</strong> means trying again after a wait that grows. The simplest rule, retrying immediately, is the worst: if the server is overloaded or restarting, a hundred devices hammering it every few milliseconds keep it down. <strong>Exponential backoff</strong> doubles the wait each time, from a base and up to a cap, and <strong>jitter</strong> randomizes it. <code>backoff.py</code> implements full jitter.</p>
+<div class="arithmatex">\[ \text{ceiling}_k = \min\bigl(\text{cap},\ \text{base} \times 2^{k}\bigr), \qquad \text{wait}_k = \text{a random number from 0 to ceiling}_k \]</div>
+<p>With the book's base of 500 ms and cap of 8,000 ms, where <span class="arithmatex">\( k = 0 \)</span> is the wait after the first failure:</p>
+<table>
+<thead>
+<tr>
+<th>Retry</th>
+<th>Ceiling (ms)</th>
+<th>Average wait (ms)</th>
+<th>Longest total waiting so far (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>500</td>
+<td>250</td>
+<td>500</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1,000</td>
+<td>500</td>
+<td>1,500</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2,000</td>
+<td>1,000</td>
+<td>3,500</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4,000</td>
+<td>2,000</td>
+<td>7,500</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8,000</td>
+<td>4,000</td>
+<td>15,500</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8,000</td>
+<td>4,000</td>
+<td>23,500</td>
+</tr>
+</tbody>
+</table>
+<p>The longest a request can take is every attempt timing out plus every wait at its ceiling. With 4 attempts and an 8 s socket timeout that is <span class="arithmatex">\( 4 \times 8{,}000 + (500 + 1{,}000 + 2{,}000) = 35{,}500 \)</span> ms, 35.5 seconds. That is a long time to stare at a device, which is why the display shows each retry. Choosing the number of attempts and the timeouts is a design decision about how long a student will wait, and the table is the tool for making it.</p>
+<p><em>Worked example.</em> Thirty desk devices lose the server for a few seconds when it restarts. With no jitter, all thirty retry at exactly 500 ms, then all thirty at 1,000 ms later, so the server receives 30 requests in the same instant, every round. With full jitter, the first retry of each device is a random time between 0 and 500 ms. Cut those 500 ms into five 100 ms windows, and the expected load is <span class="arithmatex">\( 30 / 5 = 6 \)</span> requests per window instead of 30. The actual number in any run is random, and <code>02-backoff-table.py</code> simulates it.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Randomness Is the Cure for Stampedes</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Doubling the wait spaces retries <em>out in time</em>, and jitter keeps many devices from choosing the <em>same</em> moment. Neither idea helps alone: doubling without jitter keeps the herd in step, and jitter without doubling never gives a struggling server room to breathe.</p>
+</div>
+<h4 id="diagram-retry-and-backoff-timeline-explorer">Diagram: Retry and Backoff Timeline Explorer<a class="headerlink" href="#diagram-retry-and-backoff-timeline-explorer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Retry and Backoff Timeline Explorer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> retry-backoff-explorer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Apply<br/>
+<strong>Bloom Verb:</strong> calculate<br/>
+<strong>Learning Objective:</strong> The learner will calculate the longest time a request can take under 8 retry settings, to within 0.05 s, with at least 7 of 8 correct.</p>
+<p><strong>Prerequisites:</strong> timeout, retry, exponential backoff, ceiling, attempt (all defined in this chapter above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 8 settings the learner types the worst-case total time in seconds. An answer is correct when it is within 0.05 s of the number in the Answer column. Mastery is 7 of 8 correct on the first attempt. Dragging the explorer's controls and watching the timeline is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) The wait doubles for ever. (2) The last attempt is followed by a wait. (3) Jitter makes the worst case longer. (4) The waits are the only time a retry costs.</p>
+<p><strong>Instructional Rationale:</strong> Apply-level calculation requires the learner to carry out the worst-case formula on new numbers. Seeing the same attempts laid out on a timeline, with the waits and the timeouts as separate segments, shows what each term in the formula stands for and why the last attempt has no wait after it.</p>
+<p><strong>Content:</strong></p>
+<p>The model: a request makes up to N attempts. Every attempt fails by timing out after T seconds. After each failed attempt except the last, the device waits. The wait after failed attempt k (k = 0 for the first) has a ceiling of <span class="arithmatex">\( \min(\text{cap}, \text{base} \times 2^k) \)</span>. The worst case is every attempt timing out and every wait taking its full ceiling, so the worst-case total is <span class="arithmatex">\( N \times T + \sum_{k=0}^{N-2} \min(\text{cap}, \text{base} \times 2^k) \)</span>. With jitter, each actual wait is a random number from 0 up to its ceiling, and never above it.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Base (ms)</th>
+<th>Cap (ms)</th>
+<th>Attempts N</th>
+<th>Timeout T (s)</th>
+<th>Answer (s)</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>500</td>
+<td>8,000</td>
+<td>4</td>
+<td>8</td>
+<td>35.5</td>
+<td>4 x 8 = 32 s of timeouts, plus waits of 0.5 + 1 + 2 = 3.5 s.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>500</td>
+<td>8,000</td>
+<td>3</td>
+<td>5</td>
+<td>16.5</td>
+<td>3 x 5 = 15 s, plus waits of 0.5 + 1 = 1.5 s.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1,000</td>
+<td>4,000</td>
+<td>5</td>
+<td>3</td>
+<td>26</td>
+<td>5 x 3 = 15 s, plus waits of 1 + 2 + 4 + 4 = 11 s: the fourth wait would be 8 s but is capped at 4 s.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>500</td>
+<td>2,000</td>
+<td>4</td>
+<td>2</td>
+<td>11.5</td>
+<td>4 x 2 = 8 s, plus waits of 0.5 + 1 + 2 = 3.5 s.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>250</td>
+<td>8,000</td>
+<td>6</td>
+<td>4</td>
+<td>31.75</td>
+<td>6 x 4 = 24 s, plus waits of 0.25 + 0.5 + 1 + 2 + 4 = 7.75 s.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>500</td>
+<td>8,000</td>
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>One attempt has no retry and no wait.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>500</td>
+<td>8,000</td>
+<td>7</td>
+<td>8</td>
+<td>79.5</td>
+<td>7 x 8 = 56 s, plus waits of 0.5 + 1 + 2 + 4 + 8 + 8 = 23.5 s (the sixth would be 16 s but is capped at 8 s).</td>
+</tr>
+<tr>
+<td>8</td>
+<td>100</td>
+<td>800</td>
+<td>4</td>
+<td>1</td>
+<td>4.7</td>
+<td>4 x 1 = 4 s, plus waits of 0.1 + 0.2 + 0.4 = 0.7 s.</td>
+</tr>
+</tbody>
+</table>
+<p>For exploration the learner sets the base from 100 to 1,000 ms in steps of 50 (default 500), the cap from 800 to 8,000 ms in steps of 200 (default 8,000), N from 1 to 7 in steps of 1 (default 4), and T from 1 to 8 s in steps of 1 (default 8), and sees the timeline of attempts and waits with the worst-case total. A switch shows one random jittered run beneath the worst case, labeled "one random run."</p>
+<p><strong>Provenance:</strong> The formula and the default values (500 ms, 8,000 ms, 4 attempts, 8 s) are the chapter's <code>backoff.py</code> and <code>buddy_config.py</code> settings, and the default row matches <code>02-backoff-table.py</code>, which prints 35.5 s. The other settings are illustrative, and the sim labels them "illustrative."</p>
+<p><strong>Rules:</strong> Ceiling of the wait after failed attempt k is <span class="arithmatex">\( \min(\text{cap}, \text{base} \times 2^k) \)</span> in milliseconds. There is no wait after the last attempt. Worst-case total in seconds is <span class="arithmatex">\( N \times T + (\text{sum of the } N - 1 \text{ ceilings}) / 1000 \)</span>. A jittered wait is a whole number of milliseconds from 0 to its ceiling. For N = 1 there are no waits.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner drags the four controls and watches the timeline lengthen or shorten.</li>
+<li>The learner turns on the "one random run" switch and sees that the jittered run is never longer than the worst case.</li>
+<li>The learner starts the 8 settings. Setting 1 is shown.</li>
+<li>The learner types the worst-case total in seconds and submits.</li>
+<li>The sim draws that setting's timeline and shows the Why text.</li>
+<li>After setting 8, the sim shows the score. The learner should notice that in settings 3 and 7 the cap makes later waits equal, and that setting 6 has no waits at all.</li>
+</ol>
+<p><strong>Feedback:</strong> 8 settings, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The worst case is <answer> s: <Why>". The answer is revealed right after each submission, and a running score "n of 8" is shown.</p>
+<p><strong>Starting State:</strong> The default setting (500 ms, 8,000 ms, 4 attempts, 8 s) is drawn as a timeline with the question "What is the longest this request can take?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that with a base of 500 ms, a cap of 8,000 ms, 4 attempts and an 8 s timeout the longest a request can take is 35.5 s; that the ceilings of the first six retries are 500, 1,000, 2,000, 4,000, 8,000 and 8,000 ms; and that with full jitter each wait is a random number from 0 to its ceiling.</p>
+</details>
+<h3 id="showing-the-links-state">Showing the Link's State<a class="headerlink" href="#showing-the-links-state" title="Permanent link">&para;</a></h3>
+<p>A device that is retrying looks, from outside, exactly like one that has crashed, unless it says so. The status region (15 characters) carries one short phrase per state, and the message region carries the detail. Redrawing only these two regions is cheap (Chapter 6), so it can happen while the retry waits.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Status region</th>
+<th>Meaning for the student</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ready</td>
+<td><code>online</code></td>
+<td>The last request worked</td>
+</tr>
+<tr>
+<td>Working</td>
+<td><code>asking...</code>, <code>uploading</code>, <code>speaking</code></td>
+<td>Wait a moment</td>
+</tr>
+<tr>
+<td>Waiting to retry</td>
+<td><code>retry 2/3</code></td>
+<td>It is trying again by itself</td>
+</tr>
+<tr>
+<td>Cannot reach the server</td>
+<td><code>no server</code>, <code>OFFLINE</code></td>
+<td>The cached answers are available</td>
+</tr>
+<tr>
+<td>Wrong login</td>
+<td><code>bad token</code></td>
+<td>Ask the teacher; retrying will not help</td>
+</tr>
+<tr>
+<td>Wi-Fi gone</td>
+<td><code>no Wi-Fi</code></td>
+<td>Check the network</td>
+</tr>
+</tbody>
+</table>
+<h3 id="offline-fallback">Offline Fallback<a class="headerlink" href="#offline-fallback" title="Permanent link">&para;</a></h3>
+<p>An <strong>offline fallback</strong> is what the device does when every retry has failed. The Pico cannot turn speech into words by itself, so offline it cannot understand a spoken question at all. What it can do is answer a small set of fixed questions from a copy of the school events saved earlier. When the device starts, <code>06-retry-fallback.py</code> downloads the events with <code>GET /v1/events</code> and saves them to <code>events_cache.json</code>. When asking fails after the last retry, it runs the same rule-based <code>decide()</code> from Chapter 1 against the saved copy, and the status region says <code>OFFLINE</code> so the student knows the answer may be out of date.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">save_events</span><span class="p">(</span><span class="n">events</span><span class="p">):</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>            <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="n">text</span><span class="p">:</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>                <span class="k">return</span> <span class="kc">False</span>          <span class="c1"># unchanged: do not rewrite the flash</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>        <span class="k">pass</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="k">return</span> <span class="kc">True</span>
+</span></code></pre></div>
+<p>The function writes only when the events changed, because flash memory wears out after many writes. Offline mode is deliberately small: a few kilobytes of JSON and about thirty lines of code, answering "next test" and "what is due" only. It also gives a different message for a 401 (<code>bad token</code>) than for a lost network, because showing yesterday's schedule to cover for a wrong token would hide a problem someone must fix. Chapter 16 replaces the simple event list with a real school calendar, and the cache should then hold whatever that chapter's server returns.</p>
+<h2 id="streaming-over-a-websocket">Streaming Over a WebSocket<a class="headerlink" href="#streaming-over-a-websocket" title="Permanent link">&para;</a></h2>
+<p>A <strong>WebSocket</strong> is a connection that stays open after it is set up, over which either side can send small messages, called frames, at any time. An HTTP request is one question and one answer, and each one pays for a connection and a block of headers (121 bytes of head for Chapter 13's request). With a WebSocket the Pico can send each 40 ms of speech the moment it exists, so the server starts working while the student is still talking, and the server can send speech back and also hear "stop" on the same connection.</p>
+<p>A WebSocket starts as an HTTP request that asks to be upgraded.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Who</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Pico</td>
+<td><code>GET /v1/stream</code> with <code>Upgrade: websocket</code>, <code>Connection: Upgrade</code>, a random <code>Sec-WebSocket-Key</code>, and our <code>X-Buddy-Token</code> header</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Server</td>
+<td>Checks the token; answers <code>101 Switching Protocols</code> and a <code>Sec-WebSocket-Accept</code> computed from the key</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pico</td>
+<td>Checks the accept value (SHA-1 of the key plus a fixed string, in base64)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Both</td>
+<td>Send frames: a 1-byte opcode, a length, and the payload</td>
+</tr>
+</tbody>
+</table>
+<p>Every frame the Pico sends must be <em>masked</em>: the four-byte random mask is XORed over the payload, a rule of the standard meant to protect proxies. MicroPython has a built-in <code>websocket</code> module, but it does not mask the frames it writes, and a correct server closes the connection when it sees an unmasked frame from a client. So <code>wsclient.py</code> does the handshake and framing itself, in about 100 lines. The masking is the only clever part.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">_xor_mask</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">repeated</span> <span class="o">=</span> <span class="p">(</span><span class="n">key</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))[:</span><span class="n">n</span><span class="p">]</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="k">return</span> <span class="p">(</span><span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">"big"</span><span class="p">)</span> <span class="o">^</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">repeated</span><span class="p">,</span> <span class="s2">"big"</span><span class="p">))</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">"big"</span><span class="p">)</span>
+</span></code></pre></div>
+<p>A Python loop over 1,024 bytes would take a long time per frame; this version turns the whole frame into one big integer and lets the interpreter's C code do the XOR. The overhead of a frame is small: 2 header bytes, 2 more for the length when the payload is 126 bytes or longer, and 4 for the mask, which is <span class="arithmatex">\( 2 + 2 + 4 = 8 \)</span> bytes on a 1,024-byte frame, or 0.78 percent.</p>
+<p>The messages of the book's server are listed in the table. Text frames are JSON, and binary frames are raw 16-bit audio at 12,800 Hz.</p>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Frame</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pico to server</td>
+<td>text <code>{"event": "start", "rate": 12800, "volume": 40}</code></td>
+<td>An utterance begins</td>
+</tr>
+<tr>
+<td>Pico to server</td>
+<td>binary, 1,024 bytes</td>
+<td>A chunk of speech, sent as it is recorded</td>
+</tr>
+<tr>
+<td>Pico to server</td>
+<td>text <code>{"event": "end"}</code></td>
+<td>The button was released</td>
+</tr>
+<tr>
+<td>Server to Pico</td>
+<td>text <code>{"type": "reply", "heard": ..., "speak": ..., "show": ..., "next_mode": ...}</code></td>
+<td>The contract reply</td>
+</tr>
+<tr>
+<td>Server to Pico</td>
+<td>binary, up to 1,024 bytes</td>
+<td>The spoken answer</td>
+</tr>
+<tr>
+<td>Server to Pico</td>
+<td>text <code>{"type": "audio_end"}</code></td>
+<td>That was the last of it</td>
+</tr>
+<tr>
+<td>Pico to server</td>
+<td>text <code>{"event": "cancel"}</code></td>
+<td>Barge-in: stop speaking</td>
+</tr>
+<tr>
+<td>Server to Pico</td>
+<td>text <code>{"type": "cancelled"}</code></td>
+<td>Stopped</td>
+</tr>
+</tbody>
+</table>
+<p>In <code>08-websocket-stream.py</code> nothing larger than the one 1,024-byte staging frame is kept while recording, which is design D in the explorer above. The cost moves to the network: if sending one frame stalls for longer than the microphone's ring buffer can hold (about 0.4 s, Chapter 8), audio is lost, so the script prints the slowest frame it sent. The script opens a new connection for each utterance. A connection that is held open for minutes must also answer the server's pings (the <code>recv()</code> in <code>wsclient.py</code> does so, but only while it is being called), which a program waiting for a button would not do.</p>
+<p>Streaming all the time needs permission. A button-driven stream, as in this chapter, sends audio only when a student chooses to talk. An always-on stream that listens for a wake word and then sends is a different matter: it needs school and parent approval, covered in Chapter 17. The code is the same; the responsibility is not.</p>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>You can now follow one spoken question from the button to the speaker, and say what happens when something goes wrong. The recording is converted to 16 bits as it arrives, uploaded in 2,048-byte chunks with a token, answered by the server's speech-to-text, brain, and text-to-speech, and streamed back into the speaker, where MODE can interrupt it. Around all of that, every wait has a limit, failures are sorted by kind, retries back off with jitter, and the last resort is a cached answer marked <code>OFFLINE</code>.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>A 5 s utterance is 128,000 bytes as 16-bit audio (256,000 as 32-bit), so convert while recording and allocate the buffer first.</li>
+<li>Chunked audio upload sends the header, then slices of a memoryview, to avoid a second copy of the recording; the book uses a known <code>Content-Length</code>, not <code>Transfer-Encoding: chunked</code>.</li>
+<li>The audio chunk size trades call count and overhead against latency: 2,048 bytes (80 ms) for HTTP and 1,024 bytes (one 40 ms frame) for a WebSocket.</li>
+<li>Speech-to-text and text-to-speech are server-side services behind stubs with marked places for a real one; keys live in the server's environment, and the server converts audio to 16-bit mono at 12,800 Hz.</li>
+<li>Streaming audio plays each chunk as it arrives, so the Pico never holds the whole answer.</li>
+<li>Barge-in is a button press, because the microphone must stay closed while the speaker plays (Chapter 8); stop without draining, then wait out the quiet tail.</li>
+<li>An authentication token goes in an <code>X-Buddy-Token</code> header, lives in <code>secrets.py</code>, is compared in constant time, and is rotated by accepting old and new together; a 401 is never retried.</li>
+<li>TLS encrypts, and only certificate verification (CA or pinned) also checks who the server is; <code>CERT_NONE</code> is for lab demos, and TLS has a memory cost of at least the 20,480 bytes of record buffers.</li>
+<li>Every socket wait needs a timeout, plus a total deadline; classify failures and retry only the ones that may pass, with exponential backoff and jitter.</li>
+<li>The offline fallback answers a few fixed questions from cached events, because the Pico cannot recognize speech itself.</li>
+<li>A WebSocket keeps one connection open for frames in both directions; the Pico must mask its frames, so <code>wsclient.py</code> does it by hand.</li>
+</ul>
+<p>Test yourself with these three questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>A 5 s recording uploads fine in tests, but the same code fails with MemoryError when the request is built as head + body. Why? Click to expand</summary>
+<p>Joining the header and the body creates a second 128,000-byte block while the 128,000-byte recording still exists, which needs 256,000 bytes in two blocks. Send the header first, then send slices of a <code>memoryview</code> of the recording, so no second copy is made.</p>
+</details>
+<details class="question">
+<summary>Thirty devices retry a failed request at exactly 500 ms, 1,000 ms, and 2,000 ms after the failure. What is wrong, and what is the fix? Click to expand</summary>
+<p>The doubling is right but the timing is identical on every device, so the server gets all thirty requests at once on each round. Add jitter: wait a random time from 0 to the ceiling, so the requests spread out (about 6 per 100 ms window on the first retry instead of 30).</p>
+</details>
+<details class="question">
+<summary>The device shows <code>bad token</code> after the school rotated the server's token. Should it retry? What should it do? Click to expand</summary>
+<p>No. A 401 means the token itself is wrong, and the same token will fail the same way. The device stops, shows <code>bad token</code>, and waits for someone to put the new <code>buddy_token</code> in <code>secrets.py</code>. During a rotation the server accepts both tokens for a while, so this should not happen if the steps are followed in order.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">A Link That Holds Up</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just uploaded speech in memory-safe chunks, put a token on every request, weighed TLS and certificate checking, and built timeouts, backoff with jitter, and an offline fallback. That is a network link that keeps working when the network does not.</p>
+</div>
+<p>In Chapter 15 we add MQTT, so the school can push an alert to the device without waiting for a question.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

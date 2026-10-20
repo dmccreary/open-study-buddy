@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="How to find and fix problems on the Study Buddy and finish it: serial debugging and logging, probe programs, wiring verification, a self-test, diagnosing a silent microphone, distorted audio, or a blank display, a frame overrun counter, system integration inside a 40 ms frame, four capstone projects, and user testing.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -18,7 +18,7 @@
         <link rel="prev" href="../17-privacy-responsible-listening/">
       
       
-        <link rel="next" href="../../learning-graph/">
+        <link rel="next" href="../../schools/">
       
       
       <link rel="icon" href="../../img/favicon.ico">
@@ -26,7 +26,7 @@
     
     
       
-        <title>18. Testing, Integration, and Capstone Projects - Open Study Buddy</title>
+        <title>Testing, Integration, and Capstone Projects - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              18. Testing, Integration, and Capstone Projects
+              Testing, Integration, and Capstone Projects
             
           </span>
         </div>
@@ -854,6 +854,300 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#from-parts-to-a-working-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Parts to a Working Device
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-what-the-device-is-doing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seeing What the Device Is Doing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seeing What the Device Is Doing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serial-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serial Debugging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probe-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probe Programs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Probe Programs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-a-probe-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      What a Probe Is
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wiring Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-self-test-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Self-Test Program
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnosing-the-three-classic-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing the Three Classic Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing the Three Classic Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-a-silent-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing a Silent Microphone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-distorted-audio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing Distorted Audio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-a-blank-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing a Blank Display
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing a Blank Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-diagnosis-decision-tree-trainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Diagnosis Decision Tree Trainer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#putting-the-subsystems-in-one-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting the Subsystems in One Loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-frame-overrun-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Overrun Counter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-time-budget-in-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Time Budget in Numbers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Time Budget in Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-frame-budget-scheduler-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Frame Budget Scheduler Timeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-order-and-the-regression-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Order and the Regression Checklist
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capstone-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capstone Projects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capstone Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-and-scoping-a-capstone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing and Scoping a Capstone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clap-detector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clap Detector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classroom-noise-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classroom Noise Monitor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-timer-buddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study Timer Buddy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#homework-reminder-buddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homework Reminder Buddy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grading-a-capstone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grading a Capstone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -865,6 +1159,69 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
       
     </li>
   
@@ -1069,6 +1426,300 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#from-parts-to-a-working-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Parts to a Working Device
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-what-the-device-is-doing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seeing What the Device Is Doing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seeing What the Device Is Doing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serial-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serial Debugging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probe-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probe Programs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Probe Programs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-a-probe-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      What a Probe Is
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wiring Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-self-test-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Self-Test Program
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnosing-the-three-classic-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing the Three Classic Failures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing the Three Classic Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-a-silent-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing a Silent Microphone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-distorted-audio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing Distorted Audio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnosing-a-blank-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnosing a Blank Display
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnosing a Blank Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-diagnosis-decision-tree-trainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Diagnosis Decision Tree Trainer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#putting-the-subsystems-in-one-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting the Subsystems in One Loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-frame-overrun-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Overrun Counter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-time-budget-in-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Time Budget in Numbers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Time Budget in Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-frame-budget-scheduler-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Frame Budget Scheduler Timeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-order-and-the-regression-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Order and the Regression Checklist
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capstone-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capstone Projects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capstone Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-and-scoping-a-capstone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing and Scoping a Capstone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clap-detector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clap Detector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classroom-noise-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classroom Noise Monitor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#study-timer-buddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Study Timer Buddy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#homework-reminder-buddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homework Reminder Buddy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grading-a-capstone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grading a Capstone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1190,13 +1841,1397 @@
 <li><a href="../16-school-agent-calendar/">Chapter 16: Configuring the School Agent and Calendar</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="from-parts-to-a-working-device">From Parts to a Working Device<a class="headerlink" href="#from-parts-to-a-working-device" title="Permanent link">&para;</a></h2>
+<p>You now have every piece of the Study Buddy: wired parts, a display that redraws only what changed, a button state machine, and a microphone and speaker on I2S, plus sound analysis, a wake word, and a link to the school agent. This chapter is about the skill that makes all of that survive real life, which is finding out what is wrong when something is. Then you put the pieces together and build something of your own.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">From Working Parts to a Working Device</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+In this chapter you will build the tools that find a bad wire in minutes, put every subsystem into one loop that keeps up with the microphone, and finish with a project that is yours. Let's listen closely! Every real device spends more time being debugged than being written.</p>
+</div>
+<h2 id="seeing-what-the-device-is-doing">Seeing What the Device Is Doing<a class="headerlink" href="#seeing-what-the-device-is-doing" title="Permanent link">&para;</a></h2>
+<h3 id="serial-debugging">Serial Debugging<a class="headerlink" href="#serial-debugging" title="Permanent link">&para;</a></h3>
+<p><strong>Serial debugging</strong> means finding a problem by reading the text a program sends over the USB serial port. Everything <code>print()</code> writes travels to your computer, where Thonny's shell or <code>mpremote</code> shows it. It is the oldest and still the most useful debugging tool on a microcontroller, because it works even when the display does not.</p>
+<p>Four rules keep it useful. First, only one program can use the Pico's serial port at a time, so quit Thonny before you run <code>mpremote</code> (Chapter 2). Second, print what you need to decide something: the value, its unit, and a label. Third, do not print on every 40 ms frame. Twenty-five lines a second floods the shell and slows the loop; print about once a second, as Chapter 8's <code>02-mic-frame-reader.py</code> does. Fourth, use the REPL to try one line at a time before you write it into a file.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List the connected boards</td>
+<td><code>mpremote connect list</code></td>
+<td>If your Pico is missing, check the cable (some are charge-only)</td>
+</tr>
+<tr>
+<td>Open the REPL</td>
+<td><code>mpremote repl</code></td>
+<td>Ctrl-C stops the program; Ctrl-D soft-reboots; the exit key is printed when it starts</td>
+</tr>
+<tr>
+<td>Run a file without saving it</td>
+<td><code>mpremote run selftest.py</code></td>
+<td>The file stays on your computer</td>
+</tr>
+<tr>
+<td>Run one line</td>
+<td><code>mpremote exec "import selftest; selftest.run()"</code></td>
+<td>For a file already on the Pico</td>
+</tr>
+<tr>
+<td>Read a file from the Pico</td>
+<td><code>mpremote fs cat :log.txt</code></td>
+<td>Or copy it: <code>mpremote fs cp :log.txt .</code></td>
+</tr>
+<tr>
+<td>Restart the program</td>
+<td><code>mpremote soft-reset</code></td>
+<td>The upload script uses this too</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-warning">
+<p class="admonition-title">machine.reset() Ends Your Conversation</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+<code>machine.reset()</code> restarts the whole chip, so the USB connection drops, the last lines you printed may never arrive, and every pin and bus goes back to its start state. A program that resets itself on every error can trap you in a reset loop that never reaches the REPL. While developing, print the problem and stop; to get out of a loop, send Ctrl-C right after connecting, then run <code>mpremote fs rm main.py</code>.</p>
+</div>
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<p><strong>Logging</strong> is <code>print()</code> with discipline: each line has a time, a level, and a message, and the program decides where each line goes. <code>log.py</code> keeps three places, because each costs something different.</p>
+<table>
+<thead>
+<tr>
+<th>Place</th>
+<th>What goes there</th>
+<th>Cost</th>
+<th>Lost when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serial (the shell)</td>
+<td>Lines at or above <code>level</code></td>
+<td>Time to print</td>
+<td>The shell is closed</td>
+</tr>
+<tr>
+<td>RAM ring</td>
+<td>Every line, in a ring of the last <code>ring</code> lines</td>
+<td>A few hundred bytes</td>
+<td>Power goes off</td>
+</tr>
+<tr>
+<td>Flash file</td>
+<td>WARN and ERROR only, with a size cap</td>
+<td>Slow writes; flash wears (Chapter 2)</td>
+<td>Never, until you delete it</td>
+</tr>
+</tbody>
+</table>
+<p>The four levels are DEBUG (details for a bug hunt), INFO (normal events), WARN (odd but recovered), and ERROR (something failed). The ring is the trick that matters most: after something strange, <code>log.dump()</code> shows what happened just before, even though you were not printing it. The flash file is capped. When a write would pass <code>max_bytes</code>, the file is renamed to <code>log.txt.1</code>, replacing the older copy, so the worst case is twice the cap.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">log</span><span class="w"> </span><span class="kn">import</span> <span class="n">Log</span><span class="p">,</span> <span class="n">INFO</span><span class="p">,</span> <span class="n">WARN</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">log</span> <span class="o">=</span> <span class="n">Log</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">INFO</span><span class="p">,</span> <span class="n">ring</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">"log.txt"</span><span class="p">,</span> <span class="n">max_bytes</span><span class="o">=</span><span class="mi">8192</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"mic opened at </span><span class="si">%d</span><span class="s2"> Hz"</span><span class="p">,</span> <span class="mi">12800</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"frame overrun: </span><span class="si">%d</span><span class="s2"> us"</span><span class="p">,</span> <span class="mi">52000</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">log</span><span class="o">.</span><span class="n">dump</span><span class="p">()</span>
+</span></code></pre></div>
+<p>The first line makes a logger that prints INFO and above, keeps the last 40 lines in RAM, and writes WARN and above to <code>log.txt</code>, never letting it pass 8,192 bytes. Each <code>%d</code> is filled in by the argument that follows it, in the old <code>%</code> formatting style. The last line prints the ring, oldest line first. <code>01-log-demo.py</code> writes 200 lines through a deliberately tiny 400-byte cap and checks that the ring holds exactly the last 10, that the file stays under the cap, and that only WARN and ERROR reached flash. It runs on a computer too, and it prints <code>PASS</code>.</p>
+<p>One rule from Chapter 17 applies to every log: never log audio or the words people said. Log levels, counts, and codes.</p>
+<h2 id="probe-programs">Probe Programs<a class="headerlink" href="#probe-programs" title="Permanent link">&para;</a></h2>
+<h3 id="what-a-probe-is">What a Probe Is<a class="headerlink" href="#what-a-probe-is" title="Permanent link">&para;</a></h3>
+<p>A <strong>probe program</strong> is a small program that tests one subsystem and prints evidence about it. A good probe does four things: it touches only the part it tests, it changes nothing that matters, it prints the measured numbers before the verdict, and it ends with one line that says <code>PASS</code>, <code>FAIL</code>, <code>ASK</code>, or <code>SKIP</code>. The kit's <code>02-probe.py</code> is a probe for the whole board. This chapter adds one per part, so you can ask a narrow question: not "is my kit broken?" but "does the microphone send changing numbers?"</p>
+<p>The four verdicts say what the program actually knows. <code>PASS</code> means it measured the right thing. <code>FAIL</code> means it measured the wrong thing. <code>ASK</code> means it cannot tell and a person must look or listen. <code>SKIP</code> means the part is not wired. This matters because the display and the amplifier cannot report back to the Pico (the kit README says so), so a probe can draw a pattern but cannot know if you can see it.</p>
+<table>
+<thead>
+<tr>
+<th>Probe</th>
+<th>Part</th>
+<th>What it measures</th>
+<th>Honest limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>02-display-probe.py</code></td>
+<td>Display</td>
+<td>SPI rate you really got, three timed fills, rings at the glass edge and <code>SAFE_RADIUS</code></td>
+<td>A person must say what they saw (ASK)</td>
+</tr>
+<tr>
+<td><code>03-mic-probe.py</code></td>
+<td>Microphone</td>
+<td>Spread, DC offset, loudness in bits, samples at full scale, for 5 s</td>
+<td>It cannot tell a swapped wire from no power</td>
+</tr>
+<tr>
+<td><code>04-speaker-probe.py</code></td>
+<td>Speaker (+ mic)</td>
+<td>Plays a 1 kHz tone and listens with the microphone</td>
+<td>A quiet room and a far microphone look the same as a dead speaker (ASK)</td>
+</tr>
+<tr>
+<td><code>05-button-probe.py</code></td>
+<td>Buttons</td>
+<td>Idle reads, then each press with its bounce edges</td>
+<td>A button that reads 1 may be unwired</td>
+</tr>
+<tr>
+<td><code>06-wifi-probe.py</code></td>
+<td>Wi-Fi radio</td>
+<td>Networks seen, channel, signal; joins if <code>secrets.py</code> exists</td>
+<td>A 5 GHz-only network never appears</td>
+</tr>
+<tr>
+<td><code>07-wiring-check.py</code></td>
+<td>All wires</td>
+<td>The wire list from <code>config.py</code> and the pin-plan rules</td>
+<td>It cannot see a wire</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> You run <code>03-mic-probe.py</code> and the verdict says <code>FAIL - flat line: every sample is 12345</code>. A flat line means the microphone started with no error but sent the same number every time. The probe lists what to check, in the kit README's order: SCK on GP10, WS on GP11, SD on GP12; VDD on 3V3; GND and L/R on GND; and the Chapter 17 mute switch. You find SD and SCK swapped, fix them, and the next run prints a <code>PASS</code> line. (The numbers in this example are made up to show the format.)</p>
+<p>Every probe calls the same functions in <code>checks.py</code>, which is also what the self-test uses. One implementation means a bug is fixed once.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">A Probe Asks One Question</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Notice what makes a probe powerful: it removes everything but the part under suspicion. When the whole device fails, nothing is learned. When the microphone probe fails with every other part unplugged, you know where to look.</p>
+</div>
+<h2 id="wiring-verification">Wiring Verification<a class="headerlink" href="#wiring-verification" title="Permanent link">&para;</a></h2>
+<p><strong>Wiring verification</strong> is checking every wire against one reference, the pin assignment table from Chapter 4. Most "broken" kits are wiring mistakes, and most wiring mistakes are found by comparing, not by reasoning. The reference must be the same as what the program uses, or the table and the code can drift apart. So the wire list here is <em>computed</em> from <code>config.py</code>.</p>
+<p><code>tools/wiring_table.py</code> reads <code>config.py</code> as text, with no Pico modules, and prints the table below. The same function runs on the Pico as <code>07-wiring-check.py</code>. A change to a pin in <code>config.py</code> changes the printout.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Part pin</th>
+<th>Pico pin</th>
+<th>Header pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display</td>
+<td>SCL</td>
+<td>GP2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>SDA</td>
+<td>GP3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>RST</td>
+<td>GP4</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>DC</td>
+<td>GP5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>CS</td>
+<td>GP6</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>BL</td>
+<td>GP7</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>SCK</td>
+<td>GP10</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>WS</td>
+<td>GP11</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>SD</td>
+<td>GP12</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Button MODE</td>
+<td>one leg</td>
+<td>GP13</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Button UP</td>
+<td>one leg</td>
+<td>GP14</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Button DOWN</td>
+<td>one leg</td>
+<td>GP15</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>DIN</td>
+<td>GP19</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>BCLK</td>
+<td>GP20</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>LRC</td>
+<td>GP21</td>
+<td>27</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>GAIN</td>
+<td>GP18</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<p>The power wires follow: display VCC and microphone VDD to 3V3 (header pin 36), amplifier VIN to VBUS or 3V3 (pin 40 or 36), and every GND, including the microphone's L/R and the buttons' other legs, to any GND pin. The tool prints these too. Sixteen signal wires are checked by the program; the power wires it cannot see, so you check those by eye.</p>
+<p>The method is a ritual. Print the list, put a finger on one wire at a time, say its part and Pico pin out loud, and tick it. Do power and ground last, and check that the microphone's VDD goes to 3V3, not 5 V (Chapter 4). Then run <code>check_pin_plan</code>, which tests three rules the table cannot show by itself: each I2S word-select pin is the clock pin plus one, no GP number is used twice, and none of GP23, GP24, GP25, or GP29 (the wireless chip's) is used.</p>
+<p><em>Worked example.</em> The kit's <code>config.py</code> is edited so the microphone's WS is GP13, to match a wire placed there. The pin-plan check prints <code>FAIL - microphone word select GP13 must be GP11 (clock + 1); GP13 used by 'Microphone WS' and 'Button MODE one leg'</code>. It names the rule <em>and</em> the second victim, because GP13 is also the MODE button. The fix is the one the kit README gives: move the wire, and do not edit <code>config.py</code> to match the wrong wire.</p>
+<h2 id="the-self-test-program">The Self-Test Program<a class="headerlink" href="#the-self-test-program" title="Permanent link">&para;</a></h2>
+<p>A <strong>self-test program</strong> runs every check, prints a verdict per subsystem, and shows a summary on the display. <code>selftest.py</code> is built from the same <code>checks.py</code> functions as the probes. You run it after assembling, after every change, and, if you like, at power-up.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>What it measures</th>
+<th>What it cannot know</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Files</td>
+<td><code>config.py</code>, the driver, both fonts are on the board</td>
+<td>Whether they are the right versions</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Free heap, and that a 3 s recording (153,600 bytes) fits</td>
+<td>How fragmented the heap will be later</td>
+</tr>
+<tr>
+<td>Flash</td>
+<td>At least 64 KB of flash free</td>
+<td>Wear</td>
+</tr>
+<tr>
+<td>Pin plan</td>
+<td>The three pin rules above</td>
+<td>A wire in the wrong hole</td>
+</tr>
+<tr>
+<td>Buttons</td>
+<td>All three read 1 when untouched; optionally each press and its bounce</td>
+<td>An unwired button reads 1</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>Draws a ring and text, then asks UP or DOWN</td>
+<td>It cannot see the screen: ASK, then a person decides</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>Not a flat line, no full-scale samples, loudness and DC offset</td>
+<td>Whether the L/R wire is on the channel the program reads</td>
+</tr>
+<tr>
+<td>Speaker</td>
+<td>Plays a 1 kHz tone and checks the microphone hears it at least 2.0 bits above the room</td>
+<td>Whether it sounds good</td>
+</tr>
+<tr>
+<td>Wi-Fi</td>
+<td>The radio sees networks; joins if <code>secrets.py</code> exists</td>
+<td>Whether the school server is up</td>
+</tr>
+</tbody>
+</table>
+<p>The speaker check borrows Chapter 8's finding that the device hears itself. On the test board a 1 kHz tone at volume 40 read 3.9 bits above the quiet room (about 15 times louder), so the check asks for half of that, 2.0 bits. This is a number from one board. If your speaker is quieter, or the microphone is farther away, the check says <code>ASK</code> instead of <code>FAIL</code>, because "the microphone did not hear it" is not proof that nobody could.</p>
+<p><em>Worked example.</em> This is what the self-test prints when the microphone's WS wire is on GP13 (produced by running the real program against a fake Pico layer where the fault was simulated, so the timings are left out).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Files       PASS config.py, driver and both fonts are present
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Memory      PASS heap 180,000 bytes free; a 3 s recording fits
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Pin plan    FAIL microphone word select GP13 must be GP11 (clock + 1); GP13 used by 'Microphone WS' and 'Button MODE one leg'
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Buttons     PASS all three read 1 (not pressed); an unconnected wire also reads 1
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Display     PASS a person saw the ring and the text
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Microphone  FAIL microphone failed to start: invalid ws (must be sck+1) (word select must be the pin after the clock: SCK GP10, WS GP11)
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Speaker     PASS a person heard the beep
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Wi-Fi       PASS radio sees 2 network(s); no secrets.py, so no connection tried
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>7 PASS  2 FAIL  0 ASK  0 SKIP
+</span></code></pre></div>
+<p>Two lines point at the same wire from two angles: the pin-plan rule, and the error that <code>I2S()</code> raised. When two checks agree, trust the diagnosis. The summary also appears on the round display, one row per check, with the word as well as a color, so a person who cannot tell red from green reads the same result. A row is <code>"{:&lt;11}{:&gt;5}"</code>, 16 characters at 8 pixels each, 128 pixels wide. The first row sits at y = 62, where the visible circle of radius 168 is <span class="arithmatex">\( 2\sqrt{168^2 - 118^2} \approx 239 \)</span> pixels wide, so it fits with room to spare.</p>
+<h2 id="diagnosing-the-three-classic-failures">Diagnosing the Three Classic Failures<a class="headerlink" href="#diagnosing-the-three-classic-failures" title="Permanent link">&para;</a></h2>
+<p>A <strong>diagnosis</strong> goes from a symptom to a cause, asking the cheapest question first. Three failures account for most "it doesn't work" reports on this kit: a silent microphone, distorted audio, and a blank display. Each table below is a decision tree written flat. Start at the first row and ask its question. If the answer is yes, that row's cause is your likely cause: run its quick test, then apply the fix. If the answer is no, go to the next row. Every cause comes from the kit README, a test file's header, or an earlier chapter, and <code>tools/diagnose.py</code> asks the same questions at the terminal. A tree names the <em>likely</em> cause, so run the quick test before you change anything.</p>
+<h3 id="diagnosing-a-silent-microphone">Diagnosing a Silent Microphone<a class="headerlink" href="#diagnosing-a-silent-microphone" title="Permanent link">&para;</a></h3>
+<p>The symptom is a level meter that never moves, or a probe that reports a flat line.</p>
+<table>
+<thead>
+<tr>
+<th>Row</th>
+<th>Ask</th>
+<th>Likely cause</th>
+<th>Quick test</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1</td>
+<td>An error at start, and it says <code>must be sck+1</code>?</td>
+<td>WS is not on the pin after SCK</td>
+<td>Compare with the table: SCK GP10, WS GP11</td>
+<td>Move the wire back. Do not edit <code>config.py</code>: SCK on GP12 would need WS on GP13, the MODE button</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>An error at start, with another message?</td>
+<td>A previous run left the I2S block open, or memory is short (likely)</td>
+<td>Ctrl-D, run again, print <code>gc.mem_free()</code></td>
+<td>Close the microphone in a <code>finally</code> block</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>No error, but the spread is 0 (a flat line)?</td>
+<td>Swapped SCK, WS, or SD wires; no power; or the mute switch is on</td>
+<td>In order: SCK, WS, SD; VDD on 3V3, not 5 V; GND and L/R on GND; the mute switch</td>
+<td>Re-seat the wires. A swapped microphone starts with no error and sends zeros</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>The loudness barely changes when you talk next to it?</td>
+<td>L/R is on 3V3, so the microphone answers in the right slot while the program reads the left</td>
+<td>Look at where L/R goes</td>
+<td>Move L/R to GND</td>
+</tr>
+<tr>
+<td>M5</td>
+<td>The meter is pinned at the top?</td>
+<td>The 32-bit samples were not shifted right by 8, so values are 256 times too big; or the room or SD wire is noisy</td>
+<td>Print a few samples before and after <code>&gt;&gt; config.MIC_SAMPLE_SHIFT</code></td>
+<td>Shift by <code>MIC_SAMPLE_SHIFT</code> and subtract the frame's DC offset</td>
+</tr>
+<tr>
+<td>M6</td>
+<td>None of the above</td>
+<td>The microphone works; the level you chose is the problem</td>
+<td>Probe 03: does a clap jump several bits?</td>
+<td>Calibrate the noise floor first; for quiet playback raise <code>PLAYBACK_GAIN</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="diagnosing-distorted-audio">Diagnosing Distorted Audio<a class="headerlink" href="#diagnosing-distorted-audio" title="Permanent link">&para;</a></h3>
+<p>The symptom is a sound that is wrong: silent, crackling, the wrong pitch, stuttering, clicking, or hissing.</p>
+<table>
+<thead>
+<tr>
+<th>Row</th>
+<th>Ask</th>
+<th>Likely cause</th>
+<th>Quick test</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>Is the speaker silent, not distorted?</td>
+<td>No power or ground at the amplifier, or a signal wire is wrong</td>
+<td>Probe 04; VIN and GND, then BCLK GP20, LRC GP21, DIN GP19</td>
+<td>Fix the wire. If <code>I2S()</code> raises an error, LRC must be right after BCLK</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Does it crackle only when loud?</td>
+<td>The samples clip: peaks are cut flat</td>
+<td>Lower <code>VOLUME</code>; the crackle should go</td>
+<td>Reduce <code>VOLUME</code> (test 05) or <code>PLAYBACK_GAIN</code> (test 07)</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Is the pitch wrong, too high and fast or too low and slow?</td>
+<td>The playback sample rate is not the recording rate</td>
+<td>Print both rates</td>
+<td>Use <code>MIC_SAMPLE_RATE</code> for both</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Does it stutter or have gaps?</td>
+<td>The loop takes longer than one 40 ms frame: a frame overrun</td>
+<td>Wrap the microphone in <code>OverrunCounter</code>; read the summary</td>
+<td>Redraw only changed regions, or slice big jobs</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>Is the start clicky, or the end cut off?</td>
+<td><code>deinit()</code> ran before the buffer drained; or a WAV header was played as sound</td>
+<td>Listen with and without <code>f.seek(44)</code>; lengthen the tail</td>
+<td>Write silence and wait the buffer's length; skip the 44-byte header; fade 10 ms</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>Is there hiss or buzz even when nothing plays?</td>
+<td>Power or ground noise: loose grounds, long wires</td>
+<td>Re-seat every GND; keep microphone and amplifier wires apart</td>
+<td>Shorter wires and one solid ground rail</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>None of the above</td>
+<td>No cause matched</td>
+<td>Play the 05 tone and a 07 recording separately</td>
+<td>Fix the path that distorts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="diagnosing-a-blank-display">Diagnosing a Blank Display<a class="headerlink" href="#diagnosing-a-blank-display" title="Permanent link">&para;</a></h3>
+<p>The symptom is a screen that shows nothing, or nothing right.</p>
+<table>
+<thead>
+<tr>
+<th>Row</th>
+<th>Ask</th>
+<th>Likely cause</th>
+<th>Quick test</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>Is the screen completely dark, with no light?</td>
+<td>The backlight is off: BL not wired, VCC or GND missing, or <code>set_backlight(True)</code> never ran</td>
+<td>Check BL to GP7, VCC to 3V3, GND</td>
+<td>Wire BL to GP7 and call <code>config.set_backlight(True)</code></td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Did the program stop with an error before drawing?</td>
+<td>A kit file is missing: <code>config.py</code>, <code>lib/gc9b72.py</code>, or a font</td>
+<td>Self-test "Files", or <code>02-probe.py</code> section 4</td>
+<td>Run <code>upload-chapter.sh</code></td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Is it lit but only black or random noise?</td>
+<td>A control wire is wrong: SCL GP2, SDA GP3, RST GP4, DC GP5, or CS GP6</td>
+<td><code>07-wiring-check.py</code>; touch each wire</td>
+<td>Fix the wire; the colors are in <code>config.py</code></td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Is the picture speckled or torn?</td>
+<td>The SPI speed is too fast for the wiring</td>
+<td>Print the SPI object to see the rate you got</td>
+<td><code>BAUDRATE = 12_000_000</code> (nothing exists between 12 and 24 MHz)</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>Is part of what you drew missing?</td>
+<td>It was drawn outside the visible circle: corners and edge are hidden</td>
+<td>Chapter 4's <code>04-display-visible-area.py</code></td>
+<td>Stay inside <code>SAFE_RADIUS</code>, 168 pixels from the center</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>Is the picture rotated or mirrored?</td>
+<td>The driver's <code>rotation</code> argument</td>
+<td>Try 0, 1, 2, 3 in <code>config.init_display()</code></td>
+<td>Choose the one that matches</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>Are old letters left over, or is the picture sheared or striped?</td>
+<td>Text was not padded to a fixed width, or a buffer is not width x height x 2 bytes</td>
+<td>Print <code>len(buffer)</code> and compare</td>
+<td>Pad with <code>.center(width)</code>; size buffers exactly</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>None of the above</td>
+<td>A program from an earlier kit may be running as <code>main.py</code></td>
+<td><code>mpremote fs ls</code></td>
+<td><code>mpremote fs rm main.py</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Cheapest Question First</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+Order your own checks by cost, not by how interesting the cause is. "Is it completely dark?" takes one second and splits the display problem in two. Reading a datasheet to explain a speckle can wait until you have tried the 12 MHz setting.</p>
+</div>
+<p>The next activity checks that you can follow a symptom to a cause.</p>
+<h4 id="diagram-diagnosis-decision-tree-trainer">Diagram: Diagnosis Decision Tree Trainer<a class="headerlink" href="#diagram-diagnosis-decision-tree-trainer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Diagnosis Decision Tree Trainer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> diagnosis-decision-tree-trainer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> differentiate<br/>
+<strong>Learning Objective:</strong> The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases.</p>
+<p><strong>Prerequisites:</strong> flat line, backlight, sample rate, frame overrun, wire swap (all defined in the sections of this chapter above this block and in Chapters 4 and 8); the three diagnosis tables in this chapter, whose rows are named M1 to M6, A1 to A7, and D1 to D8.</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 cases the learner reads the reported symptoms and chooses one of 4 candidate causes before the decision tree is shown. A choice is correct when it equals the Correct row in Content. Mastery is 5 of 6 correct on the first attempt. Walking the tree by answering its questions in exploration is not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) Any failure of the microphone means the microphone is broken. (2) A program that runs without an error has no wiring fault. (3) A dark screen is always a software bug. (4) The answer to a distorted sound is always to lower the volume.</p>
+<p><strong>Instructional Rationale:</strong> Differentiating at the Analyze level means telling apart causes that produce similar symptoms. Asking the learner to commit to a cause from four candidates, and only then showing the tree that leads to it, makes the learner use the symptom details that separate the candidates.</p>
+<p><strong>Content:</strong></p>
+<p>The sim has three trees, one per symptom: silent microphone (rows M1 to M6), distorted audio (rows A1 to A7), and blank display (rows D1 to D8). A tree is a list of rows. Each row asks a yes-or-no question; yes ends the walk at that row's cause, and no goes to the next row of the same tree. The last row of each tree (M6, A7, D8) has no question and is reached when every earlier answer is no. The rows, with their questions, causes, quick tests, and fixes, are the rows of the three tables in the chapter section "Diagnosing the Three Classic Failures". The questions, in order:</p>
+<table>
+<thead>
+<tr>
+<th>Row</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1</td>
+<td>An error at start, and it says "must be sck+1"?</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>An error at start, with another message?</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>No error, but the spread is 0, a flat line?</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>The loudness barely changes when you talk next to it?</td>
+</tr>
+<tr>
+<td>M5</td>
+<td>The meter is pinned at the top?</td>
+</tr>
+<tr>
+<td>A1</td>
+<td>Is the speaker silent, not distorted?</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Does it crackle only when loud?</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Is the pitch wrong?</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Does it stutter or have gaps?</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>Is the start clicky, or the end cut off?</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>Is there hiss or buzz even when nothing plays?</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>Is the screen completely dark, with no light?</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Did the program stop with an error before drawing?</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Is it lit but only black or random noise?</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Is the picture speckled or torn?</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>Is part of what you drew missing?</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>Is the picture rotated or mirrored?</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>Are old letters left over, or is the picture sheared or striped?</td>
+</tr>
+</tbody>
+</table>
+<p>The 6 cases, in this order. Each case lists the 3 other candidate causes, which are rows of the same tree.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Reported symptoms</th>
+<th>Correct row</th>
+<th>Three other candidates (rows)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>"The microphone test stops at once with: invalid ws (must be sck+1)."</td>
+<td>M1</td>
+<td>M3, M4, M5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>"No error. The probe says every sample is 12345 and the spread is 0."</td>
+<td>M3</td>
+<td>M1, M4, M6</td>
+</tr>
+<tr>
+<td>3</td>
+<td>"The screen is completely dark. The program runs and prints no errors."</td>
+<td>D1</td>
+<td>D2, D3, D4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>"The screen is lit and shows the right picture, but it is speckled, on long wires."</td>
+<td>D4</td>
+<td>D3, D5, D7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>"A recording I made plays back higher and faster than I spoke."</td>
+<td>A3</td>
+<td>A2, A4, A6</td>
+</tr>
+<tr>
+<td>6</td>
+<td>"The sound stutters. The overrun counter reports many passes longer than 40 ms."</td>
+<td>A4</td>
+<td>A1, A3, A5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The causes and tests come from the kit README, the headers of kit tests 05 and 07, <code>config.py</code>, and Chapters 2 to 8, as cited in the <code>source</code> field of <code>src/chapters/18-testing-integration-capstones/tools/diagnose.py</code>. The six cases are illustrative, and the sim labels them "illustrative".</p>
+<p><strong>Rules:</strong> Each case has exactly one correct row. A tree question is answered only yes or no. The candidate order is shuffled for each learner, with a fixed seed per case.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner explores one tree: picks a symptom, answers its questions, and reads the cause, test, and fix at the end.</li>
+<li>The learner starts the 6 cases. Case 1 shows its symptoms and the four candidate causes.</li>
+<li>The learner chooses a cause and submits.</li>
+<li>The sim shows the correct cause, then walks the tree for that case, highlighting the questions answered and the cause reached, with the quick test and the fix.</li>
+<li>After case 6, the sim shows the score. The learner should notice that the cheap early questions rule out whole branches.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 cases, fixed order, one attempt each. Correct: "Correct: <cause text>". Incorrect: "Not quite. The likely cause is <correct cause text>: look at <the symptom detail that separates it from the chosen cause>". The correct cause is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The three symptom names are shown with the question "Which one are you diagnosing?" and no tree open.</p>
+<p><strong>Chapter Anchors:</strong> The chapter names three failures (silent microphone, distorted audio, blank display); states that the microphone tree has rows M1 to M6, the audio tree A1 to A7, and the display tree D1 to D8; that a swapped microphone starts with no error and sends zeros; that the sck+1 rule applies to the microphone and the amplifier; and that BAUDRATE 12,000,000 is the fix for speckle.</p>
+</details>
+<h2 id="system-integration">System Integration<a class="headerlink" href="#system-integration" title="Permanent link">&para;</a></h2>
+<h3 id="putting-the-subsystems-in-one-loop">Putting the Subsystems in One Loop<a class="headerlink" href="#putting-the-subsystems-in-one-loop" title="Permanent link">&para;</a></h3>
+<p><strong>System integration</strong> is making the parts you built separately work together without breaking each other. Each earlier chapter was tested alone, with the whole 40 ms frame to itself. In the finished device they share it. The integration question is never "does each part work?" but "does the sum of the parts fit in the time, memory, and attention available?"</p>
+<p>Start with a map. The device has six subsystems, and a state machine (Chapter 7) decides which are active.</p>
+<table>
+<thead>
+<tr>
+<th>Subsystem</th>
+<th>Owns</th>
+<th>Talks to</th>
+<th>Built in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Three buttons, microphone read</td>
+<td>The state machine, audio</td>
+<td>Chapters 7, 8</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>I2S in and out, tones, playback</td>
+<td>Input, DSP, the speaker</td>
+<td>Chapters 3, 8</td>
+</tr>
+<tr>
+<td>DSP</td>
+<td>Loudness, FFT, band energies, wake word</td>
+<td>Audio, display</td>
+<td>Chapters 9, 10, 12</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>Regions: status, time, mascot, spectrum, message</td>
+<td>State machine, DSP</td>
+<td>Chapters 5, 6</td>
+</tr>
+<tr>
+<td>Network</td>
+<td>Wi-Fi, HTTP, MQTT <code>check_msg</code></td>
+<td>Agent, state machine</td>
+<td>Chapters 13, 14, 15</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>The buddy server and its calendar</td>
+<td>Network only</td>
+<td>Chapters 1, 16</td>
+</tr>
+</tbody>
+</table>
+<p>The main loop of the finished device has one structure: wait for a frame, then run what is due.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">sched</span> <span class="o">=</span> <span class="n">Scheduler</span><span class="p">(</span><span class="n">frame_us</span><span class="o">=</span><span class="mi">40000</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">sched</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"audio"</span><span class="p">,</span> <span class="n">do_audio</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>          <span class="c1"># period 0 = every pass; budget in ms</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">sched</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"buttons"</span><span class="p">,</span> <span class="n">do_buttons</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">sched</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"spectrum"</span><span class="p">,</span> <span class="n">draw_spectrum</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">sched</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"status"</span><span class="p">,</span> <span class="n">draw_status</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>     <span class="c1"># every 200 ms</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">sched</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"network"</span><span class="p">,</span> <span class="n">poll_network</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">mic</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>      <span class="c1"># blocks until a frame is ready: this starts a pass</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">sched</span><span class="o">.</span><span class="n">run_pass</span><span class="p">()</span>       <span class="c1"># run every task that is due and fits in what is left</span>
+</span></code></pre></div>
+<p><code>scheduler.py</code> is a <strong>cooperative</strong> scheduler: a task runs until it returns, and nothing can interrupt it. A task's <em>budget</em> is therefore a promise, not a limit. What the scheduler can do is run tasks in the order added (earlier means more important); skip a due task whose budget does not fit into the time left in this frame, for at most three passes so it cannot starve; time every run and count the ones that exceed their budget; and count passes that take longer than the frame. The period <code>0</code> means "every pass," for the work tied to each audio frame.</p>
+<p>A note on buttons: if the loop blocks 40 ms in <code>readinto</code>, polled buttons are checked 25 times a second, and a tap shorter than 40 ms can be missed. Either read the microphone in 20 ms chunks as test 07 does, or use the button interrupt from Chapter 7.</p>
+<h3 id="the-frame-overrun-counter">The Frame Overrun Counter<a class="headerlink" href="#the-frame-overrun-counter" title="Permanent link">&para;</a></h3>
+<p>A <strong>frame overrun</strong> is a pass of the main loop that takes longer than one 40 ms frame (Chapter 8 introduced the budget, and Chapter 10 measures it closely). A <strong>frame overrun counter</strong> counts them. It works because <code>readinto()</code> blocks until the next frame is ready: the time between two returns of <code>readinto()</code> <em>is</em> the length of one pass. <code>overrun.py</code> wraps the microphone in an object with the same <code>readinto()</code> and <code>deinit()</code>, so you can drop it in without changing the loop.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">mic</span> <span class="o">=</span> <span class="n">OverrunCounter</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">init_microphone</span><span class="p">())</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># ... use mic.readinto(buf) exactly as before ...</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">mic</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pass_us</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="k">if</span> <span class="n">pass_us</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_us</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jitter_us</span><span class="p">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">overruns</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">backlog</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">backlog</span> <span class="o">+</span> <span class="n">pass_us</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_us</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">backlog</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring_frames</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">lost_est</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backlog</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring_frames</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">backlog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ring_frames</span>
+</span></code></pre></div>
+<p><code>_note</code> is called once per pass. A pass longer than the frame plus <code>jitter_us</code> (2 ms, the same timing noise allowance Chapter 8's test used) is an overrun. The backlog is Chapter 8's model: it grows by <code>pass / frame - 1</code> frames on a slow pass, shrinks on a fast one, and never goes below zero. When it passes the ring's depth, <code>ring_frames</code> (9.77, the depth Chapter 8 measured on one board), the excess is counted as estimated lost frames. Run the model on the passes from Chapter 8: at 50 ms per pass the first loss comes on pass 40, which is <span class="arithmatex">\( 40 \times 50 = 2.0 \)</span> seconds, and at 130 ms it comes on pass 5, which is 0.65 seconds. Both match the chapter. The backlog and lost numbers are a model, so treat <code>overruns</code> and <code>worst_us</code> as measurements and the rest as an estimate. Chapter 10's <code>06-frame-loop-budget.py</code> measures the same thing in more detail (a 95th percentile and a display reserve); <code>OverrunCounter</code> is the small version you can leave in the finished device.</p>
+<h3 id="the-time-budget-in-numbers">The Time Budget in Numbers<a class="headerlink" href="#the-time-budget-in-numbers" title="Permanent link">&para;</a></h3>
+<p>The budget table uses numbers measured in earlier chapters wherever they exist. The others are assumptions, marked, which you replace with your own timings.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Cost per run</th>
+<th>Runs</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read a frame and compute its loudness</td>
+<td>10.0 ms</td>
+<td>every pass</td>
+<td>Chapter 8, plain-Python loudness on the test board</td>
+</tr>
+<tr>
+<td>Poll the three buttons</td>
+<td>0.5 ms</td>
+<td>every pass</td>
+<td>Assumed</td>
+</tr>
+<tr>
+<td>Redraw the spectrum region</td>
+<td>8.5 ms</td>
+<td>every pass</td>
+<td>Chapter 6, measured</td>
+</tr>
+<tr>
+<td>Redraw the status bar</td>
+<td>3.0 ms</td>
+<td>every 200 ms</td>
+<td>Chapter 6, measured</td>
+</tr>
+<tr>
+<td>Redraw the time region</td>
+<td>3.8 ms</td>
+<td>every 1,000 ms</td>
+<td>Chapter 6, measured</td>
+</tr>
+<tr>
+<td>Check for an MQTT message</td>
+<td>2.0 ms</td>
+<td>every 200 ms</td>
+<td>Assumed</td>
+</tr>
+<tr>
+<td>One full-screen redraw</td>
+<td>129.4 ms</td>
+<td>when it happens</td>
+<td>Chapter 5, measured</td>
+</tr>
+</tbody>
+</table>
+<p>A typical pass costs <span class="arithmatex">\( 10.0 + 0.5 + 8.5 = 19.0 \)</span> ms, which leaves <span class="arithmatex">\( 40 - 19.0 = 21.0 \)</span> ms for the FFT, the wake word, and everything else (Chapter 10's results table is where the FFT's cost is filled in). The worst scheduled pass adds the three periodic tasks: <span class="arithmatex">\( 19.0 + 3.0 + 2.0 + 3.8 = 27.8 \)</span> ms, leaving 12.2 ms. Compare two bad plans. Redrawing all five regions every frame costs 28.1 ms measured (Chapter 6), so with the loudness work the pass is <span class="arithmatex">\( 10.0 + 28.1 = 38.1 \)</span> ms, only 1.9 ms from the edge. One full-screen redraw makes the pass <span class="arithmatex">\( 19.0 + 129.4 = 148.4 \)</span> ms.</p>
+<p><code>08-scheduler-demo.py</code> runs these costs through the scheduler in four scenarios. The costs are <em>inputs to a model</em>, not measurements of the program, so the results show how the design behaves, not how fast your Pico is. On a computer with a fake clock the output below is what the demo printed for 250 frames (10 seconds).</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>What it does</th>
+<th>Passes over 40 ms</th>
+<th>Worst pass</th>
+<th>Max backlog</th>
+<th>Model-estimated lost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+<td>Only the tasks in the table</td>
+<td>0</td>
+<td>27.8 ms</td>
+<td>0.00 frames</td>
+<td>0.00 frames</td>
+</tr>
+<tr>
+<td>stall</td>
+<td>One full redraw (129.4 ms) every 2 s</td>
+<td>5</td>
+<td>148.4 ms</td>
+<td>2.71 frames</td>
+<td>0.00 frames</td>
+</tr>
+<tr>
+<td>bug</td>
+<td>A full redraw on every pass</td>
+<td>62</td>
+<td>157.2 ms</td>
+<td>9.77 frames</td>
+<td>71.53 frames</td>
+</tr>
+<tr>
+<td>sliced</td>
+<td>The same redraw in 8 strips of 16.2 ms</td>
+<td>0</td>
+<td>35.2 ms</td>
+<td>0.00 frames</td>
+<td>0.00 frames</td>
+</tr>
+</tbody>
+</table>
+<p>Read the table in order. The <em>stall</em> scenario overruns five times but loses nothing in the model: the pass is <span class="arithmatex">\( 148.4/40 - 1 = 2.71 \)</span> frames behind, which is about 108 ms, and the ring holds about 9.8 frames (Chapter 8), so the following light passes catch up. A one-off stall costs <em>latency</em>, the delay before the device reacts, not audio. The <em>bug</em> scenario never catches up: the backlog sits at the ring's depth of 9.77 frames, and the model says 71.5 frames were lost. The <em>sliced</em> scenario does the same job without an overrun by doing <span class="arithmatex">\( 129.4/8 \approx 16.2 \)</span> ms of it per pass: <span class="arithmatex">\( 10.0 + 0.5 + 8.5 + 16.2 = 35.2 \)</span> ms. When status, network, and the slice would all land in one pass, they total 40.2 ms, so the scheduler defers the slice (its 17 ms budget does not fit in the 16 ms left) and the pass stays at 24.0 ms.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">A Stall Costs Time, a Treadmill Costs Sound</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Notice the difference between a slow pass and a slow loop. One slow pass makes the device late and then it recovers. A loop that is slow on average never recovers, and that is when audio is lost. Budget for the average, then check the worst case.</p>
+</div>
+<p>The activity below lets you build a pass and see whether it fits.</p>
+<h4 id="diagram-frame-budget-scheduler-timeline">Diagram: Frame Budget Scheduler Timeline<a class="headerlink" href="#diagram-frame-budget-scheduler-timeline" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Frame Budget Scheduler Timeline</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> frame-budget-scheduler-timeline<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> examine<br/>
+<strong>Learning Objective:</strong> The learner will examine 6 loop passes against the 40 ms frame budget by calculating each pass's total time to within 0.1 ms and deciding whether it overruns, with at least 5 of 6 fully correct.</p>
+<p><strong>Prerequisites:</strong> frame, frame budget, task, task budget, cooperative scheduler, deferral, overrun (all defined in the sections above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 passes the learner types the total milliseconds the pass takes and chooses "overruns" or "fits" before the answer is revealed. A pass is fully correct when the number is within 0.1 ms of the Total column in Content and the choice matches the Overrun column. Mastery is 5 of 6 fully correct. Switching tasks on and off in the free-build timeline in exploration is not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) A task with a big budget only costs its budget. (2) The scheduler can interrupt a task that runs too long. (3) A pass that fits in 40 ms on average cannot overrun. (4) Turning the scheduler on always makes every task run.</p>
+<p><strong>Instructional Rationale:</strong> Examining a pass at the Analyze level means relating its parts to the whole. Summing task costs to a total and comparing it with the frame makes the learner relate each task to the shared budget, and the case where the scheduler defers a task shows how the parts interact.</p>
+<p><strong>Content:</strong></p>
+<p>The tasks, with their cost per run and budget in milliseconds, in the order the scheduler considers them (earlier is more important):</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Task</th>
+<th>Cost (ms)</th>
+<th>Budget (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>audio</td>
+<td>10.0</td>
+<td>12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>buttons</td>
+<td>0.5</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>spectrum</td>
+<td>8.5</td>
+<td>9</td>
+</tr>
+<tr>
+<td>4</td>
+<td>status</td>
+<td>3.0</td>
+<td>4</td>
+</tr>
+<tr>
+<td>5</td>
+<td>network</td>
+<td>2.0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>time</td>
+<td>3.8</td>
+<td>4</td>
+</tr>
+<tr>
+<td>7</td>
+<td>redraw (full screen)</td>
+<td>129.4</td>
+<td>140</td>
+</tr>
+<tr>
+<td>8</td>
+<td>slice (one eighth of the redraw)</td>
+<td>16.2</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
+<p>The frame budget is 40 ms. The 6 passes, in this order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Scheduler</th>
+<th>Tasks due in the pass</th>
+<th>Total (ms)</th>
+<th>Overrun</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>off</td>
+<td>audio, buttons, spectrum</td>
+<td>19.0</td>
+<td>fits</td>
+<td>10.0 + 0.5 + 8.5 = 19.0, which leaves 21.0 ms.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>off</td>
+<td>audio, buttons, spectrum, status, network, time</td>
+<td>27.8</td>
+<td>fits</td>
+<td>19.0 + 3.0 + 2.0 + 3.8 = 27.8, which leaves 12.2 ms.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>off</td>
+<td>audio, buttons, spectrum, redraw</td>
+<td>148.4</td>
+<td>overruns</td>
+<td>19.0 + 129.4 = 148.4, which is 108.4 ms over the frame.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>off</td>
+<td>audio, buttons, spectrum, status, network, slice</td>
+<td>40.2</td>
+<td>overruns</td>
+<td>19.0 + 3.0 + 2.0 + 16.2 = 40.2, which is 0.2 ms over.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>on</td>
+<td>audio, buttons, spectrum, status, network, slice</td>
+<td>24.0</td>
+<td>fits</td>
+<td>After network the pass has used 24.0 ms, which leaves 16.0 ms. The slice's budget is 17 ms, which does not fit, so it is deferred.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>off</td>
+<td>audio, buttons, spectrum, slice</td>
+<td>35.2</td>
+<td>fits</td>
+<td>19.0 + 16.2 = 35.2, which leaves 4.8 ms.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The costs for audio, spectrum, status, and time are the measurements in Chapters 8 and 6, the redraw cost is the Chapter 5 measurement, and the slice cost is 129.4 divided by 8, rounded to 16.2. The buttons and network costs, and all the budgets, are assumed values from <code>08-scheduler-demo.py</code>. The sim labels the costs "model inputs, not a measurement of your program."</p>
+<p><strong>Rules:</strong> Total = sum of the costs of the tasks that run in the pass. A pass overruns when Total &gt; 40.0. With the scheduler on, tasks are considered in the Order column; a task is deferred (not run) when its budget is greater than 40.0 minus the total so far. With the scheduler off, every due task runs. Answers are in milliseconds with one decimal place.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner switches the 8 tasks on and off in a free-build timeline and flips the scheduler on and off. The timeline shows each task as a block along the 40 ms frame, and a block past 40 ms is marked as an overrun.</li>
+<li>The learner starts the 6 passes. Pass 1 shows the scheduler setting and the due tasks.</li>
+<li>The learner types the total and chooses overruns or fits, then submits.</li>
+<li>The sim reveals the total, draws the pass on the timeline, marks any deferred task, and shows the Why text.</li>
+<li>After pass 6, the sim shows the score. The learner should notice that passes 4 and 5 hold the same tasks and differ only in the scheduler.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 passes, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The total is <Total> ms and it <overruns or fits>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The timeline shows the three always-due tasks (audio, buttons, spectrum) with the scheduler off, and the question "How much of the 40 ms is left?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states the task costs in the table "The Time Budget in Numbers"; that a typical pass is 19.0 ms and the worst scheduled pass is 27.8 ms; that a full-screen redraw makes a pass 148.4 ms; that the slice is about 16.2 ms and a pass with status, network, and the slice would be 40.2 ms; and that the scheduler defers the slice, leaving 24.0 ms.</p>
+</details>
+<h3 id="build-order-and-the-regression-checklist">Build Order and the Regression Checklist<a class="headerlink" href="#build-order-and-the-regression-checklist" title="Permanent link">&para;</a></h3>
+<p>The order you assemble the device in is part of the design, because each step gives the next a working base.</p>
+<ol>
+<li>Pico alone: kit test 01 (the LED blinks) and test 02 (the board probe).</li>
+<li>Buttons: test 03. Display: test 04. Speaker: test 05. Microphone with the display: test 06. Everything: test 07.</li>
+<li>Add logging and the self-test (this chapter). From now on, run <code>selftest.py</code> after every change.</li>
+<li>Add the audio loop with the <code>OverrunCounter</code>, then the display regions inside the scheduler.</li>
+<li>Add DSP (Chapters 9 and 10), calibration and push-to-talk (Chapter 11), and the wake word (Chapter 12).</li>
+<li>Add the network link (Chapters 13 and 14), MQTT alerts (Chapter 15), and the school agent (Chapter 16).</li>
+<li>Add the privacy features of Chapter 17: the hardware mute, the listening indicator, and the plan.</li>
+</ol>
+<p>A <strong>regression</strong> is something that used to work and no longer does, and it is the most common bug in a growing device: you add a feature and break an old one. The defense is to run the same short checklist after every change.</p>
+<table>
+<thead>
+<tr>
+<th>After every change, check</th>
+<th>How</th>
+<th>Passes when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The kit still checks out</td>
+<td><code>selftest.py</code></td>
+<td>No FAIL</td>
+</tr>
+<tr>
+<td>The display still updates quickly</td>
+<td>Watch a changing region; run <code>02-display-probe.py</code> if unsure</td>
+<td>Fills time like before</td>
+</tr>
+<tr>
+<td>The loop keeps up</td>
+<td>Read the <code>OverrunCounter</code> summary after 60 s</td>
+<td>0 overruns, or only the ones you expect</td>
+</tr>
+<tr>
+<td>Push-to-talk still works end to end</td>
+<td>Hold MODE, ask a question, hear the reply</td>
+<td>Reply plays, then the clock returns</td>
+</tr>
+<tr>
+<td>The listening indicator is still true</td>
+<td><code>03-indicator-test.py</code> from Chapter 17</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Nothing new is stored</td>
+<td><code>mpremote fs ls</code></td>
+<td>No audio or transcript files</td>
+</tr>
+<tr>
+<td>Secrets stay out of git</td>
+<td><code>check_secrets.py</code></td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="capstone-projects">Capstone Projects<a class="headerlink" href="#capstone-projects" title="Permanent link">&para;</a></h2>
+<h3 id="choosing-and-scoping-a-capstone">Choosing and Scoping a Capstone<a class="headerlink" href="#choosing-and-scoping-a-capstone" title="Permanent link">&para;</a></h3>
+<p>A <strong>capstone project</strong> is a device feature you design, build, test, and defend yourself, using what the book taught. It is the difference between following a recipe and cooking. Every capstone needs the same six things before you start, and a rubric (below) grades the same six.</p>
+<ol>
+<li>A one-sentence purpose in plain words, and the one person it is for.</li>
+<li>A list of requirements you can test, each a sentence that ends in "so that ..." or a number you measure.</li>
+<li>Thresholds that come from a <strong>calibration step the program runs</strong> (Chapter 11's idea: measure the quiet room first), never from a number you guessed or copied.</li>
+<li>A passing <code>selftest.py</code>, and an <code>OverrunCounter</code> summary you can show.</li>
+<li>A privacy statement: what the device hears, what leaves it, what is kept, and who knows (Chapter 17).</li>
+<li>A user test with at least three classmates (below).</li>
+</ol>
+<p>The four starters in this chapter each work on the base kit, use only what the book has taught, and are small enough to finish in a few sessions. They are starting points: change the purpose and they become your own. The logic of each lives in <code>detectors.py</code>, which <code>09-detectors-test.py</code> exercises on <strong>synthetic</strong> sound and scripted buttons. Synthetic means made up by the test: it shows how the logic behaves, not how a real clap, voice, or fan looks to your microphone.</p>
+<h3 id="clap-detector">Clap Detector<a class="headerlink" href="#clap-detector" title="Permanent link">&para;</a></h3>
+<p>A <strong>clap detector</strong> notices a short, sharp sound. Speech and steady noise stay loud for many frames; a clap is loud for one or two frames and falls straight back. <code>ClapDetector</code> therefore watches the frame loudness in bits (the log scale from Chapter 3) and reports a clap when a run of one or two frames at least <code>jump</code> bits above the calibrated floor ends. The jump is <code>max(2.0, 4 x the spread of the quiet frames)</code>, so a noisier room needs a bigger jump. The 2.0 is the "heard" margin of kit test 06: 2 bits is 4 times the quiet room's average level.</p>
+<p>Here is what 09 printed for the synthetic room, whose noise floor was built to be 12.5 bits like the test board's.</p>
+<table>
+<thead>
+<tr>
+<th>Burst peak compared with the room's noise amplitude</th>
+<th>Claps found out of 40</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 times</td>
+<td>0</td>
+</tr>
+<tr>
+<td>20 times</td>
+<td>0</td>
+</tr>
+<tr>
+<td>40 times</td>
+<td>1</td>
+</tr>
+<tr>
+<td>80 times</td>
+<td>40</td>
+</tr>
+<tr>
+<td>160 times</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<p>Read the table as a sensitivity curve. The sharp edge between 40 and 80 times exists because an 8 ms burst is only a small part of a 40 ms frame's average, so it must be loud to move the frame by 2 bits. Your real threshold depends on your microphone and room, which is why the program calibrates. Two more results from the same test: 180 seconds of syllable-like sound made 0 false claps, and 180 seconds after a fan-like step to 4 times the noise made 0 false claps (the floor drifted up to it). But a single loud frame, such as a sharp "p" or "k", counted as a clap 40 times out of 40. That is a limit of the design, not a bug: it cannot separate a one-frame spike from a clap. <code>Try This</code> in the program suggests adding a crest-factor check.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Learns the quiet room before listening</td>
+<td>The shell prints the floor and jump after 2 s</td>
+</tr>
+<tr>
+<td>Counts a clap near the microphone</td>
+<td>5 claps at 0.5 m count 5</td>
+</tr>
+<tr>
+<td>Ignores talking and steady noise</td>
+<td>30 s of talking and a fan count 0</td>
+</tr>
+<tr>
+<td>Two claps within 1 s toggle a light</td>
+<td>The on-screen light switches</td>
+</tr>
+<tr>
+<td>Reports what it cannot do</td>
+<td>The README lists the one-frame-spike limit</td>
+</tr>
+</tbody>
+</table>
+<p>Extensions: record the distance at which claps stop counting at 0.5, 1, 2, and 4 m; add the crest-factor check; make a triple clap do something different.</p>
+<h3 id="classroom-noise-monitor">Classroom Noise Monitor<a class="headerlink" href="#classroom-noise-monitor" title="Permanent link">&para;</a></h3>
+<p>A <strong>classroom noise monitor</strong> shows how loud a room is as one of three words, QUIET, TALKING, or LOUD. <code>NoiseMonitor</code> smooths the loudness with a moving average (time constant 1 second by default, like the slow setting of a sound level meter), compares it with limits that are <em>bits above the room's own floor</em>, and changes the word only after the new band has held for 12 frames (0.5 s) so it does not flicker. The limits are 2.0 and 4.0 bits above the floor, which is 4 and 16 times the quiet level, or about 12 and 24 dB. These are <strong>relative to your microphone and room</strong>, not sound-pressure decibels, because the microphone is uncalibrated. The starting limits are values to tune with your class.</p>
+<p>On the synthetic 60 seconds (20 s quiet, 20 s at 6 times the noise, 10 s at 25 times, 10 s quiet), the band was TALKING at the end of the second stretch (smoothed level +2.6 bits above the floor), LOUD at the end of the third (+4.7 bits), and QUIET again at the end. The monitor counted 30.6 s QUIET, 20.4 s TALKING, and 9.0 s LOUD, which add to 60: the smoothing and the 0.5 s dwell shift a little time between bands. A sound that flickered across the limit every 3 frames changed the band 0 times in 20 seconds.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Level Only: Say So, and Mean It</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+A noise monitor is still a microphone in a classroom, so build it so it cannot keep sound: it is handed one number per frame, keeps three counters, and writes no file. Put "Level only. No audio saved." on the screen and tell the room first (Chapter 17).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level only</td>
+<td>The code never stores samples or writes a file; <code>mpremote fs ls</code> shows none</td>
+</tr>
+<tr>
+<td>Says so</td>
+<td>The screen shows "Level only. No audio saved."</td>
+</tr>
+<tr>
+<td>Calibrates</td>
+<td>The floor is measured at start and shown</td>
+</tr>
+<tr>
+<td>Stable</td>
+<td>The word does not flicker when someone speaks at the limit</td>
+</tr>
+<tr>
+<td>Summarizes</td>
+<td>Seconds per band are printed each minute</td>
+</tr>
+</tbody>
+</table>
+<p>Extensions: let UP and DOWN change the limits and save them; show the last 10 minutes as a strip chart in one region; ask three classmates what "too loud" means for silent reading and for group work, and set two modes.</p>
+<h3 id="study-timer-buddy">Study Timer Buddy<a class="headerlink" href="#study-timer-buddy" title="Permanent link">&para;</a></h3>
+<p>A <strong>study timer buddy</strong> runs focus and break periods so a student can work in short blocks. <code>StudyTimer</code> is a state machine (Chapter 7) with three states, IDLE, FOCUS, and BREAK, plus a paused flag. MODE starts, pauses, or resumes; a long MODE press skips to the other phase; UP and DOWN change the focus length from 5 to 60 minutes while idle. The defaults of 25 minutes of focus and 5 of break, with a 15 minute break after every 4th focus, are common study-technique values, and they are settings you can change.</p>
+<p>Time comes from a deadline, not from counting seconds in a loop (Chapter 7's non-blocking rule). The timer stores when the phase ends, and <code>remaining = end - now</code> is computed each pass with <code>time.ticks_diff</code>, so a slow pass cannot make the clock drift and the millisecond counter's wrap-around is handled. Pausing stores the remaining time; resuming sets a new end. A 25 minute focus is <span class="arithmatex">\( 25 \times 60 \times 1000 = 1{,}500{,}000 \)</span> ms.</p>
+<p>The scripted test in 09 checks that 15:00 remain after 10 minutes of a 25 minute focus, that 30 minutes spent paused change nothing, that the 4th focus is followed by the 15 minute break, and that a focus still ends on time when the millisecond counter wraps in the middle of it. The program redraws a region only when its text changes, so the screen sends bytes once a second.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starts, pauses, resumes with MODE</td>
+<td>A scripted press sequence gives the right states</td>
+</tr>
+<tr>
+<td>Stays accurate</td>
+<td>25:00 ends within one pass of 25 minutes by a stopwatch</td>
+</tr>
+<tr>
+<td>Never blocks</td>
+<td>The <code>OverrunCounter</code> shows 0 overruns</td>
+</tr>
+<tr>
+<td>Beeps at the end of each phase</td>
+<td>You hear it, then the next phase begins</td>
+</tr>
+<tr>
+<td>Redraws only what changed</td>
+<td>Only the seconds change on screen each second</td>
+</tr>
+</tbody>
+</table>
+<p>Extensions: hold UP to ask "how long is left?" through the push-to-talk path (Chapters 11 and 14); let the mascot sleep during focus and wake for breaks; count completed focus periods across the day.</p>
+<h3 id="homework-reminder-buddy">Homework Reminder Buddy<a class="headerlink" href="#homework-reminder-buddy" title="Permanent link">&para;</a></h3>
+<p>A <strong>homework reminder buddy</strong> shows the next <code>TEST:</code> and <code>DUE:</code> items and how soon each is. It uses the same title convention as the school agent (Chapter 16): a title that starts with <code>TEST:</code> or <code>DUE:</code> is a reminder, and anything else is ignored. The program must work <em>with or without</em> the agent. It reads <code>events.json</code> from the Pico if you copied one (<code>tools/trim_events.py</code> cuts the 92-event Cedar Ridge file of 27,187 bytes down to the 50 test and due events, 4,197 bytes), and otherwise uses a three-item list built into the file. The agent link is an upgrade, not a requirement: replace <code>load_events()</code> with a request to your server when it is ready.</p>
+<p>Dates use plain arithmetic: <code>day_number(y, m, d)</code> turns a date into a day count, and the difference of two counts is the days between them, with no <code>datetime</code> module. The test checks month ends, a leap day, and that <code>date_text</code> undoes <code>day_number</code> for 576 dates. A Pico has no calendar until you give it one, so "today" starts at the Cedar Ridge demo date of 2026-10-19 and UP and DOWN move it a day at a time.</p>
+<p>On that date the reminders are, soonest first: TOMORROW, the Algebra II test; IN 2 DAYS, the English draft; IN 3 DAYS, the Biology report. An alert and a beep happen once, the first time an item is tomorrow or today, and <code>Reminders</code> remembers what it has announced so it does not repeat.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Works with no agent and no network</td>
+<td>Start with no <code>events.json</code>: the built-in list appears</td>
+</tr>
+<tr>
+<td>Reads only TEST and DUE</td>
+<td>The picture day and the football game are not shown</td>
+</tr>
+<tr>
+<td>Sorts soonest first</td>
+<td>The three items appear in 1, 2, 3 day order</td>
+</tr>
+<tr>
+<td>Announces once</td>
+<td>Moving the date back and forth does not repeat an alert</td>
+</tr>
+<tr>
+<td>Respects privacy</td>
+<td>Only school events are used; no student data is stored</td>
+</tr>
+</tbody>
+</table>
+<p>Extensions: read the same file from the school server (Chapter 16); add a second alert "3 days before" a test; show the course name from the event.</p>
+<h3 id="grading-a-capstone">Grading a Capstone<a class="headerlink" href="#grading-a-capstone" title="Permanent link">&para;</a></h3>
+<p>Use one rubric for all four projects, so the grade measures the same skills whatever you built. Each criterion has three levels: Meets (full points), Approaching (about half), and Not yet (none).</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Points</th>
+<th>Meets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Function</td>
+<td>5</td>
+<td>Every requirement in your list passes its test, and you show the tests</td>
+</tr>
+<tr>
+<td>Calibration</td>
+<td>3</td>
+<td>Thresholds come from a measurement the program makes, shown on screen or in the log</td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td>3</td>
+<td><code>selftest.py</code> passes, and the <code>OverrunCounter</code> shows no unexpected overruns</td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td>3</td>
+<td>The device says what it hears and keeps; a plan exists; nothing stores audio</td>
+</tr>
+<tr>
+<td>User testing</td>
+<td>3</td>
+<td>Three or more testers, notes kept, at least one change made because of what they did</td>
+</tr>
+<tr>
+<td>Code and notes</td>
+<td>3</td>
+<td>Pins come from <code>config.py</code>, regions redraw only on change, and a README gives wiring and test results</td>
+</tr>
+</tbody>
+</table>
+<p>That is 20 points. A capstone that passes every requirement but skips the user test cannot score above 17.</p>
+<h3 id="user-testing">User Testing<a class="headerlink" href="#user-testing" title="Permanent link">&para;</a></h3>
+<p><strong>User testing</strong> is watching people other than you try to use your device, and writing down what happens. You already know how it works, so you cannot see what a new person sees. The protocol is short and uses <code>user-test-sheet.md</code>.</p>
+<ol>
+<li><strong>Choose the tasks.</strong> Write 3 or 4 jobs a user would do, in their words: "Start a 25 minute timer." Do not mention buttons.</li>
+<li><strong>Choose testers.</strong> Three to five classmates who did not build it. A small group like this typically finds most of the common problems, which is why designers test early and often. Tell each one what you will record and that they may stop at any time; record notes, never their voice or a picture.</li>
+<li><strong>Read the script and stay quiet.</strong> Say "I am testing the device, not you." Ask them to think aloud. Do not help unless they are stuck for a full minute.</li>
+<li><strong>Record what you see:</strong> done on their own (yes or no), seconds taken, wrong presses or hesitations, and their exact words. Afterward ask what was hardest, what they expected, whether they could tell what the device does with sound, and an ease score from 1 to 5.</li>
+<li><strong>Decide what to change.</strong> Merge duplicate problems across sheets and count how many testers hit each. Fix a problem that stopped someone, then any problem two or more testers hit. Change one thing, then test it again with a new person.</li>
+</ol>
+<p><em>Worked example (invented, to show the method).</em> Three testers try the study timer. Two press MODE once to start, then hold it expecting it to stop, and instead skip to the break. Both problems come from one cause: nothing on the screen says a long press skips. The change is a one-line hint, "Hold MODE: skip", in the idle screen. The retest with a fourth tester shows no skips. This is the evidence for a design choice, which is what the course outcome "justify the design choices based on user testing with classmates" asks for.</p>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">Watching Someone Struggle Is Hard</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+It can sting to watch a classmate fumble with something you built, and that is normal. You have already debugged wiring and timing, which are harder. Each fumble is a free lesson you did not have to guess.</p>
+</div>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>You can now find a fault with a probe instead of a guess, check every wire against a list computed from <code>config.py</code>, and run a self-test after every change. You can walk a symptom to a cause, keep the whole device inside a 40 ms frame, and build, test, and defend a project that is yours.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>Serial output, the REPL, and <code>mpremote</code> share one port, so quit Thonny first. Log with levels, a RAM ring, and a capped flash file, and never log audio or words.</li>
+<li>A probe tests one part and prints evidence before a verdict of PASS, FAIL, ASK, or SKIP. The display and amplifier cannot report back, so they stay ASK until a person answers.</li>
+<li>Verify wiring against a table computed from <code>config.py</code>; the pin-plan rules catch swapped I2S pairs, reused pins, and wireless-chip pins.</li>
+<li>Diagnose with the cheapest question first, then confirm with the quick test before changing anything.</li>
+<li>A frame overrun counter times the gap between <code>readinto()</code> calls. A one-off stall costs latency; a loop that is slow on average loses audio.</li>
+<li>Integrate with a budget (a 19.0 ms typical pass leaves 21.0 ms), slice big jobs, and rerun the regression checklist after every change.</li>
+<li>A capstone has a purpose, testable requirements, calibrated thresholds, a self-test, a privacy statement, and a user test with classmates.</li>
+</ul>
+<p>Test yourself with these questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>Your clap detector counts every sharp 'p' as a clap. Is the threshold wrong? Click to expand</summary>
+<p>Probably not. The detector watches loudness over 40 ms frames, so a one-frame spike looks the same as a clap. The test shows this limit: single-frame spikes counted 40 times out of 40. To separate them you need another feature, such as a crest-factor check, and you should test it on both kinds of sound.</p>
+</details>
+<details class="question">
+<summary>A pass takes 148.4 ms once every 2 seconds. Does the microphone lose audio? Click to expand</summary>
+<p>By the model, no. The pass runs <span class="arithmatex">\( 148.4/40 - 1 = 2.71 \)</span> frames behind, about 108 ms, which is less than the ring's depth of about 9.8 frames, and the next light passes catch up. It costs latency. If the same pass happened every frame, the model says audio would be lost.</p>
+</details>
+<details class="question">
+<summary>Why does the self-test report the display as ASK and not PASS? Click to expand</summary>
+<p>The display controller cannot report back to the Pico, so the program can only draw a pattern. A person has to say what they saw. The program turns ASK into PASS or FAIL only when someone answers with UP or DOWN.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">A Device You Can Trust and Fix</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just learned to probe a part, verify wiring from <code>config.py</code>, write a self-test, diagnose the three classic failures, budget a 40 ms frame across every subsystem, and build and test a capstone with classmates. You can now fix your own Study Buddy and make it yours.</p>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -1243,13 +3278,13 @@
         
         
           
-          <a href="../../learning-graph/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction">
+          <a href="../../schools/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Introduction
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">

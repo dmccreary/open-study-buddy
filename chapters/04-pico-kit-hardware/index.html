@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="The five parts of the Open Study Buddy kit, what each one does, how they are powered and grounded, and how to wire them to the Pico 2 W using the pin assignment table.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>4. The Pico Kit Hardware and Wiring - Open Study Buddy</title>
+        <title>The Pico Kit Hardware and Wiring - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4. The Pico Kit Hardware and Wiring
+              The Pico Kit Hardware and Wiring
             
           </span>
         </div>
@@ -560,6 +560,360 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#meet-the-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meet the Parts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Meet the Parts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-kit-bill-of-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Kit Bill of Materials
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Kit Bill of Materials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-kit-parts-infographic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Kit Parts Infographic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-brain-raspberry-pi-pico-2-w" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Brain: Raspberry Pi Pico 2 W
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Brain: Raspberry Pi Pico 2 W">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rp2350-microcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      The RP2350 Microcontroller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cortex-m33-core-and-dual-cores" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Cortex-M33 Core and Dual Cores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sram" class="md-nav__link">
+    <span class="md-ellipsis">
+      SRAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-wi-fi-radio" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Wi-Fi Radio
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-usb-ground-and-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power: USB, Ground, and Noise
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power: USB, Ground, and Noise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usb-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      USB Power
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ground-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ground Wiring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-supply-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Supply Noise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-eyes-the-round-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Eyes: The Round Display
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Eyes: The Round Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-round-color-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Round Color Display
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-display-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Display Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-ears-the-inmp441-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ears: The INMP441 Microphone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Ears: The INMP441 Microphone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mems-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      The MEMS Microphone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-inmp441-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      The INMP441 Board
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-voice-amplifier-and-speaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Voice: Amplifier and Speaker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Voice: Amplifier and Speaker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-speaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Speaker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-d-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Class-D Amplifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-max98357a-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      The MAX98357A Amplifier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hands-push-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Hands: Push Buttons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Hands: Push Buttons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-push-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Push Button
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pull-up-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Pull-Up Resistor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Pull-Up Resistor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-pull-up-button-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Pull-Up Button Circuit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-it-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wiring It Up
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wiring It Up">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Breadboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dupont-wires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dupont Wires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pin-assignment-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Pin Assignment Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Pin Assignment Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-kit-wiring-fault-finder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Kit Wiring Fault Finder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -886,6 +1240,69 @@
         
       
         
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
       
         
       
@@ -1069,6 +1486,360 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#meet-the-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meet the Parts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Meet the Parts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-kit-bill-of-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Kit Bill of Materials
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Kit Bill of Materials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-kit-parts-infographic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Kit Parts Infographic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-brain-raspberry-pi-pico-2-w" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Brain: Raspberry Pi Pico 2 W
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Brain: Raspberry Pi Pico 2 W">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rp2350-microcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      The RP2350 Microcontroller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cortex-m33-core-and-dual-cores" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Cortex-M33 Core and Dual Cores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sram" class="md-nav__link">
+    <span class="md-ellipsis">
+      SRAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-wi-fi-radio" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Wi-Fi Radio
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-usb-ground-and-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power: USB, Ground, and Noise
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power: USB, Ground, and Noise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usb-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      USB Power
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ground-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ground Wiring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-supply-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Supply Noise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-eyes-the-round-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Eyes: The Round Display
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Eyes: The Round Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-round-color-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Round Color Display
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-display-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Display Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-ears-the-inmp441-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ears: The INMP441 Microphone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Ears: The INMP441 Microphone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mems-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      The MEMS Microphone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-inmp441-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      The INMP441 Board
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-voice-amplifier-and-speaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Voice: Amplifier and Speaker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Voice: Amplifier and Speaker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-speaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Speaker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-d-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Class-D Amplifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-max98357a-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      The MAX98357A Amplifier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hands-push-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Hands: Push Buttons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Hands: Push Buttons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-push-button" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Push Button
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pull-up-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Pull-Up Resistor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Pull-Up Resistor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-pull-up-button-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Pull-Up Button Circuit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-it-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wiring It Up
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wiring It Up">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Breadboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dupont-wires" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dupont Wires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pin-assignment-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Pin Assignment Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Pin Assignment Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-kit-wiring-fault-finder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Kit Wiring Fault Finder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1199,17 +1970,982 @@
 <p>This chapter builds on concepts from:</p>
 <ul>
 <li><a href="../01-personal-agents-architecture/">Chapter 1: Personal Agents and the Open Study Buddy Architecture</a></li>
-<li><a href="../02-micropython-review/">Chapter 2: MicroPython Review for Embedded Systems</a></li>
-<li><a href="../03-sound-and-digital-audio/">Chapter 3: Sound and Digital Audio Basics</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="meet-the-parts">Meet the Parts<a class="headerlink" href="#meet-the-parts" title="Permanent link">&para;</a></h2>
+<p>In Chapter 1 you learned that the Open Study Buddy is an agent terminal: it listens, shows, and speaks. This chapter is where that sentence turns into a pile of small boards on your desk. Five parts do all the work, and each one has a single clear job.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Parts, Meet Builder</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+By the end of this chapter you will have wired a Pico to a screen, a microphone, a speaker, and three buttons, and you will know how to find a loose wire in minutes instead of hours. Let's listen closely! Every part in this kit has a job, and a wired-up kit is the proof you understood it.</p>
+</div>
+<h3 id="the-kit-bill-of-materials">The Kit Bill of Materials<a class="headerlink" href="#the-kit-bill-of-materials" title="Permanent link">&para;</a></h3>
+<p>A <strong>bill of materials</strong> is the shopping list for a project. The parts in the base kit are all inexpensive, and together they cost a few tens of dollars.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What it is</th>
+<th>Job in the kit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi Pico 2 W</td>
+<td>Microcontroller board with Wi-Fi</td>
+<td>Runs your MicroPython and talks to every other part</td>
+</tr>
+<tr>
+<td>2.1 inch round display</td>
+<td>360 by 360 color screen with a GC9B72 controller</td>
+<td>Shows the face, text, and level meter</td>
+</tr>
+<tr>
+<td>INMP441 microphone board</td>
+<td>Digital MEMS microphone</td>
+<td>Turns sound into numbers</td>
+</tr>
+<tr>
+<td>MAX98357A amplifier board plus a small speaker</td>
+<td>Digital audio amplifier</td>
+<td>Turns numbers into sound</td>
+</tr>
+<tr>
+<td>Three push buttons</td>
+<td>Tactile switches (Mode, Up, Down)</td>
+<td>Let you choose, adjust, and talk</td>
+</tr>
+<tr>
+<td>Breadboard, Dupont wires, USB cable</td>
+<td>Solderless wiring supplies</td>
+<td>Connect and power everything</td>
+</tr>
+</tbody>
+</table>
+<p>The activity below lets you check that you know which part does which job before we go deeper into each one.</p>
+<h4 id="diagram-kit-parts-infographic">Diagram: Kit Parts Infographic<a class="headerlink" href="#diagram-kit-parts-infographic" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Kit Parts Infographic</summary>
+<p>Type: infographic
+<strong>sim-id:</strong> kit-parts-infographic<br/>
+<strong>Library:</strong> html<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Remember<br/>
+<strong>Bloom Verb:</strong> identify<br/>
+<strong>Learning Objective:</strong> The learner will identify which of the five kit parts performs each of 5 described jobs, with at least 4 of 5 correct on the first attempt.</p>
+<p><strong>Prerequisites:</strong> the five parts and their one-line jobs, listed in the table "The Kit Bill of Materials" above this block.</p>
+<p><strong>Evidence of Mastery:</strong> The learner is shown 5 job statements one at a time and picks the matching part from the five. A pick is correct when it matches the Correct part column in Content. Mastery is 4 of 5 on the first attempt. Selecting a part to read its description beforehand is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) The Pico itself contains the microphone and speaker. (2) The amplifier makes the sound by itself. (3) The buttons are wired to the display.</p>
+<p><strong>Instructional Rationale:</strong> A Remember-level objective asks the learner to recall a fact accurately. Reading a labeled picture first, then answering a job question from memory, gives both a cue to learn from and a retrieval attempt that strengthens recall.</p>
+<p><strong>Content:</strong></p>
+<p>The infographic shows the five parts as a labeled picture. Selecting a part reveals its name and description.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Description shown on selection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi Pico 2 W</td>
+<td>The brain. It runs your MicroPython program and connects to Wi-Fi.</td>
+</tr>
+<tr>
+<td>Round display</td>
+<td>The face. A 360 by 360 color screen that shows text, shapes, and meters.</td>
+</tr>
+<tr>
+<td>INMP441 microphone</td>
+<td>The ear. It senses sound and sends 24-bit digital numbers to the Pico.</td>
+</tr>
+<tr>
+<td>MAX98357A amplifier and speaker</td>
+<td>The voice. The amplifier turns digital audio into power for the speaker.</td>
+</tr>
+<tr>
+<td>Mode, Up, and Down buttons</td>
+<td>The hands. Three switches you press to change modes, settings, and to talk.</td>
+</tr>
+</tbody>
+</table>
+<p>Job statements, in this order:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Job statement shown to the learner</th>
+<th>Correct part</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Turns room sound into digital numbers.</td>
+<td>INMP441 microphone</td>
+<td>The converter is built into the microphone board.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Runs the MicroPython program.</td>
+<td>Raspberry Pi Pico 2 W</td>
+<td>The Pico is the only part that runs your code.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Drives the speaker from digital audio.</td>
+<td>MAX98357A amplifier and speaker</td>
+<td>The amplifier takes I2S audio and powers the speaker.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Shows a level meter and text.</td>
+<td>Round display</td>
+<td>The display draws what the Pico tells it to draw.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Lets the student start push-to-talk.</td>
+<td>Mode, Up, and Down buttons</td>
+<td>A held button is read as a signal on a Pico pin.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The parts and jobs come from the chapter section "The Kit Bill of Materials."</p>
+<p><strong>Rules:</strong> Each job statement has exactly one correct part. The five parts are always offered together, in a fixed order.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner selects any part to read its description.</li>
+<li>The learner starts the check. Job statement 1 is shown with the five parts as choices.</li>
+<li>The learner picks one part.</li>
+<li>The sim shows whether it was correct and the Why text, then moves to the next statement.</li>
+<li>After statement 5, the sim shows the score.</li>
+</ol>
+<p><strong>Feedback:</strong> 5 statements, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. This is the job of the <correct part>: <Why>". The correct part is revealed right after each pick, and a running score "n of 5" is shown.</p>
+<p><strong>Starting State:</strong> The five parts are shown labeled and unselected, with the instruction "Select a part to learn its job."</p>
+<p><strong>Chapter Anchors:</strong> The chapter names the five parts as the Pico 2 W, the round display, the microphone, the amplifier with a speaker, and the three buttons.</p>
+</details>
+<h2 id="the-brain-raspberry-pi-pico-2-w">The Brain: Raspberry Pi Pico 2 W<a class="headerlink" href="#the-brain-raspberry-pi-pico-2-w" title="Permanent link">&para;</a></h2>
+<p>The <strong>Raspberry Pi Pico 2 W</strong> is a small circuit board that carries a microcontroller, memory, a wireless chip, and a row of pins you can wire to. It is about the size of a stick of gum. It runs on 3.3 volts and has a micro-USB connector for power and for loading programs. You cannot run a web browser on it, but it has everything an agent terminal needs.</p>
+<p>Four things on the board matter for this book.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What the Pico 2 W has</th>
+<th>Why the book cares</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Processor</td>
+<td>RP2350 chip, up to 150 MHz</td>
+<td>Runs audio code in real time</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>520 KB of SRAM, 4 MB of flash</td>
+<td>Holds buffers and your program files</td>
+</tr>
+<tr>
+<td>Wireless</td>
+<td>2.4 GHz Wi-Fi (and Bluetooth)</td>
+<td>Reaches the buddy server</td>
+</tr>
+<tr>
+<td>Pins</td>
+<td>26 usable GPIO pins</td>
+<td>Connect the display, buttons, and audio parts</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> The Pico's processor makes 150 million clock ticks per second, so one tick lasts about 6.7 nanoseconds. The audio frames in later chapters are 40 ms long, and <span class="arithmatex">\( 0.04 \times 150{,}000{,}000 = 6{,}000{,}000 \)</span> ticks. Divide that by the 512 samples in a frame and you get about 11,700 ticks of work available for each sample before the next frame arrives. That is a big number, but MicroPython spends hundreds of ticks on a single line, which is why Chapter 10 teaches faster code.</p>
+<h3 id="the-rp2350-microcontroller">The RP2350 Microcontroller<a class="headerlink" href="#the-rp2350-microcontroller" title="Permanent link">&para;</a></h3>
+<p>The <strong>RP2350</strong> is the chip at the center of the Pico 2 W. A <em>microcontroller</em> is a computer on one chip: processor, memory, and input/output circuits together. The RP2350 adds two features that matter for this book. It has special programmable circuits called PIO blocks, which MicroPython's I2S audio uses to move sound in and out without help from your code. And its processor cores have instructions for fast math, which we use for the FFT.</p>
+<h3 id="the-cortex-m33-core-and-dual-cores">The Cortex-M33 Core and Dual Cores<a class="headerlink" href="#the-cortex-m33-core-and-dual-cores" title="Permanent link">&para;</a></h3>
+<p>A <strong>core</strong> is one processor inside the chip. The RP2350 has two <strong>Arm Cortex-M33</strong> cores, so it is a <strong>dual core processor</strong>. The Cortex-M33 is a 32-bit core that includes a hardware unit for decimal (floating-point) math and instructions for the multiply-and-add operations that signal processing uses constantly.</p>
+<p>MicroPython normally runs your program on the first core only. The second core can run a separate task through the <code>_thread</code> module. This book keeps the work on one core, and Chapter 10 shows how to make that single core fast enough.</p>
+<h3 id="sram">SRAM<a class="headerlink" href="#sram" title="Permanent link">&para;</a></h3>
+<p><strong>SRAM</strong> is the fast memory that holds your running program's variables. The RP2350 has 520 KB of it, shared by MicroPython itself and your data. It is the "RAM" you counted against in Chapter 2, where a 3-second recording took 150 KB. SRAM loses its contents when power is removed, while the 4 MB of flash keeps your files.</p>
+<h3 id="the-wi-fi-radio">The Wi-Fi Radio<a class="headerlink" href="#the-wi-fi-radio" title="Permanent link">&para;</a></h3>
+<p>The Pico 2 W's <strong>Wi-Fi radio</strong> is a separate wireless chip (the CYW43439) that sits next to the RP2350 and speaks 2.4 GHz Wi-Fi. Your MicroPython program controls it through the <code>network</code> module, which Chapter 13 uses to connect to the school network. Because the chip is separate, it uses a few of the Pico's pins for itself: GP23, GP24, GP25, and GP29. The onboard LED hangs off the wireless chip too, which is why you write <code>Pin("LED")</code>.</p>
+<p><em>Worked example.</em> A school offers two networks, "School-5G" on the 5 GHz band and "School-2G" on the 2.4 GHz band. The Pico can join only "School-2G", because its radio does not support 5 GHz. If your classroom network is 5 GHz only, the Pico will not see it, and you will need the school's IT team to provide a 2.4 GHz network.</p>
+<table>
+<thead>
+<tr>
+<th>Wi-Fi fact</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Band</td>
+<td>2.4 GHz only</td>
+</tr>
+<tr>
+<td>Standard</td>
+<td>802.11n</td>
+</tr>
+<tr>
+<td>Pins used by the radio chip</td>
+<td>GP23, GP24, GP25, GP29</td>
+</tr>
+<tr>
+<td>Book chapters that use it</td>
+<td>13 (HTTP), 14 (streaming), 15 (MQTT)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="power-usb-ground-and-noise">Power: USB, Ground, and Noise<a class="headerlink" href="#power-usb-ground-and-noise" title="Permanent link">&para;</a></h2>
+<h3 id="usb-power">USB Power<a class="headerlink" href="#usb-power" title="Permanent link">&para;</a></h3>
+<p>The Pico gets its power from its <strong>micro-USB port</strong>. A USB port supplies 5 volts, and the Pico has a voltage regulator that turns the 5 V into the 3.3 V the chip and its pins use. Two pins on the board give that power to your parts: <strong>VBUS</strong> passes the USB 5 V straight through, and <strong>3V3</strong> is the regulated 3.3 V output. A normal computer USB port provides up to about 500 mA, which is enough for this kit at the volumes used in the tests.</p>
+<p>The rule for choosing between them is simple: use 3V3 for the display and the microphone, which are 3.3 V parts, and use VBUS or 3V3 for the amplifier. Connecting a 5 V wire to a pin that expects 3.3 V can damage it.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">The Microphone Is a 3.3 Volt Part</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+The INMP441's VDD pin goes to 3V3, never to VBUS. A 5 V wire is an easy mistake because the amplifier next to it is happy on 5 V. Before you power up, trace the microphone's red wire back to the 3V3 pin.</p>
+</div>
+<h3 id="ground-wiring">Ground Wiring<a class="headerlink" href="#ground-wiring" title="Permanent link">&para;</a></h3>
+<p><strong>Ground</strong> is the 0 V reference that every voltage in the circuit is measured against. For a signal to mean anything, the sender and the receiver must share the same ground. That is the whole idea of <strong>ground wiring</strong>: every part's GND pin connects back to a GND pin on the Pico. The Pico has eight GND pins spread around its edges, so you can always find one near the part you are wiring. On a breadboard you usually run one wire from a Pico GND pin to the long blue (or black) rail and then connect each part to that rail.</p>
+<p>A missing or loose ground rarely gives a clean "no." It gives strange behavior: a screen that flickers, a microphone that hisses, or a speaker that crackles. When something misbehaves, check the grounds first.</p>
+<h3 id="power-supply-noise">Power Supply Noise<a class="headerlink" href="#power-supply-noise" title="Permanent link">&para;</a></h3>
+<p><strong>Power supply noise</strong> is the small, fast fluctuation in the voltage that comes from the other parts sharing it. The amplifier is the main source: it draws sudden pulses of current when it plays loud sounds, and those pulses ripple through the shared power and ground wires. The microphone is the most sensitive listener, because it measures tiny changes. Three habits keep the noise down: use short wires, keep the microphone's wires away from the amplifier's, and give the microphone its power from 3V3.</p>
+<h2 id="the-eyes-the-round-display">The Eyes: The Round Display<a class="headerlink" href="#the-eyes-the-round-display" title="Permanent link">&para;</a></h2>
+<h3 id="the-round-color-display">The Round Color Display<a class="headerlink" href="#the-round-color-display" title="Permanent link">&para;</a></h3>
+<p>The kit's <strong>round color display</strong> is a 2.1 inch screen with 360 by 360 pixels. A <strong>pixel</strong> is one dot of color, and 360 by 360 gives <span class="arithmatex">\( 360 \times 360 = 129{,}600 \)</span> of them. The memory addresses are square, but the glass is circular, so only the circle inscribed in the square can be seen. The corners are hidden under the bezel.</p>
+<p><em>Worked example.</em> The visible circle has radius 180 pixels, so it shows <span class="arithmatex">\( \pi \times 180^2 \approx 101{,}788 \)</span> pixels, about 78.5 percent of the square. Because the very edge is also covered by the bezel, the kit's <code>SAFE_RADIUS</code> is 168, and a ring at that radius is the largest circle you can see completely. That circle has about 88,668 pixels, 68.4 percent of the square. Drawing in the corners wastes time on pixels nobody can see.</p>
+<table>
+<thead>
+<tr>
+<th>Display fact</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Size</td>
+<td>2.1 inches, round</td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>360 by 360 pixels (some listings wrongly say 640 by 640)</td>
+</tr>
+<tr>
+<td>Controller chip</td>
+<td>GC9B72</td>
+</tr>
+<tr>
+<td>Bus</td>
+<td>SPI, using SPI block 0</td>
+</tr>
+<tr>
+<td>Pixel format</td>
+<td>16-bit color (RGB565, Chapter 5)</td>
+</tr>
+<tr>
+<td>Safe drawing radius</td>
+<td>168 pixels from the center (180, 180)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-display-controller">The Display Controller<a class="headerlink" href="#the-display-controller" title="Permanent link">&para;</a></h3>
+<p>The display glass cannot work alone. Behind it is a <strong>display controller</strong>, a chip that holds the screen's own memory and lights each pixel. In this kit it is the GC9B72. Your Pico sends it <em>commands</em> and <em>pixel data</em> over SPI, and the controller keeps the picture on the screen until you send something new. The Pico does not store the picture.</p>
+<p>The controller uses four control wires besides the data and clock.</p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>Name</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS</td>
+<td>Chip select</td>
+<td>Pulled low while the Pico is talking to the display</td>
+</tr>
+<tr>
+<td>DC</td>
+<td>Data/command</td>
+<td>Low means the byte is a command, high means it is data</td>
+</tr>
+<tr>
+<td>RST</td>
+<td>Reset</td>
+<td>A brief low pulse restarts the controller</td>
+</tr>
+<tr>
+<td>BL</td>
+<td>Backlight</td>
+<td>High turns the screen's light on</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> Here is what happens on the wires when you call <code>display.pixel(10, 20, config.RED)</code>. The driver sends the "set column" command and then the x range (10 to 10), the "set row" command and the y range (20 to 20), and the "write memory" command, and finally the two bytes of the red color. Every command byte is sent with DC low, and every data byte with DC high.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>SPI bytes sent</th>
+<th>DC level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set column command</td>
+<td>1 byte (0x2A)</td>
+<td>low</td>
+</tr>
+<tr>
+<td>Column range 10 to 10</td>
+<td>4 bytes: 00 0A 00 0A</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Set row command</td>
+<td>1 byte (0x2B)</td>
+<td>low</td>
+</tr>
+<tr>
+<td>Row range 20 to 20</td>
+<td>4 bytes: 00 14 00 14</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Write memory command</td>
+<td>1 byte (0x2C)</td>
+<td>low</td>
+</tr>
+<tr>
+<td>The pixel (red, 0xF800)</td>
+<td>2 bytes: F8 00</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<p>That is 13 bytes of traffic to color a single pixel. Keep this number in mind: it is the reason Chapters 5 and 6 teach you to send whole rectangles of pixels at once.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">The Display Remembers</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+The Pico does not keep a copy of the picture, because the controller does. That is why you can draw one small box and leave everything else alone, and it is also why a bad wire can leave the screen showing old pixels instead of an error.</p>
+</div>
+<h2 id="the-ears-the-inmp441-microphone">The Ears: The INMP441 Microphone<a class="headerlink" href="#the-ears-the-inmp441-microphone" title="Permanent link">&para;</a></h2>
+<h3 id="the-mems-microphone">The MEMS Microphone<a class="headerlink" href="#the-mems-microphone" title="Permanent link">&para;</a></h3>
+<p>A <strong>MEMS microphone</strong> is a microphone built like a computer chip. MEMS stands for micro-electro-mechanical system: a membrane thinner than a hair is etched into silicon, and sound pressure makes it move, which changes an electrical signal. It is small, cheap, and consistent from one unit to the next, which is why phones use it.</p>
+<h3 id="the-inmp441-board">The INMP441 Board<a class="headerlink" href="#the-inmp441-board" title="Permanent link">&para;</a></h3>
+<p>The <strong>INMP441</strong> is a MEMS microphone with the analog-to-digital converter inside the same package, so it sends finished numbers to the Pico. Its output is 24-bit audio on an I2S bus, and the kit asks for 12,800 samples each second. Its datasheet lists a response from about 60 Hz to 15 kHz, which easily covers the kit's 6,400 Hz limit from Chapter 3.</p>
+<p>The board has six pins.</p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>Connects to</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCK</td>
+<td>GP10</td>
+<td>Serial clock from the Pico</td>
+</tr>
+<tr>
+<td>WS</td>
+<td>GP11</td>
+<td>Word select from the Pico</td>
+</tr>
+<tr>
+<td>SD</td>
+<td>GP12</td>
+<td>Serial data, microphone to Pico</td>
+</tr>
+<tr>
+<td>L/R</td>
+<td>GND</td>
+<td>Picks the left channel (3V3 would pick right)</td>
+</tr>
+<tr>
+<td>VDD</td>
+<td>3V3</td>
+<td>Power, a 3.3 V part</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>Ground</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> In a quiet room, test 06 reports a noise floor of about 12.5 bits. As a number, <span class="arithmatex">\( 2^{12.5} \approx 5{,}800 \)</span>. The largest 24-bit sample is <span class="arithmatex">\( 2^{23} = 8{,}388{,}608 \)</span>. The room noise is therefore about <span class="arithmatex">\( 20 \log_{10}(5800 / 8388608) \approx -63 \)</span> dB below the loudest sound the microphone can report. Your own value will differ with the room, which is why the test calibrates instead of assuming.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Two Wires You Can Swap by Accident</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+The microphone's SCK and WS wires, and also SCK and SD, are easy to swap because the board's pin labels are tiny. A swapped microphone starts without any error and sends only zeros, so test 02 prints "flat line." Check in this order: SCK on GP10, WS on GP11, SD on GP12.</p>
+</div>
+<h2 id="the-voice-amplifier-and-speaker">The Voice: Amplifier and Speaker<a class="headerlink" href="#the-voice-amplifier-and-speaker" title="Permanent link">&para;</a></h2>
+<h3 id="the-speaker">The Speaker<a class="headerlink" href="#the-speaker" title="Permanent link">&para;</a></h3>
+<p>A <strong>speaker</strong> turns an electrical signal into sound. A coil of wire attached to a paper or plastic cone sits in a magnetic field. When the signal flows through the coil, the cone moves in and out and pushes the air, recreating the pressure wave from Chapter 3. Speakers are rated by <em>impedance</em> in ohms (small ones are usually 4 or 8 ohms; check the label on yours) and by the power they can handle.</p>
+<p><em>Worked example.</em> The power in a speaker is <span class="arithmatex">\( P = V^2 / R \)</span>. To deliver 1 watt into a 4 ohm speaker the voltage across it must be <span class="arithmatex">\( V = \sqrt{P \times R} = \sqrt{1 \times 4} = 2 \)</span> volts. The Pico's pins can only supply a tiny current, so they cannot drive a speaker directly. That is the job of the amplifier.</p>
+<h3 id="the-class-d-amplifier">The Class-D Amplifier<a class="headerlink" href="#the-class-d-amplifier" title="Permanent link">&para;</a></h3>
+<p>A <strong>class-D amplifier</strong> makes sound with switches. Its output transistors are always either fully on or fully off, and they flip thousands of times each second, varying the width of each pulse to match the sound. Because a transistor that is fully on or off wastes almost no power, class-D amplifiers are very efficient and run cool. That matters in a small USB-powered device.</p>
+<p><em>Worked example.</em> Suppose the speaker needs 1 watt. A class-D amplifier that is 90 percent efficient draws about <span class="arithmatex">\( 1 / 0.9 \approx 1.11 \)</span> watts from the supply and wastes about 0.11 W as heat. An older design that is only 50 percent efficient would draw 2 watts and waste a full watt, enough to warm a small board.</p>
+<h3 id="the-max98357a-amplifier">The MAX98357A Amplifier<a class="headerlink" href="#the-max98357a-amplifier" title="Permanent link">&para;</a></h3>
+<p>The <strong>MAX98357A</strong> combines a digital-to-analog converter and a class-D amplifier in one chip. It takes digital audio over I2S and drives the speaker directly, so there is no separate converter to wire and no resistor to choose. Its breakout board has these connections.</p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th>Connects to</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BCLK</td>
+<td>GP20</td>
+<td>Bit clock from the Pico</td>
+</tr>
+<tr>
+<td>LRC</td>
+<td>GP21</td>
+<td>Left/right (word select) clock from the Pico</td>
+</tr>
+<tr>
+<td>DIN</td>
+<td>GP19</td>
+<td>Audio data from the Pico</td>
+</tr>
+<tr>
+<td>GAIN</td>
+<td>GP18</td>
+<td>Sets loudness: the Pico can float it, pull it low, or push it high</td>
+</tr>
+<tr>
+<td>VIN</td>
+<td>VBUS (5 V) or 3V3</td>
+<td>Power</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>Ground</td>
+</tr>
+<tr>
+<td>Output terminals</td>
+<td>Speaker</td>
+<td>The amplified sound</td>
+</tr>
+</tbody>
+</table>
+<p>The GAIN pin has three settings, chosen by what the pin is tied to. The kit's <code>set_gain()</code> function picks one in software, and the default is 9 dB.</p>
+<table>
+<thead>
+<tr>
+<th>Pin state</th>
+<th>Gain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tied high (to the amplifier's VIN)</td>
+<td>6 dB (only if VIN is 3.3 V)</td>
+</tr>
+<tr>
+<td>Left floating (the default)</td>
+<td>9 dB</td>
+</tr>
+<tr>
+<td>Tied to GND</td>
+<td>12 dB</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-warning">
+<p class="admonition-title">BCLK and LRC Must Be Neighbors</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+MicroPython's I2S needs the left/right clock on the pin right after the bit clock. Here BCLK is GP20 and LRC is GP21. If you move one without the other, <code>I2S()</code> raises an error. The same rule holds for the microphone: SCK on GP10 and WS on GP11.</p>
+</div>
+<h2 id="the-hands-push-buttons">The Hands: Push Buttons<a class="headerlink" href="#the-hands-push-buttons" title="Permanent link">&para;</a></h2>
+<h3 id="the-push-button">The Push Button<a class="headerlink" href="#the-push-button" title="Permanent link">&para;</a></h3>
+<p>A <strong>push button</strong> (also called a tactile switch) is a switch that connects two wires only while you press it. The small square ones in the kit have four legs, but they are really two pairs. The two legs on one side are joined inside the button all the time, and pressing the button joins the two sides together.</p>
+<p>That construction creates a common mistake. If you wire the button with both of its wires on the <em>same</em> side, the button is always connected and always reads "pressed." Place the button so that the two wires go to legs on opposite sides.</p>
+<p><em>Worked example.</em> To wire MODE, put one leg's wire on GP13 (physical pin 17) and the opposite side's wire on any GND. The kit's <code>config.init_buttons()</code> then sets GP13 as an input with a pull-up. The button reads 1 when released and 0 while pressed. Test 03 confirms it by printing each press and release.</p>
+<h3 id="the-pull-up-resistor">The Pull-Up Resistor<a class="headerlink" href="#the-pull-up-resistor" title="Permanent link">&para;</a></h3>
+<p>A <strong>pull-up resistor</strong> is a resistor that gently connects a pin to 3.3 V, so the pin has a definite value when nothing else is driving it. Without it, a button that is not pressed leaves the pin <em>floating</em>, which means it picks up stray signals and reads unpredictably. (On the board used to test this book, an unconnected GP16 happened to hold steady at 0, but nothing guarantees that.) With the pull-up, the pin reads 1 until the button connects it to ground, and then reads 0. The Pico has pull-up resistors built in, which <code>Pin.PULL_UP</code> turns on, so the buttons need no extra parts.</p>
+<p>A <strong>pull-down resistor</strong> is the mirror image: it gently connects the pin to ground, so the pin reads 0 until something connects it to 3.3 V. The Pico has these built in too (<code>Pin.PULL_DOWN</code>), but there is a catch on the Pico 2 W. On the test board, GP16 and GP17 kept reading 1 with the pull-down turned on once the pin had been driven or pulled high, and did not fall back to 0. A third pin, GP9, did not do this. Driving the pin low first made it read 0. The pull-ups showed no problem, reading 1 every time. This looks like a known quirk of the RP2350 pads (check Raspberry Pi's RP2350 errata for the details). It is one more reason the kit's buttons use pull-ups, and if you ever need a pull-down, drive the pin low for a moment first or use a real resistor.</p>
+<table>
+<thead>
+<tr>
+<th>Test on GP16</th>
+<th>Readings (40 each)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pull-up</td>
+<td>40 ones</td>
+</tr>
+<tr>
+<td>Pull-down, pin driven low first</td>
+<td>40 zeros</td>
+</tr>
+<tr>
+<td>Pull-down, pin driven high first</td>
+<td>40 ones (the pull-down did not pull it low)</td>
+</tr>
+</tbody>
+</table>
+<p><code>src/chapters/04-pico-kit-hardware/03-floating-pin-demo.py</code> repeats this test on your board.</p>
+<h4 id="diagram-pull-up-button-circuit">Diagram: Pull-Up Button Circuit<a class="headerlink" href="#diagram-pull-up-button-circuit" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Pull-Up Button Circuit</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> pull-up-button-circuit<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> infer<br/>
+<strong>Learning Objective:</strong> The learner will infer the value a GPIO input pin reads for 6 button circuits, given the pin's pull setting, what the button's other leg connects to, and whether the button is pressed, with at least 5 of 6 correct.</p>
+<p><strong>Prerequisites:</strong> push button, pull-up resistor, floating pin, GPIO input (all defined in the sections above this block and in Chapter 2).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 circuits the learner commits to "reads 1", "reads 0", or "unpredictable" before the result is shown. A prediction is correct when it matches the Pin reads column in Content. Mastery is 5 of 6 on the first attempt. Pressing the button in the example circuit and watching the reading is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) A button always reads 1 when pressed. (2) A pin with nothing attached reads 0. (3) The pull-up is what makes the pin read 1 even while the button is pressed to ground. (4) A pull-down always pulls the pin to 0, even after the pin has been high.</p>
+<p><strong>Instructional Rationale:</strong> An Understand-level inference needs the learner to reason from a circuit's parts to a result. Predicting before the result is shown makes the learner apply the rule that a connected path wins over a pull.</p>
+<p><strong>Content:</strong></p>
+<p>The circuit shows a Pico input pin, an optional internal pull, and a button whose other leg connects to GND or to 3V3.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Pin pull setting</th>
+<th>Button's other leg connects to</th>
+<th>Button</th>
+<th>Pin reads</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Pull-up</td>
+<td>GND</td>
+<td>Released</td>
+<td>1</td>
+<td>Nothing pulls the pin down, so the pull-up holds it at 1.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pull-up</td>
+<td>GND</td>
+<td>Pressed</td>
+<td>0</td>
+<td>The button connects the pin to GND, which beats the weak pull-up.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>None (floating)</td>
+<td>GND</td>
+<td>Released</td>
+<td>unpredictable</td>
+<td>With no pull and no connection, the pin picks up stray signals.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Pull-up</td>
+<td>3V3</td>
+<td>Pressed</td>
+<td>1</td>
+<td>Both the pull-up and the button push the pin toward 3.3 V.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Pull-down</td>
+<td>3V3</td>
+<td>Pressed</td>
+<td>1</td>
+<td>The button connects the pin to 3V3, which beats the weak pull-down.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Pull-down (pin was low before)</td>
+<td>3V3</td>
+<td>Released</td>
+<td>0</td>
+<td>Nothing pulls the pin up, so the pull-down holds it at 0, as long as the pin was low before.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The reasoning rule comes from the chapter section "The Pull-Up Resistor." The six circuits are illustrative, and the sim labels them "illustrative." The reality check after circuit 6 comes from the measurement on GP16 and GP17 in the same section.</p>
+<p><strong>Rules:</strong> A connection from the pin to GND or 3V3 through a pressed button overrides the pin's internal pull (pull-up or pull-down). With a released button and a pull setting, the pin reads the pull's level (1 for pull-up, 0 for pull-down). With a released button and no pull, the pin reads an unpredictable value that the sim shows as alternating 0 and 1. A pull-down only pulls the pin to 0 if the pin was low before; the reality check shows the case where it was high.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner explores a sample circuit (pull-up, GND, button released) and presses the button to watch the reading change from 1 to 0.</li>
+<li>The learner starts the challenges. Circuit 1 is shown with the button state.</li>
+<li>The learner picks "reads 1," "reads 0," or "unpredictable."</li>
+<li>The sim shows the reading and the Why text, then moves to the next circuit.</li>
+<li>After circuit 6, the sim shows the score. The learner should notice that circuit 4 is the wiring mistake that makes a button seem dead.</li>
+<li>The sim then shows an unscored reality check: a pin set to pull-down after it was driven high still reads 1 on the test board (GP16 and GP17), while a pull-up always reads 1. The learner is asked to explain, from a choice of two sentences, why the kit uses pull-ups. The correct sentence is "Pull-ups worked every time on the test board, and the pull-down did not." The other sentence is "Pull-ups and pull-downs behaved the same on the test board."</li>
+</ol>
+<p><strong>Feedback:</strong> 6 circuits, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The pin reads <answer>: <Why>". The answer is revealed right after each pick, and a running score "n of 6" is shown. The reality check is not scored: a wrong choice shows the correct sentence and the table of readings.</p>
+<p><strong>Starting State:</strong> The sample circuit is shown with the button released and the pin reading 1, with the question "What will the pin read when the button is pressed?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that with a pull-up and the button to ground, a released button reads 1 and a pressed button reads 0, and that the kit uses the pull-up built into the Pico. The chapter also states that on the test board a pull-down on GP16 and GP17 kept reading 1 after the pin had been driven high, and that pull-ups were not affected.</p>
+</details>
+<h2 id="wiring-it-up">Wiring It Up<a class="headerlink" href="#wiring-it-up" title="Permanent link">&para;</a></h2>
+<h3 id="the-breadboard">The Breadboard<a class="headerlink" href="#the-breadboard" title="Permanent link">&para;</a></h3>
+<p>A <strong>breadboard</strong> is a plastic board with rows of small holes. Metal strips under the holes connect them in groups, so you can join parts by pushing wires into the same group instead of soldering. In the middle area, each short row of five holes is connected, and a gap down the center separates the left half from the right. Along the long edges are power rails, which connect all the way along.</p>
+<p><em>Worked example.</em> Place the Pico so that it straddles the center gap, one row of its pins on each side. That leaves four free holes beside every pin, in the same connected group, so you can plug a wire right next to any pin. A wire in a hole beside GP13 is electrically connected to GP13.</p>
+<table>
+<thead>
+<tr>
+<th>Breadboard area</th>
+<th>How the holes connect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Middle rows</td>
+<td>Groups of five holes in a row are connected</td>
+</tr>
+<tr>
+<td>Center gap</td>
+<td>Separates the two halves, so they are not connected</td>
+</tr>
+<tr>
+<td>Long edge rails</td>
+<td>All holes in one rail are connected, from end to end</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dupont-wires">Dupont Wires<a class="headerlink" href="#dupont-wires" title="Permanent link">&para;</a></h3>
+<p><strong>Dupont wires</strong> are the thin jumper cables with small plastic ends. Male ends have a pin that pushes into a breadboard hole, and female ends have a socket that slides over the pins on a module. You need male-to-male wires between breadboard holes and male-to-female wires from the breadboard to a module's header. The display wiring in <code>config.py</code> records the color of each wire, which makes tracing a mistake much easier: SCL orange, SDA yellow, RST green, DC blue, CS purple, BL gray, VCC red, and GND black.</p>
+<h3 id="the-pin-assignment-table">The Pin Assignment Table<a class="headerlink" href="#the-pin-assignment-table" title="Permanent link">&para;</a></h3>
+<p>A <strong>pin assignment table</strong> is a table that lists, for every part, which Pico pin each of its wires goes to. It is the one document you wire from and debug against. Everything in the kit's <code>config.py</code> comes from this table.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Part pin</th>
+<th>Pico pin</th>
+<th>Physical pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display</td>
+<td>SCL</td>
+<td>GP2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>SDA</td>
+<td>GP3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>RST</td>
+<td>GP4</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>DC</td>
+<td>GP5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>CS</td>
+<td>GP6</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>BL</td>
+<td>GP7</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>VCC, GND</td>
+<td>3V3, GND</td>
+<td>36, any GND</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>SCK</td>
+<td>GP10</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>WS</td>
+<td>GP11</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>SD</td>
+<td>GP12</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>L/R, GND</td>
+<td>GND</td>
+<td>any GND</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>VDD</td>
+<td>3V3</td>
+<td>36</td>
+</tr>
+<tr>
+<td>Button MODE</td>
+<td>one leg</td>
+<td>GP13</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Button UP</td>
+<td>one leg</td>
+<td>GP14</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Button DOWN</td>
+<td>one leg</td>
+<td>GP15</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Buttons</td>
+<td>other legs</td>
+<td>GND</td>
+<td>any GND</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>DIN</td>
+<td>GP19</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>BCLK</td>
+<td>GP20</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>LRC</td>
+<td>GP21</td>
+<td>27</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>GAIN</td>
+<td>GP18</td>
+<td>24</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>VIN</td>
+<td>VBUS or 3V3</td>
+<td>40 or 36</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>GND</td>
+<td>GND</td>
+<td>any GND</td>
+</tr>
+</tbody>
+</table>
+<p>Three rules hold the table together. First, each GP pin appears once, so no two wires share a pin. Second, the I2S pairs are neighbors: microphone SCK and WS on GP10 and GP11, amplifier BCLK and LRC on GP20 and GP21. Third, nothing connects to GP23, GP24, GP25, or GP29, which belong to the wireless chip.</p>
+<p>The kit is built in stages, and each test checks exactly the parts wired so far. That makes any wiring error easy to localize.</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Wire first</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>Nothing (just the Pico)</td>
+<td>The onboard LED blinks</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Anything you have</td>
+<td>No warnings for the parts you wired</td>
+</tr>
+<tr>
+<td>03</td>
+<td>The three buttons</td>
+<td>Each press and release prints, then "PASS"</td>
+</tr>
+<tr>
+<td>04</td>
+<td>The display</td>
+<td>"Hello World!" inside a cyan ring</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Amplifier and speaker</td>
+<td>A beep, a scale, three volumes</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Microphone (with the display)</td>
+<td>The meter moves when you talk</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Everything together</td>
+<td>Hold MODE, talk, hear it back</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Wire One Part, Then Test</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+Do not wire all five parts and then run everything. Add one part, run its test from the table, and only then add the next. When a test fails, you know the problem is in the part you just added.</p>
+</div>
+<p>The last activity of the chapter puts the pin assignment table to work on six wiring listings that each contain one mistake.</p>
+<h4 id="diagram-kit-wiring-fault-finder">Diagram: Kit Wiring Fault Finder<a class="headerlink" href="#diagram-kit-wiring-fault-finder" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Kit Wiring Fault Finder</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> kit-wiring-fault-finder<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> examine<br/>
+<strong>Learning Objective:</strong> The learner will examine 6 wiring listings against the pin assignment table and identify the one wrong connection in each, with at least 5 of 6 correct on the first attempt.</p>
+<p><strong>Prerequisites:</strong> pin assignment table, ground wiring, pull-up resistor, the I2S neighbor rule, the 3.3 V rule for the microphone (all defined in the sections above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each listing the learner selects the one line that does not match the pin assignment table. A selection is correct when it equals the Faulty line column in Content. Mastery is 5 of 6 on the first attempt. Reading the pin assignment table while answering is allowed, and is not scored.</p>
+<p><strong>Misconceptions:</strong> (1) A wiring mistake always produces an error message. (2) Any 5 V part can use the 5 V pin. (3) The two I2S pins can be assigned in either order.</p>
+<p><strong>Instructional Rationale:</strong> Analyze-level examination requires comparing a whole against a reference and locating the departure. A listing with exactly one fault trains the learner to check each line against the table, which is the same skill used when debugging a real kit.</p>
+<p><strong>Content:</strong></p>
+<p>Each listing shows the wires of one part as "part pin to Pico pin or rail." The reference is the table "The Pin Assignment Table" in this chapter.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Part</th>
+<th>Listing shown</th>
+<th>Faulty line</th>
+<th>Correct connection</th>
+<th>What the learner would see (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Microphone</td>
+<td>SCK to GP10; WS to GP11; SD to GP12; L/R to GND; VDD to VBUS (5 V); GND to GND</td>
+<td>VDD to VBUS (5 V)</td>
+<td>VDD to 3V3</td>
+<td>The INMP441 is a 3.3 V part. A 5 V supply can damage it.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Microphone</td>
+<td>SCK to GP10; WS to GP13; SD to GP12; L/R to GND; VDD to 3V3; GND to GND</td>
+<td>WS to GP13</td>
+<td>WS to GP11</td>
+<td>I2S() raises "invalid ws (must be sck+1)", and GP13 is also the MODE button.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Amplifier</td>
+<td>BCLK to GP20; LRC to GP22; DIN to GP19; GAIN to GP18; VIN to VBUS; GND to GND</td>
+<td>LRC to GP22</td>
+<td>LRC to GP21</td>
+<td>I2S() raises an error because the left/right clock must be the pin right after the bit clock.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Button MODE</td>
+<td>One leg to GP13; the leg on the opposite side to 3V3</td>
+<td>Opposite leg to 3V3</td>
+<td>Opposite leg to GND</td>
+<td>With a pull-up, the pin always reads 1, so test 03 never reports a press.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Display</td>
+<td>SCL to GP2; SDA to GP3; RST to GP4; DC to GP5; CS to GP6; BL not connected; VCC to 3V3; GND to GND</td>
+<td>BL not connected</td>
+<td>BL to GP7</td>
+<td>The screen stays dark in test 04 because the backlight never turns on.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Amplifier</td>
+<td>BCLK to GP20; LRC to GP21; DIN to GP19; GAIN to GP18; VIN to VBUS; GND not connected</td>
+<td>GND not connected</td>
+<td>GND to GND</td>
+<td>Test 05 is silent because the amplifier has no ground return.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The listings and symptoms come from the kit README and the headers of tests 03, 04, and 05 in <code>src/kits/study-buddy-base/</code>, and from the table "The Pin Assignment Table" in this chapter.</p>
+<p><strong>Rules:</strong> Each listing has exactly one faulty line. A selection is correct only if it is the faulty line. The reference table is always available to the learner.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads listing 1 and selects the line that does not match the pin assignment table.</li>
+<li>The sim shows whether it was correct, the correct connection, and the symptom text.</li>
+<li>The learner continues through listing 6.</li>
+<li>After listing 6, the sim shows the score. The learner should notice that only some mistakes produce an error message.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 listings, fixed order, one attempt each. Correct: "Correct: <symptom text>". Incorrect: "Not quite. The faulty line is <faulty line>: <symptom text>". The correct line is revealed right after each selection, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> Listing 1 is shown with the pin assignment table beside it and the question "Which line does not match the table?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states the microphone pins SCK GP10, WS GP11, SD GP12, the amplifier pins BCLK GP20, LRC GP21, DIN GP19, GAIN GP18, the display backlight on GP7, and the MODE button on GP13.</p>
+</details>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>You now have the five parts, the rules that connect them, and a table to check every wire against. The Pico is the brain and the Wi-Fi link. The round display and its controller are the eyes. The INMP441 and its built-in converter are the ears. The MAX98357A and a speaker are the voice. Three buttons wired to ground with built-in pull-ups are the hands.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>The kit has five parts: the Pico 2 W, the round display, the INMP441 microphone, the MAX98357A amplifier with a speaker, and three push buttons.</li>
+<li>The RP2350 chip has two Cortex-M33 cores, 520 KB of SRAM, and a 2.4 GHz Wi-Fi radio chip that takes pins GP23, GP24, GP25, and GP29.</li>
+<li>The display controller keeps the picture; the Pico sends commands and pixels over SPI, using DC to tell them apart.</li>
+<li>Both the microphone and the amplifier use I2S, and each needs its word-select pin right after its clock pin.</li>
+<li>The microphone is a 3.3 V part; the amplifier can use 5 V.</li>
+<li>A push button wired to ground with a pull-up reads 0 when pressed.</li>
+<li>Every part shares one ground, and wiring one part at a time with its test finds mistakes quickly.</li>
+</ul>
+<p>Test yourself with these two questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>Your microphone starts without errors, but test 02 reports a flat line. What do you check first? Click to expand</summary>
+<p>The SCK, WS, and SD wires: SCK on GP10, WS on GP11, SD on GP12. A swapped microphone sends only zeros without any error. Then check that VDD is on 3V3 and that GND and L/R are both on ground.</p>
+</details>
+<details class="question">
+<summary>Why does coloring one pixel take 13 bytes of SPI traffic? Click to expand</summary>
+<p>The driver must tell the controller which column and row to write (two commands with four bytes of range each), send the write-memory command, and then send the two bytes of the color. The overhead is far larger than the pixel, so Chapters 5 and 6 send whole rectangles at once.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Kit Wired and Understood</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just learned what each of the five parts does, how they share power and ground, and how to check every wire against the pin assignment table. With a wired kit and passing tests 01 to 07, you are ready to put pictures on that round screen.</p>
+</div>
+<p>In Chapter 5 we start with the display, and find out why drawing a whole frame is so slow.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

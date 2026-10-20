@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="How to make MicroPython fast enough for the 40 ms audio frame: measuring with ticks_us and the DWT cycle counter, avoiding allocation, typed arrays, Q15 fixed-point math, @micropython.viper, inline assembly, a viper FFT, the second core, and the trade-offs of each speed-up.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>10. High-Performance MicroPython - Open Study Buddy</title>
+        <title>High-Performance MicroPython - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              10. High-Performance MicroPython
+              High-Performance MicroPython
             
           </span>
         </div>
@@ -686,6 +686,261 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-40-ms-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      The 40 ms Promise
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-real-time-constraint-and-the-frame-overrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Real-Time Constraint and the Frame Overrun
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure-first-benchmarking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measure First: Benchmarking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-cycle-counter-and-the-dwt-timer" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Cycle Counter and the DWT Timer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-and-timing-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiling and Timing Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-baseline-pure-python-fft" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Baseline: Pure Python FFT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-python-costs-so-much-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Python Costs So Much Here
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Python Costs So Much Here">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#floating-point-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floating Point Cost
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typed-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typed Arrays
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-passed-by-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Array Passed By Address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoiding-allocation-and-pre-allocated-buffers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avoiding Allocation and Pre-Allocated Buffers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Avoiding Allocation and Pre-Allocated Buffers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-allocation-classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Allocation Classifier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-precomputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Precomputation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-point-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed-Point Math
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fixed-Point Math">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-q15-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Q15 Calculator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viper-machine-code-from-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viper: Machine Code from Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-viper-q15-fft" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Viper Q15 FFT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Viper Q15 FFT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-accurate-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      How accurate is it?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inline-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inline Assembly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-assembly-fft" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Assembly FFT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-second-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the Second Core
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-performance-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing: Performance Trade-Offs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choosing: Performance Trade-Offs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-speed-up-chooser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Speed-Up Chooser
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-results-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Results Table
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -865,6 +1120,69 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
       
     </li>
   
@@ -1069,6 +1387,261 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-40-ms-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      The 40 ms Promise
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-real-time-constraint-and-the-frame-overrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Real-Time Constraint and the Frame Overrun
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure-first-benchmarking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Measure First: Benchmarking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-cycle-counter-and-the-dwt-timer" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Cycle Counter and the DWT Timer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-and-timing-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiling and Timing Verification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-baseline-pure-python-fft" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Baseline: Pure Python FFT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-python-costs-so-much-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Python Costs So Much Here
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Python Costs So Much Here">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#floating-point-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floating Point Cost
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typed-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typed Arrays
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-passed-by-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      Array Passed By Address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoiding-allocation-and-pre-allocated-buffers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avoiding Allocation and Pre-Allocated Buffers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Avoiding Allocation and Pre-Allocated Buffers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-allocation-classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Allocation Classifier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-precomputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table Precomputation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-point-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed-Point Math
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fixed-Point Math">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-q15-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Q15 Calculator
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viper-machine-code-from-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viper: Machine Code from Python
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-viper-q15-fft" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Viper Q15 FFT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Viper Q15 FFT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-accurate-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      How accurate is it?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inline-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inline Assembly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-assembly-fft" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Assembly FFT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-second-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the Second Core
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-performance-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing: Performance Trade-Offs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choosing: Performance Trade-Offs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-speed-up-chooser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Speed-Up Chooser
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-results-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Results Table
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1196,13 +1769,1194 @@
 <li><a href="../09-signal-processing-fft/">Chapter 9: Signal Processing and the FFT</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="the-40-ms-promise">The 40 ms Promise<a class="headerlink" href="#the-40-ms-promise" title="Permanent link">&para;</a></h2>
+<p>Chapter 9 ended with an uncomfortable fact: the whole spectrum pipeline is written in plain Python, and the FFT inside it does 2,304 butterflies in every 40 ms frame. This chapter is about keeping the promise from Chapter 8, that every pass of the loop finishes before the next frame arrives. It teaches a method more than a bag of tricks: <em>measure, find the biggest cost, fix that, measure again</em>.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Make It Fit in 40 Milliseconds</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+In this chapter you will time your own code down to single CPU cycles and learn the tricks that can make a slow loop dramatically faster. Let's listen closely! You will also learn when <em>not</em> to use them.</p>
+</div>
+<p><strong>An honest note before we start.</strong> I could not run any of this chapter's benchmarks on the real kit while writing it. Everything that follows is either arithmetic you can check, a fact I verified in the MicroPython source or documentation, a result I computed by running the same integer code on a computer, or a clearly labelled <em>estimate</em>. Every speed that only the Pico can reveal is a blank in the results table near the end, with a script that fills it in. The code was checked in real MicroPython on a computer and against a software model of the Pico's rules, and <code>src/chapters/10-high-performance-micropython/README.md</code> lists exactly what was and was not checked.</p>
+<h2 id="the-real-time-constraint-and-the-frame-overrun">The Real-Time Constraint and the Frame Overrun<a class="headerlink" href="#the-real-time-constraint-and-the-frame-overrun" title="Permanent link">&para;</a></h2>
+<p>A <strong>real-time constraint</strong> is a deadline that a result must meet to be useful. A spectrum that arrives 200 ms late is not a slow answer; it is a wrong one, because the sound it describes has already gone. For the Study Buddy the deadline comes from the microphone: a new 512-sample frame arrives every 40 ms whether or not your code is ready for it.</p>
+<p>Chapter 8 introduced the budget. In cycles it looks like this, at the Pico 2's 150 MHz clock:</p>
+<div class="arithmatex">\[ 0.040 \text{ s} \times 150{,}000{,}000 \text{ cycles/s} = 6{,}000{,}000 \text{ cycles per frame}, \qquad \frac{6{,}000{,}000}{512} \approx 11{,}719 \text{ cycles per sample.} \]</div>
+<p>A <strong>frame overrun</strong> is a pass of the loop whose work takes longer than one frame. While your code is busy the microphone keeps filling its ring buffer, so the next <code>readinto()</code> returns at once with an old frame, and the backlog grows. Chapter 8 measured the ring's depth at about 9.8 frames; once the backlog passes that, audio is lost. A loop can therefore be in one of three states, and a program that counts them is much easier to trust than one that only prints an average.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>How the loop sees it</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On time</td>
+<td><code>readinto()</code> waited more than a few milliseconds</td>
+<td>The frame was not ready yet; there is spare time</td>
+</tr>
+<tr>
+<td>Behind</td>
+<td><code>readinto()</code> returned in under 4 ms</td>
+<td>The frame was already waiting; the loop has no spare time</td>
+</tr>
+<tr>
+<td>Overrun</td>
+<td>The work in this pass was longer than 40 ms</td>
+<td>The backlog grew by this pass; audio will be lost if it keeps happening</td>
+</tr>
+</tbody>
+</table>
+<p><code>06-frame-loop-budget.py</code> counts all three for a real microphone loop, and it holds back 10 ms of the budget for the screen update, because Chapter 6 measured 8.5 ms for the spectrum region. So the working limit for the audio work is 30 ms.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">A Deadline Is Not a Speed</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+A fast loop is not the same as a loop that meets its deadline. Notice that the average does not matter: one pass in a hundred that takes 90 ms is enough to lose audio. Real-time code is judged by its <em>worst</em> pass.</p>
+</div>
+<h2 id="measure-first-benchmarking">Measure First: Benchmarking<a class="headerlink" href="#measure-first-benchmarking" title="Permanent link">&para;</a></h2>
+<p><strong>Benchmarking</strong> is timing a piece of code in a way you can repeat and trust. A single timing is not trustworthy, because interrupts and garbage collection add random delays. The recipe in <code>bench.py</code> is short:</p>
+<ol>
+<li>Call <code>gc.collect()</code> first, so a collection does not strike in the middle of the timing.</li>
+<li>Run the code several times.</li>
+<li>Report the <em>best</em> time, which is the run that was disturbed least and so measures the code itself.</li>
+<li>Separately, look at the spread of times to see how much a single run can vary.</li>
+</ol>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">bench</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">budget_us</span><span class="o">=</span><span class="mi">40000</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">best_us</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n">us</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">(),</span> <span class="n">t0</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">if</span> <span class="n">best_us</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">us</span> <span class="o">&lt;</span> <span class="n">best_us</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            <span class="n">best_us</span> <span class="o">=</span> <span class="n">us</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">best_us</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">"ms"</span><span class="p">,</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">best_us</span> <span class="o">/</span> <span class="n">budget_us</span><span class="p">,</span> <span class="s2">"</span><span class="si">% o</span><span class="s2">f a frame"</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The real function also reads the cycle counter, described next, and prints a <code>RESULT|...</code> line you can paste into a table. <code>time.ticks_us()</code> counts microseconds, and one microsecond is 150 CPU cycles, so it cannot resolve anything shorter than a few hundred cycles. Time a loop of 512 samples or more, never a single statement.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Best of Five</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+When a timing jumps around, run the code five times and keep the smallest number. The smallest is the run with the least interference, so it is the closest to what the code itself costs. For a deadline, though, also look at the largest.</p>
+</div>
+<h2 id="the-cycle-counter-and-the-dwt-timer">The Cycle Counter and the DWT Timer<a class="headerlink" href="#the-cycle-counter-and-the-dwt-timer" title="Permanent link">&para;</a></h2>
+<p>A <strong>cycle counter</strong> is a hardware register that adds one on every tick of the CPU clock. At 150 MHz one cycle is 6.67 ns, so a counter gives timings 150 times finer than <code>ticks_us()</code> and, better, in the unit that the instruction manuals use. The ARM Cortex-M33 processor in the Pico 2 has such a counter inside a block called the <strong>DWT</strong> (Data Watchpoint and Trace). The <strong>DWT timer</strong> is that cycle counter. It sits at fixed addresses and MicroPython reaches it through <code>machine.mem32</code>, which reads and writes any 32-bit address:</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Address</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEMCR</td>
+<td>0xE000EDFC</td>
+<td>Set bit 24 (TRCENA) to switch the DWT block on</td>
+</tr>
+<tr>
+<td>DWT_CTRL</td>
+<td>0xE0001000</td>
+<td>Set bit 0 (CYCCNTENA) to start counting; bit 25 (NOCYCCNT) set means there is no counter</td>
+</tr>
+<tr>
+<td>DWT_CYCCNT</td>
+<td>0xE0001004</td>
+<td>The count itself, 32 bits</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">mem32</span><span class="p">[</span><span class="n">DEMCR</span><span class="p">]</span> <span class="o">=</span> <span class="n">mem32</span><span class="p">[</span><span class="n">DEMCR</span><span class="p">]</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="p">)</span>          <span class="c1"># allow the DWT block</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span> <span class="n">mem32</span><span class="p">[</span><span class="n">DWT_CTRL</span><span class="p">]</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">25</span><span class="p">):</span>                  <span class="c1"># NOCYCCNT: this core has no counter</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="o">...</span>                                          <span class="c1"># fall back to ticks_us()</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">mem32</span><span class="p">[</span><span class="n">DWT_CYCCNT</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">mem32</span><span class="p">[</span><span class="n">DWT_CTRL</span><span class="p">]</span> <span class="o">=</span> <span class="n">mem32</span><span class="p">[</span><span class="n">DWT_CTRL</span><span class="p">]</span> <span class="o">|</span> <span class="mi">1</span>            <span class="c1"># start counting</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">cycles</span> <span class="o">=</span> <span class="n">mem32</span><span class="p">[</span><span class="n">DWT_CYCCNT</span><span class="p">]</span>                       <span class="c1"># read it</span>
+</span></code></pre></div>
+<p><strong>This is unverified on the RP2350.</strong> The three registers are standard for Cortex-M cores, and I could not confirm that this chip implements the counter or that MicroPython may touch it. <code>01-cycle-counter.py</code> finds out. It tries the sequence, checks that the counter changes, and compares its rate with <code>ticks_us()</code>: a working counter gives about 150 cycles per microsecond. If it reports no counter, nothing else in the chapter breaks, because <code>bench.py</code> falls back to microseconds and you convert at 150 cycles per microsecond.</p>
+<p>Two details matter either way. The counter is 32 bits, so it wraps after <span class="arithmatex">\( 2^{32}/150{,}000{,}000 = 28.6 \)</span> seconds, and you must always subtract with <code>(end - start) &amp; 0xFFFFFFFF</code>. And the value is often a number above <span class="arithmatex">\( 2^{30} \)</span>, which MicroPython cannot hold in a small integer, so a read can allocate a little; <code>01</code> measures what one read costs so you can subtract it. A third item: <code>time.ticks_cpu()</code> sounds like a cycle counter, but in the current MicroPython source for this port it returns the microsecond timer, which <code>01</code> checks on your build.</p>
+<h2 id="profiling-and-timing-verification">Profiling and Timing Verification<a class="headerlink" href="#profiling-and-timing-verification" title="Permanent link">&para;</a></h2>
+<p><strong>Profiling</strong> is finding out <em>where</em> the time goes inside a loop, so you speed up the part that matters. A <strong>profiler</strong> at this scale is a few lines: stamp the clock after each section and add the difference to that section's total. The <code>Profiler</code> class in <code>bench.py</code> does it:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">prof</span> <span class="o">=</span> <span class="n">Profiler</span><span class="p">()</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">while</span> <span class="n">running</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">mic</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">frame</span><span class="p">);</span>        <span class="n">prof</span><span class="o">.</span><span class="n">lap</span><span class="p">(</span><span class="s2">"wait"</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">dsp</span><span class="o">.</span><span class="n">load_frame</span><span class="p">(</span><span class="o">...</span><span class="p">);</span>        <span class="n">prof</span><span class="o">.</span><span class="n">lap</span><span class="p">(</span><span class="s2">"load"</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">dsp</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">tables</span><span class="p">);</span>    <span class="n">prof</span><span class="o">.</span><span class="n">lap</span><span class="p">(</span><span class="s2">"fft"</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="o">...</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">prof</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">passes</span><span class="p">)</span>             <span class="c1"># milliseconds per pass, and each section's share</span>
+</span></code></pre></div>
+<p>Profile before you optimize. In Chapter 9's pipeline the FFT does 2,304 butterflies while the magnitude and band steps do a few hundred operations each, so the arithmetic predicts that the FFT dominates, and the profile should confirm it. If it did not, there would be no point rewriting the FFT.</p>
+<p><strong>Timing verification</strong> is proving that the finished loop meets its deadline, by measuring many real passes and checking the worst one. It is different from benchmarking. Benchmarking asks "how fast can this code go?" and reports the best run. Timing verification asks "can this ever be late?" and reports the worst. <code>06-frame-loop-budget.py</code> runs the live loop for 8 seconds in each of two modes (pure Python and viper) and prints a verdict from three numbers: the mean, the 95th percentile, and the maximum of the work per pass, plus the overrun count. The verdict is a pass only if there were no overruns and the worst pass is within 30 ms.</p>
+<p>Two traps make the average misleading. A garbage collection pause strikes only now and then, so it raises the maximum without moving the mean. And the loop must be tested under realistic load: with sound arriving (a quiet room may take a different path through your code than speech) and with the display redrawing. A timing result from an idle bench does not verify a loop that also draws.</p>
+<h2 id="the-baseline-pure-python-fft">The Baseline: Pure Python FFT<a class="headerlink" href="#the-baseline-pure-python-fft" title="Permanent link">&para;</a></h2>
+<p>The <strong>pure Python FFT</strong> is <code>dsp.fft()</code> from Chapter 9: lists or <code>array('f')</code> buffers, floating-point arithmetic, and every line interpreted. It is correct and readable, and it is the baseline every faster version here is compared with. Count its work first.</p>
+<p><em>Worked example.</em> A 512-point FFT does <span class="arithmatex">\( 256 \times 9 = 2{,}304 \)</span> butterflies, and the body of each butterfly in <code>dsp.fft</code> is 10 Python statements (two index calculations, two twiddle lookups, two lines for the twiddle product, four for the sum and difference). That is <span class="arithmatex">\( 2{,}304 \times 10 = 23{,}040 \)</span> statements per FFT. If the FFT may use 10 ms, which is a quarter of the frame, each butterfly may take <span class="arithmatex">\( 10 \text{ ms} / 2{,}304 = 4.34 \)</span> microseconds, about 651 cycles, and each statement only about 65 cycles. A statement such as <code>tr = re[b]*c + im[b]*s</code> does two array reads, two multiplications and an addition, and each float result is a new heap object (next sections). Fitting that in 65 cycles looks very unlikely for an interpreter.</p>
+<p>The table turns the question around: for each cost per butterfly, how long does the whole FFT take?</p>
+<table>
+<thead>
+<tr>
+<th>Cycles per butterfly</th>
+<th>Microseconds per butterfly</th>
+<th>FFT of 512 points</th>
+<th>Share of the 40 ms frame</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>0.67</td>
+<td>1.5 ms</td>
+<td>4%</td>
+</tr>
+<tr>
+<td>300</td>
+<td>2.0</td>
+<td>4.6 ms</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>651</td>
+<td>4.3</td>
+<td>10.0 ms</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>1,000</td>
+<td>6.7</td>
+<td>15.4 ms</td>
+<td>38%</td>
+</tr>
+<tr>
+<td>2,604</td>
+<td>17.4</td>
+<td>40.0 ms</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>5,000</td>
+<td>33.3</td>
+<td>76.8 ms</td>
+<td>192%</td>
+</tr>
+<tr>
+<td>10,000</td>
+<td>66.7</td>
+<td>153.6 ms</td>
+<td>384%</td>
+</tr>
+</tbody>
+</table>
+<p>Every row is arithmetic: cycles <span class="arithmatex">\( \times 2{,}304 / 150{,}000 \)</span> gives milliseconds. <code>02-fft-pure-python-bench.py</code> prints microseconds per butterfly, so multiply by 150 to find your row. Chapter 9 guessed 100 to 300 ms for the FFT; in this table that is 6,500 to 19,500 cycles per butterfly, which is a guess, not a measurement. <strong>The real number is a blank in the results table below until someone runs the script on the kit.</strong></p>
+<h2 id="why-python-costs-so-much-here">Why Python Costs So Much Here<a class="headerlink" href="#why-python-costs-so-much-here" title="Permanent link">&para;</a></h2>
+<p>Four facts explain where the time of pure Python goes, and each points at a fix.</p>
+<h3 id="floating-point-cost">Floating Point Cost<a class="headerlink" href="#floating-point-cost" title="Permanent link">&para;</a></h3>
+<p>The RP2350's ARM cores include a single-precision floating-point unit, so a hardware add or multiply of two floats is cheap. The <strong>floating point cost</strong> you pay in MicroPython is elsewhere. In the MicroPython source for this port, floats are 32-bit single precision (<code>MICROPY_FLOAT_IMPL_FLOAT</code>), and every float <em>result</em> is a new object on the heap (the port uses the default object layout, in which a float is not packed into the value itself). So <code>y = y * 1.0001</code> runs the interpreter's float multiply and then allocates a small object, and the old object becomes garbage. Whether the C code uses the FPU instructions or software routines I did not verify. Either way, the allocation and the interpreter around the operation cost more than the multiply.</p>
+<p>Integers are cheaper: a whole number that fits in 31 bits is stored inside the value, with no allocation. <code>03-allocation-and-floats.py</code> times 2,000 multiply-adds on integers and on floats so you can see the ratio on your board. The conclusion that matters is the design rule: <em>keep the hot loop on whole numbers where you can.</em></p>
+<h3 id="typed-arrays">Typed Arrays<a class="headerlink" href="#typed-arrays" title="Permanent link">&para;</a></h3>
+<p>A <strong>typed array</strong> from the <code>array</code> module stores numbers of one kind packed into memory, with no object per element.</p>
+<table>
+<thead>
+<tr>
+<th>Typecode</th>
+<th>Element</th>
+<th>Bytes each</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'b'</code> / <code>'B'</code></td>
+<td>signed / unsigned byte</td>
+<td>1</td>
+<td>-128..127 / 0..255</td>
+</tr>
+<tr>
+<td><code>'h'</code> / <code>'H'</code></td>
+<td>signed / unsigned 16-bit</td>
+<td>2</td>
+<td>-32768..32767 / 0..65535</td>
+</tr>
+<tr>
+<td><code>'i'</code> / <code>'I'</code></td>
+<td>signed / unsigned 32-bit</td>
+<td>4</td>
+<td>about +-2.1 billion / 0..4.29 billion</td>
+</tr>
+<tr>
+<td><code>'f'</code></td>
+<td>single-precision float</td>
+<td>4</td>
+<td>about 7 decimal digits</td>
+</tr>
+</tbody>
+</table>
+<p><em>Worked example.</em> 512 numbers cost these amounts on the Pico, by arithmetic (a list slot is a 4-byte pointer; a float object occupies one 16-byte heap block):</p>
+<table>
+<thead>
+<tr>
+<th>Container</th>
+<th>Bytes for 512 numbers</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list of floats</td>
+<td>about 10,240</td>
+<td><span class="arithmatex">\( 512 \times (4 + 16) \)</span></td>
+</tr>
+<tr>
+<td><code>array('f')</code></td>
+<td>2,048</td>
+<td><span class="arithmatex">\( 512 \times 4 \)</span></td>
+</tr>
+<tr>
+<td>list of small integers</td>
+<td>about 2,048</td>
+<td><span class="arithmatex">\( 512 \times 4 \)</span></td>
+</tr>
+<tr>
+<td><code>array('h')</code></td>
+<td>1,024</td>
+<td><span class="arithmatex">\( 512 \times 2 \)</span></td>
+</tr>
+</tbody>
+</table>
+<p><code>03</code> measures the same containers on the board, so you can compare. A typed array has a second benefit: the garbage collector does not need to look inside it, because it holds no pointers. And a third, which matters most for this chapter: a typed array is a block of memory with a fixed layout, so code that works at the machine level can address its elements directly.</p>
+<h3 id="array-passed-by-address">Array Passed By Address<a class="headerlink" href="#array-passed-by-address" title="Permanent link">&para;</a></h3>
+<p>When you pass an array to a function written in viper or assembly, MicroPython does not copy it. It passes the <em>address</em> of the first element, and the function reads and writes your memory in place, exactly as <code>readinto()</code> fills a buffer you own. This is <strong>array passed by address</strong>, and it is what makes the fast code fast: <code>window_viper(x, w, out, n)</code> takes three arrays and a count and touches no objects at all. It also removes the safety net. The function knows no length except the <code>n</code> you give it, so an <code>n</code> that is too large overwrites memory beyond the array.</p>
+<h3 id="avoiding-allocation-and-pre-allocated-buffers">Avoiding Allocation and Pre-Allocated Buffers<a class="headerlink" href="#avoiding-allocation-and-pre-allocated-buffers" title="Permanent link">&para;</a></h3>
+<p>Every allocation uses heap, and heap eventually needs a collection. The MicroPython documentation warns that a collection can take several milliseconds, which is a good fraction of a 40 ms frame. The rule for a real-time loop is therefore <strong>avoiding allocation</strong> inside it, and the habit that makes it possible is <strong>pre-allocated buffers</strong>: create every array, table, and buffer once, before the loop, and reuse it on every pass (the Chapter 2 rule, now with a cost attached). Chapter 9's scripts already follow it for <code>re</code>, <code>im</code>, <code>mag</code>, and the tables.</p>
+<p>Which statements allocate? The list is not obvious, so <code>03</code> tests twelve of them with the garbage collector switched off and reports the bytes used. The first column of the next table is what MicroPython's object model predicts; running <code>03</code> on the kit confirms or corrects it.</p>
+<table>
+<thead>
+<tr>
+<th>Statement (run 200 times)</th>
+<th>Predicted to allocate?</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x = x + 1</code></td>
+<td>no</td>
+<td>A small integer lives inside the value</td>
+</tr>
+<tr>
+<td><code>y = y * 1.0001</code></td>
+<td>yes</td>
+<td>The float result is a new object</td>
+</tr>
+<tr>
+<td><code>arr_f[3] = arr_f[3] * 1.0001</code></td>
+<td>yes</td>
+<td>Reading makes a float, multiplying makes another</td>
+</tr>
+<tr>
+<td><code>arr_h[3] = (arr_h[3] * 3) &gt;&gt; 1</code></td>
+<td>no</td>
+<td>Whole numbers in a typed array stay small integers</td>
+</tr>
+<tr>
+<td><code>buf[0:8]</code></td>
+<td>yes</td>
+<td>A slice of a <code>bytearray</code> is a copy</td>
+</tr>
+<tr>
+<td><code>view[0:8]</code></td>
+<td>yes</td>
+<td>A memoryview slice is a new (small) object</td>
+</tr>
+<tr>
+<td><code>[0] * 16</code></td>
+<td>yes</td>
+<td>A new list</td>
+</tr>
+<tr>
+<td><code>struct.unpack("&lt;4i", words)</code></td>
+<td>yes</td>
+<td>A new tuple</td>
+</tr>
+<tr>
+<td><code>struct.pack_into("&lt;i", words, 0, 7)</code></td>
+<td>no</td>
+<td>Writes into memory you already own</td>
+</tr>
+<tr>
+<td><code>"%d" % 12345</code></td>
+<td>yes</td>
+<td>A new string</td>
+</tr>
+<tr>
+<td><code>big + 1</code> where <code>big</code> is above <span class="arithmatex">\( 2^{30} \)</span></td>
+<td>yes</td>
+<td>Too big for a small integer on a 32-bit chip</td>
+</tr>
+<tr>
+<td><code>buf[5] = 77</code></td>
+<td>no</td>
+<td>Stores into an existing byte</td>
+</tr>
+</tbody>
+</table>
+<p>Run the allocation quiz to test your own predictions before you look at the table.</p>
+<h4 id="diagram-allocation-classifier">Diagram: Allocation Classifier<a class="headerlink" href="#diagram-allocation-classifier" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Allocation Classifier</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> allocation-classifier<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> distinguish<br/>
+<strong>Learning Objective:</strong> The learner will distinguish 12 MicroPython statements that allocate heap memory from those that do not, with at least 10 of 12 correct.</p>
+<p><strong>Prerequisites:</strong> heap, garbage collection, small integer, float object, typed array, pre-allocated buffer, memoryview (defined in Chapter 2 and in this chapter above the block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 12 statements the learner chooses "Allocates" or "Does not allocate" and submits before the answer is shown. A choice is correct when it matches the Answer column in Content. Mastery is 10 of 12 correct on the first attempt. Reading the Why text after an answer is feedback, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) Any arithmetic is free. (2) A slice never copies. (3) Floats are stored inside the value, like small integers. (4) Writing into an array allocates.</p>
+<p><strong>Instructional Rationale:</strong> Analyze-level distinction asks the learner to separate cases by a hidden property, whether a new object is created, using the object model rather than memorized examples. Committing before the answer is shown makes the learner apply the model, and the Why text names the object that is created, which is what the learner needs for the next unfamiliar statement.</p>
+<p><strong>Content:</strong></p>
+<p>The 12 statements are shown one at a time in this order, each with its answer. The answers are what MicroPython's object model predicts for the Pico's 32-bit chip; <code>03-allocation-and-floats.py</code> measures them on the board.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Statement</th>
+<th>Answer</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>x = x + 1</code> (x is a small whole number)</td>
+<td>Does not allocate</td>
+<td>A small integer lives inside the value itself.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>y = y * 1.0001</code> (y is a float)</td>
+<td>Allocates</td>
+<td>The float result is a new heap object.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>arr_f[3] = arr_f[3] * 1.0001</code> (arr_f is array('f'))</td>
+<td>Allocates</td>
+<td>Reading an element makes a float object, and so does the product.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>arr_h[3] = (arr_h[3] * 3) &gt;&gt; 1</code> (arr_h is array('h'))</td>
+<td>Does not allocate</td>
+<td>Every value is a small integer.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>part = buf[0:8]</code> (buf is a bytearray)</td>
+<td>Allocates</td>
+<td>A slice of a bytearray is a new bytearray.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>part = view[0:8]</code> (view is a memoryview)</td>
+<td>Allocates</td>
+<td>A memoryview slice is a new, small memoryview object, though it copies no data.</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>t = [0] * 16</code></td>
+<td>Allocates</td>
+<td>A new list is created.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>t = struct.unpack("&lt;4i", words)</code></td>
+<td>Allocates</td>
+<td>A new tuple holds the four results.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>struct.pack_into("&lt;i", words, 0, 7)</code></td>
+<td>Does not allocate</td>
+<td>It writes into memory the program already owns.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>s = "%d" % 12345</code></td>
+<td>Allocates</td>
+<td>A new string is built.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>z = big + 1</code> (big is 2**30)</td>
+<td>Allocates</td>
+<td>2**30 does not fit a 31-bit small integer on a 32-bit chip, so the value is a big-integer object.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>buf[5] = 77</code></td>
+<td>Does not allocate</td>
+<td>It stores into a byte of an existing bytearray.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The answers are predictions from the MicroPython object model on a 32-bit port with the default object layout (source: <code>ports/rp2/mpconfigport.h</code>, which sets single-precision floats and does not override the object representation). They are labelled "expected" in the sim until <code>03-allocation-and-floats.py</code> has been run on the kit. Statement 11 depends on a 31-bit small integer and is not true on a 64-bit computer; the sim says so.</p>
+<p><strong>Rules:</strong> A statement allocates when it creates a new object that is not a small integer. A small integer is a whole number from -2<strong>30 to 2</strong>30 - 1. Storing into an existing buffer never allocates.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads statement 1 and chooses Allocates or Does not allocate.</li>
+<li>The sim shows the answer and the Why text, and a running score.</li>
+<li>The learner continues through statement 12.</li>
+<li>After statement 12, the sim lists the statements the learner got wrong. The learner should notice that the safe statements either work on small integers or write into an existing buffer.</li>
+</ol>
+<p><strong>Feedback:</strong> 12 statements, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. <Answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 12" is shown.</p>
+<p><strong>Starting State:</strong> Statement 1 is shown with the question "Does this line create a new object?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that floats allocate, small integers do not, a bytearray slice copies, a memoryview slice makes a small object, <code>struct.pack_into</code> writes in place, and that the predictions are confirmed on the kit by <code>03-allocation-and-floats.py</code>.</p>
+</details>
+<h3 id="table-precomputation">Table Precomputation<a class="headerlink" href="#table-precomputation" title="Permanent link">&para;</a></h3>
+<p><strong>Table precomputation</strong> is the rule that anything which does not change between frames is computed once, before the loop, and stored. You have used it twice already: the sine table in Chapter 8 and <code>make_tables()</code> in Chapter 9, which fills the Hann window, the twiddle factors, and the bit-reversal table at start-up. The saving is easy to count. Without the twiddle tables, every butterfly would compute a cosine and a sine: <span class="arithmatex">\( 2{,}304 \times 2 = 4{,}608 \)</span> trigonometric calls per frame, or <span class="arithmatex">\( 4{,}608 \times 25 = 115{,}200 \)</span> per second. With the tables the loop calls none, and the one-time cost is 512 sine and cosine calls, paid at boot. The price is memory, which is small here: 256 cosines and 256 sines in <code>array('f')</code> are 2,048 bytes.</p>
+<h3 id="fixed-point-math">Fixed-Point Math<a class="headerlink" href="#fixed-point-math" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed-point math</strong> avoids floats by storing a fraction as a whole number with an agreed scale. In <strong>Q15</strong> format a number between -1 and 1 is stored as an integer from -32768 to 32767, with the value equal to the integer divided by 32768. So 16384 means 0.5 and -16384 means -0.5. To multiply two Q15 numbers, multiply the integers and shift right by 15 to remove the extra scale:</p>
+<div class="arithmatex">\[ (a \times b) \gg 15 \]</div>
+<p><em>Worked example.</em> <span class="arithmatex">\( 0.5 \times 0.5 \)</span>: <span class="arithmatex">\( 16384 \times 16384 = 268{,}435{,}456 \)</span>, and <span class="arithmatex">\( 268{,}435{,}456 \gg 15 = 8192 \)</span>, which is 0.25. <code>08-q15-fixed-point.py</code> runs six cases on your computer:</p>
+<table>
+<thead>
+<tr>
+<th>a (Q15)</th>
+<th>b (Q15)</th>
+<th><span class="arithmatex">\( (a \times b) \gg 15 \)</span></th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16384</td>
+<td>16384</td>
+<td>8192</td>
+<td>0.5 x 0.5 = 0.25</td>
+</tr>
+<tr>
+<td>32767</td>
+<td>32767</td>
+<td>32766</td>
+<td>the largest value squared is just under 1.0</td>
+</tr>
+<tr>
+<td>-16384</td>
+<td>16384</td>
+<td>-8192</td>
+<td>-0.5 x 0.5 = -0.25</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>tiny numbers vanish: <span class="arithmatex">\( 9 \gg 15 = 0 \)</span></td>
+</tr>
+<tr>
+<td>-3</td>
+<td>3</td>
+<td>-1</td>
+<td>a negative result rounds toward minus infinity</td>
+</tr>
+<tr>
+<td>-32768</td>
+<td>-32768</td>
+<td>32768</td>
+<td>(-1.0) x (-1.0) = +1.0, which does not fit in 16 bits</td>
+</tr>
+</tbody>
+</table>
+<p>Two hazards follow. A result can fall outside the range (the last row), and the intermediate product must fit in the 32-bit register that holds it: two products near <span class="arithmatex">\( 32768^2 \)</span> add up to <span class="arithmatex">\( 2^{31} \)</span>, one more than a signed 32-bit register can hold. The fixed-point FFT later in this chapter avoids both with a scale-down at every stage.</p>
+<h4 id="diagram-q15-calculator">Diagram: Q15 Calculator<a class="headerlink" href="#diagram-q15-calculator" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Q15 Calculator</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> q15-calculator<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Apply<br/>
+<strong>Bloom Verb:</strong> calculate<br/>
+<strong>Learning Objective:</strong> The learner will calculate the Q15 product (a x b) &gt;&gt; 15 of 6 pairs of Q15 integers, and state whether the result fits in 16 bits, with at least 5 of 6 correct.</p>
+<p><strong>Prerequisites:</strong> fixed-point math, Q15 format, arithmetic shift right (all defined in this chapter above the block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 pairs the learner types the whole-number result and submits. A result is correct when it equals the Answer column in Content. For pair 6 the learner must also choose "Fits in 16 bits" or "Does not fit", and the pair counts as correct only when both are right. Mastery is 5 of 6 correct on the first attempt. Using the exploration calculator is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) The product of two Q15 numbers is already Q15. (2) A shift right always rounds toward zero. (3) Q15 can hold exactly 1.0.</p>
+<p><strong>Instructional Rationale:</strong> Apply-level calculation needs practice on cases that differ in kind: a normal product, a vanishing product, a negative rounding case, and an overflow. Committing a number before the result is shown makes the learner carry out the shift, not recognize it.</p>
+<p><strong>Content:</strong></p>
+<p>The sim shows the formula result = (a x b) &gt;&gt; 15, where &gt;&gt; is an arithmetic shift right that keeps the sign and rounds toward minus infinity. A 16-bit signed Q15 number fits when it is from -32768 to 32767.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>a</th>
+<th>b</th>
+<th>Answer</th>
+<th>Fits in 16 bits?</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>16384</td>
+<td>16384</td>
+<td>8192</td>
+<td>yes</td>
+<td>16384 x 16384 = 268,435,456, and 268,435,456 &gt;&gt; 15 = 8192.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>32767</td>
+<td>32767</td>
+<td>32766</td>
+<td>yes</td>
+<td>32767 x 32767 = 1,073,676,289, and &gt;&gt; 15 gives 32766.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-16384</td>
+<td>16384</td>
+<td>-8192</td>
+<td>yes</td>
+<td>The product -268,435,456 &gt;&gt; 15 is -8192.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>yes</td>
+<td>3 x 3 = 9, and 9 &gt;&gt; 15 is 0: the result is smaller than one Q15 step.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>-3</td>
+<td>3</td>
+<td>-1</td>
+<td>yes</td>
+<td>-9 &gt;&gt; 15 rounds toward minus infinity, giving -1, not 0.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>-32768</td>
+<td>-32768</td>
+<td>32768</td>
+<td>no</td>
+<td>The product is +1,073,741,824, and &gt;&gt; 15 gives 32768, one more than the largest 16-bit value.</td>
+</tr>
+</tbody>
+</table>
+<p>For exploration the learner enters any two Q15 integers from -32768 to 32767 (step 1, default 16384 and 16384) and sees the full product, the shifted result, the real values (integer / 32768) and whether the result fits.</p>
+<p><strong>Provenance:</strong> The six pairs are the rows of the table in the chapter section "Fixed-Point Math", produced by <code>src/chapters/10-high-performance-micropython/08-q15-fixed-point.py</code>.</p>
+<p><strong>Rules:</strong> result = floor(a x b / 32768). real value = integer / 32768. A result fits in 16 bits when -32768 &lt;= result &lt;= 32767. Inputs: min -32768, max 32767, step 1, unit none (Q15 integer).</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner enters pairs in the exploration calculator and watches the full product and the shifted result.</li>
+<li>The learner tries 32767 x 32767 and -32768 x -32768 and notices that one fits and the other does not.</li>
+<li>The learner starts the 6 pairs. Pair 1 is shown.</li>
+<li>The learner types the result (and, for pair 6, the fit choice) and submits.</li>
+<li>The sim shows the correct answer and the Why text.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 pairs, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The exploration calculator shows 16384 x 16384 = 8192 with the real values 0.5 x 0.5 = 0.25, and the question "What do you get when you multiply two Q15 numbers?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that 16384 stands for 0.5, that 16384 x 16384 &gt;&gt; 15 is 8192, that 3 x 3 &gt;&gt; 15 is 0, and that -32768 x -32768 &gt;&gt; 15 is 32768, which does not fit in 16 bits.</p>
+</details>
+<h2 id="viper-machine-code-from-python">Viper: Machine Code from Python<a class="headerlink" href="#viper-machine-code-from-python" title="Permanent link">&para;</a></h2>
+<p><strong>Viper code</strong> is Python that MicroPython compiles to real machine instructions for the processor, instead of interpreting it. You mark a function with <code>@micropython.viper</code> and add type hints to its arguments. Inside, integers are plain 32-bit machine words in registers (they wrap around instead of growing), array arguments become pointers into your memory, and nothing is allocated. Three pointer types read arrays of different widths: <code>ptr8</code> for bytes, <code>ptr16</code> for 16-bit elements, and <code>ptr32</code> for 32-bit elements, indexed like lists with no bounds checking.</p>
+<p>Here is the windowing loop from Chapter 9 in its viper form (<code>kernels.py</code>). It multiplies each signed 16-bit sample by a Q15 window value:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@micropython</span><span class="o">.</span><span class="n">viper</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">window_viper</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">ptr16</span><span class="p">,</span> <span class="n">w</span><span class="p">:</span> <span class="n">ptr16</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">ptr16</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">s</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">32768</span><span class="p">:</span>            <span class="c1"># ptr16 reads are unsigned: sign-extend by hand</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>            <span class="n">s</span> <span class="o">-=</span> <span class="mi">65536</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="o">&gt;&gt;</span> <span class="mi">15</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></code></pre></div>
+<p>The type hints turn the three arrays into pointers and <code>n</code> into a machine integer. The loop body is the same arithmetic as the Python version <code>out[i] = (x[i] * w[i]) &gt;&gt; 15</code>. The lines about 32768 are the first trap.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">ptr16 Reads Are Unsigned</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+A <code>ptr16</code> read zero-extends, so a stored -1 comes back as 65535. If your samples are signed, subtract 65536 when the value is 32768 or more, as <code>window_viper</code> does. <code>04-window-kernels.py</code> prints the raw read so you can see it, and it also checks all four versions give identical answers.</p>
+</div>
+<p>Viper has more rules, from the MicroPython documentation. There are no default argument values. Floating-point works but is not optimized, so keep floats out. Slices are not supported on pointers. And casting one viper value to another viper type costs nothing at run time, but casting a Python object can be slow, so do the casts at the top of the function and not inside a hot loop. Integer division (<code>//</code>) calls a helper function; this chapter's code uses shifts inside loops instead.</p>
+<p>I checked the two viper functions in <code>kernels.py</code> in real MicroPython running on a computer (an x86-64 build of the current source), and they produce exactly the same outputs as the plain Python versions over 512 random samples. That checks the code and the <code>ptr16</code> rule. It says nothing about speed on the Pico.</p>
+<h2 id="the-viper-q15-fft">The Viper Q15 FFT<a class="headerlink" href="#the-viper-q15-fft" title="Permanent link">&para;</a></h2>
+<p>A fixed-point FFT is the Chapter 9 algorithm with whole numbers. <code>fft_viper.py</code> holds it: the same bit-reversal reorder, the same nine stages of butterflies, the same in-place updates, but <code>re</code> and <code>im</code> are <code>array('i')</code>, the twiddle factors are Q15 integers (cosine and sine times 32768), and the functions are viper. After each butterfly both outputs are <strong>halved</strong>, so a number never grows beyond what it started with. That is how fixed-point FFTs avoid overflow: the 512-point transform's outputs are <span class="arithmatex">\( 1/512 \)</span> of the true values, because nine halvings multiply to <span class="arithmatex">\( 1/512 \)</span>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">tr</span> <span class="o">=</span> <span class="p">(</span><span class="n">rb</span> <span class="o">*</span> <span class="n">c</span> <span class="o">+</span> <span class="n">ib</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">16384</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">15</span>       <span class="c1"># twiddle times the second number, Q15</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">ti</span> <span class="o">=</span> <span class="p">(</span><span class="n">ib</span> <span class="o">*</span> <span class="n">c</span> <span class="o">-</span> <span class="n">rb</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">16384</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">15</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">re</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ra</span> <span class="o">-</span> <span class="n">tr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>                  <span class="c1"># difference, halved</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">im</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ia</span> <span class="o">-</span> <span class="n">ti</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">re</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ra</span> <span class="o">+</span> <span class="n">tr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>                  <span class="c1"># sum, halved</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">im</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ia</span> <span class="o">+</span> <span class="n">ti</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+</span></code></pre></div>
+<p>The added 16384 and 1 round the result to the nearest integer rather than always down.</p>
+<p><em>Worked example.</em> One butterfly at 45 degrees, where <span class="arithmatex">\( c = s = 23{,}170 \)</span> (0.7071 in Q15). Let the first number be <span class="arithmatex">\( 4000 + 0j \)</span> and the second <span class="arithmatex">\( 3000 + 1000j \)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Calculation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tr</td>
+<td><span class="arithmatex">\( (3000 \times 23170 + 1000 \times 23170 + 16384) \gg 15 \)</span></td>
+<td>2828</td>
+</tr>
+<tr>
+<td>ti</td>
+<td><span class="arithmatex">\( (1000 \times 23170 - 3000 \times 23170 + 16384) \gg 15 \)</span></td>
+<td>-1414</td>
+</tr>
+<tr>
+<td>new second number</td>
+<td><span class="arithmatex">\( ((4000 - 2828 + 1) \gg 1,\; (0 + 1414 + 1) \gg 1) \)</span></td>
+<td>586 + 707j</td>
+</tr>
+<tr>
+<td>new first number</td>
+<td><span class="arithmatex">\( ((4000 + 2828 + 1) \gg 1,\; (0 - 1414 + 1) \gg 1) \)</span></td>
+<td>3414 - 707j</td>
+</tr>
+</tbody>
+</table>
+<p>The exact answer for the twiddle product is <span class="arithmatex">\( (3000 + 1000j)(0.7071 - 0.7071j) = 2828.4 - 1414.2j \)</span>, so <code>tr</code> and <code>ti</code> agree to the nearest integer, and the halved outputs are half of <span class="arithmatex">\( 4000 \pm 2828.4 \)</span> and so on.</p>
+<h3 id="how-accurate-is-it">How accurate is it?<a class="headerlink" href="#how-accurate-is-it" title="Permanent link">&para;</a></h3>
+<p>Precision is the price of whole numbers. The input is cut from 24 bits to 16 (<code>shift=16</code> in <code>load_frame_q15</code>), and every stage rounds. I measured the effect without the Pico: integer arithmetic gives the same answers on any machine as long as nothing overflows, so I ran the same functions on a computer inside a model that checks every addition and multiplication against 32-bit limits (none overflowed), and compared with the floating-point pipeline on synthetic frames: 48 frames of a single tone (six amplitudes from about -62 to -12 dBFS, four frequencies, two noise seeds) with random noise of about -63 dBFS added.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Result of the computer model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Largest difference in a band louder than -50 dBFS</td>
+<td>0.20 dB (mean 0.03 dB over 48 bands)</td>
+</tr>
+<tr>
+<td>Largest difference in a band louder than -60 dBFS</td>
+<td>0.54 dB (30 bands)</td>
+</tr>
+<tr>
+<td>Peak bin the same as the float FFT</td>
+<td>42 of 42 test tones</td>
+</tr>
+<tr>
+<td>Rounding-noise floor of the Q15 path, in the bands away from a clean test tone (<code>shift</code> 16)</td>
+<td>about -65 to -75 dBFS</td>
+</tr>
+<tr>
+<td>Same, with <code>shift</code> 14 (four times the input gain)</td>
+<td>about -77 to -90 dBFS</td>
+</tr>
+<tr>
+<td>Same, with <code>shift</code> 12 (sixteen times the gain)</td>
+<td>about -91 to -99 dBFS</td>
+</tr>
+</tbody>
+</table>
+<p>Read the table as a trade. Where the sound is loud the viper FFT agrees with the float one to within about half a decibel. Where it is quiet, near the room's own noise, rounding in the Q15 path dominates, so the quietest bands read up to roughly 17 dB too high in my noise-only test. Raising the gain (a smaller <code>shift</code>) lowers that floor by 6 dB per factor of two, but a loud sound then clips, because <code>load_frame_q15</code> clamps at <span class="arithmatex">\( \pm 32767 \)</span>: at <code>shift</code> 12 any peak louder than about -24 dBFS saturates. For a display of speech and tones the default is fine; for a calibration of the noise floor (Chapter 11) use the float path or a lower <code>shift</code>.</p>
+<p><code>05-fft-viper-bench.py</code> does the same comparison on the Pico, with the real time per stage, and also checks that <code>fft_q15</code> allocates zero bytes. The speed is not known yet.</p>
+<h2 id="inline-assembly">Inline Assembly<a class="headerlink" href="#inline-assembly" title="Permanent link">&para;</a></h2>
+<p><strong>Inline assembly</strong> lets you write machine instructions directly inside a Python file with <code>@micropython.asm_thumb</code>. It is the last stop on the road down. Each line is one ARM Thumb instruction, and you decide which register holds what. The function receives up to four arguments in registers <code>r0</code>, <code>r1</code>, <code>r2</code>, <code>r3</code>, and whatever is in <code>r0</code> when the function ends is the return value. You may use <code>r0</code> to <code>r7</code>. Arrays arrive as the address of their first element.</p>
+<p>The smallest useful loop adds up an array of signed 16-bit numbers. Read it line by line, since there are only eight instructions:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@micropython</span><span class="o">.</span><span class="n">asm_thumb</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">sum16_asm</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">):</span>            <span class="c1"># r0 = address of the array, r1 = count (must be &gt; 0)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">mov</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>                    <span class="c1"># r2 = running total</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">label</span><span class="p">(</span><span class="n">LOOP</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">ldrh</span><span class="p">(</span><span class="n">r3</span><span class="p">,</span> <span class="p">[</span><span class="n">r0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>             <span class="c1"># r3 = next number, zero-extended from 16 bits</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">lsl</span><span class="p">(</span><span class="n">r3</span><span class="p">,</span> <span class="n">r3</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">asr</span><span class="p">(</span><span class="n">r3</span><span class="p">,</span> <span class="n">r3</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>               <span class="c1"># sign-extend it to 32 bits</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">add</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r3</span><span class="p">)</span>               <span class="c1"># total = total + number</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">add</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                <span class="c1"># move to the next 16-bit element</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">sub</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>                <span class="c1"># one fewer left</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">cmp</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">bgt</span><span class="p">(</span><span class="n">LOOP</span><span class="p">)</span>                     <span class="c1"># branch back while the count is greater than 0</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">mov</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>                   <span class="c1"># the value in r0 is returned</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ldrh(r3, [r0, 0])</code></td>
+<td>Load 16 bits from the address in <code>r0</code> plus 0 into <code>r3</code></td>
+</tr>
+<tr>
+<td><code>lsl</code>, <code>asr</code> by 16</td>
+<td>Shift left then arithmetic shift right: copies bit 15 into the upper 16 bits (sign extension)</td>
+</tr>
+<tr>
+<td><code>add</code>, <code>sub</code></td>
+<td>Add or subtract; <code>r0</code> moves by 2 bytes because each element is 2 bytes</td>
+</tr>
+<tr>
+<td><code>cmp</code>, <code>bgt</code></td>
+<td>Compare the count with 0, and branch back to <code>LOOP</code> if it is greater</td>
+</tr>
+<tr>
+<td><code>label(LOOP)</code></td>
+<td>A name for the position, used by the branch</td>
+</tr>
+</tbody>
+</table>
+<p>The windowing loop is the same idea with a multiply: two loads, a sign extension, <code>mul(r4, r5)</code>, an arithmetic shift by 15, a store with <code>strh</code>, and three pointer increments. Counting from the source in <code>kernels_asm.py</code>, <code>window_asm</code> runs 13 instructions per sample and <code>sum16_asm</code> 8 per element; I got those by stepping through the code in an emulator written for this chapter, which also confirmed that all three versions of the sum and the window give the same answers. That emulator checks the <em>logic</em>; it does not check the real assembler's encoding rules.</p>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">Assembly Looks Scarier Than It Is</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+A page of mnemonics is hard to take in at first glance, and most people feel that way. Read one instruction at a time, as the table above does, and remember that every line only moves, adds, or compares numbers you have already met.</p>
+</div>
+<p>There are three cautions. The assembler has no safety: a count of 0 still runs the loop once, and a bad address corrupts memory, so pass a count above 0 and no larger than the array. Not every instruction exists on every Pico. The MicroPython source enables the wider ARMv7-M instructions (<code>sdiv</code>, <code>udiv</code>, <code>movw</code>, <code>clz</code>, and others) when the firmware is built for a Thumb-2 core, which the RP2350's Cortex-M33 is; the older RP2040 lacks them. The loops in this chapter use only the basic instructions that both have, so they do not depend on it. And <code>asm_thumb</code> is ARM-only: it works while the Pico 2 runs on its ARM cores (the default), but if you flash firmware for the chip's RISC-V cores it is not available, because that build has a different assembler.</p>
+<p><strong>Speed estimate, not measured.</strong> Counting 13 instructions in the windowing loop, two of which are loads and one a taken branch, a rough guess for the Cortex-M33 is 15 to 25 cycles per sample. For 512 samples that is 7,700 to 12,800 cycles, or 51 to 85 microseconds. That comes from instruction counts and typical cycle costs, not from a measurement. <code>04-window-kernels.py</code> measures all four versions on the board, and its numbers replace this paragraph.</p>
+<h2 id="the-assembly-fft">The Assembly FFT<a class="headerlink" href="#the-assembly-fft" title="Permanent link">&para;</a></h2>
+<p>An <strong>assembly FFT</strong> puts the butterfly loop into inline assembly. It is the fastest way to run an FFT on this board without leaving MicroPython, and it is a <em>stretch exercise</em> here: I have not written or run one, and I will not pretend to. What I can give you is the design, so you know what is involved.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Where it lives</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bit-reversal reorder</td>
+<td>viper (<code>fft_q15</code>)</td>
+<td>It runs once per frame and touches 512 entries</td>
+</tr>
+<tr>
+<td>The 9 stages and the loop over groups</td>
+<td>Python or viper</td>
+<td>There are only 9 stages; but stage 1 has 256 groups, so a Python call per group means 511 calls in total, which is too many</td>
+</tr>
+<tr>
+<td>The butterflies inside a stage</td>
+<td>assembly</td>
+<td>2,304 per frame; this is where the time is</td>
+</tr>
+<tr>
+<td>Twiddle factors</td>
+<td>Q15 arrays read by address</td>
+<td>Already computed</td>
+</tr>
+</tbody>
+</table>
+<p>The assembly function can take only four arguments, so it must be given a small array of parameters (the stage size, the twiddle stride, and the three array addresses) as one of them. Each butterfly needs about six loads, four multiplies, six additions, four shifts, four stores and some pointer arithmetic: roughly 35 to 45 instructions, with <code>r0</code> to <code>r7</code> only for all of the values. <em>If</em> a butterfly took 60 cycles, the FFT would take <span class="arithmatex">\( 2{,}304 \times 60 = 138{,}240 \)</span> cycles, or 0.92 ms. That is a paper estimate from my own instruction count, not a measurement; treat it as the target to beat when you try the exercise.</p>
+<p>Before you attempt it, ask whether you need it. If the viper FFT already meets the deadline with room to spare, the assembly version buys speed you cannot use and costs readability, so the next sections give you the means to decide.</p>
+<h2 id="using-the-second-core">Using the Second Core<a class="headerlink" href="#using-the-second-core" title="Permanent link">&para;</a></h2>
+<p><strong>Dual core use</strong> means running a second piece of code at the same time on the Pico's other processor core. MicroPython starts one with <code>_thread.start_new_thread(function, args)</code>; on the Pico there are only two threads, one per core, and the new one runs on core 1. In the MicroPython source for this port there is no global interpreter lock, so the two cores run MicroPython code truly in parallel.</p>
+<p>The temptation is to read the microphone on core 0 and run the FFT on core 1. It can work, but it comes with hazards, which is why this book keeps the audio work on one core (Chapter 4 said so):</p>
+<table>
+<thead>
+<tr>
+<th>Hazard</th>
+<th>Why</th>
+<th>Safe habit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared heap</td>
+<td>Both cores allocate from one heap with one garbage collector protected by a lock; a collection started by one core can make the other wait</td>
+<td>Allocate nothing on core 1: pre-allocate everything, use viper</td>
+</tr>
+<tr>
+<td>Hardware ownership</td>
+<td>Starting or stopping I2S, the display's SPI, or a pin from two cores at once is unsafe, and I did not verify how the I2S driver's interrupts behave when its owner is core 1</td>
+<td>Do all <code>I2S</code>, <code>SPI</code>, and <code>Pin</code> work on core 0; let core 1 touch only pure data</td>
+</tr>
+<tr>
+<td>Data races</td>
+<td>A buffer being rewritten by one core while the other reads it gives garbage</td>
+<td>Use two buffers and a flag that only one core writes</td>
+</tr>
+<tr>
+<td>Pauses</td>
+<td>Flash writes typically pause the other core (the port sets up a lockout for this)</td>
+<td>Keep file writes out of the real-time loop</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Doing the FFT on frame <span class="arithmatex">\( k \)</span> while frame <span class="arithmatex">\( k+1 \)</span> is read means the display is one frame (40 ms) behind</td>
+<td>Accept it, or avoid the second core</td>
+</tr>
+</tbody>
+</table>
+<p><code>07-dual-core.py</code> measures the safe version of the idea. It runs a worker that touches no hardware, first alone and then beside core 0's counting loop, and reports how much each side slows the other. Pairs A and B are the solo baselines; C uses the allocation-free viper FFT, and D uses the pure-Python float FFT that allocates. My <em>expectation</em>, not a measurement: in C the two sides should run at nearly their solo speeds, and in D at least one should be slower because of the shared garbage collector. The script fills in those four ratios.</p>
+<h2 id="choosing-performance-trade-offs">Choosing: Performance Trade-Offs<a class="headerlink" href="#choosing-performance-trade-offs" title="Permanent link">&para;</a></h2>
+<p>Each speed-up buys time and charges something else. <strong>Performance trade-offs</strong> are the choice of what to pay.</p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Speed</th>
+<th>Readability</th>
+<th>Portability</th>
+<th>Accuracy</th>
+<th>Memory</th>
+<th>Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plain Python on lists</td>
+<td>slowest</td>
+<td>best</td>
+<td>any MicroPython</td>
+<td>float precision</td>
+<td>most</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Python on <code>array</code></td>
+<td>slow</td>
+<td>good</td>
+<td>any MicroPython</td>
+<td>float precision</td>
+<td>less</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Fixed-point in Python</td>
+<td>slow</td>
+<td>fair</td>
+<td>any MicroPython</td>
+<td>limited by bits</td>
+<td>less</td>
+<td>overflow</td>
+</tr>
+<tr>
+<td>Viper</td>
+<td>much faster (to be measured)</td>
+<td>fair</td>
+<td>Pico and other supported ports</td>
+<td>integer only, limited by bits</td>
+<td>least</td>
+<td>no bounds checking, unsigned <code>ptr16</code></td>
+</tr>
+<tr>
+<td>Inline assembly</td>
+<td>fastest (to be measured)</td>
+<td>poor</td>
+<td>ARM Thumb only</td>
+<td>integer only</td>
+<td>least</td>
+<td>crashes, silent corruption</td>
+</tr>
+<tr>
+<td>Second core</td>
+<td>up to 2 cores of work</td>
+<td>poor</td>
+<td>dual-core ports only</td>
+<td>unchanged</td>
+<td>shared heap</td>
+<td>races, GC stalls</td>
+</tr>
+</tbody>
+</table>
+<p>The rule that comes out of the table is to use the <em>simplest</em> approach that keeps the <strong>worst</strong> pass inside the budget (less the display reserve). Start with plain Python and measure. If the profile shows one loop dominating, move only that loop to viper. Move to assembly or a second core only when viper still does not fit. Stop at the first row that passes timing verification: speed past the deadline is not worth any cost.</p>
+<h4 id="diagram-speed-up-chooser">Diagram: Speed-Up Chooser<a class="headerlink" href="#diagram-speed-up-chooser" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Speed-Up Chooser</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> speedup-chooser<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Evaluate<br/>
+<strong>Bloom Verb:</strong> recommend<br/>
+<strong>Learning Objective:</strong> The learner will recommend, for 6 scenarios, the simplest implementation whose worst-case pass time fits within the frame budget minus the display reserve, or state that none fits, with at least 5 of 6 correct.</p>
+<p><strong>Prerequisites:</strong> frame budget, display reserve, worst-case pass time, viper code, inline assembly, performance trade-offs (all defined in this chapter above the block).</p>
+<p><strong>Evidence of Mastery:</strong> For each scenario the learner chooses one of "Plain Python", "Viper", "Assembly", or "None fits" and submits. A choice is correct when it matches the Answer column in Content. Mastery is 5 of 6 correct on the first attempt. Changing the numbers in the exploration panel is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) The fastest implementation is always the best choice. (2) An implementation that fits on average fits the deadline. (3) Assembly is always needed for real-time audio.</p>
+<p><strong>Instructional Rationale:</strong> Evaluate-level recommendation requires the learner to apply a stated criterion to evidence and justify the choice. The scenarios put a boundary case (an implementation that fits by exactly zero margin), a case where the simplest option already fits, and a case where nothing fits, so the learner cannot recommend by habit.</p>
+<p><strong>Content:</strong></p>
+<p>The numbers in this activity are <strong>illustrative</strong> and are not measurements of the kit. Each scenario gives the frame budget, the display reserve, and the worst-case pass time of three implementations, all in milliseconds. The complexity order from simplest to hardest is Plain Python, Viper, Assembly. The fitting limit is the budget minus the reserve; an implementation fits when its worst-case time is less than or equal to the limit.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Budget (ms)</th>
+<th>Reserve (ms)</th>
+<th>Limit (ms)</th>
+<th>Plain Python</th>
+<th>Viper</th>
+<th>Assembly</th>
+<th>Answer</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>40</td>
+<td>10</td>
+<td>30</td>
+<td>120</td>
+<td>6</td>
+<td>4</td>
+<td>Viper</td>
+<td>Plain Python is over the limit; viper and assembly both fit, and viper is the simpler.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>40</td>
+<td>10</td>
+<td>30</td>
+<td>18</td>
+<td>5</td>
+<td>3</td>
+<td>Plain Python</td>
+<td>Plain Python already fits, so any faster option costs readability for nothing.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>40</td>
+<td>10</td>
+<td>30</td>
+<td>90</td>
+<td>34</td>
+<td>12</td>
+<td>Assembly</td>
+<td>Viper at 34 ms is over the 30 ms limit; assembly at 12 ms fits.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>40</td>
+<td>10</td>
+<td>30</td>
+<td>200</td>
+<td>80</td>
+<td>45</td>
+<td>None fits</td>
+<td>Even assembly at 45 ms is over the limit, so the work itself must be reduced.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>20</td>
+<td>5</td>
+<td>15</td>
+<td>60</td>
+<td>14</td>
+<td>7</td>
+<td>Viper</td>
+<td>Viper at 14 ms is within the 15 ms limit, so assembly is not needed.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>40</td>
+<td>10</td>
+<td>30</td>
+<td>31</td>
+<td>12</td>
+<td>9</td>
+<td>Viper</td>
+<td>Plain Python at 31 ms is just over the limit of 30 ms; viper at 12 ms fits.</td>
+</tr>
+</tbody>
+</table>
+<p>For exploration the learner sets the budget (10 to 80 ms, step 5, default 40), the reserve (0 to 20 ms, step 5, default 10), and the three times (1 to 300 ms, step 1, defaults 90, 20, 10), and the sim shows which options fit.</p>
+<p><strong>Provenance:</strong> The scenario numbers are illustrative and invented for this activity. The 40 ms budget and 10 ms reserve are the values used in the chapter section "The Real-Time Constraint and the Frame Overrun". The sim labels all times "illustrative, not measured."</p>
+<p><strong>Rules:</strong> limit = budget - reserve. An option fits when its time &lt;= limit. The answer is the first option that fits in the order Plain Python, Viper, Assembly; if none fits the answer is None fits. Budget: min 10, max 80, step 5, default 40, unit ms. Reserve: min 0, max 20, step 5, default 10, unit ms. Times: min 1, max 300, step 1, unit ms.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner changes the numbers in the exploration panel and watches which options fit.</li>
+<li>The learner notices that raising the reserve can make a fitting option stop fitting.</li>
+<li>The learner starts the 6 scenarios. Scenario 1 is shown.</li>
+<li>The learner chooses a recommendation and submits.</li>
+<li>The sim shows the limit, which options fit, the correct answer, and the Why text.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 scenarios, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The exploration panel shows scenario 1's numbers with the limit of 30 ms and the three options marked fits or does not fit, and the question "Which is the simplest option that fits?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that the audio work gets 30 ms of the 40 ms frame after a 10 ms display reserve, that the simplest approach that passes timing verification on the worst pass is the right one, and that the numbers in this activity are illustrative.</p>
+</details>
+<h2 id="the-results-table">The Results Table<a class="headerlink" href="#the-results-table" title="Permanent link">&para;</a></h2>
+<p>This is the table the chapter is waiting for. <strong>Its measured columns are blank on purpose.</strong> I could not run the scripts on the kit, and I would rather leave a gap than print a number that was not measured. Run the scripts, copy the <code>RESULT|</code> lines they print, and fill in the columns. The "predicted" column holds only arithmetic or labelled estimates.</p>
+<table>
+<thead>
+<tr>
+<th>Row</th>
+<th>Code</th>
+<th>Script</th>
+<th>Predicted (arithmetic or estimate)</th>
+<th>Measured ms</th>
+<th>Measured cycles</th>
+<th>Share of 40 ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>dsp.fft</code>, plain lists, 512 points</td>
+<td>02</td>
+<td>at 2,604 cycles per butterfly it fills the frame; the real figure is unknown</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>dsp.fft</code>, <code>array('f')</code></td>
+<td>02</td>
+<td>same</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Whole pure-Python pipeline (load, FFT, magnitudes, bands)</td>
+<td>02</td>
+<td>dominated by the FFT</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Window 512 samples, Python on lists</td>
+<td>04</td>
+<td>no prediction</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Window 512 samples, Python on <code>array('h')</code></td>
+<td>04</td>
+<td>no prediction</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Window 512 samples, <code>@viper</code></td>
+<td>04</td>
+<td>between rows 5 and 7</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Window 512 samples, <code>@asm_thumb</code></td>
+<td>04</td>
+<td>estimate 51 to 85 us (7,700 to 12,800 cycles)</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>fft_q15</code> viper FFT, 512 points</td>
+<td>05</td>
+<td>no prediction</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Whole viper pipeline</td>
+<td>05</td>
+<td>no prediction</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Assembly FFT (stretch exercise)</td>
+<td>none</td>
+<td>paper estimate about 0.92 ms if 60 cycles per butterfly</td>
+<td>not written</td>
+<td>not written</td>
+<td>not written</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Live loop, pure Python: worst pass, overruns</td>
+<td>06</td>
+<td>expected to fail</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Live loop, viper: worst pass, overruns</td>
+<td>06</td>
+<td>the aim is a pass</td>
+<td>to be measured</td>
+<td>to be measured</td>
+<td>to be measured</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Second core: ratios A to D</td>
+<td>07</td>
+<td>C near 100%, D slower (expectation)</td>
+<td>to be measured</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>When rows 1 to 12 are filled in, the chapter's story can be checked: whether the plain-Python FFT really overruns the frame, how much of the speed-up viper delivers, and whether the viper pipeline passes timing verification with the display reserve. If a row surprises you, the surprise is the useful result: report it.</p>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>Real-time audio on the Pico is a budget problem. You have 6,000,000 cycles per 40 ms frame and a pipeline whose FFT alone is 2,304 butterflies. You measure with <code>ticks_us</code> or the DWT cycle counter, using the best of several runs; you profile to find the loop that matters; and you verify the finished loop by its worst pass, not its average. Then you spend effort in order of cost: remove allocation and floats from the hot loop, use typed arrays and pre-allocated buffers, precompute the tables, move the one dominant loop into viper with fixed-point arithmetic, and only if that is still not enough consider assembly or the second core.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>A real-time constraint is a deadline: 40 ms and 6,000,000 cycles per frame; a frame overrun is a pass that takes longer than one frame, and the backlog it creates eventually loses audio.</li>
+<li>Measure first with the best of several runs; the DWT cycle counter (DEMCR bit 24, DWT_CTRL bit 0, CYCCNT at 0xE0001004) is unverified on the RP2350, and <code>01-cycle-counter.py</code> checks it; <code>ticks_cpu()</code> is microseconds on this port.</li>
+<li>Profile to find where time goes, and verify timing by the worst pass with a reserve for the display.</li>
+<li>A float result is a heap object; a small integer is not. Typed arrays store numbers packed, pre-allocated buffers avoid garbage, and precomputed tables turn thousands of trigonometric calls per second into lookups.</li>
+<li>Q15 fixed-point stores a fraction as an integer over 32768; multiply, then shift right by 15; watch for overflow, and halve at each FFT stage.</li>
+<li>Viper compiles a typed function to machine code, passes arrays by address, has unsigned <code>ptr16</code> reads and no bounds checking.</li>
+<li>Inline assembly gives you instructions and registers (<code>r0</code> to <code>r3</code> arguments, <code>r0</code> returned) at the price of safety and portability; an assembly FFT is a stretch exercise.</li>
+<li>A second core runs truly in parallel but shares one heap; keep all I2S, SPI, and pin work on core 0.</li>
+<li>Use the simplest approach that keeps the worst pass inside the budget; the results table is yours to fill in.</li>
+</ul>
+<p>Test yourself with these questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>A loop averages 25 ms per pass but once in a while takes 55 ms. Does it meet a 40 ms deadline? Click to expand</summary>
+<p>No. The average does not matter for a deadline; the 55 ms pass is an overrun, and the backlog it adds eventually loses audio. Find out what causes the long pass (often a garbage collection), and verify timing by the worst pass.</p>
+</details>
+<details class="question">
+<summary>A viper function reads a signed 16-bit sample with <code>ptr16</code> and gets 65535. What is the value, and how do you fix the code? Click to expand</summary>
+<p>The stored value is -1: <code>ptr16</code> reads are unsigned, so -1 comes back as 65535. Subtract 65536 when the value is 32768 or more, as <code>window_viper</code> does.</p>
+</details>
+<details class="question">
+<summary>You have a 512-point FFT with 2,304 butterflies and want it to use at most 10 ms. How many cycles may one butterfly take at 150 MHz? Click to expand</summary>
+<p>10 ms is 1,500,000 cycles. Divided by 2,304 butterflies that is about 651 cycles per butterfly, or 4.3 microseconds.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Faster, and Proven</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just learned to benchmark and profile against the 40 ms frame budget, remove allocation, use typed arrays and Q15 fixed-point math, write a viper function, read inline assembly, and choose a speed-up by its trade-offs. Fill in the results table and you will know, with numbers, which version of your pipeline keeps up.</p>
+</div>
+<p>In the next chapter we calibrate the microphone and build push-to-talk.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

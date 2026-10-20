@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="How a school pushes alerts to every desk device with MQTT: publish-subscribe versus request-response, a Mosquitto broker on a Raspberry Pi, topic design, QoS, retained messages, last will, keep-alive, non-blocking umqtt polling inside the audio loop, the alert format, and Home Assistant.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>15. MQTT and Push Alerts - Open Study Buddy</title>
+        <title>MQTT and Push Alerts - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              15. MQTT and Push Alerts
+              MQTT and Push Alerts
             
           </span>
         </div>
@@ -791,6 +791,207 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#a-test-tomorrow-delivered-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Test Tomorrow, Delivered Now
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-ways-to-ask-a-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two Ways to Ask a Question
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mqtt-in-one-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT in One Page
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topics-and-how-to-name-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topics and How to Name Them
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Topics and How to Name Them">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-mqtt-topic-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: MQTT Topic Router
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mosquitto-on-a-school-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mosquitto on a School Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delivery-promises-qos-retained-messages-and-last-will" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delivery Promises: QoS, Retained Messages, and Last Will
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery Promises: QoS, Retained Messages, and Last Will">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qos-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      QoS Levels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QoS Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-qos-handshake-stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: QoS Handshake Stepper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retained-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retained Messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last-will-and-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Last Will and Keep-Alive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-device-status-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Device Status Topic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-umqtt-library-and-polling-without-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      The umqtt Library and Polling Without Blocking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The umqtt Library and Polling Without Blocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-frame-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Budget
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-alert-message-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Alert Message Format
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Alert Message Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#showing-and-sounding-an-alert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing and Sounding an Alert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconnecting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reconnecting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#home-automation-and-home-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home Automation and Home Assistant
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -865,6 +1066,69 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
       
     </li>
   
@@ -1069,6 +1333,207 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#a-test-tomorrow-delivered-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Test Tomorrow, Delivered Now
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-ways-to-ask-a-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two Ways to Ask a Question
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mqtt-in-one-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT in One Page
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topics-and-how-to-name-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topics and How to Name Them
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Topics and How to Name Them">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-mqtt-topic-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: MQTT Topic Router
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mosquitto-on-a-school-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mosquitto on a School Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delivery-promises-qos-retained-messages-and-last-will" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delivery Promises: QoS, Retained Messages, and Last Will
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Delivery Promises: QoS, Retained Messages, and Last Will">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qos-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      QoS Levels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QoS Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-qos-handshake-stepper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: QoS Handshake Stepper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retained-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retained Messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#last-will-and-keep-alive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Last Will and Keep-Alive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-device-status-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Device Status Topic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-umqtt-library-and-polling-without-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      The umqtt Library and Polling Without Blocking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The umqtt Library and Polling Without Blocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-frame-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Budget
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-alert-message-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Alert Message Format
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Alert Message Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#showing-and-sounding-an-alert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing and Sounding an Alert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconnecting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reconnecting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#home-automation-and-home-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home Automation and Home Assistant
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1205,13 +1670,875 @@
 <li><a href="../14-streaming-security-resilience/">Chapter 14: Streaming Speech, Security, and Network Resilience</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="a-test-tomorrow-delivered-now">A Test Tomorrow, Delivered Now<a class="headerlink" href="#a-test-tomorrow-delivered-now" title="Permanent link">&para;</a></h2>
+<p>Until now the Study Buddy has only spoken when spoken to: you ask, the server answers. A school needs the opposite too. When the algebra test moves to Tuesday, every desk device in the building should know within seconds, whether or not anyone asked. This chapter builds that push path with MQTT, a messaging protocol small enough for a Pico, and ends with a device that shows and beeps for an alert inside the 40 ms audio loop, with a test that tells you whether it still fits.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Let the News Come to You</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+By the end of this chapter your device will show an alert and beep when the school server announces a test, all while it keeps listening. You will also run a message broker on a Raspberry Pi and watch your own alerts fly by. Let's listen closely!</p>
+</div>
+<h2 id="two-ways-to-ask-a-question">Two Ways to Ask a Question<a class="headerlink" href="#two-ways-to-ask-a-question" title="Permanent link">&para;</a></h2>
+<p>In Chapter 13 the device asked the buddy server a question and waited for the reply. That is the <strong>request-response pattern</strong>: one side, the client, sends a request, and the other side, the server, sends exactly one response. Nothing happens unless the client starts it. If the server learns something new, such as "the test moved," it has no way to tell the client, because it can only answer when asked.</p>
+<p>The <strong>publish-subscribe pattern</strong> turns this around. Senders do not talk to receivers at all. A sender publishes a message under a label, and a receiver that has told a go-between "I want everything with this label" gets a copy whenever one appears. The sender never learns who the receivers are, and the receivers never learn who the sender is. The go-between that holds the labels and copies the messages is the <em>broker</em>, and the labels are <em>topics</em>, both defined below.</p>
+<p>Here is the same news, "Algebra II test tomorrow at 8," delivered three ways to a classroom of 30 desks. A device can wait for news by <strong>polling</strong>, which means asking again and again on a timer. If it asks every <span class="arithmatex">\( P \)</span> seconds, a message published at a random moment waits on average <span class="arithmatex">\( P/2 \)</span> seconds and at worst <span class="arithmatex">\( P \)</span> seconds, and each desk makes <span class="arithmatex">\( 86{,}400 / P \)</span> requests a day even when nothing happened.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Reaches the desk</th>
+<th>Idle traffic per desk per day</th>
+<th>Who tracks the desks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP poll every 60 s</td>
+<td>average 30 s, worst 60 s</td>
+<td>1,440 requests</td>
+<td>nobody; each desk asks</td>
+</tr>
+<tr>
+<td>HTTP poll every 30 s</td>
+<td>average 15 s, worst 30 s</td>
+<td>2,880 requests (86,400 for 30 desks)</td>
+<td>nobody</td>
+</tr>
+<tr>
+<td>HTTP poll every 5 s</td>
+<td>average 2.5 s, worst 5 s</td>
+<td>17,280 requests (518,400 for 30 desks)</td>
+<td>nobody</td>
+</tr>
+<tr>
+<td>MQTT push</td>
+<td>one trip through the broker</td>
+<td>5,760 two-byte pings at one every 15 s</td>
+<td>the broker</td>
+</tr>
+<tr>
+<td>WebSocket push</td>
+<td>one trip to the connected desk</td>
+<td>its own keep-alive pings</td>
+<td>your server code</td>
+</tr>
+</tbody>
+</table>
+<p>The last two rows push, so the wait does not depend on a timer. Chapter 14's <strong>WebSocket</strong> is a long-lived two-way connection between one device and one server. It is the right tool for streaming audio, but for alerts you would have to write the server code that remembers which desk is connected, which room it is in, and what it missed while it was offline. MQTT gives you those pieces already built: topics for rooms, a broker that does the fan-out, messages that wait for a device that is offline, and a built-in way to notice when a device vanishes. How fast the push really is on your Wi-Fi is not a number this book can give you; test 08 measures it.</p>
+<p>Notice that the pings in the MQTT row outnumber the requests in the 30-second poll row. The difference is cost: a ping is 2 bytes each way on an open connection, while a poll is a full HTTP request with headers, usually on a new connection. Compare the wait for the news, not the packet count.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Who Starts the Conversation?</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Request-response puts the asker in charge of the timing, so news is only as fresh as the last question. Publish-subscribe puts the news in charge: the broker speaks up the moment something is published.</p>
+</div>
+<h2 id="mqtt-in-one-page">MQTT in One Page<a class="headerlink" href="#mqtt-in-one-page" title="Permanent link">&para;</a></h2>
+<p>The <strong>MQTT protocol</strong> (Message Queuing Telemetry Transport) is a publish-subscribe protocol designed for small devices on unreliable networks. It runs over an ordinary TCP connection, usually on port 1883, and its messages have a tiny fixed header: the smallest packet, a ping, is 2 bytes. The Pico's <code>umqtt.simple</code> library speaks MQTT version 3.1.1, which is what this chapter uses; the library's CONNECT packet announces protocol level 4, the number for 3.1.1.</p>
+<p>Three roles take part in every exchange. The <strong>MQTT broker</strong> is the server in the middle: it accepts connections, remembers who subscribed to what, and forwards each published message to every matching subscriber. A <strong>publisher</strong> is any client that sends a message to the broker, and a <strong>subscriber</strong> is any client that has asked the broker for messages. One program can be both. Your Study Buddy is a subscriber to alerts and a publisher of its own status, and the school's buddy server is a publisher of alerts.</p>
+<p><em>Worked example.</em> Here is one alert as it travels. The school server publishes it, the broker forwards it, and each desk in room 214 receives it.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>buddy server   --PUBLISH school/crhs/class/214/alert (173-byte JSON)--&gt;   broker
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>broker         --PUBLISH school/crhs/class/214/alert (same bytes)------&gt;   desk-07
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>broker         --PUBLISH school/crhs/class/214/alert (same bytes)------&gt;   desk-12
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>broker         (desk-31 is in room 220: its subscription does not match, so it gets nothing)
+</span></code></pre></div>
+<p>Counting the bytes shows why the protocol suits a Pico. With a 27-character topic and the 173-byte alert shown later in this chapter, the PUBLISH packet at QoS 0 is <span class="arithmatex">\( 1 + 2 + 2 + 27 + 173 = 205 \)</span> bytes: one byte for the packet type and flags, two for the length of what follows (the length needs two bytes once it passes 127), two for the topic's length, then the topic and the message. At QoS 1 it grows to 207 bytes because a two-byte packet number is added, and the receiver answers with a 4-byte acknowledgement.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Test the Broker Before the Pico</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+Before you debug any device code, run <code>server/watch.py</code> on your computer and publish with <code>server/publish_alert.py</code>. If the alert shows up there, the broker, the accounts, and the topic are all fine, and any remaining problem is on the Pico.</p>
+</div>
+<h2 id="topics-and-how-to-name-them">Topics and How to Name Them<a class="headerlink" href="#topics-and-how-to-name-them" title="Permanent link">&para;</a></h2>
+<p>A <strong>topic</strong> is the label a message is published under: a text string whose levels are separated by slashes, like a folder path. Topics are case-sensitive, they need not be created in advance (the first publish creates one), and a publisher must name one exact topic. Topics that begin with <code>$</code> belong to the broker itself; Mosquitto publishes its statistics under <code>$SYS</code>.</p>
+<p>Because a topic is just a string, a school with 40 classrooms and 1,000 devices needs a <strong>topic naming scheme</strong>: a rule for building names so that nobody has to look them up. A good scheme goes from general to specific, so that one subscription can pick out a whole branch. The scheme this book uses puts the school first, then says whether the message is about a classroom or a device:</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Published by</th>
+<th>Read by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>school/&lt;school&gt;/alert</code></td>
+<td>buddy server</td>
+<td>every device in the school</td>
+</tr>
+<tr>
+<td><code>school/&lt;school&gt;/class/&lt;room&gt;/alert</code></td>
+<td>buddy server</td>
+<td>devices in that room</td>
+</tr>
+<tr>
+<td><code>school/&lt;school&gt;/device/&lt;device&gt;/status</code></td>
+<td>the device (and the broker, for its last will)</td>
+<td>dashboards, the teacher</td>
+</tr>
+<tr>
+<td><code>school/&lt;school&gt;/device/&lt;device&gt;/telemetry</code></td>
+<td>the device</td>
+<td>dashboards</td>
+</tr>
+<tr>
+<td><code>school/&lt;school&gt;/device/&lt;device&gt;/echo</code>, <code>.../echo-reply</code></td>
+<td>the device, then the server</td>
+<td>the round-trip test</td>
+</tr>
+</tbody>
+</table>
+<p>Each choice has a reason. The school id comes first so that one broker can serve two schools and the access rules can be written per school. <code>alert</code> comes last so that a subscription to a room's alerts is a complete, exact name. Devices write only under <code>device/&lt;their own id&gt;/</code>, which is what lets the broker's access rules (below) stop a stolen or confused device from speaking for another. Every level is lowercase letters, digits, and hyphens: <code>topics.slug("Lab 130")</code> gives <code>lab-130</code>, because a space in a topic is legal but invites bugs. Keep names short too, because every topic costs RAM on the Pico and bytes in every packet.</p>
+<p>A subscriber is not limited to exact names. <strong>Topic wildcards</strong> let a <strong>subscription filter</strong> match many topics. A filter may contain two wildcards, and only in subscriptions, never in a publish.</p>
+<table>
+<thead>
+<tr>
+<th>Wildcard</th>
+<th>Matches</th>
+<th>Example filter</th>
+<th>Selects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>exactly one level</td>
+<td><code>school/crhs/class/+/alert</code></td>
+<td>the alert topic of every classroom</td>
+</tr>
+<tr>
+<td><code>#</code></td>
+<td>its parent and everything below; last level only</td>
+<td><code>school/crhs/#</code></td>
+<td>everything about Cedar Ridge</td>
+</tr>
+</tbody>
+</table>
+<p>Two edge cases surprise people. <code>school/crhs/#</code> also matches <code>school/crhs</code> itself, because <code>#</code> includes its parent. And a filter that starts with a wildcard does not match topics beginning with <code>$</code>, so <code>#</code> does not flood you with the broker's <code>$SYS</code> statistics.</p>
+<p><em>Worked example.</em> A Study Buddy in room 214 subscribes to two exact topics, <code>school/crhs/alert</code> and <code>school/crhs/class/214/alert</code>, which <code>umqtt</code> does with two <code>subscribe()</code> calls because it takes one filter at a time. A teacher's dashboard subscribes to one filter, <code>school/crhs/device/+/status</code>, and sees every device. The table below was written by hand from the rules and is the answer key that <code>01-topic-matcher.py</code> checks <code>topics.topic_matches()</code> against. An <code>x</code> means the filter selects the topic.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>S1</th>
+<th>S2</th>
+<th>S3</th>
+<th>S4</th>
+<th>S5</th>
+<th>S6</th>
+<th>S7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>school/crhs/alert</code></td>
+<td>x</td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><code>school/crhs/class/214/alert</code></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td><code>school/crhs/class/lab-130/alert</code></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td><code>school/crhs/device/desk-07/status</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td><code>school/crhs/device/desk-07/telemetry</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td><code>school/trhs/alert</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><code>school/crhs</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td><code>$SYS/broker/uptime</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The filters are S1 <code>school/crhs/alert</code>, S2 <code>school/crhs/class/214/alert</code>, S3 <code>school/crhs/class/+/alert</code>, S4 <code>school/crhs/device/+/status</code>, S5 <code>school/crhs/#</code>, S6 <code>school/+/alert</code>, and S7 <code>#</code>. The matcher is one short function of plain Python in <code>topics.py</code>. It passes the examples in the MQTT specification, and on a computer with paho-mqtt installed, <code>server/test_topics.py</code> also compares it with paho's own matcher on 4,095 filter and topic pairs (every valid filter of up to three levels built from <code>a</code>, <code>b</code>, <code>$x</code>, <code>+</code>, and <code>#</code>, against every topic of up to three levels built from <code>a</code>, <code>b</code>, and <code>$x</code>). They agreed on all of them.</p>
+<p>Now try the rules yourself, and then check them against the table.</p>
+<h4 id="diagram-mqtt-topic-router">Diagram: MQTT Topic Router<a class="headerlink" href="#diagram-mqtt-topic-router" title="Permanent link">&para;</a></h4>
+<details>
+<summary>MQTT Topic Router</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> mqtt-topic-router<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Apply<br/>
+<strong>Bloom Verb:</strong> apply<br/>
+<strong>Learning Objective:</strong> The learner will apply the "+" and "#" wildcard rules to decide which of 7 subscription filters select each of 8 topics, with at least 7 of the 8 selections exactly right.</p>
+<p><strong>Prerequisites:</strong> topic, topic level, subscription filter, "+" wildcard, "#" wildcard, topics beginning with "$" (all defined in the section "Topics and How to Name Them" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 8 topics, in the fixed order of the Content table, the learner marks which of the filters S1 to S7 select it, then submits. A selection is correct when the marked set equals the Answer column exactly (a missing filter or an extra filter makes it wrong). Mastery is 7 of 8 correct on the first submission of each topic. Typing topics of the learner's own into the exploration box is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) "+" matches any number of levels. (2) "school/crhs/#" does not select "school/crhs". (3) "#" selects every topic, including those starting with "$".</p>
+<p><strong>Instructional Rationale:</strong> Applying a rule needs practice on cases that the rule treats differently. Each topic is built to separate two filters that look alike, and the learner commits a set of marks before the answer is shown, so a wrong rule shows up as a wrong set.</p>
+<p><strong>Content:</strong></p>
+<p>The 7 subscription filters, always shown:</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>school/crhs/alert</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>school/crhs/class/214/alert</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>school/crhs/class/+/alert</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>school/crhs/device/+/status</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>school/crhs/#</td>
+</tr>
+<tr>
+<td>S6</td>
+<td>school/+/alert</td>
+</tr>
+<tr>
+<td>S7</td>
+<td>#</td>
+</tr>
+</tbody>
+</table>
+<p>The 8 topics, in order, with the filters that select each and the reason shown as feedback:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+<th>Answer (filters that select it)</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>school/crhs/alert</td>
+<td>S1, S5, S6, S7</td>
+<td>S1 is the exact name. S5 and S7 take everything below their prefix. S6's "+" is the one level "crhs". S3 needs a "class" level that is not there.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>school/crhs/class/214/alert</td>
+<td>S2, S3, S5, S7</td>
+<td>S2 is exact and S3's "+" is the one level "214". S6 fails because "+" can match only one level, and three levels sit between "school" and "alert".</td>
+</tr>
+<tr>
+<td>3</td>
+<td>school/crhs/class/lab-130/alert</td>
+<td>S3, S5, S7</td>
+<td>S3's "+" matches "lab-130". S2 names room 214 only.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>school/crhs/device/desk-07/status</td>
+<td>S4, S5, S7</td>
+<td>S4's "+" matches "desk-07". S3 fails on "device" versus "class".</td>
+</tr>
+<tr>
+<td>5</td>
+<td>school/crhs/device/desk-07/telemetry</td>
+<td>S5, S7</td>
+<td>S4 needs the last level to be "status". Only the "#" filters take it.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>school/trhs/alert</td>
+<td>S6, S7</td>
+<td>S6's "+" matches "trhs". S1 and S5 name "crhs".</td>
+</tr>
+<tr>
+<td>7</td>
+<td>school/crhs</td>
+<td>S5, S7</td>
+<td>"#" matches its parent level too, so "school/crhs/#" selects "school/crhs".</td>
+</tr>
+<tr>
+<td>8</td>
+<td>$SYS/broker/uptime</td>
+<td>none</td>
+<td>A filter that starts with a wildcard does not select a topic that starts with "$".</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The scheme and the 7 filters come from the chapter section "Topics and How to Name Them" and from <code>src/chapters/15-mqtt-push-alerts/01-topic-matcher.py</code>, whose answers were written by hand and agree with the MQTT 3.1.1 specification's rules and with the paho-mqtt matcher.</p>
+<p><strong>Rules:</strong> Split a filter and a topic at "/" into levels. A filter level equal to "+" matches exactly one topic level, of any text, including empty text. A filter level equal to "#" is valid only as the last level and matches the topic's remaining levels, including none. Any other filter level must equal the topic level exactly, with case mattering. Without "#", the filter and the topic must have the same number of levels. A topic whose first level starts with "$" is not selected by a filter whose first level is "+" or "#".</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner reads the 7 filters, then types one topic of their own into the exploration box. The sim lists which filters select it and highlights the levels that matched, so the learner can try "school/crhs" or "$SYS/x" freely.</li>
+<li>The learner starts the 8 topics. Topic 1 is shown with the 7 filters unmarked.</li>
+<li>The learner marks the filters that they think select the topic and submits.</li>
+<li>The sim shows the correct set, the levels each filter matched, and the Why text. The learner moves to the next topic.</li>
+<li>After topic 8, the sim shows the score. The learner should notice that topics 5 and 7 are the two that most often cost a point.</li>
+</ol>
+<p><strong>Feedback:</strong> 8 topics, fixed order, one submission each. Correct: "Correct: <Why>". Incorrect: "Not quite. The filters that select it are <answer>: <Why>", naming each filter that was wrongly marked or missed. The answer is revealed right after each submission, and a running score "n of 8" is shown.</p>
+<p><strong>Starting State:</strong> The 7 filters are shown with the exploration box empty and the question "Which subscribers would receive a message on this topic?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter's table of 8 topics against filters S1 to S7 has the same answers. The chapter states that "school/crhs/#" selects "school/crhs", that "#" does not select "$SYS/broker/uptime", and that "+" matches exactly one level.</p>
+</details>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Two Devices, One Client ID</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+Every MQTT client needs an id that is unique on the broker, and the broker disconnects an older client when a new one connects with the same id. If you copy <code>secrets.py</code> between devices, two Picos will kick each other off in a loop. Give each device its own <code>device_id</code>, and use it as its user name too.</p>
+</div>
+<h2 id="mosquitto-on-a-school-raspberry-pi">Mosquitto on a School Raspberry Pi<a class="headerlink" href="#mosquitto-on-a-school-raspberry-pi" title="Permanent link">&para;</a></h2>
+<p><strong>Mosquitto</strong> is the open-source MQTT broker from the Eclipse project, small enough to run on a Raspberry Pi and widely used in home automation. A <strong>broker on a Raspberry Pi</strong> gives a school one machine that sits on the classroom network, keeps the messages inside the building, and can also host the buddy server of Chapters 13 and 16. Install and start it on Raspberry Pi OS with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mosquitto<span class="w"> </span>mosquitto-clients
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>mosquitto
+</span></code></pre></div>
+<p>With no configuration at all, current Mosquitto (version 2 or later) accepts connections from the Pi itself only. To let the desks connect, you must say which network address to listen on, and from that moment the connection needs <strong>MQTT authentication</strong>: a user name and password that the broker checks against a password file, plus an access-control list (ACL) that says which topics each account may read or write. The book's <code>server/mosquitto.conf</code> is a complete example, shown here.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>listener 1883 192.168.1.50
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>allow_anonymous false
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>password_file /etc/mosquitto/study-buddy.passwd
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>acl_file /etc/mosquitto/study-buddy.acl
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>message_size_limit 1024
+</span></code></pre></div>
+<p>The first line makes the broker listen on port 1883 on the Pi's LAN address only, not on every interface, so a second network card or a VPN cannot expose it by accident. Give the Pi a fixed address (a DHCP reservation on the router), because Mosquitto cannot listen on an address the Pi does not have. The next two lines turn off anonymous access and name the password file. <code>message_size_limit</code> protects the Pico: <code>umqtt</code> reads a whole message into RAM before your code sees it, so a giant message from a mistaken or hostile client could crash the device, and the broker can refuse to forward anything over 1,024 bytes. Create the accounts, one for the server, one for a dashboard, and one per device whose user name is the device id:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>mosquitto_passwd<span class="w"> </span>-c<span class="w"> </span>/etc/mosquitto/study-buddy.passwd<span class="w"> </span>buddy-server
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>mosquitto_passwd<span class="w"> </span>/etc/mosquitto/study-buddy.passwd<span class="w"> </span>dashboard
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>mosquitto_passwd<span class="w"> </span>/etc/mosquitto/study-buddy.passwd<span class="w"> </span>desk-07
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>mosquitto
+</span></code></pre></div>
+<p>Each command asks for that account's password. Use <code>-c</code> only for the first account, since it creates the file and overwrites any existing one. A lost device is retired with <code>mosquitto_passwd -D &lt;file&gt; &lt;user&gt;</code>, which is why each device has its own account instead of sharing one password. The ACL file, <code>server/study-buddy.acl</code>, lets the server publish anywhere under the school's branch, lets a dashboard read it, and gives every device read access to the alert topics and write access to only its own <code>device/&lt;name&gt;/</code> topics. It does this with the line <code>pattern write school/crhs/device/%u/status</code>, where <code>%u</code> is replaced by the account name of whoever is connected. These settings follow Mosquitto's documentation; they have not been run on a Pi for this book, so test them (with <code>watch.py</code> and <code>publish_alert.py</code>, as below) before relying on them.</p>
+<p>Test it from your computer before touching a Pico (the Pico tests are in the README):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python3<span class="w"> </span>server/watch.py<span class="w">                        </span><span class="c1"># terminal 1: prints everything under school/crhs</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python3<span class="w"> </span>server/publish_alert.py<span class="w"> </span>--room<span class="w"> </span><span class="m">214</span><span class="w"> </span>--type<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--title<span class="w"> </span><span class="s2">"Algebra II test"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>--when<span class="w"> </span><span class="s2">"Tomorrow 8:00 AM"</span><span class="w"> </span>--text<span class="w"> </span><span class="s2">"Algebra II test tomorrow at 8 AM."</span><span class="w">   </span><span class="c1"># terminal 2</span>
+</span></code></pre></div>
+<p><code>watch.py</code> is the tiny subscriber and <code>publish_alert.py</code> the server-side publisher; both use the Python library paho-mqtt and read the broker address and account from environment variables so that no password lands in a file. <code>publish_alert.py --dry-run</code> shows what would be sent without connecting. Here is a real dry run from this book's test machine (no broker involved):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ python3 server/publish_alert.py --room "Lab 130" --type test --title "Algebra II test" \
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>      --when "Tomorrow 8:00 AM" --text "Algebra II test tomorrow at 8 AM." --dry-run
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>topic  : school/crhs/class/lab-130/alert
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>payload: {"id":"20261018-125323","type":"test","title":"Algebra II test","when":"Tomorrow 8:00 AM","text":"Algebra II test tomorrow at 8 AM."} (133 bytes)
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>dry run: nothing was sent
+</span></code></pre></div>
+<p>Mosquitto's own command-line tools do the same job once you are on the Pi: <code>mosquitto_sub -h 192.168.1.50 -u dashboard -P ... -t 'school/crhs/#' -v</code> and <code>mosquitto_pub -t school/crhs/alert -m '...' -q 1</code>.</p>
+<p>Passwords alone are not a complete defense, because plain MQTT on port 1883 sends the user name and password unencrypted, as plain HTTP does in Chapter 13. On a school LAN that you control, that is a defensible trade-off: it is the same trust you gave plain HTTP. It stops being defensible the moment the broker is reachable from outside. A broker open to the internet invites anyone to publish a fake "No school Friday" alert to every desk, to read which devices are online and when, and to fill the Pi's memory with retained messages. The fixes are layered: keep the listener on the LAN address, keep the router from forwarding the port, keep anonymous access off, restrict accounts with the ACL, cap the message size, and if remote access is ever needed, use a VPN into the school network rather than opening port 1883. Encrypted MQTT (TLS, usually on port 8883) is possible with the <code>ssl</code> option of <code>umqtt</code> and Chapter 14's certificate handling, but this chapter's code and the broker settings above do not use it and it is untested here. Chapter 17 puts the broker exposure risk into the school's threat model and weighs these defenses.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">A Firewall Is a Second Lock</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+The <code>listener</code> line is one lock, and a firewall on the Pi is a second. If you use <code>ufw</code>, allow only your school's subnet, for example <code>sudo ufw allow from 192.168.1.0/24 to any port 1883 proto tcp</code>, then check from a phone on cellular data that the port does not answer.</p>
+</div>
+<h2 id="delivery-promises-qos-retained-messages-and-last-will">Delivery Promises: QoS, Retained Messages, and Last Will<a class="headerlink" href="#delivery-promises-qos-retained-messages-and-last-will" title="Permanent link">&para;</a></h2>
+<p>A network can drop a packet, and a device can be switched off when a message goes by. MQTT gives you four tools for dealing with that, and each one is a promise you choose per message or per connection.</p>
+<h3 id="qos-levels">QoS Levels<a class="headerlink" href="#qos-levels" title="Permanent link">&para;</a></h3>
+<p>The <strong>QoS level</strong> (quality of service) is the delivery promise for one message.</p>
+<table>
+<thead>
+<tr>
+<th>QoS</th>
+<th>Promise</th>
+<th>Packets</th>
+<th>A lost packet means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>At most once</td>
+<td>PUBLISH</td>
+<td>the message is gone</td>
+</tr>
+<tr>
+<td>1</td>
+<td>At least once</td>
+<td>PUBLISH, PUBACK</td>
+<td>the sender repeats it, so the receiver may see it twice</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Exactly once</td>
+<td>PUBLISH, PUBREC, PUBREL, PUBCOMP</td>
+<td>the four-step handshake prevents a repeat, at the cost of a second round trip</td>
+</tr>
+</tbody>
+</table>
+<p>QoS applies on each hop separately. The publisher and the broker agree on one QoS, and the broker and the subscriber agree on another, and a message is delivered to a subscriber at the <em>lower</em> of the QoS it was published with and the QoS that the subscriber asked for in <code>subscribe()</code>. A QoS 1 alert reaches a desk at QoS 1 only if the desk subscribed at QoS 1; the book's code does.</p>
+<p>The <code>umqtt.simple</code> library supports QoS 0 and 1 for both publishing and subscribing, and not QoS 2, which keeps its code small. Its <code>publish(..., qos=1)</code> waits until the broker's acknowledgement arrives; it does not resend if the connection breaks, so a failed publish raises <code>OSError</code> and the program must decide what to do. The library <code>umqtt.robust</code> resends, but as the next section shows it does so by blocking.</p>
+<p>Here is how the book assigns levels, with the reason for each. The choice follows one rule: pay for a stronger promise only where losing or repeating the message matters.</p>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th>QoS</th>
+<th>Retain</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alert (server to desk)</td>
+<td>1</td>
+<td>no by default</td>
+<td>Losing a test notice is worse than seeing it twice, and a repeat is harmless because the <code>id</code> lets the device ignore it. QoS 2 would cost extra round trips for a guarantee the <code>id</code> already provides.</td>
+</tr>
+<tr>
+<td>Online and offline status</td>
+<td>1</td>
+<td>yes</td>
+<td>One message per connection; the last one must be right.</td>
+</tr>
+<tr>
+<td>Telemetry (volume, uptime)</td>
+<td>0</td>
+<td>no</td>
+<td>The next report replaces it in 30 seconds.</td>
+</tr>
+<tr>
+<td>Echo test</td>
+<td>0</td>
+<td>no</td>
+<td>We want to time the bare trip.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">Delivery Guarantees Feel Slippery</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+"At least once" and "at most once" are easy to mix up, and most people need to see the packets move to keep them straight. Step through the handshake below, predicting the answer each time, and the pattern will stick.</p>
+</div>
+<h4 id="diagram-qos-handshake-stepper">Diagram: QoS Handshake Stepper<a class="headerlink" href="#diagram-qos-handshake-stepper" title="Permanent link">&para;</a></h4>
+<details>
+<summary>QoS Handshake Stepper</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> mqtt-qos-handshake-stepper<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> infer<br/>
+<strong>Learning Objective:</strong> The learner will infer, for 6 scenarios of a publisher sending one alert to a broker, how many copies of the alert the broker processes, with at least 5 of the 6 inferences right.</p>
+<p><strong>Prerequisites:</strong> publisher, broker, QoS 0, QoS 1, QoS 2, PUBLISH, PUBACK, PUBREC, PUBREL, PUBCOMP, duplicate (all defined in the section "Delivery Promises" above this block).</p>
+<p><strong>Evidence of Mastery:</strong> For each scenario the learner chooses 0, 1, or 2 as the number of copies the broker processes, before the packets are stepped through. A choice is correct when it equals the Answer column. Mastery is 5 of 6 correct on the first choice for each scenario. Stepping through the packets after the answer, and the exploration mode, are not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) QoS 0 retries until the message gets through. (2) QoS 1 guarantees exactly one copy. (3) A lost acknowledgement means the message was lost. (4) QoS 2 never sends a packet twice.</p>
+<p><strong>Instructional Rationale:</strong> Inference at the Understand level requires the learner to reason from the packet sequence to the outcome rather than recall a definition. Committing to a count first, and then stepping through the packets, shows where the extra or missing copy comes from.</p>
+<p><strong>Content:</strong></p>
+<p>The sim shows one hop only, from the publisher to the broker, drawn as two lanes with packets moving between them. The packet sequences when nothing is lost:</p>
+<table>
+<thead>
+<tr>
+<th>QoS</th>
+<th>Packets in order</th>
+<th>Who sends each</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>PUBLISH</td>
+<td>publisher</td>
+</tr>
+<tr>
+<td>1</td>
+<td>PUBLISH, PUBACK</td>
+<td>publisher, broker</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PUBLISH, PUBREC, PUBREL, PUBCOMP</td>
+<td>publisher, broker, publisher, broker</td>
+</tr>
+</tbody>
+</table>
+<p>The 6 scenarios, in order. "Lost" means that packet never arrives and the sender never learns why.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Scenario</th>
+<th>Answer (copies processed)</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>QoS 0. Nothing is lost.</td>
+<td>1</td>
+<td>The one PUBLISH arrives and is processed once.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>QoS 0. The PUBLISH is lost.</td>
+<td>0</td>
+<td>QoS 0 has no acknowledgement and no repeat, so the alert is gone.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>QoS 1. Nothing is lost.</td>
+<td>1</td>
+<td>The PUBLISH arrives, is processed once, and the PUBACK ends the exchange.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>QoS 1. The PUBLISH is lost.</td>
+<td>1</td>
+<td>No PUBACK comes back, so the publisher sends the PUBLISH again with the duplicate flag set. That second one arrives and is processed once.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>QoS 1. The PUBLISH arrives but the PUBACK is lost.</td>
+<td>2</td>
+<td>The broker already processed the alert, but the publisher sees no PUBACK and sends it again, so the broker processes it a second time. This is why alerts carry an id.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>QoS 2. The PUBREC is lost.</td>
+<td>1</td>
+<td>The publisher repeats the PUBLISH, the broker recognizes the packet number and does not process it again, and the handshake continues to PUBCOMP.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Provenance:</strong> The packet sequences and the behavior of each QoS level come from the MQTT 3.1.1 specification and the chapter section "QoS Levels". The scenarios are illustrative, and the sim labels them "illustrative". The sim is a model of one hop and does not reproduce timing.</p>
+<p><strong>Rules:</strong> The publisher resends an unacknowledged PUBLISH (QoS 1) or PUBLISH and PUBREL (QoS 2) after a loss, with the duplicate flag set, until the acknowledgement arrives. The broker processes every QoS 1 PUBLISH it receives, including repeats. For QoS 2 the broker processes a packet number once, however many times the PUBLISH arrives. QoS 0 is never resent. In a scenario, exactly one packet is lost, once; the resend then arrives.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner opens the exploration mode, chooses QoS 0, 1, or 2, and steps through the packets of the no-loss case one at a time. The sim names each packet and who sent it.</li>
+<li>The learner starts the 6 scenarios. Scenario 1 is shown with the packet lanes empty.</li>
+<li>The learner chooses 0, 1, or 2 as the number of copies processed and submits.</li>
+<li>The sim steps through the scenario's packets, marks the lost one, and shows the Why text.</li>
+<li>After scenario 6, the sim shows the score. The learner should notice that only one scenario gives more than one copy and that it is the one where the acknowledgement, not the message, was lost.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 scenarios, fixed order, one choice each. Correct: "Correct: <Why>". Incorrect: "Not quite. The broker processes <answer> copy or copies: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The exploration mode is shown with QoS 1 selected and no packets sent, with the question "What will the broker do if an acknowledgement goes missing?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that QoS 0 is at most once, QoS 1 is at least once and may deliver a repeat, QoS 2 is exactly once with a four-packet handshake, that <code>umqtt.simple</code> supports QoS 0 and 1 only, and that alerts carry an id so repeats can be ignored.</p>
+</details>
+<h3 id="retained-messages">Retained Messages<a class="headerlink" href="#retained-messages" title="Permanent link">&para;</a></h3>
+<p>A <strong>retained message</strong> is a message that the broker keeps, one per topic, and delivers to every new subscriber of that topic immediately on subscribing. You set the retain flag when you publish. Without it, a device that was switched off when an alert went by never hears it. With it, the device hears the latest message the moment it connects.</p>
+<p>Retention is a good fit for state ("this device is online") and a risky fit for events ("the test is tomorrow"), because a retained event stays after the event is over. A device that boots on Thursday would receive a retained "test tomorrow" from Monday. There are two safe ways to handle that: publish the retained alert with an expiry you check on the server and <em>clear</em> it afterward, or don't retain alerts at all. To clear a retained message, publish a zero-length retained message to the same topic; the broker deletes the stored one. <code>publish_alert.py</code> does this with <code>--clear</code>, and <code>--retain</code> is an explicit choice, not a default. A device must also ignore the zero-length message when it is delivered, and <code>decode_alert()</code> does.</p>
+<p><em>Worked example.</em> The principal wants "Early dismissal Friday" visible on every desk, including those that reboot during the week. The server publishes it to <code>school/crhs/alert</code> with <code>--retain</code>. Every desk that connects or reconnects receives it immediately, which is why the device must remember the ids it has seen: without that, each reconnect would beep again. On Friday evening the server runs <code>publish_alert.py --all --clear</code> and the topic goes quiet.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Retained State, Fresh Events</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+Ask whether the message describes how things are or something that happened. State is worth retaining, because the newest value is the right one for a late arrival. An event usually isn't, because a late arrival would treat old news as new.</p>
+</div>
+<h3 id="last-will-and-keep-alive">Last Will and Keep-Alive<a class="headerlink" href="#last-will-and-keep-alive" title="Permanent link">&para;</a></h3>
+<p>A device that is unplugged cannot announce that it is gone. The <strong>last will</strong> solves this: when a client connects, it hands the broker a message and a topic, and the broker publishes that message for the client if the client disappears without saying goodbye. A clean <code>disconnect()</code> does not trigger the will, because the client said goodbye; a crash, a pulled cable, a dead Wi-Fi link, or a missed keep-alive does. In <code>umqtt</code> you set it before connecting:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">client</span><span class="o">.</span><span class="n">set_last_will</span><span class="p">(</span><span class="n">STATUS_TOPIC</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"offline"</span><span class="p">,</span> <span class="n">retain</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div>
+<p>How does the broker know a silent client is gone, since a dead TCP connection can look idle for a long time? That is the job of <strong>keep-alive</strong>. In its CONNECT packet the client promises a number of seconds, here 30, and promises to send <em>something</em> at least that often. The broker waits one and a half times the interval, 45 seconds here, and if it has heard nothing it treats the client as dead, closes the connection, and publishes the will. A client with nothing to say sends a ping, the 2-byte PINGREQ that the broker answers with a 2-byte PINGRESP.</p>
+<p><code>umqtt.simple</code> does not send pings by itself. Its <code>keepalive</code> argument only fills in the number the broker is told, and the default, 0, tells the broker never to time the client out. Pinging is your job, and the chapter's code pings at half the interval, every 15 seconds, so one lost ping does not look like a dead device. Any packet counts as traffic, so each publish also resets the clock.</p>
+<p><em>Worked example.</em> Suppose you forget <code>ping()</code> and the device is quiet. At 45 seconds the broker closes the connection and publishes <code>offline</code>, though the Pico is happily running. The dashboard shows a false outage every 45 seconds. Test 02 has <code>SEND_PINGS = False</code> for exactly this experiment. A test run of the book's code against a small test broker with a 1-second keep-alive reproduced the effect: the will fired about 1.7 seconds after the last packet (1.5 times the interval, plus polling), and a client pinging every half interval stayed connected.</p>
+<p>The other direction needs care too. If the Wi-Fi drops silently, the Pico's <code>check_msg()</code> just finds nothing waiting, and the Pico cannot tell "no news" from "no connection". The <code>Link</code> class in <code>mqtt_common.py</code> therefore records the time anything last arrived from the broker; a healthy broker answers each ping within a moment, so if nothing has arrived for 45 seconds, the same limit the broker uses, <code>Link</code> declares the connection dead and reconnects.</p>
+<h3 id="the-device-status-topic">The Device Status Topic<a class="headerlink" href="#the-device-status-topic" title="Permanent link">&para;</a></h3>
+<p>The <strong>device status topic</strong> is where a device tells the world whether it is alive. It is <code>school/&lt;school&gt;/device/&lt;device&gt;/status</code>, and it holds exactly one of two words, <code>online</code> or <code>offline</code>. Three pieces of MQTT cooperate to keep it truthful. The device publishes <code>online</code> with the retain flag as soon as it connects, so a dashboard that starts later reads the current state immediately. The last will, also retained, replaces it with <code>offline</code> if the device vanishes. And a polite shutdown publishes <code>offline</code> itself, because a clean disconnect would not fire the will.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>What the broker holds on the status topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device connects</td>
+<td><code>online</code> (published by the device, retained)</td>
+</tr>
+<tr>
+<td>Device runs normally</td>
+<td><code>online</code></td>
+</tr>
+<tr>
+<td>Device calls <code>disconnect()</code></td>
+<td><code>offline</code> (the device published it just before)</td>
+</tr>
+<tr>
+<td>Cable pulled</td>
+<td><code>online</code> until about 45 s later, then <code>offline</code> (published by the broker)</td>
+</tr>
+<tr>
+<td>Broker restarts</td>
+<td>whatever it saved, if persistence is on (Mosquitto's package default is to persist, but check yours)</td>
+</tr>
+</tbody>
+</table>
+<p>Richer data goes on a separate topic, <code>.../telemetry</code>, as one small JSON object published at QoS 0 every 30 seconds, for example <code>{"up":86400,"vol":40,"heap":123456,"wake":null,"conn":1}</code>: uptime in seconds, volume, free memory, seconds since the last wake word (null until Chapter 12's detector reports one), and how many times the link has connected. Keeping the status word plain means a dashboard such as Home Assistant can use it directly as an availability topic, whose defaults are <code>online</code> and <code>offline</code>. Test 07 publishes both.</p>
+<h2 id="the-umqtt-library-and-polling-without-blocking">The umqtt Library and Polling Without Blocking<a class="headerlink" href="#the-umqtt-library-and-polling-without-blocking" title="Permanent link">&para;</a></h2>
+<p>The <strong>umqtt library</strong> is MicroPython's standard MQTT client, from the micropython-lib collection. It comes as two small modules: <code>umqtt.simple</code>, which has the calls you need, and <code>umqtt.robust</code>, which adds automatic reconnecting. Install it once from your computer, with the Pico connected by USB and a MicroPython release of 1.20 or newer, which includes the <code>mip</code> installer:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mpremote<span class="w"> </span>mip<span class="w"> </span>install<span class="w"> </span>umqtt.simple
+</span></code></pre></div>
+<p>Alternatively, run <code>import mip; mip.install("umqtt.simple")</code> at the Pico's REPL while it is on Wi-Fi. The API maps one-to-one onto MQTT operations, and the whole source is about 230 lines, short enough to read in an evening.</p>
+<table>
+<thead>
+<tr>
+<th>Call</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MQTTClient(client_id, server, port, user, password, keepalive)</code></td>
+<td>Makes the client object; nothing is sent yet.</td>
+</tr>
+<tr>
+<td><code>set_callback(f)</code></td>
+<td><code>f(topic, msg)</code> runs for each incoming message; both arguments are <code>bytes</code>.</td>
+</tr>
+<tr>
+<td><code>set_last_will(topic, msg, retain, qos)</code></td>
+<td>Must be called before <code>connect()</code>.</td>
+</tr>
+<tr>
+<td><code>connect(clean_session, timeout)</code></td>
+<td>Opens the TCP connection and sends CONNECT. <code>timeout</code> exists in the current library; an older copy may lack it.</td>
+</tr>
+<tr>
+<td><code>subscribe(topic, qos)</code></td>
+<td>One filter per call. The callback must already be set.</td>
+</tr>
+<tr>
+<td><code>publish(topic, msg, retain, qos)</code></td>
+<td>QoS 0 returns at once; QoS 1 waits for the acknowledgement.</td>
+</tr>
+<tr>
+<td><code>ping()</code></td>
+<td>Sends a PINGREQ.</td>
+</tr>
+<tr>
+<td><code>check_msg()</code> / <code>wait_msg()</code></td>
+<td>Process one incoming packet.</td>
+</tr>
+<tr>
+<td><code>disconnect()</code></td>
+<td>Sends DISCONNECT and closes the socket.</td>
+</tr>
+</tbody>
+</table>
+<p>Incoming messages do not arrive by themselves. They sit in the network connection until your code reads them, and two calls do the reading. <code>wait_msg()</code> <strong>blocks</strong>: it waits until a packet arrives, which is right for a program that does nothing else. <code>check_msg()</code> is the <strong>check_msg polling</strong> call: it looks once, and if nothing is waiting it returns immediately, so you can call it in the middle of a loop that has other work to do. When something is waiting, it reads the packet, runs your callback if it is a published message, and returns. A QoS 1 message is acknowledged automatically after the callback returns.</p>
+<p>Three details in the library's source matter for a device that must also keep up with a microphone. First, <code>check_msg()</code> is only non-blocking for the <em>first byte</em>. Once a byte has arrived, the library switches the socket to blocking mode to read the rest of the packet, so a packet cut off halfway by a Wi-Fi failure can stall the loop. Second, <code>connect()</code> can block for as long as its <code>timeout</code> (the library sets no limit unless you pass one). Third, <code>umqtt.robust</code> handles a lost connection by looping: it calls <code>connect()</code> and then <code>time.sleep(2)</code> over and over until it succeeds, so one broker outage freezes your audio loop completely. For a device that must keep listening, the book's <code>Link</code> class replaces that loop with a state machine that never sleeps.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Never Draw or Beep Inside the Callback</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+The callback runs inside <code>check_msg()</code>, and for QoS 1 publishes it can run inside <code>publish()</code> and <code>subscribe()</code> too. A slow callback holds up everything, and drawing from it can start before the display is ready. Have the callback only put the alert on a short queue, and let the main loop show it.</p>
+</div>
+<p>The callback and the polling step are the heart of <code>mqtt_common.Link</code>. This excerpt shows the callback and one call to <code>service()</code>, which runs once per pass of the main loop.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">_on_msg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>                 <span class="c1"># queue only: never draw or play sound here</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">alert</span> <span class="o">=</span> <span class="n">alerts</span><span class="o">.</span><span class="n">decode_alert</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="k">if</span> <span class="n">alert</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bad</span> <span class="o">+=</span> <span class="mi">1</span>                          <span class="c1"># empty, oversized, not JSON, or invalid</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">seen</span><span class="o">.</span><span class="n">is_new</span><span class="p">(</span><span class="n">alert</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]):</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dupes</span> <span class="o">+=</span> <span class="mi">1</span>                        <span class="c1"># a repeat: ignore it</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pending</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">MAX_PENDING</span><span class="p">:</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">overflow</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">pending</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">service</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="o">...</span>                                        <span class="c1"># if down: retry only when next_try has passed</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">check_msg</span><span class="p">()</span>                    <span class="c1"># may call _on_msg</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="k">if</span> <span class="n">ticks_diff</span><span class="p">(</span><span class="n">now</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_ping</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">PING_MS</span><span class="p">:</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ping</span><span class="p">()</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    <span class="k">if</span> <span class="n">ticks_diff</span><span class="p">(</span><span class="n">now</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_rx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">DEAD_MS</span><span class="p">:</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>        <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s2">"broker silent ..."</span><span class="p">)</span>     <span class="c1"># caught below: mark down, schedule a retry</span>
+</span></code></pre></div>
+<p><code>decode_alert()</code> returns <code>None</code> for anything the device should not trust: an empty payload, one over 512 bytes, text that is not valid JSON, or JSON missing a field. The <code>Seen</code> class holds the last 8 alert ids in a small list, and <code>is_new()</code> is <code>True</code> once per id. Three situations make repeats normal, and all three must not beep twice: QoS 1 can deliver a message twice, a retained alert is delivered again after every reconnect, and a server job may be run twice.</p>
+<h3 id="the-frame-budget">The Frame Budget<a class="headerlink" href="#the-frame-budget" title="Permanent link">&para;</a></h3>
+<p>Chapter 8 set the rule: a pass of the audio loop has 40 ms, and a loop that takes longer loses microphone audio once the ring buffer, measured at about 9.8 frames (0.4 s) deep, is full. Adding MQTT to that loop is safe only if five things stay true.</p>
+<ol>
+<li><code>link.service()</code> never sleeps and never waits for the network, except during a connect attempt (point 5).</li>
+<li>The callback only parses and queues. It does not touch the display or the speaker.</li>
+<li>The main loop takes at most one alert per pass, so a burst of alerts spreads across passes instead of landing in one.</li>
+<li>An alert redraws only the message region, which is 15,360 bytes (Chapter 6). At the 24 MHz display clock that is at least <span class="arithmatex">\( 15{,}360 \times 8 / 24{,}000 = 5.1 \)</span> ms of wire time for the background and at most the same again for 60 characters of text, so about 10 ms in the best case. It happens once per alert, not once per frame.</li>
+<li>A connect attempt blocks the loop for at most <code>CONNECT_TIMEOUT_S</code> seconds. A broker that refuses a connection fails quickly, but a broker that is simply unreachable makes the attempt wait out the whole timeout.</li>
+</ol>
+<p>Point 5 is the one that can break the budget, and arithmetic shows how much. A blocked loop misses <span class="arithmatex">\( t / 0.04 \)</span> frames, and the ring absorbs the first 9.8, so the audio lost is <span class="arithmatex">\( (t / 0.04 - 9.77) \times 0.04 \)</span> seconds. This uses the ring depth Chapter 8 measured on one board and is a model, not a measurement.</p>
+<table>
+<thead>
+<tr>
+<th>Connect timeout <span class="arithmatex">\( t \)</span></th>
+<th>Frames missed</th>
+<th>Frames beyond the ring</th>
+<th>Audio lost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.3 s</td>
+<td>7.5</td>
+<td>0</td>
+<td>none</td>
+</tr>
+<tr>
+<td>1 s</td>
+<td>25</td>
+<td>15.2</td>
+<td>0.61 s</td>
+</tr>
+<tr>
+<td>2 s (the book's default)</td>
+<td>50</td>
+<td>40.2</td>
+<td>1.61 s</td>
+</tr>
+</tbody>
+</table>
+<p>The default favors patience over perfection, since a reconnect attempt happens at most every 30 seconds after the first few failures, and the Chapter 7 state machine can choose to retry only in clock mode, when nothing is being recorded. If your device must listen without gaps, set <code>CONNECT_TIMEOUT_S = 0.3</code> and accept more failed attempts on a slow network. What an idle <code>check_msg()</code> costs, and how long the slowest pass takes when a message arrives, are not known until test 04 and test 06 have run on a board. The chapter expects them to be small next to 40 ms, because the idle call does one non-blocking read and returns, and this expectation is exactly what the tests are for.</p>
+<h2 id="the-alert-message-format">The Alert Message Format<a class="headerlink" href="#the-alert-message-format" title="Permanent link">&para;</a></h2>
+<p>An <strong>alert message format</strong> is the agreement about what is inside an alert. It must be small, because the Pico reads the whole message into RAM, and plain, because a school, a classroom app, and a dashboard all read it. The format is one JSON object of strings:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"20261019-crhs-018-d1"</span><span class="p">,</span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Algebra II test"</span><span class="p">,</span><span class="nt">"when"</span><span class="p">:</span><span class="s2">"Tomorrow 8:00 AM"</span><span class="p">,</span><span class="nt">"text"</span><span class="p">:</span><span class="s2">"Algebra II test tomorrow at 8 AM. Room 118."</span><span class="p">,</span><span class="nt">"at"</span><span class="p">:</span><span class="s2">"2026-10-20T13:00Z"</span><span class="p">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Limit</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>40 characters</td>
+<td>Unique per alert. The device ignores an id it has seen.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>one of <code>test</code>, <code>due</code>, <code>event</code>, <code>notice</code>, <code>briefing</code></td>
+<td>Chooses the color and the sound.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>30 characters</td>
+<td>Line 1 on the display.</td>
+</tr>
+<tr>
+<td><code>when</code></td>
+<td>30 characters</td>
+<td>Line 2, already formatted by the server so the Pico never does calendar math.</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>120 characters (300 for type <code>briefing</code>)</td>
+<td>What a speaker would say; Chapter 14's text-to-speech can turn it into audio.</td>
+</tr>
+<tr>
+<td><code>at</code></td>
+<td>optional, UTC</td>
+<td>For dashboards. The Pico ignores it.</td>
+</tr>
+</tbody>
+</table>
+<p>The limits come from the screen: the message region holds two lines of 30 characters of the 8-pixel-wide font. The whole object may not exceed 512 bytes, and this sample is 173. (The longest legal alert, a briefing with every field at its limit, is 483 bytes.) The id makes duplicate-handling possible, and the book builds it from the date, the school, the calendar event, and how many days ahead the reminder is: <code>20261019-crhs-018-d1</code> is the one-day-ahead reminder for event <code>crhs-018</code> created on October 19. Chapter 16 generates those from the real calendar, and running the same job twice produces the same id, which the device then drops.</p>
+<p><code>alerts.py</code> builds, checks, and decodes the format, and runs on both the server and the Pico. The server calls <code>make_alert()</code>, which raises <code>ValueError</code> for a title of 31 characters, and <code>encode_alert()</code>; the device calls <code>decode_alert()</code>.</p>
+<h3 id="showing-and-sounding-an-alert">Showing and Sounding an Alert<a class="headerlink" href="#showing-and-sounding-an-alert" title="Permanent link">&para;</a></h3>
+<p><code>alert_view.show_alert()</code> draws an alert into the message region: a background color chosen by the type, the title on the first line and <code>when</code> on the second, each centered. The color is a second cue; the words carry the meaning, so a color-blind student loses nothing. Test 05 shows six Cedar Ridge alerts, including one title that is too long on purpose, which <code>fit()</code> ends with <code>...</code>, and prints how long each draw took.</p>
+<p>The beep follows Chapter 8's rules. The speaker is created only when needed, a short 880 Hz tone of 120 ms is written (3,072 bytes, which fits in the 8,192-byte speaker buffer so <code>write()</code> returns quickly), and the speaker is closed after the buffer drains. During the beep and for the quiet tail afterward, the loop keeps reading microphone frames so the ring does not fill, but throws them away: the half-duplex strategy of Chapter 8, and the reason a device that listens for "Hey Pico" does not wake itself with its own alert. The arithmetic is <span class="arithmatex">\( 120 + 50 + 120 = 290 \)</span> ms, about 7 frames, during which the wake-word detector would be blind. The 120 ms tail is Chapter 8's measured value for one board.</p>
+<p><em>Worked example.</em> Test 06 is the whole device loop. In each pass it reads one frame (which paces the loop at 40 ms), calls <code>link.service()</code>, takes at most one alert, draws and beeps if there is one, and runs Chapter 8's loudness calculation on the frame unless the device is deaf. Once a second it prints the frames per second, the deaf frames, the worst time the pass spent working, and the number of overruns (passes over 40 ms). On the book's fake-Pico test layer with a test broker, a new alert was drawn and beeped once, a repeat of it was ignored (<code>dupes</code> went from 0 to 1), and 7 microphone frames were skipped for the beep, which matches the arithmetic. That checks the logic only. On a real board the number to watch is <code>worst work</code>, and the book does not know it yet.</p>
+<h3 id="reconnecting">Reconnecting<a class="headerlink" href="#reconnecting" title="Permanent link">&para;</a></h3>
+<p>When the link drops, <code>Link</code> marks itself down, waits, and tries again, and each failed attempt raises the ceiling on the wait: 2, 4, 8, 16, and then 30 seconds. The wait itself is a random number from 0 up to that ceiling ("full jitter"), so a whole classroom does not return at the same instant after a broker restart. The helper is Chapter 14's <code>backoff.py</code>, copied into this chapter's folder, with a longer cap than Chapter 14's 8 seconds because a broker outage can last minutes. The waiting never sleeps: it is a deadline that <code>service()</code> checks each pass. <code>Link</code> reconnects Wi-Fi first if the radio has dropped, resubscribes (a clean session starts empty), and announces <code>online</code> again. Tests of this logic on the fake layer covered a broker that closed every connection, one that stopped answering without closing (detected after the 45-second silence limit, with a fast-forwarded clock), and a Wi-Fi link that went away and came back.</p>
+<h2 id="home-automation-and-home-assistant">Home Automation and Home Assistant<a class="headerlink" href="#home-automation-and-home-assistant" title="Permanent link">&para;</a></h2>
+<p><strong>Home automation</strong> is software that watches and controls things around a building: lights, thermostats, door sensors, and so on. Many open home-automation systems use MQTT as their common language, because a device only needs to publish its state to a topic and read commands from another. That makes a school's MQTT broker useful beyond the Study Buddy.</p>
+<p><strong>Home Assistant</strong> is the best-known open-source home-automation platform. It can connect to your broker as a subscriber and a publisher, and show the Study Buddy on a dashboard: a sensor for <code>online</code>/<code>offline</code>, a gauge for volume, a history of alerts. It can also publish into your topics. A Home Assistant automation could, for example, send the "homework time" notice to room 214 at 3:30 each afternoon.</p>
+<p>Two ways to introduce a device are shown in <code>server/home-assistant.yaml</code> and <code>server/ha_discovery.py</code>. In the first you write the sensors by hand in <code>configuration.yaml</code>, naming the <code>state_topic</code>, and using <code>payload_on: "online"</code> for a connectivity sensor. In the second, <strong>MQTT discovery</strong>, the device (or a helper) publishes a JSON description to a topic of the form <code>homeassistant/&lt;component&gt;/&lt;object_id&gt;/config</code>, and Home Assistant creates the entities by itself. <code>ha_discovery.py --device desk-07</code> prints both descriptions:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Online"</span><span class="p">,</span><span class="w"> </span><span class="nt">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"osb_crhs_desk_07_online"</span><span class="p">,</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">"state_topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"school/crhs/device/desk-07/status"</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">"payload_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w"> </span><span class="nt">"payload_off"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offline"</span><span class="p">,</span><span class="w"> </span><span class="nt">"device_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"connectivity"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<p>Be clear about what is checked and what is not. The key names and topic format come from Home Assistant's MQTT documentation, and the files are valid YAML and JSON. They have not been tried against a running Home Assistant. Its documentation also says that retained discovery messages can cause stale ("ghost") entities, and recommends republishing discovery when Home Assistant announces that it has started, which this book's script does not do, and that its MQTT integration expects a broker that supports MQTT 5; Mosquitto 2 does, and your Study Buddy still speaks 3.1.1 to it. Check the current Home Assistant documentation before relying on any of this.</p>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>The school server publishes a small JSON alert with a unique id to the classroom's topic at QoS 1. A Mosquitto broker on a Raspberry Pi, listening only on the LAN and checking passwords and an access list, forwards it to every subscribed desk. Each desk's <code>check_msg()</code> call, made once per audio frame, reads it; a callback validates, de-duplicates, and queues it; and the main loop draws it and beeps once while the microphone ignores the beep. If a desk goes quiet, the keep-alive and the last will tell the dashboard within 45 seconds.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>Request-response waits for the client to ask; publish-subscribe lets a broker push news to every subscriber as soon as it is published.</li>
+<li>A topic is a slash-separated name. Design the scheme from general to specific, put the school first, and let devices write only under their own <code>device/&lt;id&gt;/</code>.</li>
+<li><code>+</code> matches one level and <code>#</code> matches the parent and everything below it, only as the last level; neither is allowed in a publish.</li>
+<li>QoS 0 is at most once, QoS 1 at least once, QoS 2 exactly once. <code>umqtt.simple</code> supports 0 and 1; use QoS 1 for alerts with an id to ignore repeats.</li>
+<li>Retain state ("online"), not events; clear a retained message by publishing an empty retained one.</li>
+<li>A last will needs a keep-alive. <code>umqtt</code> does not ping for you, so call <code>ping()</code> every half interval.</li>
+<li>Poll with <code>check_msg()</code> once per frame, never draw or beep in the callback, and bound every connect attempt.</li>
+<li>A broker on the internet invites fake alerts and spying: keep it on the LAN, with passwords, an ACL, and a message size limit.</li>
+</ul>
+<p>Test yourself with these three questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>Which of the filters <code>school/+/alert</code>, <code>school/crhs/#</code>, and <code>#</code> select the topic <code>school/crhs/alert</code>, and which select <code>school/crhs</code>? Click to expand</summary>
+<p>All three select <code>school/crhs/alert</code>. For <code>school/crhs</code>, <code>school/+/alert</code> fails (it needs a third level), while <code>school/crhs/#</code> selects it because <code>#</code> includes its parent level, and <code>#</code> selects it too.</p>
+</details>
+<details class="question">
+<summary>The publisher gets no PUBACK for a QoS 1 alert, so it sends the alert again. What does the desk need to avoid beeping twice? Click to expand</summary>
+<p>A unique <code>id</code> in each alert and a record of the ids already seen. QoS 1 promises at least once, not exactly once, so a repeat is part of the contract. The <code>Seen</code> class in <code>alerts.py</code> drops an alert whose id it already holds.</p>
+</details>
+<details class="question">
+<summary>A dashboard shows desk-07 as offline every 45 seconds even though the Pico is running. What is the most likely cause? Click to expand</summary>
+<p>The device is not pinging. With a keep-alive of 30 seconds the broker waits 45 seconds for any packet, then closes the connection and publishes the last will. <code>umqtt.simple</code> does not ping for you, so call <code>ping()</code> every 15 seconds, or publish something at least that often.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Alerts, Pushed and Handled</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just learned the publish-subscribe pattern, a topic scheme with wildcards, QoS levels, retained messages, the last will and keep-alive, and how to poll with <code>check_msg()</code> inside the 40 ms audio loop. A school server can now push a test alert to every desk, and your device shows it and beeps without missing the microphone.</p>
+</div>
+<p>In Chapter 16 the school server builds those alerts from a real school calendar.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

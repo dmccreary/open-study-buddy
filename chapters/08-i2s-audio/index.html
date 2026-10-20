@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.">
+        <meta name="description" content="How the I2S bus carries sound in and out of the Pico: bit clock, word select, and serial data; machine.I2S for receiving and transmitting; audio buffers and frames; tones and stored audio; the self-hearing problem; and the frame time budget.">
       
       
         <meta name="author" content="Dan McCreary">
@@ -26,7 +26,7 @@
     
     
       
-        <title>8. I2S Audio: Recording and Playing Sound - Open Study Buddy</title>
+        <title>I2S Audio: Recording and Playing Sound - Open Study Buddy</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              8. I2S Audio: Recording and Playing Sound
+              I2S Audio: Recording and Playing Sound
             
           </span>
         </div>
@@ -644,6 +644,234 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-ears-and-the-voice-get-wired-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ears and the Voice Get Wired In
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-i2s-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      The I2S Bus
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The I2S Bus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-bit-clock" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Bit Clock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-word-select-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Word Select Line
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-serial-data-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Serial Data Line
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Serial Data Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-i2s-signal-reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: I2S Signal Reader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channels-mono-and-stereo-left-and-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      Channels: Mono and Stereo, Left and Right
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-machinei2s-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      The machine.I2S Class
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#receiving-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Receiving Sound
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audio-buffers-and-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audio Buffers and Frames
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-ring-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ring Buffer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-frame-time-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Time Budget
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Frame Time Budget">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-audio-frame-time-budget-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Audio Frame Time Budget Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transmitting-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transmitting Sound
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transmitting Sound">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tone-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tone Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-sine-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Sine Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stored-audio-playback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Audio Playback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speaking-without-hearing-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speaking Without Hearing Yourself
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speaking Without Hearing Yourself">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-self-hearing-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Self-Hearing Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mute-and-resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mute and Resume
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-amplifier-shutdown-pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Amplifier Shutdown Pin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -886,6 +1114,69 @@
         
       
         
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Synthetic Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
       
         
       
@@ -1069,6 +1360,234 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-ears-and-the-voice-get-wired-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ears and the Voice Get Wired In
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-i2s-bus" class="md-nav__link">
+    <span class="md-ellipsis">
+      The I2S Bus
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The I2S Bus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-bit-clock" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Bit Clock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-word-select-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Word Select Line
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-serial-data-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Serial Data Line
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Serial Data Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-i2s-signal-reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: I2S Signal Reader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channels-mono-and-stereo-left-and-right" class="md-nav__link">
+    <span class="md-ellipsis">
+      Channels: Mono and Stereo, Left and Right
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-machinei2s-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      The machine.I2S Class
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#receiving-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Receiving Sound
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audio-buffers-and-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audio Buffers and Frames
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-ring-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ring Buffer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-frame-time-budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Frame Time Budget
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Frame Time Budget">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-audio-frame-time-budget-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram: Audio Frame Time Budget Explorer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transmitting-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transmitting Sound
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transmitting Sound">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tone-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tone Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-sine-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Sine Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stored-audio-playback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stored Audio Playback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speaking-without-hearing-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speaking Without Hearing Yourself
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speaking Without Hearing Yourself">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-self-hearing-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Self-Hearing Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mute-and-resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mute and Resume
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-amplifier-shutdown-pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Amplifier Shutdown Pin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting It All Together
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1191,13 +1710,709 @@
 <li><a href="../04-pico-kit-hardware/">Chapter 4: The Pico Kit Hardware and Wiring</a></li>
 </ul>
 <hr />
-<p>TODO: Generate Chapter Content</p>
+<h2 id="the-ears-and-the-voice-get-wired-in">The Ears and the Voice Get Wired In<a class="headerlink" href="#the-ears-and-the-voice-get-wired-in" title="Permanent link">&para;</a></h2>
+<p>You have met the microphone and the amplifier as parts on a breadboard, and you ran tests 05, 06, and 07 to prove they work. This chapter explains <em>how</em> they work together with the Pico, and how to write the code yourself. By the end you will read live sound into memory, play a tone you generated, and play a recording, all without losing a single sample.</p>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Let the Sound Flow</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../img/mascot/welcome.png" />
+In this chapter you will record your own voice into memory and play it back through the speaker, and you will learn the timing rule that keeps the sound from stuttering. Let's listen closely! Audio code is mostly about keeping a steady stream flowing.</p>
+</div>
+<h2 id="the-i2s-bus">The I2S Bus<a class="headerlink" href="#the-i2s-bus" title="Permanent link">&para;</a></h2>
+<p><strong>I2S</strong> (Inter-IC Sound, pronounced "eye-two-ess") is a bus designed to carry digital audio between chips. It uses three signal wires, and every I2S part in the kit uses the same three. In this book the Pico is always the one that generates the clocks, and the microphone and amplifier follow along.</p>
+<h3 id="the-bit-clock">The Bit Clock<a class="headerlink" href="#the-bit-clock" title="Permanent link">&para;</a></h3>
+<p>The <strong>bit clock</strong> is a steady pulse that ticks once for every bit of audio data. On each tick, one bit moves across the data wire. Microphone boards label it SCK (serial clock) and amplifier boards label it BCLK (bit clock). In MicroPython's <code>I2S</code> class it is the <code>sck</code> pin.</p>
+<h3 id="the-word-select-line">The Word Select Line<a class="headerlink" href="#the-word-select-line" title="Permanent link">&para;</a></h3>
+<p>The <strong>word select</strong> line marks the beginning of each sample and tells which channel it belongs to. It flips between low and high, once for each sample slot. A low level means the left channel's word is on the wire, and a high level means the right channel's. Boards label it WS or LRC (left/right clock). In MicroPython it is the <code>ws</code> pin.</p>
+<h3 id="the-serial-data-line">The Serial Data Line<a class="headerlink" href="#the-serial-data-line" title="Permanent link">&para;</a></h3>
+<p>The <strong>serial data line</strong> carries the audio bits themselves, one per bit-clock tick, most significant bit first. The microphone drives it toward the Pico (SD), and the Pico drives it toward the amplifier (DIN). In MicroPython it is the <code>sd</code> pin.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Job</th>
+<th>Microphone pin</th>
+<th>Amplifier pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bit clock (<code>sck</code>)</td>
+<td>One tick per bit</td>
+<td>SCK, GP10</td>
+<td>BCLK, GP20</td>
+</tr>
+<tr>
+<td>Word select (<code>ws</code>)</td>
+<td>Marks each word and its channel</td>
+<td>WS, GP11</td>
+<td>LRC, GP21</td>
+</tr>
+<tr>
+<td>Serial data (<code>sd</code>)</td>
+<td>The audio bits</td>
+<td>SD, GP12 (to the Pico)</td>
+<td>DIN, GP19 (from the Pico)</td>
+</tr>
+</tbody>
+</table>
+<p>A standard I2S frame carries two slots, left and right, so the bit clock ticks <span class="arithmatex">\( \text{rate} \times \text{bits per slot} \times 2 \)</span> times a second. For the kit's microphone (12,800 samples per second, 32 bits per slot) that is <span class="arithmatex">\( 12{,}800 \times 32 \times 2 = 819{,}200 \)</span> ticks per second, and for the speaker test (16,000 samples per second, 16 bits) it is 512,000.</p>
+<p>Here is the rule you met in Chapter 4, now with its reason. MicroPython's I2S on the Pico drives the clock and word-select lines with one hardware program that needs them on <em>adjacent pins</em>, so <code>ws</code> must be the pin number right after <code>sck</code>. The microphone's SCK is GP10 and WS is GP11, and the amplifier's BCLK is GP20 and LRC is GP21.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">ws Must Be sck Plus One</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
+If you swap or move these two wires, <code>I2S()</code> raises an error such as <code>invalid ws (must be sck+1)</code>. Do not "fix" it by editing the pin numbers in <code>config.py</code> to match swapped wires. Move the wires back to the pins in the pin assignment table.</p>
+</div>
+<p>Before you read the next activity, one detail: real I2S shifts the data by one clock tick after the word select flips, and the hardware handles that for you. The activity uses a simplified version, with 8-bit words, so the bits are easy to read.</p>
+<h4 id="diagram-i2s-signal-reader">Diagram: I2S Signal Reader<a class="headerlink" href="#diagram-i2s-signal-reader" title="Permanent link">&para;</a></h4>
+<details>
+<summary>I2S Signal Reader</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> i2s-signal-reader<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Understand<br/>
+<strong>Bloom Verb:</strong> interpret<br/>
+<strong>Learning Objective:</strong> The learner will interpret simplified I2S waveforms by reading the value of the left-channel sample from the serial data line in 6 waveforms, with at least 5 of 6 correct.</p>
+<p><strong>Prerequisites:</strong> I2S, bit clock, word select, serial data line, most significant bit first, signed 8-bit numbers (all defined in this chapter above the block, and in Chapter 3 for bit depth).</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 waveforms the learner enters the signed decimal value of the left-channel word. An answer is correct when it equals the Left value column in Content. Mastery is 5 of 6 correct on the first attempt. Stepping through the example waveform in exploration is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) The word select line carries audio. (2) The least significant bit is sent first. (3) Both channels are always sent in the same word.</p>
+<p><strong>Instructional Rationale:</strong> Understand-level interpretation requires the learner to apply the roles of the three wires to a concrete waveform. Reading the bits in the order they arrive, and noticing that the word-select level says which channel they belong to, ties each wire to its role.</p>
+<p><strong>Content:</strong></p>
+<p>The simplified waveform has three traces: the bit clock, the word select, and the serial data. Each word has 8 bits. While word select is low, the 8 bits on the data line are the left-channel word; while word select is high, the next 8 bits are the right-channel word. A bit is sampled at each rising edge of the bit clock. Bits are sent most significant bit first, and the value is a signed 8-bit number (two's complement: the first bit is the sign, and values with a first bit of 1 are negative, from -128 to -1).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Left word bits (first to last)</th>
+<th>Left value</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>00000000</td>
+<td>0</td>
+<td>All bits are zero, so the value is 0.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>01111111</td>
+<td>127</td>
+<td>The sign bit is 0 and all other bits are 1: 64+32+16+8+4+2+1 = 127.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>10000000</td>
+<td>-128</td>
+<td>The sign bit is 1 and the rest are 0, the most negative value.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>11111111</td>
+<td>-1</td>
+<td>All ones in two's complement is -1.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>00101101</td>
+<td>45</td>
+<td>32 + 8 + 4 + 1 = 45.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>11010011</td>
+<td>-45</td>
+<td>The sign bit is 1. Flipping all bits gives 00101100, adding 1 gives 00101101 = 45, so the value is -45.</td>
+</tr>
+</tbody>
+</table>
+<p>The right-channel word for each waveform is 00000000 (silent) and is shown so the learner can see the word select line change.</p>
+<p><strong>Provenance:</strong> The word length of 8 bits is a simplification for teaching and the values are illustrative. The sim labels both "illustrative." The roles of the three wires come from the chapter sections above.</p>
+<p><strong>Rules:</strong> The left word is the 8 bits sampled while word select is low. The value is the signed 8-bit number: the bits read as an unsigned number n from 0 to 255, minus 256 if n is 128 or more.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner explores an example waveform: steps forward one bit-clock tick at a time and watches which wire changes and which bit is collected.</li>
+<li>The learner starts the 6 waveforms. Waveform 1 shows the three traces.</li>
+<li>The learner enters the left-channel value and submits.</li>
+<li>The sim highlights the 8 bits in the left word, then shows the correct value and the Why text.</li>
+<li>After waveform 6, the sim shows the score. The learner should notice that waveforms 5 and 6 give 45 and -45, values with the same size and opposite signs.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 waveforms, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The left value is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The example waveform is shown stopped at the start, with the question "Which wire says whose sample this is?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that the three wires are the bit clock, the word select, and the serial data line, that word select low means the left channel, and that the most significant bit is sent first.</p>
+</details>
+<h2 id="channels-mono-and-stereo-left-and-right">Channels: Mono and Stereo, Left and Right<a class="headerlink" href="#channels-mono-and-stereo-left-and-right" title="Permanent link">&para;</a></h2>
+<p>A <strong>channel</strong> is one stream of samples. <strong>Stereo</strong> has two channels, left and right, interleaved so that the samples arrive as left, right, left, right. <strong>Mono</strong> has one channel. Voice assistants use mono because one microphone and one speaker are enough and mono halves the data.</p>
+<p>The <strong>left-right channel</strong> idea is built into the word select line: when it is low the word belongs to the left channel, and when it is high it belongs to the right. A microphone such as the INMP441 has a pin, L/R, that chooses which slot it answers in. Tied to GND it answers in the left slot, and tied to 3V3 it answers in the right slot. The kit ties it to GND. If you move that wire, a program that expects the left slot may read silence or noise, so keep it where the pin assignment table puts it.</p>
+<p>In MicroPython the choice is the <code>format</code> argument: <code>I2S.MONO</code> for one stream of samples, <code>I2S.STEREO</code> for two. The kit uses <code>I2S.MONO</code> for both the microphone and the speaker.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Kit setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mono</td>
+<td>One stream of samples</td>
+<td><code>format=I2S.MONO</code> for both parts</td>
+</tr>
+<tr>
+<td>Stereo</td>
+<td>Two interleaved streams</td>
+<td>Not used</td>
+</tr>
+<tr>
+<td>Left channel</td>
+<td>Word when word select is low</td>
+<td>Microphone answers here (L/R on GND)</td>
+</tr>
+<tr>
+<td>Right channel</td>
+<td>Word when word select is high</td>
+<td>Not used</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-machinei2s-class">The machine.I2S Class<a class="headerlink" href="#the-machinei2s-class" title="Permanent link">&para;</a></h2>
+<p>The <strong>machine.I2S class</strong> is MicroPython's way to run an I2S bus. You create one object per bus, and the object has the methods you need for audio.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Meaning</th>
+<th>Microphone (receive)</th>
+<th>Speaker (transmit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>Which I2S block (0 or 1)</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>sck</code></td>
+<td>Bit clock pin</td>
+<td>GP10</td>
+<td>GP20</td>
+</tr>
+<tr>
+<td><code>ws</code></td>
+<td>Word select pin</td>
+<td>GP11</td>
+<td>GP21</td>
+</tr>
+<tr>
+<td><code>sd</code></td>
+<td>Serial data pin</td>
+<td>GP12</td>
+<td>GP19</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>Direction</td>
+<td><code>I2S.RX</code></td>
+<td><code>I2S.TX</code></td>
+</tr>
+<tr>
+<td><code>bits</code></td>
+<td>Bits per sample</td>
+<td>32</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>Channel layout</td>
+<td><code>I2S.MONO</code></td>
+<td><code>I2S.MONO</code></td>
+</tr>
+<tr>
+<td><code>rate</code></td>
+<td>Samples per second</td>
+<td>12,800</td>
+<td>16,000 (test 05) or 12,800 (test 07)</td>
+</tr>
+<tr>
+<td><code>ibuf</code></td>
+<td>Internal buffer size in bytes</td>
+<td>40,000</td>
+<td>8,192</td>
+</tr>
+</tbody>
+</table>
+<p>The two I2S blocks are independent. The microphone is on block 1 and the speaker is on block 0, so they can run at the same time without fighting each other. Three methods do the work: <code>readinto(buf)</code> fills a buffer with samples from the microphone, <code>write(buf)</code> sends a buffer of samples to the amplifier, and <code>deinit()</code> shuts the bus down and releases its pins. By default <code>readinto</code> and <code>write</code> <em>block</em>, which means they wait until the work is done, and that waiting is what keeps your loop in step with the audio.</p>
+<p>Remember the Chapter 2 rule for hardware: always call <code>deinit()</code>, in a <code>finally</code> block. The kit hides the setup of the microphone behind <code>config.init_microphone()</code>, shown here in full so you can see all the arguments in use.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mic</span> <span class="o">=</span> <span class="n">I2S</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">ws</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">sd</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>          <span class="n">mode</span><span class="o">=</span><span class="n">I2S</span><span class="o">.</span><span class="n">RX</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">I2S</span><span class="o">.</span><span class="n">MONO</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>          <span class="n">rate</span><span class="o">=</span><span class="mi">12800</span><span class="p">,</span> <span class="n">ibuf</span><span class="o">=</span><span class="mi">40000</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="admonition mascot-encourage">
+<p class="admonition-title">Eight Arguments Is a Lot</p>
+<p><img alt="Sage encouraging" class="mascot-admonition-img" src="../../img/mascot/encouraging.png" />
+A constructor with eight arguments looks scary, but the table above is the whole story: the pins come from the pin assignment table, and the rest describe the audio format. You have already run these exact lines in tests 05 and 06, so the hard part is done.</p>
+</div>
+<h2 id="receiving-sound">Receiving Sound<a class="headerlink" href="#receiving-sound" title="Permanent link">&para;</a></h2>
+<p><strong>I2S receive</strong> is the direction from the microphone to the Pico. After you create the I2S object in <code>RX</code> mode, the hardware fills an internal buffer with samples in the background, and your program collects them with <code>readinto</code>.</p>
+<p>The INMP441 sends 24-bit samples inside 32-bit words, with the real audio in the top 24 bits. That is why the kit sets <code>bits=32</code> and shifts every sample right by <code>MIC_SAMPLE_SHIFT</code>, which is 8. The samples also carry a small offset added by the microphone, called the DC offset, which the code subtracts. It is not a fixed number. On the test board the average of single 40 ms frames wandered between about -5,400 and +9,100 from one second to the next, while test 07's 1.5 second recording averaged about 15,000. So measure the offset over the frame or recording you are processing, and do not assume a value. The loudness code from test 06 shows all of this in one function.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">loudness_bits</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">config</span><span class="o">.</span><span class="n">MIC_SAMPLE_SHIFT</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>               <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">FRAME_FORMAT</span><span class="p">,</span> <span class="n">buf</span><span class="p">)]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">middle</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">//</span> <span class="n">FRAME_SAMPLES</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">average</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">middle</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">)</span> <span class="o">//</span> <span class="n">FRAME_SAMPLES</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">average</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">LOG2</span>
+</span></code></pre></div>
+<p>The function unpacks 512 four-byte numbers with <code>struct</code>, shifts each right by 8 to get the 24-bit value, finds the average (the DC offset, or "middle"), and then computes the average distance from the middle. The log base 2 turns that into the "bits" scale from Chapter 3.</p>
+<p><em>Worked example.</em> One second of microphone audio at 12,800 samples per second and 4 bytes per sample is <span class="arithmatex">\( 12{,}800 \times 4 = 51{,}200 \)</span> bytes, so the microphone delivers 51.2 KB every second. A <code>readinto</code> call with a 2,048-byte buffer takes 40 ms, because the buffer holds 512 samples. In a loop, each <code>readinto</code> call returns exactly when the next 40 ms of sound has arrived.</p>
+<p>Two practical notes come from the kit's tests. The microphone needs a moment to settle after it starts, so test 06 throws away the first 8 frames and test 07 throws away the first 100 ms. And the first reading of a new frame must be handled before the next one is due, which is the subject of the frame time budget below.</p>
+<h2 id="audio-buffers-and-frames">Audio Buffers and Frames<a class="headerlink" href="#audio-buffers-and-frames" title="Permanent link">&para;</a></h2>
+<p>An <strong>audio buffer</strong> is a block of memory that holds samples. In MicroPython it is a <code>bytearray</code> that you create once and reuse, as Chapter 2 described.</p>
+<table>
+<thead>
+<tr>
+<th>Buffer</th>
+<th>Size</th>
+<th>Holds</th>
+<th>Where it is used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frame buffer (<code>buf</code>)</td>
+<td>2,048 bytes</td>
+<td>512 samples, 40 ms</td>
+<td>Test 06</td>
+</tr>
+<tr>
+<td>Read chunk</td>
+<td>1,024 bytes</td>
+<td>256 samples, 20 ms</td>
+<td>Test 07 recording loop</td>
+</tr>
+<tr>
+<td>Recording buffer (<code>raw</code>)</td>
+<td>153,600 bytes</td>
+<td>3 seconds</td>
+<td>Test 07</td>
+</tr>
+<tr>
+<td>Microphone internal buffer (<code>ibuf</code>)</td>
+<td>40,000 bytes</td>
+<td>about 0.4 s measured (0.78 s if every byte held microphone data)</td>
+<td>The I2S driver</td>
+</tr>
+<tr>
+<td>Speaker internal buffer (<code>ibuf</code>)</td>
+<td>8,192 bytes</td>
+<td>256 ms at 16 kHz</td>
+<td>The I2S driver</td>
+</tr>
+</tbody>
+</table>
+<p>An <strong>audio frame</strong> is the fixed-size slice of audio your program processes in one pass of its loop. Using frames keeps the work regular: read a frame, analyze it, update the screen, repeat. The kit's frame is 512 samples, and at 12,800 samples per second that is exactly</p>
+<div class="arithmatex">\[ \frac{512}{12{,}800} = 0.04 \text{ s} = 40 \text{ ms}, \qquad 512 \times 4 = 2{,}048 \text{ bytes.} \]</div>
+<p>The frame length is a trade-off. A longer frame gives the FFT finer frequency detail (Chapter 9) but responds more slowly. A shorter frame responds faster but gives coarser detail and makes the loop run more often. At 40 ms the loop runs 25 times a second.</p>
+<table>
+<thead>
+<tr>
+<th>Frame samples</th>
+<th>Duration at 12,800 Hz</th>
+<th>Bytes (32-bit)</th>
+<th>Loop passes per second</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>256</td>
+<td>20 ms</td>
+<td>1,024</td>
+<td>50</td>
+</tr>
+<tr>
+<td>512</td>
+<td>40 ms</td>
+<td>2,048</td>
+<td>25</td>
+</tr>
+<tr>
+<td>1,024</td>
+<td>80 ms</td>
+<td>4,096</td>
+<td>12.5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-ring-buffer">The Ring Buffer<a class="headerlink" href="#the-ring-buffer" title="Permanent link">&para;</a></h2>
+<p>Between the hardware and your program sits a <strong>ring buffer</strong>, a block of memory treated as a circle. Samples are written at a <em>head</em> position that advances after each write and wraps from the end back to the start. Your program reads from the oldest unread position. The I2S driver's internal buffer (<code>ibuf</code>) is one of these. It lets the hardware keep recording while your program is busy for a moment, within the buffer's size.</p>
+<p>The class below shows the idea in plain MicroPython. It overwrites the oldest data when it is full, so a writer that is never read cannot stall.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Ring</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">buf</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># next place to write</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>         <span class="c1"># bytes waiting to be read</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">buf</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="n">out</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buf</span><span class="p">[(</span><span class="n">start</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">-=</span> <span class="n">n</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>        <span class="k">return</span> <span class="n">out</span>
+</span></code></pre></div>
+<p>The <code>%</code> operator makes the position wrap. Here is a ring of 8 bytes in action.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+<th>Contents oldest to newest</th>
+<th>Head</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Put "ABCDEF"</td>
+<td>A B C D E F</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Get 2</td>
+<td>C D E F</td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Put "GHIJK"</td>
+<td>D E F G H I J K (C lost)</td>
+<td>3</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>At step 3 the ring holds only 8 bytes, so adding 5 more to the 4 waiting forces the oldest byte, C, to be dropped. If your program falls behind the microphone by more than the ring holds, this is what happens to the sound: the ring has no room left and audio is lost. The loop must therefore keep up, which leads to the next idea.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">A Ring Is a Promise</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../img/mascot/thinking.png" />
+A ring buffer lets the hardware and your code run at their own paces, but only for a while. It does not make a slow program fast. It gives a slow program a bounded amount of grace, and then sound is lost.</p>
+</div>
+<h2 id="the-frame-time-budget">The Frame Time Budget<a class="headerlink" href="#the-frame-time-budget" title="Permanent link">&para;</a></h2>
+<p>The <strong>frame time budget</strong> is the time you have to finish one pass of the loop before the next frame is ready. At 40 ms per frame, everything the loop does for one frame (read, analyze, draw, decide) must fit in 40 ms. If one pass takes longer, the microphone is still filling the ring while your code is busy, and the backlog grows.</p>
+<p>Measure it. The <code>ticks_us</code> function gives microseconds, which suits a budget this small.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">frame_us</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">FFT_SIZE</span> <span class="o">*</span> <span class="mi">1_000_000</span> <span class="o">//</span> <span class="n">config</span><span class="o">.</span><span class="n">MIC_SAMPLE_RATE</span>   <span class="c1"># 40000</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># ... read, process, draw ...</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">used</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">(),</span> <span class="n">start</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">if</span> <span class="n">used</span> <span class="o">&gt;</span> <span class="n">frame_us</span><span class="p">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"overrun by"</span><span class="p">,</span> <span class="n">used</span> <span class="o">-</span> <span class="n">frame_us</span><span class="p">,</span> <span class="s2">"us"</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>FFT_SIZE</code> is 512 in <code>config.py</code>, the same number as the frame, so <code>frame_us</code> is 40,000 microseconds. Printing <code>used</code> against it after each pass tells you how much room is left.</p>
+<p>On the test board (<code>src/chapters/08-i2s-audio/02-mic-frame-reader.py</code>), the plain-Python loudness calculation from test 06 used about 10 ms of every 40 ms frame, so <code>readinto</code> waited about 30 ms. The loop kept up at 25 frames per second, with about 30 ms to spare.</p>
+<p>Since <code>readinto</code> blocks until a frame arrives, a loop that takes less than 40 ms simply waits for the rest of the frame, and it stays in step. A loop that takes more than 40 ms never waits, and the backlog grows by the excess every pass.</p>
+<p><em>Worked example.</em> The ring was created with <code>ibuf=40000</code>, which would hold <span class="arithmatex">\( 40{,}000 / 2{,}048 \approx 19.5 \)</span> frames if every byte held microphone data. Measurement says it holds about half that. <code>03-ring-latency.py</code> plays a click once a second and prints how long after the click the program read it. At 50 ms per pass, that delay grew by roughly 10 ms per pass, as the backlog model predicts, and then stopped growing at about 460 ms. Two of the 14 clicks were lost. So the usable depth is about 0.4 s, or 9.8 frames. One explanation, not yet confirmed, is that in MONO mode the driver stores both I2S slots for every sample, 8 bytes instead of 4, which gives <span class="arithmatex">\( 40{,}000 / 8 / 12{,}800 \approx 0.39 \)</span> s. The rest of this chapter uses the measured depth of 9.77 frames.</p>
+<p>Suppose each pass takes 50 ms because of a slow display update. Each pass, the microphone produces <span class="arithmatex">\( 50/40 = 1.25 \)</span> frames but the loop consumes only 1, so the backlog grows by 0.25 frames per pass. It passes 9.77 frames after 40 passes, which is <span class="arithmatex">\( 40 \times 50 = 2.0 \)</span> seconds. After that, audio is lost. If the pass took 130 ms, about the measured time of a full-screen redraw from Chapter 5, the backlog would grow by 2.25 frames per pass and overflow in only 5 passes, about 0.65 seconds.</p>
+<table>
+<thead>
+<tr>
+<th>Time per pass</th>
+<th>Keeps up?</th>
+<th>Backlog growth per pass</th>
+<th>First sample lost after</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30 ms</td>
+<td>Yes, waits 10 ms</td>
+<td>none</td>
+<td>never</td>
+</tr>
+<tr>
+<td>40 ms</td>
+<td>Yes, no spare time</td>
+<td>none</td>
+<td>never</td>
+</tr>
+<tr>
+<td>50 ms</td>
+<td>No</td>
+<td>0.25 frames</td>
+<td>about 2.0 s</td>
+</tr>
+<tr>
+<td>130 ms (full redraw)</td>
+<td>No</td>
+<td>2.25 frames</td>
+<td>about 0.65 s</td>
+</tr>
+</tbody>
+</table>
+<p>Use the budget explorer to check your arithmetic.</p>
+<h4 id="diagram-audio-frame-time-budget-explorer">Diagram: Audio Frame Time Budget Explorer<a class="headerlink" href="#diagram-audio-frame-time-budget-explorer" title="Permanent link">&para;</a></h4>
+<details>
+<summary>Audio Frame Time Budget Explorer</summary>
+<p>Type: microsim
+<strong>sim-id:</strong> audio-frame-budget-explorer<br/>
+<strong>Library:</strong> p5.js<br/>
+<strong>Status:</strong> Specified<br/>
+<strong>Bloom Level:</strong> Analyze<br/>
+<strong>Bloom Verb:</strong> examine<br/>
+<strong>Learning Objective:</strong> The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s.</p>
+<p><strong>Prerequisites:</strong> audio frame, ring buffer, frame time budget, backlog (all defined in the sections above this block). The model is stated in the Rules field and shown on screen.</p>
+<p><strong>Evidence of Mastery:</strong> For each of the 6 timings the learner types the seconds until the first sample is lost, or "never". An answer is correct when it equals "never" where the Answer column says never, or is within 0.1 s of the number in the Answer column. Mastery is 5 of 6 correct on the first attempt. Changing the exploration slider and watching the backlog is exploration, not evidence.</p>
+<p><strong>Misconceptions:</strong> (1) A loop that takes slightly longer than the frame is fine because the buffer is big. (2) A loop that is faster than the frame wastes audio. (3) The ring holds all the audio forever.</p>
+<p><strong>Instructional Rationale:</strong> Analyze-level examination requires the learner to relate parts of the system (the producer, the ring, the consumer) and reason about how a small rate difference accumulates. Using the same formula on six timings lets the learner see which one is the borderline case and why.</p>
+<p><strong>Content:</strong></p>
+<p>The model: one audio frame is 2,048 bytes and arrives every 40 ms. The ring holds 9.765625 frames (the depth measured in <code>03-ring-latency.py</code>, equal to 40,000 bytes at 8 bytes per sample time: 5,000 sample times, or 0.390625 s). Each pass of the loop takes P milliseconds of work and then reads one frame. If the loop is faster than 40 ms, it waits for the frame.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Time per pass P (ms)</th>
+<th>Answer</th>
+<th>Why (shown as feedback)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30</td>
+<td>never</td>
+<td>The loop is faster than 40 ms, so it waits for each frame and the backlog stays at zero.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>40</td>
+<td>never</td>
+<td>The loop exactly matches the audio rate, so there is no growth.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>45</td>
+<td>3.56</td>
+<td>Growth 0.125 frames per pass, so it passes 9.77 frames on pass 79, and 79 x 45 ms = 3.56 s.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>50</td>
+<td>2.0</td>
+<td>Growth 0.25 frames per pass, so it passes 9.77 on pass 40, and 40 x 50 ms = 2.0 s.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>60</td>
+<td>1.2</td>
+<td>Growth 0.5 frames per pass, so it passes 9.77 on pass 20, and 20 x 60 ms = 1.2 s.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>130</td>
+<td>0.65</td>
+<td>Growth 2.25 frames per pass, so it passes 9.77 on pass 5, and 5 x 130 ms = 0.65 s.</td>
+</tr>
+</tbody>
+</table>
+<p>For exploration the learner sets P from 10 to 100 ms in steps of 0.1 ms, default 40.0 ms. The sim shows the backlog in frames growing against the capacity of 9.765625 frames.</p>
+<p><strong>Provenance:</strong> The frame size and ring size are the values in <code>src/kits/study-buddy-base/config.py</code> (<code>FFT_SIZE</code>, <code>MIC_SAMPLE_RATE</code>, <code>MIC_BUFFER_BYTES</code>). The ring depth of 9.765625 frames comes from a measurement on the test board at 50 ms per pass (the delay stopped growing near 460 ms), and its cause is not confirmed. The model is a simplification, and the sim labels it "model, based on one board's measurement." The 130 ms value is the measured full-screen update time from Chapter 5.</p>
+<p><strong>Rules:</strong> Let T be the larger of P and 40 ms. The backlog after n passes is n x (T / 40 - 1) frames. The first sample is lost at the first whole number n for which the backlog is greater than 9.765625, and the time is n x T. If T equals 40, nothing is ever lost. Times are shown in seconds to two decimal places.</p>
+<p><strong>Learner Activity:</strong></p>
+<ol>
+<li>The learner moves the slider and watches the backlog line rise or stay flat against the capacity line.</li>
+<li>The learner starts the 6 timings. Timing 1 is shown.</li>
+<li>The learner types the seconds until the first loss, or "never," and submits.</li>
+<li>The sim draws the backlog line for that timing and shows the Why text.</li>
+<li>After timing 6, the sim shows the score. The learner should notice that a loop only 5 ms too slow still loses audio within 3.6 seconds.</li>
+</ol>
+<p><strong>Feedback:</strong> 6 timings, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. The answer is <answer>: <Why>". The answer is revealed right after each submission, and a running score "n of 6" is shown.</p>
+<p><strong>Starting State:</strong> The slider is at 40.0 ms with the backlog flat at zero, and the question "How long can this loop run before audio is lost?"</p>
+<p><strong>Chapter Anchors:</strong> The chapter states that a frame is 512 samples, 2,048 bytes, and 40 ms; that the microphone ring was created with 40,000 bytes but measured about 9.8 frames (0.4 s) deep; and that a 50 ms pass loses audio after about 2.0 s while a 130 ms pass loses it after about 0.65 s.</p>
+</details>
+<h2 id="transmitting-sound">Transmitting Sound<a class="headerlink" href="#transmitting-sound" title="Permanent link">&para;</a></h2>
+<p><strong>I2S transmit</strong> is the direction from the Pico to the amplifier. You create the I2S object in <code>TX</code> mode and call <code>write</code> with a buffer of 16-bit samples. The call waits until the samples are copied into the internal buffer, which is what keeps the playback in step.</p>
+<p>There is one trap, and test 05 shows how to avoid it. <code>write</code> returns as soon as the <em>last bytes are in the buffer</em>, which is up to one buffer-length before they have finished playing. If you call <code>deinit()</code> immediately, the end of the sound is cut off. Test 05 therefore writes a short tail of silence and sleeps for the buffer's duration.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">audio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">silence</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="n">IBUF</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">//</span> <span class="p">(</span><span class="n">RATE</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">50</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The buffer holds <code>IBUF</code> bytes, each sample is 2 bytes, and the rate is <code>RATE</code> samples per second, so <code>IBUF * 1000 // (RATE * 2)</code> is the buffer's length in milliseconds (256 ms for the 8,192 bytes at 16 kHz). Adding 50 ms gives margin.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Let the Buffer Drain Before You Stop</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
+If the last note of a sound is missing, you called <code>deinit()</code> too soon. Write a little silence and wait for the buffer's duration first, as test 05 does. You can compute the wait: <code>ibuf</code> bytes divided by bytes per second.</p>
+</div>
+<h3 id="tone-generation">Tone Generation<a class="headerlink" href="#tone-generation" title="Permanent link">&para;</a></h3>
+<p><strong>Tone generation</strong> means computing the samples of a sine wave at a chosen frequency. For each sample number <span class="arithmatex">\( i \)</span> at sample rate <span class="arithmatex">\( R \)</span>, the value is</p>
+<div class="arithmatex">\[ s_i = A \sin\left(2\pi f \frac{i}{R}\right) \]</div>
+<p>where <span class="arithmatex">\( f \)</span> is the frequency in hertz and <span class="arithmatex">\( A \)</span> is the amplitude. Test 05 does this with <code>math.sin</code> for every sample and a 10 ms fade-in and fade-out so that the tone starts and stops without a click.</p>
+<p><em>Worked example.</em> A 440 Hz note lasting 800 ms at 16,000 samples per second has <span class="arithmatex">\( 16{,}000 \times 0.8 = 12{,}800 \)</span> samples, which is 25,600 bytes. At volume 40 (the kit default) the peaks are about 13,107.</p>
+<h3 id="the-sine-table">The Sine Table<a class="headerlink" href="#the-sine-table" title="Permanent link">&para;</a></h3>
+<p>Calling <code>math.sin</code> for every sample is slow. A <strong>sine table</strong> avoids it: calculate one cycle of the sine wave once, store it in an array, and then look up values by position. To make a tone of frequency <span class="arithmatex">\( f \)</span>, step through the table at a rate of <span class="arithmatex">\( f \times N / R \)</span> positions per sample, where <span class="arithmatex">\( N \)</span> is the table length.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">array</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">N</span> <span class="o">=</span> <span class="mi">256</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">SINE</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s2">"h"</span><span class="p">,</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">32767</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">N</span><span class="p">))</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>                         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)])</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">tone</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mi">40</span><span class="p">):</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">count</span> <span class="o">=</span> <span class="n">rate</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">//</span> <span class="mi">1000</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">out</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s2">"h"</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span><span class="p">)</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">step</span> <span class="o">=</span> <span class="n">freq</span> <span class="o">*</span> <span class="n">N</span> <span class="o">/</span> <span class="n">rate</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">phase</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>        <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">SINE</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">]</span> <span class="o">*</span> <span class="n">volume</span> <span class="o">//</span> <span class="mi">100</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="n">phase</span> <span class="o">+=</span> <span class="n">step</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="k">return</span> <span class="n">out</span>
+</span></code></pre></div>
+<p>The table is made once at startup: 256 entries of 2 bytes, 512 bytes in all. The function then fills an <code>array</code> of 16-bit values by indexing the table; <code>phase</code> is the current position, <code>step</code> is how far to move on each sample, and <code>% N</code> wraps back to the start of the table. The result can be passed straight to <code>audio.write()</code>. For a 440 Hz tone at 16,000 samples per second, <code>step</code> is <span class="arithmatex">\( 440 \times 256 / 16000 = 7.04 \)</span> positions per sample.</p>
+<p>The table method trades a little accuracy for speed. Truncating the position to a whole number adds a faint roughness, which is fine for a beep. Chapter 10 shows how to make this loop faster still.</p>
+<h3 id="stored-audio-playback">Stored Audio Playback<a class="headerlink" href="#stored-audio-playback" title="Permanent link">&para;</a></h3>
+<p><strong>Stored audio playback</strong> plays samples that were recorded earlier and saved in a file in flash. The file holds raw 16-bit mono samples at a known rate. The player reads it in small chunks and writes each chunk to the amplifier, so only one small buffer is ever in memory.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">play_file</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="mi">1024</span><span class="p">):</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">buf</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">view</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>            <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                <span class="k">break</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>            <span class="n">audio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">view</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span>
+</span></code></pre></div>
+<p><code>readinto</code> fills <code>buf</code> from the file and returns the number of bytes read, <code>view[:n]</code> selects just those bytes without copying them (Chapter 2), and <code>write</code> waits until the chunk has been accepted. The loop ends when the file runs out. The I2S rate must match the rate the file was recorded at. A recording made at 12,800 Hz played at 16,000 Hz comes out faster and higher, like a chipmunk. If the file is a WAV file from Chapter 3, call <code>f.seek(44)</code> before the loop to skip the 44-byte header.</p>
+<p><em>Worked example.</em> One second of 16-bit mono audio at 16,000 Hz takes 32,000 bytes. The Pico's flash also holds MicroPython itself, so you have room for tens of seconds of it, enough for a small library of spoken phrases such as "Test tomorrow."</p>
+<h2 id="speaking-without-hearing-yourself">Speaking Without Hearing Yourself<a class="headerlink" href="#speaking-without-hearing-yourself" title="Permanent link">&para;</a></h2>
+<h3 id="the-self-hearing-problem">The Self-Hearing Problem<a class="headerlink" href="#the-self-hearing-problem" title="Permanent link">&para;</a></h3>
+<p>The <strong>self-hearing problem</strong> is that the microphone picks up the speaker. When the Study Buddy speaks an answer, its own voice travels through the air to the microphone a few centimeters away, and the device hears itself. Worse, a program that listens for the wake word "Hey Pico" can be triggered by its own reply, and a program that records questions can record its own answers and answer them again.</p>
+<p>The simplest solution, and the one the kit uses, is to never listen while speaking. Test 07 works this way: it records, closes the microphone with <code>mic.deinit()</code>, and only then opens the speaker. Strategies, from simplest to hardest:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How it works</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Push-to-talk</td>
+<td>The microphone is only open while a button is held</td>
+<td>None; this is what the kit does</td>
+</tr>
+<tr>
+<td>Half-duplex</td>
+<td>Close the microphone (or ignore its frames) while playing</td>
+<td>A little code</td>
+</tr>
+<tr>
+<td>A quiet tail</td>
+<td>Keep ignoring the microphone for about 120 ms after the last sound leaves the speaker (measured; see below)</td>
+<td>Slight delay</td>
+</tr>
+<tr>
+<td>Echo cancellation</td>
+<td>Subtract the known speaker signal from the microphone signal</td>
+<td>Far beyond a Pico; out of scope</td>
+</tr>
+</tbody>
+</table>
+<p>The "quiet tail" matters because sound lingers: the speaker keeps playing whatever is still queued in its buffer, and the room carries the sound a little longer.</p>
+<p><em>Measured result.</em> <code>src/chapters/08-i2s-audio/06-self-hearing.py</code> plays a 1 kHz tone through the speaker while reading the microphone one 40 ms frame at a time. On the test board, with the speaker beside the microphone and the volume at 40 (the kit default):</p>
+<table>
+<thead>
+<tr>
+<th>Moment</th>
+<th>Microphone loudness</th>
+<th>Compared with the room</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before the tone</td>
+<td>13.1 bits (the noise floor)</td>
+<td>1 times</td>
+</tr>
+<tr>
+<td>During the tone</td>
+<td>17.0 bits, steady</td>
+<td>3.9 bits louder, about 15 times</td>
+</tr>
+<tr>
+<td>First frame after the last tone write</td>
+<td>16.3 bits</td>
+<td>3.2 bits louder</td>
+</tr>
+<tr>
+<td>Second and third frames after</td>
+<td>13.7 and 13.6 bits</td>
+<td>within 0.6 bits of the floor</td>
+</tr>
+<tr>
+<td>Fourth frame after, onward</td>
+<td>at the floor</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>So the device hears itself clearly: the speaker is about 15 times louder to the microphone than the quiet room. And it goes quiet fast. In this test the writes to the speaker were paced one frame at a time, so very little sound was queued, and the microphone was back near the floor within about 2 frames, roughly 80 to 120 ms. If your program queues more audio in the speaker's buffer (up to 320 ms for the kit's 8,192-byte buffer at 12,800 Hz), add that time to the tail. Room noise can make a single frame read 1 bit high, so judge the tail by a run of three quiet frames, not by one.</p>
+<h3 id="mute-and-resume">Mute and Resume<a class="headerlink" href="#mute-and-resume" title="Permanent link">&para;</a></h3>
+<p><strong>Mute and resume</strong> is stopping the sound and starting it again cleanly. A software mute stops writing samples, or writes zeros, and the amplifier plays silence. To avoid a click, fade the volume down over about 10 ms before stopping, and fade up when resuming, as test 05 does at the start and end of every note.</p>
+<h3 id="the-amplifier-shutdown-pin">The Amplifier Shutdown Pin<a class="headerlink" href="#the-amplifier-shutdown-pin" title="Permanent link">&para;</a></h3>
+<p>The MAX98357A breakout also has a <strong>shutdown pin</strong> (labeled SD). Pulling it to ground switches the amplifier off completely, which removes the faint hiss some amplifiers make even when playing silence and saves power. On most breakout boards a resistor holds the amplifier on when the pin is not connected, and the tested kit leaves it unconnected (check your board's documentation). If you want a hardware mute, wire the SD pin to an unused pin such as GP22 and drive it low to mute and high to resume.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">shutdown</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># mute: amplifier off</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">shutdown</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>              <span class="c1"># resume: let the board's resistor turn it on</span>
+</span></code></pre></div>
+<p>The first line makes the pin an output driven low, which shuts the amplifier down. The second line turns the pin back into an input, so the board's own resistor decides the state, as it does when nothing is wired. Give the amplifier a few milliseconds to wake before sending audio. This is an optional extension, and nothing else in the book depends on it.</p>
+<h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
+<p>You can now describe the audio path from end to end. The microphone drives the serial data line in step with the Pico's bit clock and word select, and the I2S hardware collects the bits into a ring buffer. Your loop reads one 40 ms frame at a time with <code>readinto</code>, and must finish its work before the next frame arrives. The amplifier is fed by <code>write</code>, and you let its buffer drain before stopping. While the speaker plays, the microphone stays closed.</p>
+<p>Key takeaways:</p>
+<ul>
+<li>I2S uses three wires: bit clock (one tick per bit), word select (marks each word and its channel), and serial data; <code>ws</code> must be the pin after <code>sck</code>.</li>
+<li>Mono is one stream; stereo is two interleaved; the INMP441's L/R pin on GND selects the left slot.</li>
+<li><code>machine.I2S</code> has <code>readinto</code>, <code>write</code>, and <code>deinit</code>, and blocking is what paces your loop.</li>
+<li>The INMP441's 24-bit samples arrive in 32-bit words, so shift right by 8 and subtract the DC offset.</li>
+<li>A frame of 512 samples at 12,800 Hz is 2,048 bytes and 40 ms; the whole pass has a 40 ms budget.</li>
+<li>A ring buffer gives bounded grace: the microphone's ring held about 0.4 s of audio when measured, so at 50 ms per pass it overflows in about 2 s.</li>
+<li>Drain the speaker's buffer before <code>deinit()</code>; use a sine table for fast tones; play stored audio in chunks.</li>
+<li>Never listen while speaking: use push-to-talk or close the microphone during playback.</li>
+</ul>
+<p>Test yourself with these two questions, and click each one to reveal its answer.</p>
+<details class="question">
+<summary>A recording you made at 12,800 Hz plays back higher and faster. What is the likely cause? Click to expand</summary>
+<p>The playback I2S object was created with a different sample rate (for example 16,000 Hz). The rate used to play must equal the rate used to record. Both come from <code>MIC_SAMPLE_RATE</code> in <code>config.py</code> in test 07.</p>
+</details>
+<details class="question">
+<summary>Your loop does a 60 ms update every frame. About how long until the microphone ring starts losing audio? Click to expand</summary>
+<p>About 1.2 seconds. The loop falls behind by 0.5 frames per pass, the ring holds about 9.8 frames, so it overflows on pass 20, and <span class="arithmatex">\( 20 \times 60 \text{ ms} = 1.2 \)</span> s.</p>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Sound In, Sound Out</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../img/mascot/celebration.png" />
+You just learned the three I2S wires, how <code>machine.I2S</code> receives and transmits, how a 40 ms frame and a ring buffer keep the stream flowing, and why the device must not listen while it speaks. You now have everything you need to run the microphone and speaker on your own.</p>
+</div>
+<p>In Chapter 9 we turn these frames of samples into a spectrum with the FFT.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
