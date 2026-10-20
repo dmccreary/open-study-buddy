@@ -81,8 +81,10 @@ retail price at any quantity.
 
 ### Raspberry Pi Pico 2 WH
 
-<!-- TODO: image needed — see pico-2-w-image-description.md -->
-*Photo pending. See the [image brief](./pico-2-w-image-description.md).*
+<!-- TODO: replace with a Pico 2 W photo — see pico-2-w-image-description.md -->
+![Raspberry Pi Pico W, which looks nearly identical to the Pico 2 W](./raspberry-pi-pico-w.jpg){ width="300" }
+
+*Shown: the original Pico W, which looks nearly identical to the Pico 2 W. Photo by [SparkFun Electronics](https://commons.wikimedia.org/wiki/File:RPI_PICO_W_1.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).*
 
 **Used in:** Study Buddy base kit (×1)
 
