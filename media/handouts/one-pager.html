@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Open StudyBuddy - One-Page Handout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* US Letter, 8.5 x 11 in. Print with "Background graphics" on, margins "None". */
+  @page { size: 8.5in 11in; margin: 0; }
+
+  :root {
+    --blue: #1f5fa8;
+    --navy: #14325c;
+    --orange: #f28c28;
+    --cream: #fdf6e8;
+    --ink: #1d2733;
+    --muted: #5b6b7d;
+    --line: #d9e2ee;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { background: #e9edf2; }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    margin: 0 auto;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- Title ---------- */
+  header.title {
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    padding: 0.22in 0.5in 0.16in;
+    border-bottom: 0.07in solid var(--orange);
+  }
+  header.title h1 {
+    font-size: 40pt;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+  }
+  header.title p {
+    font-size: 12.5pt;
+    margin-top: 0.05in;
+    color: #cfe0f5;
+  }
+
+  /* ---------- Hero photo ---------- */
+  .hero {
+    display: flex;
+    justify-content: center;
+    padding: 0.16in 0.5in 0;
+  }
+  .hero img {
+    height: 2.2in;
+    width: auto;
+    max-width: 100%;
+    border-radius: 0.12in;
+    border: 0.03in solid var(--navy);
+    display: block;
+    object-fit: cover;
+  }
+  .caption {
+    text-align: center;
+    font-size: 8.5pt;
+    color: var(--muted);
+    margin-top: 0.04in;
+    font-style: italic;
+  }
+
+  /* ---------- Body columns ---------- */
+  .cols {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 0.28in;
+    padding: 0.14in 0.5in 0;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  h2 {
+    font-size: 13pt;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 0.025in solid var(--orange);
+    padding-bottom: 0.025in;
+    margin-bottom: 0.07in;
+  }
+
+  ul.feat { list-style: none; margin-bottom: 0.12in; }
+  ul.feat li {
+    font-size: 9.6pt;
+    line-height: 1.28;
+    padding-left: 0.2in;
+    position: relative;
+    margin-bottom: 0.045in;
+  }
+  ul.feat li::before {
+    content: "";
+    position: absolute;
+    left: 0.02in;
+    top: 0.055in;
+    width: 0.09in;
+    height: 0.09in;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+  ul.feat li b { color: var(--navy); }
+
+  /* ---------- Cost table ---------- */
+  table.parts {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.6pt;
+  }
+  table.parts td {
+    padding: 0.04in 0.04in;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.parts td.name { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  table.parts td.what { color: var(--muted); font-size: 8.4pt; line-height: 1.2; }
+  table.parts td.cost { text-align: right; font-weight: 700; white-space: nowrap; }
+  table.parts tr.total td {
+    border-bottom: none;
+    border-top: 0.025in solid var(--navy);
+    font-size: 11pt;
+    font-weight: 800;
+    color: var(--navy);
+    padding-top: 0.06in;
+  }
+  .note { font-size: 7.8pt; color: var(--muted); margin-top: 0.05in; line-height: 1.25; }
+
+  .callout {
+    margin-top: 0.12in;
+    background: var(--cream);
+    border-left: 0.06in solid var(--orange);
+    border-radius: 0.05in;
+    padding: 0.07in 0.12in;
+    font-size: 9.2pt;
+    line-height: 1.3;
+  }
+  .callout b { color: var(--navy); }
+
+  /* ---------- Footer: mascot / QR ---------- */
+  footer {
+    display: grid;
+    grid-template-columns: 1.7in 1fr 2.05in;
+    align-items: end;
+    gap: 0.15in;
+    padding: 0.05in 0.5in 0.32in;
+  }
+  footer .mascot { display: flex; align-items: flex-end; }
+  footer .mascot img { height: 1.7in; width: auto; display: block; }
+
+  footer .cta { text-align: center; padding-bottom: 0.15in; }
+  footer .cta .big { font-size: 15pt; font-weight: 800; color: var(--navy); line-height: 1.15; }
+  footer .cta .url { font-size: 9.5pt; color: var(--blue); margin-top: 0.06in; word-break: break-all; font-weight: 600; }
+  footer .cta .lic { font-size: 7.6pt; color: var(--muted); margin-top: 0.1in; line-height: 1.3; }
+
+  footer .qr { text-align: center; }
+  footer .qr svg {
+    width: 2in;
+    height: 2in;
+    display: block;
+    margin-left: auto;
+    border: 0.03in solid var(--navy);
+    border-radius: 0.08in;
+    shape-rendering: crispEdges;
+  }
+  footer .qr .scan { font-size: 8.5pt; color: var(--navy); font-weight: 700; margin-top: 0.04in; }
+
+  @media screen {
+    body { padding: 0.3in 0; }
+    .page { box-shadow: 0 0.04in 0.3in rgba(0,0,0,0.25); }
+  }
+  @media print {
+    html, body { background: #fff; }
+    body { padding: 0; }
+    .page { box-shadow: none; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="title">
+    <h1>Open Study Buddy</h1>
+    <p>Build your own private AI desk companion that listens, shows, and speaks.</p>
+  </header>
+
+  <div class="hero">
+    <img src="../../docs/img/thinking-spot-buddy.jpg" alt="An Open Study Buddy prototype showing The Thinking Spot logo on its round display">
+  </div>
+  <p class="caption">A working Open Study Buddy: Pico 2 W, round display, microphone, and speaker on a breadboard.</p>
+
+  <div class="cols">
+
+    <section>
+      <h2>Key Features</h2>
+      <ul class="feat">
+        <li><b>Listens and speaks.</b> I2S microphone and speaker with push-to-talk and wake-word detection.</li>
+        <li><b>Round color display.</b> A 360 &times; 360 screen shows a mascot face, text, and live sound meters.</li>
+        <li><b>Connects to the agent you choose.</b> Wi-Fi link to a laptop, school server, or cloud service.</li>
+        <li><b>Push alerts.</b> School agents can "Push" messages such as &ldquo;test tomorrow&rdquo; appear and are spoken aloud.</li>
+        <li><b>School-aware.</b> Connect a school calendar so it knows what is due and when the next test is.</li>
+        <li><b>Complete free textbook.</b> 18 chapters, runnable MicroPython code, and interactive MicroSims.</li>
+      </ul>
+
+      <h2>Key Benefits</h2>
+      <ul class="feat">
+        <li><b>Learn by building.</b> Students learn to write every line of the MicroPython that runs on it.</li>
+        <li><b>Open and subscription-free.</b> No vendor cloud and no monthly fee.</li>
+        <li><b>Privacy by design.</b> Each person, class, or school decides where the agent runs and what data it may touch.</li>
+        <li><b>Affordable for a whole class.</b> About $24 per kit, with no recurring fees.</li>
+        <li><b>Real engineering skills.</b> Digital audio, FFT signal processing, networking, and responsible listening.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Parts &amp; Approx. Cost</h2>
+      <table class="parts">
+        <tr><td class="name">RPI Pico 2 W</td><td class="what">Microcontroller "brain" with Wi-Fi</td><td class="cost">$7</td></tr>
+        <tr><td class="name">Display</td><td class="what">2.1&Prime; round, 360&times;360 color</td><td class="cost">$7</td></tr>
+        <tr><td class="name">Microphone</td><td class="what">INMP441 digital I2S</td><td class="cost">$4</td></tr>
+        <tr><td class="name">Amp</td><td class="what">MAX98357A I2S class-D</td><td class="cost">$1.50</td></tr>
+        <tr><td class="name">Speaker</td><td class="what">Small 4&ndash;8&nbsp;&Omega; speaker</td><td class="cost">$3</td></tr>
+        <tr><td class="name">Buttons</td><td class="what">3 push buttons</td><td class="cost">$.50</td></tr>
+        <tr><td class="name">Breadboard</td><td class="what">Customizable breadboard</td><td class="cost">$1.20</td></tr>
+        <tr><td class="name">Wires</td><td class="what">Dupont jumper wires</td><td class="cost">$0.50</td></tr>
+        <tr class="total"><td class="name" colspan="2">Approximate total</td><td class="cost">&asymp; $24</td></tr>
+      </table>
+      <p class="note">Estimated single-unit retail prices in US dollars. Actual prices vary by seller and quantity, and class sets are usually cheaper per kit.</p>
+
+      <div class="callout">
+        <b>Who it is for:</b> grades 9&ndash;12, coding clubs, maker programs, teachers, mentors, and curious hobbyists who already know a little MicroPython.
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="mascot">
+      <img src="../../docs/img/mascot/welcome.png" alt="Sage the Owl, the Open Study Buddy mascot, waving hello">
+    </div>
+
+    <div class="cta">
+      <div class="big">Read the free book.<br>Build your Buddy.</div>
+      <div class="url">dmccreary.github.io/open-study-buddy</div>
+      <div class="lic">Licensed CC BY-NC-SA 4.0<br>Built with MkDocs Material and Claude Code</div>
+    </div>
+
+    <div class="qr">
+      <!--QR--><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" class="segno"><path fill="#fff" d="M0 0h35v35h-35z"/><path stroke="#14325c" d="M1 1.5h7m2 0h5m1 0h7m1 0h1m2 0h7m-33 1h1m5 0h1m1 0h5m2 0h1m2 0h1m1 0h1m1 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h8m2 0h3m1 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m5 0h2m1 0h1m2 0h1m3 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h3m2 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h2m1 0h2m2 0h1m2 0h2m3 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m1 0h1m4 0h2m2 0h1m1 0h3m-24 1h3m1 0h2m5 0h4m1 0h2m1 0h2m2 0h1m5 0h2m-32 1h2m1 0h3m1 0h1m3 0h1m7 0h2m2 0h1m2 0h2m1 0h2m1 0h1m-33 1h4m1 0h5m1 0h2m1 0h2m1 0h1m5 0h7m1 0h2m-29 1h2m2 0h4m3 0h2m2 0h1m3 0h1m3 0h1m1 0h1m1 0h2m-33 1h1m3 0h4m2 0h2m3 0h2m1 0h3m4 0h1m1 0h3m1 0h2m-33 1h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m2 0h1m4 0h1m2 0h1m1 0h3m-32 1h1m1 0h2m1 0h2m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m3 0h1m1 0h2m-27 1h1m1 0h1m1 0h3m4 0h5m1 0h3m2 0h3m1 0h2m-31 1h1m2 0h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h1m2 0h4m1 0h2m1 0h3m-31 1h2m3 0h1m2 0h3m6 0h1m2 0h2m1 0h4m1 0h2m1 0h2m-33 1h1m2 0h4m1 0h2m3 0h2m1 0h1m1 0h1m1 0h3m2 0h4m1 0h1m-31 1h3m2 0h1m2 0h1m2 0h1m3 0h1m2 0h2m2 0h1m5 0h1m-29 1h4m2 0h1m1 0h1m1 0h4m3 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h3m-32 1h1m2 0h1m3 0h1m6 0h1m1 0h6m1 0h1m2 0h1m2 0h1m2 0h1m-31 1h2m2 0h9m1 0h1m3 0h2m1 0h6m1 0h3m-32 1h2m2 0h1m1 0h3m2 0h1m1 0h1m4 0h2m1 0h2m1 0h1m1 0h1m-28 1h1m5 0h1m2 0h1m3 0h1m1 0h4m3 0h1m1 0h5m2 0h2m-25 1h1m2 0h1m1 0h1m1 0h2m2 0h1m2 0h3m3 0h2m-30 1h7m7 0h6m1 0h4m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m1 0h1m1 0h2m1 0h1m2 0h3m1 0h2m3 0h4m-32 1h1m1 0h3m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h11m1 0h3m-33 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m2 0h2m1 0h1m3 0h1m1 0h4m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h1m2 0h4m1 0h2m1 0h1m2 0h2m1 0h1m-30 1h1m5 0h1m1 0h1m4 0h5m4 0h1m1 0h2m1 0h2m3 0h1m-33 1h7m4 0h4m1 0h4m1 0h3m4 0h1m1 0h1"/></svg>
+<!--/QR-->
+      <div class="scan">Scan to open the book</div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
