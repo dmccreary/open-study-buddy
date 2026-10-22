@@ -1,18 +1,94 @@
 ---
 title: "Kit Parts Infographic"
 description: "The learner will identify which of the five kit parts performs each of 5 described jobs, with at least 4 of 5 correct on the first attempt."
-status: scaffold
+status: built
 library: html
 bloom_level: Remember
+image: sims/kit-parts-infographic/kit-parts-infographic.png
+og:image: sims/kit-parts-infographic/kit-parts-infographic.png
+twitter:image: sims/kit-parts-infographic/kit-parts-infographic.png
+social:
+   cards: false
 ---
 
 # Kit Parts Infographic
 
+<iframe src="main.html" width="100%" height="542px" scrolling="no"></iframe>
 
+[Run the Kit Parts Infographic MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+You can include this MicroSim on your website using the following `iframe`:
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/kit-parts-infographic/main.html" width="100%" height="542px" scrolling="no"></iframe>
+```
+
+## Description
+
+The Open Study Buddy base kit has five parts, and each one has a single clear
+job. This infographic shows them as a labeled picture: the Raspberry Pi Pico 2 W,
+the 360 by 360 round display, the INMP441 microphone, the MAX98357A amplifier
+with its speaker, and the Mode, Up, and Down buttons.
+
+Select any part to read its job. When you feel ready, start the check: five job
+statements appear one at a time, and you pick the part that does each job. The
+check is built to catch three common mix-ups: thinking the Pico itself has the
+microphone and speaker, thinking the amplifier makes sound without a speaker,
+and thinking the buttons are wired to the display.
+
+## How to Use
+
+1. Click (or tab to and press Enter on) any part in the picture. Its name and
+   job appear in the panel below.
+2. Press **Start the Check**. Job statement 1 appears with the five parts as
+   buttons, always in the same order. During the check, the picture no longer
+   shows descriptions.
+3. Pick one part. The sim tells you whether you were right, outlines the correct
+   part in green (and your pick in orange if it was wrong), and explains why.
+4. Press **Next** for the next job. After job 5 the sim shows your score out
+   of 5. Mastery is 4 of 5 on the first attempt.
+5. Press **Retake the Check** to try again, or **Back to Explore** to review.
+
+## Lesson Plan
+
+**Learning objective:** Students will identify which of the five kit parts
+performs each of five described jobs, with at least 4 of 5 correct on the first
+attempt (Bloom's Taxonomy: Remember).
+
+**Audience:** High school students starting the Open Study Buddy kit (grades 9-12).
+
+**Duration:** 5 to 10 minutes.
+
+**Prerequisites:** the table "The Kit Bill of Materials" in Chapter 4.
+
+### Activities
+
+1. **Explore (3 minutes).** Students select each part and say its job aloud in
+   one word: brain, face, ear, voice, hands.
+2. **Check (3 minutes).** Students take the check without looking back at the
+   chapter table.
+3. **Hands on (optional, 5 minutes).** With the real kit on the desk, students
+   point to each physical board as a partner reads the job statements.
+
+### Discussion Questions
+
+1. The Pico runs every program. Why does the kit still need a separate board to
+   turn sound into numbers?
+2. What would you hear if the amplifier were wired up but the speaker were missing?
+3. The buttons do not connect to the display. How does pressing MODE change what
+   the screen shows?
+
+### Assessment
+
+- The check score (target 4 of 5 on the first attempt) is the evidence of
+  mastery. Selecting parts beforehand is exploration and is not scored.
+- Exit ticket: "Name the part that turns digital audio into power for the speaker."
+
+## References
+
+- [Chapter 4: The Pico Kit Hardware and Wiring](../../chapters/04-pico-kit-hardware/index.md) - the section "The Kit Bill of Materials" lists the five parts and their jobs.
+- [Raspberry Pi Pico 2 W documentation](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) - the board that runs the kit's MicroPython.
+- [Bill of materials (Wikipedia)](https://en.wikipedia.org/wiki/Bill_of_materials) - what a parts list is and why projects keep one.
 
 ## Specification
 
@@ -76,7 +152,3 @@ Job statements, in this order:
 
 **Chapter Anchors:** The chapter names the five parts as the Pico 2 W, the round display, the microphone, the amplifier with a speaker, and the three buttons.
 ```
-
-## Related Resources
-
-- [Chapter 4: The Pico Kit Hardware and Wiring](../../chapters/04-pico-kit-hardware/index.md)

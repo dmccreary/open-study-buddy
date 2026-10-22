@@ -5,19 +5,98 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Computer Science",
+    "Electronics",
+    "Microcontrollers"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "kit-wiring-fault-finder",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/kit-wiring-fault-finder/",
   "library": "p5.js",
   "bloomLevel": "Analyze",
   "bloomVerb": "examine",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 4,
   "chapter_title": "The Pico Kit Hardware and Wiring",
   "chapter_dir": "04-pico-kit-hardware",
-  "chapter_rel_dir": "chapters/04-pico-kit-hardware"
+  "chapter_rel_dir": "chapters/04-pico-kit-hardware",
+  "canvasHeight": 620,
+  "educationalLevel": "High School (grades 9-12)",
+  "concepts": [
+    "Pin Assignment Table",
+    "Ground Wiring",
+    "Pull-Up Resistor",
+    "I2S Bus",
+    "3.3 V Power",
+    "Display Backlight"
+  ],
+  "prerequisites": [
+    "Pin assignment table",
+    "Ground wiring",
+    "Pull-up resistor",
+    "I2S neighbor rule",
+    "3.3 V rule for the microphone"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "learningObjectives": [
+      "The learner will examine 6 wiring listings against the pin assignment table and identify the one wrong connection in each, with at least 5 of 6 correct on the first attempt."
+    ],
+    "bloomsTaxonomy": [
+      "Analyze"
+    ],
+    "bloomVerb": "examine",
+    "duration": "12 minutes",
+    "prerequisites": [
+      "Pin assignment table",
+      "Ground wiring",
+      "Pull-up resistor",
+      "I2S neighbor rule",
+      "3.3 V rule for the microphone"
+    ]
+  },
+  "pedagogical": {
+    "instructionalStrategies": [
+      "Error detection against a reference",
+      "Debugging practice"
+    ],
+    "recommendedUsage": "Embedded in the chapter after the related section; open fullscreen for whole-class demos.",
+    "assessment": "Built-in scored check with a running score; exploration is not scored."
+  },
+  "technical": {
+    "framework": "p5.js 2.3.2",
+    "responsive": "Width-responsive",
+    "files": [
+      "main.html",
+      "kit-wiring-fault-finder.js"
+    ],
+    "opensPaused": true
+  },
+  "userInterface": {
+    "controls": [
+      {
+        "type": "select",
+        "name": "Choose a line",
+        "purpose": "Select the line that does not match the table"
+      },
+      {
+        "type": "button",
+        "name": "Check",
+        "purpose": "Submit the selection (one attempt per listing)"
+      },
+      {
+        "type": "button",
+        "name": "Next Listing / See Score",
+        "purpose": "Advance to the next listing or the summary"
+      },
+      {
+        "type": "button",
+        "name": "Start Over",
+        "purpose": "Restart from listing 1"
+      }
+    ]
+  }
 }

@@ -23,3 +23,4 @@ filled in only with details each organization supplies.
 | [Groves Learning Organization (GLO)](glo/index.md) | Learning organization |
 | [The Thinking Spot](the-thinking-spot/index.md) | Coding club |
 | [Two Rivers High School](two-rivers-high-school/index.md) | High school |
+| [Minnetonka Middle School East](minnetonka-middle-school-east/index.md) | Middle school |

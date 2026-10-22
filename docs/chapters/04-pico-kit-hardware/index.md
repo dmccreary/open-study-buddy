@@ -74,6 +74,8 @@ The activity below lets you check that you know which part does which job before
 
 #### Diagram: Kit Parts Infographic
 
+<iframe src="../../sims/kit-parts-infographic/main.html" width="100%" height="542px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>Kit Parts Infographic</summary>
 Type: infographic
@@ -337,6 +339,8 @@ A **pull-down resistor** is the mirror image: it gently connects the pin to grou
 
 #### Diagram: Pull-Up Button Circuit
 
+<iframe src="../../sims/pull-up-button-circuit/main.html" width="100%" height="562px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>Pull-Up Button Circuit</summary>
 Type: microsim
@@ -456,6 +460,8 @@ The kit is built in stages, and each test checks exactly the parts wired so far.
 The last activity of the chapter puts the pin assignment table to work on six wiring listings that each contain one mistake.
 
 #### Diagram: Kit Wiring Fault Finder
+
+<iframe src="../../sims/kit-wiring-fault-finder/main.html" width="100%" height="622px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Kit Wiring Fault Finder</summary>

@@ -16,6 +16,7 @@ env/
 
 # OS
 .DS_Store
+Icon?
 Thumbs.db
 
 # Editors

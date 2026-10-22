@@ -1,0 +1,135 @@
+/* Kit Parts Infographic - local styles */
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+    color: black;
+}
+
+main {
+    display: block;
+    width: 100%;
+}
+
+#sim {
+    border: 1px solid silver;
+    max-width: 900px;
+}
+
+#picture-area {
+    background: aliceblue;
+    padding: 6px 10px 4px 10px;
+    border-bottom: 1px solid silver;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: normal;
+    text-align: center;
+    margin: 2px 0 2px 0;
+}
+
+#kit-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 285px;
+}
+
+/* Parts are selectable groups */
+.part .hit {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 3;
+}
+.part { cursor: pointer; outline: none; }
+.part:hover .hit,
+.part:focus-visible .hit {
+    fill: rgba(255, 255, 255, 0.6);
+    stroke: steelblue;
+    stroke-dasharray: 6 4;
+}
+.part.selected .hit {
+    fill: rgba(255, 250, 205, 0.9);
+    stroke: goldenrod;
+    stroke-dasharray: none;
+}
+.part.correct .hit {
+    fill: rgba(240, 255, 240, 0.95);
+    stroke: seagreen;
+    stroke-dasharray: none;
+    stroke-width: 4;
+}
+.part.wrong .hit {
+    fill: rgba(255, 245, 238, 0.95);
+    stroke: darkorange;
+    stroke-dasharray: none;
+    stroke-width: 4;
+}
+.checking .part { cursor: default; }
+.checking .part:hover .hit { fill: transparent; stroke: transparent; }
+
+.label {
+    font-size: 17px;
+    font-weight: bold;
+    fill: black;
+}
+.sublabel {
+    font-size: 14px;
+    fill: dimgray;
+}
+
+#panel {
+    background: white;
+    padding: 10px 14px 12px 14px;
+    min-height: 210px;
+    font-size: 16px;
+}
+
+#panel-top {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+#message {
+    min-height: 44px;
+    line-height: 1.35;
+    margin-bottom: 8px;
+}
+#message .name { font-weight: bold; }
+#message.good {
+    background: honeydew;
+    border: 1px solid seagreen;
+    border-radius: 6px;
+    padding: 6px 8px;
+}
+#message.bad {
+    background: seashell;
+    border: 1px solid darkorange;
+    border-radius: 6px;
+    padding: 6px 8px;
+}
+
+#choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+button {
+    font-size: 15px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+button:disabled { cursor: default; }
+button.pick-correct { background: honeydew; border: 2px solid seagreen; }
+button.pick-wrong { background: seashell; border: 2px solid darkorange; }
+button.pick-correct:disabled, button.pick-wrong:disabled { color: black; }
+
+#actions button { margin-right: 6px; }

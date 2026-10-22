@@ -141,6 +141,8 @@ The diagram below shows how the kit's files point at each other. Each box is a f
 
 #### Diagram: Kit Import Map
 
+<iframe src="../../sims/kit-import-map/main.html" width="100%" height="562px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>Kit Import Map</summary>
 Type: graph-model
@@ -334,6 +336,8 @@ Polling, which means asking the pin over and over in a loop, can miss a press th
 
 #### Diagram: Polling Versus Interrupt Timeline
 
+<iframe src="../../sims/polling-versus-interrupt-timeline/main.html" width="100%" height="482px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>Polling Versus Interrupt Timeline</summary>
 Type: microsim
@@ -433,6 +437,8 @@ MicroPython's collector frees garbage but does not move the objects that remain,
 The activity below makes this concrete with a tiny heap of 16 cells.
 
 #### Diagram: Heap Fragmentation Explorer
+
+<iframe src="../../sims/heap-fragmentation-explorer/main.html" width="100%" height="517px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Heap Fragmentation Explorer</summary>

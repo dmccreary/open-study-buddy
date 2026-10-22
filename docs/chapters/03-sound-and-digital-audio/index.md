@@ -184,6 +184,8 @@ Now test the folding rule yourself.
 
 #### Diagram: Sampling Explorer
 
+<iframe src="../../sims/sampling-explorer/main.html" width="100%" height="517px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>Sampling Explorer</summary>
 Type: microsim
@@ -260,6 +262,8 @@ Rounding a measurement to the nearest level introduces a small error called **qu
 The INMP441 reports 24 bits of audio inside a 32-bit word. This is why the kit's code shifts each microphone sample right by 8 (`MIC_SAMPLE_SHIFT = 8`): the 24 real bits sit in the top of the 32-bit number, and shifting by 8 puts them where Python expects. The next activity lets you see what the number of levels does to a wave.
 
 #### Diagram: Bit Depth Quantizer
+
+<iframe src="../../sims/bit-depth-quantizer/main.html" width="100%" height="502px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Bit Depth Quantizer</summary>
@@ -382,6 +386,8 @@ The two views contain exactly the same information, drawn from different angles.
     Seeing a sound as bars instead of a wiggly line feels odd at first, and that is normal. You already read maps and graphs; this is one more way to look at the same data. Try the viewer below and change one control at a time.
 
 #### Diagram: Time and Frequency Domain Viewer
+
+<iframe src="../../sims/time-and-frequency-domain-viewer/main.html" width="100%" height="577px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Time and Frequency Domain Viewer</summary>

@@ -5,7 +5,12 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Open Study Buddy",
+    "Computer Science",
+    "polling",
+    "interrupt",
+    "interrupt service routine",
+    "falling edge"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
@@ -15,9 +20,36 @@
   "library": "p5.js",
   "bloomLevel": "Understand",
   "bloomVerb": "compare",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 2,
   "chapter_title": "MicroPython Review for Embedded Systems",
   "chapter_dir": "02-micropython-review",
-  "chapter_rel_dir": "chapters/02-micropython-review"
+  "chapter_rel_dir": "chapters/02-micropython-review",
+  "canvasHeight": 480,
+  "educationalLevel": "High School (grades 9-12)",
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "bloomLevel": "Understand",
+    "bloomVerb": "compare",
+    "learningObjective": "The learner will compare a polling loop with an interrupt by predicting, for 6 button presses, whether a loop that checks the pin every P milliseconds sees the press, and observing that an interrupt sees all 6.",
+    "concepts": [
+      "polling",
+      "interrupt",
+      "interrupt service routine",
+      "falling edge"
+    ],
+    "duration": "15-20 minutes"
+  },
+  "pedagogical": {
+    "pattern": "predict-then-reveal challenge with exploration mode",
+    "controls": [
+      "Seen and Missed buttons: predict whether the polling loop sees the press",
+      "Previous case and Next case buttons",
+      "Display select: Polling loop or Interrupt (unlocks after case 6)"
+    ],
+    "model": "Timeline model: polling checks at 0, P, 2P ... up to 220 ms; a press [start, end) is seen when start <= kP < end; an interrupt fires at the falling edge.",
+    "opensPaused": true
+  },
+  "url": "https://dmccreary.github.io/open-study-buddy/sims/polling-versus-interrupt-timeline/"
 }

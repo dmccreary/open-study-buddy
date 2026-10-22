@@ -5,19 +5,121 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Computer Science",
+    "Electronics",
+    "Computer Graphics"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "frame-size-calculator",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/frame-size-calculator/",
   "library": "p5.js",
   "bloomLevel": "Apply",
   "bloomVerb": "calculate",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 5,
   "chapter_title": "Display Basics: Pixels, Color, and Frame Size",
   "chapter_dir": "05-display-basics",
-  "chapter_rel_dir": "chapters/05-display-basics"
+  "chapter_rel_dir": "chapters/05-display-basics",
+  "canvasHeight": 620,
+  "educationalLevel": "High School (grades 9-12)",
+  "concepts": [
+    "Pixel",
+    "RGB565",
+    "Frame Size Calculation",
+    "Baud Rate",
+    "Update Bandwidth",
+    "Full-Frame Update"
+  ],
+  "prerequisites": [
+    "Pixel",
+    "RGB565",
+    "Frame size calculation",
+    "Baud rate"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "learningObjectives": [
+      "The learner will calculate the number of bytes in a rectangle of pixels and the time to send it over SPI at a given baud rate, for 6 challenges, with at least 5 of 6 correct."
+    ],
+    "bloomsTaxonomy": [
+      "Apply"
+    ],
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "Pixel",
+      "RGB565",
+      "Frame size calculation",
+      "Baud rate"
+    ]
+  },
+  "pedagogical": {
+    "instructionalStrategies": [
+      "Calculator exploration",
+      "Practice problems with immediate feedback"
+    ],
+    "recommendedUsage": "Embedded in the chapter after the related section; open fullscreen for whole-class demos.",
+    "assessment": "Built-in scored check with a running score; exploration is not scored."
+  },
+  "technical": {
+    "framework": "p5.js 2.3.2",
+    "responsive": "Width-responsive",
+    "files": [
+      "main.html",
+      "frame-size-calculator.js"
+    ],
+    "opensPaused": true
+  },
+  "userInterface": {
+    "controls": [
+      {
+        "type": "slider",
+        "name": "Width",
+        "range": "1-360 px, step 1, default 360"
+      },
+      {
+        "type": "slider",
+        "name": "Height",
+        "range": "1-360 px, step 1, default 360"
+      },
+      {
+        "type": "select",
+        "name": "Bytes per pixel",
+        "range": "1, 2, 3 (default 2)"
+      },
+      {
+        "type": "select",
+        "name": "Baud rate",
+        "range": "8,000,000 / 12,000,000 / 24,000,000 bits per second (default 24,000,000)"
+      },
+      {
+        "type": "button",
+        "name": "Start Challenges / Back to Explore",
+        "purpose": "Switch modes"
+      },
+      {
+        "type": "input",
+        "name": "Answer",
+        "purpose": "Type a number for the challenge"
+      },
+      {
+        "type": "button",
+        "name": "Check / Next",
+        "purpose": "Submit an answer and advance"
+      }
+    ]
+  },
+  "simulationModel": {
+    "equations": [
+      "bytes = width x height x bytes per pixel",
+      "bits = bytes x 8",
+      "milliseconds = bits / baud rate x 1000"
+    ],
+    "limitations": [
+      "Wire time only: command bytes and Python overhead are not included"
+    ]
+  }
 }

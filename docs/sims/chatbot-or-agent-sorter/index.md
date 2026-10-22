@@ -1,23 +1,121 @@
 ---
 title: "Chatbot or Agent Sorter"
 description: "The learner will distinguish chatbot behaviors from personal-agent behaviors by classifying 10 described behaviors, with at least 8 of 10 correct on the first attempt."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Analyze
+image: /sims/chatbot-or-agent-sorter/chatbot-or-agent-sorter.png
+og:image: /sims/chatbot-or-agent-sorter/chatbot-or-agent-sorter.png
+twitter:image: /sims/chatbot-or-agent-sorter/chatbot-or-agent-sorter.png
+social:
+   cards: false
 ---
 
 # Chatbot or Agent Sorter
 
+<iframe src="main.html" width="100%" height="564px" scrolling="no"></iframe>
 
+[Run the Chatbot or Agent Sorter MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/chatbot-or-agent-sorter/main.html" width="100%" height="564px" scrolling="no"></iframe>
+```
+
+## Description
+
+A chatbot answers one message at a time. A personal agent uses tools, works in
+several steps, acts without being asked at that moment, and comes back for a
+decision before it changes something that affects you. This MicroSim turns that
+definition into ten quick decisions.
+
+Each card describes one illustrative behavior, such as "Tells a joke when asked"
+or "Sends an alert to the student's desk device when a test is one day away."
+You sort it into **Chatbot behavior** or **Agent behavior**. The sim tells you
+right away whether you were right and gives a one-sentence reason that names
+the trait involved. Each answered behavior becomes a numbered chip in its
+correct bin: green when you sorted it correctly, orange when you missed it.
+
+After the tenth behavior, a summary shows your score and lists every behavior
+you missed, with its correct bin and the reason.
+
+## How to Use
+
+1. Read the behavior on the card.
+2. Press **Chatbot behavior** or **Agent behavior**. Each behavior gets one attempt.
+3. Read the feedback, then press **Next**. **Next** stays disabled until you choose a bin.
+4. After behavior 10, press **See results** to see your score and the behaviors you missed.
+5. Press **Restart** to practice the same ten behaviors in a new random order.
+
+The first run uses a fixed order and is the only run that counts toward mastery.
+Mastery is 8 of 10 correct.
+
+## Lesson Plan
+
+### Learning Objective
+
+Students will distinguish chatbot behaviors from personal-agent behaviors by
+classifying 10 described behaviors, with at least 8 of 10 correct on the first
+attempt (Bloom's Taxonomy: Analyze, verb *distinguish*).
+
+### Prerequisites
+
+Students should have read the chapter section
+[What Is a Personal Agent?](../../chapters/01-personal-agents-architecture/index.md#what-is-a-personal-agent),
+which defines personal agent, chatbot, tool, and multi-step work.
+
+### Activities
+
+1. **Warm-up (2 minutes).** Ask students to name one app that "talks" to them.
+   Is it a chatbot or an agent? Record their guesses without correcting them.
+2. **First run (5 minutes).** Students complete the sorter individually. The first
+   run is their evidence of mastery, so they should not restart before finishing.
+3. **Rule check (5 minutes).** For each missed behavior, students write which of
+   the four agent signs it shows or lacks: uses a tool to act, works in more than
+   one step, acts without being prompted at that moment, or asks for approval
+   before acting.
+4. **Practice run (3 minutes).** Students press **Restart** and sort the shuffled
+   behaviors again.
+
+### Discussion Questions
+
+1. Behaviors 3 and 4 both involve talking. Why is one a chatbot behavior and the
+   other an agent behavior?
+2. Many agents contain a chatbot-style language model inside. Does that make every
+   agent a chatbot? Use the chapter's test: does it only reply, or does it act?
+3. Which of the agent behaviors would you want your Study Buddy to ask permission
+   for first? Why?
+
+### Common Misconceptions Addressed
+
+- *Any program that talks is an agent.* Behaviors 1, 7, and 10 talk but take no action.
+- *A chatbot that sounds smart is an agent.* Rewriting or summarizing pasted text is
+  still one request and one reply.
+- *An agent must be a robot or a physical device.* Behavior 6 is software acting on a
+  schedule.
+
+### Assessment
+
+A student who scores 8 or more on the first run has met the objective. For students
+below 8, review the missed-behavior list together and ask them to explain each
+reason in their own words before a practice run.
+
+## References
+
+- [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md)
+- [Software agent](https://en.wikipedia.org/wiki/Software_agent) on Wikipedia
+- [Chatbot](https://en.wikipedia.org/wiki/Chatbot) on Wikipedia
 
 ## Specification
 
-The full specification below is extracted from
+The specification below is extracted from
 [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md).
+
+<details markdown="1">
+<summary>Show the full specification</summary>
 
 ```text
 Type: microsim
@@ -72,6 +170,4 @@ The learner sees the behaviors one at a time in this fixed order:
 **Chapter Anchors:** A chatbot answers one message at a time. An agent uses tools, works in several steps, and comes back when it needs a decision.
 ```
 
-## Related Resources
-
-- [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md)
+</details>

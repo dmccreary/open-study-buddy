@@ -11,13 +11,101 @@
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "agent-data-flow-step-through",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/agent-data-flow-step-through/",
   "library": "p5.js",
   "bloomLevel": "Understand",
   "bloomVerb": "explain",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 1,
   "chapter_title": "Personal Agents and the Open Study Buddy Architecture",
   "chapter_dir": "01-personal-agents-architecture",
-  "chapter_rel_dir": "chapters/01-personal-agents-architecture"
+  "chapter_rel_dir": "chapters/01-personal-agents-architecture",
+  "contributor": [
+    "Claude Code"
+  ],
+  "dateModified": "2026-10-20",
+  "educationalLevel": "High School",
+  "audience": "Students, Educators",
+  "learningResourceType": "simulation",
+  "concepts": [
+    "Agent Data Flow",
+    "Agent Terminal",
+    "Buddy Server",
+    "Request-Reply Contract",
+    "Speech-to-Text",
+    "Text-to-Speech"
+  ],
+  "prerequisites": [
+    "agent terminal",
+    "buddy server",
+    "request-reply contract",
+    "speech-to-text",
+    "text-to-speech"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "topic": "Agent data flow from spoken question to spoken answer",
+    "learningObjectives": [
+      "The learner will explain which of three parts (terminal, network, server) performs each of the eight steps that carry a spoken question to a spoken answer, by predicting the owner of steps 2 to 8 with at least 6 of 7 correct."
+    ],
+    "bloomsTaxonomy": [
+      "Understand"
+    ],
+    "bloomVerb": "explain",
+    "duration": "10-15 minutes",
+    "prerequisites": [
+      "agent terminal",
+      "buddy server",
+      "request-reply contract",
+      "speech-to-text",
+      "text-to-speech"
+    ]
+  },
+  "pedagogical": {
+    "pattern": "Step-through with prediction before reveal and concrete data at each step (no animation)",
+    "interactivityType": "active",
+    "misconceptionsAddressed": [
+      "The Pico decides the answer.",
+      "The microphone sends sound straight to the speaker.",
+      "The Wi-Fi link understands the question."
+    ],
+    "assessment": "Mastery is 6 of 7 owner predictions correct for steps 2 to 8.",
+    "defaultState": "Opens at the first item with nothing answered; there is no animation or timer."
+  },
+  "technical": {
+    "framework": "p5.js",
+    "canvasHeight": 580,
+    "responsive": "Width-responsive",
+    "dependencies": [
+      "p5.js 2.3.2 (jsdelivr)"
+    ]
+  },
+  "controls": [
+    {
+      "type": "button",
+      "label": "Terminal",
+      "purpose": "Predict that the terminal performs the current step"
+    },
+    {
+      "type": "button",
+      "label": "Network",
+      "purpose": "Predict that the network performs the current step"
+    },
+    {
+      "type": "button",
+      "label": "Server",
+      "purpose": "Predict that the server performs the current step"
+    },
+    {
+      "type": "button",
+      "label": "Next / See summary",
+      "purpose": "Advance after predicting; disabled until a prediction is made"
+    },
+    {
+      "type": "button",
+      "label": "Restart",
+      "purpose": "Return to step 1"
+    }
+  ]
 }

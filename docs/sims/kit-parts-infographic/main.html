@@ -3,145 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- microsim-scaffold-stub -->
-    <title>Kit Parts Infographic</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #212529;
-        }
-        #container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            color: #1a3a6c;
-        }
-        .placeholder {
-            border: 2px dashed #adb5bd;
-            border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #6c757d;
-            margin: 20px 0;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .placeholder .badge {
-            display: inline-block;
-            background: #ffc107;
-            color: #212529;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .placeholder h2 {
-            font-size: 18px;
-            color: #495057;
-            margin-bottom: 8px;
-        }
-        .placeholder p {
-            font-size: 14px;
-            max-width: 480px;
-        }
-        .meta {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            padding-top: 12px;
-        }
-        .meta strong { color: #495057; }
-    </style>
+    <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+    <title>Kit Parts Infographic MicroSim</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
-        <h1>Kit Parts Infographic</h1>
-        <div class="placeholder">
-            <span class="badge">SCAFFOLD</span>
-            <h2>MicroSim Not Yet Implemented</h2>
-            <p>This MicroSim has been scaffolded from its specification but the
-            interactive content has not been built yet. See the chapter source
-            and the <code>index.md</code> in this directory for the full spec.</p>
+<main>
+    <div id="sim">
+        <div id="picture-area">
+            <h1>The Five Kit Parts</h1>
+            <svg id="kit-svg" viewBox="0 0 800 285" role="group" aria-label="Labeled picture of the five kit parts">
+                <!-- 1. Raspberry Pi Pico 2 W -->
+                <g class="part" id="part-pico" data-part="pico" tabindex="0" role="button" aria-label="Raspberry Pi Pico 2 W">
+                    <rect class="hit" x="10" y="30" width="250" height="160" rx="10"/>
+                    <rect x="34" y="62" width="210" height="84" rx="6" fill="#2e8b57" stroke="#1e5b3a" stroke-width="2"/>
+                    <!-- USB connector -->
+                    <rect x="22" y="88" width="22" height="32" rx="3" fill="#c0c0c0" stroke="#808080"/>
+                    <!-- header pins, top and bottom -->
+                    <g fill="#daa520">
+                        <rect x="52" y="64" width="6" height="6"/><rect x="62" y="64" width="6" height="6"/><rect x="72" y="64" width="6" height="6"/><rect x="82" y="64" width="6" height="6"/><rect x="92" y="64" width="6" height="6"/><rect x="102" y="64" width="6" height="6"/><rect x="112" y="64" width="6" height="6"/><rect x="122" y="64" width="6" height="6"/><rect x="132" y="64" width="6" height="6"/><rect x="142" y="64" width="6" height="6"/><rect x="152" y="64" width="6" height="6"/><rect x="162" y="64" width="6" height="6"/><rect x="172" y="64" width="6" height="6"/><rect x="182" y="64" width="6" height="6"/><rect x="192" y="64" width="6" height="6"/><rect x="202" y="64" width="6" height="6"/><rect x="212" y="64" width="6" height="6"/><rect x="222" y="64" width="6" height="6"/><rect x="232" y="64" width="6" height="6"/>
+                        <rect x="52" y="138" width="6" height="6"/><rect x="62" y="138" width="6" height="6"/><rect x="72" y="138" width="6" height="6"/><rect x="82" y="138" width="6" height="6"/><rect x="92" y="138" width="6" height="6"/><rect x="102" y="138" width="6" height="6"/><rect x="112" y="138" width="6" height="6"/><rect x="122" y="138" width="6" height="6"/><rect x="132" y="138" width="6" height="6"/><rect x="142" y="138" width="6" height="6"/><rect x="152" y="138" width="6" height="6"/><rect x="162" y="138" width="6" height="6"/><rect x="172" y="138" width="6" height="6"/><rect x="182" y="138" width="6" height="6"/><rect x="192" y="138" width="6" height="6"/><rect x="202" y="138" width="6" height="6"/><rect x="212" y="138" width="6" height="6"/><rect x="222" y="138" width="6" height="6"/><rect x="232" y="138" width="6" height="6"/>
+                    </g>
+                    <!-- RP2350 chip -->
+                    <rect x="100" y="86" width="36" height="36" fill="#222" stroke="#000"/>
+                    <!-- wireless module can -->
+                    <rect x="170" y="84" width="54" height="40" rx="3" fill="#d3d3d3" stroke="#808080"/>
+                    <text class="label" x="135" y="178" text-anchor="middle">Raspberry Pi Pico 2 W</text>
+                </g>
+
+                <!-- 2. Round display -->
+                <g class="part" id="part-display" data-part="display" tabindex="0" role="button" aria-label="Round display">
+                    <rect class="hit" x="268" y="8" width="190" height="270" rx="10"/>
+                    <circle cx="363" cy="112" r="92" fill="#3a3a3a" stroke="#111" stroke-width="3"/>
+                    <circle cx="363" cy="112" r="80" fill="#0b1a2a"/>
+                    <circle cx="363" cy="112" r="62" fill="none" stroke="#00bcd4" stroke-width="4"/>
+                    <rect x="323" y="104" width="80" height="12" rx="3" fill="#00bcd4" opacity="0.8"/>
+                    <text class="label" x="363" y="230" text-anchor="middle">Round display</text>
+                    <text class="sublabel" x="363" y="250" text-anchor="middle">360 by 360</text>
+                </g>
+
+                <!-- 3. INMP441 microphone -->
+                <g class="part" id="part-mic" data-part="mic" tabindex="0" role="button" aria-label="INMP441 microphone">
+                    <rect class="hit" x="462" y="8" width="172" height="128" rx="10"/>
+                    <circle cx="548" cy="58" r="36" fill="#6a3d9a" stroke="#3f1f66" stroke-width="2"/>
+                    <rect x="534" y="44" width="28" height="28" rx="3" fill="#c0c0c0" stroke="#808080"/>
+                    <circle cx="548" cy="58" r="4" fill="#333"/>
+                    <text class="label" x="548" y="120" text-anchor="middle">INMP441 microphone</text>
+                </g>
+
+                <!-- 4. MAX98357A amplifier and speaker -->
+                <g class="part" id="part-amp" data-part="amp" tabindex="0" role="button" aria-label="MAX98357A amplifier and speaker">
+                    <rect class="hit" x="466" y="142" width="200" height="138" rx="10"/>
+                    <rect x="478" y="168" width="62" height="52" rx="4" fill="#6a3d9a" stroke="#3f1f66" stroke-width="2"/>
+                    <rect x="498" y="182" width="22" height="22" fill="#222"/>
+                    <path d="M540 186 C 560 186, 570 192, 586 192" stroke="#c62828" stroke-width="3" fill="none"/>
+                    <path d="M540 200 C 560 200, 570 208, 586 206" stroke="#222" stroke-width="3" fill="none"/>
+                    <circle cx="622" cy="198" r="38" fill="#555" stroke="#222" stroke-width="3"/>
+                    <circle cx="622" cy="198" r="26" fill="#777" stroke="#333"/>
+                    <circle cx="622" cy="198" r="10" fill="#444"/>
+                    <text class="label" x="566" y="258" text-anchor="middle">MAX98357A amplifier</text>
+                    <text class="label" x="566" y="276" text-anchor="middle">and speaker</text>
+                </g>
+
+                <!-- 5. Mode, Up, and Down buttons -->
+                <g class="part" id="part-buttons" data-part="buttons" tabindex="0" role="button" aria-label="Mode, Up, and Down buttons">
+                    <rect class="hit" x="676" y="8" width="118" height="270" rx="10"/>
+                    <g>
+                        <rect x="690" y="30" width="40" height="40" rx="4" fill="#2b2b2b"/>
+                        <circle cx="710" cy="50" r="12" fill="#e53935"/>
+                        <text class="sublabel" x="740" y="56">MODE</text>
+                        <rect x="690" y="90" width="40" height="40" rx="4" fill="#2b2b2b"/>
+                        <circle cx="710" cy="110" r="12" fill="#1e88e5"/>
+                        <text class="sublabel" x="740" y="116">UP</text>
+                        <rect x="690" y="150" width="40" height="40" rx="4" fill="#2b2b2b"/>
+                        <circle cx="710" cy="170" r="12" fill="#fdd835"/>
+                        <text class="sublabel" x="740" y="176">DOWN</text>
+                    </g>
+                    <text class="label" x="735" y="230" text-anchor="middle">Mode, Up,</text>
+                    <text class="label" x="735" y="250" text-anchor="middle">and Down</text>
+                    <text class="label" x="735" y="270" text-anchor="middle">buttons</text>
+                </g>
+            </svg>
         </div>
-        <div class="meta">
-            <p><strong>Sim ID:</strong> kit-parts-infographic</p>
-            <p><strong>Library:</strong> html</p>
-            <p><strong>Bloom Level:</strong> Remember</p>
-            <p><strong>Learning Objective:</strong> The learner will identify which of the five kit parts performs each of 5 described jobs, with at least 4 of 5 correct on the first attempt.</p>
+
+        <div id="panel" aria-live="polite">
+            <div id="panel-top">
+                <div id="status"></div>
+                <div id="score"></div>
+            </div>
+            <div id="message"></div>
+            <div id="choices"></div>
+            <div id="actions">
+                <button id="start-btn">Start the Check</button>
+                <button id="next-btn" hidden>Next</button>
+            </div>
         </div>
     </div>
-
-    <!--
-    SPECIFICATION (from chapter index.md):
-
-    Type: infographic
-    **sim-id:** kit-parts-infographic<br/>
-    **Library:** html<br/>
-    **Status:** Specified<br/>
-    **Bloom Level:** Remember<br/>
-    **Bloom Verb:** identify<br/>
-    **Learning Objective:** The learner will identify which of the five kit parts performs each of 5 described jobs, with at least 4 of 5 correct on the first attempt.
-    
-    **Prerequisites:** the five parts and their one-line jobs, listed in the table "The Kit Bill of Materials" above this block.
-    
-    **Evidence of Mastery:** The learner is shown 5 job statements one at a time and picks the matching part from the five. A pick is correct when it matches the Correct part column in Content. Mastery is 4 of 5 on the first attempt. Selecting a part to read its description beforehand is exploration, not evidence.
-    
-    **Misconceptions:** (1) The Pico itself contains the microphone and speaker. (2) The amplifier makes the sound by itself. (3) The buttons are wired to the display.
-    
-    **Instructional Rationale:** A Remember-level objective asks the learner to recall a fact accurately. Reading a labeled picture first, then answering a job question from memory, gives both a cue to learn from and a retrieval attempt that strengthens recall.
-    
-    **Content:**
-    
-    The infographic shows the five parts as a labeled picture. Selecting a part reveals its name and description.
-    
-    | Part | Description shown on selection |
-    |---|---|
-    | Raspberry Pi Pico 2 W | The brain. It runs your MicroPython program and connects to Wi-Fi. |
-    | Round display | The face. A 360 by 360 color screen that shows text, shapes, and meters. |
-    | INMP441 microphone | The ear. It senses sound and sends 24-bit digital numbers to the Pico. |
-    | MAX98357A amplifier and speaker | The voice. The amplifier turns digital audio into power for the speaker. |
-    | Mode, Up, and Down buttons | The hands. Three switches you press to change modes, settings, and to talk. |
-    
-    Job statements, in this order:
-    
-    | # | Job statement shown to the learner | Correct part | Why (shown as feedback) |
-    |---|---|---|---|
-    | 1 | Turns room sound into digital numbers. | INMP441 microphone | The converter is built into the microphone board. |
-    | 2 | Runs the MicroPython program. | Raspberry Pi Pico 2 W | The Pico is the only part that runs your code. |
-    | 3 | Drives the speaker from digital audio. | MAX98357A amplifier and speaker | The amplifier takes I2S audio and powers the speaker. |
-    | 4 | Shows a level meter and text. | Round display | The display draws what the Pico tells it to draw. |
-    | 5 | Lets the student start push-to-talk. | Mode, Up, and Down buttons | A held button is read as a signal on a Pico pin. |
-    
-    **Provenance:** The parts and jobs come from the chapter section "The Kit Bill of Materials."
-    
-    **Rules:** Each job statement has exactly one correct part. The five parts are always offered together, in a fixed order.
-    
-    **Learner Activity:**
-    
-    1. The learner selects any part to read its description.
-    2. The learner starts the check. Job statement 1 is shown with the five parts as choices.
-    3. The learner picks one part.
-    4. The sim shows whether it was correct and the Why text, then moves to the next statement.
-    5. After statement 5, the sim shows the score.
-    
-    **Feedback:** 5 statements, fixed order, one attempt each. Correct: "Correct: <Why>". Incorrect: "Not quite. This is the job of the <correct part>: <Why>". The correct part is revealed right after each pick, and a running score "n of 5" is shown.
-    
-    **Starting State:** The five parts are shown labeled and unselected, with the instruction "Select a part to learn its job."
-    
-    **Chapter Anchors:** The chapter names the five parts as the Pico 2 W, the round display, the microphone, the amplifier with a speaker, and the three buttons.
-    -->
+</main>
+<script src="kit-parts-infographic.js"></script>
+<br/>
+<a href=".">Back to Kit Parts Infographic Lesson Plan</a>
 </body>
 </html>

@@ -5,19 +5,108 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Computer Science",
+    "Computer Graphics",
+    "Binary Numbers"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "rgb565-color-mixer",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/rgb565-color-mixer/",
   "library": "p5.js",
   "bloomLevel": "Apply",
   "bloomVerb": "calculate",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 5,
   "chapter_title": "Display Basics: Pixels, Color, and Frame Size",
   "chapter_dir": "05-display-basics",
-  "chapter_rel_dir": "chapters/05-display-basics"
+  "chapter_rel_dir": "chapters/05-display-basics",
+  "canvasHeight": 590,
+  "educationalLevel": "High School (grades 9-12)",
+  "concepts": [
+    "RGB565",
+    "Pixel",
+    "Bit Masking",
+    "Bit Shifting",
+    "Hexadecimal"
+  ],
+  "prerequisites": [
+    "Pixel",
+    "RGB565",
+    "Bit masking and shifting"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "learningObjectives": [
+      "The learner will calculate the 16-bit RGB565 value for 6 given colors, using the packing rule, with at least 5 of 6 correct within two attempts each."
+    ],
+    "bloomsTaxonomy": [
+      "Apply"
+    ],
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "Pixel",
+      "RGB565",
+      "Bit masking and shifting"
+    ]
+  },
+  "pedagogical": {
+    "instructionalStrategies": [
+      "Manipulable model",
+      "Practice problems with two attempts"
+    ],
+    "recommendedUsage": "Embedded in the chapter after the related section; open fullscreen for whole-class demos.",
+    "assessment": "Built-in scored check with a running score; exploration is not scored."
+  },
+  "technical": {
+    "framework": "p5.js 2.3.2",
+    "responsive": "Width-responsive",
+    "files": [
+      "main.html",
+      "rgb565-color-mixer.js"
+    ],
+    "opensPaused": true
+  },
+  "userInterface": {
+    "controls": [
+      {
+        "type": "slider",
+        "name": "Red",
+        "range": "0-255, step 1, default 255"
+      },
+      {
+        "type": "slider",
+        "name": "Green",
+        "range": "0-255, step 1, default 128"
+      },
+      {
+        "type": "slider",
+        "name": "Blue",
+        "range": "0-255, step 1, default 0"
+      },
+      {
+        "type": "button",
+        "name": "Start Challenges / Back to Explore",
+        "purpose": "Switch modes"
+      },
+      {
+        "type": "input",
+        "name": "RGB565 hex value",
+        "purpose": "Type the 16-bit value in hexadecimal"
+      },
+      {
+        "type": "button",
+        "name": "Check / Next",
+        "purpose": "Submit an answer (two attempts) and advance"
+      }
+    ]
+  },
+  "simulationModel": {
+    "equations": [
+      "value = (R & 0xF8) << 8 | (G & 0xFC) << 3 | B >> 3"
+    ]
+  }
 }

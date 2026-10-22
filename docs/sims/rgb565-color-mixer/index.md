@@ -1,18 +1,110 @@
 ---
 title: "RGB565 Color Mixer"
 description: "The learner will calculate the 16-bit RGB565 value for 6 given colors, using the packing rule, with at least 5 of 6 correct within two attempts each."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Apply
+image: sims/rgb565-color-mixer/rgb565-color-mixer.png
+og:image: sims/rgb565-color-mixer/rgb565-color-mixer.png
+twitter:image: sims/rgb565-color-mixer/rgb565-color-mixer.png
+social:
+   cards: false
 ---
 
 # RGB565 Color Mixer
 
+<iframe src="main.html" width="100%" height="592px" scrolling="no"></iframe>
 
+[Run the RGB565 Color Mixer MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+You can include this MicroSim on your website using the following `iframe`:
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/rgb565-color-mixer/main.html" width="100%" height="592px" scrolling="no"></iframe>
+```
+
+## Description
+
+The round display in the kit stores each pixel in **RGB565**: 5 bits of red,
+6 bits of green, and 5 bits of blue packed into one 16-bit number. This mixer
+runs the same packing rule as the kit's `color565()` function in
+`src/kits/study-buddy-base/lib/gc9b72.py`:
+
+```python
+value = (red & 0xF8) << 8 | (green & 0xFC) << 3 | blue >> 3
+```
+
+For each color strength the sim shows all 8 input bits. The bits that are kept
+are outlined in the color's own hue, and the low bits that are dropped are grayed
+and struck out. Below them, the 16 packed bits show where each group lands: red
+in bits 15 to 11, green in bits 10 to 5, and blue in bits 4 to 0. The sim also
+shows the hexadecimal value and the two bytes the driver sends, high byte first.
+
+Two swatches sit side by side. The left one is the full 24-bit color you mixed.
+The right one is the color the display can actually show after the low bits are
+dropped, so you can see when the difference is visible and when it is not.
+
+## How to Use
+
+1. Drag the **Red**, **Green**, and **Blue** sliders. The swatches, the kept bits,
+   the 16-bit value, and the hex value all update together. The sim opens on
+   orange (255, 128, 0), which packs to `0xFC00`.
+2. Press **Start Challenges**. Each challenge shows a color and its (R, G, B)
+   numbers. The sliders lock and the bits are hidden.
+3. Type the RGB565 value in hexadecimal (for example `F800` or `0xF800`; upper or
+   lower case both work) and press **Check** or the Enter key.
+4. If your first answer is wrong, you get one more try. After a second wrong
+   answer the sim shows the correct value and why. The bits are revealed after
+   each challenge so you can check your work.
+5. After challenge 6 the sim shows your score out of 6. Mastery is 5 of 6.
+   Press **Try Challenges Again** to repeat, or keep exploring with the sliders.
+
+## Lesson Plan
+
+**Learning objective:** Students will calculate the 16-bit RGB565 value for six
+given colors using the packing rule, with at least 5 of 6 correct within two
+attempts each (Bloom's Taxonomy: Apply).
+
+**Audience:** High school students building the Open Study Buddy kit (grades 9-12).
+
+**Duration:** 15 to 20 minutes.
+
+**Prerequisites:** pixels, binary and hexadecimal numbers, bit masking and
+shifting (Chapter 5 section "RGB565 Color").
+
+### Activities
+
+1. **Warm-up (3 minutes).** With the sim on orange, ask: "Which bits does each
+   color keep?" Have students name the kept groups (5, 6, 5) before touching a slider.
+2. **Explore (5 minutes).** Students set red to 255 and slowly lower it to 248.
+   The 16-bit value does not change. Then go one step lower to 247. Ask them to
+   explain why using the struck-out bits.
+3. **Green gets the extra bit (2 minutes).** Repeat with green from 255 down to
+   252, then 251. Green changes every 4 steps, red and blue every 8.
+4. **Challenges (8 minutes).** Students work the six challenges, writing each
+   step on paper: mask, shift, combine, convert to hex.
+
+### Discussion Questions
+
+1. Why does RGB565 give green 6 bits instead of red or blue?
+2. Gray (110, 110, 110) is not the same 16-bit pattern for each color group.
+   Why do the red and blue groups match but green differ?
+3. The kit sends `FC 00` for orange. What would go wrong if the driver sent the
+   low byte first?
+4. How many different colors can RGB565 show, and how many does 24-bit color show?
+
+### Assessment
+
+- The challenge score (target 5 of 6 within two attempts each) is the evidence
+  of mastery. Moving the sliders is exploration and is not scored.
+- Exit ticket: "Pack cyan (0, 255, 255) into RGB565 and show each step."
+  (Answer: `0x07FF`.)
+
+## References
+
+- [Chapter 5: Display Basics: Pixels, Color, and Frame Size](../../chapters/05-display-basics/index.md) - the RGB565 Color section explains the packing rule used here.
+- [High color (Wikipedia)](https://en.wikipedia.org/wiki/High_color) - background on 16-bit color formats, including 5-6-5.
+- [Bitwise operation (Wikipedia)](https://en.wikipedia.org/wiki/Bitwise_operation) - AND masks and bit shifts.
 
 ## Specification
 
@@ -70,7 +162,3 @@ Challenge colors, in this order:
 
 **Chapter Anchors:** The chapter states that RGB565 uses 5, 6, and 5 bits, has 65,536 colors, and that orange (255, 128, 0) is 0xFC00.
 ```
-
-## Related Resources
-
-- [Chapter 5: Display Basics: Pixels, Color, and Frame Size](../../chapters/05-display-basics/index.md)

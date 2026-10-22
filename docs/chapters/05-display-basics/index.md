@@ -130,6 +130,8 @@ Try the mixer to see how the bits move.
 
 #### Diagram: RGB565 Color Mixer
 
+<iframe src="../../sims/rgb565-color-mixer/main.html" width="100%" height="592px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>RGB565 Color Mixer</summary>
 Type: microsim
@@ -256,6 +258,8 @@ The same formula works for any rectangle, and the answers differ enormously.
 Use the calculator below to practice the formula and to turn the bytes into a time.
 
 #### Diagram: Frame Size and Update Time Calculator
+
+<iframe src="../../sims/frame-size-calculator/main.html" width="100%" height="622px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Frame Size and Update Time Calculator</summary>

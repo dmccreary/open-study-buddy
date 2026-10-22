@@ -1,23 +1,129 @@
 ---
 title: "Study Buddy Architecture Explorer"
 description: "The learner will identify the job of each of the five kit parts and of the buddy server by matching six described jobs to the correct part, with at least 5 of 6 correct."
-status: scaffold
+status: built
 library: vis-network
 bloom_level: Remember
+image: /sims/study-buddy-architecture-explorer/study-buddy-architecture-explorer.png
+og:image: /sims/study-buddy-architecture-explorer/study-buddy-architecture-explorer.png
+twitter:image: /sims/study-buddy-architecture-explorer/study-buddy-architecture-explorer.png
+social:
+   cards: false
 ---
 
 # Study Buddy Architecture Explorer
 
+<iframe src="main.html" width="100%" height="622px" scrolling="no"></iframe>
 
+[Run the Study Buddy Architecture Explorer MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/study-buddy-architecture-explorer/main.html" width="100%" height="622px" scrolling="no"></iframe>
+```
+
+## Description
+
+The Open Study Buddy device on your desk is an **agent terminal**: it gives the
+agent ears, a voice, and a face, but not its brain. The brain is the
+**buddy server**, which runs on a school computer and is not part of the desk
+device. This MicroSim shows the five kit parts of the terminal and the buddy
+server as a network diagram in two groups, "Agent terminal (the desk device)"
+and "School network".
+
+In **Explore** mode, hover over or click a part to read its job. Clicking a part
+also highlights every connection to it and lists what travels along each one.
+Notice that four parts connect only to the Pico, and only the Pico connects to
+the buddy server, over Wi-Fi.
+
+In **Quiz** mode, the sim shows one job description at a time and you click the
+part that does that job. The correct part turns green, a wrong click turns
+orange, and the feedback repeats the part's job.
+
+## How to Use
+
+1. Start in **Explore**. Hover over a part to read its job, then click it to see its
+   connections.
+2. Answer the **Check yourself** question: which part must the Pico talk to over
+   Wi-Fi? Press **Show answer** to check.
+3. Press **Quiz**. Read the job description and click the matching part in the
+   diagram. Each question gets one attempt.
+4. Press **Next question** after each answer. After question 6, press
+   **See results** to see your score and any missed parts.
+5. Press **Restart quiz** to try again, or **Explore** to go back to exploring.
+
+Mastery is 5 of 6 correct on the first attempt. Quiz mode hides the job text on
+hover, so the quiz measures what you remember.
+
+When the page is opened full screen, you can also drag and zoom the diagram.
+Inside the textbook page, use the navigation buttons at the bottom of the diagram.
+
+## Lesson Plan
+
+### Learning Objective
+
+Students will identify the job of each of the five kit parts and of the buddy
+server by matching six described jobs to the correct part, with at least 5 of 6
+correct (Bloom's Taxonomy: Remember, verb *identify*).
+
+### Prerequisites
+
+Students should have read the chapter section
+[The Open Study Buddy Device](../../chapters/01-personal-agents-architecture/index.md#the-open-study-buddy-device),
+including the table of five kit parts.
+
+### Activities
+
+1. **Explore (5 minutes).** Students click each of the six parts and read its job and
+   connections.
+2. **Check yourself (1 minute).** Students answer the Wi-Fi question before pressing
+   **Show answer**.
+3. **Quiz (4 minutes).** Students complete the six-question quiz without switching back
+   to Explore.
+4. **Trace a request (5 minutes).** Starting at the microphone, students name every part
+   a spoken question passes through until the answer comes out of the speaker.
+
+### Discussion Questions
+
+1. Why does the speaker need an amplifier? What would happen if the Pico tried to
+   drive the speaker directly?
+2. The buddy server is not part of the desk device. What are two benefits of putting
+   the brain on a separate computer?
+3. Which single part would you replace to upgrade the agent's brain? Which parts
+   would stay the same?
+
+### Common Misconceptions Addressed
+
+- *The speaker and the amplifier are the same thing.* The node is named "MAX98357A
+  amplifier and speaker" because the amplifier turns digital audio numbers into sound
+  that the speaker plays.
+- *The buddy server is part of the desk device.* It sits in the separate "School
+  network" group.
+- *The Pico sends sound straight to the display.* The Pico sends text and pictures to
+  the display and audio numbers to the speaker.
+
+### Assessment
+
+A student who scores 5 or 6 on the quiz has met the objective. For students below 5,
+the results screen lists each missed part with its job text for review.
+
+## References
+
+- [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md)
+- [Raspberry Pi Pico series](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html) documentation from Raspberry Pi
+- [I²S](https://en.wikipedia.org/wiki/I%C2%B2S) on Wikipedia
+- [vis-network documentation](https://visjs.github.io/vis-network/docs/network/)
 
 ## Specification
 
-The full specification below is extracted from
+The specification below is extracted from
 [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md).
+
+<details markdown="1">
+<summary>Show the full specification</summary>
 
 ```text
 Type: graph-model
@@ -90,6 +196,4 @@ Quiz questions, in this fixed order:
 **Chapter Anchors:** The device has five groups of parts. The buddy server is not part of the desk device. The terminal talks to the buddy server over Wi-Fi on the school network.
 ```
 
-## Related Resources
-
-- [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md)
+</details>

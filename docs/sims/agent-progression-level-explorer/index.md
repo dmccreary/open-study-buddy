@@ -1,23 +1,119 @@
 ---
 title: "Agent Progression Level Explorer"
 description: "The learner will differentiate the three agent progression levels by placing 8 abilities at the lowest level where each first appears, with at least 7 of 8 correct."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Analyze
+image: /sims/agent-progression-level-explorer/agent-progression-level-explorer.png
+og:image: /sims/agent-progression-level-explorer/agent-progression-level-explorer.png
+twitter:image: /sims/agent-progression-level-explorer/agent-progression-level-explorer.png
+social:
+   cards: false
 ---
 
 # Agent Progression Level Explorer
 
+<iframe src="main.html" width="100%" height="612px" scrolling="no"></iframe>
 
+[Run the Agent Progression Level Explorer MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+## Embed This MicroSim
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+Place the following line in your website to include this MicroSim:
+
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/agent-progression-level-explorer/main.html" width="100%" height="612px" scrolling="no"></iframe>
+```
+
+## Description
+
+The buddy server can grow through three **agent progression levels** while the
+desk terminal stays exactly the same:
+
+- **Level 1** is a rule-based buddy server of about 100 lines with no LLM. It adds
+  fixed rules and tools that read the school calendar.
+- **Level 2** is the same server plus speech-to-text, text-to-speech, and one LLM
+  call. It adds spoken input and output and free-form questions.
+- **Level 3** is an optional open-source agent framework behind the same contract.
+  It adds a ready-made planning loop, memory, and approval rules.
+
+This MicroSim has two parts. In **Part 1** you place eight abilities, one at a
+time, at the lowest level where each first appears. Each placement drops a
+numbered chip onto the correct rung of the ladder: green when you were right,
+orange when you missed it. In **Part 2** you compare the replies the three levels
+give to the same question, "Do I have anything big coming up this week?", and
+see that the request and the reply fields never change. Only the reply text does.
+
+## How to Use
+
+1. Read the ability on the card.
+2. Press **Level 1**, **Level 2**, or **Level 3**. Each ability gets one attempt.
+3. Read the feedback, then press **Next**. **Next** stays disabled until you answer.
+4. After ability 8, press **Compare replies** to see your score.
+5. In Part 2, press each level button to see that level's reply. Compare the request
+   box and the reply box across all three levels.
+6. Press **Restart** to start Part 1 again.
+
+Mastery is 7 of 8 placements correct on the first attempt.
+
+## Lesson Plan
+
+### Learning Objective
+
+Students will differentiate the three agent progression levels by placing 8
+abilities at the lowest level where each first appears, with at least 7 of 8
+correct (Bloom's Taxonomy: Analyze, verb *differentiate*).
+
+### Prerequisites
+
+Students should have read the chapter section
+[The Swappable Brain](../../chapters/01-personal-agents-architecture/index.md#the-swappable-brain),
+which defines rule-based agents, LLM-backed agents, agent tools, agent memory,
+agent approval rules, open-source agent frameworks, and the three levels.
+
+### Activities
+
+1. **Place the abilities (8 minutes).** Students complete Part 1 individually.
+2. **Compare the replies (4 minutes).** Students view all three replies in Part 2 and
+   list what changed and what stayed the same.
+3. **Explain the ladder (5 minutes).** Students write one sentence for each level
+   naming the single most important thing it adds.
+
+### Discussion Questions
+
+1. Ability 2 uses a tool at Level 1. Why is it a mistake to think only Level 3 can
+   use tools?
+2. The terminal code is identical at all three levels. What makes that possible?
+3. The Level 2 reply is more helpful than Level 1, but an LLM can produce a
+   confident answer that is wrong. How does reading dates through a tool help?
+
+### Common Misconceptions Addressed
+
+- *Only Level 3 can use tools.* Ability 2 appears at Level 1.
+- *A higher level needs a different terminal.* The request and reply fields in Part 2
+  are identical at every level.
+- *An LLM always gives a correct answer.* The chapter warns that confident is not
+  correct; dates should come through a tool.
+
+### Assessment
+
+A student with 7 or 8 correct placements has met the objective. Students below 7
+should reread "Agent Progression Levels" and explain each missed ability using the
+"What it adds" column.
+
+## References
+
+- [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md)
+- [Rule-based system](https://en.wikipedia.org/wiki/Rule-based_system) on Wikipedia
+- [Large language model](https://en.wikipedia.org/wiki/Large_language_model) on Wikipedia
 
 ## Specification
 
-The full specification below is extracted from
+The specification below is extracted from
 [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md).
+
+<details markdown="1">
+<summary>Show the full specification</summary>
 
 ```text
 Type: microsim
@@ -81,6 +177,4 @@ For every level the sim also shows the same request and the same reply shape, wi
 **Chapter Anchors:** There are three levels. Level 1 is about 100 lines and uses no LLM. Level 2 adds speech-to-text, text-to-speech, and one LLM call. Level 3 is an optional open-source agent framework. The terminal and the request-reply contract do not change between levels.
 ```
 
-## Related Resources
-
-- [Chapter 1: Personal Agents and the Open Study Buddy Architecture](../../chapters/01-personal-agents-architecture/index.md)
+</details>

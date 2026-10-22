@@ -5,7 +5,12 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Open Study Buddy",
+    "Computer Science",
+    "time domain",
+    "frequency domain",
+    "frequency",
+    "amplitude"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
@@ -15,9 +20,37 @@
   "library": "p5.js",
   "bloomLevel": "Understand",
   "bloomVerb": "interpret",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 3,
   "chapter_title": "Sound and Digital Audio Basics",
   "chapter_dir": "03-sound-and-digital-audio",
-  "chapter_rel_dir": "chapters/03-sound-and-digital-audio"
+  "chapter_rel_dir": "chapters/03-sound-and-digital-audio",
+  "canvasHeight": 575,
+  "educationalLevel": "High School (grades 9-12)",
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "bloomLevel": "Understand",
+    "bloomVerb": "interpret",
+    "learningObjective": "The learner will interpret a frequency-domain bar chart by choosing, for 6 challenge sounds, the time-domain waveform that has the same frequencies and amplitudes, with at least 5 of 6 correct.",
+    "concepts": [
+      "time domain",
+      "frequency domain",
+      "frequency",
+      "amplitude"
+    ],
+    "duration": "15-20 minutes"
+  },
+  "pedagogical": {
+    "pattern": "predict-then-reveal challenge with exploration mode",
+    "controls": [
+      "Freq 1 and Freq 2 sliders: 100 to 1,000 Hz in 50 Hz steps (defaults 200 and 600 Hz)",
+      "Amp 1 and Amp 2 sliders: 0 to 1 in steps of 0.25 (defaults 1.0 and 0.5)",
+      "Start challenges / Next challenge / Show score button",
+      "A, B and C buttons: pick the matching waveform"
+    ],
+    "model": "Sum of sine components over a 20 ms window; spectrum bars measured by a DFT of 400 samples (50 Hz bins), single-sided amplitude 2|X_k|/N.",
+    "opensPaused": true
+  },
+  "url": "https://dmccreary.github.io/open-study-buddy/sims/time-and-frequency-domain-viewer/"
 }

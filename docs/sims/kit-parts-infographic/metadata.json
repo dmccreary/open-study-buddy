@@ -5,19 +5,91 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Computer Science",
+    "Electronics",
+    "Microcontrollers"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "kit-parts-infographic",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/kit-parts-infographic/",
   "library": "html",
   "bloomLevel": "Remember",
   "bloomVerb": "identify",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 4,
   "chapter_title": "The Pico Kit Hardware and Wiring",
   "chapter_dir": "04-pico-kit-hardware",
-  "chapter_rel_dir": "chapters/04-pico-kit-hardware"
+  "chapter_rel_dir": "chapters/04-pico-kit-hardware",
+  "canvasHeight": 540,
+  "educationalLevel": "High School (grades 9-12)",
+  "concepts": [
+    "Bill of Materials",
+    "Raspberry Pi Pico 2 W",
+    "Round Color Display",
+    "INMP441 Microphone",
+    "MAX98357A Amplifier",
+    "Push Button"
+  ],
+  "prerequisites": [
+    "The Kit Bill of Materials table in Chapter 4"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "learningObjectives": [
+      "The learner will identify which of the five kit parts performs each of 5 described jobs, with at least 4 of 5 correct on the first attempt."
+    ],
+    "bloomsTaxonomy": [
+      "Remember"
+    ],
+    "bloomVerb": "identify",
+    "duration": "8 minutes",
+    "prerequisites": [
+      "The Kit Bill of Materials table in Chapter 4"
+    ]
+  },
+  "pedagogical": {
+    "instructionalStrategies": [
+      "Retrieval practice",
+      "Labeled diagram exploration"
+    ],
+    "recommendedUsage": "Embedded in the chapter after the related section; open fullscreen for whole-class demos.",
+    "assessment": "Built-in scored check with a running score; exploration is not scored."
+  },
+  "technical": {
+    "framework": "HTML, CSS, inline SVG (no libraries)",
+    "responsive": "Width-responsive",
+    "files": [
+      "main.html",
+      "kit-parts-infographic.js",
+      "style.css"
+    ],
+    "opensPaused": true
+  },
+  "userInterface": {
+    "controls": [
+      {
+        "type": "svg-part",
+        "name": "Kit part (x5)",
+        "purpose": "Select a part to read its job (explore only)"
+      },
+      {
+        "type": "button",
+        "name": "Start the Check / Back to Explore / Retake the Check",
+        "purpose": "Switch between explore and the 5-question check"
+      },
+      {
+        "type": "button",
+        "name": "Part choice (x5)",
+        "purpose": "Pick the part that does the shown job"
+      },
+      {
+        "type": "button",
+        "name": "Next / See Score",
+        "purpose": "Advance to the next job statement"
+      }
+    ]
+  }
 }

@@ -1,0 +1,47 @@
+# Run this on your COMPUTER, not on the Pico.
+#
+#   pip install pillow
+#   python3 tools/mascot-to-rgb565.py
+#
+# Builds the round @@SHORT@@ badge: a white disc with a @@ACCENT_NAME@@ ring on the
+# demo's @@BG_NAME@@ background, with the @@MASCOT_NAME@@ artwork (@@SOURCE_NAME@@)
+# fitted inside the disc. The white disc keeps dark or same-colored artwork
+# from vanishing into the screen. Writes raw RGB565 pixels, high byte first,
+# with no header. 140 x 140 x 2 = 39,200 bytes. If you change SIZE here,
+# change MASCOT_SIZE in @@PROGRAM@@ too.
+@@SVG_NOTE@@
+from pathlib import Path
+from PIL import Image, ImageDraw
+
+SIZE = 140
+SCALE = 4          # draw the disc 4x larger, then shrink, for smooth edges
+RING = 4           # ring width, in final pixels
+MASCOT_BOX = 100   # the artwork fits inside a box this many pixels square
+
+# Must match BACKGROUND in @@PROGRAM@@ (@@BG_NAME@@).
+BACKGROUND = (@@BG_HEX_TUPLE@@)
+RING_COLOR = (@@ACCENT_HEX_TUPLE@@)
+WHITE = (0xFF, 0xFF, 0xFF)
+
+here = Path(__file__).resolve().parent.parent
+source = here / "../../../docs/schools/@@ID@@/@@SOURCE_PATH@@"
+dest = here / "@@IMAGE_FILE@@"
+
+big = SIZE * SCALE
+badge = Image.new("RGBA", (big, big), BACKGROUND + (255,))
+draw = ImageDraw.Draw(badge)
+draw.ellipse((0, 0, big - 1, big - 1), fill=RING_COLOR)
+inset = RING * SCALE
+draw.ellipse((inset, inset, big - 1 - inset, big - 1 - inset), fill=WHITE)
+badge = badge.resize((SIZE, SIZE), Image.LANCZOS)
+
+art = Image.open(source).convert("RGBA")
+art.thumbnail((MASCOT_BOX, MASCOT_BOX), Image.LANCZOS)
+badge.alpha_composite(art, ((SIZE - art.width) // 2, (SIZE - art.height) // 2))
+
+rgb = badge.convert("RGB").tobytes()
+with open(dest, "wb") as out:
+    for i in range(0, len(rgb), 3):
+        r, g, b = rgb[i], rgb[i + 1], rgb[i + 2]
+        out.write(((r & 0xF8) << 8 | (g & 0xFC) << 3 | b >> 3).to_bytes(2, "big"))
+print("wrote", dest.name, dest.stat().st_size, "bytes")

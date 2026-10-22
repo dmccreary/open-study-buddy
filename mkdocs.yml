@@ -57,7 +57,7 @@ nav:
       - 17. Privacy, Safety, and Responsible Listening: chapters/17-privacy-responsible-listening/index.md
       - 18. Testing, Integration, and Capstone Projects: chapters/18-testing-integration-capstones/index.md
 
-  - Synthetic Schools:
+  - Schools:
       - Overview: schools/index.md
       - Cedar Ridge High School:
           - School Overview: schools/cedar-ridge-high-school/index.md
@@ -67,6 +67,8 @@ nav:
       - Groves Learning Organization: schools/glo/index.md
       - The Thinking Spot: schools/the-thinking-spot/index.md
       - Two Rivers High School: schools/two-rivers-high-school/index.md
+      - Minnetonka Middle School East: schools/minnetonka-middle-school-east/index.md
+      - Blake School: schools/blake-school/index.md
 
   - Learning Graph:
       - Introduction: learning-graph/index.md
@@ -144,6 +146,7 @@ nav:
           - "Diagnosis Decision Tree Trainer": sims/diagnosis-decision-tree-trainer/index.md
           - "Frame Budget Scheduler Timeline": sims/frame-budget-scheduler-timeline/index.md
 
+  - Glossary: glossary.md
   - License: license.md
   - Contact: contact.md
 

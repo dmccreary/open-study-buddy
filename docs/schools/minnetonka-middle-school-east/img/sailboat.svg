@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Lake Minnetonka sailboat, placeholder mascot for Minnetonka Middle School East</title>
+  <desc id="d">A round badge: a white-sailed sailboat with a navy hull and an orange pennant, on blue waves under a light blue sky, inside navy and white rings.</desc>
+  <defs>
+    <clipPath id="scene"><circle cx="180" cy="180" r="160"/></clipPath>
+  </defs>
+
+  <!-- badge rings -->
+  <circle cx="180" cy="180" r="180" fill="#002870"/>
+  <circle cx="180" cy="180" r="170" fill="#FFFFFF"/>
+
+  <g clip-path="url(#scene)" stroke-linejoin="round" stroke-linecap="round">
+    <!-- sky -->
+    <rect width="360" height="360" fill="#8BB4FD"/>
+    <circle cx="268" cy="96" r="24" fill="#FFFFFF" opacity="0.85"/>
+
+    <!-- mast and pennant -->
+    <line x1="180" y1="60" x2="180" y2="240" stroke="#002870" stroke-width="7"/>
+    <path d="M182 60 L218 70 L182 80 Z" fill="#E56100" stroke="#002870" stroke-width="3"/>
+
+    <!-- mainsail (right of mast) with sail mark -->
+    <path d="M188 82 L188 226 L282 226 Z" fill="#FFFFFF" stroke="#002870" stroke-width="5"/>
+    <text x="214" y="208" font-family="Helvetica, Arial, sans-serif" font-weight="700"
+          font-size="26" fill="#003698">E</text>
+
+    <!-- jib (left of mast) -->
+    <path d="M172 96 L172 226 L94 226 Z" fill="#FFFFFF" stroke="#002870" stroke-width="5"/>
+
+    <!-- water: three bands of waves, light to dark -->
+    <path d="M0 250 q22.5 -12 45 0 t45 0 t45 0 t45 0 t45 0 t45 0 t45 0 t45 0 V360 H0 Z" fill="#5395FF"/>
+
+    <!-- hull, sitting in the first band -->
+    <path d="M78 232 L292 232 L262 270 L112 270 Z" fill="#002870" stroke="#002870" stroke-width="4"/>
+    <line x1="104" y1="248" x2="270" y2="248" stroke="#FFFFFF" stroke-width="5"/>
+
+    <path d="M0 280 q22.5 -12 45 0 t45 0 t45 0 t45 0 t45 0 t45 0 t45 0 t45 0 V360 H0 Z" fill="#0058E6"/>
+    <path d="M0 316 q22.5 -12 45 0 t45 0 t45 0 t45 0 t45 0 t45 0 t45 0 t45 0 V360 H0 Z" fill="#003698"/>
+  </g>
+</svg>

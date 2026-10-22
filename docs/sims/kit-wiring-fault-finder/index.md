@@ -1,18 +1,98 @@
 ---
 title: "Kit Wiring Fault Finder"
 description: "The learner will examine 6 wiring listings against the pin assignment table and identify the one wrong connection in each, with at least 5 of 6 correct on the first attempt."
-status: scaffold
+status: built
 library: p5.js
 bloom_level: Analyze
+image: sims/kit-wiring-fault-finder/kit-wiring-fault-finder.png
+og:image: sims/kit-wiring-fault-finder/kit-wiring-fault-finder.png
+twitter:image: sims/kit-wiring-fault-finder/kit-wiring-fault-finder.png
+social:
+   cards: false
 ---
 
 # Kit Wiring Fault Finder
 
+<iframe src="main.html" width="100%" height="622px" scrolling="no"></iframe>
 
+[Run the Kit Wiring Fault Finder MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
-<iframe src="main.html" width="100%" height="600"></iframe>
+You can include this MicroSim on your website using the following `iframe`:
 
-[Run MicroSim in Fullscreen](main.html){ .md-button .md-button--primary }
+```html
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/kit-wiring-fault-finder/main.html" width="100%" height="622px" scrolling="no"></iframe>
+```
+
+## Description
+
+Debugging a kit means checking each wire against one reference document: the
+pin assignment table. This MicroSim gives you six wiring listings, one part at
+a time, and each listing has exactly one line that does not match the table.
+The full table from Chapter 4 stays visible beside every listing, with the
+current part's block highlighted.
+
+Some of these mistakes produce an error message, and some fail silently with a
+dark screen, a dead button, no sound, or even a damaged part. The summary at
+the end shows which was which, so you learn not to trust a missing error message.
+
+## How to Use
+
+1. Read listing 1 and compare each line with the **Pin Assignment Table**.
+2. Choose the line that does not match from the **Choose a line...** menu. The
+   chosen line is highlighted in the listing.
+3. Press **Check**. The sim marks the faulty line in red, shows the fix in
+   green, and tells you what a builder would see with that mistake. Each
+   listing gets one attempt.
+4. Press **Next Listing** and continue through listing 6. A running score
+   "n of 6" is shown at the top right.
+5. Press **See Score** after listing 6 for your score (mastery is 5 of 6) and a
+   table of which mistakes raised an error message. **Start Over** resets the activity.
+
+## Lesson Plan
+
+**Learning objective:** Students will examine six wiring listings against the
+pin assignment table and identify the one wrong connection in each, with at
+least 5 of 6 correct on the first attempt (Bloom's Taxonomy: Analyze).
+
+**Audience:** High school students wiring the Open Study Buddy kit (grades 9-12).
+
+**Duration:** 10 to 15 minutes.
+
+**Prerequisites:** the pin assignment table, ground wiring, pull-up resistors,
+the I2S neighbor rule, and the 3.3 V rule for the microphone (Chapter 4).
+
+### Activities
+
+1. **Line by line (2 minutes).** Model the habit on listing 1: read each line
+   aloud and point to the matching table entry before choosing.
+2. **Solo work (8 minutes).** Students work listings 1 to 6 and note, for each
+   one, which of the chapter's rules the fault breaks (one pin per wire, I2S
+   neighbors, 3.3 V parts, ground return, button legs on opposite sides).
+3. **Error or silent? (3 minutes).** Use the end-of-activity summary to sort
+   the six mistakes into "raises an error" and "fails silently."
+
+### Discussion Questions
+
+1. Only two of the six mistakes produced an error message. What does that tell
+   you about testing a kit by "it ran with no errors"?
+2. Why does the kit's staged test plan (wire one part, then run its test) make
+   faults like these easier to find?
+3. The amplifier can run from VBUS, but the microphone cannot. What would you
+   check on a datasheet before connecting a new part to 5 V?
+4. Why must LRC be on the pin right after BCLK?
+
+### Assessment
+
+- The score (target 5 of 6 on the first attempt) is the evidence of mastery.
+  Reading the pin assignment table while answering is allowed and is not scored.
+- Exit ticket: "Your display shows nothing in test 04, and there is no error.
+  Name the first wire you would check and the pin it belongs on." (BL on GP7.)
+
+## References
+
+- [Chapter 4: The Pico Kit Hardware and Wiring](../../chapters/04-pico-kit-hardware/index.md) - the section "The Pin Assignment Table" is the reference used in every listing.
+- [I2S (Wikipedia)](https://en.wikipedia.org/wiki/I%C2%B2S) - the bit clock, word select, and data lines used by the microphone and amplifier.
+- [Ground (electricity) (Wikipedia)](https://en.wikipedia.org/wiki/Ground_(electricity)) - why every part needs a ground return.
 
 ## Specification
 
@@ -66,7 +146,3 @@ Each listing shows the wires of one part as "part pin to Pico pin or rail." The 
 
 **Chapter Anchors:** The chapter states the microphone pins SCK GP10, WS GP11, SD GP12, the amplifier pins BCLK GP20, LRC GP21, DIN GP19, GAIN GP18, the display backlight on GP7, and the MODE button on GP13.
 ```
-
-## Related Resources
-
-- [Chapter 4: The Pico Kit Hardware and Wiring](../../chapters/04-pico-kit-hardware/index.md)

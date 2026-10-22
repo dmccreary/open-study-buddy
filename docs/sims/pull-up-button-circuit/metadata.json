@@ -5,19 +5,100 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Computer Science",
+    "Electronics",
+    "Microcontrollers"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "pull-up-button-circuit",
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/pull-up-button-circuit/",
   "library": "p5.js",
   "bloomLevel": "Understand",
   "bloomVerb": "infer",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 4,
   "chapter_title": "The Pico Kit Hardware and Wiring",
   "chapter_dir": "04-pico-kit-hardware",
-  "chapter_rel_dir": "chapters/04-pico-kit-hardware"
+  "chapter_rel_dir": "chapters/04-pico-kit-hardware",
+  "canvasHeight": 560,
+  "educationalLevel": "High School (grades 9-12)",
+  "concepts": [
+    "Push Button",
+    "Pull-Up Resistor",
+    "Pull-Down Resistor",
+    "Floating Pin",
+    "GPIO Input"
+  ],
+  "prerequisites": [
+    "Push button",
+    "Pull-up resistor",
+    "Floating pin",
+    "GPIO input"
+  ],
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "learningObjectives": [
+      "The learner will infer the value a GPIO input pin reads for 6 button circuits, given the pin's pull setting, what the button's other leg connects to, and whether the button is pressed, with at least 5 of 6 correct."
+    ],
+    "bloomsTaxonomy": [
+      "Understand"
+    ],
+    "bloomVerb": "infer",
+    "duration": "12 minutes",
+    "prerequisites": [
+      "Push button",
+      "Pull-up resistor",
+      "Floating pin",
+      "GPIO input"
+    ]
+  },
+  "pedagogical": {
+    "instructionalStrategies": [
+      "Predict-observe-explain",
+      "Worked examples with feedback"
+    ],
+    "recommendedUsage": "Embedded in the chapter after the related section; open fullscreen for whole-class demos.",
+    "assessment": "Built-in scored check with a running score; exploration is not scored."
+  },
+  "technical": {
+    "framework": "p5.js 2.3.2",
+    "responsive": "Width-responsive",
+    "files": [
+      "main.html",
+      "pull-up-button-circuit.js"
+    ],
+    "opensPaused": true
+  },
+  "userInterface": {
+    "controls": [
+      {
+        "type": "button",
+        "name": "Press Button / Release Button",
+        "purpose": "Toggle the button in the sample circuit"
+      },
+      {
+        "type": "button",
+        "name": "reads 1 / reads 0 / unpredictable",
+        "purpose": "Predict the pin reading for a challenge circuit"
+      },
+      {
+        "type": "button",
+        "name": "Choose A / Choose B",
+        "purpose": "Answer the unscored reality check"
+      },
+      {
+        "type": "button",
+        "name": "Start Challenges / Back to Sample",
+        "purpose": "Switch between the sample circuit and the challenges"
+      },
+      {
+        "type": "button",
+        "name": "Next / See Score / Reality Check",
+        "purpose": "Advance through the activity"
+      }
+    ]
+  }
 }

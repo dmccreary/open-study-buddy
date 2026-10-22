@@ -1,0 +1,12 @@
+{
+  "name": "open-study-buddy",
+  "displayName": "Open Study Buddy",
+  "version": "0.1.0",
+  "description": "Workspace plugin for the Open Study Buddy intelligent textbook and MicroPython personal agent hardware curriculum, featuring Sage the Owl.",
+  "logo": "assets/logo.png",
+  "suggestedPrompts": [
+    "Run mkdocs build --strict to validate the textbook",
+    "Check MicroSim status across all 18 chapters",
+    "Review chapter content against CONTENT-GENERATION-GUIDE.md"
+  ]
+}

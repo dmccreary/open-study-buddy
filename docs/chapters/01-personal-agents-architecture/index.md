@@ -110,6 +110,8 @@ The next activity lets you practice that test on ten described behaviors.
 
 #### Diagram: Chatbot or Agent Sorter
 
+<iframe src="../../sims/chatbot-or-agent-sorter/main.html" width="100%" height="564px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>Chatbot or Agent Sorter</summary>
 Type: microsim
@@ -222,6 +224,8 @@ With the three terms defined, the table below summarizes how they differ.
 The next activity asks you to choose an option for four situations and name the deciding factor.
 
 #### Diagram: Agent Hosting Trade-Off Explorer
+
+<iframe src="../../sims/agent-hosting-tradeoff-explorer/main.html" width="100%" height="667px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Agent Hosting Trade-Off Explorer</summary>
@@ -351,6 +355,8 @@ The next activity lets you explore the parts of the system and test yourself on 
 
 #### Diagram: Study Buddy Architecture Explorer
 
+<iframe src="../../sims/study-buddy-architecture-explorer/main.html" width="100%" height="622px" scrolling="no"></iframe>
+
 <details markdown="1">
 <summary>Study Buddy Architecture Explorer</summary>
 Type: graph-model
@@ -475,6 +481,8 @@ Step 1 is yours. Two steps happen on the terminal, three happen on the server, a
 The next activity walks through the eight steps and asks you to predict who does each one.
 
 #### Diagram: Agent Data Flow Step-Through
+
+<iframe src="../../sims/agent-data-flow-step-through/main.html" width="100%" height="582px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Agent Data Flow Step-Through</summary>
@@ -606,6 +614,8 @@ Putting the pieces together gives a three-step ladder. The **agent progression l
 The last activity asks you to place abilities on the ladder.
 
 #### Diagram: Agent Progression Level Explorer
+
+<iframe src="../../sims/agent-progression-level-explorer/main.html" width="100%" height="612px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Agent Progression Level Explorer</summary>

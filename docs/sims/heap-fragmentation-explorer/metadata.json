@@ -5,7 +5,12 @@
   "author": "Dan McCreary",
   "date": "2026-10-20",
   "subject": [
-    "Open Study Buddy"
+    "Open Study Buddy",
+    "Computer Science",
+    "heap",
+    "garbage collection",
+    "heap fragmentation",
+    "MemoryError"
   ],
   "type": "Interactive Simulation",
   "format": "text/html",
@@ -15,9 +20,39 @@
   "library": "p5.js",
   "bloomLevel": "Understand",
   "bloomVerb": "explain",
-  "completion_status": "scaffold",
+  "completion_status": "built",
   "chapter_number": 2,
   "chapter_title": "MicroPython Review for Embedded Systems",
   "chapter_dir": "02-micropython-review",
-  "chapter_rel_dir": "chapters/02-micropython-review"
+  "chapter_rel_dir": "chapters/02-micropython-review",
+  "canvasHeight": 515,
+  "educationalLevel": "High School (grades 9-12)",
+  "educational": {
+    "gradeLevel": "9-12",
+    "subjectArea": "Computer Science",
+    "bloomLevel": "Understand",
+    "bloomVerb": "explain",
+    "learningObjective": "The learner will explain why a memory request can fail when enough total memory is free, by predicting the outcome of 6 allocation requests on a fragmented 16-cell heap and choosing the reason.",
+    "concepts": [
+      "heap",
+      "garbage collection",
+      "heap fragmentation",
+      "MemoryError"
+    ],
+    "duration": "15-20 minutes"
+  },
+  "pedagogical": {
+    "pattern": "predict-then-reveal challenge with exploration mode",
+    "controls": [
+      "Succeeds and MemoryError buttons: predict the outcome of each request",
+      "Reason buttons: pick why a request fails",
+      "Next request / Finish button",
+      "Collect garbage button: frees B, D, F and H without moving other objects",
+      "Restart button: frees all 16 cells",
+      "Allocation-order buttons: buffer first, or objects spaced first"
+    ],
+    "model": "Rule-based heap model: first-fit allocation of runs of consecutive free cells on an illustrative 16-cell heap; a non-moving garbage collector.",
+    "opensPaused": true
+  },
+  "url": "https://dmccreary.github.io/open-study-buddy/sims/heap-fragmentation-explorer/"
 }
