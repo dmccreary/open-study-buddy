@@ -1,6 +1,6 @@
 ---
 title: "Bit Depth Quantizer"
-description: "The learner will calculate the number of levels available at a given bit depth, and the smallest bit depth that provides a required number of levels, for 5 challenge questions, with all 5 correct within two attempts each."
+description: "Change the bit depth and watch a sine wave snap to 2^n levels, showing the step size and the largest rounding error."
 status: built
 library: p5.js
 bloom_level: Apply

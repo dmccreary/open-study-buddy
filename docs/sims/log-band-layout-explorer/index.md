@@ -1,6 +1,6 @@
 ---
 title: "Log Band Layout Explorer"
-description: "The learner will use the 16-band log-spaced layout from 100 Hz to 6,400 Hz to find the band that contains 3 tones and the number of bins in 3 bands, with at least 5 of 6 correct."
+description: "Change the band count and lowest frequency to see how 256 FFT bins group into log-spaced bands, then find the band for a tone or its bin count."
 status: built
 library: p5.js
 bloom_level: Apply

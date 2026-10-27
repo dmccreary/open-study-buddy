@@ -1,6 +1,6 @@
 ---
 title: "Pull-Up Button Circuit"
-description: "The learner will infer the value a GPIO input pin reads for 6 button circuits, given the pin's pull setting, what the button's other leg connects to, and whether the button is pressed, with at least 5 of 6 correct."
+description: "Set a pin's pull resistor and where the button's other leg connects, then press the button to see what the GPIO pin reads."
 status: built
 library: p5.js
 bloom_level: Understand

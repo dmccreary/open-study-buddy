@@ -1,6 +1,6 @@
 ---
 title: "Audio Frame Time Budget Explorer"
-description: "The learner will examine 6 loop timings against the 40 ms frame budget to decide whether each keeps up with the microphone and, for those that do not, calculate the time until the first audio is lost, to within 0.1 s."
+description: "Change the main loop's work time and watch the microphone's ring buffer keep up or overflow against the 40 ms frame budget."
 status: built
 library: p5.js
 bloom_level: Analyze

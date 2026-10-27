@@ -1,6 +1,6 @@
 ---
 title: "Same-Subnet Checker"
-description: "The learner will calculate whether two IPv4 addresses are on the same network, given a netmask, in 8 cases, with at least 7 of 8 correct."
+description: "AND two IPv4 addresses with a netmask to find their network addresses and check whether the Pico and server can talk directly."
 status: built
 library: p5.js
 bloom_level: Apply

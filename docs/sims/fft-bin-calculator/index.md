@@ -1,6 +1,6 @@
 ---
 title: "FFT Bin Calculator"
-description: "The learner will calculate the nearest FFT bin for 4 tone frequencies and the center frequency of 2 bins, using a sample rate of 12,800 Hz and an FFT size of 512, with at least 5 of 6 answers correct."
+description: "Find the FFT bin for a tone, or the center frequency of a bin, with a 12,800 Hz sample rate and a 512-point FFT (25 Hz per bin)."
 status: built
 library: p5.js
 bloom_level: Apply

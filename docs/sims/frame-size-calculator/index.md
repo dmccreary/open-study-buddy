@@ -1,6 +1,6 @@
 ---
 title: "Frame Size and Update Time Calculator"
-description: "The learner will calculate the number of bytes in a rectangle of pixels and the time to send it over SPI at a given baud rate, for 6 challenges, with at least 5 of 6 correct."
+description: "Change a rectangle's size and the SPI baud rate to see how many bytes it holds and how long it takes to send to the 360 x 360 display."
 status: built
 library: p5.js
 bloom_level: Apply

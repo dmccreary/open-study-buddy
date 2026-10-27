@@ -1,6 +1,6 @@
 ---
 title: "MQTT Topic Router"
-description: "The learner will apply the '+' and '#' wildcard rules to decide which of 7 subscription filters select each of 8 topics, with at least 7 of the 8 selections exactly right."
+description: "Type an MQTT topic and see which subscription filters select it, using the + and # wildcard rules level by level."
 status: built
 library: p5.js
 bloom_level: Apply

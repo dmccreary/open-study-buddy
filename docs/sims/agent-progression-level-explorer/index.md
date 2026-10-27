@@ -1,6 +1,6 @@
 ---
 title: "Agent Progression Level Explorer"
-description: "The learner will differentiate the three agent progression levels by placing 8 abilities at the lowest level where each first appears, with at least 7 of 8 correct."
+description: "See how the buddy server's replies grow across three agent levels while the desk terminal stays the same, then place 8 abilities by level."
 status: built
 library: p5.js
 bloom_level: Analyze

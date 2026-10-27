@@ -1,5 +1,5 @@
 // Sampling Explorer
-// CANVAS_HEIGHT: 515
+// CANVAS_HEIGHT: 545
 // Shows a true sine tone, the sample dots taken at the sample rate, and the
 // lowest-frequency wave those dots suggest. The learner explores, then
 // calculates the apparent frequency for 6 challenge tones.
@@ -15,12 +15,14 @@
 
 // ---------- canvas layout ----------
 let canvasWidth = 400;
-let drawHeight = 400;
+let drawHeight = 430;
 let controlHeight = 115;     // 3 rows of controls: 3 x 35 + 10
 let canvasHeight = drawHeight + controlHeight;
 let margin = 25;
 let sliderLeftMargin = 215;
 let defaultTextSize = 16;
+let infoTop = 240;           // set by drawPlot: where the info lines start
+let panelTop = 288;          // set by drawInfo: where the text panel starts
 
 const SAMPLE_RATES = [4000, 8000, 12800, 16000];
 
@@ -100,13 +102,16 @@ function positionControls() {
   layoutRow3();
 }
 
+let row3End = 0;              // right edge of the row 3 controls, so the score never overlaps them
 function layoutRow3() {
   let x = 10;
   const y = drawHeight + 80;
+  answerInput.size(canvasWidth < 500 ? 60 : 90);
   for (const c of [challengeButton, answerInput, submitButton]) {
     c.position(x, y);
     x += (c.elt.offsetWidth || 110) + 10;
   }
+  row3End = x;
 }
 
 function setEnabled(ctrl, on) {
@@ -295,19 +300,23 @@ function drawPlot(showSamples) {
   textAlign(RIGHT, TOP);
   text((T * 1000).toFixed(2) + ' ms' + (showSamples ? ' (' + nSamples + ' samples)' : ''), right, bottom + 10);
 
-  // legend
+  // legend: inline with the axis labels on wide screens, on its own row when narrow
   textAlign(LEFT, TOP);
   let x = left + 50;
-  const y = bottom + 10;
-  if (canvasWidth > 620) {
-    const items = [['gray', 'true wave'], ['crimson', 'samples'], ['royalblue', 'wave the dots suggest']];
-    for (const [col, lab] of items) {
-      fill(col);
-      rect(x, y + 4, 14, 6);
-      fill('black');
-      text(lab, x + 18, y);
-      x += 18 + textWidth(lab) + 16;
-    }
+  let y = bottom + 10;
+  infoTop = 240;
+  if (canvasWidth <= 620) {
+    x = left;
+    y = bottom + 28;
+    infoTop = 254;
+  }
+  const items = [['gray', 'true wave'], ['crimson', 'samples'], ['royalblue', 'wave the dots suggest']];
+  for (const [col, lab] of items) {
+    fill(col);
+    rect(x, y + 4, 14, 6);
+    fill('black');
+    text(lab, x + 18, y);
+    x += 18 + textWidth(lab) + 16;
   }
 }
 
@@ -320,25 +329,39 @@ function drawInfo(showSamples) {
   if (showSamples) {
     info += '    Nyquist limit: ' + fmt(sampleRate / 2) + ' Hz';
   }
+  const w = canvasWidth - 2 * margin;
   textStyle(BOLD);
-  fitTextSize(info, canvasWidth - 2 * margin, 16, 11);
-  text(info, margin, 240);
+  fitTextSize(info, w, 16, 11);
+  if (textWidth(info) > w) {
+    // narrow screens: shorter wording so the line is not clipped
+    info = 'True: ' + fmt(trueFreq) + ' Hz   Rate: ' + fmt(sampleRate) + ' Hz' +
+      (showSamples ? '   Nyquist: ' + fmt(sampleRate / 2) + ' Hz' : '');
+    fitTextSize(info, w, 16, 10);
+  }
+  text(info, margin, infoTop);
   textStyle(NORMAL);
+  panelTop = infoTop + 48;
   if (showSamples) {
     let line2;
     if (a.atNyquist) line2 = 'Apparent frequency: at the Nyquist limit: the samples cannot show this tone reliably';
     else line2 = 'Apparent frequency: ' + fmt(a.apparent) + ' Hz';
     fill(a.atNyquist ? 'darkorange' : (a.folded ? 'crimson' : 'royalblue'));
     textStyle(BOLD);
-    fitTextSize(line2, canvasWidth - 2 * margin, 16, 11);
-    text(line2, margin, 262);
+    fitTextSize(line2, w, 16, 11);
+    if (textWidth(line2) > w) {
+      // the Nyquist message is long: wrap it onto two lines and push the panel down
+      textSize(13);
+      panelTop += drawWrapped(line2, margin, infoTop + 22, w, 16) - 16;
+    } else {
+      text(line2, margin, infoTop + 22);
+    }
     textStyle(NORMAL);
   }
 }
 
 function drawPanel() {
   const px = margin;
-  const py = 288;
+  const py = panelTop;
   const pw = canvasWidth - 2 * margin;
   const ph = drawHeight - py - 8;
   stroke(200);
@@ -390,7 +413,9 @@ function drawControlLabels() {
   if (challengeActive) {
     fill('black');
     textAlign(RIGHT, CENTER);
-    text('Score: ' + score + ' of 6', canvasWidth - 10, drawHeight + 93);
+    const scoreText = 'Score: ' + score + ' of 6';
+    fitTextSize(scoreText, canvasWidth - 10 - row3End, defaultTextSize, 11);
+    text(scoreText, canvasWidth - 10, drawHeight + 93);
   }
 }
 
@@ -428,7 +453,7 @@ function fitTextSize(str, maxWidth, largest, smallest) {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(canvasWidth, canvasHeight);
-  freqSlider.size(canvasWidth - sliderLeftMargin - margin);
+  positionControls();
 }
 
 function updateCanvasSize() {

@@ -224,13 +224,28 @@ body {
     flex-wrap: wrap;
 }
 
-/* narrow screens: slimmer panel */
+/* narrow screens: stack the graph above the panel so the graph stays
+   readable and clickable; the total height stays 620px */
 @media (max-width: 640px) {
+    .container {
+        flex-direction: column;
+    }
+    .graph-area {
+        flex: none;
+        height: 330px;
+    }
     .right-panel {
-        width: 230px;
+        width: 100%;
+        height: 290px;
+        border-left: none;
+        border-top: 1px solid silver;
         font-size: 13px;
     }
     .title {
         font-size: 15px;
+    }
+    /* zoom and pan buttons crowd the small graph; fitView already fits it */
+    div.vis-network div.vis-navigation {
+        display: none;
     }
 }

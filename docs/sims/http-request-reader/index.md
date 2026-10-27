@@ -1,6 +1,6 @@
 ---
 title: "HTTP Request Reader"
-description: "The learner will interpret the parts of an HTTP POST request and its reply by answering 8 questions about the request text, with at least 7 of 8 correct."
+description: "Read the Pico's 194-byte HTTP POST to the buddy server and its reply, and answer questions about the request line, headers and JSON body."
 status: built
 library: p5.js
 bloom_level: Understand

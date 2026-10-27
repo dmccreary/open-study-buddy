@@ -1,6 +1,6 @@
 ---
 title: "Agent Hosting Trade-Off Explorer"
-description: "The learner will recommend one of three hosting options (cloud agent, self-hosted agent, school-hosted agent) for each of four scenarios and identify the deciding factor, with at least 3 of 4 scenarios fully correct."
+description: "Compare cloud, self-hosted and school-hosted agents on control, cost and privacy, then pick the best host for four classroom scenarios."
 status: built
 library: p5.js
 bloom_level: Evaluate

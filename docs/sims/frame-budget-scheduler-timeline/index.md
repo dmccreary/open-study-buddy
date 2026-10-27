@@ -1,6 +1,6 @@
 ---
 title: "Frame Budget Scheduler Timeline"
-description: "The learner will examine 6 loop passes against the 40 ms frame budget by calculating each pass's total time to within 0.1 ms and deciding whether it overruns, with at least 5 of 6 fully correct."
+description: "Add up each loop pass's task costs on a timeline and see which passes fit the 40 ms audio frame and which overrun."
 status: built
 library: p5.js
 bloom_level: Analyze

@@ -1,6 +1,6 @@
 ---
 title: "Button Bounce and Debounce Visualizer"
-description: "The learner will execute the debounce rule on 6 recorded pin traces by counting the presses accepted at a given debounce time, with at least 5 of 6 correct on the first attempt."
+description: "See a button's contacts bounce on a pin trace and count how many presses the debounce rule accepts at different debounce times."
 status: built
 library: p5.js
 bloom_level: Apply

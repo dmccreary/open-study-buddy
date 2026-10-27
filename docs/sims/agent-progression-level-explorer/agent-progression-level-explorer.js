@@ -354,20 +354,23 @@ function drawReplyPanel(top, bottom) {
   fill('white');
   rect(x, top, w, bottom - top, 10);
 
+  // question and calendar lines wrap at narrow widths; the boxes start below them
   noStroke();
   fill('black');
   textAlign(LEFT, TOP);
   textSize(15);
   textStyle(BOLD);
-  noStroke();
-  text('Question: "' + sampleQuestion + '"', tx, top + 8, w - 24);
+  let hy = top + 8;
+  for (const l of wrapLines('Question: "' + sampleQuestion + '"', w - 24)) { noStroke(); text(l, tx, hy); hy += 19; }
   textStyle(NORMAL);
   textSize(13);
   fill('dimgray');
-  noStroke();
-  text('Calendar (illustrative): DUE: Lab report, Thursday. TEST: Biology, Friday.', tx, top + 28, w - 24);
+  hy += 1;
+  for (const l of wrapLines('Calendar (illustrative): DUE: Lab report, Thursday. TEST: Biology, Friday.', w - 24)) {
+    noStroke(); text(l, tx, hy); hy += 17;
+  }
 
-  const boxTop = top + 50;
+  const boxTop = hy + 5;
   const boxH = bottom - boxTop - 32;
   const colGap = 10;
   const colW = (w - 24 - colGap) / 2;
@@ -414,12 +417,14 @@ function drawJsonBox(title, lines, x, y, w, h, mark) {
   textStyle(BOLD);
   textSize(14);
   textAlign(LEFT, TOP);
-  text(title, x + 8, y + 6);
+  const titleLines = wrapLines(title, w - 16);   // wraps in narrow boxes
+  for (let i = 0; i < titleLines.length; i++) { noStroke(); text(titleLines[i], x + 8, y + 6 + i * 18); }
   textStyle(NORMAL);
+  const bodyTop = y + 10 + titleLines.length * 18;
 
   // fit the text into the box
   let size, wrapped;
-  for (size = 14; size >= 10; size--) {
+  for (size = 14; ; size--) {
     textSize(size);
     wrapped = [];
     for (const l of lines) {
@@ -427,9 +432,9 @@ function drawJsonBox(title, lines, x, y, w, h, mark) {
       const parts = wrapLines(l.trim(), w - 22 - textWidth(indent + '    '));
       parts.forEach((p, i) => wrapped.push({ t: indent + (i ? '    ' : '') + p, src: l }));
     }
-    if (wrapped.length * (size + 4) <= h - 32) break;
+    if (wrapped.length * (size + 4) <= y + h - bodyTop - 4 || size <= 10) break;
   }
-  let ly = y + 28;
+  let ly = bodyTop;
   for (const ln of wrapped) {
     const changing = mark === 'changes' && (ln.src.indexOf('"speak"') >= 0 || ln.src.indexOf('"show"') >= 0);
     fill(changing ? 'firebrick' : 'midnightblue');

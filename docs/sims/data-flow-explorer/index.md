@@ -1,6 +1,6 @@
 ---
 title: "Data Flow Explorer"
-description: "The learner will examine the 8 hops of a spoken question under two settings (network encryption on or off, services on the school server or at an outside vendor) and count how many hops each observer can see, answering 6 what-if questions with at least 5 of 6 correct."
+description: "Follow a spoken question through eight hops and toggle encryption and server location to see which observers can read the data at each hop."
 status: built
 library: p5.js
 bloom_level: Analyze

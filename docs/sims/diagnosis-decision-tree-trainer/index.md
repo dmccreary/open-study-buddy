@@ -1,6 +1,6 @@
 ---
 title: "Diagnosis Decision Tree Trainer"
-description: "The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases."
+description: "Walk the kit's decision trees for a silent microphone, distorted audio and a blank display to find the likely cause of each reported failure."
 status: built
 library: p5.js
 bloom_level: Analyze

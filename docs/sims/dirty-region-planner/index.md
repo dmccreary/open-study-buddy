@@ -1,6 +1,6 @@
 ---
 title: "Dirty Region Planner"
-description: "The learner will apply the dirty-region rule to 6 device events by selecting exactly the regions that must be redrawn for each, with at least 5 of 6 correct on the first attempt."
+description: "Choose which of the round display's five regions must be redrawn after each device event, and see how many bytes each choice sends."
 status: built
 library: p5.js
 bloom_level: Apply

@@ -215,12 +215,17 @@ function drawParts() {
     textAlign(CENTER, TOP);
     text(p.name, x + colW / 2, top + 8);
     textStyle(NORMAL);
-    textSize(13);
+    // shrink the subtitle until it fits in four lines above the chips
     fill('dimgray');
     noStroke();
-    const subLines = wrapLines(p.sub, colW - 12);
+    let subSize, subLines;
+    for (subSize = 13; ; subSize--) {
+      textSize(subSize);
+      subLines = wrapLines(p.sub, colW - 12);
+      if (subLines.length <= 4 || subSize <= 10) break;
+    }
     for (let k = 0; k < subLines.length && k < 4; k++) {
-      text(subLines[k], x + colW / 2, top + 30 + k * 16);
+      text(subLines[k], x + colW / 2, top + 30 + k * (subSize + 3));
     }
 
     // chips for revealed steps owned by this part
@@ -259,12 +264,16 @@ function drawParts() {
     }
   }
 
+  // legend, shrunk to stay on one line above the step card at narrow widths
+  const legend = 'Chips are step numbers: green = correct, orange = missed, gray = not predicted';
   noStroke();
   fill('dimgray');
-  textSize(13);
   textAlign(LEFT, TOP);
-  text('Chips are step numbers: green = correct, orange = missed, gray = not predicted',
-    margin, top + h + 4, canvasWidth - 2 * margin);
+  for (let s = 13; s >= 9; s--) {
+    textSize(s);
+    if (textWidth(legend) <= canvasWidth - 2 * margin) break;
+  }
+  text(legend, margin, top + h + 4);
 }
 
 // The card for the current step: prediction prompt or the revealed details

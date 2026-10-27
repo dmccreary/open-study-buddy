@@ -186,15 +186,21 @@ function draw() {
   textSize(24);
   text('Agent Hosting Trade-Off Explorer', canvasWidth / 2, 10);
 
-  textSize(15);
+  // progress (left) and running count (right); shrink both so they never overlap
+  const progressLabel = finished ? 'All four scenarios done' : 'Scenario ' + (current + 1) + ' of 4 (illustrative)';
+  const countLabel = 'Scenarios fully correct: ' + fullyCorrect + ' of 4';
+  for (let s = 15; s >= 10; s--) {
+    textSize(s);
+    if (textWidth(progressLabel) + textWidth(countLabel) + 16 <= canvasWidth - 2 * margin) break;
+  }
   textAlign(LEFT, TOP);
   fill('dimgray');
   noStroke();
-  text(finished ? 'All four scenarios done' : 'Scenario ' + (current + 1) + ' of 4 (illustrative)', margin, 44);
+  text(progressLabel, margin, 44);
   textAlign(RIGHT, TOP);
   fill('black');
   noStroke();
-  text('Scenarios fully correct: ' + fullyCorrect + ' of 4', canvasWidth - margin, 44);
+  text(countLabel, canvasWidth - margin, 44);
 
   const cardBottom = finished ? drawSummaryCard() : drawScenarioCard();
   drawTable(cardBottom + 10, drawHeight - 10);
@@ -280,13 +286,16 @@ function drawSummaryCard() {
     const r = results[i];
     const ok = r.optionOk && r.factorOk;
     return (i + 1) + '. ' + s.option + ', factor ' + s.factor + (ok ? '  (you: correct)' :
-      '  (you: ' + r.option + ', factor ' + r.factor + ')');
+      '  (you: ' + r.option + ', ' + r.factor + ')');
   });
-  textSize(15);
+  // smaller text on narrow screens so the table below still fits
+  const bodySize = canvasWidth < 600 ? 13 : 15;
+  const lead = bodySize + 5;
+  textSize(bodySize);
   const mLines = wrapLines(mastery, tw);
   const rLines = rows.map(r => wrapLines(r, tw));
-  let h = 10 + 26 + mLines.length * 20 + 6 + 20;
-  for (const l of rLines) h += l.length * 20;
+  let h = 10 + 26 + mLines.length * lead + 6 + lead;
+  for (const l of rLines) h += l.length * lead;
   h += 10;
 
   stroke('silver');
@@ -299,21 +308,21 @@ function drawSummaryCard() {
   textSize(20);
   text(fullyCorrect + ' of 4 scenarios fully correct.', tx, y + 10);
   textStyle(NORMAL);
-  textSize(15);
+  textSize(bodySize);
   let ty = y + 36;
   fill(fullyCorrect >= 3 ? 'seagreen' : 'darkorange');
-  for (const l of mLines) { noStroke(); text(l, tx, ty); ty += 20; }
+  for (const l of mLines) { noStroke(); text(l, tx, ty); ty += lead; }
   ty += 6;
   fill('black');
   textStyle(BOLD);
   noStroke();
   text('Decisive cells (numbered in the table):', tx, ty);
   textStyle(NORMAL);
-  ty += 20;
+  ty += lead;
   for (let i = 0; i < rLines.length; i++) {
     const ok = results[i].optionOk && results[i].factorOk;
     fill(ok ? 'darkgreen' : 'saddlebrown');
-    for (const l of rLines[i]) { noStroke(); text(l, tx, ty); ty += 20; }
+    for (const l of rLines[i]) { noStroke(); text(l, tx, ty); ty += lead; }
   }
   return y + h;
 }
@@ -332,17 +341,22 @@ function drawTable(top, bottom) {
     hiFactor = factors.findIndex(f => f.letter === scenarios[current].factor);
   }
 
+  // on the summary, rows holding a scenario badge get extra room at the
+  // bottom so the badge never covers the cell text
+  const badgeRoom = 22;
+  const hasBadge = factors.map(f => finished && scenarios.some(s => s.factor === f.letter));
+
   // choose the largest font that fits the available height
   let size, rowH;
-  for (size = 15; size >= 10; size--) {
+  for (size = 15; ; size--) {
     textSize(size);
-    rowH = factors.map(f => {
+    rowH = factors.map((f, r) => {
       let lines = wrapLines(f.letter + '. ' + f.question, firstW - 2 * pad).length;
       for (const a of f.answers) lines = max(lines, wrapLines(a, colW - 2 * pad).length);
-      return lines * (size + 4) + 2 * pad;
+      return lines * (size + 4) + 2 * pad + (hasBadge[r] ? badgeRoom : 0);
     });
     const total = (size + 4) * 2 + 2 * pad + rowH.reduce((a, b) => a + b, 0);
-    if (total <= bottom - top) break;
+    if (total <= bottom - top || size <= 10) break;
   }
   textStyle(BOLD);
   const headLines = max(options.map(o => wrapLines(o, colW - 2 * pad).length));
@@ -409,7 +423,7 @@ function drawTable(top, bottom) {
         if (s.factor !== f.letter) continue;
         const c = options.indexOf(s.option);
         const ok = results[i].optionOk && results[i].factorOk;
-        const bx = x + firstW + (c + 1) * colW - 16, by = ry + rowH[r] - 15;
+        const bx = x + firstW + (c + 1) * colW - 16, by = ry + rowH[r] - 14;
         stroke(ok ? 'seagreen' : 'darkorange');
         strokeWeight(3);
         fill(ok ? 'palegreen' : 'peachpuff');

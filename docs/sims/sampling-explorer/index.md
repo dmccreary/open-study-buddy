@@ -1,6 +1,6 @@
 ---
 title: "Sampling Explorer"
-description: "The learner will calculate the frequency a sampled tone appears to have, given its true frequency and the sample rate, for 6 challenge tones, with at least 5 of 6 correct."
+description: "Sample a sine tone at different rates and see aliasing appear above the Nyquist limit, with the apparent frequency shown in blue."
 status: built
 library: p5.js
 bloom_level: Apply
@@ -13,14 +13,14 @@ social:
 
 # Sampling Explorer
 
-<iframe src="main.html" width="100%" height="517px" scrolling="no"></iframe>
+<iframe src="main.html" width="100%" height="547px" scrolling="no"></iframe>
 
 [Run the Sampling Explorer MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
 Place the following line in your website to include this MicroSim in your course:
 
 ```html
-<iframe src="https://dmccreary.github.io/open-study-buddy/sims/sampling-explorer/main.html" width="100%" height="517px" scrolling="no"></iframe>
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/sampling-explorer/main.html" width="100%" height="547px" scrolling="no"></iframe>
 ```
 
 ## Description

@@ -1,6 +1,6 @@
 ---
 title: "Template Score Explorer"
-description: "The learner will calculate the template score of 4 small windows by mean subtraction, unit normalization and a dot product, within 0.02 of the correct value in at least 3 of the 4."
+description: "Work through mean subtraction, normalization and a dot product to see how a wake-word window is scored against its template."
 status: built
 library: p5.js
 bloom_level: Apply

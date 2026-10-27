@@ -1,6 +1,6 @@
 ---
 title: "VAD Boundary Finder"
-description: "The learner will execute the voice activity detection rules on 5 loudness traces to find each trace's first and last speech frame, matching both frames in at least 4 of 5 traces."
+description: "Run the four-state voice activity detector on loudness traces and find the first and last speech frames of each recording."
 status: built
 library: p5.js
 bloom_level: Apply

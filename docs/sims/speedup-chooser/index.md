@@ -1,6 +1,6 @@
 ---
 title: "Speed-Up Chooser"
-description: "The learner will recommend, for 6 scenarios, the simplest implementation whose worst-case pass time fits within the frame budget minus the display reserve, or state that none fits, with at least 5 of 6 correct."
+description: "Pick the simplest implementation, from plain Python to viper and inline assembly, whose worst-case time fits the 30 ms audio budget."
 status: built
 library: p5.js
 bloom_level: Evaluate

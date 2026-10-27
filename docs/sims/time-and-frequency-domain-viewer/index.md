@@ -1,6 +1,6 @@
 ---
 title: "Time and Frequency Domain Viewer"
-description: "The learner will interpret a frequency-domain bar chart by choosing, for 6 challenge sounds, the time-domain waveform that has the same frequencies and amplitudes, with at least 5 of 6 correct."
+description: "Change two sine components and watch the waveform and frequency bar chart update together, then match spectra to waveforms."
 status: built
 library: p5.js
 bloom_level: Understand

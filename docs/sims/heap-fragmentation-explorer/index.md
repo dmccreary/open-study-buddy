@@ -1,6 +1,6 @@
 ---
 title: "Heap Fragmentation Explorer"
-description: "The learner will explain why a memory request can fail when enough total memory is free, by predicting the outcome of 6 allocation requests on a fragmented 16-cell heap and choosing the reason."
+description: "Allocate objects on a fragmented 16-cell heap and see why a request can fail with MemoryError even when enough total memory is free."
 status: built
 library: p5.js
 bloom_level: Understand
@@ -13,14 +13,14 @@ social:
 
 # Heap Fragmentation Explorer
 
-<iframe src="main.html" width="100%" height="517px" scrolling="no"></iframe>
+<iframe src="main.html" width="100%" height="547px" scrolling="no"></iframe>
 
 [Run the Heap Fragmentation Explorer MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
 Place the following line in your website to include this MicroSim in your course:
 
 ```html
-<iframe src="https://dmccreary.github.io/open-study-buddy/sims/heap-fragmentation-explorer/main.html" width="100%" height="517px" scrolling="no"></iframe>
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/heap-fragmentation-explorer/main.html" width="100%" height="547px" scrolling="no"></iframe>
 ```
 
 ## Description

@@ -130,7 +130,7 @@ Try the mixer to see how the bits move.
 
 #### Diagram: RGB565 Color Mixer
 
-<iframe src="../../sims/rgb565-color-mixer/main.html" width="100%" height="592px" scrolling="no"></iframe>
+<iframe src="../../sims/rgb565-color-mixer/main.html" width="100%" height="612px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>RGB565 Color Mixer</summary>

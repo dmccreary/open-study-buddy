@@ -1,6 +1,6 @@
 ---
 title: "Kit Parts Infographic"
-description: "The learner will identify which of the five kit parts performs each of 5 described jobs, with at least 4 of 5 correct on the first attempt."
+description: "A labeled picture of the five base-kit parts. Click a part to learn its job, then match five described jobs to the right part."
 status: built
 library: html
 bloom_level: Remember

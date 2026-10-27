@@ -291,8 +291,9 @@ function drawListing(x, y, w) {
 // Entries flow left to right in a grid; a long entry spans extra columns.
 function drawPinTable(x, y, w) {
   const L = listings[listingIndex];
-  const fs = canvasWidth < 560 ? 13 : 15;
-  const rowH = fs + 5;
+  // 12px at narrow widths so "MODE → GP13" does not run into "UP → GP14"
+  const fs = canvasWidth < 560 ? 12 : 15;
+  const rowH = (canvasWidth < 560 ? 13 : fs) + 5;
   noStroke();
   fill('black');
   textAlign(LEFT, TOP);

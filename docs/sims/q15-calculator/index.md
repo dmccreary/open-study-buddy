@@ -1,6 +1,6 @@
 ---
 title: "Q15 Calculator"
-description: "The learner will calculate the Q15 product (a x b) >> 15 of 6 pairs of Q15 integers, and state whether the result fits in 16 bits, with at least 5 of 6 correct."
+description: "Multiply two Q15 fixed-point numbers, shift the product right by 15, and check whether the result still fits in 16 bits."
 status: built
 library: p5.js
 bloom_level: Apply

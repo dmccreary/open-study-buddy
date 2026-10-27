@@ -1,6 +1,6 @@
 ---
 title: "Polling Versus Interrupt Timeline"
-description: "The learner will compare a polling loop with an interrupt by predicting, for 6 button presses, whether a loop that checks the pin every P milliseconds sees the press, and observing that an interrupt sees all 6."
+description: "Predict which button presses a loop that checks the pin every P ms will see, then switch to interrupt mode and watch it catch all six."
 status: built
 library: p5.js
 bloom_level: Understand

@@ -1,6 +1,6 @@
 ---
 title: "Study Buddy Architecture Explorer"
-description: "The learner will identify the job of each of the five kit parts and of the buddy server by matching six described jobs to the correct part, with at least 5 of 6 correct."
+description: "Click each kit part and the buddy server to see its job and connections, then quiz yourself on which part does what."
 status: built
 library: vis-network
 bloom_level: Remember
@@ -60,6 +60,8 @@ hover, so the quiz measures what you remember.
 
 When the page is opened full screen, you can also drag and zoom the diagram.
 Inside the textbook page, use the navigation buttons at the bottom of the diagram.
+On a narrow screen the diagram sits above the panel and is fitted to the space,
+so the navigation buttons are hidden.
 
 ## Lesson Plan
 

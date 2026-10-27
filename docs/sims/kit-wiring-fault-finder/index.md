@@ -1,6 +1,6 @@
 ---
 title: "Kit Wiring Fault Finder"
-description: "The learner will examine 6 wiring listings against the pin assignment table and identify the one wrong connection in each, with at least 5 of 6 correct on the first attempt."
+description: "Check six wiring listings against the kit's pin assignment table and find the one wrong connection in each."
 status: built
 library: p5.js
 bloom_level: Analyze

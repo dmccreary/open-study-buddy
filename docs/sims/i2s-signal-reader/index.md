@@ -1,6 +1,6 @@
 ---
 title: "I2S Signal Reader"
-description: "The learner will interpret simplified I2S waveforms by reading the value of the left-channel sample from the serial data line in 6 waveforms, with at least 5 of 6 correct."
+description: "Read the bit clock, word select and data lines of an I2S waveform to decode the left-channel sample, most significant bit first."
 status: built
 library: p5.js
 bloom_level: Understand

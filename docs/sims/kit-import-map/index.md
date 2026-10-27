@@ -1,6 +1,6 @@
 ---
 title: "Kit Import Map"
-description: "The learner will interpret the kit's import map by naming, for 5 selected files, which other files it imports and which folder each file belongs in on the Pico."
+description: "Explore which kit files import which others, and which folder on the Pico each file belongs in."
 status: built
 library: vis-network
 bloom_level: Understand

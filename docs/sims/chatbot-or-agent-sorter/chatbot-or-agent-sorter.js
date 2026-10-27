@@ -289,12 +289,16 @@ function drawBins(binY, binH, compact) {
     }
   }
 
-  // chip legend
+  // chip legend, shrunk to stay on one line at narrow widths
+  const legend = 'Chips are behavior numbers: green = correct, orange = missed';
   noStroke();
   fill('dimgray');
-  textSize(14);
   textAlign(LEFT, TOP);
-  text('Chips are behavior numbers: green = correct, orange = missed', margin, binY - 20);
+  for (let s = 14; s >= 10; s--) {
+    textSize(s);
+    if (textWidth(legend) <= canvasWidth - 2 * margin) break;
+  }
+  text(legend, margin, binY - 20);
 }
 
 // End-of-run summary: score, mastery, and every missed behavior with its reason.

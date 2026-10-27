@@ -1,6 +1,6 @@
 ---
 title: "Chatbot or Agent Sorter"
-description: "The learner will distinguish chatbot behaviors from personal-agent behaviors by classifying 10 described behaviors, with at least 8 of 10 correct on the first attempt."
+description: "Sort 10 described behaviors into chatbot or personal agent, using tools, multiple steps, proactive action and asking before acting."
 status: built
 library: p5.js
 bloom_level: Analyze

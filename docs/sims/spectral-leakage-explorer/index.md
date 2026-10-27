@@ -1,6 +1,6 @@
 ---
 title: "Spectral Leakage Explorer"
-description: "The learner will compare the spectra of 6 test tones taken with no window and with the Hann window, and choose for each the window that gives the narrower peak, with at least 5 of 6 correct."
+description: "Compare a tone's spectrum with no window and with the Hann window to see how windowing trades leakage for a wider peak."
 status: built
 library: p5.js
 bloom_level: Analyze

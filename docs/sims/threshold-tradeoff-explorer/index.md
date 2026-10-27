@@ -1,6 +1,6 @@
 ---
 title: "Threshold Trade-Off Explorer"
-description: "The learner will judge which detection threshold, if any, meets stated limits on false rejects and false accepts in 4 scenarios, choosing the correct threshold or 'none' in at least 3 of 4."
+description: "Move a wake-word detection threshold and watch false accepts and false rejects trade off, then judge which setting meets each limit."
 status: built
 library: p5.js
 bloom_level: Evaluate

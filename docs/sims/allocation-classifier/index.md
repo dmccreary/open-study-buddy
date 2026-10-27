@@ -1,6 +1,6 @@
 ---
 title: "Allocation Classifier"
-description: "The learner will distinguish 12 MicroPython statements that allocate heap memory from those that do not, with at least 10 of 12 correct."
+description: "Sort 12 MicroPython statements by whether they allocate heap memory, from small integers to buffer writes and string joins."
 status: built
 library: p5.js
 bloom_level: Analyze

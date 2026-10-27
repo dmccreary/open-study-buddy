@@ -1,6 +1,6 @@
 ---
 title: "ICS Line Parser Stepper"
-description: "The learner will execute the iCalendar parsing rules on the 14 lines of a small feed by choosing what the parser does with each line, with at least 12 of the 14 choices correct."
+description: "Step through a small iCalendar feed line by line and choose what the parser does with folded lines, time zones and event fields."
 status: built
 library: p5.js
 bloom_level: Apply

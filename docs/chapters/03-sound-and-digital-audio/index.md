@@ -184,7 +184,7 @@ Now test the folding rule yourself.
 
 #### Diagram: Sampling Explorer
 
-<iframe src="../../sims/sampling-explorer/main.html" width="100%" height="517px" scrolling="no"></iframe>
+<iframe src="../../sims/sampling-explorer/main.html" width="100%" height="547px" scrolling="no"></iframe>
 
 <details markdown="1">
 <summary>Sampling Explorer</summary>

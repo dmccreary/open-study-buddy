@@ -1,6 +1,6 @@
 ---
 title: "Chunk-Size and Heap Explorer"
-description: "The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct."
+description: "Compare ways to upload a 128,000-byte recording and see which fit in the Pico's free heap and how many sends each one needs."
 status: built
 library: p5.js
 bloom_level: Analyze

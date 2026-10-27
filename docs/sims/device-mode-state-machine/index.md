@@ -1,6 +1,6 @@
 ---
 title: "Device Mode State Machine"
-description: "The learner will use the device's state transition table to find the final mode and the final volume after 6 sequences of button events, with at least 5 of 6 correct on the first attempt."
+description: "Press the three buttons and watch the Study Buddy move between its five modes using the same transition table as the chapter."
 status: built
 library: p5.js
 bloom_level: Apply

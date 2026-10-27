@@ -1,6 +1,6 @@
 ---
 title: "Agent Data Flow Step-Through"
-description: "The learner will explain which of three parts (terminal, network, server) performs each of the eight steps that carry a spoken question to a spoken answer, by predicting the owner of steps 2 to 8 with at least 6 of 7 correct."
+description: "Step through the eight hops a spoken question takes to become a spoken answer, and predict whether the terminal, network or server does each one."
 status: built
 library: p5.js
 bloom_level: Understand

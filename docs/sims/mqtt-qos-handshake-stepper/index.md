@@ -1,6 +1,6 @@
 ---
 title: "QoS Handshake Stepper"
-description: "The learner will infer, for 6 scenarios of a publisher sending one alert to a broker, how many copies of the alert the broker processes, with at least 5 of the 6 inferences right."
+description: "Step through MQTT QoS 0, 1 and 2 handshakes with lost packets and count how many copies of an alert the broker processes."
 status: built
 library: p5.js
 bloom_level: Understand

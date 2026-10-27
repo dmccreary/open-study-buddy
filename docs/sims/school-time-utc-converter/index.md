@@ -1,6 +1,6 @@
 ---
 title: "Time Zone and UTC Converter"
-description: "The learner will calculate the UTC time of 8 school-local times, including 3 that fall at a daylight-saving change, with at least 7 of the 8 exactly right."
+description: "Convert school-local Chicago times to UTC, including the skipped and repeated hours on daylight-saving change days."
 status: built
 library: p5.js
 bloom_level: Apply

@@ -1,6 +1,6 @@
 ---
 title: "Daily Briefing Composer"
-description: "The learner will apply the daily briefing rules to 8 Cedar Ridge events on the morning of Monday, October 19, 2026, by sorting each into the part of the briefing it appears in or 'Not mentioned,' with at least 7 of the 8 correct."
+description: "Apply the daily briefing rules to a school calendar and sort each event into the part of the morning briefing where it is spoken, or leave it out."
 status: built
 library: p5.js
 bloom_level: Apply

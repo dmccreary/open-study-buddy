@@ -1,6 +1,6 @@
 ---
 title: "Threat Model Sorter"
-description: "The learner will prioritize 10 classroom threats into the correct fix order using each threat's likelihood, impact, and effort to fix, with at least 8 of 10 threats in the correct position."
+description: "Rank 10 classroom threats by likelihood times impact, breaking ties by effort to fix, to build a threat model's fix order."
 status: built
 library: p5.js
 bloom_level: Evaluate

@@ -1,6 +1,6 @@
 ---
 title: "Level Gate Hysteresis Explorer"
-description: "The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers."
+description: "Compare a single-threshold gate with a hysteresis gate on loudness traces and count how often each one flutters open and closed."
 status: built
 library: p5.js
 bloom_level: Apply

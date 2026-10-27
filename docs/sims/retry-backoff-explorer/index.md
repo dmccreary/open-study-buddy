@@ -1,6 +1,6 @@
 ---
 title: "Retry and Backoff Timeline Explorer"
-description: "The learner will calculate the longest time a request can take under 8 retry settings, to within 0.05 s, with at least 7 of 8 correct."
+description: "Change attempts, timeout, base and cap to see the exponential backoff waits and the longest time a request can take."
 status: built
 library: p5.js
 bloom_level: Apply

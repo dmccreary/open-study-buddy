@@ -1,6 +1,6 @@
 ---
 title: "RGB565 Color Mixer"
-description: "The learner will calculate the 16-bit RGB565 value for 6 given colors, using the packing rule, with at least 5 of 6 correct within two attempts each."
+description: "Mix red, green and blue and watch them pack into a 16-bit RGB565 value, with the hex code and the bytes sent to the display."
 status: built
 library: p5.js
 bloom_level: Apply
@@ -13,14 +13,14 @@ social:
 
 # RGB565 Color Mixer
 
-<iframe src="main.html" width="100%" height="592px" scrolling="no"></iframe>
+<iframe src="main.html" width="100%" height="612px" scrolling="no"></iframe>
 
 [Run the RGB565 Color Mixer MicroSim Fullscreen](./main.html){ .md-button .md-button--primary }
 
 You can include this MicroSim on your website using the following `iframe`:
 
 ```html
-<iframe src="https://dmccreary.github.io/open-study-buddy/sims/rgb565-color-mixer/main.html" width="100%" height="592px" scrolling="no"></iframe>
+<iframe src="https://dmccreary.github.io/open-study-buddy/sims/rgb565-color-mixer/main.html" width="100%" height="612px" scrolling="no"></iframe>
 ```
 
 ## Description
