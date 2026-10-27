@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/chunk-heap-explorer/chunk-heap-explorer.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/chunk-heap-explorer/chunk-heap-explorer.png">
+</head>
   
   
     
@@ -439,6 +441,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -456,7 +466,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1369,7 +1379,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1410,7 +1420,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1648,6 +1658,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../license/" class="md-nav__link">
         
   
@@ -1708,9 +1738,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embed This MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audience-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audience and Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions-addressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Misconceptions Addressed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#specification" class="md-nav__link">
     <span class="md-ellipsis">
       Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1749,72 +1893,118 @@
 
 
 <h1 id="chunk-size-and-heap-explorer">Chunk-Size and Heap Explorer<a class="headerlink" href="#chunk-size-and-heap-explorer" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="597px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/14-streaming-security-resilience/">Chapter 14: Streaming Speech, Security, and Network Resilience</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** chunk-heap-explorer&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Analyze&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** examine&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** 16-bit and 32-bit recording sizes, memoryview slice, chunk, free heap, contiguous block (all defined in this chapter above this block and in Chapter 2).
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 8 cases the learner chooses "fits" or "does not fit", and for a case that fits, types the number of sends. A case is correct when the choice matches the Fits column and, for fitting cases, the number matches the Sends column exactly. Mastery is 7 of 8 correct on the first attempt. Moving the explorer's sliders is exploration, not evidence.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) Sending in chunks makes the recording itself smaller. (2) Joining the header and body is harmless because the recording is already in memory. (3) A bigger free heap total always means a big block is available. (4) Streaming needs the whole recording in memory.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** Analyze-level examination requires the learner to break a design into the blocks it needs and compare them with what is available. Using the same rule on eight designs lets the learner see which designs move the memory problem, rather than remove it.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>Four designs are described. In each, S is the length in seconds, R16 is the 16-bit recording size \( S \times 25{,}600 \) bytes, and R32 is the 32-bit size \( S \times 51{,}200 \) bytes.
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>| Design | Description | Largest memory it needs |
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>|---|---|---|
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>| A | Record 16-bit. Join the header and the body into one bytes object, then send it once. | Two blocks of R16 at the same time: \( 2 \times R16 \) in all, the largest single block R16 |
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>| B | Record 16-bit. Send the header, then send the recording in slices of a chunk size K bytes. | R16 for the recording, plus a small K-byte staging area: \( R16 + K \) in all, the largest single block R16 |
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| C | Record 32-bit, convert in place after release, send the first half in slices of K bytes. | R32 for the buffer, plus K: \( R32 + K \) in all, the largest single block R32 |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| D | Stream each 1,024-byte frame as it is converted and keep nothing. | One 1,024-byte staging frame, at any length of speech |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>The rule: a case fits when the total memory the design needs is no more than the free heap F minus a reserve of 40,000 bytes, which stands for the code, display, and network buffers. The number of sends is the length divided by the chunk size, rounded up (for design D, the frames of 1,024 bytes).
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>| # | Design | S (s) | K (bytes) | F (bytes) | Fits | Sends | Why (shown as feedback) |
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>|---|---|---|---|---|---|---|---|
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>| 1 | B | 3 | 2,048 | 180,000 | fits | 38 | R16 is 76,800; plus 2,048 is 78,848, under 140,000. 76,800 / 2,048 is 37.5, rounded up to 38. |
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>| 2 | B | 5 | 2,048 | 180,000 | fits | 63 | R16 is 128,000; plus 2,048 is 130,048, under 140,000. 128,000 / 2,048 is 62.5, rounded up to 63. |
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>| 3 | A | 5 | not used | 180,000 | does not fit | none | The join needs 128,000 + 128,000 = 256,000, over 140,000. |
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>| 4 | C | 5 | 2,048 | 180,000 | does not fit | none | R32 is 256,000, over 140,000 by itself. |
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>| 5 | C | 3 | 2,048 | 260,000 | fits | 38 | R32 is 153,600; plus 2,048 is 155,648, under 220,000. The first half to send is 76,800 bytes: 38 sends. |
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>| 6 | B | 10 | 2,048 | 260,000 | does not fit | none | R16 is 256,000, over 220,000. |
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>| 7 | D | 10 | 1,024 | 100,000 | fits | 250 | One 1,024-byte frame needs no recording. 10 s is 256,000 bytes: 256,000 / 1,024 is 250 frames. |
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>| 8 | B | 5 | 8,192 | 180,000 | fits | 16 | R16 is 128,000; plus 8,192 is 136,192, under 140,000. 128,000 / 8,192 is 15.6, rounded up to 16. |
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>For exploration the learner sets S from 1 to 10 s in steps of 1 s (default 5), K from 512 to 8,192 bytes in the five sizes of the chapter's table (default 2,048), and F from 100,000 to 260,000 bytes in steps of 10,000 (default 180,000), and sees each design's memory need drawn against the free heap with the reserve.
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>**Provenance:** The recording sizes follow from the kit's 12,800 samples per second, with 4 bytes per sample for 32-bit words and 2 for 16-bit samples (`config.MIC_SAMPLE_RATE`). The reserve of 40,000 bytes and the free heap values are illustrative, and the sim labels them "illustrative." The learner's own free heap comes from Chapter 2's memory report.
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>**Rules:** Total need and largest block follow the Largest memory column. A case fits when the total need is at most \( F - 40{,}000 \). Sends are \( \lceil \text{bytes to send} / K \rceil \), where the bytes to send are R16 for designs A and B, R16 (the converted half) for design C, and \( S \times 25{,}600 \) split into 1,024-byte frames for design D. A design that does not fit has no send count.
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>**Learner Activity:**
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>1. The learner moves the three sliders and watches each design's bar against the free heap line.
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>2. The learner starts the 8 cases. Case 1 is shown.
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>3. The learner chooses fits or does not fit and, if it fits, types the number of sends.
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>4. The sim draws the case's memory need against the free heap and shows the Why text.
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>5. After case 8, the sim shows the score. The learner should notice that designs A and C fail at 5 s where design B fits, and that design D fits at any length.
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>**Feedback:** 8 cases, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. It &lt;fits or does not fit&gt;&lt;, with N sends if it fits&gt;: &lt;Why&gt;". The answer is revealed right after each submission, and a running score "n of 8" is shown.
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>**Starting State:** Design B at 5 s, 2,048 bytes, and 180,000 free is drawn, with the question "Does this fit in the free heap, and how many sends does it need?"
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>**Chapter Anchors:** The chapter states that a 5 s recording is 128,000 bytes in 16-bit and 256,000 in 32-bit, that joining the head and body needs a second block as large as the recording, that 2,048-byte chunks make 63 sends for 5 s, and that a WebSocket frame header is 8 bytes.
+<p><a class="md-button md-button--primary" href="main.html">Run the Chunk-Size and Heap Explorer MicroSim Fullscreen</a></p>
+<h2 id="embed-this-microsim">Embed This MicroSim<a class="headerlink" href="#embed-this-microsim" title="Permanent link">&para;</a></h2>
+<p>Place the following line in your website to include this MicroSim:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/chunk-heap-explorer/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"597px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>A 5-second recording is 128,000 bytes in 16-bit form, so how it is sent matters on a Pico. Joining the header and the body copies the whole recording into a second block; sending memoryview slices of K bytes needs only the recording plus a small staging area; and streaming each 1,024-byte frame needs no recording at all.</p>
+<p>Each of the four designs is drawn as a bar of the memory it needs against the free heap, with a 40,000-byte reserve for the code, display and network buffers. In explore mode you set the length, the chunk size and the free heap. In the quiz you decide whether a design fits and, if it does, how many sends it needs, for eight cases. The reserve and free-heap values are illustrative.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>The MicroSim opens in its starting state and nothing moves until you act.</p>
+<ul>
+<li><strong>Start the 8 cases / Back to explore</strong>: Switch between the sliders and the quiz.</li>
+<li><strong>Answer menu, Sends box, Submit</strong>: Choose fits or does not fit; for a fit, type the number of sends. One attempt per case.</li>
+<li><strong>Next case / See score</strong>: Move on after the feedback.</li>
+<li><strong>Length, Chunk K and Free F</strong>: Explore only: 1 to 10 s, the five chunk sizes from 512 to 8,192 bytes, and 100,000 to 260,000 bytes.</li>
+</ul>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct.</p>
+<p><strong>Bloom's Taxonomy level:</strong> Analyze (examine)</p>
+<h3 id="audience-and-duration">Audience and Duration<a class="headerlink" href="#audience-and-duration" title="Permanent link">&para;</a></h3>
+<p>High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>16-bit and 32-bit recording sizes, memoryview slice, chunk, free heap, contiguous block (all defined in this chapter above this block and in Chapter 2).</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Exploration (5 min):</strong> Set the length to 3 s, then 5 s, then 10 s and note which designs stop fitting at each.</li>
+<li><strong>Guided practice (5 min):</strong> For case 2, write R16, add K, compare with F - 40,000, then divide R16 by K and round up.</li>
+<li><strong>Assessment (5 min):</strong> Complete all eight cases. Mastery is 7 of 8 correct on the first attempt.</li>
+</ol>
+<h3 id="common-misconceptions-addressed">Common Misconceptions Addressed<a class="headerlink" href="#common-misconceptions-addressed" title="Permanent link">&para;</a></h3>
+<p>(1) Sending in chunks makes the recording itself smaller. (2) Joining the header and body is harmless because the recording is already in memory. (3) A bigger free heap total always means a big block is available. (4) Streaming needs the whole recording in memory.</p>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Does sending in chunks make the recording smaller?</li>
+<li>Why is joining the header and the body costly?</li>
+<li>Why does design D fit at any length of speech?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<details>
+<summary>Full specification from Chapter 14</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** chunk-heap-explorer&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Bloom Level:** Analyze&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Verb:** examine&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Learning Objective:** The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>**Prerequisites:** 16-bit and 32-bit recording sizes, memoryview slice, chunk, free heap, contiguous block (all defined in this chapter above this block and in Chapter 2).
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>**Evidence of Mastery:** For each of the 8 cases the learner chooses "fits" or "does not fit", and for a case that fits, types the number of sends. A case is correct when the choice matches the Fits column and, for fitting cases, the number matches the Sends column exactly. Mastery is 7 of 8 correct on the first attempt. Moving the explorer's sliders is exploration, not evidence.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>**Misconceptions:** (1) Sending in chunks makes the recording itself smaller. (2) Joining the header and body is harmless because the recording is already in memory. (3) A bigger free heap total always means a big block is available. (4) Streaming needs the whole recording in memory.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>**Instructional Rationale:** Analyze-level examination requires the learner to break a design into the blocks it needs and compare them with what is available. Using the same rule on eight designs lets the learner see which designs move the memory problem, rather than remove it.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>**Content:**
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>Four designs are described. In each, S is the length in seconds, R16 is the 16-bit recording size \( S \times 25{,}600 \) bytes, and R32 is the 32-bit size \( S \times 51{,}200 \) bytes.
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>| Design | Description | Largest memory it needs |
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>|---|---|---|
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>| A | Record 16-bit. Join the header and the body into one bytes object, then send it once. | Two blocks of R16 at the same time: \( 2 \times R16 \) in all, the largest single block R16 |
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>| B | Record 16-bit. Send the header, then send the recording in slices of a chunk size K bytes. | R16 for the recording, plus a small K-byte staging area: \( R16 + K \) in all, the largest single block R16 |
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| C | Record 32-bit, convert in place after release, send the first half in slices of K bytes. | R32 for the buffer, plus K: \( R32 + K \) in all, the largest single block R32 |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| D | Stream each 1,024-byte frame as it is converted and keep nothing. | One 1,024-byte staging frame, at any length of speech |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>The rule: a case fits when the total memory the design needs is no more than the free heap F minus a reserve of 40,000 bytes, which stands for the code, display, and network buffers. The number of sends is the length divided by the chunk size, rounded up (for design D, the frames of 1,024 bytes).
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>| # | Design | S (s) | K (bytes) | F (bytes) | Fits | Sends | Why (shown as feedback) |
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>|---|---|---|---|---|---|---|---|
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>| 1 | B | 3 | 2,048 | 180,000 | fits | 38 | R16 is 76,800; plus 2,048 is 78,848, under 140,000. 76,800 / 2,048 is 37.5, rounded up to 38. |
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>| 2 | B | 5 | 2,048 | 180,000 | fits | 63 | R16 is 128,000; plus 2,048 is 130,048, under 140,000. 128,000 / 2,048 is 62.5, rounded up to 63. |
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>| 3 | A | 5 | not used | 180,000 | does not fit | none | The join needs 128,000 + 128,000 = 256,000, over 140,000. |
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>| 4 | C | 5 | 2,048 | 180,000 | does not fit | none | R32 is 256,000, over 140,000 by itself. |
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>| 5 | C | 3 | 2,048 | 260,000 | fits | 38 | R32 is 153,600; plus 2,048 is 155,648, under 220,000. The first half to send is 76,800 bytes: 38 sends. |
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>| 6 | B | 10 | 2,048 | 260,000 | does not fit | none | R16 is 256,000, over 220,000. |
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>| 7 | D | 10 | 1,024 | 100,000 | fits | 250 | One 1,024-byte frame needs no recording. 10 s is 256,000 bytes: 256,000 / 1,024 is 250 frames. |
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>| 8 | B | 5 | 8,192 | 180,000 | fits | 16 | R16 is 128,000; plus 8,192 is 136,192, under 140,000. 128,000 / 8,192 is 15.6, rounded up to 16. |
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>For exploration the learner sets S from 1 to 10 s in steps of 1 s (default 5), K from 512 to 8,192 bytes in the five sizes of the chapter's table (default 2,048), and F from 100,000 to 260,000 bytes in steps of 10,000 (default 180,000), and sees each design's memory need drawn against the free heap with the reserve.
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>**Provenance:** The recording sizes follow from the kit's 12,800 samples per second, with 4 bytes per sample for 32-bit words and 2 for 16-bit samples (`config.MIC_SAMPLE_RATE`). The reserve of 40,000 bytes and the free heap values are illustrative, and the sim labels them "illustrative." The learner's own free heap comes from Chapter 2's memory report.
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>**Rules:** Total need and largest block follow the Largest memory column. A case fits when the total need is at most \( F - 40{,}000 \). Sends are \( \lceil \text{bytes to send} / K \rceil \), where the bytes to send are R16 for designs A and B, R16 (the converted half) for design C, and \( S \times 25{,}600 \) split into 1,024-byte frames for design D. A design that does not fit has no send count.
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>**Learner Activity:**
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>1. The learner moves the three sliders and watches each design's bar against the free heap line.
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>2. The learner starts the 8 cases. Case 1 is shown.
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>3. The learner chooses fits or does not fit and, if it fits, types the number of sends.
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>4. The sim draws the case's memory need against the free heap and shows the Why text.
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>5. After case 8, the sim shows the score. The learner should notice that designs A and C fail at 5 s where design B fits, and that design D fits at any length.
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>**Feedback:** 8 cases, fixed order, one attempt each. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. It &lt;fits or does not fit&gt;&lt;, with N sends if it fits&gt;: &lt;Why&gt;". The answer is revealed right after each submission, and a running score "n of 8" is shown.
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>**Starting State:** Design B at 5 s, 2,048 bytes, and 180,000 free is drawn, with the question "Does this fit in the free heap, and how many sends does it need?"
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>**Chapter Anchors:** The chapter states that a 5 s recording is 128,000 bytes in 16-bit and 256,000 in 32-bit, that joining the head and body needs a second block as large as the recording, that 2,048-byte chunks make 63 sends for 5 s, and that a WebSocket frame header is 8 bytes.
+</span></code></pre></div>
+</details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://docs.micropython.org/en/latest/library/builtins.html#memoryview">memoryview</a> - MicroPython documentation - Slicing a buffer without copying it.</li>
+<li><a href="https://en.wikipedia.org/wiki/Fragmentation_(computing)">Fragmentation (computing)</a> - Wikipedia - Why a large contiguous block is hard to find.</li>
+<li><a href="https://en.wikipedia.org/wiki/Chunked_transfer_encoding">Chunked transfer encoding</a> - Wikipedia - The HTTP alternative the book does not use.</li>
+</ol>
 <h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/14-streaming-security-resilience/">Chapter 14: Streaming Speech, Security, and Network Resilience</a></li>

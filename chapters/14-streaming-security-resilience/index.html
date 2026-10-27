@@ -1144,6 +1144,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -1161,7 +1169,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1318,6 +1326,26 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1947,6 +1975,8 @@ In this chapter you will hold a button, say a sentence, and hear the buddy serve
 <p>The "segments" column assumes a TCP segment carries up to 1,460 bytes, the usual size on an Ethernet-style network; the real value on your network may differ. The "extra bytes" column is a WebSocket client frame's 8-byte header (2 for the opcode and length, 2 more when the length is 126 or over, and 4 for the mask), which the WebSocket section explains. Small chunks cost more calls and a little more overhead, and large chunks cost latency (the first sound cannot leave until the chunk is full) and cost more to lose when one fails.</p>
 <p>The book's defaults come from two numbers already in this book. For the HTTP upload, <code>UPLOAD_CHUNK_BYTES = 2048</code> (80 ms, two audio reads): large enough that the overhead is a rounding error, small enough that a stalled network is noticed within one deadline check. For streaming over a WebSocket, <code>STREAM_CHUNK_BYTES = 1024</code>, which is 512 samples, exactly Chapter 8's 40 ms frame, so each frame the loop produces is one message. Neither value was tuned on the kit.</p>
 <h4 id="diagram-chunk-size-and-heap-explorer">Diagram: Chunk-Size and Heap Explorer<a class="headerlink" href="#diagram-chunk-size-and-heap-explorer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/chunk-heap-explorer/main.html" width="100%" height="597px" scrolling="no"></iframe>
+<p><a href="../../sims/chunk-heap-explorer/main.html">Run Chunk-Size and Heap Explorer Fullscreen</a></p>
 <details>
 <summary>Chunk-Size and Heap Explorer</summary>
 <p>Type: microsim
@@ -2535,6 +2565,8 @@ Certificates, dates, hostnames, and memory all have to line up, so a first HTTPS
 Doubling the wait spaces retries <em>out in time</em>, and jitter keeps many devices from choosing the <em>same</em> moment. Neither idea helps alone: doubling without jitter keeps the herd in step, and jitter without doubling never gives a struggling server room to breathe.</p>
 </div>
 <h4 id="diagram-retry-and-backoff-timeline-explorer">Diagram: Retry and Backoff Timeline Explorer<a class="headerlink" href="#diagram-retry-and-backoff-timeline-explorer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/retry-backoff-explorer/main.html" width="100%" height="577px" scrolling="no"></iframe>
+<p><a href="../../sims/retry-backoff-explorer/main.html">Run Retry and Backoff Timeline Explorer Fullscreen</a></p>
 <details>
 <summary>Retry and Backoff Timeline Explorer</summary>
 <p>Type: microsim

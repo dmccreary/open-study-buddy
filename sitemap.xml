@@ -2,358 +2,370 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/about/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/contact/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/course-description/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
+    </url>
+    <url>
+         <loc>https://dmccreary.github.io/open-study-buddy/glossary/</loc>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/license/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/01-personal-agents-architecture/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/02-micropython-review/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/03-sound-and-digital-audio/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/04-pico-kit-hardware/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/05-display-basics/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/06-display-regions-and-drawing/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/07-buttons-and-device-modes/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/08-i2s-audio/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/09-signal-processing-fft/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/10-high-performance-micropython/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/11-mic-calibration-push-to-talk/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/12-wake-word-detection/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/13-wifi-http-agent-link/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/14-streaming-security-resilience/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/15-mqtt-push-alerts/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/16-school-agent-calendar/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/17-privacy-responsible-listening/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/chapters/18-testing-integration-capstones/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/img/cover-image-prompt/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/concept-list/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/concept-taxonomy/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/course-description-assessment/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/mascot-test/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/quality-metrics/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/taxonomy-distribution/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/teachers-guide/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/teachers-guide/pico-2-w-image-description/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/learning-graph/teachers-guide/speaker-3525-image-description/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
+    </url>
+    <url>
+         <loc>https://dmccreary.github.io/open-study-buddy/schools/blake-school/</loc>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/cedar-ridge-high-school/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/cedar-ridge-high-school/calendar/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/cedar-ridge-high-school/mascot/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/glo/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
+    </url>
+    <url>
+         <loc>https://dmccreary.github.io/open-study-buddy/schools/minnetonka-middle-school-east/</loc>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/the-thinking-spot/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/two-rivers-high-school/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/schools/u-of-mn/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/agent-data-flow-step-through/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/agent-hosting-tradeoff-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/agent-progression-level-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/allocation-classifier/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/audio-frame-budget-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/bit-depth-quantizer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/chatbot-or-agent-sorter/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/chunk-heap-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/daily-briefing-composer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/data-flow-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/debounce-bounce-visualizer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/device-mode-state-machine/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/diagnosis-decision-tree-trainer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/dirty-region-planner/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/fft-bin-calculator/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/frame-budget-scheduler-timeline/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/frame-size-calculator/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/graph-viewer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/heap-fragmentation-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/http-request-reader/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/i2s-signal-reader/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/ics-line-parser-stepper/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/kit-import-map/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/kit-parts-infographic/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/kit-wiring-fault-finder/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/level-gate-hysteresis-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/log-band-layout-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/mqtt-qos-handshake-stepper/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/mqtt-topic-router/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/polling-versus-interrupt-timeline/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/pull-up-button-circuit/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/q15-calculator/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/retry-backoff-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/rgb565-color-mixer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/same-subnet-checker/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/sampling-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/school-time-utc-converter/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/spectral-leakage-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/speedup-chooser/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/study-buddy-architecture-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/template-score-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/threat-model-sorter/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/threshold-tradeoff-explorer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/time-and-frequency-domain-viewer/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
     <url>
          <loc>https://dmccreary.github.io/open-study-buddy/sims/vad-boundary-finder/</loc>
-         <lastmod>2026-10-20</lastmod>
+         <lastmod>2026-10-27</lastmod>
     </url>
 </urlset>

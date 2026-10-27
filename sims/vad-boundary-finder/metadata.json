@@ -1,23 +1,114 @@
 {
   "title": "VAD Boundary Finder",
-  "description": "The learner will execute the voice activity detection rules on 5 loudness traces to find each trace's first and last speech frame, matching both frames in at least 4 of 5 traces.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "Voice activity detection finds where speech starts and ends inside a push-to-talk recording. The chapter's VAD is a four-state machine (SILENCE, STARTING, SPEECH, ENDING) driven by the hysteresis gate: 3 loud frames in a row start speech, 15 quiet frames in a row end it. The start is the first loud frame of that run and the end is the last loud frame, and the device keeps 4 frames of pre-roll and 5 of hang-over around them.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Microphone Calibration and Push-to-Talk",
+    "Voice Activity Detection",
+    "Utterance Boundaries",
+    "Start Frames",
+    "End Frames",
+    "Pre-Roll",
+    "Hang-Over"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "vad-boundary-finder",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "execute",
-  "completion_status": "scaffold",
-  "chapter_number": 11,
-  "chapter_title": "Microphone Calibration and Push-to-Talk",
-  "chapter_dir": "11-mic-calibration-push-to-talk",
-  "chapter_rel_dir": "chapters/11-mic-calibration-push-to-talk"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/vad-boundary-finder/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 635,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "VAD Boundary Finder",
+    "learningObjectives": [
+      "The learner will execute the voice activity detection rules on 5 loudness traces to find each trace's first and last speech frame, matching both frames in at least 4 of 5 traces."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "execute",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "loudness in bits, frame, level gate, hysteresis, voice activity detection, start frames, end frames, state machine (all defined in this chapter above the block)."
+    ],
+    "concepts": [
+      "Voice Activity Detection",
+      "Utterance Boundaries",
+      "Start Frames",
+      "End Frames",
+      "Pre-Roll",
+      "Hang-Over"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 635
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 5 traces / Back to explore",
+        "purpose": "Switch between exploring and the quiz."
+      },
+      {
+        "name": "Start frame and End frame boxes, Submit",
+        "purpose": "Type two frame numbers, or none in both boxes. One attempt per trace."
+      },
+      {
+        "name": "Next trace / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Step, Back to start, Run to end",
+        "purpose": "Step through the frames (in the quiz, after submitting)."
+      },
+      {
+        "name": "START and END sliders",
+        "purpose": "Explore only: START_FRAMES 1 to 6, END_FRAMES 5 to 30."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Why is the start reported earlier than the frame at which it is signaled?",
+      "Why does a single loud click never start speech?",
+      "What is the end of a trace that is still loud at its last frame?"
+    ],
+    "commonMisconceptions": [
+      "(1) Speech starts at the frame where the VAD signals \"start\". (2) Any loud frame starts speech. (3) Any quiet frame ends speech. (4) A trace that is still loud at its last frame has no end."
+    ],
+    "assessmentOpportunities": [
+      "Complete all five traces. Mastery is 4 of 5 traces fully correct on the first attempt."
+    ]
+  },
+  "chapter": "11-mic-calibration-push-to-talk",
+  "chapter_number": 11
 }

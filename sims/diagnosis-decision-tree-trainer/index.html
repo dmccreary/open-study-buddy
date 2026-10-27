@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/diagnosis-decision-tree-trainer/diagnosis-decision-tree-trainer.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/diagnosis-decision-tree-trainer/diagnosis-decision-tree-trainer.png">
+</head>
   
   
     
@@ -439,6 +441,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -456,7 +466,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1573,7 +1583,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1614,7 +1624,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1637,6 +1647,26 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1708,9 +1738,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embed This MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audience-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audience and Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions-addressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Misconceptions Addressed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#specification" class="md-nav__link">
     <span class="md-ellipsis">
       Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1749,82 +1893,128 @@
 
 
 <h1 id="diagnosis-decision-tree-trainer">Diagnosis Decision Tree Trainer<a class="headerlink" href="#diagnosis-decision-tree-trainer" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="642px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/18-testing-integration-capstones/">Chapter 18: Testing, Integration, and Capstone Projects</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** diagnosis-decision-tree-trainer&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Analyze&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** differentiate&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** flat line, backlight, sample rate, frame overrun, wire swap (all defined in the sections of this chapter above this block and in Chapters 4 and 8); the three diagnosis tables in this chapter, whose rows are named M1 to M6, A1 to A7, and D1 to D8.
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 6 cases the learner reads the reported symptoms and chooses one of 4 candidate causes before the decision tree is shown. A choice is correct when it equals the Correct row in Content. Mastery is 5 of 6 correct on the first attempt. Walking the tree by answering its questions in exploration is not evidence.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) Any failure of the microphone means the microphone is broken. (2) A program that runs without an error has no wiring fault. (3) A dark screen is always a software bug. (4) The answer to a distorted sound is always to lower the volume.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** Differentiating at the Analyze level means telling apart causes that produce similar symptoms. Asking the learner to commit to a cause from four candidates, and only then showing the tree that leads to it, makes the learner use the symptom details that separate the candidates.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>The sim has three trees, one per symptom: silent microphone (rows M1 to M6), distorted audio (rows A1 to A7), and blank display (rows D1 to D8). A tree is a list of rows. Each row asks a yes-or-no question; yes ends the walk at that row's cause, and no goes to the next row of the same tree. The last row of each tree (M6, A7, D8) has no question and is reached when every earlier answer is no. The rows, with their questions, causes, quick tests, and fixes, are the rows of the three tables in the chapter section "Diagnosing the Three Classic Failures". The questions, in order:
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>| Row | Question |
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>|---|---|
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>| M1 | An error at start, and it says "must be sck+1"? |
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>| M2 | An error at start, with another message? |
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| M3 | No error, but the spread is 0, a flat line? |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| M4 | The loudness barely changes when you talk next to it? |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| M5 | The meter is pinned at the top? |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| A1 | Is the speaker silent, not distorted? |
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>| A2 | Does it crackle only when loud? |
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>| A3 | Is the pitch wrong? |
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>| A4 | Does it stutter or have gaps? |
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>| A5 | Is the start clicky, or the end cut off? |
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>| A6 | Is there hiss or buzz even when nothing plays? |
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>| D1 | Is the screen completely dark, with no light? |
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>| D2 | Did the program stop with an error before drawing? |
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>| D3 | Is it lit but only black or random noise? |
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>| D4 | Is the picture speckled or torn? |
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>| D5 | Is part of what you drew missing? |
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>| D6 | Is the picture rotated or mirrored? |
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>| D7 | Are old letters left over, or is the picture sheared or striped? |
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>The 6 cases, in this order. Each case lists the 3 other candidate causes, which are rows of the same tree.
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>| # | Reported symptoms | Correct row | Three other candidates (rows) |
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>|---|---|---|---|
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>| 1 | "The microphone test stops at once with: invalid ws (must be sck+1)." | M1 | M3, M4, M5 |
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>| 2 | "No error. The probe says every sample is 12345 and the spread is 0." | M3 | M1, M4, M6 |
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>| 3 | "The screen is completely dark. The program runs and prints no errors." | D1 | D2, D3, D4 |
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>| 4 | "The screen is lit and shows the right picture, but it is speckled, on long wires." | D4 | D3, D5, D7 |
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>| 5 | "A recording I made plays back higher and faster than I spoke." | A3 | A2, A4, A6 |
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>| 6 | "The sound stutters. The overrun counter reports many passes longer than 40 ms." | A4 | A1, A3, A5 |
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>**Provenance:** The causes and tests come from the kit README, the headers of kit tests 05 and 07, `config.py`, and Chapters 2 to 8, as cited in the `source` field of `src/chapters/18-testing-integration-capstones/tools/diagnose.py`. The six cases are illustrative, and the sim labels them "illustrative".
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>**Rules:** Each case has exactly one correct row. A tree question is answered only yes or no. The candidate order is shuffled for each learner, with a fixed seed per case.
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>**Learner Activity:**
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>1. The learner explores one tree: picks a symptom, answers its questions, and reads the cause, test, and fix at the end.
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>2. The learner starts the 6 cases. Case 1 shows its symptoms and the four candidate causes.
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>3. The learner chooses a cause and submits.
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>4. The sim shows the correct cause, then walks the tree for that case, highlighting the questions answered and the cause reached, with the quick test and the fix.
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>5. After case 6, the sim shows the score. The learner should notice that the cheap early questions rule out whole branches.
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>**Feedback:** 6 cases, fixed order, one attempt each. Correct: "Correct: &lt;cause text&gt;". Incorrect: "Not quite. The likely cause is &lt;correct cause text&gt;: look at &lt;the symptom detail that separates it from the chosen cause&gt;". The correct cause is revealed right after each submission, and a running score "n of 6" is shown.
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>**Starting State:** The three symptom names are shown with the question "Which one are you diagnosing?" and no tree open.
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>**Chapter Anchors:** The chapter names three failures (silent microphone, distorted audio, blank display); states that the microphone tree has rows M1 to M6, the audio tree A1 to A7, and the display tree D1 to D8; that a swapped microphone starts with no error and sends zeros; that the sck+1 rule applies to the microphone and the amplifier; and that BAUDRATE 12,000,000 is the fix for speckle.
+<p><a class="md-button md-button--primary" href="main.html">Run the Diagnosis Decision Tree Trainer MicroSim Fullscreen</a></p>
+<h2 id="embed-this-microsim">Embed This MicroSim<a class="headerlink" href="#embed-this-microsim" title="Permanent link">&para;</a></h2>
+<p>Place the following line in your website to include this MicroSim:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/diagnosis-decision-tree-trainer/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"642px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>Three failures cause most "it doesn't work" reports on the kit: a silent microphone, distorted audio, and a blank display. The chapter writes each as a flat decision tree: ask the first row's question; yes ends at that row's likely cause, quick test and fix, and no moves to the next row, so the cheapest questions rule out whole branches first.</p>
+<p>In explore mode you pick a symptom and answer the tree's questions one at a time until you reach a cause. In the quiz you read six reported failures and choose the likely cause from four candidates in the same tree; the tree is then walked to the right row and the quick test and fix are shown. The rows are the chapter's tables M1 to M6, A1 to A7 and D1 to D8; the cases are illustrative.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>The MicroSim opens in its starting state and nothing moves until you act.</p>
+<ul>
+<li><strong>Start the 6 cases / Back to explore</strong>: Switch between walking a tree and the quiz.</li>
+<li><strong>Cause A, B, C, D</strong>: Choose the likely cause. One attempt per case.</li>
+<li><strong>Next case / See score</strong>: Move on after the feedback.</li>
+<li><strong>Symptom menu, Yes, No, Restart tree</strong>: Explore only: walk one tree by answering its questions.</li>
+</ul>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases.</p>
+<p><strong>Bloom's Taxonomy level:</strong> Analyze (differentiate)</p>
+<h3 id="audience-and-duration">Audience and Duration<a class="headerlink" href="#audience-and-duration" title="Permanent link">&para;</a></h3>
+<p>High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>flat line, backlight, sample rate, frame overrun, wire swap (all defined in the sections of this chapter above this block and in Chapters 4 and 8); the three diagnosis tables in this chapter, whose rows are named M1 to M6, A1 to A7, and D1 to D8.</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Exploration (5 min):</strong> Walk the blank-display tree for a screen that is lit but speckled, then for one that is completely dark.</li>
+<li><strong>Guided practice (5 min):</strong> For case 2, underline the detail in the report that rules out each of the other three candidates.</li>
+<li><strong>Assessment (5 min):</strong> Complete all six cases. Mastery is 5 of 6 correct on the first attempt.</li>
+</ol>
+<h3 id="common-misconceptions-addressed">Common Misconceptions Addressed<a class="headerlink" href="#common-misconceptions-addressed" title="Permanent link">&para;</a></h3>
+<p>(1) Any failure of the microphone means the microphone is broken. (2) A program that runs without an error has no wiring fault. (3) A dark screen is always a software bug. (4) The answer to a distorted sound is always to lower the volume.</p>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Does a silent microphone always mean a broken microphone?</li>
+<li>Can a program that runs with no error still have a wiring fault?</li>
+<li>Why does each tree ask "Is it completely dark?" before anything else?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<details>
+<summary>Full specification from Chapter 18</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** diagnosis-decision-tree-trainer&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Bloom Level:** Analyze&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Verb:** differentiate&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Learning Objective:** The learner will differentiate the likely cause of each of 6 reported kit failures from three other causes in the same decision tree, choosing the correct cause for at least 5 of 6 cases.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>**Prerequisites:** flat line, backlight, sample rate, frame overrun, wire swap (all defined in the sections of this chapter above this block and in Chapters 4 and 8); the three diagnosis tables in this chapter, whose rows are named M1 to M6, A1 to A7, and D1 to D8.
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>**Evidence of Mastery:** For each of the 6 cases the learner reads the reported symptoms and chooses one of 4 candidate causes before the decision tree is shown. A choice is correct when it equals the Correct row in Content. Mastery is 5 of 6 correct on the first attempt. Walking the tree by answering its questions in exploration is not evidence.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>**Misconceptions:** (1) Any failure of the microphone means the microphone is broken. (2) A program that runs without an error has no wiring fault. (3) A dark screen is always a software bug. (4) The answer to a distorted sound is always to lower the volume.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>**Instructional Rationale:** Differentiating at the Analyze level means telling apart causes that produce similar symptoms. Asking the learner to commit to a cause from four candidates, and only then showing the tree that leads to it, makes the learner use the symptom details that separate the candidates.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>**Content:**
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>The sim has three trees, one per symptom: silent microphone (rows M1 to M6), distorted audio (rows A1 to A7), and blank display (rows D1 to D8). A tree is a list of rows. Each row asks a yes-or-no question; yes ends the walk at that row's cause, and no goes to the next row of the same tree. The last row of each tree (M6, A7, D8) has no question and is reached when every earlier answer is no. The rows, with their questions, causes, quick tests, and fixes, are the rows of the three tables in the chapter section "Diagnosing the Three Classic Failures". The questions, in order:
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>| Row | Question |
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>|---|---|
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>| M1 | An error at start, and it says "must be sck+1"? |
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>| M2 | An error at start, with another message? |
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| M3 | No error, but the spread is 0, a flat line? |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| M4 | The loudness barely changes when you talk next to it? |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| M5 | The meter is pinned at the top? |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>| A1 | Is the speaker silent, not distorted? |
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>| A2 | Does it crackle only when loud? |
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>| A3 | Is the pitch wrong? |
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>| A4 | Does it stutter or have gaps? |
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>| A5 | Is the start clicky, or the end cut off? |
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>| A6 | Is there hiss or buzz even when nothing plays? |
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>| D1 | Is the screen completely dark, with no light? |
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>| D2 | Did the program stop with an error before drawing? |
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>| D3 | Is it lit but only black or random noise? |
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>| D4 | Is the picture speckled or torn? |
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>| D5 | Is part of what you drew missing? |
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>| D6 | Is the picture rotated or mirrored? |
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>| D7 | Are old letters left over, or is the picture sheared or striped? |
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>The 6 cases, in this order. Each case lists the 3 other candidate causes, which are rows of the same tree.
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>| # | Reported symptoms | Correct row | Three other candidates (rows) |
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>|---|---|---|---|
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>| 1 | "The microphone test stops at once with: invalid ws (must be sck+1)." | M1 | M3, M4, M5 |
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>| 2 | "No error. The probe says every sample is 12345 and the spread is 0." | M3 | M1, M4, M6 |
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>| 3 | "The screen is completely dark. The program runs and prints no errors." | D1 | D2, D3, D4 |
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>| 4 | "The screen is lit and shows the right picture, but it is speckled, on long wires." | D4 | D3, D5, D7 |
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>| 5 | "A recording I made plays back higher and faster than I spoke." | A3 | A2, A4, A6 |
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>| 6 | "The sound stutters. The overrun counter reports many passes longer than 40 ms." | A4 | A1, A3, A5 |
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>**Provenance:** The causes and tests come from the kit README, the headers of kit tests 05 and 07, `config.py`, and Chapters 2 to 8, as cited in the `source` field of `src/chapters/18-testing-integration-capstones/tools/diagnose.py`. The six cases are illustrative, and the sim labels them "illustrative".
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>**Rules:** Each case has exactly one correct row. A tree question is answered only yes or no. The candidate order is shuffled for each learner, with a fixed seed per case.
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>**Learner Activity:**
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>1. The learner explores one tree: picks a symptom, answers its questions, and reads the cause, test, and fix at the end.
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>2. The learner starts the 6 cases. Case 1 shows its symptoms and the four candidate causes.
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>3. The learner chooses a cause and submits.
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>4. The sim shows the correct cause, then walks the tree for that case, highlighting the questions answered and the cause reached, with the quick test and the fix.
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>5. After case 6, the sim shows the score. The learner should notice that the cheap early questions rule out whole branches.
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>**Feedback:** 6 cases, fixed order, one attempt each. Correct: "Correct: &lt;cause text&gt;". Incorrect: "Not quite. The likely cause is &lt;correct cause text&gt;: look at &lt;the symptom detail that separates it from the chosen cause&gt;". The correct cause is revealed right after each submission, and a running score "n of 6" is shown.
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>**Starting State:** The three symptom names are shown with the question "Which one are you diagnosing?" and no tree open.
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>**Chapter Anchors:** The chapter names three failures (silent microphone, distorted audio, blank display); states that the microphone tree has rows M1 to M6, the audio tree A1 to A7, and the display tree D1 to D8; that a swapped microphone starts with no error and sends zeros; that the sck+1 rule applies to the microphone and the amplifier; and that BAUDRATE 12,000,000 is the fix for speckle.
+</span></code></pre></div>
+</details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Troubleshooting">Troubleshooting</a> - Wikipedia - Systematic diagnosis, cheapest check first.</li>
+<li><a href="https://en.wikipedia.org/wiki/Decision_tree">Decision tree</a> - Wikipedia - Yes/no questions that lead to a decision.</li>
+<li><a href="https://docs.micropython.org/en/latest/library/machine.I2S.html">machine.I2S</a> - MicroPython documentation - The pin rules behind the sck+1 error.</li>
+</ol>
 <h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/18-testing-integration-capstones/">Chapter 18: Testing, Integration, and Capstone Projects</a></li>

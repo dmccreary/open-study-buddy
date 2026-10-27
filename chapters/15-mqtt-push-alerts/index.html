@@ -1102,6 +1102,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -1119,7 +1127,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1276,6 +1284,26 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1951,6 +1979,8 @@ Before you debug any device code, run <code>server/watch.py</code> on your compu
 <p>The filters are S1 <code>school/crhs/alert</code>, S2 <code>school/crhs/class/214/alert</code>, S3 <code>school/crhs/class/+/alert</code>, S4 <code>school/crhs/device/+/status</code>, S5 <code>school/crhs/#</code>, S6 <code>school/+/alert</code>, and S7 <code>#</code>. The matcher is one short function of plain Python in <code>topics.py</code>. It passes the examples in the MQTT specification, and on a computer with paho-mqtt installed, <code>server/test_topics.py</code> also compares it with paho's own matcher on 4,095 filter and topic pairs (every valid filter of up to three levels built from <code>a</code>, <code>b</code>, <code>$x</code>, <code>+</code>, and <code>#</code>, against every topic of up to three levels built from <code>a</code>, <code>b</code>, and <code>$x</code>). They agreed on all of them.</p>
 <p>Now try the rules yourself, and then check them against the table.</p>
 <h4 id="diagram-mqtt-topic-router">Diagram: MQTT Topic Router<a class="headerlink" href="#diagram-mqtt-topic-router" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/mqtt-topic-router/main.html" width="100%" height="562px" scrolling="no"></iframe>
+<p><a href="../../sims/mqtt-topic-router/main.html">Run MQTT Topic Router Fullscreen</a></p>
 <details>
 <summary>MQTT Topic Router</summary>
 <p>Type: microsim
@@ -2201,6 +2231,8 @@ The <code>listener</code> line is one lock, and a firewall on the Pi is a second
 "At least once" and "at most once" are easy to mix up, and most people need to see the packets move to keep them straight. Step through the handshake below, predicting the answer each time, and the pattern will stick.</p>
 </div>
 <h4 id="diagram-qos-handshake-stepper">Diagram: QoS Handshake Stepper<a class="headerlink" href="#diagram-qos-handshake-stepper" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/mqtt-qos-handshake-stepper/main.html" width="100%" height="552px" scrolling="no"></iframe>
+<p><a href="../../sims/mqtt-qos-handshake-stepper/main.html">Run QoS Handshake Stepper Fullscreen</a></p>
 <details>
 <summary>QoS Handshake Stepper</summary>
 <p>Type: microsim

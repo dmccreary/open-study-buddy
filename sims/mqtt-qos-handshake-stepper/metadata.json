@@ -1,23 +1,108 @@
 {
   "title": "QoS Handshake Stepper",
-  "description": "The learner will infer, for 6 scenarios of a publisher sending one alert to a broker, how many copies of the alert the broker processes, with at least 5 of the 6 inferences right.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "MQTT offers three delivery promises. QoS 0 sends a PUBLISH once and never repeats it. QoS 1 repeats the PUBLISH until a PUBACK comes back, so the broker may process a repeat. QoS 2 uses a four-packet handshake (PUBLISH, PUBREC, PUBREL, PUBCOMP) so the broker processes each packet number exactly once.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "MQTT and Push Alerts",
+    "QoS 0",
+    "QoS 1",
+    "QoS 2",
+    "PUBACK",
+    "Duplicate"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "mqtt-qos-handshake-stepper",
-  "library": "p5.js",
-  "bloomLevel": "Understand",
-  "bloomVerb": "infer",
-  "completion_status": "scaffold",
-  "chapter_number": 15,
-  "chapter_title": "MQTT and Push Alerts",
-  "chapter_dir": "15-mqtt-push-alerts",
-  "chapter_rel_dir": "chapters/15-mqtt-push-alerts"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/mqtt-qos-handshake-stepper/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 550,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "QoS Handshake Stepper",
+    "learningObjectives": [
+      "The learner will infer, for 6 scenarios of a publisher sending one alert to a broker, how many copies of the alert the broker processes, with at least 5 of the 6 inferences right."
+    ],
+    "bloomsTaxonomy": "Understand",
+    "bloomVerb": "infer",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "publisher, broker, QoS 0, QoS 1, QoS 2, PUBLISH, PUBACK, PUBREC, PUBREL, PUBCOMP, duplicate (all defined in the section \"Delivery Promises\" above this block)."
+    ],
+    "concepts": [
+      "QoS 0",
+      "QoS 1",
+      "QoS 2",
+      "PUBACK",
+      "Duplicate"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 550
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 6 scenarios / Back to explore",
+        "purpose": "Switch between exploring and the quiz."
+      },
+      {
+        "name": "Copies processed menu and Submit",
+        "purpose": "Choose 0, 1 or 2. One attempt per scenario."
+      },
+      {
+        "name": "Next scenario / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "QoS menu, Step, Back to start",
+        "purpose": "Choose the QoS level (explore only) and step through the packets."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Does QoS 1 guarantee exactly one copy?",
+      "Does a lost acknowledgement mean the message was lost?",
+      "Why do alerts carry an id?"
+    ],
+    "commonMisconceptions": [
+      "(1) QoS 0 retries until the message gets through. (2) QoS 1 guarantees exactly one copy. (3) A lost acknowledgement means the message was lost. (4) QoS 2 never sends a packet twice."
+    ],
+    "assessmentOpportunities": [
+      "Complete all six scenarios. Mastery is 5 of 6 correct on the first attempt."
+    ]
+  },
+  "chapter": "15-mqtt-push-alerts",
+  "chapter_number": 15
 }

@@ -1072,6 +1072,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -1089,7 +1097,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1246,6 +1254,26 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1918,6 +1946,8 @@ Tape a ruler mark to your desk at the distance you will normally speak from, suc
 </table>
 <p>The single threshold flips 12 times. The gate flips twice, once to open at frame 1 and once to close at frame 16, when the level finally drops below 14.5. That is the whole point of hysteresis. <code>05-gate-meter.py</code> shows the same thing live: it draws the level bar with marks for the floor, the open level, and the close level, prints "OPEN" or "closed" under it, and after 30 seconds prints how many times the gate flipped against how many times a single threshold would have. Write both counts down. Hysteresis does not remove isolated spikes that rise above the open level and fall right back to the floor, and a trace in the explorer below shows exactly that, which is the job of the frame counts in voice activity detection later in this chapter.</p>
 <h4 id="diagram-level-gate-hysteresis-explorer">Diagram: Level Gate Hysteresis Explorer<a class="headerlink" href="#diagram-level-gate-hysteresis-explorer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/level-gate-hysteresis-explorer/main.html" width="100%" height="587px" scrolling="no"></iframe>
+<p><a href="../../sims/level-gate-hysteresis-explorer/main.html">Run Level Gate Hysteresis Explorer Fullscreen</a></p>
 <details>
 <summary>Level Gate Hysteresis Explorer</summary>
 <p>Type: microsim
@@ -2386,6 +2416,8 @@ Four states and two counters can look like a lot at first. You already built a s
 </div>
 <p>Use the boundary finder to check your reading of the rules.</p>
 <h4 id="diagram-vad-boundary-finder">Diagram: VAD Boundary Finder<a class="headerlink" href="#diagram-vad-boundary-finder" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/vad-boundary-finder/main.html" width="100%" height="637px" scrolling="no"></iframe>
+<p><a href="../../sims/vad-boundary-finder/main.html">Run VAD Boundary Finder Fullscreen</a></p>
 <details>
 <summary>VAD Boundary Finder</summary>
 <p>Type: microsim

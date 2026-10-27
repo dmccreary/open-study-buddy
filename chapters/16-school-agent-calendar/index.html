@@ -1072,6 +1072,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -1089,7 +1097,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1246,6 +1254,26 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1940,6 +1968,8 @@ By the end of this chapter your device will greet students by your school's name
 <p>Two completely different readers produced identical events: the same ids, titles, categories, dates, UTC times, locations, and courses for all 92. That is the strongest evidence the book can offer that the parser is right <em>for this feed</em>. It is not evidence about feeds from other programs, which is why <code>check_config.py</code> prints the parser's warnings every time.</p>
 <p>Step through the parser yourself on a small feed before you trust it.</p>
 <h4 id="diagram-ics-line-parser-stepper">Diagram: ICS Line Parser Stepper<a class="headerlink" href="#diagram-ics-line-parser-stepper" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/ics-line-parser-stepper/main.html" width="100%" height="602px" scrolling="no"></iframe>
+<p><a href="../../sims/ics-line-parser-stepper/main.html">Run ICS Line Parser Stepper Fullscreen</a></p>
 <details>
 <summary>ICS Line Parser Stepper</summary>
 <p>Type: microsim
@@ -2198,6 +2228,8 @@ Notice the pattern in this chapter: messy, varied inputs get converted at the ed
 <p>The same care applies to the word "today". A server computer is often set to UTC. At 2:30 AM UTC on October 20 it is still the evening of October 19 in Chicago, and a briefing built on the server's own date would announce the wrong day. Every query in this chapter therefore takes a <code>now</code> that is already converted to the school's zone, and <code>today</code> means the school's today.</p>
 <p>Try the conversions yourself, including the two awkward hours.</p>
 <h4 id="diagram-time-zone-and-utc-converter">Diagram: Time Zone and UTC Converter<a class="headerlink" href="#diagram-time-zone-and-utc-converter" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/school-time-utc-converter/main.html" width="100%" height="597px" scrolling="no"></iframe>
+<p><a href="../../sims/school-time-utc-converter/main.html">Run Time Zone and UTC Converter Fullscreen</a></p>
 <details>
 <summary>Time Zone and UTC Converter</summary>
 <p>Type: microsim
@@ -2408,6 +2440,8 @@ Run <code>push_daily.py --now 2026-10-19T07:30</code> with no <code>--send</code
 </div>
 <p>Now apply the briefing rules to a day.</p>
 <h4 id="diagram-daily-briefing-composer">Diagram: Daily Briefing Composer<a class="headerlink" href="#diagram-daily-briefing-composer" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/daily-briefing-composer/main.html" width="100%" height="637px" scrolling="no"></iframe>
+<p><a href="../../sims/daily-briefing-composer/main.html">Run Daily Briefing Composer Fullscreen</a></p>
 <details>
 <summary>Daily Briefing Composer</summary>
 <p>Type: microsim

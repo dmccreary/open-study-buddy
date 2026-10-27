@@ -1,23 +1,110 @@
 {
   "title": "Daily Briefing Composer",
-  "description": "The learner will apply the daily briefing rules to 8 Cedar Ridge events on the morning of Monday, October 19, 2026, by sorting each into the part of the briefing it appears in or \"Not mentioned,\" with at least 7 of the 8 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "Each school morning the agent speaks a short briefing: today's events, the next test within the window, and the work due soon, then a mascot line. Most of the calendar is left out on purpose: sports and academic events are mentioned only on their own day, and nothing outside the upcoming_days window is read.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Configuring the School Agent and Calendar",
+    "Daily Briefing",
+    "Event Category",
+    "Next Test",
+    "Due Soon",
+    "upcoming_days",
+    "max_items"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "daily-briefing-composer",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "apply",
-  "completion_status": "scaffold",
-  "chapter_number": 16,
-  "chapter_title": "Configuring the School Agent and Calendar",
-  "chapter_dir": "16-school-agent-calendar",
-  "chapter_rel_dir": "chapters/16-school-agent-calendar"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/daily-briefing-composer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 635,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Daily Briefing Composer",
+    "learningObjectives": [
+      "The learner will apply the daily briefing rules to 8 Cedar Ridge events on the morning of Monday, October 19, 2026, by sorting each into the part of the briefing it appears in or \"Not mentioned,\" with at least 7 of the 8 correct."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "apply",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "daily briefing, event category, today's events, next test, due soon, upcoming_days, max_items (all defined in the section \"The Daily Briefing and Reminders\" above this block)."
+    ],
+    "concepts": [
+      "Daily Briefing",
+      "Event Category",
+      "Next Test",
+      "Due Soon",
+      "upcoming_days",
+      "max_items"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 635
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 8 events / Back to explore",
+        "purpose": "Switch between exploring and the quiz."
+      },
+      {
+        "name": "Place menu and Submit",
+        "purpose": "Choose Today, Next test, Due soon or Not mentioned. One attempt per event."
+      },
+      {
+        "name": "Next event / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Briefing date, max_items, upcoming_days",
+        "purpose": "Explore only: any day of the 2026-2027 school year; 1 to 5 items; 1 to 14 days."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Does the briefing list every upcoming event?",
+      "Where does a test on the same day go?",
+      "Why is a test tomorrow mentioned when a football game in 4 days is not?"
+    ],
+    "commonMisconceptions": [
+      "(1) The briefing lists every upcoming event. (2) A test on the same day goes under \"Next test.\" (3) A due date 10 days away is \"due soon.\" (4) A test tomorrow is not mentioned because it is not today."
+    ],
+    "assessmentOpportunities": [
+      "Complete all eight events. Mastery is 7 of 8 correct on the first attempt."
+    ]
+  },
+  "chapter": "16-school-agent-calendar",
+  "chapter_number": 16
 }

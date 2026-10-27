@@ -1,23 +1,106 @@
 {
   "title": "Level Gate Hysteresis Explorer",
-  "description": "The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "A level gate decides frame by frame whether the microphone hears speech. A single threshold opens at 15.0 bits and closes the moment the level dips back under it, so a voice that wobbles around the line makes the gate flutter. A hysteresis gate opens at the open level but closes only below a lower close level, so small dips inside a phrase do not close it.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Microphone Calibration and Push-to-Talk",
+    "Loudness in Bits",
+    "Level Gate",
+    "Hysteresis",
+    "Speech Floor Gate"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "level-gate-hysteresis-explorer",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "calculate",
-  "completion_status": "scaffold",
-  "chapter_number": 11,
-  "chapter_title": "Microphone Calibration and Push-to-Talk",
-  "chapter_dir": "11-mic-calibration-push-to-talk",
-  "chapter_rel_dir": "chapters/11-mic-calibration-push-to-talk"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/level-gate-hysteresis-explorer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 585,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Level Gate Hysteresis Explorer",
+    "learningObjectives": [
+      "The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "loudness in bits, frame, speech floor gate, level gate, hysteresis (all defined in this chapter above the block)."
+    ],
+    "concepts": [
+      "Loudness in Bits",
+      "Level Gate",
+      "Hysteresis",
+      "Speech Floor Gate"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 585
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 3 challenges / Back to explore",
+        "purpose": "Switch between exploring and the quiz."
+      },
+      {
+        "name": "Single changes and Hysteresis changes boxes, Submit",
+        "purpose": "Type both counts and submit. One attempt per challenge, two answers each."
+      },
+      {
+        "name": "Next challenge / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Trace menu, Open and Close sliders",
+        "purpose": "Explore only: traces A to C; open 13.0 to 18.0 bits and close 12.0 to 18.0 bits in steps of 0.1 (close is kept at or below open)."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Does hysteresis make the gate less sensitive to speech? What does it change?",
+      "Why did hysteresis not help in challenge 3?",
+      "Why does the gate open with >= and close with < ?"
+    ],
+    "commonMisconceptions": [
+      "(1) Hysteresis makes a gate less sensitive to speech. (2) Hysteresis removes every false opening. (3) The gate closes at the same level that it opens at."
+    ],
+    "assessmentOpportunities": [
+      "Complete all three challenges. Mastery is 5 of the 6 counts correct on the first attempt."
+    ]
+  },
+  "chapter": "11-mic-calibration-push-to-talk",
+  "chapter_number": 11
 }

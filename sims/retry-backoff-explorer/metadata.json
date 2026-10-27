@@ -1,23 +1,110 @@
 {
   "title": "Retry and Backoff Timeline Explorer",
-  "description": "The learner will calculate the longest time a request can take under 8 retry settings, to within 0.05 s, with at least 7 of 8 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "When the network fails, the Pico retries with exponential backoff: each wait ceiling doubles from a base until it reaches a cap, and there is no wait after the last attempt. The worst case, every attempt timing out and every wait taking its full ceiling, is N x T plus the sum of the N - 1 ceilings. With full jitter each real wait is a random number up to its ceiling, so a jittered run is never longer than the worst case.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Streaming Speech, Security, and Network Resilience",
+    "Timeout",
+    "Retry",
+    "Exponential Backoff",
+    "Jitter"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "retry-backoff-explorer",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "calculate",
-  "completion_status": "scaffold",
-  "chapter_number": 14,
-  "chapter_title": "Streaming Speech, Security, and Network Resilience",
-  "chapter_dir": "14-streaming-security-resilience",
-  "chapter_rel_dir": "chapters/14-streaming-security-resilience"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/retry-backoff-explorer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 575,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Retry and Backoff Timeline Explorer",
+    "learningObjectives": [
+      "The learner will calculate the longest time a request can take under 8 retry settings, to within 0.05 s, with at least 7 of 8 correct."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "timeout, retry, exponential backoff, ceiling, attempt (all defined in this chapter above this block)."
+    ],
+    "concepts": [
+      "Timeout",
+      "Retry",
+      "Exponential Backoff",
+      "Jitter"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 575
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 8 settings / Back to explore",
+        "purpose": "Switch between the sliders and the quiz."
+      },
+      {
+        "name": "Seconds box and Submit",
+        "purpose": "Type the worst-case total; within 0.05 s counts. One attempt per setting."
+      },
+      {
+        "name": "Next setting / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "One random run",
+        "purpose": "Draw one jittered run below the worst case (a new run each time it is turned on)."
+      },
+      {
+        "name": "Base, Cap, Attempts N, Timeout T sliders",
+        "purpose": "Explore only: base 100 to 1,000 ms, cap 800 to 8,000 ms, N 1 to 7, T 1 to 8 s."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Does the wait keep doubling for ever?",
+      "Why is there no wait after the last attempt?",
+      "Can jitter make the worst case longer?"
+    ],
+    "commonMisconceptions": [
+      "(1) The wait doubles for ever. (2) The last attempt is followed by a wait. (3) Jitter makes the worst case longer. (4) The waits are the only time a retry costs."
+    ],
+    "assessmentOpportunities": [
+      "Complete all eight settings. Mastery is 7 of 8 correct on the first attempt."
+    ]
+  },
+  "chapter": "14-streaming-security-resilience",
+  "chapter_number": 14
 }

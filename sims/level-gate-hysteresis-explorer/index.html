@@ -63,7 +63,9 @@
     
     
     
-  </head>
+    <meta property="og:image" content="https://dmccreary.github.io/open-study-buddy/sims/level-gate-hysteresis-explorer/level-gate-hysteresis-explorer.png">
+  <meta name="twitter:image" content="https://dmccreary.github.io/open-study-buddy/sims/level-gate-hysteresis-explorer/level-gate-hysteresis-explorer.png">
+</head>
   
   
     
@@ -439,6 +441,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -456,7 +466,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1219,7 +1229,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1260,7 +1270,7 @@
     
   
   
-    <span class="md-status md-status--scaffold" title="Scaffold — placeholder, not yet implemented">
+    <span class="md-status md-status--built" title="Built — implementation complete, awaiting review">
     </span>
   
 
@@ -1648,6 +1658,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../license/" class="md-nav__link">
         
   
@@ -1708,9 +1738,123 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embed This MicroSim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lesson Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audience-and-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audience and Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-misconceptions-addressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Misconceptions Addressed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discussion-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion Questions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assessment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#specification" class="md-nav__link">
     <span class="md-ellipsis">
       Specification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
     </span>
   </a>
   
@@ -1749,79 +1893,125 @@
 
 
 <h1 id="level-gate-hysteresis-explorer">Level Gate Hysteresis Explorer<a class="headerlink" href="#level-gate-hysteresis-explorer" title="Permanent link">&para;</a></h1>
-<iframe src="main.html" width="100%" height="600"></iframe>
+<iframe src="main.html" width="100%" height="587px" scrolling="no"></iframe>
 
-<p><a class="md-button md-button--primary" href="main.html">Run MicroSim in Fullscreen</a></p>
-<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
-<p>The full specification below is extracted from
-<a href="../../chapters/11-mic-calibration-push-to-talk/">Chapter 11: Microphone Calibration and Push-to-Talk</a>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Type: microsim
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>**sim-id:** level-gate-hysteresis-explorer&lt;br/&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**Library:** p5.js&lt;br/&gt;
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>**Status:** Specified&lt;br/&gt;
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>**Bloom Level:** Apply&lt;br/&gt;
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>**Bloom Verb:** calculate&lt;br/&gt;
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>**Learning Objective:** The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers.
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>**Prerequisites:** loudness in bits, frame, speech floor gate, level gate, hysteresis (all defined in this chapter above the block).
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>**Evidence of Mastery:** For each of the 3 challenge traces, the learner types two whole numbers before the sim reveals them: the number of state changes of the single-threshold gate, and the number of state changes of the hysteresis gate. A state change is any frame whose open/closed state differs from the frame before it (the state before frame 0 counts as closed). An answer is correct when it equals the value in the Content table. Mastery is 5 of 6 answers correct on the first attempt. Moving the threshold controls in exploration is exploration, not evidence.
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>**Misconceptions:** (1) Hysteresis makes a gate less sensitive to speech. (2) Hysteresis removes every false opening. (3) The gate closes at the same level that it opens at.
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>**Instructional Rationale:** Apply-level calculation needs a procedure the learner can run and check, so the learner traces the two gates frame by frame in their head, commits two counts, and only then sees the sim's trace. Challenge 3 is built so that hysteresis does not help, which exposes misconception 2.
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>**Content:**
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>The sim shows one loudness trace of 20 frames at a time, as a line of bits against frame number, with the open level and the close level drawn as two horizontal lines. Loudness values are in bits. All 3 traces are synthetic and the sim labels them "synthetic".
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>| Frame | Trace A | Trace B | Trace C |
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>|-------|---------|---------|---------|
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>| 0 | 14.8 | 13.0 | 13.0 |
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>| 1 | 15.1 | 13.1 | 13.4 |
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>| 2 | 14.9 | 15.6 | 14.2 |
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>| 3 | 15.2 | 16.8 | 13.6 |
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>| 4 | 14.7 | 17.2 | 14.9 |
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>| 5 | 15.0 | 14.8 | 13.2 |
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>| 6 | 14.9 | 16.9 | 15.1 |
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>| 7 | 15.3 | 17.4 | 13.3 |
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>| 8 | 14.6 | 15.2 | 14.7 |
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>| 9 | 15.1 | 14.6 | 13.1 |
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>| 10 | 15.4 | 16.5 | 14.4 |
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>| 11 | 15.6 | 17.0 | 13.2 |
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>| 12 | 15.2 | 16.2 | 14.8 |
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>| 13 | 14.9 | 14.4 | 13.0 |
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>| 14 | 15.1 | 13.2 | 13.3 |
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>| 15 | 14.8 | 13.0 | 13.1 |
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>| 16 | 14.2 | 13.1 | 13.0 |
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>| 17 | 13.4 | 12.9 | 13.2 |
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>| 18 | 13.2 | 13.0 | 13.1 |
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>| 19 | 13.5 | 13.1 | 13.0 |
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>| # | Trace | Open level | Close level | Single-threshold changes | Hysteresis changes | Why (shown as feedback) |
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>|---|-------|------------|-------------|--------------------------|--------------------|-------------------------|
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>| 1 | A | 15.0 | 14.5 | 12 | 2 | The level crosses 15.0 twelve times, but it never falls below 14.5 until frame 16, so the gate opens at frame 1 and closes at frame 16. |
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>| 2 | B | 15.0 | 14.5 | 6 | 2 | Dips to 14.8 and 14.6 inside the phrase flip the single threshold, but they stay above 14.5. The gate opens at frame 2 and closes at frame 13, when 14.4 is below 14.5. |
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>| 3 | C | 14.5 | 14.0 | 8 | 8 | Each spike (14.9, 15.1, 14.7, 14.8) rises over 14.5 and then falls to 13.6 or lower, below the close level, so both gates open and close four times. Hysteresis helps only with wobble near the line. |
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>**Provenance:** Trace A is the wobble trace in `09-calibration-selftest.py` and the chapter table above. Traces B and C are synthetic, written for this sim. The change counts were computed with `levels.LevelGate` in `src/chapters/11-mic-calibration-push-to-talk/levels.py`.
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>**Rules:** The single-threshold gate is open when bits &gt;= open level. The hysteresis gate starts closed, opens when bits &gt;= open level, and closes when bits &lt; close level. Exploration range for the open level: 13.0 to 18.0 bits, step 0.1, default 15.0. For the close level: 12.0 to 18.0 bits, step 0.1, default 14.5, and never above the open level. A change in the open level moves the close level down if needed to keep close &lt;= open. The 3 challenge settings in the table override the controls.
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>**Learner Activity:**
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>1. The learner chooses a trace and moves the open and close levels. The sim shades the frames where each gate is open and shows both change counts. The learner should notice that raising the close level toward the open level makes the hysteresis gate behave like the single threshold.
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>2. The learner starts the 3 challenges. For challenge 1 the sim shows trace A and the two levels but hides both gates.
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>3. The learner types the two counts and submits.
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>4. The sim shades both gates, shows the counts, and shows the Why text.
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>5. After challenge 3, the sim shows the score and the learner should notice that a spike that falls all the way back to the floor flips both gates.
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>**Feedback:** 3 challenges, fixed order, one attempt each, 2 answers per challenge, 6 answers in all. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The counts are &lt;single&gt; and &lt;hysteresis&gt;: &lt;Why&gt;". The counts are revealed right after each submission, and a running score "n of 6" is shown.
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>**Starting State:** Trace A is shown with the open level at 15.0 and the close level at 14.5, both gates shaded, and the question "Which gate flutters?"
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>**Chapter Anchors:** The chapter states that the single threshold flips 12 times and the gate flips twice on trace A (open at frame 1, close at frame 16), that the gate opens with `&gt;=` and closes with `&lt;`, and that hysteresis does not remove spikes that fall back to the floor.
+<p><a class="md-button md-button--primary" href="main.html">Run the Level Gate Hysteresis Explorer MicroSim Fullscreen</a></p>
+<h2 id="embed-this-microsim">Embed This MicroSim<a class="headerlink" href="#embed-this-microsim" title="Permanent link">&para;</a></h2>
+<p>Place the following line in your website to include this MicroSim:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://dmccreary.github.io/open-study-buddy/sims/level-gate-hysteresis-explorer/main.html"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"587px"</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">"no"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </span></code></pre></div>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
+<p>A level gate decides frame by frame whether the microphone hears speech. A single threshold opens at 15.0 bits and closes the moment the level dips back under it, so a voice that wobbles around the line makes the gate flutter. A hysteresis gate opens at the open level but closes only below a lower close level, so small dips inside a phrase do not close it.</p>
+<p>The plot shows a 20-frame loudness trace with the open and close levels as dashed lines. Below it, one row of cells shows when the single-threshold gate is open and another shows the hysteresis gate, with each state change marked and counted. In explore mode you pick a trace and move both levels. In the quiz you count the state changes of both gates on three traces before the rows are revealed. The traces are synthetic; trace A is the wobble trace from <code>09-calibration-selftest.py</code>.</p>
+<h2 id="how-to-use">How to Use<a class="headerlink" href="#how-to-use" title="Permanent link">&para;</a></h2>
+<p>The MicroSim opens in its starting state and nothing moves until you act.</p>
+<ul>
+<li><strong>Start the 3 challenges / Back to explore</strong>: Switch between exploring and the quiz.</li>
+<li><strong>Single changes and Hysteresis changes boxes, Submit</strong>: Type both counts and submit. One attempt per challenge, two answers each.</li>
+<li><strong>Next challenge / See score</strong>: Move on after the feedback.</li>
+<li><strong>Trace menu, Open and Close sliders</strong>: Explore only: traces A to C; open 13.0 to 18.0 bits and close 12.0 to 18.0 bits in steps of 0.1 (close is kept at or below open).</li>
+</ul>
+<h2 id="lesson-plan">Lesson Plan<a class="headerlink" href="#lesson-plan" title="Permanent link">&para;</a></h2>
+<h3 id="learning-objective">Learning Objective<a class="headerlink" href="#learning-objective" title="Permanent link">&para;</a></h3>
+<p>The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers.</p>
+<p><strong>Bloom's Taxonomy level:</strong> Apply (calculate)</p>
+<h3 id="audience-and-duration">Audience and Duration<a class="headerlink" href="#audience-and-duration" title="Permanent link">&para;</a></h3>
+<p>High school students (grades 9-12) building the Open Study Buddy; about 15 minutes.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>loudness in bits, frame, speech floor gate, level gate, hysteresis (all defined in this chapter above the block).</p>
+<h3 id="activities">Activities<a class="headerlink" href="#activities" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Exploration (5 min):</strong> On trace A, raise the close level until it equals the open level and watch the hysteresis row become the single-threshold row.</li>
+<li><strong>Guided practice (5 min):</strong> For challenge 1, write each frame's state for both gates in two rows on paper before counting the changes.</li>
+<li><strong>Assessment (5 min):</strong> Complete all three challenges. Mastery is 5 of the 6 counts correct on the first attempt.</li>
+</ol>
+<h3 id="common-misconceptions-addressed">Common Misconceptions Addressed<a class="headerlink" href="#common-misconceptions-addressed" title="Permanent link">&para;</a></h3>
+<p>(1) Hysteresis makes a gate less sensitive to speech. (2) Hysteresis removes every false opening. (3) The gate closes at the same level that it opens at.</p>
+<h3 id="discussion-questions">Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Does hysteresis make the gate less sensitive to speech? What does it change?</li>
+<li>Why did hysteresis not help in challenge 3?</li>
+<li>Why does the gate open with &gt;= and close with &lt; ?</li>
+</ol>
+<h3 id="assessment">Assessment<a class="headerlink" href="#assessment" title="Permanent link">&para;</a></h3>
+<p>The quiz inside the MicroSim is the evidence of mastery: each item is scored on the first attempt only, the correct answer and its reason are shown after every submission, and the final screen reports the score against the mastery threshold.</p>
+<h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
+<details>
+<summary>Full specification from Chapter 11</summary>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Type: microsim
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>**sim-id:** level-gate-hysteresis-explorer&lt;br/&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>**Library:** p5.js&lt;br/&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>**Status:** Specified&lt;br/&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>**Bloom Level:** Apply&lt;br/&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>**Bloom Verb:** calculate&lt;br/&gt;
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>**Learning Objective:** The learner will calculate how many times a single-threshold gate and a hysteresis gate change state on 3 loudness traces, matching the correct counts in 5 of 6 answers.
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>**Prerequisites:** loudness in bits, frame, speech floor gate, level gate, hysteresis (all defined in this chapter above the block).
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>**Evidence of Mastery:** For each of the 3 challenge traces, the learner types two whole numbers before the sim reveals them: the number of state changes of the single-threshold gate, and the number of state changes of the hysteresis gate. A state change is any frame whose open/closed state differs from the frame before it (the state before frame 0 counts as closed). An answer is correct when it equals the value in the Content table. Mastery is 5 of 6 answers correct on the first attempt. Moving the threshold controls in exploration is exploration, not evidence.
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>**Misconceptions:** (1) Hysteresis makes a gate less sensitive to speech. (2) Hysteresis removes every false opening. (3) The gate closes at the same level that it opens at.
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>**Instructional Rationale:** Apply-level calculation needs a procedure the learner can run and check, so the learner traces the two gates frame by frame in their head, commits two counts, and only then sees the sim's trace. Challenge 3 is built so that hysteresis does not help, which exposes misconception 2.
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>**Content:**
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>The sim shows one loudness trace of 20 frames at a time, as a line of bits against frame number, with the open level and the close level drawn as two horizontal lines. Loudness values are in bits. All 3 traces are synthetic and the sim labels them "synthetic".
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>| Frame | Trace A | Trace B | Trace C |
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>|-------|---------|---------|---------|
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>| 0 | 14.8 | 13.0 | 13.0 |
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>| 1 | 15.1 | 13.1 | 13.4 |
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>| 2 | 14.9 | 15.6 | 14.2 |
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>| 3 | 15.2 | 16.8 | 13.6 |
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>| 4 | 14.7 | 17.2 | 14.9 |
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>| 5 | 15.0 | 14.8 | 13.2 |
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>| 6 | 14.9 | 16.9 | 15.1 |
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>| 7 | 15.3 | 17.4 | 13.3 |
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>| 8 | 14.6 | 15.2 | 14.7 |
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>| 9 | 15.1 | 14.6 | 13.1 |
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>| 10 | 15.4 | 16.5 | 14.4 |
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>| 11 | 15.6 | 17.0 | 13.2 |
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>| 12 | 15.2 | 16.2 | 14.8 |
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>| 13 | 14.9 | 14.4 | 13.0 |
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>| 14 | 15.1 | 13.2 | 13.3 |
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>| 15 | 14.8 | 13.0 | 13.1 |
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>| 16 | 14.2 | 13.1 | 13.0 |
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>| 17 | 13.4 | 12.9 | 13.2 |
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>| 18 | 13.2 | 13.0 | 13.1 |
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>| 19 | 13.5 | 13.1 | 13.0 |
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>| # | Trace | Open level | Close level | Single-threshold changes | Hysteresis changes | Why (shown as feedback) |
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>|---|-------|------------|-------------|--------------------------|--------------------|-------------------------|
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>| 1 | A | 15.0 | 14.5 | 12 | 2 | The level crosses 15.0 twelve times, but it never falls below 14.5 until frame 16, so the gate opens at frame 1 and closes at frame 16. |
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>| 2 | B | 15.0 | 14.5 | 6 | 2 | Dips to 14.8 and 14.6 inside the phrase flip the single threshold, but they stay above 14.5. The gate opens at frame 2 and closes at frame 13, when 14.4 is below 14.5. |
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>| 3 | C | 14.5 | 14.0 | 8 | 8 | Each spike (14.9, 15.1, 14.7, 14.8) rises over 14.5 and then falls to 13.6 or lower, below the close level, so both gates open and close four times. Hysteresis helps only with wobble near the line. |
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>**Provenance:** Trace A is the wobble trace in `09-calibration-selftest.py` and the chapter table above. Traces B and C are synthetic, written for this sim. The change counts were computed with `levels.LevelGate` in `src/chapters/11-mic-calibration-push-to-talk/levels.py`.
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>**Rules:** The single-threshold gate is open when bits &gt;= open level. The hysteresis gate starts closed, opens when bits &gt;= open level, and closes when bits &lt; close level. Exploration range for the open level: 13.0 to 18.0 bits, step 0.1, default 15.0. For the close level: 12.0 to 18.0 bits, step 0.1, default 14.5, and never above the open level. A change in the open level moves the close level down if needed to keep close &lt;= open. The 3 challenge settings in the table override the controls.
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>**Learner Activity:**
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>1. The learner chooses a trace and moves the open and close levels. The sim shades the frames where each gate is open and shows both change counts. The learner should notice that raising the close level toward the open level makes the hysteresis gate behave like the single threshold.
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>2. The learner starts the 3 challenges. For challenge 1 the sim shows trace A and the two levels but hides both gates.
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>3. The learner types the two counts and submits.
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>4. The sim shades both gates, shows the counts, and shows the Why text.
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>5. After challenge 3, the sim shows the score and the learner should notice that a spike that falls all the way back to the floor flips both gates.
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>**Feedback:** 3 challenges, fixed order, one attempt each, 2 answers per challenge, 6 answers in all. Correct: "Correct: &lt;Why&gt;". Incorrect: "Not quite. The counts are &lt;single&gt; and &lt;hysteresis&gt;: &lt;Why&gt;". The counts are revealed right after each submission, and a running score "n of 6" is shown.
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>**Starting State:** Trace A is shown with the open level at 15.0 and the close level at 14.5, both gates shaded, and the question "Which gate flutters?"
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>**Chapter Anchors:** The chapter states that the single threshold flips 12 times and the gate flips twice on trace A (open at frame 1, close at frame 16), that the gate opens with `&gt;=` and closes with `&lt;`, and that hysteresis does not remove spikes that fall back to the floor.
+</span></code></pre></div>
+</details>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Hysteresis">Hysteresis</a> - Wikipedia - Why two thresholds stop a switch from chattering.</li>
+<li><a href="https://en.wikipedia.org/wiki/Schmitt_trigger">Schmitt trigger</a> - Wikipedia - The electronic circuit that uses the same open and close idea.</li>
+<li><a href="https://en.wikipedia.org/wiki/Noise_gate">Noise gate</a> - Wikipedia - Audio gates with separate open and close levels.</li>
+</ol>
 <h2 id="related-resources">Related Resources<a class="headerlink" href="#related-resources" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../chapters/11-mic-calibration-push-to-talk/">Chapter 11: Microphone Calibration and Push-to-Talk</a></li>

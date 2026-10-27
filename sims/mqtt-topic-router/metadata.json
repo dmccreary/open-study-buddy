@@ -1,23 +1,104 @@
 {
   "title": "MQTT Topic Router",
-  "description": "The learner will apply the \"+\" and \"#\" wildcard rules to decide which of 7 subscription filters select each of 8 topics, with at least 7 of the 8 selections exactly right.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "An MQTT broker delivers a message to every subscriber whose filter selects its topic. Topics and filters are split at \"/\" into levels. A \"+\" matches exactly one level, a \"#\" at the end matches the rest (including no levels at all), any other level must match exactly, and a topic that starts with \"$\" is never selected by a filter that starts with a wildcard.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "MQTT and Push Alerts",
+    "Topic",
+    "Topic Level",
+    "Subscription Filter",
+    "Plus Wildcard",
+    "Hash Wildcard"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "mqtt-topic-router",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "apply",
-  "completion_status": "scaffold",
-  "chapter_number": 15,
-  "chapter_title": "MQTT and Push Alerts",
-  "chapter_dir": "15-mqtt-push-alerts",
-  "chapter_rel_dir": "chapters/15-mqtt-push-alerts"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/mqtt-topic-router/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 560,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "MQTT Topic Router",
+    "learningObjectives": [
+      "The learner will apply the \"+\" and \"#\" wildcard rules to decide which of 7 subscription filters select each of 8 topics, with at least 7 of the 8 selections exactly right."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "apply",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "topic, topic level, subscription filter, \"+\" wildcard, \"#\" wildcard, topics beginning with \"$\" (all defined in the section \"Topics and How to Name Them\" above this block)."
+    ],
+    "concepts": [
+      "Topic",
+      "Topic Level",
+      "Subscription Filter",
+      "Plus Wildcard",
+      "Hash Wildcard"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 560
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "S1 to S7 checkboxes and Submit",
+        "purpose": "Tick every filter that selects the topic (it may be none). One submission per topic."
+      },
+      {
+        "name": "Start the 8 topics / Back to explore, Next topic",
+        "purpose": "Switch modes and move on after the feedback."
+      },
+      {
+        "name": "Try a topic box",
+        "purpose": "Explore only: type any topic and see which filters select it."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Can \"+\" match more than one level?",
+      "Does school/crhs/# select school/crhs?",
+      "Does # select every topic?"
+    ],
+    "commonMisconceptions": [
+      "(1) \"+\" matches any number of levels. (2) \"school/crhs/#\" does not select \"school/crhs\". (3) \"#\" selects every topic, including those starting with \"$\"."
+    ],
+    "assessmentOpportunities": [
+      "Complete all eight topics. Mastery is 7 of 8 exactly right on the first submission."
+    ]
+  },
+  "chapter": "15-mqtt-push-alerts",
+  "chapter_number": 15
 }

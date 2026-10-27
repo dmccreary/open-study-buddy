@@ -1,23 +1,106 @@
 {
   "title": "Template Score Explorer",
-  "description": "The learner will calculate the template score of 4 small windows by mean subtraction, unit normalization and a dot product, within 0.02 of the correct value in at least 3 of the 4.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The wake-word detector compares a window of features with an enrolled template. It first subtracts each band's mean over the window, so a steady offset does not matter; then divides by the length of what is left, so loudness does not matter; and finally takes the dot product with the template, which is already mean-subtracted and length 1. The score runs from -1 (the opposite pattern) to +1 (the same pattern).",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Wake-Word Detection",
+    "Template",
+    "Mean Subtraction",
+    "Unit Normalization",
+    "Dot Product Score"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "template-score-explorer",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "calculate",
-  "completion_status": "scaffold",
-  "chapter_number": 12,
-  "chapter_title": "Wake-Word Detection",
-  "chapter_dir": "12-wake-word-detection",
-  "chapter_rel_dir": "chapters/12-wake-word-detection"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/template-score-explorer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 550,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Template Score Explorer",
+    "learningObjectives": [
+      "The learner will calculate the template score of 4 small windows by mean subtraction, unit normalization and a dot product, within 0.02 of the correct value in at least 3 of the 4."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "feature, window, mean subtraction, unit normalization, dot product score, template (all defined in this chapter above the block)."
+    ],
+    "concepts": [
+      "Template",
+      "Mean Subtraction",
+      "Unit Normalization",
+      "Dot Product Score"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 550
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 4 challenges / Back to explore",
+        "purpose": "Switch between the worked window and the quiz."
+      },
+      {
+        "name": "Score box and Submit",
+        "purpose": "Type the score to 2 decimals; within 0.02 counts. One attempt per window."
+      },
+      {
+        "name": "Next challenge / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Next stage / Back to start",
+        "purpose": "Explore only: reveal the three stages of the worked window."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Why do W1 and W2 score the same even though W2 is twice as strong?",
+      "What does a score of -1 mean?",
+      "Why does the order of the frames matter?"
+    ],
+    "commonMisconceptions": [
+      "(1) A louder or stronger window scores higher. (2) A steady offset in a band changes the score. (3) A negative score means \"no similarity\" instead of \"the opposite pattern\". (4) The order of the frames does not matter."
+    ],
+    "assessmentOpportunities": [
+      "Complete all four challenges. Mastery is 3 of 4 correct on the first attempt."
+    ]
+  },
+  "chapter": "12-wake-word-detection",
+  "chapter_number": 12
 }

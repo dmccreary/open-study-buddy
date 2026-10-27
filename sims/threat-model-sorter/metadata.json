@@ -1,23 +1,112 @@
 {
   "title": "Threat Model Sorter",
-  "description": "The learner will prioritize 10 classroom threats into the correct fix order using each threat's likelihood, impact, and effort to fix, with at least 8 of 10 threats in the correct position.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "A threat model lists what could go wrong and decides what to fix first. Here each classroom threat has a likelihood and an impact from 1 to 3, and the risk score is their product. Threats are fixed from the highest score down; equal scores put the cheaper fix first, and a final tie goes to the lower threat number, so the order is unique.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Privacy, Safety, and Responsible Listening",
+    "Threat Model",
+    "Likelihood",
+    "Impact",
+    "Risk Score",
+    "Effort to Fix"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "threat-model-sorter",
-  "library": "p5.js",
-  "bloomLevel": "Evaluate",
-  "bloomVerb": "prioritize",
-  "completion_status": "scaffold",
-  "chapter_number": 17,
-  "chapter_title": "Privacy, Safety, and Responsible Listening",
-  "chapter_dir": "17-privacy-responsible-listening",
-  "chapter_rel_dir": "chapters/17-privacy-responsible-listening"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/threat-model-sorter/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 620,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Threat Model Sorter",
+    "learningObjectives": [
+      "The learner will prioritize 10 classroom threats into the correct fix order using each threat's likelihood, impact, and effort to fix, with at least 8 of 10 threats in the correct position."
+    ],
+    "bloomsTaxonomy": "Evaluate",
+    "bloomVerb": "prioritize",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "threat model, asset, actor, attack surface, likelihood, impact, risk score, effort to fix (all defined in the section \"The Threat Model\" above this block)."
+    ],
+    "concepts": [
+      "Threat Model",
+      "Likelihood",
+      "Impact",
+      "Risk Score",
+      "Effort to Fix"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 620
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Selected menu, or click a row",
+        "purpose": "Choose the threat to move."
+      },
+      {
+        "name": "Move up / Move down",
+        "purpose": "Move the selected threat one place."
+      },
+      {
+        "name": "Submit order",
+        "purpose": "Submit the whole order once."
+      },
+      {
+        "name": "Start over",
+        "purpose": "Return to the scrambled order."
+      },
+      {
+        "name": "Example likelihood and impact sliders",
+        "purpose": "Try a risk score on an example threat."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Is the most technical-sounding threat always the most important?",
+      "Why does effort decide the order of the six threats that tie at 6?",
+      "Is a threat caused by our own bug a real threat?"
+    ],
+    "commonMisconceptions": [
+      "(1) The most technical-sounding threat is always the most important. (2) Likelihood alone decides priority. (3) Equal scores mean the order does not matter. (4) A threat caused by our own bug is not a real threat."
+    ],
+    "assessmentOpportunities": [
+      "Submit one order. Mastery is 8 of 10 threats in the correct position."
+    ]
+  },
+  "chapter": "17-privacy-responsible-listening",
+  "chapter_number": 17
 }

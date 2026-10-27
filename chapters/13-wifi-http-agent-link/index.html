@@ -1093,6 +1093,14 @@
           
         
       
+        
+          
+        
+      
+        
+          
+        
+      
     
     
     
@@ -1110,7 +1118,7 @@
       
   
   <span class="md-ellipsis">
-    Synthetic Schools
+    Schools
   </span>
   
 
@@ -1267,6 +1275,26 @@
   
 
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1938,6 +1966,8 @@ A <code>print(secrets.wifi_pass)</code> left in a program ends up in screenshots
 <p>Notice that <code>172.32.0.9</code> is <em>not</em> private even though it starts with <code>172</code>; the range stops at 172.31. If <code>ifconfig()</code> shows an address outside these ranges, the Pico is probably not on a classroom network at all.</p>
 <p>Because the Pico gets its address from DHCP, the <em>server's</em> address can change when the router restarts, which would silently break <code>BUDDY_HOST</code>. The fix is a <strong>DHCP reservation</strong> on the router (the router always hands the server the same address), or a fixed address outside the router's DHCP range. Ask the school's network administrator, who will want to know the server's MAC address.</p>
 <h4 id="diagram-same-subnet-checker">Diagram: Same-Subnet Checker<a class="headerlink" href="#diagram-same-subnet-checker" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/same-subnet-checker/main.html" width="100%" height="597px" scrolling="no"></iframe>
+<p><a href="../../sims/same-subnet-checker/main.html">Run Same-Subnet Checker Fullscreen</a></p>
 <details>
 <summary>Same-Subnet Checker</summary>
 <p>Type: microsim
@@ -2280,6 +2310,8 @@ Notice how little magic there is: a web request is a few lines of text that you 
 </span></code></pre></div>
 <p><code>read_response</code> reads until it sees the blank line, splits the head into a status code and headers, then reads exactly <code>Content-Length</code> more bytes. It refuses a reply whose <code>Content-Length</code> is above 2,048, so a wrong server cannot fill the Pico's memory.</p>
 <h4 id="diagram-http-request-reader">Diagram: HTTP Request Reader<a class="headerlink" href="#diagram-http-request-reader" title="Permanent link">&para;</a></h4>
+<iframe src="../../sims/http-request-reader/main.html" width="100%" height="522px" scrolling="no"></iframe>
+<p><a href="../../sims/http-request-reader/main.html">Run HTTP Request Reader Fullscreen</a></p>
 <details>
 <summary>HTTP Request Reader</summary>
 <p>Type: microsim

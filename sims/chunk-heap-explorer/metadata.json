@@ -1,23 +1,106 @@
 {
   "title": "Chunk-Size and Heap Explorer",
-  "description": "The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "A 5-second recording is 128,000 bytes in 16-bit form, so how it is sent matters on a Pico. Joining the header and the body copies the whole recording into a second block; sending memoryview slices of K bytes needs only the recording plus a small staging area; and streaming each 1,024-byte frame needs no recording at all.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Streaming Speech, Security, and Network Resilience",
+    "Chunked Audio Upload",
+    "Audio Chunk Size",
+    "Free Heap",
+    "memoryview Slice"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "chunk-heap-explorer",
-  "library": "p5.js",
-  "bloomLevel": "Analyze",
-  "bloomVerb": "examine",
-  "completion_status": "scaffold",
-  "chapter_number": 14,
-  "chapter_title": "Streaming Speech, Security, and Network Resilience",
-  "chapter_dir": "14-streaming-security-resilience",
-  "chapter_rel_dir": "chapters/14-streaming-security-resilience"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/chunk-heap-explorer/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 595,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Chunk-Size and Heap Explorer",
+    "learningObjectives": [
+      "The learner will examine 8 upload designs to decide whether each fits in a given free heap and, for those that fit, how many sends it needs, with at least 7 of 8 correct."
+    ],
+    "bloomsTaxonomy": "Analyze",
+    "bloomVerb": "examine",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "16-bit and 32-bit recording sizes, memoryview slice, chunk, free heap, contiguous block (all defined in this chapter above this block and in Chapter 2)."
+    ],
+    "concepts": [
+      "Chunked Audio Upload",
+      "Audio Chunk Size",
+      "Free Heap",
+      "memoryview Slice"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 595
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 8 cases / Back to explore",
+        "purpose": "Switch between the sliders and the quiz."
+      },
+      {
+        "name": "Answer menu, Sends box, Submit",
+        "purpose": "Choose fits or does not fit; for a fit, type the number of sends. One attempt per case."
+      },
+      {
+        "name": "Next case / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Length, Chunk K and Free F",
+        "purpose": "Explore only: 1 to 10 s, the five chunk sizes from 512 to 8,192 bytes, and 100,000 to 260,000 bytes."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Does sending in chunks make the recording smaller?",
+      "Why is joining the header and the body costly?",
+      "Why does design D fit at any length of speech?"
+    ],
+    "commonMisconceptions": [
+      "(1) Sending in chunks makes the recording itself smaller. (2) Joining the header and body is harmless because the recording is already in memory. (3) A bigger free heap total always means a big block is available. (4) Streaming needs the whole recording in memory."
+    ],
+    "assessmentOpportunities": [
+      "Complete all eight cases. Mastery is 7 of 8 correct on the first attempt."
+    ]
+  },
+  "chapter": "14-streaming-security-resilience",
+  "chapter_number": 14
 }

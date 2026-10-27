@@ -1,23 +1,110 @@
 {
   "title": "Time Zone and UTC Converter",
-  "description": "The learner will calculate the UTC time of 8 school-local times, including 3 that fall at a daylight-saving change, with at least 7 of the 8 exactly right.",
-  "creator": "Open Study Buddy",
-  "author": "Dan McCreary",
-  "date": "2026-10-20",
-  "subject": [
-    "Open Study Buddy"
+  "description": "The server stores times in UTC and converts school-local times with the offset in force on that date: in Chicago, CDT (UTC-5) from the second Sunday in March to the first Sunday in November, and CST (UTC-6) otherwise. On the two change days some local times are awkward: 2:30 AM on the spring day does not exist, and 1:30 AM on the fall day happens twice. Two fixed rules decide them.",
+  "creator": "Dan McCreary",
+  "contributor": [
+    "Devin"
   ],
+  "subject": [
+    "Open Study Buddy",
+    "Configuring the School Agent and Calendar",
+    "UTC",
+    "Time Zone",
+    "Daylight Saving Time",
+    "Offset",
+    "Nonexistent Time",
+    "Repeated Time"
+  ],
+  "date": "2026-10-20",
   "type": "Interactive Simulation",
   "format": "text/html",
   "language": "en",
   "rights": "CC BY-NC-SA 4.0",
-  "identifier": "school-time-utc-converter",
-  "library": "p5.js",
-  "bloomLevel": "Apply",
-  "bloomVerb": "calculate",
-  "completion_status": "scaffold",
-  "chapter_number": 16,
-  "chapter_title": "Configuring the School Agent and Calendar",
-  "chapter_dir": "16-school-agent-calendar",
-  "chapter_rel_dir": "chapters/16-school-agent-calendar"
+  "identifier": "https://dmccreary.github.io/open-study-buddy/sims/school-time-utc-converter/",
+  "publisher": "Open Study Buddy",
+  "status": "built",
+  "canvasHeight": 595,
+  "educational": {
+    "gradeLevel": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "subjectArea": "Computer Science",
+    "topic": "Time Zone and UTC Converter",
+    "learningObjectives": [
+      "The learner will calculate the UTC time of 8 school-local times, including 3 that fall at a daylight-saving change, with at least 7 of the 8 exactly right."
+    ],
+    "bloomsTaxonomy": "Apply",
+    "bloomVerb": "calculate",
+    "duration": "15 minutes",
+    "prerequisites": [
+      "UTC, time zone, daylight saving time, offset, CDT, CST, EDT, a time that does not exist, a time that happens twice (all defined in the section \"Time Zones and Daylight Saving\" above this block)."
+    ],
+    "concepts": [
+      "UTC",
+      "Time Zone",
+      "Daylight Saving Time",
+      "Offset",
+      "Nonexistent Time",
+      "Repeated Time"
+    ],
+    "standards": []
+  },
+  "technical": {
+    "framework": "p5.js",
+    "version": "2.3.2",
+    "canvasDimensions": {
+      "width": "responsive",
+      "height": 595
+    },
+    "responsive": true,
+    "dependencies": [
+      "https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"
+    ],
+    "accessibility": {
+      "hasAltText": true,
+      "keyboardNavigable": true,
+      "notes": "describe() provides a screen-reader description; all controls are native HTML elements."
+    }
+  },
+  "userInterface": {
+    "layoutPattern": "drawing region above a control region",
+    "openState": "static starting state; no animation",
+    "controls": [
+      {
+        "name": "Start the 8 items / Back to explore",
+        "purpose": "Switch between the clock and the quiz."
+      },
+      {
+        "name": "UTC date and UTC time boxes, Submit",
+        "purpose": "Type the UTC date (YYYY-MM-DD) and time (24-hour HH:MM). One attempt per item."
+      },
+      {
+        "name": "Next item / See score",
+        "purpose": "Move on after the feedback."
+      },
+      {
+        "name": "Zone, Local date, Local time",
+        "purpose": "Explore only: America/Chicago or America/New_York, any date and time."
+      }
+    ]
+  },
+  "pedagogical": {
+    "teachingStrategy": "Explore, then fixed-order practice items with one attempt each and immediate explained feedback",
+    "keyQuestions": [
+      "Is the offset from UTC the same all year?",
+      "What happens to a local time that does not exist?",
+      "Why are 8:00 in Chicago and 9:00 in New York the same instant on October 20?"
+    ],
+    "commonMisconceptions": [
+      "(1) The offset from UTC is the same all year. (2) A time that does not exist is an error. (3) A time that happens twice has no answer. (4) The same wall-clock time in two cities is the same instant."
+    ],
+    "assessmentOpportunities": [
+      "Complete all eight items. Mastery is 7 of 8 exactly right on the first attempt."
+    ]
+  },
+  "chapter": "16-school-agent-calendar",
+  "chapter_number": 16
 }
