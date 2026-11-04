@@ -441,6 +441,13 @@ A **pin assignment table** is a table that lists, for every part, which Pico pin
 
 Three rules hold the table together. First, each GP pin appears once, so no two wires share a pin. Second, the I2S pairs are neighbors: microphone SCK and WS on GP10 and GP11, amplifier BCLK and LRC on GP20 and GP21. Third, nothing connects to GP23, GP24, GP25, or GP29, which belong to the wireless chip.
 
+#### Diagram: Wiring Diagram
+
+<figure markdown="1">
+  <img src="img/circuit-diagram.svg" alt="Wiring diagram showing the GC9B72 display, MAX98357A amplifier, INMP441 microphone, and three buttons each wired to a Raspberry Pi Pico 2 W, with every wire colored and labeled with its pin">
+  <figcaption>The same connections as the pin assignment table above, drawn as blocks with every wire in its real build color.</figcaption>
+</figure>
+
 The kit is built in stages, and each test checks exactly the parts wired so far. That makes any wiring error easy to localize.
 
 | Test | Wire first | What to look for |
