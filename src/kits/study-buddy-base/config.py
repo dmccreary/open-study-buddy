@@ -157,19 +157,19 @@ VOLUME = 40
 #
 #   Mic pin   Pico pin   What it does
 #   -------   --------   ------------
-#   SD        GP13       "serial data": the audio itself, mic to Pico
-#   SCK       GP14       "serial clock": the Pico's bit clock for the mic
-#   WS        GP15       "word select": says which channel a sample is
+#   SCK       GP13       "serial clock": the Pico's bit clock for the mic
+#   WS        GP14       "word select": says which channel a sample is
+#   SD        GP15       "serial data": the audio itself, mic to Pico
 #   L/R       GND        picks the LEFT channel (tie to 3V3 for right)
 #   VDD       3V3        power -- the INMP441 is a 3.3 V part, never 5 V
 #   GND       GND
 #
-# The same ws-is-sck-plus-one rule applies: SCK is GP14 and WS is GP15.
+# The same ws-is-sck-plus-one rule applies: SCK is GP13 and WS is GP14.
 # These pins avoid the display (GP2-GP8), the amplifier (GP9-GP12), the
 # buttons (GP16-GP18), and the wireless chip's own pins.
-MIC_SCK_PIN = 14
-MIC_WS_PIN = 15
-MIC_SD_PIN = 13
+MIC_SCK_PIN = 13
+MIC_WS_PIN = 14
+MIC_SD_PIN = 15
 
 # I2S block 1, so the microphone does not fight the speaker for block 0.
 MIC_I2S_ID = 1

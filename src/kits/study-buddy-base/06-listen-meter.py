@@ -11,7 +11,7 @@
 #
 # PASS: the meter bounces when you talk, clap, or tap near the microphone and
 # sits low when the room is quiet. "I hear you!" appears when you speak.
-# If the meter never moves, run test 02 -- section 7 checks the microphone.
+# If the meter never moves, run test 02 -- section 8 checks the microphone.
 # If it is stuck at full, the room may be loud, or the SD wire is picking up
 # noise.
 #
