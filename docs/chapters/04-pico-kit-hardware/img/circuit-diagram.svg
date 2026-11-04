@@ -1,221 +1,239 @@
-<svg viewBox="0 0 1250 1150" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
-  <title>Open Study Buddy wiring diagram</title>
-  <desc>Block diagram of the Open Study Buddy kit: GC9B72 display (top left), MAX98357A amplifier (middle left), INMP441 microphone (lower left), Raspberry Pi Pico 2 W (right), and three buttons (lower right), with every wire colored and labeled with its Pico pin.</desc>
+<svg viewBox="0 0 1300 1000" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <title>Open Study Buddy wiring diagram with breadboard row numbers</title>
+  <desc>Block diagram of the Open Study Buddy kit with breadboard row numbers added to the Pico's left-edge pins. Rows 3, 8, 13 and 18 are GND. All power wires share one 3.3V pin on the right (row 5). The I2S word-select pins (LRC, WS) are placed one row after their bit-clock pins (BCLK, SCK).</desc>
 
-  <rect x="0" y="0" width="1250" height="1150" fill="#ffffff"/>
+  <rect x="0" y="0" width="1300" height="1000" fill="#ffffff"/>
 
   <!-- Title -->
-  <text x="625" y="30" text-anchor="middle" font-size="22" font-weight="700" fill="#111">Open Study Buddy &#8212; Wiring Diagram</text>
-  <text x="625" y="50" text-anchor="middle" font-size="13" fill="#666">Raspberry Pi Pico 2 W &#183; GC9B72 round display &#183; MAX98357A amplifier &#183; INMP441 microphone &#183; 3 buttons</text>
+  <text x="650" y="25" text-anchor="middle" font-size="20" font-weight="700" fill="#111">Open Study Buddy &#8212; Wiring Diagram</text>
+  <text x="650" y="42" text-anchor="middle" font-size="12" fill="#666">Breadboard row numbers on the Pico's left edge &#8212; rows ending in 3 or 8 are GND &#8226; row numbers &#8800; GPIO numbers</text>
 
-  <!-- ============ DISPLAY block (top left) ============ -->
-  <rect x="40" y="70" width="270" height="310" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
-  <text x="175" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#111">GC9B72 Round Display</text>
-  <line x1="55" y1="108" x2="295" y2="108" stroke="#ccc"/>
-  <text x="175" y="124" text-anchor="middle" font-size="11" fill="#777">360&#215;360 SPI, 10-pad breakout</text>
+  <!-- ============ DISPLAY block ============ -->
+  <rect x="40" y="70" width="270" height="300" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
+  <text x="175" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#111">GC9B72 Round Display</text>
+  <line x1="55" y1="103" x2="295" y2="103" stroke="#ccc"/>
 
-  <!-- display pins: label, y, color -->
-  <!-- GND -->
-  <text x="302" y="134" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND</text>
-  <circle cx="310" cy="130" r="4" fill="#111111"/>
-  <!-- VCC -->
-  <text x="302" y="162" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VCC</text>
-  <circle cx="310" cy="158" r="4" fill="#e02b2b"/>
-  <!-- SCL -->
-  <text x="302" y="190" text-anchor="end" font-size="12" font-weight="600" fill="#b35e00">SCL</text>
-  <circle cx="310" cy="186" r="4" fill="#f28c28"/>
-  <!-- SDA -->
-  <text x="302" y="218" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">SDA</text>
-  <circle cx="310" cy="214" r="4" fill="#f2c200"/>
-  <!-- RST -->
-  <text x="302" y="246" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">RST</text>
-  <circle cx="310" cy="242" r="4" fill="#2e9e46"/>
-  <!-- DC -->
-  <text x="302" y="274" text-anchor="end" font-size="12" font-weight="600" fill="#1f4fa0">DC</text>
-  <circle cx="310" cy="270" r="4" fill="#2f6fd1"/>
-  <!-- CS -->
-  <text x="302" y="302" text-anchor="end" font-size="12" font-weight="600" fill="#6c2e86">CS</text>
-  <circle cx="310" cy="298" r="4" fill="#8e44ad"/>
-  <!-- BL -->
-  <text x="302" y="330" text-anchor="end" font-size="12" font-weight="600" fill="#6b6b6b">BL</text>
-  <circle cx="310" cy="326" r="4" fill="#9b9b9b"/>
-  <!-- SDO (unconnected) -->
-  <text x="302" y="358" text-anchor="end" font-size="12" font-weight="600" fill="#777">SDO</text>
-  <circle cx="310" cy="354" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <text x="302" y="129" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND</text>
+  <circle cx="310" cy="125" r="4" fill="#111111"/>
+  <text x="302" y="157" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VCC</text>
+  <circle cx="310" cy="153" r="4" fill="#e02b2b"/>
+  <text x="302" y="185" text-anchor="end" font-size="12" font-weight="600" fill="#b35e00">CLK</text>
+  <circle cx="310" cy="181" r="4" fill="#f28c28"/>
+  <text x="302" y="213" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">SDA</text>
+  <circle cx="310" cy="209" r="4" fill="#f2c200"/>
+  <text x="302" y="241" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">RST</text>
+  <circle cx="310" cy="237" r="4" fill="#2e9e46"/>
+  <text x="302" y="269" text-anchor="end" font-size="12" font-weight="600" fill="#1f4fa0">DC</text>
+  <circle cx="310" cy="265" r="4" fill="#2f6fd1"/>
+  <text x="302" y="297" text-anchor="end" font-size="12" font-weight="600" fill="#6c2e86">CS</text>
+  <circle cx="310" cy="293" r="4" fill="#8e44ad"/>
+  <text x="302" y="325" text-anchor="end" font-size="12" font-weight="600" fill="#6b6b6b">BL</text>
+  <circle cx="310" cy="321" r="4" fill="#9b9b9b"/>
+  <text x="302" y="353" text-anchor="end" font-size="12" font-weight="600" fill="#777">SDO</text>
+  <circle cx="310" cy="349" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <line x1="310" y1="349" x2="360" y2="349" stroke="#bbbbbb" stroke-width="3" stroke-dasharray="6,5"/>
+  <circle cx="360" cy="349" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <text x="368" y="353" font-size="11" font-style="italic" fill="#777">not connected</text>
 
-  <!-- display wires to Pico -->
-  <line x1="310" y1="130" x2="700" y2="130" stroke="#111111" stroke-width="3"/>
-  <line x1="310" y1="158" x2="700" y2="158" stroke="#e02b2b" stroke-width="3"/>
-  <line x1="310" y1="186" x2="700" y2="186" stroke="#f28c28" stroke-width="3"/>
-  <line x1="310" y1="214" x2="700" y2="214" stroke="#f2c200" stroke-width="3"/>
-  <line x1="310" y1="242" x2="700" y2="242" stroke="#2e9e46" stroke-width="3"/>
-  <line x1="310" y1="270" x2="700" y2="270" stroke="#2f6fd1" stroke-width="3"/>
-  <line x1="310" y1="298" x2="700" y2="298" stroke="#8e44ad" stroke-width="3"/>
-  <line x1="310" y1="326" x2="700" y2="326" stroke="#9b9b9b" stroke-width="3"/>
-  <!-- SDO unconnected stub -->
-  <line x1="310" y1="354" x2="365" y2="354" stroke="#bbbbbb" stroke-width="3" stroke-dasharray="6,5"/>
-  <circle cx="365" cy="354" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
-  <text x="373" y="358" font-size="11" font-style="italic" fill="#777">SDO (white) &#8212; not connected</text>
+  <!-- display signal/ground wires to Pico rows -->
+  <line x1="310" y1="125" x2="700" y2="159" stroke="#111111" stroke-width="3"/>
+  <line x1="310" y1="181" x2="700" y2="191" stroke="#f28c28" stroke-width="3"/>
+  <line x1="310" y1="209" x2="700" y2="223" stroke="#f2c200" stroke-width="3"/>
+  <line x1="310" y1="237" x2="700" y2="255" stroke="#2e9e46" stroke-width="3"/>
+  <line x1="310" y1="265" x2="700" y2="287" stroke="#2f6fd1" stroke-width="3"/>
+  <line x1="310" y1="293" x2="700" y2="351" stroke="#8e44ad" stroke-width="3"/>
+  <line x1="310" y1="321" x2="700" y2="383" stroke="#9b9b9b" stroke-width="3"/>
 
-  <!-- ============ AMPLIFIER block (middle left) ============ -->
-  <rect x="40" y="410" width="270" height="250" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
-  <text x="175" y="438" text-anchor="middle" font-size="15" font-weight="700" fill="#111">MAX98357A Amplifier</text>
-  <line x1="55" y1="448" x2="295" y2="448" stroke="#ccc"/>
-  <text x="175" y="464" text-anchor="middle" font-size="11" fill="#777">I2S DAC + class-D amp &#8594; speaker</text>
+  <!-- ============ AMPLIFIER block ============ -->
+  <rect x="40" y="380" width="270" height="244" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
+  <text x="175" y="400" text-anchor="middle" font-size="14" font-weight="700" fill="#111">MAX98357A Amplifier</text>
+  <text x="175" y="411" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">I2S rule: LRC = BCLK + 1 &#8594; row 15 = row 14 + 1 &#10003;</text>
+  <line x1="55" y1="418" x2="295" y2="418" stroke="#ccc"/>
 
-  <text x="302" y="474" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VIN</text>
-  <circle cx="310" cy="470" r="4" fill="#e02b2b"/>
-  <text x="302" y="502" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND</text>
-  <circle cx="310" cy="498" r="4" fill="#111111"/>
-  <text x="302" y="530" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">LRC</text>
-  <circle cx="310" cy="526" r="4" fill="#f2c200"/>
-  <text x="302" y="558" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">BCLK</text>
-  <circle cx="310" cy="554" r="4" fill="#2e9e46"/>
-  <text x="302" y="586" text-anchor="end" font-size="12" font-weight="600" fill="#1f4fa0">DIN</text>
-  <circle cx="310" cy="582" r="4" fill="#2f6fd1"/>
-  <text x="302" y="614" text-anchor="end" font-size="12" font-weight="600" fill="#6c2e86">GAIN</text>
-  <circle cx="310" cy="610" r="4" fill="#8e44ad"/>
-  <text x="302" y="642" text-anchor="end" font-size="12" font-weight="600" fill="#777">SD</text>
-  <circle cx="310" cy="638" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <text x="302" y="432" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VIN</text>
+  <circle cx="310" cy="428" r="4" fill="#e02b2b"/>
+  <text x="302" y="460" text-anchor="end" font-size="12" font-weight="600" fill="#1f4fa0">DIN</text>
+  <circle cx="310" cy="456" r="4" fill="#2f6fd1"/>
+  <text x="302" y="488" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND</text>
+  <circle cx="310" cy="484" r="4" fill="#111111"/>
+  <text x="302" y="516" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">BCLK</text>
+  <circle cx="310" cy="512" r="4" fill="#2e9e46"/>
+  <text x="302" y="544" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">LRC</text>
+  <circle cx="310" cy="540" r="4" fill="#f2c200"/>
+  <text x="302" y="572" text-anchor="end" font-size="12" font-weight="600" fill="#6c2e86">GAIN</text>
+  <circle cx="310" cy="568" r="4" fill="#8e44ad"/>
+  <text x="302" y="600" text-anchor="end" font-size="12" font-weight="600" fill="#777">SD</text>
+  <circle cx="310" cy="596" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <line x1="310" y1="596" x2="360" y2="596" stroke="#bbbbbb" stroke-width="3" stroke-dasharray="6,5"/>
+  <circle cx="360" cy="596" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <text x="368" y="600" font-size="11" font-style="italic" fill="#777">not connected</text>
 
-  <line x1="310" y1="470" x2="700" y2="470" stroke="#e02b2b" stroke-width="3"/>
-  <line x1="310" y1="498" x2="700" y2="498" stroke="#111111" stroke-width="3"/>
-  <line x1="310" y1="526" x2="700" y2="526" stroke="#f2c200" stroke-width="3"/>
-  <line x1="310" y1="554" x2="700" y2="554" stroke="#2e9e46" stroke-width="3"/>
-  <line x1="310" y1="582" x2="700" y2="582" stroke="#2f6fd1" stroke-width="3"/>
-  <line x1="310" y1="610" x2="700" y2="610" stroke="#8e44ad" stroke-width="3"/>
-  <!-- SD unconnected stub -->
-  <line x1="310" y1="638" x2="365" y2="638" stroke="#bbbbbb" stroke-width="3" stroke-dasharray="6,5"/>
-  <circle cx="365" cy="638" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
-  <text x="373" y="642" font-size="11" font-style="italic" fill="#777">SD &#8212; not connected</text>
+  <line x1="310" y1="456" x2="700" y2="447" stroke="#2f6fd1" stroke-width="3"/>
+  <line x1="310" y1="484" x2="700" y2="479" stroke="#111111" stroke-width="3"/>
+  <line x1="310" y1="512" x2="700" y2="511" stroke="#2e9e46" stroke-width="3"/>
+  <line x1="310" y1="540" x2="700" y2="543" stroke="#f2c200" stroke-width="3"/>
+  <line x1="310" y1="568" x2="700" y2="575" stroke="#8e44ad" stroke-width="3"/>
 
-  <!-- ============ MICROPHONE block (lower left) ============ -->
-  <rect x="40" y="700" width="270" height="230" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
-  <text x="175" y="728" text-anchor="middle" font-size="15" font-weight="700" fill="#111">INMP441 Microphone</text>
-  <line x1="55" y1="738" x2="295" y2="738" stroke="#ccc"/>
-  <text x="175" y="754" text-anchor="middle" font-size="11" fill="#777">I2S MEMS mic, left channel</text>
+  <!-- ============ MICROPHONE block ============ -->
+  <rect x="40" y="634" width="270" height="190" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
+  <text x="175" y="656" text-anchor="middle" font-size="14" font-weight="700" fill="#111">INMP441 Microphone</text>
+  <text x="175" y="667" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">I2S rule: WS = SCK + 1 &#8594; row 20 = row 19 + 1 &#10003;</text>
+  <line x1="55" y1="674" x2="295" y2="674" stroke="#ccc"/>
 
-  <text x="302" y="764" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VCC</text>
-  <circle cx="310" cy="760" r="4" fill="#e02b2b"/>
-  <text x="302" y="792" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND</text>
-  <circle cx="310" cy="788" r="4" fill="#111111"/>
-  <text x="302" y="820" text-anchor="end" font-size="12" font-weight="600" fill="#111111">L/R</text>
-  <circle cx="310" cy="816" r="4" fill="#111111"/>
-  <text x="302" y="848" text-anchor="end" font-size="12" font-weight="600" fill="#b35e00">SCK</text>
-  <circle cx="310" cy="844" r="4" fill="#f28c28"/>
-  <text x="302" y="876" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">WS</text>
-  <circle cx="310" cy="872" r="4" fill="#f2c200"/>
-  <text x="302" y="904" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">SD</text>
-  <circle cx="310" cy="900" r="4" fill="#2e9e46"/>
+  <text x="302" y="688" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VCC</text>
+  <circle cx="310" cy="684" r="4" fill="#e02b2b"/>
+  <text x="302" y="716" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">SD</text>
+  <circle cx="310" cy="712" r="4" fill="#2e9e46"/>
+  <text x="302" y="744" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND / L-R</text>
+  <circle cx="310" cy="740" r="4" fill="#111111"/>
+  <text x="302" y="772" text-anchor="end" font-size="12" font-weight="600" fill="#b35e00">SCK</text>
+  <circle cx="310" cy="768" r="4" fill="#f28c28"/>
+  <text x="302" y="800" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">WS</text>
+  <circle cx="310" cy="796" r="4" fill="#f2c200"/>
 
-  <line x1="310" y1="760" x2="700" y2="760" stroke="#e02b2b" stroke-width="3"/>
-  <line x1="310" y1="788" x2="700" y2="788" stroke="#111111" stroke-width="3"/>
-  <line x1="310" y1="816" x2="700" y2="816" stroke="#111111" stroke-width="3"/>
-  <line x1="310" y1="844" x2="700" y2="844" stroke="#f28c28" stroke-width="3"/>
-  <line x1="310" y1="872" x2="700" y2="872" stroke="#f2c200" stroke-width="3"/>
-  <line x1="310" y1="900" x2="700" y2="900" stroke="#2e9e46" stroke-width="3"/>
-  <text x="355" y="832" font-size="10" font-style="italic" fill="#777">(ties to GND &#8212; selects left channel)</text>
+  <line x1="310" y1="712" x2="700" y2="607" stroke="#2e9e46" stroke-width="3"/>
+  <line x1="310" y1="740" x2="700" y2="639" stroke="#111111" stroke-width="3"/>
+  <line x1="310" y1="768" x2="700" y2="671" stroke="#f28c28" stroke-width="3"/>
+  <line x1="310" y1="796" x2="700" y2="703" stroke="#f2c200" stroke-width="3"/>
 
-  <!-- ============ PICO 2 W block (right) ============ -->
-  <rect x="700" y="70" width="240" height="860" rx="12" fill="#eef3fb" stroke="#333" stroke-width="2"/>
-  <text x="820" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#111">Raspberry Pi Pico 2 W</text>
-  <line x1="715" y1="112" x2="925" y2="112" stroke="#aac"/>
+  <!-- ============ shared 3V3 power bus ============ -->
+  <line x1="310" y1="153" x2="660" y2="153" stroke="#e02b2b" stroke-width="3"/>
+  <line x1="310" y1="428" x2="660" y2="428" stroke="#e02b2b" stroke-width="3"/>
+  <line x1="310" y1="684" x2="660" y2="684" stroke="#e02b2b" stroke-width="3"/>
+  <line x1="660" y1="153" x2="660" y2="684" stroke="#e02b2b" stroke-width="3"/>
+  <circle cx="660" cy="153" r="4" fill="#e02b2b"/>
+  <circle cx="660" cy="428" r="4" fill="#e02b2b"/>
+  <circle cx="660" cy="684" r="4" fill="#e02b2b"/>
+  <polyline points="660,153 660,35 980,35 980,223 940,223" fill="none" stroke="#e02b2b" stroke-width="3"/>
+  <text x="820" y="27" text-anchor="middle" font-size="11" font-style="italic" fill="#c21f1f">all VCC / VIN wires share one 3.3V pin</text>
 
-  <text x="708" y="134" font-size="12" font-weight="600" fill="#111">GND</text>
-  <circle cx="700" cy="130" r="4" fill="#111111"/>
-  <text x="708" y="162" font-size="12" font-weight="600" fill="#111">3V3</text>
-  <circle cx="700" cy="158" r="4" fill="#e02b2b"/>
-  <text x="708" y="190" font-size="12" font-weight="600" fill="#111">GP2</text>
-  <circle cx="700" cy="186" r="4" fill="#f28c28"/>
-  <text x="708" y="218" font-size="12" font-weight="600" fill="#111">GP3</text>
-  <circle cx="700" cy="214" r="4" fill="#f2c200"/>
-  <text x="708" y="246" font-size="12" font-weight="600" fill="#111">GP4</text>
-  <circle cx="700" cy="242" r="4" fill="#2e9e46"/>
-  <text x="708" y="274" font-size="12" font-weight="600" fill="#111">GP5</text>
-  <circle cx="700" cy="270" r="4" fill="#2f6fd1"/>
-  <text x="708" y="302" font-size="12" font-weight="600" fill="#111">GP6</text>
-  <circle cx="700" cy="298" r="4" fill="#8e44ad"/>
-  <text x="708" y="330" font-size="12" font-weight="600" fill="#111">GP7</text>
-  <circle cx="700" cy="326" r="4" fill="#9b9b9b"/>
+  <!-- ============ PICO 2 W block ============ -->
+  <rect x="700" y="55" width="240" height="685" rx="12" fill="#eef3fb" stroke="#333" stroke-width="2"/>
+  <text x="820" y="80" text-anchor="middle" font-size="16" font-weight="700" fill="#111">Raspberry Pi Pico 2 W</text>
+  <line x1="715" y1="90" x2="925" y2="90" stroke="#aac"/>
 
-  <text x="708" y="474" font-size="12" font-weight="600" fill="#111">3V3</text>
-  <circle cx="700" cy="470" r="4" fill="#e02b2b"/>
-  <text x="708" y="502" font-size="12" font-weight="600" fill="#111">GND</text>
-  <circle cx="700" cy="498" r="4" fill="#111111"/>
-  <text x="708" y="530" font-size="12" font-weight="600" fill="#111">GP21</text>
-  <circle cx="700" cy="526" r="4" fill="#f2c200"/>
-  <text x="708" y="558" font-size="12" font-weight="600" fill="#111">GP20</text>
-  <circle cx="700" cy="554" r="4" fill="#2e9e46"/>
-  <text x="708" y="586" font-size="12" font-weight="600" fill="#111">GP19</text>
-  <circle cx="700" cy="582" r="4" fill="#2f6fd1"/>
-  <text x="708" y="614" font-size="12" font-weight="600" fill="#111">GP18</text>
-  <circle cx="700" cy="610" r="4" fill="#8e44ad"/>
+  <!-- left-edge breadboard row ruler, rows 1-20 -->
+  <!-- row 1 -->
+  <circle cx="700" cy="95" r="3.5" fill="#ffffff" stroke="#bbb" stroke-width="1.5"/>
+  <text x="708" y="99" font-size="10" fill="#999">R1</text>
+  <!-- row 2 -->
+  <circle cx="700" cy="127" r="3.5" fill="#ffffff" stroke="#bbb" stroke-width="1.5"/>
+  <text x="708" y="131" font-size="10" fill="#999">R2</text>
+  <!-- row 3 GND -->
+  <circle cx="700" cy="159" r="5" fill="#111111"/>
+  <text x="708" y="163" font-size="10" font-weight="700" fill="#555">R3 &#8226; GND</text>
+  <!-- row 4 -->
+  <circle cx="700" cy="191" r="4" fill="#f28c28"/>
+  <text x="708" y="195" font-size="10" fill="#999">R4</text>
+  <!-- row 5 -->
+  <circle cx="700" cy="223" r="4" fill="#f2c200"/>
+  <text x="708" y="227" font-size="10" fill="#999">R5</text>
+  <!-- row 6 -->
+  <circle cx="700" cy="255" r="4" fill="#2e9e46"/>
+  <text x="708" y="259" font-size="10" fill="#999">R6</text>
+  <!-- row 7 -->
+  <circle cx="700" cy="287" r="4" fill="#2f6fd1"/>
+  <text x="708" y="291" font-size="10" fill="#999">R7</text>
+  <!-- row 8 GND (not wired, fact only) -->
+  <circle cx="700" cy="319" r="5" fill="#111111"/>
+  <text x="708" y="323" font-size="10" font-weight="700" fill="#555">R8 &#8226; GND</text>
+  <!-- row 9 -->
+  <circle cx="700" cy="351" r="4" fill="#8e44ad"/>
+  <text x="708" y="355" font-size="10" fill="#999">R9</text>
+  <!-- row 10 -->
+  <circle cx="700" cy="383" r="4" fill="#9b9b9b"/>
+  <text x="708" y="387" font-size="10" fill="#999">R10</text>
+  <!-- row 11 unused -->
+  <circle cx="700" cy="415" r="3.5" fill="#ffffff" stroke="#bbb" stroke-width="1.5"/>
+  <text x="708" y="419" font-size="10" fill="#999">R11</text>
+  <!-- row 12 -->
+  <circle cx="700" cy="447" r="4" fill="#2f6fd1"/>
+  <text x="708" y="451" font-size="10" fill="#999">R12</text>
+  <!-- row 13 GND -->
+  <circle cx="700" cy="479" r="5" fill="#111111"/>
+  <text x="708" y="483" font-size="10" font-weight="700" fill="#555">R13 &#8226; GND</text>
+  <!-- row 14 -->
+  <circle cx="700" cy="511" r="4" fill="#2e9e46"/>
+  <text x="708" y="515" font-size="10" fill="#999">R14</text>
+  <!-- row 15 -->
+  <circle cx="700" cy="543" r="4" fill="#f2c200"/>
+  <text x="708" y="547" font-size="10" fill="#999">R15</text>
+  <!-- row 16 -->
+  <circle cx="700" cy="575" r="4" fill="#8e44ad"/>
+  <text x="708" y="579" font-size="10" fill="#999">R16</text>
+  <!-- row 17 -->
+  <circle cx="700" cy="607" r="4" fill="#2e9e46"/>
+  <text x="708" y="611" font-size="10" fill="#999">R17</text>
+  <!-- row 18 GND -->
+  <circle cx="700" cy="639" r="5" fill="#111111"/>
+  <text x="708" y="643" font-size="10" font-weight="700" fill="#555">R18 &#8226; GND</text>
+  <!-- row 19 -->
+  <circle cx="700" cy="671" r="4" fill="#f28c28"/>
+  <text x="708" y="675" font-size="10" fill="#999">R19</text>
+  <!-- row 20 -->
+  <circle cx="700" cy="703" r="4" fill="#f2c200"/>
+  <text x="708" y="707" font-size="10" fill="#999">R20 (last row)</text>
 
-  <text x="708" y="764" font-size="12" font-weight="600" fill="#111">3V3</text>
-  <circle cx="700" cy="760" r="4" fill="#e02b2b"/>
-  <text x="708" y="792" font-size="12" font-weight="600" fill="#111">GND</text>
-  <circle cx="700" cy="788" r="4" fill="#111111"/>
-  <text x="708" y="820" font-size="12" font-weight="600" fill="#111">GND</text>
-  <circle cx="700" cy="816" r="4" fill="#111111"/>
-  <text x="708" y="848" font-size="12" font-weight="600" fill="#111">GP10</text>
-  <circle cx="700" cy="844" r="4" fill="#f28c28"/>
-  <text x="708" y="876" font-size="12" font-weight="600" fill="#111">GP11</text>
-  <circle cx="700" cy="872" r="4" fill="#f2c200"/>
-  <text x="708" y="904" font-size="12" font-weight="600" fill="#111">GP12</text>
-  <circle cx="700" cy="900" r="4" fill="#2e9e46"/>
+  <!-- right side: single shared 3V3 pin at row 5 -->
+  <circle cx="940" cy="223" r="5" fill="#e02b2b"/>
+  <text x="932" y="219" text-anchor="end" font-size="12" font-weight="700" fill="#c21f1f">3V3</text>
+  <text x="932" y="233" text-anchor="end" font-size="10" fill="#999">row 5, right side</text>
 
-  <!-- button pins exit the bottom of the Pico -->
-  <circle cx="740" cy="930" r="4" fill="#f2c200"/>
-  <circle cx="800" cy="930" r="4" fill="#f28c28"/>
-  <circle cx="860" cy="930" r="4" fill="#2e9e46"/>
-  <circle cx="920" cy="930" r="4" fill="#111111"/>
-  <text x="740" y="922" text-anchor="middle" font-size="11" font-weight="600" fill="#8a6d00">GP13</text>
-  <text x="800" y="922" text-anchor="middle" font-size="11" font-weight="600" fill="#b35e00">GP14</text>
-  <text x="860" y="922" text-anchor="middle" font-size="11" font-weight="600" fill="#1f7a35">GP15</text>
-  <text x="920" y="922" text-anchor="middle" font-size="11" font-weight="600" fill="#111">GND</text>
+  <!-- button pins exit the bottom of the Pico, labeled by GPIO (not row) -->
+  <circle cx="740" cy="740" r="4" fill="#f2c200"/>
+  <circle cx="800" cy="740" r="4" fill="#f28c28"/>
+  <circle cx="860" cy="740" r="4" fill="#2e9e46"/>
+  <circle cx="920" cy="740" r="4" fill="#111111"/>
+  <text x="740" y="732" text-anchor="middle" font-size="11" font-weight="600" fill="#8a6d00">GP16</text>
+  <text x="800" y="732" text-anchor="middle" font-size="11" font-weight="600" fill="#b35e00">GP17</text>
+  <text x="860" y="732" text-anchor="middle" font-size="11" font-weight="600" fill="#1f7a35">GP18</text>
+  <text x="920" y="732" text-anchor="middle" font-size="11" font-weight="600" fill="#111">GND</text>
 
-  <line x1="740" y1="930" x2="740" y2="955" stroke="#f2c200" stroke-width="3"/>
-  <line x1="800" y1="930" x2="800" y2="955" stroke="#f28c28" stroke-width="3"/>
-  <line x1="860" y1="930" x2="860" y2="955" stroke="#2e9e46" stroke-width="3"/>
-  <line x1="920" y1="930" x2="920" y2="955" stroke="#111111" stroke-width="3"/>
+  <line x1="740" y1="740" x2="740" y2="765" stroke="#f2c200" stroke-width="3"/>
+  <line x1="800" y1="740" x2="800" y2="765" stroke="#f28c28" stroke-width="3"/>
+  <line x1="860" y1="740" x2="860" y2="765" stroke="#2e9e46" stroke-width="3"/>
+  <line x1="920" y1="740" x2="920" y2="765" stroke="#111111" stroke-width="3"/>
 
-  <!-- ============ BUTTONS block (lower right, below Pico) ============ -->
-  <rect x="700" y="955" width="240" height="170" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
-  <text x="820" y="983" text-anchor="middle" font-size="15" font-weight="700" fill="#111">Buttons</text>
-  <line x1="715" y1="993" x2="925" y2="993" stroke="#ccc"/>
+  <!-- ============ BUTTONS block ============ -->
+  <rect x="700" y="765" width="240" height="170" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
+  <text x="820" y="788" text-anchor="middle" font-size="14" font-weight="700" fill="#111">Buttons</text>
+  <line x1="715" y1="796" x2="925" y2="796" stroke="#ccc"/>
 
-  <circle cx="740" cy="1040" r="18" fill="#fff" stroke="#f2c200" stroke-width="3"/>
-  <circle cx="800" cy="1040" r="18" fill="#fff" stroke="#f28c28" stroke-width="3"/>
-  <circle cx="860" cy="1040" r="18" fill="#fff" stroke="#2e9e46" stroke-width="3"/>
-  <text x="740" y="1075" text-anchor="middle" font-size="12" font-weight="600" fill="#8a6d00">MODE</text>
-  <text x="800" y="1075" text-anchor="middle" font-size="12" font-weight="600" fill="#b35e00">UP</text>
-  <text x="860" y="1075" text-anchor="middle" font-size="12" font-weight="600" fill="#1f7a35">DOWN</text>
+  <circle cx="740" cy="850" r="18" fill="#fff" stroke="#f2c200" stroke-width="3"/>
+  <circle cx="800" cy="850" r="18" fill="#fff" stroke="#f28c28" stroke-width="3"/>
+  <circle cx="860" cy="850" r="18" fill="#fff" stroke="#2e9e46" stroke-width="3"/>
+  <text x="740" y="885" text-anchor="middle" font-size="12" font-weight="600" fill="#8a6d00">MODE</text>
+  <text x="800" y="885" text-anchor="middle" font-size="12" font-weight="600" fill="#b35e00">UP</text>
+  <text x="860" y="885" text-anchor="middle" font-size="12" font-weight="600" fill="#1f7a35">DOWN</text>
 
-  <!-- common ground symbol -->
-  <line x1="920" y1="1032" x2="920" y2="1048" stroke="#111111" stroke-width="3"/>
-  <line x1="906" y1="1048" x2="934" y2="1048" stroke="#111111" stroke-width="3"/>
-  <line x1="911" y1="1055" x2="929" y2="1055" stroke="#111111" stroke-width="2"/>
-  <line x1="915" y1="1061" x2="925" y2="1061" stroke="#111111" stroke-width="2"/>
-  <text x="920" y="1078" text-anchor="middle" font-size="11" fill="#111">other legs</text>
+  <line x1="920" y1="842" x2="920" y2="858" stroke="#111111" stroke-width="3"/>
+  <line x1="906" y1="858" x2="934" y2="858" stroke="#111111" stroke-width="3"/>
+  <line x1="911" y1="865" x2="929" y2="865" stroke="#111111" stroke-width="2"/>
+  <line x1="915" y1="871" x2="925" y2="871" stroke="#111111" stroke-width="2"/>
+  <text x="920" y="888" text-anchor="middle" font-size="11" fill="#111">other legs</text>
 
-  <text x="820" y="1105" text-anchor="middle" font-size="11" font-style="italic" fill="#777">Each button's other leg returns to GND; Pico's internal pull-ups read the GPIO.</text>
+  <text x="820" y="915" text-anchor="middle" font-size="11" font-style="italic" fill="#777">Each button's other leg returns to GND; Pico's internal pull-ups read the GPIO.</text>
+  <text x="820" y="930" text-anchor="middle" font-size="10" fill="#999">Buttons are labeled by GPIO number, not breadboard row.</text>
 
   <!-- ============ Notes panel ============ -->
-  <rect x="975" y="70" width="245" height="300" rx="10" fill="#fffceb" stroke="#d8c870" stroke-width="1.5"/>
-  <text x="995" y="94" font-size="13" font-weight="700" fill="#5c4d05">Notes</text>
-  <text x="995" y="118" font-size="11" fill="#444">&#8226; Wire colors are the actual</text>
-  <text x="1003" y="132" font-size="11" fill="#444">build harness colors.</text>
-  <text x="995" y="154" font-size="11" fill="#444">&#8226; The Pico 2 W has several</text>
-  <text x="1003" y="168" font-size="11" fill="#444">3V3 and GND pins; every</text>
-  <text x="1003" y="182" font-size="11" fill="#444">3V3/GND wire above lands on</text>
-  <text x="1003" y="196" font-size="11" fill="#444">one, all the same net.</text>
-  <text x="995" y="218" font-size="11" fill="#444">&#8226; Dashed = not connected:</text>
-  <text x="1003" y="232" font-size="11" fill="#444">display SDO, amp SD.</text>
-  <text x="995" y="254" font-size="11" fill="#444">&#8226; Mic L/R ties to GND to</text>
-  <text x="1003" y="268" font-size="11" fill="#444">pick the left channel.</text>
-  <text x="995" y="290" font-size="11" fill="#444">&#8226; GP23/24/25/29 are reserved</text>
-  <text x="1003" y="304" font-size="11" fill="#444">for the wireless chip &#8212;</text>
-  <text x="1003" y="318" font-size="11" fill="#444">never wire to them.</text>
-  <text x="995" y="340" font-size="11" fill="#444">&#8226; LRC/BCLK and WS/SCK must</text>
-  <text x="1003" y="354" font-size="11" fill="#444">be on neighboring GPIOs.</text>
+  <rect x="1000" y="70" width="270" height="340" rx="10" fill="#fffceb" stroke="#d8c870" stroke-width="1.5"/>
+  <text x="1020" y="94" font-size="13" font-weight="700" fill="#5c4d05">Notes</text>
+  <text x="1020" y="118" font-size="11" fill="#444">&#8226; Gray row numbers (R1&#8211;R20) mark</text>
+  <text x="1028" y="132" font-size="11" fill="#444">position on the Pico's left edge.</text>
+  <text x="1028" y="146" font-size="11" fill="#444">They are NOT GPIO numbers.</text>
+  <text x="1020" y="168" font-size="11" fill="#444">&#8226; Rows ending in 3 or 8 (3, 8, 13,</text>
+  <text x="1028" y="182" font-size="11" fill="#444">18) are GND, marked with a</text>
+  <text x="1028" y="196" font-size="11" fill="#444">black dot.</text>
+  <text x="1020" y="218" font-size="11" fill="#444">&#8226; Every VCC / VIN wire (red)</text>
+  <text x="1028" y="232" font-size="11" fill="#444">shares one 3.3V pin: row 5 on</text>
+  <text x="1028" y="246" font-size="11" fill="#444">the right side.</text>
+  <text x="1020" y="268" font-size="11" fill="#444">&#8226; Display GND uses row 3; amp</text>
+  <text x="1028" y="282" font-size="11" fill="#444">GND uses row 13; mic GND</text>
+  <text x="1028" y="296" font-size="11" fill="#444">(and L/R) uses row 18.</text>
+  <text x="1020" y="318" font-size="11" fill="#444">&#8226; I2S rule: the word-select pin</text>
+  <text x="1028" y="332" font-size="11" fill="#444">(LRC, WS) must be exactly one</text>
+  <text x="1028" y="346" font-size="11" fill="#444">row after the bit-clock pin</text>
+  <text x="1028" y="360" font-size="11" fill="#444">(BCLK, SCK) &#8212; checked above.</text>
+  <text x="1020" y="382" font-size="11" fill="#444">&#8226; Display SDO and amp SD are</text>
+  <text x="1028" y="396" font-size="11" fill="#444">left unconnected (dashed).</text>
 </svg>
