@@ -1,12 +1,12 @@
-<svg viewBox="0 0 1300 1000" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+<svg viewBox="0 0 1070 1170" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
   <title>Open Study Buddy wiring diagram with breadboard row numbers</title>
-  <desc>Block diagram of the Open Study Buddy kit with breadboard row numbers added to the Pico's left-edge pins. Rows 3, 8, 13 and 18 are GND. All power wires share one 3.3V pin on the right (row 5). The I2S word-select pins (LRC, WS) are placed one row after their bit-clock pins (BCLK, SCK). The display's SDO and TE pins are not used, so row 11 (GP8) stays empty between the display wires and the amplifier wires.</desc>
+  <desc>Block diagram of the Open Study Buddy kit with breadboard row numbers added to the Pico's left-edge pins. Rows 3, 8, 13 and 18 are GND. All power wires share one 3.3V pin on the right (row 5). The I2S word-select pins (LRC, WS) are placed one row after their bit-clock pins (BCLK, SCK). The display's SDO and TE pins are not used, so row 11 (GP8) stays empty between the display wires and the amplifier wires. The notes sit below the diagram so it prints on one 8.5 x 11 inch page. Version 1.2.</desc>
 
-  <rect x="0" y="0" width="1300" height="1000" fill="#ffffff"/>
+  <rect x="0" y="0" width="1070" height="1170" fill="#ffffff"/>
 
   <!-- Title -->
-  <text x="650" y="25" text-anchor="middle" font-size="20" font-weight="700" fill="#111">Open Study Buddy &#8212; Wiring Diagram</text>
-  <text x="650" y="42" text-anchor="middle" font-size="12" fill="#666">Breadboard row numbers on the Pico's left edge &#8212; rows ending in 3 or 8 are GND &#8226; row numbers &#8800; GPIO numbers</text>
+  <text x="535" y="25" text-anchor="middle" font-size="20" font-weight="700" fill="#111">Open Study Buddy &#8212; Wiring Diagram</text>
+  <text x="535" y="42" text-anchor="middle" font-size="12" fill="#666">Breadboard row numbers on the Pico's left edge &#8212; rows ending in 3 or 8 are GND &#8226; row numbers &#8800; GPIO numbers</text>
 
   <!-- ============ DISPLAY block ============ -->
   <rect x="40" y="70" width="270" height="300" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
@@ -88,41 +88,64 @@
   <text x="175" y="516" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">GP10 = GP9 + 1 &#10003; (R14, R12)</text>
 
   <!-- ============ MICROPHONE block ============ -->
-  <rect x="40" y="634" width="270" height="190" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
+  <!-- The INMP441 drawn as its round board, seen from the front. -->
+  <rect x="40" y="634" width="270" height="236" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
   <text x="175" y="656" text-anchor="middle" font-size="14" font-weight="700" fill="#111">INMP441 Microphone</text>
   <line x1="55" y1="664" x2="295" y2="664" stroke="#ccc"/>
 
-  <text x="302" y="688" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VCC</text>
-  <circle cx="310" cy="684" r="4" fill="#e02b2b"/>
-  <text x="302" y="716" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">SD</text>
-  <circle cx="310" cy="712" r="4" fill="#2e9e46"/>
-  <text x="302" y="744" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND / L-R</text>
-  <circle cx="310" cy="740" r="4" fill="#111111"/>
-  <text x="302" y="772" text-anchor="end" font-size="12" font-weight="600" fill="#b35e00">SCK</text>
-  <circle cx="310" cy="768" r="4" fill="#f28c28"/>
-  <text x="302" y="800" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">WS</text>
-  <circle cx="310" cy="796" r="4" fill="#f2c200"/>
+  <rect x="80" y="670" width="190" height="36" rx="6" fill="#ffffff" stroke="#ddd" stroke-width="1"/>
+  <text x="175" y="686" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">I2S rule: WS = SCK + 1</text>
+  <text x="175" y="702" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">GP14 = GP13 + 1 &#10003; (R19, R17)</text>
 
-  <line x1="310" y1="712" x2="700" y2="703" stroke="#2e9e46" stroke-width="3"/>
-  <line x1="310" y1="740" x2="700" y2="639" stroke="#111111" stroke-width="3"/>
-  <line x1="310" y1="768" x2="700" y2="607" stroke="#f28c28" stroke-width="3"/>
-  <line x1="310" y1="796" x2="700" y2="671" stroke="#f2c200" stroke-width="3"/>
+  <!-- the round board -->
+  <circle cx="175" cy="785" r="62" fill="#dde7f3" stroke="#334" stroke-width="2"/>
 
-  <rect x="80" y="711" width="190" height="36" rx="6" fill="#ffffff" stroke="#ddd" stroke-width="1"/>
-  <text x="175" y="727" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">I2S rule: WS = SCK + 1</text>
-  <text x="175" y="743" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">GP14 = GP13 + 1 &#10003; (R19, R17)</text>
+  <!-- microphone icon -->
+  <rect x="168" y="764" width="14" height="24" rx="7" fill="#555"/>
+  <path d="M162,780 a13,13 0 0 0 26,0" fill="none" stroke="#555" stroke-width="2"/>
+  <line x1="175" y1="793" x2="175" y2="801" stroke="#555" stroke-width="2"/>
+  <line x1="168" y1="801" x2="182" y2="801" stroke="#555" stroke-width="2"/>
+
+  <!-- left column: L/R, WS, SCK -->
+  <circle cx="124" cy="750" r="4" fill="#111111"/>
+  <text x="133" y="754" font-size="11" font-weight="600" fill="#111111">L/R</text>
+  <circle cx="113" cy="785" r="4" fill="#f2c200"/>
+  <text x="122" y="789" font-size="11" font-weight="600" fill="#8a6d00">WS</text>
+  <circle cx="124" cy="820" r="4" fill="#f28c28"/>
+  <text x="133" y="824" font-size="11" font-weight="600" fill="#b35e00">SCK</text>
+
+  <!-- right column: GND, VCC, SD -->
+  <circle cx="226" cy="750" r="4" fill="#111111"/>
+  <text x="217" y="754" text-anchor="end" font-size="11" font-weight="600" fill="#111111">GND</text>
+  <circle cx="237" cy="785" r="4" fill="#e02b2b"/>
+  <text x="228" y="789" text-anchor="end" font-size="11" font-weight="600" fill="#c21f1f">VCC</text>
+  <circle cx="226" cy="820" r="4" fill="#2e9e46"/>
+  <text x="217" y="824" text-anchor="end" font-size="11" font-weight="600" fill="#1f7a35">SD</text>
+
+  <text x="175" y="862" text-anchor="middle" font-size="10" font-style="italic" fill="#777">front of the round board</text>
+
+  <!-- L/R is tied to GND: a jumper over the top of the board -->
+  <polyline points="124,750 124,714 226,714 226,750" fill="none" stroke="#111111" stroke-width="2.5"/>
+
+  <!-- right-side pins straight to their Pico rows -->
+  <line x1="226" y1="750" x2="700" y2="639" stroke="#111111" stroke-width="3"/>
+  <line x1="226" y1="820" x2="700" y2="703" stroke="#2e9e46" stroke-width="3"/>
+
+  <!-- left-side pins go around the board: out, down under the block, across, and up -->
+  <polyline points="124,820 70,820 70,878 600,878 600,607 700,607" fill="none" stroke="#f28c28" stroke-width="3"/>
+  <polyline points="113,785 58,785 58,890 615,890 615,671 700,671" fill="none" stroke="#f2c200" stroke-width="3"/>
 
   <!-- ============ shared 3V3 power bus ============ -->
   <line x1="310" y1="145" x2="660" y2="145" stroke="#e02b2b" stroke-width="3"/>
   <line x1="310" y1="596" x2="660" y2="596" stroke="#e02b2b" stroke-width="3"/>
-  <line x1="310" y1="684" x2="660" y2="684" stroke="#e02b2b" stroke-width="3"/>
-  <line x1="660" y1="145" x2="660" y2="684" stroke="#e02b2b" stroke-width="3"/>
+  <line x1="237" y1="785" x2="660" y2="785" stroke="#e02b2b" stroke-width="3"/>
+  <line x1="660" y1="145" x2="660" y2="785" stroke="#e02b2b" stroke-width="3"/>
   <circle cx="660" cy="145" r="4" fill="#e02b2b"/>
   <circle cx="660" cy="596" r="4" fill="#e02b2b"/>
-  <circle cx="660" cy="684" r="4" fill="#e02b2b"/>
-  <polyline points="660,145 660,35 980,35 980,223 940,223" fill="none" stroke="#e02b2b" stroke-width="3"/>
-  <text x="665" y="138" font-size="10" font-style="italic" fill="#c21f1f">all VCC / VIN wires</text>
-  <text x="665" y="150" font-size="10" font-style="italic" fill="#c21f1f">share one 3.3V pin</text>
+  <circle cx="660" cy="785" r="4" fill="#e02b2b"/>
+  <polyline points="660,145 660,49 980,49 980,223 940,223" fill="none" stroke="#e02b2b" stroke-width="3"/>
+  <text x="652" y="118" text-anchor="end" font-size="10" font-style="italic" fill="#c21f1f">all VCC / VIN wires</text>
+  <text x="652" y="130" text-anchor="end" font-size="10" font-style="italic" fill="#c21f1f">share one 3.3V pin</text>
 
   <!-- ============ PICO 2 W block ============ -->
   <rect x="700" y="55" width="240" height="685" rx="12" fill="#eef3fb" stroke="#333" stroke-width="2"/>
@@ -215,7 +238,7 @@
   <!-- right side: single shared 3V3 pin at row 5 -->
   <circle cx="940" cy="223" r="5" fill="#e02b2b"/>
   <text x="932" y="219" text-anchor="end" font-size="12" font-weight="700" fill="#c21f1f">3V3</text>
-  <text x="948" y="227" font-size="10" fill="#999">row 5, right side</text>
+  <text x="948" y="241" font-size="10" fill="#999">row 5, right side</text>
 
   <!-- button pins exit the bottom of the Pico, labeled by GPIO (not row) -->
   <circle cx="740" cy="740" r="4" fill="#f2c200"/>
@@ -250,31 +273,23 @@
   <line x1="915" y1="871" x2="925" y2="871" stroke="#111111" stroke-width="2"/>
   <text x="920" y="888" text-anchor="middle" font-size="11" fill="#111">other legs</text>
 
-  <text x="820" y="915" text-anchor="middle" font-size="11" font-style="italic" fill="#777">Each button's other leg returns to GND; Pico's internal pull-ups read the GPIO.</text>
-  <text x="820" y="930" text-anchor="middle" font-size="10" fill="#999">Buttons are labeled by GPIO number, not breadboard row.</text>
+  <text x="820" y="953" text-anchor="middle" font-size="11" font-style="italic" fill="#777">Each button's other leg returns to GND; Pico's internal pull-ups read the GPIO.</text>
+  <text x="820" y="968" text-anchor="middle" font-size="10" fill="#999">Buttons are labeled by GPIO number, not breadboard row.</text>
 
-  <!-- ============ Notes panel ============ -->
-  <rect x="1000" y="70" width="270" height="384" rx="10" fill="#fffceb" stroke="#d8c870" stroke-width="1.5"/>
-  <text x="1020" y="94" font-size="13" font-weight="700" fill="#5c4d05">Notes</text>
-  <text x="1020" y="118" font-size="11" fill="#444">&#8226; Row numbers (R1&#8211;R20, outside the</text>
-  <text x="1028" y="132" font-size="11" fill="#444">Pico) mark breadboard position.</text>
-  <text x="1028" y="146" font-size="11" fill="#444">GPIO/GND names (inside) are the</text>
-  <text x="1028" y="160" font-size="11" fill="#444">Pico's real logical pin at that row.</text>
-  <text x="1020" y="182" font-size="11" fill="#444">&#8226; Rows ending in 3 or 8 (3, 8, 13,</text>
-  <text x="1028" y="196" font-size="11" fill="#444">18) are GND, marked with a</text>
-  <text x="1028" y="210" font-size="11" fill="#444">black dot.</text>
-  <text x="1020" y="232" font-size="11" fill="#444">&#8226; Every VCC / VIN wire (red)</text>
-  <text x="1028" y="246" font-size="11" fill="#444">shares one 3.3V pin: row 5 on</text>
-  <text x="1028" y="260" font-size="11" fill="#444">the right side.</text>
-  <text x="1020" y="282" font-size="11" fill="#444">&#8226; Display GND uses row 3; amp</text>
-  <text x="1028" y="296" font-size="11" fill="#444">GND uses row 13; mic GND</text>
-  <text x="1028" y="310" font-size="11" fill="#444">(and L/R) uses row 18.</text>
-  <text x="1020" y="332" font-size="11" fill="#444">&#8226; I2S rule: the word-select pin</text>
-  <text x="1028" y="346" font-size="11" fill="#444">(LRC, WS) must be exactly one</text>
-  <text x="1028" y="360" font-size="11" fill="#444">row after the bit-clock pin</text>
-  <text x="1028" y="374" font-size="11" fill="#444">(BCLK, SCK) &#8212; checked above.</text>
-  <text x="1020" y="396" font-size="11" fill="#444">&#8226; Display SDO and TE, and amp SD,</text>
-  <text x="1028" y="410" font-size="11" fill="#444">are not used. R11 (GP8) stays empty,</text>
-  <text x="1028" y="424" font-size="11" fill="#444">leaving a gap between the display</text>
-  <text x="1028" y="438" font-size="11" fill="#444">wires and the amp wires.</text>
+  <!-- ============ Notes panel: below the diagram so it prints on letter paper ============ -->
+  <rect x="40" y="985" width="990" height="152" rx="10" fill="#fffceb" stroke="#d8c870" stroke-width="1.5"/>
+  <text x="60" y="1006" font-size="13" font-weight="700" fill="#5c4d05">Notes</text>
+  <text x="60" y="1028" font-size="12" fill="#444">&#8226; Row numbers (R1&#8211;R20, outside the Pico) mark breadboard position.</text>
+  <text x="70" y="1044" font-size="12" fill="#444">GPIO/GND names (inside) are the Pico's real logical pin at that row.</text>
+  <text x="60" y="1068" font-size="12" fill="#444">&#8226; Rows ending in 3 or 8 (3, 8, 13, 18) are GND, marked with a black dot.</text>
+  <text x="60" y="1092" font-size="12" fill="#444">&#8226; Every VCC / VIN wire (red) shares one 3.3V pin: row 5 on the right side.</text>
+  <text x="545" y="1028" font-size="12" fill="#444">&#8226; Display GND uses row 3; amp GND uses row 13; mic GND (and L/R)</text>
+  <text x="555" y="1044" font-size="12" fill="#444">uses row 18.</text>
+  <text x="545" y="1068" font-size="12" fill="#444">&#8226; I2S rule: the word-select pin (LRC, WS) must be exactly one row after</text>
+  <text x="555" y="1084" font-size="12" fill="#444">the bit-clock pin (BCLK, SCK) &#8212; checked in the amp and mic blocks.</text>
+  <text x="545" y="1108" font-size="12" fill="#444">&#8226; Display SDO and TE, and amp SD, are not used. R11 (GP8) stays</text>
+  <text x="555" y="1124" font-size="12" fill="#444">empty, leaving a gap between the display wires and the amp wires.</text>
+
+  <!-- version -->
+  <text x="1030" y="1158" text-anchor="end" font-size="11" fill="#777">Version 1.2</text>
 </svg>
