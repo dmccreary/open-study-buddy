@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1300 1000" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
   <title>Open Study Buddy wiring diagram with breadboard row numbers</title>
-  <desc>Block diagram of the Open Study Buddy kit with breadboard row numbers added to the Pico's left-edge pins. Rows 3, 8, 13 and 18 are GND. All power wires share one 3.3V pin on the right (row 5). The I2S word-select pins (LRC, WS) are placed one row after their bit-clock pins (BCLK, SCK).</desc>
+  <desc>Block diagram of the Open Study Buddy kit with breadboard row numbers added to the Pico's left-edge pins. Rows 3, 8, 13 and 18 are GND. All power wires share one 3.3V pin on the right (row 5). The I2S word-select pins (LRC, WS) are placed one row after their bit-clock pins (BCLK, SCK). The display's SDO and TE pins are not used, so row 11 (GP8) stays empty between the display wires and the amplifier wires.</desc>
 
   <rect x="0" y="0" width="1300" height="1000" fill="#ffffff"/>
 
@@ -13,36 +13,46 @@
   <text x="175" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#111">GC9B72 Round Display</text>
   <line x1="55" y1="103" x2="295" y2="103" stroke="#ccc"/>
 
-  <text x="302" y="129" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND</text>
-  <circle cx="310" cy="125" r="4" fill="#111111"/>
-  <text x="302" y="157" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VCC</text>
-  <circle cx="310" cy="153" r="4" fill="#e02b2b"/>
-  <text x="302" y="185" text-anchor="end" font-size="12" font-weight="600" fill="#b35e00">CLK</text>
-  <circle cx="310" cy="181" r="4" fill="#f28c28"/>
-  <text x="302" y="213" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">SDA</text>
-  <circle cx="310" cy="209" r="4" fill="#f2c200"/>
-  <text x="302" y="241" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">RST</text>
-  <circle cx="310" cy="237" r="4" fill="#2e9e46"/>
-  <text x="302" y="269" text-anchor="end" font-size="12" font-weight="600" fill="#1f4fa0">DC</text>
-  <circle cx="310" cy="265" r="4" fill="#2f6fd1"/>
-  <text x="302" y="297" text-anchor="end" font-size="12" font-weight="600" fill="#6c2e86">CS</text>
-  <circle cx="310" cy="293" r="4" fill="#8e44ad"/>
-  <text x="302" y="325" text-anchor="end" font-size="12" font-weight="600" fill="#6b6b6b">BL</text>
-  <circle cx="310" cy="321" r="4" fill="#9b9b9b"/>
-  <text x="302" y="353" text-anchor="end" font-size="12" font-weight="600" fill="#555">SDO</text>
-  <circle cx="310" cy="349" r="4" fill="#ffffff" stroke="#555" stroke-width="1.5"/>
-  <text x="318" y="345" font-size="10" font-style="italic" fill="#777">(white wire)</text>
+  <text x="302" y="124" text-anchor="end" font-size="12" font-weight="600" fill="#111111">GND</text>
+  <circle cx="310" cy="120" r="4" fill="#111111"/>
+  <text x="302" y="149" text-anchor="end" font-size="12" font-weight="600" fill="#c21f1f">VCC</text>
+  <circle cx="310" cy="145" r="4" fill="#e02b2b"/>
+  <text x="302" y="174" text-anchor="end" font-size="12" font-weight="600" fill="#b35e00">CLK</text>
+  <circle cx="310" cy="170" r="4" fill="#f28c28"/>
+  <text x="302" y="199" text-anchor="end" font-size="12" font-weight="600" fill="#8a6d00">SDA</text>
+  <circle cx="310" cy="195" r="4" fill="#f2c200"/>
+  <text x="302" y="224" text-anchor="end" font-size="12" font-weight="600" fill="#1f7a35">RST</text>
+  <circle cx="310" cy="220" r="4" fill="#2e9e46"/>
+  <text x="302" y="249" text-anchor="end" font-size="12" font-weight="600" fill="#1f4fa0">DC</text>
+  <circle cx="310" cy="245" r="4" fill="#2f6fd1"/>
+  <text x="302" y="274" text-anchor="end" font-size="12" font-weight="600" fill="#6c2e86">CS</text>
+  <circle cx="310" cy="270" r="4" fill="#8e44ad"/>
+  <text x="302" y="299" text-anchor="end" font-size="12" font-weight="600" fill="#6b6b6b">BL</text>
+  <circle cx="310" cy="295" r="4" fill="#9b9b9b"/>
+  <text x="302" y="324" text-anchor="end" font-size="12" font-weight="600" fill="#777">SDO</text>
+  <circle cx="310" cy="320" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <line x1="310" y1="320" x2="360" y2="320" stroke="#bbbbbb" stroke-width="3" stroke-dasharray="6,5"/>
+  <circle cx="360" cy="320" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <text x="368" y="324" font-size="11" font-style="italic" fill="#777">not used</text>
+  <text x="302" y="349" text-anchor="end" font-size="12" font-weight="600" fill="#777">TE</text>
+  <circle cx="310" cy="345" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <line x1="310" y1="345" x2="360" y2="345" stroke="#bbbbbb" stroke-width="3" stroke-dasharray="6,5"/>
+  <circle cx="360" cy="345" r="4" fill="#ffffff" stroke="#999" stroke-width="1.5"/>
+  <text x="368" y="349" font-size="11" font-style="italic" fill="#777">not used</text>
+
+  <rect x="62" y="302" width="190" height="52" rx="6" fill="#ffffff" stroke="#ddd" stroke-width="1"/>
+  <text x="157" y="318" text-anchor="middle" font-size="10" font-weight="600" fill="#555">SDO and TE are not used</text>
+  <text x="157" y="332" text-anchor="middle" font-size="10" fill="#777">SDO (read-back) and TE (frame</text>
+  <text x="157" y="345" text-anchor="middle" font-size="10" fill="#777">sync) get no wire in this kit</text>
 
   <!-- display signal/ground wires to Pico rows -->
-  <line x1="310" y1="125" x2="700" y2="159" stroke="#111111" stroke-width="3"/>
-  <line x1="310" y1="181" x2="700" y2="191" stroke="#f28c28" stroke-width="3"/>
-  <line x1="310" y1="209" x2="700" y2="223" stroke="#f2c200" stroke-width="3"/>
-  <line x1="310" y1="237" x2="700" y2="255" stroke="#2e9e46" stroke-width="3"/>
-  <line x1="310" y1="265" x2="700" y2="287" stroke="#2f6fd1" stroke-width="3"/>
-  <line x1="310" y1="293" x2="700" y2="351" stroke="#8e44ad" stroke-width="3"/>
-  <line x1="310" y1="321" x2="700" y2="383" stroke="#9b9b9b" stroke-width="3"/>
-  <line x1="310" y1="349" x2="700" y2="415" stroke="#999999" stroke-width="5"/>
-  <line x1="310" y1="349" x2="700" y2="415" stroke="#ffffff" stroke-width="2.5"/>
+  <line x1="310" y1="120" x2="700" y2="159" stroke="#111111" stroke-width="3"/>
+  <line x1="310" y1="170" x2="700" y2="191" stroke="#f28c28" stroke-width="3"/>
+  <line x1="310" y1="195" x2="700" y2="223" stroke="#f2c200" stroke-width="3"/>
+  <line x1="310" y1="220" x2="700" y2="255" stroke="#2e9e46" stroke-width="3"/>
+  <line x1="310" y1="245" x2="700" y2="287" stroke="#2f6fd1" stroke-width="3"/>
+  <line x1="310" y1="270" x2="700" y2="351" stroke="#8e44ad" stroke-width="3"/>
+  <line x1="310" y1="295" x2="700" y2="383" stroke="#9b9b9b" stroke-width="3"/>
 
   <!-- ============ AMPLIFIER block ============ -->
   <rect x="40" y="380" width="270" height="244" rx="12" fill="#f7f7f9" stroke="#333" stroke-width="2"/>
@@ -103,16 +113,16 @@
   <text x="175" y="743" text-anchor="middle" font-size="10" font-weight="600" fill="#1f7a35">row 20 = row 19 + 1 &#10003;</text>
 
   <!-- ============ shared 3V3 power bus ============ -->
-  <line x1="310" y1="153" x2="660" y2="153" stroke="#e02b2b" stroke-width="3"/>
+  <line x1="310" y1="145" x2="660" y2="145" stroke="#e02b2b" stroke-width="3"/>
   <line x1="310" y1="596" x2="660" y2="596" stroke="#e02b2b" stroke-width="3"/>
   <line x1="310" y1="684" x2="660" y2="684" stroke="#e02b2b" stroke-width="3"/>
-  <line x1="660" y1="153" x2="660" y2="684" stroke="#e02b2b" stroke-width="3"/>
-  <circle cx="660" cy="153" r="4" fill="#e02b2b"/>
+  <line x1="660" y1="145" x2="660" y2="684" stroke="#e02b2b" stroke-width="3"/>
+  <circle cx="660" cy="145" r="4" fill="#e02b2b"/>
   <circle cx="660" cy="596" r="4" fill="#e02b2b"/>
   <circle cx="660" cy="684" r="4" fill="#e02b2b"/>
-  <polyline points="660,153 660,35 980,35 980,223 940,223" fill="none" stroke="#e02b2b" stroke-width="3"/>
-  <text x="665" y="146" font-size="10" font-style="italic" fill="#c21f1f">all VCC / VIN wires</text>
-  <text x="665" y="158" font-size="10" font-style="italic" fill="#c21f1f">share one 3.3V pin</text>
+  <polyline points="660,145 660,35 980,35 980,223 940,223" fill="none" stroke="#e02b2b" stroke-width="3"/>
+  <text x="665" y="138" font-size="10" font-style="italic" fill="#c21f1f">all VCC / VIN wires</text>
+  <text x="665" y="150" font-size="10" font-style="italic" fill="#c21f1f">share one 3.3V pin</text>
 
   <!-- ============ PICO 2 W block ============ -->
   <rect x="700" y="55" width="240" height="685" rx="12" fill="#eef3fb" stroke="#333" stroke-width="2"/>
@@ -160,10 +170,11 @@
   <circle cx="700" cy="383" r="4" fill="#9b9b9b"/>
   <text x="690" y="387" text-anchor="end" font-size="10" fill="#999">R10</text>
   <text x="708" y="387" font-size="10" fill="#555">GP7</text>
-  <!-- row 11: display SDO (white wire) -->
-  <circle cx="700" cy="415" r="4.5" fill="#ffffff" stroke="#555" stroke-width="2"/>
+  <!-- row 11: left empty, the gap between the display and amp wires -->
+  <circle cx="700" cy="415" r="3.5" fill="#ffffff" stroke="#bbb" stroke-width="1.5"/>
   <text x="690" y="419" text-anchor="end" font-size="10" fill="#999">R11</text>
   <text x="708" y="419" font-size="10" fill="#555">GP8</text>
+  <text x="740" y="419" font-size="10" font-style="italic" fill="#999">empty</text>
   <!-- row 12 -->
   <circle cx="700" cy="447" r="4" fill="#2e9e46"/>
   <text x="690" y="451" text-anchor="end" font-size="10" fill="#999">R12</text>
@@ -243,7 +254,7 @@
   <text x="820" y="930" text-anchor="middle" font-size="10" fill="#999">Buttons are labeled by GPIO number, not breadboard row.</text>
 
   <!-- ============ Notes panel ============ -->
-  <rect x="1000" y="70" width="270" height="356" rx="10" fill="#fffceb" stroke="#d8c870" stroke-width="1.5"/>
+  <rect x="1000" y="70" width="270" height="384" rx="10" fill="#fffceb" stroke="#d8c870" stroke-width="1.5"/>
   <text x="1020" y="94" font-size="13" font-weight="700" fill="#5c4d05">Notes</text>
   <text x="1020" y="118" font-size="11" fill="#444">&#8226; Row numbers (R1&#8211;R20, outside the</text>
   <text x="1028" y="132" font-size="11" fill="#444">Pico) mark breadboard position.</text>
@@ -262,6 +273,8 @@
   <text x="1028" y="346" font-size="11" fill="#444">(LRC, WS) must be exactly one</text>
   <text x="1028" y="360" font-size="11" fill="#444">row after the bit-clock pin</text>
   <text x="1028" y="374" font-size="11" fill="#444">(BCLK, SCK) &#8212; checked above.</text>
-  <text x="1020" y="396" font-size="11" fill="#444">&#8226; Display SDO now wires to R11</text>
-  <text x="1028" y="410" font-size="11" fill="#444">(GP8); amp SD stays unconnected.</text>
+  <text x="1020" y="396" font-size="11" fill="#444">&#8226; Display SDO and TE, and amp SD,</text>
+  <text x="1028" y="410" font-size="11" fill="#444">are not used. R11 (GP8) stays empty,</text>
+  <text x="1028" y="424" font-size="11" fill="#444">leaving a gap between the display</text>
+  <text x="1028" y="438" font-size="11" fill="#444">wires and the amp wires.</text>
 </svg>

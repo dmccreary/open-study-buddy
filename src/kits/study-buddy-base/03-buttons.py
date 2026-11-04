@@ -3,9 +3,9 @@
 # Thonny shell. No display, speaker, or microphone needed -- just the buttons
 # and the Pico.
 #
-#   MODE   GP13   (other leg to GND)
-#   UP     GP14   (other leg to GND)
-#   DOWN   GP15   (other leg to GND)
+#   MODE   GP16   (other leg to GND)
+#   UP     GP17   (other leg to GND)
+#   DOWN   GP18   (other leg to GND)
 #
 # Each pin has a pull-up, so it reads 1 until a press connects it to GND and
 # pulls it to 0. The onboard LED lights while any button is held, so you can

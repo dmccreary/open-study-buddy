@@ -7,9 +7,13 @@
 # tries every reasonable way a GalaxyCore / MIPI-DCS display chip is known
 # to answer, and reports what came back.
 #
-# It only touches the display's own pins, GP2-GP8 in config.py:
+# It only touches the display's own pins, GP2-GP8:
 #   SCK GP2, SDA GP3, RST GP4, DC GP5, CS GP6, BL GP7, SDO GP8.
 # The amp, microphone and buttons are never touched.
+#
+# RESULT: on this kit's module SDO never answered, so the kit no longer
+# wires it (see config.py). To repeat the experiment, run a wire from the
+# display's SDO pad to the empty GP8 row first.
 #
 # What we know from sister chips (GC9A01, GC9306, GC9307) and the MIPI
 # Display Command Set every one of them follows:
@@ -67,7 +71,7 @@ import config
 NAME = "08-sdo-probe-test.py"
 VERSION = "1.1"
 
-SDO = getattr(config, "SDO_PIN", 8)
+SDO = getattr(config, "SDO_PIN", 8)   # the kit leaves GP8 empty for it
 SDA = config.MOSI_PIN
 SCK = config.SCK_PIN
 

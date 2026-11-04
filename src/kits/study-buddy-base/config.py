@@ -30,8 +30,11 @@ HEIGHT = 360
 # Pico 2 W + bare GC9B72 module, on SPI0.
 #
 # The 10-pad breakout reads (left to right): GND VCC SCL SDA RST DC CS BL
-# SDO TE. Only 8 of those are wired -- SDO (read-back) and TE (frame
-# tearing sync) are not used by this driver and left unconnected.
+# SDO TE. Only the first 8 are wired. SDO (read-back) and TE (frame
+# tearing sync) are not used and get no wire: the gc9b72 driver never
+# reads either one, and on this module SDO never answers anyway (test 08
+# tried every known way). GP8 is left empty, which leaves a one-row gap
+# on the breadboard between the display wires and the amplifier wires.
 #
 #   Module pin   Pico pin   Wire color
 #   ----------   --------   ----------
@@ -43,6 +46,7 @@ HEIGHT = 360
 #   BL           GP7        gray
 #   VCC          3V3        red
 #   GND          GND        black
+#   SDO, TE      --         not used
 SPI_ID = 0
 SCK_PIN = 2
 MOSI_PIN = 3
@@ -87,14 +91,16 @@ BAUDRATE = 24_000_000
 # Three push buttons, each with its other leg to GND. PULL_UP holds the
 # pin at 1 until a press pulls it to 0, so "pressed" reads as 0.
 #
-#   Mode       GP13   step through what the up/down buttons change
-#   Increment  GP14   the current setting goes up
-#   Decrement  GP15   the current setting goes down
+#   Mode       GP16   step through what the up/down buttons change
+#   Increment  GP17   the current setting goes up
+#   Decrement  GP18   the current setting goes down
 #
-# Same pins and names as the other clock kits in this repository.
-BUTTON_MODE_PIN = 13
-BUTTON_INCREMENT_PIN = 14
-BUTTON_DECREMENT_PIN = 15
+# Moved from GP13-GP15 (the other clock kits' pins) to GP16-GP18 so the
+# microphone could take GP13-GP15 instead, keeping the display, amp, mic
+# and buttons on one tidy run of pins, GP2 through GP18.
+BUTTON_MODE_PIN = 16
+BUTTON_INCREMENT_PIN = 17
+BUTTON_DECREMENT_PIN = 18
 
 # The speaker: a MAX98357A I2S amplifier board. It turns the Pico's digital
 # audio into power for a small speaker, so there is no DAC to wire and no
@@ -102,24 +108,24 @@ BUTTON_DECREMENT_PIN = 15
 #
 #   Amp pin   Pico pin   What it does
 #   -------   --------   ------------
-#   LRC       GP21       "left/right clock": says which channel a sample is
-#   BCLK      GP20       "bit clock": one tick for every bit of audio
-#   DIN       GP19       "data in": the audio itself
-#   GAIN      GP18       how loud the amp makes it (see GAIN_DB below)
+#   BCLK      GP9        "bit clock": one tick for every bit of audio
+#   LRC       GP10       "left/right clock": says which channel a sample is
+#   DIN       GP11       "data in": the audio itself
+#   GAIN      GP12       how loud the amp makes it (see GAIN_DB below)
 #
 # THE ONE RULE: MicroPython's I2S on the Pico needs LRC on the pin right
-# AFTER BCLK. Here BCLK is GP20 and LRC is GP21, so it works. Swap them
+# AFTER BCLK. Here BCLK is GP9 and LRC is GP10, so it works. Swap them
 # and I2S() raises an error. (It is the MicroPython docs' rule for rp2:
 # "The ws pin number must be one greater than the sck pin number" -- ws
 # is the library's name for LRC, and sck is its name for BCLK.)
 #
 # Any four pins would do apart from that rule. These avoid the display
-# (GP2-GP7), the buttons (GP13-GP15), the microphone (GP10-GP12), and the
+# (GP2-GP8), the microphone (GP13-GP15), the buttons (GP16-GP18), and the
 # wireless chip's own pins (GP23, GP24, GP25, GP29).
-I2S_LRC_PIN = 21
-I2S_BCLK_PIN = 20
-I2S_DIN_PIN = 19
-I2S_GAIN_PIN = 18
+I2S_LRC_PIN = 10
+I2S_BCLK_PIN = 9
+I2S_DIN_PIN = 11
+I2S_GAIN_PIN = 12
 
 # The speaker transmits on I2S block 0. The microphone below receives on
 # block 1, so the kit can listen and talk at the same time.
@@ -151,19 +157,19 @@ VOLUME = 40
 #
 #   Mic pin   Pico pin   What it does
 #   -------   --------   ------------
-#   SCK       GP10       "serial clock": the Pico's bit clock for the mic
-#   WS        GP11       "word select": says which channel a sample is
-#   SD        GP12       "serial data": the audio itself, mic to Pico
+#   SD        GP13       "serial data": the audio itself, mic to Pico
+#   SCK       GP14       "serial clock": the Pico's bit clock for the mic
+#   WS        GP15       "word select": says which channel a sample is
 #   L/R       GND        picks the LEFT channel (tie to 3V3 for right)
 #   VDD       3V3        power -- the INMP441 is a 3.3 V part, never 5 V
 #   GND       GND
 #
-# The same ws-is-sck-plus-one rule applies: SCK is GP10 and WS is GP11.
-# These pins avoid the display (GP2-GP7), the buttons (GP13-GP15), the
-# amplifier (GP18-GP21), and the wireless chip's own pins.
-MIC_SCK_PIN = 10
-MIC_WS_PIN = 11
-MIC_SD_PIN = 12
+# The same ws-is-sck-plus-one rule applies: SCK is GP14 and WS is GP15.
+# These pins avoid the display (GP2-GP8), the amplifier (GP9-GP12), the
+# buttons (GP16-GP18), and the wireless chip's own pins.
+MIC_SCK_PIN = 14
+MIC_WS_PIN = 15
+MIC_SD_PIN = 13
 
 # I2S block 1, so the microphone does not fight the speaker for block 0.
 MIC_I2S_ID = 1

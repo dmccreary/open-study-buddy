@@ -10,11 +10,11 @@ the next part.
 | Part | Pico pins |
 |---|---|
 | Display (SCL, SDA, RST, DC, CS, BL) | GP2, GP3, GP4, GP5, GP6, GP7 (SPI0), plus 3V3 and GND |
-| Buttons MODE, UP, DOWN | GP13, GP14, GP15, each with its other leg to GND |
-| Microphone SCK, WS, SD | GP10, GP11, GP12 (I2S block 1) |
+| Buttons MODE, UP, DOWN | GP16, GP17, GP18, each with its other leg to GND |
+| Microphone SCK, WS, SD | GP14, GP15, GP13 (I2S block 1) |
 | Microphone L/R, VDD, GND | GND (left channel), 3V3, GND |
-| Amplifier BCLK, LRC, DIN | GP20, GP21, GP19 (I2S block 0) |
-| Amplifier GAIN | GP18 |
+| Amplifier BCLK, LRC, DIN | GP9, GP10, GP11 (I2S block 0) |
+| Amplifier GAIN | GP12 |
 | Amplifier VIN, GND | 5 V (VBUS) or 3V3, and GND |
 
 **The I2S pin rule:** MicroPython's I2S on the Pico needs the word-select pin
@@ -24,10 +24,10 @@ it for both the speaker and the microphone.
 **Microphone wiring gotchas:** the microphone's SCK and WS wires are easy to
 swap, and so are SCK and SD. A swapped mic starts without any error and sends
 nothing but zeros, so test 02 reports "flat line" and test 06's meter never
-moves. If you see that, check, in this order: SCK on GP10, WS on GP11, SD on
-GP12; VDD on 3V3 (not 5 V); GND and L/R both on GND. Do not "fix" it by
-editing the pins in `config.py` to match swapped wires: SCK on GP12 would need
-WS on GP13, which is the MODE button, and `I2S()` raises
+moves. If you see that, check, in this order: SCK on GP14, WS on GP15, SD on
+GP13; VDD on 3V3 (not 5 V); GND and L/R both on GND. Do not "fix" it by
+editing the pins in `config.py` to match swapped wires: SCK on GP15 would need
+WS on GP16, which is the MODE button, and `I2S()` raises
 `invalid ws (must be sck+1)`.
 
 All the pin numbers are in `config.py`.

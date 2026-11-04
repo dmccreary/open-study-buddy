@@ -4,15 +4,16 @@
 #
 #   1. One beep      A4, 440 Hz, a steady note
 #   2. A scale       C major, eight notes going up
-#   3. Three volumes the same note at 25%, 50%, and 100% of the loudness
-#                    set by VOLUME in config.py
+#   3. Three volumes the same note at 10%, 30%, and 100% of the loudness
+#                    set by VOLUME in config.py -- about 10 dB apart, the
+#                    step your ears hear as "twice as loud"
 #
 # The Pico cannot hear whether the speaker is working, so this test is
 # checked with YOUR ears. The console prints each note as it plays.
 #
 # PASS: you hear a beep, a rising scale, then three beeps getting louder.
 # If it is silent, check the amplifier's VIN and GND wires and the speaker
-# wires, then the signal wires (BCLK GP20, LRC GP21, DIN GP19).
+# wires, then the signal wires (BCLK GP9, LRC GP10, DIN GP11).
 # If I2S() raises an error, LRC must be on the pin right after BCLK.
 # If it buzzes or crackles at full volume, that is the speaker running out
 # of room -- turn VOLUME down in config.py.
@@ -69,20 +70,26 @@ try:
 
     print()
     print("2. A scale")
-    # Build the whole scale first, then play it, so the speaker never
-    # waits while the Pico is still calculating the next note.
-    scale = b"".join(make_tone(freq, 250) + silence(30) for _, freq in NOTES)
-    for name, freq in NOTES:
+    # Build every note first, then play them, so the speaker never waits
+    # while the Pico is still calculating the next note. Each note is its
+    # own ~9 KB buffer: one 71 KB block would not fit on a Pico W (RP2040).
+    gap = silence(30)
+    scale = [make_tone(freq, 250) for _, freq in NOTES]
+    for (name, freq), note in zip(NOTES, scale):
         print("   {}  {} Hz".format(name, freq))
-    audio.write(scale)
+        audio.write(note)
+        audio.write(gap)
+    del scale
     audio.write(silence(300))
 
     print()
     print("3. Three volumes")
-    for percent in (25, 50, 100):
+    # Each step is about 10 dB louder. Doubling the samples (25, 50, 100)
+    # is only 6 dB a step, and on a small speaker that sounds the same.
+    for percent in (10, 30, 100):
         level = config.VOLUME * percent // 100
         print("   {}% of VOLUME ({})".format(percent, level))
-        audio.write(make_tone(440, 400, level) + silence(250))
+        audio.write(make_tone(440, 400, level) + silence(125))
 
     # write() returns once the last bytes are in the buffer, which is up
     # to one buffer-length before they finish playing. Let them finish.
