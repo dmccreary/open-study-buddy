@@ -1,5 +1,5 @@
 // Heap Fragmentation Explorer
-// CANVAS_HEIGHT: 515
+// CANVAS_HEIGHT: 545
 // The learner predicts whether 6 allocation requests on an illustrative
 // 16-cell heap succeed or raise MemoryError, and names the reason for each
 // failure. Then the learner restarts the heap and compares two allocation orders.
@@ -15,7 +15,7 @@
 
 // ---------- canvas layout ----------
 let canvasWidth = 400;
-let drawHeight = 400;
+let drawHeight = 430;
 let controlHeight = 115;     // 3 rows of controls: 3 x 35 + 10
 let canvasHeight = drawHeight + controlHeight;
 let margin = 25;
@@ -143,6 +143,7 @@ function setup() {
   for (const b of [succeedsButton, errorButton, reasonTotalButton, reasonGapButton, nextButton,
     collectButton, restartButton, orderBufferFirstButton, orderSpacedFirstButton]) {
     b.style('font-size', '15px');
+    b.style('white-space', 'nowrap');
   }
   positionControls();
 
@@ -162,14 +163,36 @@ function positionControls() {
   // Place buttons left to right using their rendered widths so they never overlap
   placeRow([succeedsButton, errorButton], 10, row1);
   placeRow([orderBufferFirstButton, orderSpacedFirstButton], 10, row1);
-  placeRow([reasonTotalButton, reasonGapButton], 80, row2);
+  placeReasonRow();
   placeRow([nextButton, collectButton, restartButton], 10, row3);
+}
+
+// The two reason buttons are wide. When they do not fit after the "Reason:"
+// label (narrow screens), drop the label and use a smaller font so the row
+// stays on the canvas. Hidden buttons measure 0 wide, so this runs again
+// whenever the reason buttons are shown.
+let reasonRowX = 80;
+function placeReasonRow() {
+  const row2 = drawHeight + 43;
+  for (const b of [reasonTotalButton, reasonGapButton]) b.style('font-size', '15px');
+  const w = reasonTotalButton.elt.offsetWidth + reasonGapButton.elt.offsetWidth + 10;
+  if (w > 0 && 80 + w > canvasWidth - 5) {
+    reasonRowX = 10;
+    if (10 + w > canvasWidth - 5) {
+      for (const b of [reasonTotalButton, reasonGapButton]) b.style('font-size', '12px');
+    }
+  } else {
+    reasonRowX = 80;
+  }
+  placeRow([reasonTotalButton, reasonGapButton], reasonRowX, row2);
 }
 
 function placeRow(buttons, x, y) {
   for (const b of buttons) {
     b.position(x, y);
-    x += (b.elt.offsetWidth || 120) + 10;
+    // a hidden button measures 0 wide, so reuse its last measured width
+    if (b.elt.offsetWidth) b.lastWidth = b.elt.offsetWidth;
+    x += (b.lastWidth || 120) + 10;
   }
 }
 
@@ -185,7 +208,7 @@ function updateControlStates() {
     orderSpacedFirstButton.hide();
     setEnabled(succeedsButton, !answered && !awaitingReason);
     setEnabled(errorButton, !answered && !awaitingReason);
-    if (awaitingReason) { reasonTotalButton.show(); reasonGapButton.show(); }
+    if (awaitingReason) { reasonTotalButton.show(); reasonGapButton.show(); placeReasonRow(); }
     else { reasonTotalButton.hide(); reasonGapButton.hide(); }
     nextButton.show();
     // After request 3 the learner must collect garbage before request 4
@@ -396,6 +419,7 @@ function drawHeap() {
     textSize(cellW < 28 ? 12 : 18);
     if (isTrial) {
       fill('black');
+      fitTextSize('new', cellW - 4, cellW < 28 ? 12 : 18, 8);
       text('new', x + cellW / 2, top + h / 2);
     } else if (c !== null) {
       fill(c.garbage ? 'dimgray' : 'white');
@@ -416,8 +440,9 @@ function drawHeap() {
   textAlign(LEFT, TOP);
   textSize(16);
   const label = (heapStateName === 'X' || heapStateName === 'Y') ? 'Heap state ' + heapStateName : 'Heap: ' + heapStateName;
-  text(label + '     Free cells: ' + freeTotal(heap) + '     Longest free run: ' + longestRun(heap),
-    margin, top + h + 12);
+  const stats = label + '     Free cells: ' + freeTotal(heap) + '     Longest free run: ' + longestRun(heap);
+  fitTextSize(stats, canvasWidth - 2 * margin, 16, 11);
+  text(stats, margin, top + h + 12);
 }
 
 function drawLegend() {
@@ -465,19 +490,22 @@ function drawPanel() {
     fitTextSize(header, pw - 24, 18, 13);
     text(header, px + 12, py + 10);
     textStyle(NORMAL);
-    textSize(16);
+    // prompt and feedback flow one after the other so long text never clips
+    const narrow = canvasWidth < 560;
+    textSize(narrow ? 14 : 16);
+    const lineH = narrow ? 17 : 20;
     let prompt;
     if (!answered && !awaitingReason) prompt = 'Will this request succeed?';
     else if (awaitingReason) prompt = 'Why will it fail? Pick a reason below.';
     else prompt = resultLine;
     fill(answered ? (trialFailed ? 'crimson' : 'darkgreen') : 'black');
-    text(prompt, px + 12, py + 38, pw - 24, 44);
+    const used = drawWrapped(prompt, px + 12, py + 36, pw - 24, lineH);
     if (feedback) {
       fill(feedbackCorrect ? 'darkgreen' : 'firebrick');
-      text(feedback, px + 12, py + 84, pw - 24, ph - 112);
+      drawWrapped(feedback, px + 12, py + 42 + used, pw - 24, lineH);
     } else if (collectNote) {
       fill('dimgray');
-      text(collectNote, px + 12, py + 84, pw - 24, ph - 112);
+      drawWrapped(collectNote, px + 12, py + 42 + used, pw - 24, lineH);
     }
     if (reqIndex === 2 && answered && !collected) {
       textAlign(LEFT, BOTTOM);
@@ -505,6 +533,26 @@ function drawPanel() {
   }
 }
 
+// Draw word-wrapped text line by line and return the height used
+function drawWrapped(str, x, y, w, lineH) {
+  const words = String(str).split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const trial = line ? line + ' ' + word : word;
+    if (textWidth(trial) > w && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = trial;
+    }
+  }
+  if (line) lines.push(line);
+  textAlign(LEFT, TOP);
+  for (let i = 0; i < lines.length; i++) text(lines[i], x, y + i * lineH);
+  return lines.length * lineH;
+}
+
 // Shrink the text size until the string fits the width (for narrow screens)
 function fitTextSize(str, maxWidth, largest, smallest) {
   let size = largest;
@@ -520,7 +568,7 @@ function drawControlLabels() {
   fill('black');
   textSize(defaultTextSize);
   textAlign(LEFT, CENTER);
-  if (phase === 'quiz' && awaitingReason) {
+  if (phase === 'quiz' && awaitingReason && reasonRowX > 10) {
     text('Reason:', 10, drawHeight + 55);
   }
 }
@@ -529,6 +577,7 @@ function drawControlLabels() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(canvasWidth, canvasHeight);
+  positionControls();
 }
 
 function updateCanvasSize() {

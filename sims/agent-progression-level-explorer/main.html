@@ -26,6 +26,19 @@
             outline: 3px solid royalblue;
             opacity: 1;
         }
+        /* narrow screens: smaller buttons so the control row fits the canvas */
+        @media (max-width: 480px) {
+            button {
+                font-size: 13px;
+                padding: 4px 6px;
+            }
+        }
+        @media (max-width: 380px) {
+            button {
+                font-size: 12px;
+                padding: 4px 4px;
+            }
+        }
     </style>
     <script src="agent-progression-level-explorer.js"></script>
 </head>

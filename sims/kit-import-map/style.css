@@ -213,3 +213,25 @@ body {
 
 .feedback.correct { color: darkgreen; }
 .feedback.incorrect { color: firebrick; }
+
+/* Narrow screens (phones): a side panel leaves the graph too thin to read,
+ * so stack the graph above the panel. The panel scrolls inside the fixed
+ * iframe height instead of pushing content out of view. */
+@media (max-width: 560px) {
+    .container { flex-direction: column; }
+    .graph-area { flex: 0 0 290px; height: 290px; min-height: 0; overflow: hidden; }
+    .right-panel {
+        width: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        border-left: none;
+        border-top: 1px solid silver;
+    }
+    .info-panel { min-height: 0; flex: 0 0 auto; }
+    .check-panel { flex: 0 0 auto; }
+    .title { font-size: 17px; top: 4px; }
+    /* the dashed folder boxes already name each folder; the legend would cover nodes */
+    .legend { display: none; }
+    .choices { font-size: 12px; }
+}

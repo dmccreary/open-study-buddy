@@ -386,9 +386,10 @@ function drawSchematic(c, reveal) {
   rect(224, 113, 12, 14);
   noStroke();
   fill('black');
-  textAlign(CENTER, TOP);
+  // Label sits just outside the dashed Pico boundary so the boundary line does not cross it
+  textAlign(LEFT, TOP);
   textSize(14);
-  text('GP pin', 230, 132);
+  text('GP pin', 240, 126);
 
   // Internal pull resistor
   if (c.pull === 'up') {

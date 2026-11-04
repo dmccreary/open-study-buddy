@@ -92,13 +92,16 @@ function positionControls() {
 }
 
 // Row 2 is laid out from the rendered widths, because the button label changes
+let row2End = 0;              // right edge of the row 2 controls, so the score never overlaps them
 function layoutRow2() {
   let x = 10;
   const y = drawHeight + 45;
+  answerInput.size(canvasWidth < 500 ? 65 : 100);
   for (const c of [challengeButton, answerInput, submitButton]) {
     c.position(x, y);
     x += (c.elt.offsetWidth || 110) + 10;
   }
+  row2End = x;
 }
 
 function setEnabled(ctrl, on) {
@@ -280,9 +283,15 @@ function drawLevelInfo() {
   textStyle(NORMAL);
   fill('black');
   if (!challengeActive) {
-    const info = 'Step between levels = 2 / (' + levels.toLocaleString('en-US') + ' - 1) = ' + formatSmall(step) +
+    let info = 'Step between levels = 2 / (' + levels.toLocaleString('en-US') + ' - 1) = ' + formatSmall(step) +
       '    Largest rounding error = ' + formatSmall(step / 2);
     fitTextSize(info, canvasWidth - 2 * margin, 15, 11);
+    if (textWidth(info) > canvasWidth - 2 * margin) {
+      // narrow screens: shorter wording so the line is not clipped
+      info = 'Step = 2 / (' + levels.toLocaleString('en-US') + ' - 1) = ' + formatSmall(step) +
+        '   Max error = ' + formatSmall(step / 2);
+      fitTextSize(info, canvasWidth - 2 * margin, 15, 10);
+    }
     text(info, margin, 286);
   }
 }
@@ -367,7 +376,9 @@ function drawControlLabels() {
   if (challengeActive) {
     fill('black');
     textAlign(RIGHT, CENTER);
-    text('Score: ' + score + ' of 5', canvasWidth - 10, drawHeight + 58);
+    const scoreText = 'Score: ' + score + ' of 5';
+    fitTextSize(scoreText, canvasWidth - 10 - row2End, defaultTextSize, 11);
+    text(scoreText, canvasWidth - 10, drawHeight + 58);
   }
 }
 
@@ -375,7 +386,7 @@ function drawControlLabels() {
 function windowResized() {
   updateCanvasSize();
   resizeCanvas(canvasWidth, canvasHeight);
-  bitSlider.size(canvasWidth - sliderLeftMargin - margin);
+  positionControls();
 }
 
 function updateCanvasSize() {

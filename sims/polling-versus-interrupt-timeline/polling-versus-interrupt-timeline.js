@@ -179,11 +179,16 @@ function drawCaseInfo() {
   noStroke();
   fill('black');
   textAlign(LEFT, TOP);
-  textSize(16);
+  const narrow = canvasWidth < 560;
+  textSize(narrow ? 14 : 16);
   let info;
   if (mode === 'polling') {
     info = 'Case ' + (caseIndex + 1) + ' of 6: the loop checks the pin every P = ' + c.P + ' ms. ' +
       'Press: ' + c.start + ' ms to ' + c.end + ' ms (' + (c.end - c.start) + ' ms long).';
+  } else if (narrow) {
+    // shorter wording so it stays on two lines above the ISR marker
+    info = 'Case ' + (caseIndex + 1) + ' of 6, interrupt on the falling edge. ' +
+      'Press: ' + c.start + ' ms to ' + c.end + ' ms.';
   } else {
     info = 'Case ' + (caseIndex + 1) + ' of 6, interrupt mode: the pin is wired to an interrupt on the falling edge. ' +
       'Press: ' + c.start + ' ms to ' + c.end + ' ms.';
@@ -264,22 +269,35 @@ function drawTimeline() {
     strokeWeight(1);
     noStroke();
     fill('royalblue');
-    textSize(13);
     textAlign(LEFT, TOP);
-    text(answered ? 'dots: what each check read (green = inside the press)' : 'blue ticks: polling check times', timeToX(0), yAxis + 20);
+    // keep the caption clear of the "time (ms)" label on narrow screens
+    textSize(13);
+    const room = timeToX(TIMELINE_END) - textWidth('time (ms)') - 12 - timeToX(0);
+    const options = answered
+      ? ['dots: what each check read (green = inside the press)', 'dots: pin at each check (green = inside)']
+      : ['blue ticks: polling check times'];
+    let caption = options[options.length - 1];
+    for (const opt of options) {
+      fitTextSize(opt, room, 13, 11);
+      if (textWidth(opt) <= room) { caption = opt; break; }
+    }
+    fitTextSize(caption, room, 13, 10);
+    text(caption, timeToX(0), yAxis + 20);
   } else {
     // interrupt: the hardware reacts at the falling edge
+    // the marker starts just above the pin so its label clears the case text
+    const yTop = yHigh - 18;
     stroke('darkorange');
     strokeWeight(3);
-    line(xs, yHigh - 30, xs, yLow + 4);
+    line(xs, yTop, xs, yLow + 4);
     fill('darkorange');
     noStroke();
     triangle(xs - 7, yLow - 6, xs + 7, yLow - 6, xs, yLow + 6);
-    circle(xs, yHigh - 30, 10);
+    circle(xs, yTop, 10);
     strokeWeight(1);
-    textSize(14);
+    textSize(13);
     textAlign(xs > canvasWidth * 0.6 ? RIGHT : LEFT, BOTTOM);
-    text('ISR runs at ' + c.start + ' ms (falling edge)', xs + (xs > canvasWidth * 0.6 ? -8 : 8), yHigh - 30);
+    text('ISR runs at ' + c.start + ' ms (falling edge)', xs + (xs > canvasWidth * 0.6 ? -8 : 8), yTop);
   }
 }
 
@@ -295,34 +313,37 @@ function drawPanel() {
   rect(px, py, pw, ph, 10);
   noStroke();
   textAlign(LEFT, TOP);
-  textSize(16);
-
+  // title and body flow one after the other so a wrapped title never overlaps the body
+  const narrow = canvasWidth < 560;
+  textSize(narrow ? 14 : 16);
+  const lineH = narrow ? 17 : 20;
+  let title, titleColor, body, bodyColor;
   if (mode === 'interrupt') {
-    fill('darkorange');
-    textStyle(BOLD);
-    text('Interrupt: seen at ' + c.start + ' ms', px + 12, py + 10);
-    textStyle(NORMAL);
-    fill('black');
-    text('The hardware notices the falling edge, so the ISR runs at the start of the press no matter how short it is. ' +
-      'Polling every ' + c.P + ' ms: ' + pollingResult(c) + '.', px + 12, py + 34, pw - 24, ph - 40);
+    title = 'Interrupt: seen at ' + c.start + ' ms';
+    titleColor = 'darkorange';
+    body = 'The hardware notices the falling edge, so the ISR runs at the start of the press no matter how short it is. ' +
+      'Polling every ' + c.P + ' ms: ' + pollingResult(c) + '.';
+    bodyColor = 'black';
   } else if (a === null) {
-    fill('black');
-    textStyle(BOLD);
-    text('Will the polling loop see this press?', px + 12, py + 10, pw - 24, 44);
-    textStyle(NORMAL);
-    fill('dimgray');
-    text('Choose Seen or Missed.', px + 12, py + 36);
+    title = 'Will the polling loop see this press?';
+    titleColor = 'black';
+    body = 'Choose Seen or Missed.';
+    bodyColor = 'dimgray';
   } else {
     const inside = checksInside(c);
     const computed = pollingResult(c);
-    fill(computed === 'seen' ? 'darkgreen' : 'crimson');
-    textStyle(BOLD);
-    text('Polling result: ' + computed + '. Checks inside the press: ' +
-      (inside.length ? inside.map(t => t + ' ms').join(', ') : 'none'), px + 12, py + 10, pw - 24, 44);
-    textStyle(NORMAL);
-    fill(a.correct ? 'darkgreen' : 'firebrick');
-    text(a.feedback, px + 12, py + 36, pw - 24, ph - 60);
+    title = 'Polling result: ' + computed + '. Checks inside the press: ' +
+      (inside.length ? inside.map(t => t + ' ms').join(', ') : 'none');
+    titleColor = computed === 'seen' ? 'darkgreen' : 'crimson';
+    body = a.feedback;
+    bodyColor = a.correct ? 'darkgreen' : 'firebrick';
   }
+  fill(titleColor);
+  textStyle(BOLD);
+  const used = drawWrapped(title, px + 12, py + 8, pw - 24, lineH);
+  textStyle(NORMAL);
+  fill(bodyColor);
+  drawWrapped(body, px + 12, py + 12 + used, pw - 24, lineH);
 
   // running score and completion message
   textAlign(RIGHT, BOTTOM);
@@ -331,11 +352,35 @@ function drawPanel() {
   let s = 'Score: ' + score + ' of 6';
   if (quizDone) s += score >= 5 ? '  (mastery reached)' : '  (mastery is 5 of 6)';
   text(s, px + pw - 12, py + ph - 8);
-  if (quizDone && mode === 'polling') {
-    textAlign(LEFT, BOTTOM);
-    fill('dimgray');
-    textSize(14);
-    text('Now try Display: Interrupt.', px + 12, py + ph - 8);
+}
+
+// Draw word-wrapped text line by line and return the height used
+function drawWrapped(str, x, y, w, lineH) {
+  const words = String(str).split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const trial = line ? line + ' ' + word : word;
+    if (textWidth(trial) > w && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = trial;
+    }
+  }
+  if (line) lines.push(line);
+  textAlign(LEFT, TOP);
+  for (let i = 0; i < lines.length; i++) text(lines[i], x, y + i * lineH);
+  return lines.length * lineH;
+}
+
+// Shrink the text size until the string fits the width (for narrow screens)
+function fitTextSize(str, maxWidth, largest, smallest) {
+  let size = largest;
+  textSize(size);
+  while (size > smallest && textWidth(str) > maxWidth) {
+    size--;
+    textSize(size);
   }
 }
 
@@ -348,6 +393,11 @@ function drawControlLabels() {
   if (!quizDone) {
     textSize(14);
     text('(Interrupt unlocks after case 6)', 210, drawHeight + 57);
+  } else if (mode === 'polling') {
+    // hint lives beside the selector so it never collides with the score line
+    textSize(14);
+    fill('dimgray');
+    text('Now try Display: Interrupt.', 210, drawHeight + 57);
   }
 }
 

@@ -173,12 +173,22 @@ function initializeNetwork() {
     window.addEventListener('resize', () => { network.redraw(); fitView(); });
 }
 
-// Fit all nodes plus group padding into the view
+// Fit all nodes plus the group boxes (padding and labels, see drawGroups)
+// into the view, leaving a strip at the top for the title overlay
 function fitView() {
-    network.fit({ animation: false });
-    const s = network.getScale();
-    const c = network.getViewPosition();
-    network.moveTo({ position: { x: c.x, y: c.y - 12 }, scale: s * 0.86, animation: false });
+    const titleRoom = 34;   // pixels
+    let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
+    for (const p of partData) {
+        const b = network.getBoundingBox(p.id);
+        x1 = Math.min(x1, b.left); y1 = Math.min(y1, b.top);
+        x2 = Math.max(x2, b.right); y2 = Math.max(y2, b.bottom);
+    }
+    x1 -= 26; x2 += 26; y1 -= 26 + 22; y2 += 26 + 22;   // group pad + label strip
+    const el = document.getElementById('network');
+    const w = el.clientWidth, h = el.clientHeight;
+    const s = Math.min(w / (x2 - x1), (h - titleRoom) / (y2 - y1)) * 0.95;
+    network.moveTo({ position: { x: (x1 + x2) / 2, y: (y1 + y2) / 2 - titleRoom / 2 / s },
+        scale: s, animation: false });
 }
 
 // Draw a rounded, labeled rectangle around each group of nodes

@@ -318,8 +318,8 @@ function draw() {
   }
 
   // Formula lines (full width under the screen)
-  drawFormulas(w, h, bpp, baud, bytes, bits, ms, reveal);
-  drawFeedback();
+  const formulasBottom = drawFormulas(w, h, bpp, baud, bytes, bits, ms, reveal);
+  drawFeedback(formulasBottom);
   drawControlLabels(w, h);
 }
 
@@ -380,13 +380,18 @@ function drawFormulas(w, h, bpp, baud, bytes, bits, ms, reveal) {
   }
   fill('dimgray');
   textSize(13);
-  text('Wire time only: command bytes and Python overhead are not included.', x, y + 4, lw, 36);
+  const note = 'Wire time only: command bytes and Python overhead are not included.';
+  text(note, x, y + 4, lw, 36);
+  // Bottom of the note, so the feedback box can start right under it
+  return y + 4 + (textWidth(note) > lw ? 34 : 18);
 }
 
-function drawFeedback() {
+function drawFeedback(topY) {
   if (!feedback) return;
   const x = margin;
-  const y = 386;
+  // Start under the formulas (never lower than 386) so the long end-of-challenge
+  // message has room and is not clipped at narrow widths
+  const y = min(386, topY + 10);
   const w = canvasWidth - 2 * margin;
   const h = drawHeight - y - 8;
   stroke(feedbackKind === 'good' ? 'seagreen' : (feedbackKind === 'bad' ? 'darkorange' : 'silver'));
@@ -395,7 +400,7 @@ function drawFeedback() {
   rect(x - 6, y - 4, w + 12, h + 4, 8);
   noStroke();
   fill('black');
-  textSize(15);
+  textSize(canvasWidth < 480 ? 14 : 15);
   textAlign(LEFT, TOP);
   text(feedback, x, y, w, h);
 }

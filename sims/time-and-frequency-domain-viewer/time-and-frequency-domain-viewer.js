@@ -285,9 +285,12 @@ function drawExplorer() {
     title = 'Which bars belong to which part of the wave?';
     body = 'Move the sliders and watch both views change together.';
   }
+  // the panel holds one line each, so shrink rather than wrap on narrow screens
+  fitTextSize(title, pw - 24, canvasWidth < 560 ? 14 : 16, 10);
   const used = drawWrapped(title, px + 12, py + 6, pw - 24, lineH);
   textStyle(NORMAL);
   fill('dimgray');
+  fitTextSize(body, pw - 24, canvasWidth < 560 ? 14 : 16, 10);
   drawWrapped(body, px + 12, py + 8 + used, pw - 24, lineH);
 }
 
@@ -324,8 +327,11 @@ function drawChallenge() {
     drawWaveform(c.choices[i], left, top, right, bottom, cache.scale, false, 'steelblue');
     if (pick !== null && i === c.correct) {
       noStroke();
-      fill('green');
       textSize(14);
+      const tw = textWidth('matches the spectrum');
+      fill(255, 255, 255, 220);   // backing so the label stays readable over the wave
+      rect(right - tw - 8, top + 1, tw + 6, 17);
+      fill('green');
       textAlign(RIGHT, TOP);
       text('matches the spectrum', right - 4, top + 2);
     }
@@ -425,10 +431,27 @@ function drawSpectrum(bars, left, top, right, bottom, maxAmp, showLabels) {
     textAlign(f === MAX_FREQ ? RIGHT : (f === 0 ? LEFT : CENTER), TOP);
     if (canvasWidth >= 560 || f % 200 === 0) text(f === MAX_FREQ ? '1,000' : f, xOf(f), bottom + 5);
   }
-  // axis unit, above the top-right corner of the chart
+  // bar labels, kept inside the chart so a bar at 1,000 Hz is not clipped
+  textSize(12);
+  const labelBoxes = [];
+  for (const b of bars) {
+    const h = (b.amp / maxAmp) * (bottom - top - 18);
+    const str = b.freq + ' Hz, ' + b.amp.toFixed(2);
+    const w = textWidth(str);
+    const cx = constrain(xOf(b.freq), left + w / 2 + 2, right - w / 2 - 2);
+    labelBoxes.push({ str: str, x: cx, y: bottom - h - 2, x0: cx - w / 2, x1: cx + w / 2, y0: bottom - h - 16 });
+  }
+  // axis unit inside the top-right corner, or top-left if a bar label is there
   fill('dimgray');
-  textAlign(RIGHT, TOP);
-  text('frequency (Hz)', right - 4, top + 3);
+  const unitW = textWidth('frequency (Hz)');
+  const hits = (x0, x1) => labelBoxes.some(lb => showLabels && lb.x1 > x0 && lb.x0 < x1 && lb.y0 < top + 17);
+  if (!hits(right - 4 - unitW, right - 4)) {
+    textAlign(RIGHT, TOP);
+    text('frequency (Hz)', right - 4, top + 3);
+  } else if (!hits(left + 4, left + 4 + unitW)) {
+    textAlign(LEFT, TOP);
+    text('frequency (Hz)', left + 4, top + 3);
+  }
   // amplitude reference at 1.0
   stroke('lightsteelblue');
   drawingContext.setLineDash([4, 4]);
@@ -447,12 +470,12 @@ function drawSpectrum(bars, left, top, right, bottom, maxAmp, showLabels) {
     noStroke();
     fill('darkorange');
     rect(xOf(b.freq) - barW / 2, bottom - h, barW, h);
-    if (showLabels) {
-      fill('black');
-      textSize(12);
-      textAlign(CENTER, BOTTOM);
-      text(b.freq + ' Hz, ' + b.amp.toFixed(2), xOf(b.freq), bottom - h - 2);
-    }
+  }
+  if (showLabels) {
+    fill('black');
+    textSize(12);
+    textAlign(CENTER, BOTTOM);
+    for (const lb of labelBoxes) text(lb.str, lb.x, lb.y);
   }
 }
 

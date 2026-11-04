@@ -1,5 +1,5 @@
 // RGB565 Color Mixer MicroSim
-// CANVAS_HEIGHT: 590
+// CANVAS_HEIGHT: 610
 // The learner mixes red, green and blue strengths (0-255) and watches which
 // bits each color keeps when the kit's color565() packs them into 16 bits.
 // A challenge mode asks for the RGB565 hex value of 6 colors (two tries each).
@@ -8,7 +8,7 @@
 
 // ---- Canvas layout ----
 let canvasWidth = 400;
-let drawHeight = 440;
+let drawHeight = 460;
 let controlHeight = 150;   // 4 control rows x 35 + 10
 let canvasHeight = drawHeight + controlHeight;
 let margin = 25;
@@ -250,7 +250,10 @@ function draw() {
   let status;
   if (mode === 'challenge') {
     const c = challenges[challengeIndex];
-    status = 'Challenge ' + (challengeIndex + 1) + ' of 6: ' + c.name + ' (' + c.rgb.join(', ') + ')';
+    // The (R, G, B) numbers are always shown beside the swatches; drop them from
+    // the status line at narrow widths so it does not run into the score
+    status = 'Challenge ' + (challengeIndex + 1) + ' of 6: ' + c.name +
+      (canvasWidth >= 520 ? ' (' + c.rgb.join(', ') + ')' : '');
   } else if (mode === 'done') {
     status = 'Challenges finished';
   } else {
@@ -318,7 +321,7 @@ function drawSwatches(r, g, b, reveal) {
   text('  | (G & 0xFC) << 3 | B >> 3', tx, y + 44);
   if (mode === 'challenge' && !answered) {
     fill('darkblue');
-    text('Type the 16-bit value in hex below.', tx, y + 64);
+    text('Type the hex value below.', tx, y + 64);
   }
 }
 
@@ -372,7 +375,8 @@ function drawBitRows(r, g, b, reveal) {
 
 // The packed 16-bit value: 5 red bits, 6 green bits, 5 blue bits
 function drawPackedRow(value, reveal) {
-  const x0 = margin + 95;
+  // At narrow widths start the 16 boxes closer to the label so they stay readable
+  const x0 = margin + (canvasWidth < 560 ? 62 : 95);
   const avail = canvasWidth - x0 - margin;
   const bs = constrain(floor(avail / 16), 14, 28);
   const y = 284;
@@ -437,7 +441,7 @@ function drawFeedback() {
   rect(x - 6, y - 4, w + 12, h + 4, 8);
   noStroke();
   fill('black');
-  textSize(15);
+  textSize(canvasWidth < 480 ? 14 : 15);
   textAlign(LEFT, TOP);
   text(feedback, x, y, w, h);
 }
