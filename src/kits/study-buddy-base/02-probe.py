@@ -12,22 +12,28 @@
 #   5. Pin plan             do the pins in config.py follow the I2S rules,
 #                           and does any pin get used twice?
 #   6. Buttons              are MODE / UP / DOWN all reading "not pressed"?
-#   7. Microphone           start the INMP441 and look at what it sends
+#   7. Display wiring       are the SCL, SDA and BL wires (and the
+#                           display's power) connected?
+#   8. Microphone           start the INMP441 and look at what it sends
 #
 # Nothing here writes to flash or changes a setting, so it is always safe
 # to run. A part you have not wired yet shows up as a WARNING, not a crash,
 # so run this after adding each part to see that part go from WARNING to ok.
 #
 # Tests 04 and 05 check the display and the speaker by eye and by ear.
-# Neither the GC9B72 nor the MAX98357A can report back to the Pico.
+# Neither the GC9B72 nor the MAX98357A can report back to the Pico --
+# the display's SDO pin never answers (test 08 tried every known way).
+# Section 7 checks what it can without the display's help.
 
 import gc
 import os
 import sys
+import time
 import machine
+from machine import Pin
 
 NAME = "02-probe.py"
-VERSION = "1.0"
+VERSION = "1.1"
 
 warnings = []
 
@@ -139,7 +145,7 @@ if all(exists(path) for path, _ in REQUIRED):
     import config
 else:
     print()
-    print("Skipping sections 5-7 until the missing files are uploaded.")
+    print("Skipping sections 5-8 until the missing files are uploaded.")
 
 if config is not None:
     # -----------------------------------------------------------------
@@ -177,6 +183,8 @@ if config is not None:
         ("mic SCK", config.MIC_SCK_PIN), ("mic WS", config.MIC_WS_PIN),
         ("mic SD", config.MIC_SD_PIN),
     )
+    if hasattr(config, "SDO_PIN"):
+        PLAN += (("display SDO", config.SDO_PIN),)
     seen = {}
     for label, pin in PLAN:
         if pin in seen:
@@ -208,7 +216,78 @@ if config is not None:
           "missing wire -- test 03 can)")
 
     # -----------------------------------------------------------------
-    heading("7. Microphone")
+    heading("7. Display wiring")
+    # -----------------------------------------------------------------
+    # The display cannot answer the Pico, but three of its pads have a
+    # resistor on the module itself: SCL and SDA are pulled UP to the
+    # display's VCC, and BL is pulled DOWN. The Pico can feel those
+    # resistors. Turn on the Pico's own (weaker) pull in the OPPOSITE
+    # direction: a connected wire wins and holds the pin where the module
+    # wants it, while a missing wire lets the pin follow the Pico's pull.
+    #
+    # RST, DC, CS and SDO have no resistor, so a connected wire and a
+    # missing one look the same. Those you check by eye with test 04.
+    def pin_state(number):
+        """Returns 'high', 'low' or 'floats' for a pin with nothing
+        driving it but whatever is on the other end of its wire."""
+        pin = Pin(number, Pin.IN, Pin.PULL_DOWN)
+        time.sleep_ms(5)
+        down = pin.value()
+        pin.init(Pin.IN, Pin.PULL_UP)
+        time.sleep_ms(5)
+        up = pin.value()
+        pin.init(Pin.IN)                # leave it with no pull
+        if down == up:
+            return "high" if up else "low"
+        return "floats"
+
+    CHECKED = (("SCL", config.SCK_PIN, "high"),
+               ("SDA", config.MOSI_PIN, "high"),
+               ("BL", config.BL_PIN, "low"))
+    UNCHECKED = (("RST", config.RST_PIN), ("DC", config.DC_PIN),
+                 ("CS", config.CS_PIN))
+    if hasattr(config, "SDO_PIN"):
+        UNCHECKED += (("SDO", config.SDO_PIN),)
+
+    states = {}
+    for label, number, expected in CHECKED:
+        states[label] = pin_state(number)
+        print("  {:<4} GP{:<3} reads {:<7} (connected reads {})".format(
+            label, number, states[label], expected))
+
+    if states["SCL"] == "floats" and states["SDA"] == "floats":
+        # Both pull-ups gone at once is far more likely to be the display
+        # missing its power than two wires falling out.
+        warn("SCL and SDA both float -- is the display unplugged, or are "
+             "its VCC (3V3) and GND wires loose?")
+    else:
+        for label, number, expected in CHECKED:
+            state = states[label]
+            if state == expected:
+                print("  ok      {} wire is connected".format(label))
+            elif state == "floats":
+                warn("the display's {} wire to GP{} is missing or "
+                     "loose".format(label, number))
+            else:
+                warn("GP{} reads {}, but the {} wire should make it {} -- "
+                     "is a wire on the wrong pin?".format(
+                         number, state, label, expected))
+
+    # These should all float. One that is held is most likely an SCL/SDA
+    # (held high) or BL (held low) wire pushed into the wrong pin.
+    for label, number in UNCHECKED:
+        state = pin_state(number)
+        if state == "floats":
+            print("  --      {:<4} GP{:<3} floats (connected or not -- "
+                  "check by eye)".format(label, number))
+        else:
+            warn("GP{} ({}) is held {} -- it should float; is a wire on "
+                 "the wrong pin?".format(number, label, state))
+    print("  (RST, DC and CS cannot be checked here. If this section is")
+    print("   all ok but test 04 shows a blank screen, check those three.)")
+
+    # -----------------------------------------------------------------
+    heading("8. Microphone")
     # -----------------------------------------------------------------
     # The INMP441 puts out 24-bit audio in 32-bit words. A wired mic in a
     # quiet room sends small, wobbling numbers. A missing mic, or one with
