@@ -353,9 +353,11 @@ class Speaker:
                 self.write(view[:got])
                 left -= got
 
-    def deinit(self):
-        """Let the last sound finish, then free I2S block 0."""
-        self.wait()
+    def deinit(self, finish=True):
+        """Free I2S block 0. finish=True lets the last sound play out
+        first; finish=False cuts it off, for leaving a demo quickly."""
+        if finish:
+            self.wait()
         self.audio.deinit()
 
 

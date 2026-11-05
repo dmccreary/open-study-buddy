@@ -5,6 +5,11 @@
 #   UP or MODE   record 3 seconds, then play it back
 #   DOWN         play the last recording again
 #
+# Both happen when the button is LET GO after a short press, not the
+# moment it goes down. A recording takes over the Pico for several
+# seconds, and starting one on the way down would swallow a one-second
+# hold of UP or DOWN, which skips to the next or previous demo.
+#
 # This is test 07 with a fixed 3-second recording instead of hold-to-talk,
 # so the demo works the same for everyone. Test 07 explains the two
 # tricks: keep the microphone's raw 32-bit samples while recording (Python
@@ -22,6 +27,7 @@ import time
 import config
 from demo_kit import (BLACK, WHITE, DIM, TRACK, SMALL, BIG, CX, put,
                       centered, menu_hint, settle, Speaker)
+from watchparts import SHORT
 
 SECONDS = 3
 SKIP_MS = 100              # the microphone's first moments are not real sound
@@ -165,11 +171,12 @@ def update(now):
     global mode_pressed
     if raw is None:
         return
-    record_now = _kit.up.pressed(now) or mode_pressed
+    record_now = _kit.up.short_or_long(now) == SHORT or mode_pressed
+    replay_now = _kit.down.short_or_long(now) == SHORT
     mode_pressed = False
     if record_now:
         record_and_play()
-    elif _kit.down.pressed(now) and count:
+    elif replay_now and count:
         screen("Playing", config.GREEN, "the same %.1f seconds" % (
             count / RATE))
         play(count)

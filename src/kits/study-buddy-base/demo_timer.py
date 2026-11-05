@@ -147,6 +147,12 @@ def on_mode():
         state = SET_MINUTES
 
 
+def holds_buttons():
+    """While setting, holding UP or DOWN counts fast -- so a long hold
+    must not skip to another demo."""
+    return state == SET_MINUTES or state == SET_SECONDS
+
+
 def pause(now):
     global state, remaining_ms
     remaining_ms = max(0, time.ticks_diff(end_ticks, now))
@@ -242,7 +248,7 @@ def update(now):
 def stop():
     """Keep the timer. A running one also says when it reaches zero."""
     if speaker is not None:
-        speaker.deinit()
+        speaker.deinit(finish=False)      # leaving: no need to wait
     saved = {"state": DONE if state == DONE else state, "preset": preset,
              "set_minutes": set_minutes, "set_seconds": set_seconds,
              "remaining_ms": remaining_ms, "end_ticks": end_ticks}

@@ -114,7 +114,18 @@ It starts in **mode 0, the showcase**: the welcome screen (`welcome.py`,
 changing every six seconds. UP or MODE skips ahead, DOWN goes back.
 
 **Hold any button for one second** to try the demo on the screen. Inside a
-demo, **hold MODE for one second** to go back to the showcase.
+demo, hold a button for one second to move on:
+
+- **hold MODE**: back to the showcase
+- **hold UP**: the next demo (11 wraps around to 1)
+- **hold DOWN**: the demo before (1 wraps around to 11)
+
+Short presses of UP and DOWN still control the demo. A demo you leave by
+holding UP or DOWN starts fresh next time, because the short press at the
+start of the hold has already reached it (it may have started the
+stopwatch, say). While you are setting the alarm or the timer, holding UP or
+DOWN counts fast instead of skipping. The recorder records when you let go
+of UP, so holding UP there skips too.
 
 | # | Module | Demo | Buttons |
 |---|---|---|---|
@@ -125,7 +136,7 @@ demo, **hold MODE for one second** to go back to the showcase.
 | 5 | `demo_school.py` | School mascot and this week's events | UP/DOWN page |
 | 6 | `demo_tones.py` | Sine, square, triangle, sawtooth, octaves, a tune | UP all again, DOWN tune |
 | 7 | `demo_listen.py` | Sound meter (VU arc with peak hold) | UP/DOWN recalibrate |
-| 8 | `demo_record.py` | Record 3 seconds, play it back | UP or MODE record, DOWN replay |
+| 8 | `demo_record.py` | Record 3 seconds, play it back | UP or MODE record, DOWN replay (on release) |
 | 9 | `demo_quote.py` | Quote of the day (20 quotes) | UP/DOWN another |
 | 10 | `demo_spanish.py` | Hear a Spanish word, pick its meaning | UP/DOWN pick, MODE choose |
 | 11 | `demo_vocab.py` | Vocabulary flash cards | MODE flip, UP/DOWN next/previous |

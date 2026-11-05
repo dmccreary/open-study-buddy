@@ -8,7 +8,17 @@
 # UP or MODE to skip ahead, DOWN to go back.
 #
 # HOLD ANY BUTTON FOR ONE SECOND to try the demo the screen is showing.
-# Hold MODE for one second inside a demo to come back to the showcase.
+# Inside a demo, hold a button for one second to move on:
+#
+#   hold MODE   back to the showcase
+#   hold UP     the next demo        (11 wraps around to 1)
+#   hold DOWN   the demo before      (1 wraps around to 11)
+#
+# A short press of UP or DOWN still belongs to the demo. That short press
+# also starts every hold, so the demo has already seen it (say, the
+# stopwatch has started) by the time the hold reaches one second. A demo
+# left with a hold of UP or DOWN is therefore reset, not saved: next time
+# it starts fresh.
 #
 #    #   Module              Demo
 #    1   demo_clock.py       Clock and weather forecast (WiFi)
@@ -55,6 +65,10 @@
 #   on_mode()                                              (optional)
 #       MODE was pressed and let go quickly. (A long press is this
 #       program's: it goes back to the showcase.)
+#   holds_buttons()                                        (optional)
+#       Return True while the demo uses held-down UP and DOWN itself --
+#       the alarm and timer do, to count up fast while you set them -- so
+#       a long hold there does not skip to another demo.
 #   stop()
 #       Turn off anything that is on (the speaker, the microphone), and
 #       return a dict to keep until next time, or None. A dict with a
@@ -70,7 +84,7 @@
 # demo does not stop the whole show at a science fair.
 
 NAME = "20-demo-template.py"
-VERSION = "1.0"
+VERSION = "1.1"
 print("{} v{}".format(NAME, VERSION))
 
 import gc
@@ -98,7 +112,9 @@ MODES = (
     ("demo_vocab", "Vocabulary"),
 )
 SHOWCASE = 0
+DEMOS = len(MODES) - 1          # 11: the showcase is not one of them
 ERROR_SECONDS = 5
+HOLD_TO_SKIP_MS = watchparts.LONG_PRESS_MS     # 1000, the same as MODE
 
 
 def show_error(name, error):
@@ -155,6 +171,23 @@ def switch_to(index):
 
     mode_index = index
     name = MODES[index][0]
+
+    # A demo is usually reached by a button that is still held down. Show
+    # where it is going right away, so the hold feels answered, then wait
+    # for the button to be let go BEFORE starting the demo. Waiting after
+    # the start would also swallow a NEW hold made while a slow demo was
+    # still drawing -- holding UP five times would skip only four demos.
+    if any(b.pin.value() == 0 for b in kit.buttons):
+        display.fill(config.BLACK)
+        if index != SHOWCASE:
+            demo_kit.centered(display, config.SMALL_FONT,
+                              "DEMO {} OF {}".format(index, DEMOS), 136,
+                              demo_kit.DIM)
+        demo_kit.centered(display, config.BIG_FONT, MODES[index][1], 160,
+                          config.WHITE)
+        demo_kit.settle(kit.buttons)
+    held_since[0] = held_since[1] = None
+
     loaded_before = set(sys.modules)
     try:
         mode = __import__(name)
@@ -172,9 +205,29 @@ def switch_to(index):
     gc.collect()
     print("Demo {}: {} -- {} KB free".format(index, MODES[index][1],
                                              gc.mem_free() // 1024))
-    # A demo is often launched by a button that is still held down. Wait
-    # for it to be let go, so the new demo does not see it as a press.
-    demo_kit.settle(kit.buttons)
+
+
+def skip_to(now):
+    """The demo to skip to if UP or DOWN has been held for a second, or
+    None.
+
+    This reads the UP and DOWN pins directly, NOT through their Button
+    objects. Each Button keeps track of its own presses, and the demo is
+    reading those; if this program read them too, the two would steal
+    presses from each other. A pin can be looked at by anyone."""
+    holds_buttons = getattr(mode, "holds_buttons", None)
+    if holds_buttons is not None and holds_buttons():
+        held_since[0] = held_since[1] = None
+        return None
+    for k, step in ((0, 1), (1, -1)):
+        pin = (kit.up, kit.down)[k].pin
+        if pin.value() != 0:
+            held_since[k] = None
+        elif held_since[k] is None:
+            held_since[k] = now
+        elif time.ticks_diff(now, held_since[k]) >= HOLD_TO_SKIP_MS:
+            return (mode_index - 1 + step) % DEMOS + 1
+    return None
 
 
 def due_to_wake(now):
@@ -193,6 +246,7 @@ config.set_gain()
 kit = demo_kit.Kit(display, *[Button(pin) for pin in config.init_buttons()])
 
 saved = {}               # module name -> what its stop() returned
+held_since = [None, None]  # when UP and DOWN went down, for skip_to()
 mode = None
 mode_index = SHOWCASE
 loaded_before = set()
@@ -203,6 +257,7 @@ try:
     while True:
         now = time.ticks_ms()
         target = None
+        skipping = False
         try:
             if mode_index == SHOWCASE:
                 target = mode.update(now)
@@ -216,6 +271,9 @@ try:
                         if on_mode is not None:
                             on_mode()
                     target = mode.update(now)
+                    if target is None:
+                        target = skip_to(now)
+                        skipping = target is not None
         except Exception as error:
             show_error(MODES[mode_index][1], error)
             if mode_index == SHOWCASE:
@@ -225,7 +283,10 @@ try:
         if target is None:
             target = due_to_wake(now)
         if target is not None and target != mode_index:
+            left = MODES[mode_index][0]
             switch_to(target)
+            if skipping:
+                saved.pop(left, None)   # skipped past: start fresh next time
 
         time.sleep_ms(5)
 finally:

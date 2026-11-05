@@ -191,6 +191,12 @@ def on_mode():
         alarm_on = True
 
 
+def holds_buttons():
+    """While setting, holding UP or DOWN counts fast -- so a long hold
+    must not skip to another demo."""
+    return state == SET_HOUR or state == SET_MINUTE
+
+
 def twelve(hour):
     return (hour % 12 or 12) if TWELVE_HOUR else hour
 
@@ -296,7 +302,7 @@ def update(now):
 def stop():
     """Keep the alarm. If it is on, ask to be woken when it is due."""
     if speaker is not None:
-        speaker.deinit()
+        speaker.deinit(finish=False)      # leaving: no need to wait
     saved = {"hour": alarm_hour, "minute": alarm_minute, "on": alarm_on,
              "fired": fired}
     if alarm_on:

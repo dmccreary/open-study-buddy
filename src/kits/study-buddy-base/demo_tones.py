@@ -163,5 +163,5 @@ def update(now):
 
 def stop():
     if speaker is not None:
-        speaker.deinit()
+        speaker.deinit(finish=False)      # leaving: no need to wait
     return None
