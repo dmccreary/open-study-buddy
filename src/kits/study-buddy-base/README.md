@@ -100,6 +100,32 @@ Run on a Pico 2 W with everything wired as above:
 
 All seven tests pass on this kit.
 
+## Labs 08 to 19: how the parts work
+
+Tests 01 to 07 check that each part is wired right. The labs teach how the
+parts work, one idea per lab, starting small. Each one explains its idea at
+the top, says what PASS looks like, and ends with "Try This" changes to make.
+They only need `config.py`, `lib/`, and (for lab 18) `wifi_time.py` and
+`secrets.py`.
+
+| Lab | File | Idea | Parts |
+|---|---|---|---|
+| 08 | `08-color-mixing.py` | RGB565: 5 bits red, 6 green, 5 blue | display |
+| 09 | `09-angles-to-pixels.py` | Angle and radius to x, y with sin and cos | display |
+| 10 | `10-flicker-free-text.py` | Drawing is sending: overwrite, send only what changed | display |
+| 11 | `11-button-bounce.py` | Level vs. edge, contact bounce, debounce | buttons, display |
+| 12 | `12-one-loop-many-jobs.py` | Check the clock instead of sleeping | LED, buttons, display |
+| 13 | `13-modes-state-machine.py` | Modes as a state machine with a table of states | buttons, display |
+| 14 | `14-samples-make-sound.py` | Sample rate, samples per cycle, Nyquist, aliasing | speaker, display |
+| 15 | `15-sound-envelopes.py` | Envelopes: why a pluck and an organ differ | speaker, display |
+| 16 | `16-mic-oscilloscope.py` | Microphone samples, DC offset, gain, trigger | mic, display |
+| 17 | `17-whistle-tuner.py` | Pitch from zero crossings, hysteresis, notes and cents | mic, display |
+| 18 | `18-network-layers.py` | WiFi, IP address, NTP time, HTTP, JSON | WiFi, display |
+| 19 | `19-pattern-game.py` | A memory game that uses everything above | the whole kit |
+
+Labs 09 to 17 and 19 run until you press Stop (Ctrl-C). Labs 14, 15, and 19
+make sound.
+
 ## Demo 20: the showcase
 
 `20-demo-template.py` shows off everything the kit can do. To run it at
