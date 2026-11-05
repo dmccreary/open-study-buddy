@@ -99,3 +99,53 @@ Run on a Pico 2 W with everything wired as above:
 | 07 | PASS. A 1.50 s recording (19,200 samples) played back; the microphone's DC offset measured about 15,000. |
 
 All seven tests pass on this kit.
+
+## Demo 20: the showcase
+
+`20-demo-template.py` shows off everything the kit can do. To run it at
+power-up, make it the Pico's `main.py`:
+
+```bash
+mpremote cp 20-demo-template.py :main.py
+```
+
+It starts in **mode 0, the showcase**: the welcome screen (`welcome.py`,
+"Study Buddy Kit" and the parts in the kit), then one screen for each demo,
+changing every six seconds. UP or MODE skips ahead, DOWN goes back.
+
+**Hold any button for one second** to try the demo on the screen. Inside a
+demo, **hold MODE for one second** to go back to the showcase.
+
+| # | Module | Demo | Buttons |
+|---|---|---|---|
+| 1 | `demo_clock.py` | Clock and weather forecast (needs `secrets.py`) | -- |
+| 2 | `demo_alarm.py` | Alarm clock, set for one minute from now | MODE set, UP on/off, DOWN test |
+| 3 | `demo_timer.py` | Countdown timer with presets | UP start/pause, DOWN preset/reset, MODE set |
+| 4 | `demo_stopwatch.py` | Stopwatch with laps | UP or MODE start/stop, DOWN lap/reset |
+| 5 | `demo_school.py` | School mascot and this week's events | UP/DOWN page |
+| 6 | `demo_tones.py` | Sine, square, triangle, sawtooth, octaves, a tune | UP all again, DOWN tune |
+| 7 | `demo_listen.py` | Sound meter (VU arc with peak hold) | UP/DOWN recalibrate |
+| 8 | `demo_record.py` | Record 3 seconds, play it back | UP or MODE record, DOWN replay |
+| 9 | `demo_quote.py` | Quote of the day (20 quotes) | UP/DOWN another |
+| 10 | `demo_spanish.py` | Hear a Spanish word, pick its meaning | UP/DOWN pick, MODE choose |
+| 11 | `demo_vocab.py` | Vocabulary flash cards | MODE flip, UP/DOWN next/previous |
+
+A running timer, or an alarm that is on, keeps going after you leave its
+demo. When it is due, the demo comes back on screen to ring.
+
+Supporting files:
+
+- `demo_kit.py`: text that word-wraps to fit the round glass, and a faster
+  `Speaker` (tones from a wave table, WAV files, a looping alarm).
+- `demo_icons.py`: the showcase pictures, drawn from shapes, so no image files.
+- `wifi_time.py`, `forecast.py`, `lib/watchparts.py`: copied unchanged from
+  the sw-gc9b72 kit in clocks-and-watches.
+- `spanish/*.wav`: the 16 spoken words for the Spanish quiz (16-bit mono,
+  16000 Hz, about 25 KB each). `tools/make-spanish-audio.sh` makes them
+  again on a Mac with its built-in Spanish voice, for example after adding a
+  word to `WORDS` in `demo_spanish.py`.
+- `secrets-template.py`: copy it to `secrets.py` and fill in your WiFi.
+
+Each demo is loaded only while it is on screen, then unloaded, so they never
+all sit in RAM together. If a demo crashes, the error is printed and shown on
+the screen, and the showcase carries on.

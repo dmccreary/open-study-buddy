@@ -7,15 +7,18 @@
 # Upload order matters, because later files import earlier ones:
 #   1. lib/        -> :lib/   the GC9B72 driver, both font modules, shapes.py
 #   2. config.py              every lab imports it
-#   3. secrets.py             your WiFi name and password, if you made one
-#   4. everything else        the numbered tests
+#   3. secrets-template.py    the blank WiFi settings (no real password)
+#      secrets.py             your WiFi name and password, if you made one
+#   4. spanish/*.wav -> :spanish/   the spoken words for the Spanish quiz
+#   5. everything else        the numbered tests, the demo, and its modules
 #
 # The fonts are not optional. This driver has no built-in font, so
 # config.py fails to import if lib/vga1_8x16.py and
 # lib/vga1_bold_16x32.py are not on the board.
 #
 # secrets.py is in .gitignore, so it only exists if you created it from
-# secrets-template.py. The template itself is never uploaded.
+# secrets-template.py. The template is uploaded too, so you can open it on
+# the Pico in Thonny, fill it in, and "Save as" secrets.py right there.
 #
 # IMPORTANT: Quit (or "Stop/Disconnect" from) Thonny before running this.
 # Only one program can use the Pico's serial port at a time. If Thonny is
@@ -99,12 +102,26 @@ done
 echo "Uploading config.py ..."
 upload config.py :config.py
 
+echo "Uploading secrets-template.py ..."
+upload secrets-template.py :secrets-template.py
+
 if [[ -f secrets.py ]]; then
     echo "Uploading secrets.py ..."
     upload secrets.py :secrets.py
 else
     echo "No secrets.py here -- skipping it. WiFi time sync needs one:"
     echo "cp secrets-template.py secrets.py, then edit it."
+fi
+
+shopt -s nullglob
+wav_files=( spanish/*.wav )
+shopt -u nullglob
+if (( ${#wav_files[@]} > 0 )); then
+    echo "Uploading ${#wav_files[@]} Spanish word(s) to Pico :spanish/ ..."
+    mpremote connect "$PORT" fs mkdir :spanish >/dev/null 2>&1 || true
+    for f in "${wav_files[@]}"; do
+        upload "$f" ":spanish/$(basename "$f")"
+    done
 fi
 
 echo "Uploading labs ..."
