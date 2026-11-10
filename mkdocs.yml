@@ -57,6 +57,30 @@ nav:
       - 17. Privacy, Safety, and Responsible Listening: chapters/17-privacy-responsible-listening/index.md
       - 18. Testing, Integration, and Capstone Projects: chapters/18-testing-integration-capstones/index.md
 
+  - Kits:
+      - Study Buddy Base Kit:
+          - Table of Contents: kits/study-buddy-base/index.md
+          - Introduction: kits/study-buddy-base/intro.md
+          - "Lab 01: Blink the Onboard LED": kits/study-buddy-base/01-blink.md
+          - "Lab 02: The Hardware Probe": kits/study-buddy-base/02-probe.md
+          - "Lab 03: Buttons on the Console": kits/study-buddy-base/03-buttons.md
+          - "Lab 04: Hello World on the Display": kits/study-buddy-base/04-hello-world.md
+          - "Lab 05: Speaker Tones": kits/study-buddy-base/05-speaker-tones.md
+          - "Lab 06: Listen with the Microphone": kits/study-buddy-base/06-listen-meter.md
+          - "Lab 07: Hold to Record, Release to Play Back": kits/study-buddy-base/07-record-playback.md
+          - "Lab 08: How the Display Mixes Color": kits/study-buddy-base/08-color-mixing.md
+          - "Lab 09: Angles to Pixels": kits/study-buddy-base/09-angles-to-pixels.md
+          - "Lab 10: Flicker-Free Text": kits/study-buddy-base/10-flicker-free-text.md
+          - "Lab 11: What a Button Press Really Looks Like": kits/study-buddy-base/11-button-bounce.md
+          - "Lab 12: One Loop, Many Jobs": kits/study-buddy-base/12-one-loop-many-jobs.md
+          - "Lab 13: Modes as a State Machine": kits/study-buddy-base/13-modes-state-machine.md
+          - "Lab 14: Samples Make Sound": kits/study-buddy-base/14-samples-make-sound.md
+          - "Lab 15: Envelopes": kits/study-buddy-base/15-sound-envelopes.md
+          - "Lab 16: A Microphone Oscilloscope": kits/study-buddy-base/16-mic-oscilloscope.md
+          - "Lab 17: A Whistle Tuner": kits/study-buddy-base/17-whistle-tuner.md
+          - "Lab 18: From Radio Waves to the Weather": kits/study-buddy-base/18-network-layers.md
+          - "Lab 19: Pattern Memory Game": kits/study-buddy-base/19-pattern-game.md
+
   - Schools:
       - Overview: schools/index.md
       - Cedar Ridge High School:
