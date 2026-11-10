@@ -632,6 +632,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#choosing-a-wire-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing a Wire Length
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-ribbons-color-order" class="md-nav__link">
     <span class="md-ellipsis">
       The Ribbon's Color Order
@@ -1613,6 +1622,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#choosing-a-wire-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing a Wire Length
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-ribbons-color-order" class="md-nav__link">
     <span class="md-ellipsis">
       The Ribbon's Color Order
@@ -1905,8 +1923,8 @@ plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin
 </thead>
 <tbody>
 <tr>
-<td>A 40-wire <strong>10 cm male-to-female</strong> Dupont ribbon cable</td>
-<td>One ribbon makes all three harnesses for one kit. Search for <code>dupont jumper wire 40 pin male to female 10cm</code>. The <a href="../../../learning-graph/teachers-guide/#dupont-ribbon-cable-male-to-female-20-cm">Purchasing Guide</a> lists the 20 cm length, which also works but leaves loops of extra wire.</td>
+<td>A 40-wire <strong>male-to-female</strong> Dupont ribbon cable, <strong>10 cm or 20 cm</strong></td>
+<td>One ribbon makes all three harnesses for one kit. See <a href="#choosing-a-wire-length">Choosing a Wire Length</a> below.</td>
 </tr>
 <tr>
 <td>The display, amplifier, and microphone with their header pins soldered on</td>
@@ -1929,6 +1947,32 @@ plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin
 <p>A Dupont <strong>male</strong> end has a pin that pushes into a breadboard hole. A <strong>female</strong> end has a
 socket that slides over a module's header pin. In every harness, the female ends go on the
 module and the male ends go in the breadboard.</p>
+<h3 id="choosing-a-wire-length">Choosing a Wire Length<a class="headerlink" href="#choosing-a-wire-length" title="Permanent link">&para;</a></h3>
+<p>Both lengths work, and the steps are the same for each. Pick the one that fits how far your
+parts sit from the breadboard.</p>
+<table>
+<thead>
+<tr>
+<th>Length</th>
+<th>Best for</th>
+<th>Search for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 cm</td>
+<td><strong>Compact builds</strong>, where the display, amplifier and microphone sit very close to the breadboard</td>
+<td><code>dupont jumper wire 40 pin male to female 10cm</code></td>
+</tr>
+<tr>
+<td>20 cm</td>
+<td><strong>Spreading the parts out</strong>, such as a display on its own stand or a speaker away from the microphone</td>
+<td><code>dupont jumper wire 40 pin male to female 20cm</code> (the ribbon in the <a href="../../../learning-graph/teachers-guide/#dupont-ribbon-cable-male-to-female-20-cm">Purchasing Guide</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Where a step says how far to peel wires apart, it gives the 10 cm length first and the 20 cm
+length in parentheses.</p>
 <h3 id="the-ribbons-color-order">The Ribbon's Color Order<a class="headerlink" href="#the-ribbons-color-order" title="Permanent link">&para;</a></h3>
 <p>The wires in a Dupont ribbon follow the resistor color code, and the pattern repeats every ten
 wires:</p>
@@ -2030,7 +2074,7 @@ leaves room for only two wires beside pin 36. If your breadboard has room for th
 <li><strong>At the Pico end, move only the wires that must move.</strong> Each section lists the moves. Every
    other wire stays next to its neighbor from the ribbon.</li>
 <li><strong>Red goes to the right side.</strong> Peel the red wire away from its neighbors along its whole
-   length, so it can reach across the Pico.</li>
+   length (about 10 cm of a 20 cm wire), so it can reach across the Pico.</li>
 </ol>
 <p>To peel a strip, nick the gap between two wires with a fingernail and pull the wires apart
 slowly. The wires separate cleanly along their whole length.</p>
@@ -2050,9 +2094,9 @@ orange, yellow, green, blue, purple, gray. These are the display colors used in 
 VCC, orange on SCL, and so on down to gray on BL. SDO and TE stay bare.</p>
 <h3 id="step-3-make-two-changes-at-the-pico-end">Step 3: Make two changes at the Pico end<a class="headerlink" href="#step-3-make-two-changes-at-the-pico-end" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Pull red out.</strong> Peel the red wire away from brown and orange along its whole length. It goes to
+<li><strong>Pull red out.</strong> Peel the red wire away from brown and orange along its whole length (about 10 cm on 20 cm wires). It goes to
    3V3 on the right side.</li>
-<li><strong>Split purple and gray off.</strong> Peel purple and gray away from blue for about 3 cm. Row 8 is a
+<li><strong>Split purple and gray off.</strong> Peel purple and gray away from blue for about 3 cm (5 cm). Row 8 is a
    Pico GND pin that the display does not need, so these two wires skip it.</li>
 </ol>
 <h3 id="step-4-plug-it-into-the-breadboard">Step 4: Plug it into the breadboard<a class="headerlink" href="#step-4-plug-it-into-the-breadboard" title="Permanent link">&para;</a></h3>
@@ -2147,7 +2191,7 @@ the pair onto GND and Vin, with <strong>brown on GND</strong> and red on Vin.</p
 <p>The amplifier lists LRC before BCLK, but MicroPython needs BCLK on the lower pin, with LRC on the
 pin right after it. The ground pin sits between them on the Pico.</p>
 <ol>
-<li><strong>Swap blue and purple.</strong> Peel blue and purple apart for about 3 cm and cross them, so purple
+<li><strong>Swap blue and purple.</strong> Peel blue and purple apart for about 3 cm (5 cm) and cross them, so purple
    (BCLK) comes first.</li>
 <li><strong>Put brown between them.</strong> Bring the brown GND wire over to sit between purple and blue.</li>
 </ol>
@@ -2211,7 +2255,7 @@ a scale, and three volumes.</p>
 <p>Peel a strip of six wires that starts with <strong>gray</strong> and ends with <strong>orange</strong>: gray, white,
 black, brown, red, orange.</p>
 <h3 id="step-2-fold-the-strip-around-the-two-pin-rows">Step 2: Fold the strip around the two pin rows<a class="headerlink" href="#step-2-fold-the-strip-around-the-two-pin-rows" title="Permanent link">&para;</a></h3>
-<p>Split the strip between black and brown for about 2 cm, so it can bend into a U.</p>
+<p>Split the strip between black and brown for about 2 cm (3 cm), so it can bend into a U.</p>
 <ol>
 <li>Push the first three wires onto the top row, left to right: <strong>gray on SCK</strong>, white on WS,
    black on L/R.</li>
@@ -2222,7 +2266,7 @@ black, brown, red, orange.</p>
 under black (L/R).</p>
 <h3 id="step-3-make-two-changes-at-the-pico-end_1">Step 3: Make two changes at the Pico end<a class="headerlink" href="#step-3-make-two-changes-at-the-pico-end_1" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Pull red out.</strong> Peel it away along its whole length. It goes to 3V3 on the right side.</li>
+<li><strong>Pull red out.</strong> Peel it away along its whole length (about 10 cm on 20 cm wires). It goes to 3V3 on the right side.</li>
 <li><strong>Move white past black and brown.</strong> On the Pico, the ground pin comes between SCK and WS, so
    white (WS) moves down one place. Black and brown both go in the ground row, side by side.
    L/R tied to ground tells the microphone to send the left channel, which is what the kit
