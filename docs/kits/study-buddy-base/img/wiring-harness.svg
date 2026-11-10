@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 870" width="960" height="870" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="title desc">
+<title id="title">Study Buddy wiring harnesses</title>
+<desc id="desc">Three Dupont ribbon harnesses. Display: brown GND to row 3, orange SCL row 4, yellow SDA row 5, green RST row 6, blue DC row 7, row 8 (GND) empty, purple CS row 9, gray BL row 10, red VCC to 3V3 pin 36. Amplifier: purple BCLK row 12, brown GND row 13, blue LRC row 14, gray DIN row 15, white GAIN row 16, black SD wire removed, red Vin to VBUS pin 40. Microphone: gray SCK row 17, brown GND and black L/R row 18, white WS row 19, orange SD row 20, red VDD to 3V3 pin 36.</desc>
+<rect width="960" height="870" fill="#FFFFFF"/>
+<text x="480" y="32" font-size="20" font-weight="bold" text-anchor="middle" fill="#222">Study Buddy Wiring Harnesses: module end (top) to breadboard row (bottom)</text>
+<rect x="10" y="50" width="940" height="256" rx="10" fill="#FAFAFA" stroke="#CCC"/>
+<text x="28" y="76" font-size="17" font-weight="bold" text-anchor="start" fill="#222">1. Display harness: 8 wires, brown to gray</text>
+<text x="28" y="94" font-size="12" font-weight="normal" text-anchor="start" fill="#555">Module end: original ribbon order. Pico end: red goes to 3V3; purple and gray skip GND row 8.</text>
+<line x1="28" y1="232" x2="750" y2="232" stroke="#DDD" stroke-dasharray="4 4"/>
+<text x="28" y="142" font-size="11" font-weight="bold" text-anchor="start" fill="#777">Module</text>
+<text x="28" y="156" font-size="11" font-weight="bold" text-anchor="start" fill="#777">end</text>
+<text x="28" y="260" font-size="11" font-weight="bold" text-anchor="start" fill="#777">Pico end:</text>
+<text x="28" y="283" font-size="11" font-weight="normal" text-anchor="start" fill="#777">row</text>
+<text x="28" y="298" font-size="11" font-weight="normal" text-anchor="start" fill="#777">Pico pin</text>
+<path d="M140,156 C140,200.5 140,200.5 140,245" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M140,156 C140,200.5 140,200.5 140,245" stroke="#8B4513" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M264,156 C264,200.5 202,200.5 202,245" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M264,156 C264,200.5 202,200.5 202,245" stroke="#F57C00" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M326,156 C326,200.5 264,200.5 264,245" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M326,156 C326,200.5 264,200.5 264,245" stroke="#FDD835" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M388,156 C388,200.5 326,200.5 326,245" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M388,156 C388,200.5 326,200.5 326,245" stroke="#388E3C" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M450,156 C450,200.5 388,200.5 388,245" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M450,156 C450,200.5 388,200.5 388,245" stroke="#1E66C8" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M512,156 C512,200.5 512,200.5 512,245" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M512,156 C512,200.5 512,200.5 512,245" stroke="#7B1FA2" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M574,156 C574,200.5 574,200.5 574,245" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M574,156 C574,200.5 574,200.5 574,245" stroke="#9E9E9E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M202,156 C202,198.5 830,198.5 830,241" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M202,156 C202,198.5 830,198.5 830,241" stroke="#D32F2F" stroke-width="5" fill="none" stroke-linecap="round"/>
+<rect x="126" y="128" width="28" height="28" rx="3" fill="#8B4513" stroke="#333" stroke-width="1.5"/>
+<text x="140" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">GND</text>
+<rect x="188" y="128" width="28" height="28" rx="3" fill="#D32F2F" stroke="#333" stroke-width="1.5"/>
+<text x="202" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">VCC</text>
+<rect x="250" y="128" width="28" height="28" rx="3" fill="#F57C00" stroke="#333" stroke-width="1.5"/>
+<text x="264" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">SCL</text>
+<rect x="312" y="128" width="28" height="28" rx="3" fill="#FDD835" stroke="#333" stroke-width="1.5"/>
+<text x="326" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">SDA</text>
+<rect x="374" y="128" width="28" height="28" rx="3" fill="#388E3C" stroke="#333" stroke-width="1.5"/>
+<text x="388" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">RST</text>
+<rect x="436" y="128" width="28" height="28" rx="3" fill="#1E66C8" stroke="#333" stroke-width="1.5"/>
+<text x="450" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">DC</text>
+<rect x="498" y="128" width="28" height="28" rx="3" fill="#7B1FA2" stroke="#333" stroke-width="1.5"/>
+<text x="512" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">CS</text>
+<rect x="560" y="128" width="28" height="28" rx="3" fill="#9E9E9E" stroke="#333" stroke-width="1.5"/>
+<text x="574" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">BL</text>
+<rect x="622" y="128" width="28" height="28" rx="3" fill="#EEEEEE" stroke="#333" stroke-width="1.5"/>
+<text x="636" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">SDO</text>
+<rect x="684" y="128" width="28" height="28" rx="3" fill="#EEEEEE" stroke="#333" stroke-width="1.5"/>
+<text x="698" y="122" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">TE</text>
+<rect x="130" y="245" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="140" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R3</text>
+<text x="140" y="298" font-size="11" font-weight="bold" text-anchor="middle" fill="#000">GND</text>
+<circle cx="140" cy="307" r="3.5" fill="#000"/>
+<rect x="192" y="245" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="202" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R4</text>
+<text x="202" y="298" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP2</text>
+<rect x="254" y="245" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="264" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R5</text>
+<text x="264" y="298" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP3</text>
+<rect x="316" y="245" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="326" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R6</text>
+<text x="326" y="298" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP4</text>
+<rect x="378" y="245" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="388" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R7</text>
+<text x="388" y="298" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP5</text>
+<rect x="440" y="245" width="20" height="20" fill="#F4F4F4" stroke="#BBB" stroke-width="1.5"/>
+<text x="450" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#999">R8</text>
+<text x="450" y="298" font-size="11" font-weight="bold" text-anchor="middle" fill="#000">GND</text>
+<circle cx="450" cy="307" r="3.5" fill="#000"/>
+<rect x="502" y="245" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="512" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R9</text>
+<text x="512" y="298" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP6</text>
+<rect x="564" y="245" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="574" y="283" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R10</text>
+<text x="574" y="298" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP7</text>
+<text x="450" y="239" font-size="10" font-weight="normal" text-anchor="middle" fill="#999">empty</text>
+<rect x="760" y="241" width="140" height="44" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="830" y="259" font-size="13" font-weight="bold" text-anchor="middle" fill="#D32F2F">3V3 (pin 36)</text>
+<text x="830" y="276" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">right side, row 5</text>
+<text x="738" y="147" font-size="11" font-weight="normal" text-anchor="start" fill="#999">not used</text>
+<rect x="10" y="320" width="940" height="256" rx="10" fill="#FAFAFA" stroke="#CCC"/>
+<text x="28" y="346" font-size="17" font-weight="bold" text-anchor="start" fill="#222">2. Amplifier harness: blue to red, black wire removed</text>
+<text x="28" y="364" font-size="12" font-weight="normal" text-anchor="start" fill="#555">Module end: original order. Pico end: purple and blue swap, and brown moves between them to GND row 13.</text>
+<line x1="28" y1="502" x2="750" y2="502" stroke="#DDD" stroke-dasharray="4 4"/>
+<text x="28" y="412" font-size="11" font-weight="bold" text-anchor="start" fill="#777">Module</text>
+<text x="28" y="426" font-size="11" font-weight="bold" text-anchor="start" fill="#777">end</text>
+<text x="28" y="530" font-size="11" font-weight="bold" text-anchor="start" fill="#777">Pico end:</text>
+<text x="28" y="553" font-size="11" font-weight="normal" text-anchor="start" fill="#777">row</text>
+<text x="28" y="568" font-size="11" font-weight="normal" text-anchor="start" fill="#777">Pico pin</text>
+<path d="M140,426 C140,470.5 264,470.5 264,515" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M140,426 C140,470.5 264,470.5 264,515" stroke="#1E66C8" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M202,426 C202,470.5 140,470.5 140,515" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M202,426 C202,470.5 140,470.5 140,515" stroke="#7B1FA2" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M264,426 C264,470.5 326,470.5 326,515" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M264,426 C264,470.5 326,470.5 326,515" stroke="#9E9E9E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M326,426 C326,470.5 388,470.5 388,515" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M326,426 C326,470.5 388,470.5 388,515" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M450,426 C450,470.5 202,470.5 202,515" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M450,426 C450,470.5 202,470.5 202,515" stroke="#8B4513" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M512,426 C512,468.5 830,468.5 830,511" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M512,426 C512,468.5 830,468.5 830,511" stroke="#D32F2F" stroke-width="5" fill="none" stroke-linecap="round"/>
+<rect x="126" y="398" width="28" height="28" rx="3" fill="#1E66C8" stroke="#333" stroke-width="1.5"/>
+<text x="140" y="392" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">LRC</text>
+<rect x="188" y="398" width="28" height="28" rx="3" fill="#7B1FA2" stroke="#333" stroke-width="1.5"/>
+<text x="202" y="392" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">BCLK</text>
+<rect x="250" y="398" width="28" height="28" rx="3" fill="#9E9E9E" stroke="#333" stroke-width="1.5"/>
+<text x="264" y="392" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">DIN</text>
+<rect x="312" y="398" width="28" height="28" rx="3" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="326" y="392" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">GAIN</text>
+<rect x="374" y="398" width="28" height="28" rx="3" fill="#EEEEEE" stroke="#333" stroke-width="1.5"/>
+<text x="388" y="392" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">SD</text>
+<rect x="436" y="398" width="28" height="28" rx="3" fill="#8B4513" stroke="#333" stroke-width="1.5"/>
+<text x="450" y="392" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">GND</text>
+<rect x="498" y="398" width="28" height="28" rx="3" fill="#D32F2F" stroke="#333" stroke-width="1.5"/>
+<text x="512" y="392" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">Vin</text>
+<rect x="130" y="515" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="140" y="553" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R12</text>
+<text x="140" y="568" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP9</text>
+<rect x="192" y="515" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="202" y="553" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R13</text>
+<text x="202" y="568" font-size="11" font-weight="bold" text-anchor="middle" fill="#000">GND</text>
+<circle cx="202" cy="577" r="3.5" fill="#000"/>
+<rect x="254" y="515" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="264" y="553" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R14</text>
+<text x="264" y="568" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP10</text>
+<rect x="316" y="515" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="326" y="553" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R15</text>
+<text x="326" y="568" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP11</text>
+<rect x="378" y="515" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="388" y="553" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R16</text>
+<text x="388" y="568" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP12</text>
+<text x="388" y="444" font-size="10" font-weight="normal" text-anchor="middle" fill="#999">no wire</text>
+<rect x="760" y="511" width="140" height="44" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="830" y="529" font-size="13" font-weight="bold" text-anchor="middle" fill="#D32F2F">VBUS (pin 40)</text>
+<text x="830" y="546" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">right side, row 1</text>
+<rect x="10" y="590" width="940" height="256" rx="10" fill="#FAFAFA" stroke="#CCC"/>
+<text x="28" y="616" font-size="17" font-weight="bold" text-anchor="start" fill="#222">3. Microphone harness: 6 wires, gray to orange, folded in a U</text>
+<text x="28" y="634" font-size="12" font-weight="normal" text-anchor="start" fill="#555">Module end: drawn unfolded; on the board the strip wraps around both pin rows. Pico end: white moves past black and brown.</text>
+<line x1="28" y1="772" x2="750" y2="772" stroke="#DDD" stroke-dasharray="4 4"/>
+<text x="28" y="682" font-size="11" font-weight="bold" text-anchor="start" fill="#777">Module</text>
+<text x="28" y="696" font-size="11" font-weight="bold" text-anchor="start" fill="#777">end</text>
+<text x="28" y="800" font-size="11" font-weight="bold" text-anchor="start" fill="#777">Pico end:</text>
+<text x="28" y="823" font-size="11" font-weight="normal" text-anchor="start" fill="#777">row</text>
+<text x="28" y="838" font-size="11" font-weight="normal" text-anchor="start" fill="#777">Pico pin</text>
+<path d="M140,696 C140,740.5 202,740.5 202,785" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M140,696 C140,740.5 202,740.5 202,785" stroke="#9E9E9E" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M202,696 C202,740.5 326,740.5 326,785" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M202,696 C202,740.5 326,740.5 326,785" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M264,696 C264,740.5 269,740.5 269,785" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M264,696 C264,740.5 269,740.5 269,785" stroke="#212121" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M326,696 C326,740.5 259,740.5 259,785" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M326,696 C326,740.5 259,740.5 259,785" stroke="#8B4513" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M450,696 C450,740.5 388,740.5 388,785" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M450,696 C450,740.5 388,740.5 388,785" stroke="#F57C00" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M388,696 C388,738.5 830,738.5 830,781" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M388,696 C388,738.5 830,738.5 830,781" stroke="#D32F2F" stroke-width="5" fill="none" stroke-linecap="round"/>
+<rect x="126" y="668" width="28" height="28" rx="3" fill="#9E9E9E" stroke="#333" stroke-width="1.5"/>
+<text x="140" y="662" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">SCK</text>
+<rect x="188" y="668" width="28" height="28" rx="3" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="202" y="662" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">WS</text>
+<rect x="250" y="668" width="28" height="28" rx="3" fill="#212121" stroke="#333" stroke-width="1.5"/>
+<text x="264" y="662" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">L/R</text>
+<rect x="312" y="668" width="28" height="28" rx="3" fill="#8B4513" stroke="#333" stroke-width="1.5"/>
+<text x="326" y="662" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">GND</text>
+<rect x="374" y="668" width="28" height="28" rx="3" fill="#D32F2F" stroke="#333" stroke-width="1.5"/>
+<text x="388" y="662" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">VDD</text>
+<rect x="436" y="668" width="28" height="28" rx="3" fill="#F57C00" stroke="#333" stroke-width="1.5"/>
+<text x="450" y="662" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">SD</text>
+<rect x="192" y="785" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="202" y="823" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R17</text>
+<text x="202" y="838" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP13</text>
+<rect x="254" y="785" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="264" y="823" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R18</text>
+<text x="264" y="838" font-size="11" font-weight="bold" text-anchor="middle" fill="#000">GND</text>
+<circle cx="264" cy="847" r="3.5" fill="#000"/>
+<rect x="316" y="785" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="326" y="823" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R19</text>
+<text x="326" y="838" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP14</text>
+<rect x="378" y="785" width="20" height="20" fill="#FFFFFF" stroke="#333" stroke-width="1.5"/>
+<text x="388" y="823" font-size="12" font-weight="bold" text-anchor="middle" fill="#222">R20</text>
+<text x="388" y="838" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">GP15</text>
+<rect x="760" y="781" width="140" height="44" rx="6" fill="#FFEBEE" stroke="#D32F2F" stroke-width="2"/>
+<text x="830" y="799" font-size="13" font-weight="bold" text-anchor="middle" fill="#D32F2F">3V3 (pin 36)</text>
+<text x="830" y="816" font-size="11" font-weight="normal" text-anchor="middle" fill="#555">right side, row 5</text>
+<rect x="778" y="636" width="124" height="112" rx="34" fill="#263238"/>
+<text x="760" y="696" font-size="11" font-weight="bold" text-anchor="end" fill="#555">On the board:</text>
+<circle cx="810" cy="672" r="9" fill="#9E9E9E" stroke="#FFF" stroke-width="1.5"/>
+<text x="810" y="658" font-size="9" font-weight="bold" text-anchor="middle" fill="#FFF">SCK</text>
+<circle cx="840" cy="672" r="9" fill="#FFFFFF" stroke="#FFF" stroke-width="1.5"/>
+<text x="840" y="658" font-size="9" font-weight="bold" text-anchor="middle" fill="#FFF">WS</text>
+<circle cx="870" cy="672" r="9" fill="#212121" stroke="#FFF" stroke-width="1.5"/>
+<text x="870" y="658" font-size="9" font-weight="bold" text-anchor="middle" fill="#FFF">L/R</text>
+<circle cx="810" cy="712" r="9" fill="#F57C00" stroke="#FFF" stroke-width="1.5"/>
+<text x="810" y="736" font-size="9" font-weight="bold" text-anchor="middle" fill="#FFF">SD</text>
+<circle cx="840" cy="712" r="9" fill="#D32F2F" stroke="#FFF" stroke-width="1.5"/>
+<text x="840" y="736" font-size="9" font-weight="bold" text-anchor="middle" fill="#FFF">VDD</text>
+<circle cx="870" cy="712" r="9" fill="#8B4513" stroke="#FFF" stroke-width="1.5"/>
+<text x="870" y="736" font-size="9" font-weight="bold" text-anchor="middle" fill="#FFF">GND</text>
+<path d="M879,672 C920,672 920,712 879,712" stroke="#FFF" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+<text x="914" y="696" font-size="10" font-weight="normal" text-anchor="start" fill="#555">fold</text>
+</svg>

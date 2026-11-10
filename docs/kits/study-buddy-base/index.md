@@ -13,7 +13,9 @@ one idea per lab. They are written for a student who has finished the
 ![The Study Buddy demo screens](demo-1.png)
 
 **New here?** Start with [the introduction](intro.md). It describes each part, shows how
-they are wired, and explains how to put the lab files on your Pico.
+they are wired, and explains how to put the lab files on your Pico. Then build the
+[wiring harnesses](wiring-harness.md): three ribbon cables that plug the display, amplifier
+and microphone into the breadboard as blocks.
 
 ## The Labs
 

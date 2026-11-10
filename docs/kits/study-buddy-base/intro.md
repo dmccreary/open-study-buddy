@@ -58,7 +58,8 @@ place. The full circuit drawing is below. Click it to see it larger.
 For a guided tour of the parts, try the
 [Kit Parts Infographic](../../sims/kit-parts-infographic/index.md), and keep the
 [Kit Wiring Fault Finder](../../sims/kit-wiring-fault-finder/index.md) handy for when a wire
-goes missing.
+goes missing. To wire the display, amplifier and microphone quickly and in the right order,
+build the three [wiring harnesses](wiring-harness.md) first.
 
 !!! mascot-warning "Two Wiring Rules That Save Hours"
     ![Sage warning](../../img/mascot/warning.png){ class="mascot-admonition-img" }

@@ -61,6 +61,7 @@ nav:
       - Study Buddy Base Kit:
           - Table of Contents: kits/study-buddy-base/index.md
           - Introduction: kits/study-buddy-base/intro.md
+          - Wiring Harnesses: kits/study-buddy-base/wiring-harness.md
           - "Lab 01: Blink the Onboard LED": kits/study-buddy-base/01-blink.md
           - "Lab 02: The Hardware Probe": kits/study-buddy-base/02-probe.md
           - "Lab 03: Buttons on the Console": kits/study-buddy-base/03-buttons.md
