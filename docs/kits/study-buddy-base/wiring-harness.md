@@ -30,7 +30,7 @@ plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin
 
 | Item | Notes |
 |------|-------|
-| A 40-wire male-to-female Dupont ribbon cable, 20 cm | One ribbon makes all three harnesses for one kit. See the [Purchasing Guide](../../learning-graph/teachers-guide/index.md#dupont-ribbon-cable-male-to-female-20-cm). |
+| A 40-wire **10 cm male-to-female** Dupont ribbon cable | One ribbon makes all three harnesses for one kit. Search for `dupont jumper wire 40 pin male to female 10cm`. The [Purchasing Guide](../../learning-graph/teachers-guide/index.md#dupont-ribbon-cable-male-to-female-20-cm) lists the 20 cm length, which also works but leaves loops of extra wire. |
 | The display, amplifier, and microphone with their header pins soldered on | The female ends of the ribbon push onto these pins. |
 | Your Pico 2 W on the breadboard | Pin 1 in breadboard row 1, as in the [circuit diagram](../../chapters/04-pico-kit-hardware/img/circuit-diagram.svg). |
 | Optional: hot glue gun, or narrow tape | Holds the male pins together as a block. |
@@ -98,8 +98,8 @@ leaves room for only two wires beside pin 36. If your breadboard has room for th
    module's pins in order, starting with the wire named in each section.
 2. **At the Pico end, move only the wires that must move.** Each section lists the moves. Every
    other wire stays next to its neighbor from the ribbon.
-3. **Red goes to the right side.** Peel the red wire away from its neighbors for about 10 cm so
-   it can reach across the Pico.
+3. **Red goes to the right side.** Peel the red wire away from its neighbors along its whole
+   length, so it can reach across the Pico.
 
 To peel a strip, nick the gap between two wires with a fingernail and pull the wires apart
 slowly. The wires separate cleanly along their whole length.
@@ -129,9 +129,9 @@ VCC, orange on SCL, and so on down to gray on BL. SDO and TE stay bare.
 
 ### Step 3: Make two changes at the Pico end
 
-1. **Pull red out.** Peel the red wire away from brown and orange for about 10 cm. It goes to
+1. **Pull red out.** Peel the red wire away from brown and orange along its whole length. It goes to
    3V3 on the right side.
-2. **Split purple and gray off.** Peel purple and gray away from blue for about 5 cm. Row 8 is a
+2. **Split purple and gray off.** Peel purple and gray away from blue for about 3 cm. Row 8 is a
    Pico GND pin that the display does not need, so these two wires skip it.
 
 ### Step 4: Plug it into the breadboard
@@ -182,7 +182,7 @@ the pair onto GND and Vin, with **brown on GND** and red on Vin.
 The amplifier lists LRC before BCLK, but MicroPython needs BCLK on the lower pin, with LRC on the
 pin right after it. The ground pin sits between them on the Pico.
 
-1. **Swap blue and purple.** Peel blue and purple apart for about 5 cm and cross them, so purple
+1. **Swap blue and purple.** Peel blue and purple apart for about 3 cm and cross them, so purple
    (BCLK) comes first.
 2. **Put brown between them.** Bring the brown GND wire over to sit between purple and blue.
 
@@ -215,7 +215,7 @@ black, brown, red, orange.
 
 ### Step 2: Fold the strip around the two pin rows
 
-Split the strip between black and brown for about 3 cm, so it can bend into a U.
+Split the strip between black and brown for about 2 cm, so it can bend into a U.
 
 1. Push the first three wires onto the top row, left to right: **gray on SCK**, white on WS,
    black on L/R.
@@ -227,7 +227,7 @@ under black (L/R).
 
 ### Step 3: Make two changes at the Pico end
 
-1. **Pull red out.** Peel it away for about 10 cm. It goes to 3V3 on the right side.
+1. **Pull red out.** Peel it away along its whole length. It goes to 3V3 on the right side.
 2. **Move white past black and brown.** On the Pico, the ground pin comes between SCK and WS, so
    white (WS) moves down one place. Black and brown both go in the ground row, side by side.
    L/R tied to ground tells the microphone to send the left channel, which is what the kit
