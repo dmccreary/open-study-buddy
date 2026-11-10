@@ -1,0 +1,2076 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Measure the pitch of a whistle by counting upward zero crossings, then turn the frequency into a note name and a needle that shows whether you are sharp or flat.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/kits/study-buddy-base/17-whistle-tuner/">
+      
+      
+        <link rel="prev" href="../16-mic-oscilloscope/">
+      
+      
+        <link rel="next" href="../18-network-layers/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Lab 17: A Whistle Tuner - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-17-a-whistle-tuner" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 17: A Whistle Tuner
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../chapters/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kits
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Study Buddy Base Kit
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Study Buddy Base Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 01: Blink the Onboard LED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-probe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 02: The Hardware Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 03: Buttons on the Console
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 04: Hello World on the Display
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-speaker-tones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 05: Speaker Tones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-listen-meter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 06: Listen with the Microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-record-playback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 07: Hold to Record, Release to Play Back
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-color-mixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 08: How the Display Mixes Color
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-angles-to-pixels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 09: Angles to Pixels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-flicker-free-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-button-bounce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-one-loop-many-jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 12: One Loop, Many Jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-modes-state-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 13: Modes as a State Machine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-samples-make-sound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 14: Samples Make Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sound-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mic-oscilloscope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 16: A Microphone Oscilloscope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Big Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frequency-from-crossings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency from crossings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-tricks-that-make-it-work-on-real-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two tricks that make it work on real sound
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-frequency-to-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      From frequency to note
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taking-a-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taking a frame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pitch-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      The pitch function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-frequency-to-note_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      From frequency to note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-needle" class="md-nav__link">
+    <span class="md-ellipsis">
+      The needle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#only-redraw-when-something-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Only redraw when something changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-network-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 18: From Radio Waves to the Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-pattern-game/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Big Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frequency-from-crossings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency from crossings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-tricks-that-make-it-work-on-real-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two tricks that make it work on real sound
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-frequency-to-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      From frequency to note
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taking-a-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taking a frame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pitch-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      The pitch function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-frequency-to-note_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      From frequency to note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-needle" class="md-nav__link">
+    <span class="md-ellipsis">
+      The needle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#only-redraw-when-something-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Only redraw when something changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/kits/study-buddy-base/17-whistle-tuner.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="lab-17-a-whistle-tuner">Lab 17: A Whistle Tuner<a class="headerlink" href="#lab-17-a-whistle-tuner" title="Permanent link">&para;</a></h1>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Is That Note in Tune?</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
+Whistle a note and your Study Buddy will tell you its frequency, its musical name, and whether you are a little sharp or a little flat. You are about to build a tuner like the ones guitar players use. Let's listen closely, and try to hold that note steady!</p>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Program</strong></td>
+<td><code>17-whistle-tuner.py</code></td>
+</tr>
+<tr>
+<td><strong>Parts needed</strong></td>
+<td>The microphone and the display</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>30 minutes</td>
+</tr>
+<tr>
+<td><strong>Makes sound?</strong></td>
+<td>No (but <em>you</em> will!)</td>
+</tr>
+<tr>
+<td><strong>How to stop</strong></td>
+<td>Press <strong>Stop</strong> in Thonny, or Ctrl-C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-you-will-learn">What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Permanent link">&para;</a></h2>
+<ul>
+<li>How to measure <strong>frequency</strong> by counting <strong>zero crossings</strong></li>
+<li>What <strong>hysteresis</strong> is, and why noise makes it necessary</li>
+<li>What a <strong>noise gate</strong> does</li>
+<li>How a frequency becomes a <strong>note name</strong> and <strong>cents</strong>, using a logarithm</li>
+</ul>
+<h2 id="the-big-idea">The Big Idea<a class="headerlink" href="#the-big-idea" title="Permanent link">&para;</a></h2>
+<h3 id="frequency-from-crossings">Frequency from crossings<a class="headerlink" href="#frequency-from-crossings" title="Permanent link">&para;</a></h3>
+<p>A steady note is a wave that crosses the middle line <strong>going upward once every cycle</strong>. If you
+count the upward crossings in a frame and time how far apart the first and last are, you can
+work out the frequency:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>frequency = (crossings - 1) * RATE / (samples from first crossing to last)
+</span></code></pre></div>
+<p>Why <code>crossings - 1</code>? Three crossings mark only <strong>two</strong> full cycles: the gaps <em>between</em> crossings are
+the cycles. For example, if a 1,000 Hz whistle is sampled at 12,800 samples per second, one cycle
+is 12.8 samples. Over 80 cycles, the first and last crossings are about 80 x 12.8 = 1,024 samples
+apart, and <code>(81 - 1) * 12800 / 1024</code> is close to 1,000.</p>
+<h3 id="two-tricks-that-make-it-work-on-real-sound">Two tricks that make it work on real sound<a class="headerlink" href="#two-tricks-that-make-it-work-on-real-sound" title="Permanent link">&para;</a></h3>
+<p><strong>Hysteresis.</strong> Near the middle line, noise wiggles the signal back and forth across it,
+making false crossings. So a crossing only counts once the signal has gone properly <strong>low</strong>
+(below <code>-LEVEL</code>) and <strong>then</strong> properly <strong>high</strong> (above <code>+LEVEL</code>). <code>LEVEL</code> is 30 percent of the
+frame's peak. Think of a light switch that needs a firm push, not a tickle.</p>
+<p><strong>A noise gate.</strong> A quiet room has no pitch at all, so frames that are not clearly <strong>louder than
+the room</strong> are ignored, instead of shown as nonsense numbers. For the first second, the program
+measures the room's <strong>noise floor</strong>, as in Lab 06. A frame must be <strong>4 times louder</strong> (<code>GATE = 4</code>)
+to count.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Hysteresis Is a Door with a Latch</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
+A door that swings open at the slightest breeze would bang all night, so doors have latches that only let go when you push properly. The <code>armed</code> flag in this lab works the same way: it will not count a crossing until the signal has first gone clearly low.</p>
+</div>
+<h3 id="from-frequency-to-note">From frequency to note<a class="headerlink" href="#from-frequency-to-note" title="Permanent link">&para;</a></h3>
+<p>Music divides each <strong>octave</strong> (a doubling of frequency) into <strong>12 steps</strong>, so each step is
+a factor of 2<sup>1/12</sup> (about 1.0595) higher than the one before. The reference is <strong>A4 =
+440 Hz</strong>, and A4 is note number 69. So</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>note number = 69 + 12 * log2(frequency / 440)
+</span></code></pre></div>
+<p>The <strong>whole part</strong> is the nearest note. The leftover, times 100, is how many <strong>cents</strong> sharp (+)
+or flat (-) you are. <strong>100 cents make one note.</strong> For example:</p>
+<table>
+<thead>
+<tr>
+<th>Whistle</th>
+<th>Note number</th>
+<th>Nearest note</th>
+<th>Cents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>440 Hz</td>
+<td>69.00</td>
+<td>A4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>880 Hz</td>
+<td>81.00</td>
+<td>A5</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1,000 Hz</td>
+<td>83.21</td>
+<td>B5</td>
+<td>+21 (sharp)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="walking-through-the-code">Walking Through the Code<a class="headerlink" href="#walking-through-the-code" title="Permanent link">&para;</a></h2>
+<h3 id="taking-a-frame">Taking a frame<a class="headerlink" href="#taking-a-frame" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">read_frame</span><span class="p">():</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">mic</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">config</span><span class="o">.</span><span class="n">MIC_SAMPLE_SHIFT</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">"&lt;</span><span class="si">%d</span><span class="s2">i"</span> <span class="o">%</span> <span class="n">FRAME</span><span class="p">,</span> <span class="n">buf</span><span class="p">)]</span>
+</span></code></pre></div>
+<p>A frame here is <strong>1,024 samples</strong>, which is 80 ms. That is long enough to hold many cycles of a
+whistle, so the counting is accurate.</p>
+<h3 id="the-pitch-function">The pitch function<a class="headerlink" href="#the-pitch-function" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">pitch</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">floor</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">offset</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">if</span> <span class="n">loudness</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">floor</span> <span class="o">*</span> <span class="n">GATE</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>                     <span class="c1"># too quiet: the noise gate</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">peak</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak</span> <span class="o">*</span> <span class="n">HYSTERESIS</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">low</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">-</span> <span class="n">level</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">high</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">level</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">armed</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">first</span> <span class="o">=</span> <span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">crossings</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)):</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">s</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="k">if</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">low</span><span class="p">:</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="n">armed</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="k">elif</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="n">high</span> <span class="ow">and</span> <span class="n">armed</span><span class="p">:</span>           <span class="c1"># low, then high: one upward crossing</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>            <span class="n">armed</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>            <span class="n">crossings</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>            <span class="k">if</span> <span class="n">first</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>                <span class="n">first</span> <span class="o">=</span> <span class="n">i</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>            <span class="n">last</span> <span class="o">=</span> <span class="n">i</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="k">if</span> <span class="n">crossings</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">peak</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">crossings</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">RATE</span> <span class="o">/</span> <span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">first</span><span class="p">),</span> <span class="n">peak</span>
+</span></code></pre></div>
+<p>The function returns <strong><code>None</code></strong> when it cannot tell the pitch: when the frame is too quiet, or when it found fewer than 3
+crossings. Read the loop slowly:</p>
+<ol>
+<li>If the sample drops <strong>below <code>low</code></strong>, the detector is <strong>armed</strong>.</li>
+<li>If it then rises <strong>above <code>high</code></strong> <em>and</em> is armed, that is a real upward crossing. Count it and
+   disarm.</li>
+<li>Remember the <strong>first</strong> and <strong>last</strong> crossing positions.</li>
+</ol>
+<p>Small wiggles between <code>low</code> and <code>high</code> do <strong>nothing</strong>. That is the hysteresis.</p>
+<h3 id="from-frequency-to-note_1">From frequency to note<a class="headerlink" href="#from-frequency-to-note_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">note_of</span><span class="p">(</span><span class="n">frequency</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">number</span> <span class="o">=</span> <span class="mi">69</span> <span class="o">+</span> <span class="mi">12</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">frequency</span> <span class="o">/</span> <span class="mi">440</span><span class="p">)</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">nearest</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">cents</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">number</span> <span class="o">-</span> <span class="n">nearest</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">NOTE_NAMES</span><span class="p">[</span><span class="n">nearest</span> <span class="o">%</span> <span class="mi">12</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nearest</span> <span class="o">//</span> <span class="mi">12</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">cents</span>
+</span></code></pre></div>
+<p>Python's <code>math.log</code> is the natural log, so dividing by <code>math.log(2)</code> gives log base 2. The note
+<strong>name</strong> comes from the position in the 12-name list (<code>nearest % 12</code>), and the <strong>octave</strong>
+number from <code>nearest // 12 - 1</code>. Note number 69: 69 % 12 = 9, which is <code>"A"</code>, and
+69 // 12 - 1 = 4, so it is <strong>A4</strong>.</p>
+<h3 id="the-needle">The needle<a class="headerlink" href="#the-needle" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">CX</span> <span class="o">+</span> <span class="n">cents</span> <span class="o">*</span> <span class="p">(</span><span class="n">BAR_W</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">//</span> <span class="mi">50</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">color</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">GREEN</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">cents</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">5</span> <span class="k">else</span> <span class="p">(</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">config</span><span class="o">.</span><span class="n">YELLOW</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">cents</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">20</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">display</span><span class="o">.</span><span class="n">fill_rect</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="n">BAR_Y</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">BAR_H</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The bar is 240 pixels wide, with the middle at 0 cents and the edges at -50 and +50. The marker
+moves 2.4 pixels for each cent. It is <strong>green</strong> within 5 cents of the note, <strong>yellow</strong> within
+20, and <strong>red</strong> beyond that.</p>
+<h3 id="only-redraw-when-something-changes">Only redraw when something changes<a class="headerlink" href="#only-redraw-when-something-changes" title="Permanent link">&para;</a></h3>
+<p>When the room goes quiet, <code>pitch()</code> returns <code>None</code>, and the screen shows <code>--</code>. The <code>shown</code>
+variable remembers whether the screen is already showing <code>--</code>, so it is only redrawn once. The
+send-only-what-changed idea from Lab 10 appears again.</p>
+<h2 id="run-it">Run It<a class="headerlink" href="#run-it" title="Permanent link">&para;</a></h2>
+<p>Open <code>17-whistle-tuner.py</code> and press Run. When the screen says <strong>quiet please...</strong>, stay silent
+for one second. Then whistle a steady note.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Whistle Like a Pro</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../../img/mascot/tip.png" />
+A whistle is almost a pure sine wave, which is exactly what this method likes, so purse your lips and blow gently and steadily. Humming "ooo" works too, but a voice has many waves at once and the reading will jump around.</p>
+</div>
+<h2 id="what-pass-looks-like">What PASS Looks Like<a class="headerlink" href="#what-pass-looks-like" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The big number shows a steady frequency in hertz, usually between <strong>500 and 3,000 Hz</strong> for a
+  whistle.</li>
+<li>Below it, a note name such as <strong>B5</strong> in cyan.</li>
+<li>The needle moves <strong>left</strong> when you whistle flat, and <strong>right</strong> when you whistle sharp, and turns
+  green when you are in tune.</li>
+<li>When you stop, the screen returns to <code>--</code>.</li>
+<li>The shell prints each reading, for example <code>1000.3 Hz  B5  +21 cents  (peak ...)</code>.</li>
+</ul>
+<h2 id="if-something-goes-wrong">If Something Goes Wrong<a class="headerlink" href="#if-something-goes-wrong" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Always <code>--</code></td>
+<td>Gate too strict, or the mic is not working</td>
+<td>Whistle louder; check <a href="../06-listen-meter/">Lab 06</a>; lower <code>GATE</code> to 3</td>
+</tr>
+<tr>
+<td>The reading jumps all over</td>
+<td>Noise causing false crossings</td>
+<td>Raise <code>HYSTERESIS</code> to 0.4</td>
+</tr>
+<tr>
+<td>It shows a wrong note when you hum</td>
+<td>A voice has many waves at once</td>
+<td>Use a whistle; the FFT in Chapter 9 handles voices</td>
+</tr>
+<tr>
+<td>The room was noisy at start-up</td>
+<td>Floor too high</td>
+<td>Stop and run it again, quietly</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-this">Try This<a class="headerlink" href="#try-this" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Hold it steady.</strong> Whistle the same note and watch the cents. How steady can you hold it?
+   Professional singers stay within about 10 cents.</li>
+<li><strong>No hysteresis.</strong> Set <code>HYSTERESIS</code> to <code>0</code>. Whistle softly. What happens to the reading,
+   and why?</li>
+<li><strong>Compare with a phone.</strong> Play a note from a phone tuner app next to the microphone (try A4,
+   440 Hz). How close does this tuner get?</li>
+<li><strong>Play a tune.</strong> Whistle a scale (C, D, E, F, G). Do the note names step upward as you
+   expect?</li>
+<li><strong>Octave jump.</strong> Whistle a note and then the same note an octave higher. By what factor does
+   the frequency change?</li>
+</ol>
+<details class="tip">
+<summary>Hint for number 2</summary>
+<p>With no hysteresis, <code>low</code> and <code>high</code> both equal the middle line, so <em>any</em> wiggle of noise
+across it counts as a crossing. A soft whistle is close to the noise level, so the program
+counts far too many crossings and reports a frequency that is too high.</p>
+</details>
+<h2 id="check-your-understanding">Check Your Understanding<a class="headerlink" href="#check-your-understanding" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Why does the formula use <code>crossings - 1</code>?</li>
+<li>What problem does hysteresis solve?</li>
+<li>What note number is 880 Hz? What is its name?</li>
+<li>If your whistle measures 450 Hz, are you sharp or flat compared to A4?</li>
+</ol>
+<details class="question">
+<summary>Answers</summary>
+<ol>
+<li><code>n</code> crossings mark only <code>n - 1</code> complete cycles between them.</li>
+<li>Noise near the middle line can cross it many times, causing false crossings. Hysteresis
+   requires the signal to go clearly low and then clearly high.</li>
+<li>69 + 12 x log2(2) = 81, which is A5.</li>
+<li>Sharp. 450 Hz is above 440 Hz, by about 39 cents.</li>
+</ol>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">You Built a Tuner</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../../img/mascot/celebration.png" />
+You counted zero crossings with hysteresis, gated out the room's noise, and turned a frequency into a note name and cents using a logarithm. That is real signal processing, running on a board the size of your thumb.</p>
+</div>
+<h2 id="where-next">Where Next<a class="headerlink" href="#where-next" title="Permanent link">&para;</a></h2>
+<p>The tuner works well for whistles but struggles with voices. Chapter 9 of this book shows how the
+<strong>FFT</strong> solves that. First, <a href="../18-network-layers/">Lab 18</a> turns outward: how your Study Buddy
+reaches the internet.</p>
+<p><em>Related in this book:</em> <a href="../../../chapters/09-signal-processing-fft/">Chapter 9: Signal Processing and the FFT</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../16-mic-oscilloscope/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 16: A Microphone Oscilloscope">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 16: A Microphone Oscilloscope
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../18-network-layers/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 18: From Radio Waves to the Weather">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 18: From Radio Waves to the Weather
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2042 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="See contact bounce for yourself by counting pin changes, naive presses, and debounced presses for each button, and learn the difference between a button's level and its edge.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/kits/study-buddy-base/11-button-bounce/">
+      
+      
+        <link rel="prev" href="../10-flicker-free-text/">
+      
+      
+        <link rel="next" href="../12-one-loop-many-jobs/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Lab 11: What a Button Press Really Looks Like - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-11-what-a-button-press-really-looks-like" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 11: What a Button Press Really Looks Like
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../chapters/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kits
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Study Buddy Base Kit
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Study Buddy Base Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 01: Blink the Onboard LED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-probe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 02: The Hardware Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 03: Buttons on the Console
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 04: Hello World on the Display
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-speaker-tones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 05: Speaker Tones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-listen-meter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 06: Listen with the Microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-record-playback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 07: Hold to Record, Release to Play Back
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-color-mixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 08: How the Display Mixes Color
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-angles-to-pixels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 09: Angles to Pixels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-flicker-free-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Big Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-versus-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level versus edge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debounce
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#six-lists-three-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Six lists, three buttons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-loop-has-no-sleep" class="md-nav__link">
+    <span class="md-ellipsis">
+      The loop has no sleep
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      The debounce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showing-the-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing the numbers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-one-loop-many-jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 12: One Loop, Many Jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-modes-state-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 13: Modes as a State Machine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-samples-make-sound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 14: Samples Make Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sound-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mic-oscilloscope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 16: A Microphone Oscilloscope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-whistle-tuner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-network-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 18: From Radio Waves to the Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-pattern-game/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Big Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-versus-edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Level versus edge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debounce
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#six-lists-three-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Six lists, three buttons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-loop-has-no-sleep" class="md-nav__link">
+    <span class="md-ellipsis">
+      The loop has no sleep
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-debounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      The debounce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showing-the-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Showing the numbers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/kits/study-buddy-base/11-button-bounce.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="lab-11-what-a-button-press-really-looks-like">Lab 11: What a Button Press Really Looks Like<a class="headerlink" href="#lab-11-what-a-button-press-really-looks-like" title="Permanent link">&para;</a></h1>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Buttons Are Messier Than They Look</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
+To you a button press is one clean click. To the Pico it can be a dozen flickers in a few thousandths of a second, and in this lab you will count them. Let's listen closely, because this one is full of tiny surprises!</p>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Program</strong></td>
+<td><code>11-button-bounce.py</code></td>
+</tr>
+<tr>
+<td><strong>Parts needed</strong></td>
+<td>The three buttons and the display</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>20 minutes</td>
+</tr>
+<tr>
+<td><strong>Makes sound?</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>How to stop</strong></td>
+<td>Press <strong>Stop</strong> in Thonny, or Ctrl-C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-you-will-learn">What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The difference between a button's <strong>level</strong> and its <strong>edge</strong></li>
+<li>What <strong>contact bounce</strong> is, and why it happens</li>
+<li>How <strong>debouncing</strong> removes it</li>
+<li>How to keep separate lists of values for each of several buttons</li>
+</ul>
+<h2 id="the-big-idea">The Big Idea<a class="headerlink" href="#the-big-idea" title="Permanent link">&para;</a></h2>
+<h3 id="level-versus-edge">Level versus edge<a class="headerlink" href="#level-versus-edge" title="Permanent link">&para;</a></h3>
+<p><code>button.value()</code> tells you the <strong>level</strong>: <code>0</code> while the button is held, <code>1</code> when it is not. But
+most programs do not care that the button <em>is down</em>. They care that it <em>just went down</em>. That
+moment, when the reading changes from <code>1</code> to <code>0</code>, is the <strong>edge</strong>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Level</th>
+<th>Edge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>"Is it down right now?"</td>
+<td>"Did it just go down?"</td>
+</tr>
+<tr>
+<td><strong>True for</strong></td>
+<td>As long as you hold it</td>
+<td>One instant</td>
+</tr>
+<tr>
+<td><strong>Good for</strong></td>
+<td>Holding to record (Lab 07)</td>
+<td>Counting, stepping through modes</td>
+</tr>
+</tbody>
+</table>
+<p>To find the edge, <strong>remember the last reading</strong>, and act only when the new reading differs.</p>
+<h3 id="bounce">Bounce<a class="headerlink" href="#bounce" title="Permanent link">&para;</a></h3>
+<p>A button is two bits of metal. When you push them together they do not touch once and stay
+there. They <strong>rattle</strong>: touch, spring apart, touch again, for a few milliseconds. A fast loop
+sees every rattle as a new press.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Pin reads:   1 1 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 1 1 1
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                   ▲ the press starts          ▲ the release rattles too
+</span></code></pre></div>
+<h3 id="debounce">Debounce<a class="headerlink" href="#debounce" title="Permanent link">&para;</a></h3>
+<p>The fix is to <strong>only believe a new level once the pin has stayed there long enough</strong>. People
+cannot press a button 30 times a second, so anything faster than that is the metal, not your
+finger. While the metal rattles, the pin never holds still for 30 ms, so the rattle is
+ignored. Once it settles, the press counts <strong>once</strong>.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Ignoring Is a Skill</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
+A debounce does not fix the button, it teaches the program what to trust. The rattle still happens, and the program simply waits until the pin has been quiet for a moment before it believes what it sees.</p>
+</div>
+<h2 id="walking-through-the-code">Walking Through the Code<a class="headerlink" href="#walking-through-the-code" title="Permanent link">&para;</a></h2>
+<h3 id="six-lists-three-buttons">Six lists, three buttons<a class="headerlink" href="#six-lists-three-buttons" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">last_raw</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>          <span class="c1"># the last reading of each pin</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">changes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>           <span class="c1"># every 1-&gt;0 or 0-&gt;1 the loop saw</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">naive</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>             <span class="c1"># 1-&gt;0 edges with no debounce at all</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">real</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>              <span class="c1"># debounced presses</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">steady</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>            <span class="c1"># the debounced level: what we believe</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">changed_at</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>        <span class="c1"># when the pin last changed at all</span>
+</span></code></pre></div>
+<p>Each list has one slot for MODE, one for UP, and one for DOWN. Together, the six lists are the
+program's memory. The three counters you see on the screen are:</p>
+<table>
+<thead>
+<tr>
+<th>On screen</th>
+<th>Counts</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>changes</strong></td>
+<td>Every <code>1 to 0</code> and <code>0 to 1</code></td>
+<td>Everything the pin did, rattle included</td>
+</tr>
+<tr>
+<td><strong>naive</strong></td>
+<td>Every <code>1 to 0</code> only</td>
+<td>What a beginner's program would call "presses"</td>
+</tr>
+<tr>
+<td><strong>real</strong></td>
+<td>Only debounced presses</td>
+<td>What actually happened</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-loop-has-no-sleep">The loop has no sleep<a class="headerlink" href="#the-loop-has-no-sleep" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="n">raw</span> <span class="o">=</span> <span class="n">pins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="k">if</span> <span class="n">raw</span> <span class="o">!=</span> <span class="n">last_raw</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            <span class="c1"># An edge. Count it, every one, bounce or not...</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="n">last_raw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            <span class="n">changed_at</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">now</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="n">changes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="k">if</span> <span class="n">raw</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>                <span class="n">naive</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></code></pre></div>
+<p>The loop on purpose has <strong>no <code>sleep</code></strong>, so it reads the pins as fast as it possibly can and
+catches every rattle. Look at the first <code>if</code>: it fires on <em>any</em> difference from the last
+reading. It records the time of the change in <code>changed_at[i]</code>, and counts it.</p>
+<h3 id="the-debounce">The debounce<a class="headerlink" href="#the-debounce" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">if</span> <span class="n">raw</span> <span class="o">!=</span> <span class="n">steady</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">now</span><span class="p">,</span> <span class="n">changed_at</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">DEBOUNCE_MS</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">steady</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">if</span> <span class="n">raw</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        <span class="n">real</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></code></pre></div>
+<p>Read it as a sentence: "<em>If the pin is now at a different level from the one I believe in
+(<code>steady</code>), </em><em>and</em><em> it has stayed unchanged for at least 30 ms, then believe it.</em>" Because
+<code>changed_at[i]</code> is reset on every rattle, the clock keeps restarting until the pin finally holds
+still. Only then does <code>real[i]</code> go up by one.</p>
+<h3 id="showing-the-numbers">Showing the numbers<a class="headerlink" href="#showing-the-numbers" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">number</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">font</span><span class="p">,</span> <span class="s2">"</span><span class="si">%3d</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">font</span><span class="o">.</span><span class="n">WIDTH</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>                 <span class="n">color</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>"%3d"</code> always makes a 3-character number, padded with spaces on the left. Because the font draws
+its own background, this covers the previous number completely, with no erasing. That is the
+overwrite trick from <a href="../10-flicker-free-text/">Lab 10</a>.</p>
+<p>The circle above each button fills in cyan while <code>steady[i] == 0</code>, which means while the debounced
+button is held.</p>
+<h2 id="run-it">Run It<a class="headerlink" href="#run-it" title="Permanent link">&para;</a></h2>
+<p>Open <code>11-button-bounce.py</code> and press Run. Press each button in different ways: slow and
+firm, then quick and light. Watch the <strong>changes</strong>, <strong>naive</strong>, and <strong>real</strong> counters.</p>
+<h2 id="what-pass-looks-like">What PASS Looks Like<a class="headerlink" href="#what-pass-looks-like" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Each press adds <strong>1</strong> to <strong>real</strong>.</li>
+<li><strong>naive</strong> is the same as <strong>real</strong>, or higher. Any difference is bounce that the debounce
+  caught.</li>
+<li><strong>changes</strong> is at least double <strong>real</strong>, because each press has an edge down and an edge up,
+  and more if it bounced.</li>
+<li>The circle above each button fills while it is held.</li>
+</ul>
+<p>The shell prints a line for every change the loop saw, and a <code>PRESS #</code> line for every real
+press.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Cheap Buttons Bounce More</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../../img/mascot/tip.png" />
+If you never see any bounce, your buttons are good ones, so try pressing them slowly and hard, then quickly and lightly, and watch for the first extra count. A button that bounces a lot is a perfect test subject for your debounce time.</p>
+</div>
+<h2 id="if-something-goes-wrong">If Something Goes Wrong<a class="headerlink" href="#if-something-goes-wrong" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>real</strong> is 0 after a press</td>
+<td>The press was too short, or the wire is loose</td>
+<td>Press longer than 30 ms; check the wire</td>
+</tr>
+<tr>
+<td><strong>naive</strong> always equals <strong>real</strong></td>
+<td>Your buttons are very clean</td>
+<td>Try quick, light presses; that is good news</td>
+</tr>
+<tr>
+<td><strong>changes</strong> goes up by 1 only</td>
+<td>Only the press edge was seen</td>
+<td>The release edge counts too; release the button</td>
+</tr>
+<tr>
+<td>The numbers do not change</td>
+<td>Nothing is drawn</td>
+<td>Check that you ran Lab 04 first</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-this">Try This<a class="headerlink" href="#try-this" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>No debounce.</strong> Set <code>DEBOUNCE_MS</code> to <code>0</code>. Does <strong>real</strong> now match <strong>naive</strong>?</li>
+<li><strong>Too slow.</strong> Set <code>DEBOUNCE_MS</code> to <code>300</code>. Every press still counts, but watch the circle: how
+   long after you press does it fill? That delay is the price of a long debounce. What is the
+   shortest debounce time that never counts a bounce?</li>
+<li><strong>A sleep "fix".</strong> Add <code>time.sleep_ms(50)</code> at the bottom of the loop. Do the bounces
+   disappear? Why is that not a good fix? (Hint: try a very quick tap.)</li>
+<li><strong>Long press.</strong> Count how long each button was held. When it is released, print the number
+   of milliseconds it was down.</li>
+</ol>
+<details class="tip">
+<summary>Hint for number 3</summary>
+<p>A <code>sleep_ms(50)</code> makes the loop look only 20 times a second, so it often misses the
+rattle entirely. But it will also miss a <strong>real</strong> tap shorter than 50 ms, and it freezes
+the whole program, so nothing else can run. Lab 12 shows the better fix.</p>
+</details>
+<h2 id="check-your-understanding">Check Your Understanding<a class="headerlink" href="#check-your-understanding" title="Permanent link">&para;</a></h2>
+<ol>
+<li>What is the difference between a button's level and its edge?</li>
+<li>Why does the debounce keep resetting <code>changed_at[i]</code> on every change?</li>
+<li>Why would a very long debounce, such as 1 second, be a bad idea for a game?</li>
+</ol>
+<details class="question">
+<summary>Answers</summary>
+<ol>
+<li>The level is whether it is down right now. The edge is the moment it changed.</li>
+<li>So the 30 ms countdown restarts every time the contacts rattle. The press is only
+   believed after the pin has held still for the full time.</li>
+<li>You would have to hold each button for a whole second before it did anything, and a quick
+   tap would never count.</li>
+</ol>
+</details>
+<h2 id="where-next">Where Next<a class="headerlink" href="#where-next" title="Permanent link">&para;</a></h2>
+<p>Your program can now tell what a real press is. But you still used a <code>sleep</code> in many places,
+and <code>sleep</code> freezes everything else. <a href="../12-one-loop-many-jobs/">Lab 12</a> shows how to do
+several jobs at once.</p>
+<p><em>Review in the course:</em> <a href="https://dmccreary.github.io/learning-micropython/chapters/06-digital-io-interrupts/">Button Debouncing</a>,
+and the <a href="../../../sims/debounce-bounce-visualizer/">Button Bounce and Debounce Visualizer</a> MicroSim in this book.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../10-flicker-free-text/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 10: Flicker-Free Text">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 10: Flicker-Free Text
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12-one-loop-many-jobs/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 12: One Loop, Many Jobs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 12: One Loop, Many Jobs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

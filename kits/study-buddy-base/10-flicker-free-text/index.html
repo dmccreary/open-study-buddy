@@ -1,0 +1,1920 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Compare three ways to redraw a counter on the display: erase then draw, overwrite, and send only what changed. See which flicker and measure how long each takes.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/kits/study-buddy-base/10-flicker-free-text/">
+      
+      
+        <link rel="prev" href="../09-angles-to-pixels/">
+      
+      
+        <link rel="next" href="../11-button-bounce/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Lab 10: Flicker-Free Text - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-10-flicker-free-text" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 10: Flicker-Free Text
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../chapters/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kits
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Study Buddy Base Kit
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Study Buddy Base Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 01: Blink the Onboard LED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-probe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 02: The Hardware Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 03: Buttons on the Console
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 04: Hello World on the Display
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-speaker-tones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 05: Speaker Tones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-listen-meter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 06: Listen with the Microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-record-playback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 07: Hold to Record, Release to Play Back
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-color-mixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 08: How the Display Mixes Color
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-angles-to-pixels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 09: Angles to Pixels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-drawing-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Three drawing functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-table-of-drawers" class="md-nav__link">
+    <span class="md-ellipsis">
+      A table of drawers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timing-each-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timing each method
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-button-bounce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-one-loop-many-jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 12: One Loop, Many Jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-modes-state-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 13: Modes as a State Machine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-samples-make-sound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 14: Samples Make Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sound-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mic-oscilloscope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 16: A Microphone Oscilloscope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-whistle-tuner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-network-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 18: From Radio Waves to the Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-pattern-game/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-drawing-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Three drawing functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-table-of-drawers" class="md-nav__link">
+    <span class="md-ellipsis">
+      A table of drawers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timing-each-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Timing each method
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/kits/study-buddy-base/10-flicker-free-text.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="lab-10-flicker-free-text">Lab 10: Flicker-Free Text<a class="headerlink" href="#lab-10-flicker-free-text" title="Permanent link">&para;</a></h1>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Why Do Screens Flicker?</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
+You are about to run three counters side by side, each redrawn a different way, and only one of them will look perfect. The reason is a secret about how your display really works. Let's listen closely!</p>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Program</strong></td>
+<td><code>10-flicker-free-text.py</code></td>
+</tr>
+<tr>
+<td><strong>Parts needed</strong></td>
+<td>The display</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>20 minutes</td>
+</tr>
+<tr>
+<td><strong>Makes sound?</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>How to stop</strong></td>
+<td>Press <strong>Stop</strong> in Thonny, or Ctrl-C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-you-will-learn">What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Why <strong>drawing is sending</strong>: every pixel is real data traveling down a wire</li>
+<li>Why <strong>erasing first</strong> causes flicker</li>
+<li>How to <strong>overwrite</strong> and how to <strong>send only what changed</strong></li>
+<li>How to measure how long code takes with <code>time.ticks_us()</code></li>
+</ul>
+<h2 id="the-big-idea">The Big Idea<a class="headerlink" href="#the-big-idea" title="Permanent link">&para;</a></h2>
+<p>This display has <strong>no memory you can draw into first</strong>. On a computer or a phone, programs draw
+into a hidden picture and then show it all at once. Here, every pixel you draw is <strong>two bytes
+sent down the SPI wire, right then</strong>, and the glass shows it the moment it lands.</p>
+<p>That has two consequences:</p>
+<ol>
+<li><strong>Anything you send is visible.</strong> If you paint a box black and <em>then</em> draw a number, the
+   eye sees the empty black box for a moment. That is <strong>flicker</strong>.</li>
+<li><strong>Everything you send takes time.</strong> Fewer pixels means a faster update.</li>
+</ol>
+<p>Here are the three methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+<th>Flickers?</th>
+<th>Bytes per update (4 digits)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Erase, then draw</strong></td>
+<td>Fills the box black, then draws the new number</td>
+<td><strong>Yes</strong></td>
+<td>4,096 + 4,096 = 8,192</td>
+</tr>
+<tr>
+<td><strong>B. Overwrite</strong></td>
+<td>Draws the new number right on top of the old one</td>
+<td>No</td>
+<td>4,096</td>
+</tr>
+<tr>
+<td><strong>C. Only what changed</strong></td>
+<td>Draws only the digits that are different</td>
+<td>No</td>
+<td>1,024 per changed digit</td>
+</tr>
+</tbody>
+</table>
+<p>Each big digit is 16 x 32 pixels, and each pixel is 2 bytes: 16 x 32 x 2 = <strong>1,024 bytes</strong>. Four
+digits are 4,096 bytes.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">The Font Draws Its Own Background</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
+Notice the call <code>display.text(BIG, text, x, y, color, config.BLACK)</code>: it takes a background color. The font paints every pixel of each letter's box, the black ones as well as the colored ones, so a new letter completely covers the old one and no erasing is needed.</p>
+</div>
+<h2 id="walking-through-the-code">Walking Through the Code<a class="headerlink" href="#walking-through-the-code" title="Permanent link">&para;</a></h2>
+<h3 id="three-drawing-functions">Three drawing functions<a class="headerlink" href="#three-drawing-functions" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">draw_a</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">display</span><span class="o">.</span><span class="n">fill_rect</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">BOX_W</span><span class="p">,</span> <span class="n">BIG</span><span class="o">.</span><span class="n">HEIGHT</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>   <span class="c1"># erase...</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">BIG</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>         <span class="c1"># ...then draw</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">draw_b</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">BIG</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>         <span class="c1"># just draw</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">draw_c</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">global</span> <span class="n">shown_c</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">DIGITS</span><span class="p">):</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">if</span> <span class="n">shown_c</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">shown_c</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>           <span class="c1"># only if different</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            <span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">BIG</span><span class="p">,</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">BIG</span><span class="o">.</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                         <span class="n">config</span><span class="o">.</span><span class="n">BLACK</span><span class="p">)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">shown_c</span> <span class="o">=</span> <span class="n">text</span>
+</span></code></pre></div>
+<p>Compare them side by side:</p>
+<ul>
+<li><strong>A</strong> sends the black box (4,096 bytes), then sends the number on top (4,096 more).</li>
+<li><strong>B</strong> only sends the number.</li>
+<li><strong>C</strong> remembers what is on the screen (<code>shown_c</code>) and compares each digit of the new text to
+  the old. Going from <code>0041</code> to <code>0042</code>, only the last digit is different, so only one digit
+  (1,024 bytes) is sent.</li>
+</ul>
+<p>The <code>global shown_c</code> line is needed because the function <strong>changes</strong> a variable defined
+outside it.</p>
+<h3 id="a-table-of-drawers">A table of drawers<a class="headerlink" href="#a-table-of-drawers" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">DRAWERS</span> <span class="o">=</span> <span class="p">(</span><span class="n">draw_a</span><span class="p">,</span> <span class="n">draw_b</span><span class="p">,</span> <span class="n">draw_c</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Functions in Python are values, so a tuple can hold them. The main loop then calls
+<code>DRAWERS[i](text, y, color)</code> and treats all three the same way. You will see this "list of
+functions" idea again in <a href="../13-modes-state-machine/">Lab 13</a>.</p>
+<h3 id="timing-each-method">Timing each method<a class="headerlink" href="#timing-each-method" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">DRAWERS</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">text</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">totals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">(),</span> <span class="n">start</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>time.ticks_us()</code> is a counter in <strong>microseconds</strong> (millionths of a second).
+<code>time.ticks_diff()</code> subtracts safely, even when the counter wraps around. Every 100 updates,
+the program divides each total by 100 to get an average, and shows it on the screen in
+milliseconds.</p>
+<h2 id="run-it">Run It<a class="headerlink" href="#run-it" title="Permanent link">&para;</a></h2>
+<p>Open <code>10-flicker-free-text.py</code> and press Run. Look at the three numbers. All three counters count the same, but they do not look the same.</p>
+<h2 id="what-pass-looks-like">What PASS Looks Like<a class="headerlink" href="#what-pass-looks-like" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The <strong>A</strong> counter (red) visibly <strong>flickers</strong>.</li>
+<li>The <strong>B</strong> counter (yellow) and the <strong>C</strong> counter (green) do <strong>not</strong>.</li>
+<li>Under each counter, a time in milliseconds per update. <strong>C takes the least time</strong>, often
+  several times less than A.</li>
+</ul>
+<p>The shell also prints a line every 100 updates:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ms per update  A &lt;largest&gt;  B &lt;middle&gt;  C &lt;smallest&gt;
+</span></code></pre></div>
+<p>Your exact numbers depend on your Pico, but their order should be A, then B, then C, from slowest to fastest.</p>
+<h2 id="if-something-goes-wrong">If Something Goes Wrong<a class="headerlink" href="#if-something-goes-wrong" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All three look the same</td>
+<td>Your camera or eyes cannot see it</td>
+<td>Look from the side; try recording with a phone in slow motion</td>
+</tr>
+<tr>
+<td>C is not the fastest</td>
+<td>The digits all change every time</td>
+<td>That happens when counting by large steps; see Try This 1</td>
+</tr>
+<tr>
+<td>Garbled numbers in C</td>
+<td><code>shown_c</code> was not updated</td>
+<td>Make sure <code>shown_c = text</code> runs at the end</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-this">Try This<a class="headerlink" href="#try-this" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Count by 7.</strong> Change <code>count += 1</code> to <code>count += 7</code>. C now changes more digits each time.
+   How much slower does it get?</li>
+<li><strong>Eight digits.</strong> Set <code>DIGITS = 8</code> and use <code>"%08d"</code>. Which method suffers most? Why does A
+   grow the fastest?</li>
+<li><strong>Do the math.</strong> One big digit is 16 x 32 pixels x 2 bytes. At 24 MHz (3 million bytes a
+   second), how long should one digit take? Is the measured time close? Where does the rest go?</li>
+<li><strong>Make a dirty-region plan.</strong> Open the
+   <a href="../../../sims/dirty-region-planner/">Dirty Region Planner</a> and figure out how many
+   pixels you would save on a clock face that changes only its seconds.</li>
+</ol>
+<details class="tip">
+<summary>Hint for number 3</summary>
+<p>1,024 bytes / 3,000,000 bytes per second is about 0.34 milliseconds per digit. A real
+update takes longer because the Pico also has to run Python code to prepare each pixel's
+bytes and to send the commands that tell the display where to draw. The wire is not the
+only cost.</p>
+</details>
+<h2 id="check-your-understanding">Check Your Understanding<a class="headerlink" href="#check-your-understanding" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Why does method A flicker?</li>
+<li>Why does method B not need to erase first?</li>
+<li>How many bytes does one 16 x 32 pixel digit take, at 2 bytes per pixel?</li>
+<li>If you counted by 1000 (<code>0000</code>, <code>1000</code>, <code>2000</code>, ...), which digits change each time? Is C
+   still the fastest?</li>
+</ol>
+<details class="question">
+<summary>Answers</summary>
+<ol>
+<li>It paints the box black first, so there is a moment where the number is missing and
+   the eye sees an empty box.</li>
+<li>The font draws each letter's background color too, so a new digit covers the old one
+   completely.</li>
+<li>16 x 32 x 2 = 1,024 bytes.</li>
+<li>Only the first digit changes each time, so C sends one digit instead of four. It is
+   the fastest, by an even bigger margin.</li>
+</ol>
+</details>
+<h2 id="where-next">Where Next<a class="headerlink" href="#where-next" title="Permanent link">&para;</a></h2>
+<p>Now you know the single most important rule for fast, smooth screens: <strong>send only what changed.</strong>
+Labs 11 to 13 turn to the buttons. <a href="../11-button-bounce/">Lab 11</a> lets you see what a button press
+looks like to the Pico.</p>
+<p><em>Related in this book:</em> <a href="../../../chapters/06-display-regions-and-drawing/">Chapter 6: Drawing Directly to Display Regions</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../09-angles-to-pixels/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 09: Angles to Pixels">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 09: Angles to Pixels
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../11-button-bounce/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 11: What a Button Press Really Looks Like">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 11: What a Button Press Really Looks Like
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

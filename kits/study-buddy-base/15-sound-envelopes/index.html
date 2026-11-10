@@ -1,0 +1,2018 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Play the same four notes with four different loudness shapes (pluck, organ, swell, bell) and learn how an envelope, not the pitch, makes an instrument sound like itself.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/kits/study-buddy-base/15-sound-envelopes/">
+      
+      
+        <link rel="prev" href="../14-samples-make-sound/">
+      
+      
+        <link rel="next" href="../16-mic-oscilloscope/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Lab 15: Envelopes - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-15-envelopes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 15: Envelopes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../chapters/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kits
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Study Buddy Base Kit
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Study Buddy Base Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 01: Blink the Onboard LED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-probe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 02: The Hardware Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 03: Buttons on the Console
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 04: Hello World on the Display
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-speaker-tones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 05: Speaker Tones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-listen-meter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 06: Listen with the Microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-record-playback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 07: Hold to Record, Release to Play Back
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-color-mixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 08: How the Display Mixes Color
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-angles-to-pixels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 09: Angles to Pixels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-flicker-free-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-button-bounce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-one-loop-many-jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 12: One Loop, Many Jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-modes-state-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 13: Modes as a State Machine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-samples-make-sound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 14: Samples Make Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-envelope-is-a-small-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      An envelope is a small function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-lookup-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      A lookup table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-a-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making a note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#four-notes-back-to-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      Four notes, back to back
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      The plot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mic-oscilloscope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 16: A Microphone Oscilloscope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-whistle-tuner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-network-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 18: From Radio Waves to the Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-pattern-game/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-envelope-is-a-small-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      An envelope is a small function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-lookup-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      A lookup table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-a-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making a note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#four-notes-back-to-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      Four notes, back to back
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      The plot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/kits/study-buddy-base/15-sound-envelopes.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="lab-15-envelopes">Lab 15: Envelopes<a class="headerlink" href="#lab-15-envelopes" title="Permanent link">&para;</a></h1>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Same Notes, Different Instruments</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
+A guitar and a pipe organ can play the very same note and still sound nothing alike. This lab plays the same four notes four times, and the only thing that changes is the <em>shape</em> of how loud each note is. Let's listen closely!</p>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Program</strong></td>
+<td><code>15-sound-envelopes.py</code></td>
+</tr>
+<tr>
+<td><strong>Parts needed</strong></td>
+<td>The speaker, the display, and the buttons</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>25 minutes</td>
+</tr>
+<tr>
+<td><strong>Makes sound?</strong></td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td><strong>How to stop</strong></td>
+<td>Press <strong>Stop</strong> in Thonny, or Ctrl-C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-you-will-learn">What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Permanent link">&para;</a></h2>
+<ul>
+<li>What an <strong>envelope</strong> is</li>
+<li>How to <strong>multiply</strong> a wave by an envelope to shape it</li>
+<li>The four parts of an envelope: <strong>attack, decay, sustain, release</strong></li>
+<li>How to build a <strong>lookup table</strong> to avoid slow math</li>
+</ul>
+<h2 id="the-big-idea">The Big Idea<a class="headerlink" href="#the-big-idea" title="Permanent link">&para;</a></h2>
+<p>An <strong>envelope</strong> is how loud a note is at each moment, from 0 (silent) to 1 (full). To give a
+plain wave the shape of an envelope, <strong>multiply every sample by the envelope's value at that
+moment</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sample = wave(t) * envelope(t)
+</span></code></pre></div>
+<p>When the envelope is 1, the note is at full volume. When it is 0.5, the note is half as loud.
+When it is 0, you hear nothing. The notes (the pitch) never change. Only the shape does.</p>
+<table>
+<thead>
+<tr>
+<th>Envelope</th>
+<th>Shape</th>
+<th>Sounds like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PLUCK</strong></td>
+<td>Instant start, then dies away fast</td>
+<td>A guitar string</td>
+</tr>
+<tr>
+<td><strong>ORGAN</strong></td>
+<td>Quick start, holds steady, quick stop</td>
+<td>Air through a pipe</td>
+</tr>
+<tr>
+<td><strong>SWELL</strong></td>
+<td>Fades in slowly, then stops</td>
+<td>A bowed violin</td>
+</tr>
+<tr>
+<td><strong>BELL</strong></td>
+<td>Instant start, rings for a long time</td>
+<td>A struck bell</td>
+</tr>
+</tbody>
+</table>
+<p>Musicians describe an envelope in four parts, often called <strong>ADSR</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong>ttack</td>
+<td>How fast the note gets loud when it starts</td>
+</tr>
+<tr>
+<td><strong>D</strong>ecay</td>
+<td>How fast it drops after the first burst</td>
+</tr>
+<tr>
+<td><strong>S</strong>ustain</td>
+<td>The level it holds while the key is down</td>
+</tr>
+<tr>
+<td><strong>R</strong>elease</td>
+<td>How fast it fades after the key is let go</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>pluck</strong> is almost all decay. The <strong>organ</strong> is almost all sustain.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Your Ear Listens to the Shape</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
+The brain recognizes an instrument mostly by the first fraction of a second of each note and by how the note fades. If you cut the start off a piano note, many people cannot say what instrument it was.</p>
+</div>
+<h2 id="walking-through-the-code">Walking Through the Code<a class="headerlink" href="#walking-through-the-code" title="Permanent link">&para;</a></h2>
+<h3 id="an-envelope-is-a-small-function">An envelope is a small function<a class="headerlink" href="#an-envelope-is-a-small-function" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">pluck</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span> <span class="o">/</span> <span class="mi">90</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">organ</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">15</span><span class="p">,</span> <span class="p">(</span><span class="n">NOTE_MS</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="mi">30</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">swell</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="p">(</span><span class="n">NOTE_MS</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="n">NOTE_MS</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="mi">20</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">bell</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span> <span class="o">/</span> <span class="mi">400</span><span class="p">)</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Each function takes <code>t</code>, the number of <strong>milliseconds since the note started</strong>, and returns how
+loud it should be.</p>
+<ul>
+<li><strong><code>pluck</code></strong> uses <code>math.exp(-t / 90)</code>, an <strong>exponential decay</strong>. At t = 0 it is 1, and it falls
+  to about 37 percent of its value every 90 ms (the <code>90</code> is the <em>time constant</em>). It dies away
+  smoothly, like a real string.</li>
+<li><strong><code>organ</code></strong> uses <code>min()</code> of three straight lines: a <strong>ramp up</strong> over 15 ms (<code>t / 15</code>), a flat
+  <strong>1.0</strong> in the middle, and a <strong>ramp down</strong> over the last 30 ms (<code>(NOTE_MS - t) / 30</code>). Whichever is
+  smallest wins. That makes a trapezoid.</li>
+<li><strong><code>swell</code></strong> is the same idea, but the ramp up takes 80 percent of the note.</li>
+<li><strong><code>bell</code></strong> multiplies a slow exponential decay (<code>-t / 400</code>) by a very fast ramp up (2 ms),
+  so it starts instantly and rings on.</li>
+</ul>
+<h3 id="a-lookup-table">A lookup table<a class="headerlink" href="#a-lookup-table" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">table</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">return</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NOTE_MS</span><span class="p">)]</span>
+</span></code></pre></div>
+<p>Calling <code>math.exp</code> for each of 16,000 samples a second would be slow. Instead, the program
+works the envelope out <strong>once per millisecond</strong> into a list of 500 numbers (for a 500 ms note).
+Each sample then <strong>looks up</strong> its millisecond:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">level</span> <span class="o">=</span> <span class="n">levels</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">//</span> <span class="n">RATE</span><span class="p">]</span>
+</span></code></pre></div>
+<p>Sample number <code>i</code> happens at <code>i * 1000 / RATE</code> milliseconds, so that is the position in the
+list. <code>max(0.0, min(1.0, ...))</code> is the clamp trick from <a href="../07-record-playback/">Lab 07</a>,
+keeping every value between 0 and 1.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Precompute What Never Changes</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../../img/mascot/tip.png" />
+If you will use the same expensive answer thousands of times, work it out once, put it in a list, and look it up. This trade of memory for speed shows up all over embedded programming.</p>
+</div>
+<h3 id="making-a-note">Making a note<a class="headerlink" href="#making-a-note" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">note</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">levels</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">count</span> <span class="o">=</span> <span class="n">RATE</span> <span class="o">*</span> <span class="n">NOTE_MS</span> <span class="o">//</span> <span class="mi">1000</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">peak</span> <span class="o">=</span> <span class="mi">32767</span> <span class="o">*</span> <span class="n">VOLUME</span> <span class="o">/</span> <span class="mi">100</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">step</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">RATE</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">buf</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">count</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="n">level</span> <span class="o">=</span> <span class="n">levels</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">//</span> <span class="n">RATE</span><span class="p">]</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span><span class="s2">"&lt;h"</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak</span> <span class="o">*</span> <span class="n">level</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">step</span> <span class="o">*</span> <span class="n">i</span><span class="p">)))</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="k">return</span> <span class="n">buf</span>
+</span></code></pre></div>
+<p>This is the sine wave from Lab 05, with one extra factor: <code>level</code>. The variable <code>step</code> is
+computed once, outside the loop, to save a multiply per sample.</p>
+<h3 id="four-notes-back-to-back">Four notes, back to back<a class="headerlink" href="#four-notes-back-to-back" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">NOTES</span> <span class="o">=</span> <span class="p">(</span><span class="mi">523</span><span class="p">,</span> <span class="mi">659</span><span class="p">,</span> <span class="mi">784</span><span class="p">,</span> <span class="mi">1047</span><span class="p">)</span>         <span class="c1"># C5 E5 G5 C6: a C major arpeggio</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">notes</span> <span class="o">=</span> <span class="p">[</span><span class="n">note</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="n">levels</span><span class="p">)</span> <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">NOTES</span><span class="p">]</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">for</span> <span class="n">buf</span> <span class="ow">in</span> <span class="n">notes</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">audio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The four notes (C, E, G, and C an octave higher) make a <strong>C major arpeggio</strong>. The program builds all
+four first, then plays them, so there is no gap while the Pico calculates.</p>
+<h3 id="the-plot">The plot<a class="headerlink" href="#the-plot" title="Permanent link">&para;</a></h3>
+<p>The envelope is also <strong>drawn</strong> as a curve in the plot box, with a time axis along the bottom (0 to
+500 ms) and a loudness axis along the left. You can <em>see</em> the shape you are hearing.</p>
+<h2 id="run-it">Run It<a class="headerlink" href="#run-it" title="Permanent link">&para;</a></h2>
+<p>Open <code>15-sound-envelopes.py</code> and press Run. It plays PLUCK first. Press <strong>UP</strong> or <strong>DOWN</strong> to
+change the envelope, and <strong>MODE</strong> to hear it again.</p>
+<h2 id="what-pass-looks-like">What PASS Looks Like<a class="headerlink" href="#what-pass-looks-like" title="Permanent link">&para;</a></h2>
+<p>Four very different sounds from the same four notes, each with its envelope drawn as a curve:</p>
+<ul>
+<li><strong>PLUCK</strong>: a quick spike that decays smoothly</li>
+<li><strong>ORGAN</strong>: a flat-topped trapezoid</li>
+<li><strong>SWELL</strong>: a slow ramp up</li>
+<li><strong>BELL</strong>: a sharp spike with a long, slow tail</li>
+</ul>
+<h2 id="if-something-goes-wrong">If Something Goes Wrong<a class="headerlink" href="#if-something-goes-wrong" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you hear or see</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No sound</td>
+<td>Speaker wiring</td>
+<td>Run <a href="../05-speaker-tones/">Lab 05</a></td>
+</tr>
+<tr>
+<td>Notes sound gapped or choppy</td>
+<td>Not enough memory, or notes made while playing</td>
+<td>The program builds all four notes first; do not change that</td>
+</tr>
+<tr>
+<td><code>MemoryError</code></td>
+<td><code>NOTE_MS</code> too large</td>
+<td>Keep each note near 500 ms</td>
+</tr>
+<tr>
+<td>A click at the end of the BELL</td>
+<td>The tail cuts off</td>
+<td>Add a short fade, as in Lab 05</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-this">Try This<a class="headerlink" href="#try-this" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Faster and slower.</strong> Make PLUCK die faster (change <code>90</code> to <code>30</code>), then slower (to <code>300</code>). At
+   what point does it stop sounding plucked?</li>
+<li><strong>Your own envelope.</strong> Write a "tremolo" that wobbles: <code>0.6 + 0.4 * math.sin(t / 20)</code>. Add it
+   to <code>ENVELOPES</code>.</li>
+<li><strong>A real bell.</strong> Give BELL two waves at once, the note and a quieter one at 2.76 times its
+   frequency, the way a real bell rings. Does it sound more like a bell?</li>
+<li><strong>ADSR.</strong> Write an envelope with all four parts: it ramps to 1 in 10 ms, falls to 0.6 over
+   100 ms, holds at 0.6, then fades over the last 80 ms.</li>
+</ol>
+<details class="tip">
+<summary>Hint for number 3</summary>
+<p>In <code>note()</code>, change the sample line to add a second sine:
+<code>wave = math.sin(step * i) + 0.5 * math.sin(2.76 * step * i)</code>. The result can be up to 1.5, so
+divide by 1.5 to keep it from clipping. Real bells ring at frequencies that are <em>not</em> whole-number
+multiples of the main note, and that gives them their clang.</p>
+</details>
+<details class="tip">
+<summary>Hint for number 4</summary>
+<p>Use <code>if</code> and <code>elif</code> on <code>t</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">adsr</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="k">return</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">10</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">110</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">NOTE_MS</span> <span class="o">-</span> <span class="mi">80</span><span class="p">:</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="k">return</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="p">(</span><span class="n">NOTE_MS</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="mi">80</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">return</span> <span class="mf">0.6</span>
+</span></code></pre></div>
+</details>
+<h2 id="check-your-understanding">Check Your Understanding<a class="headerlink" href="#check-your-understanding" title="Permanent link">&para;</a></h2>
+<ol>
+<li>What does an envelope multiply?</li>
+<li>Which envelope has almost all <strong>decay</strong> and almost no <strong>sustain</strong>?</li>
+<li>Why does the program precompute the envelope into a list?</li>
+<li>If an envelope's value is 0.25 at some moment, how loud is the sample compared with the
+   plain wave?</li>
+</ol>
+<details class="question">
+<summary>Answers</summary>
+<ol>
+<li>Every sample of the wave.</li>
+<li>The PLUCK.</li>
+<li>Working out <code>math.exp</code> for 16,000 samples a second is too slow, so it computes 500 values
+   once and looks them up.</li>
+<li>One quarter of the volume.</li>
+</ol>
+</details>
+<h2 id="where-next">Where Next<a class="headerlink" href="#where-next" title="Permanent link">&para;</a></h2>
+<p>You have made sound. <a href="../16-mic-oscilloscope/">Lab 16</a> turns the kit around and <em>draws</em> the sound
+the microphone hears.</p>
+<p><em>Review in the course:</em> <a href="https://dmccreary.github.io/learning-micropython/chapters/18-sound-music-audio/">Sound, Music, and Audio</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../14-samples-make-sound/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 14: Samples Make Sound">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 14: Samples Make Sound
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../16-mic-oscilloscope/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 16: A Microphone Oscilloscope">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 16: A Microphone Oscilloscope
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

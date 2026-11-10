@@ -1,0 +1,2195 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An introduction to the Study Buddy base kit: the six parts, how they are wired to the Raspberry Pi Pico 2 W, how to put MicroPython and the lab files on the board, and how the nineteen labs are organized.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/kits/study-buddy-base/intro/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../01-blink/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Meet the Study Buddy Base Kit - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#meet-the-study-buddy-base-kit" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Meet the Study Buddy Base Kit
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../chapters/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kits
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Study Buddy Base Kit
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Study Buddy Base Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-six-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Six Parts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Six Parts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-wiring-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Wiring at a Glance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#putting-the-lab-files-on-the-pico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting the Lab Files on the Pico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-wifi-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Your WiFi Secrets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-labs-are-organized" class="md-nav__link">
+    <span class="md-ellipsis">
+      How the Labs Are Organized
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How the Labs Are Organized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-on-every-lab-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Is on Every Lab Page
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-a-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running a Lab
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-finished-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Finished Demo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-should-already-know" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Should Already Know
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ready?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 01: Blink the Onboard LED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-probe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 02: The Hardware Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 03: Buttons on the Console
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 04: Hello World on the Display
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-speaker-tones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 05: Speaker Tones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-listen-meter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 06: Listen with the Microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-record-playback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 07: Hold to Record, Release to Play Back
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-color-mixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 08: How the Display Mixes Color
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-angles-to-pixels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 09: Angles to Pixels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-flicker-free-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-button-bounce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-one-loop-many-jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 12: One Loop, Many Jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-modes-state-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 13: Modes as a State Machine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-samples-make-sound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 14: Samples Make Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sound-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mic-oscilloscope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 16: A Microphone Oscilloscope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-whistle-tuner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-network-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 18: From Radio Waves to the Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-pattern-game/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-six-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Six Parts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Six Parts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-wiring-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Wiring at a Glance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#putting-the-lab-files-on-the-pico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Putting the Lab Files on the Pico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-wifi-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Your WiFi Secrets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-labs-are-organized" class="md-nav__link">
+    <span class="md-ellipsis">
+      How the Labs Are Organized
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How the Labs Are Organized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-on-every-lab-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Is on Every Lab Page
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-a-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running a Lab
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-finished-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Finished Demo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-should-already-know" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Should Already Know
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ready?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/kits/study-buddy-base/intro.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="meet-the-study-buddy-base-kit">Meet the Study Buddy Base Kit<a class="headerlink" href="#meet-the-study-buddy-base-kit" title="Permanent link">&para;</a></h1>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Your Own Talking, Listening Gadget</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
+By the end of these labs you will have a pocket-sized gadget that shows pictures on a round screen, listens through a microphone, talks through a speaker, and plays a memory game against you. Every program is short enough to read in one sitting, and every one teaches a single idea. Let's listen closely!</p>
+</div>
+<p>The <strong>Study Buddy base kit</strong> is a small computer built from six parts. You already know how to
+program a Raspberry Pi Pico from the
+<a href="https://dmccreary.github.io/learning-micropython/">Learning MicroPython</a> course: you can blink
+an LED, read a button, and draw on a display. This kit takes those skills and adds three new
+ones: a <strong>microphone</strong> that hears, a <strong>speaker</strong> that talks, and a <strong>round color screen</strong> big
+enough to show real pictures.</p>
+<p><img alt="The Study Buddy demo showing a clock, an alarm, a timer, a stopwatch, and a school mascot" src="../demo-1.png" /></p>
+<p><em>Twelve screens from the finished demo, each drawn by a MicroPython program you will learn to read
+in these labs.</em></p>
+<h2 id="the-six-parts">The Six Parts<a class="headerlink" href="#the-six-parts" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Part</th>
+<th>What it does</th>
+<th>Wired to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Raspberry Pi Pico 2 W</strong></td>
+<td>The brain. A small computer with WiFi that runs your MicroPython programs.</td>
+<td>USB cable to your computer</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>2.1 inch round display</strong> (GC9B72, 360 x 360 pixels)</td>
+<td>Shows text, shapes, and pictures. Only the circle inside the square is visible.</td>
+<td>GP2 to GP7, plus 3V3 and GND</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Three push buttons</strong> (MODE, UP, DOWN)</td>
+<td>Let you control the program.</td>
+<td>GP16, GP17, GP18, each to GND</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>INMP441 microphone</strong></td>
+<td>Measures the air pressure of sound, 12,800 times a second.</td>
+<td>GP13, GP14, GP15, plus 3V3 and GND</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>MAX98357A amplifier and speaker</strong></td>
+<td>Turns the Pico's numbers into sound loud enough to hear.</td>
+<td>GP9 to GP12, plus power and GND</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Half-size breadboard and wires</strong></td>
+<td>Holds the parts together without any soldering.</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<p>The microphone and the amplifier both use a way of sending sound called <strong>I2S</strong> (pronounced
+"eye-two-ess"). It is a cousin of the I2C and SPI buses you met in the
+<a href="https://dmccreary.github.io/learning-micropython/chapters/08-communication-protocols/">Communication Protocols chapter</a>
+of the course. You will meet it properly in Labs 05, 06, and 07.</p>
+<h3 id="the-wiring-at-a-glance">The Wiring at a Glance<a class="headerlink" href="#the-wiring-at-a-glance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Pico pins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display: SCL, SDA, RST, DC, CS, BL</td>
+<td>GP2, GP3, GP4, GP5, GP6, GP7 (SPI0), plus 3V3 and GND</td>
+</tr>
+<tr>
+<td>Buttons: MODE, UP, DOWN</td>
+<td>GP16, GP17, GP18, each with its other leg to GND</td>
+</tr>
+<tr>
+<td>Microphone: SCK, WS, SD</td>
+<td>GP13, GP14, GP15 (I2S block 1)</td>
+</tr>
+<tr>
+<td>Microphone: L/R, VDD, GND</td>
+<td>L/R to GND, VDD to 3V3, GND to GND</td>
+</tr>
+<tr>
+<td>Amplifier: BCLK, LRC, DIN</td>
+<td>GP9, GP10, GP11 (I2S block 0)</td>
+</tr>
+<tr>
+<td>Amplifier: GAIN</td>
+<td>GP12</td>
+</tr>
+<tr>
+<td>Amplifier: VIN, GND</td>
+<td>5 V (VBUS) or 3V3, and GND</td>
+</tr>
+</tbody>
+</table>
+<p>Every pin number lives in one file, <code>config.py</code>, and every lab imports it. That means you
+never type a pin number into a lab, and if you ever move a wire, you change one line in one
+place. The full circuit drawing is below. Click it to see it larger.</p>
+<p><a href="../../../chapters/04-pico-kit-hardware/img/circuit-diagram.svg"><img alt="Circuit diagram for the Study Buddy base kit" src="../../../chapters/04-pico-kit-hardware/img/circuit-diagram.svg" /></a></p>
+<p>For a guided tour of the parts, try the
+<a href="../../../sims/kit-parts-infographic/">Kit Parts Infographic</a>, and keep the
+<a href="../../../sims/kit-wiring-fault-finder/">Kit Wiring Fault Finder</a> handy for when a wire
+goes missing.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">Two Wiring Rules That Save Hours</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../../img/mascot/warning.png" />
+The microphone is a 3.3 volt part, so connect its VDD to <strong>3V3, never 5 V</strong>. Also, the I2S word-select wire (LRC on the amplifier, WS on the microphone) must sit on the pin right after the clock wire (BCLK or SCK), which is why the pins are GP9 and GP10 for the speaker and GP13 and GP14 for the microphone.</p>
+</div>
+<h2 id="the-software">The Software<a class="headerlink" href="#the-software" title="Permanent link">&para;</a></h2>
+<p>Every program in this kit is written in <strong>MicroPython</strong> and runs on the Pico 2 W. You will use
+the same tools as in the course:</p>
+<ul>
+<li><strong>MicroPython firmware</strong> for the <code>RPI_PICO2_W</code> board. It must be the <em>W</em> (wireless)
+  version, because the onboard LED is attached to the WiFi chip.</li>
+<li><strong>Thonny</strong>, a free editor that can run a program on the Pico with the green Run button.</li>
+<li><strong>mpremote</strong>, a command-line tool that copies files to the Pico and runs programs from a
+  terminal. You met it in the
+  <a href="https://dmccreary.github.io/learning-micropython/chapters/03-micropython-environment/">MicroPython Environment chapter</a>.</li>
+</ul>
+<h3 id="putting-the-lab-files-on-the-pico">Putting the Lab Files on the Pico<a class="headerlink" href="#putting-the-lab-files-on-the-pico" title="Permanent link">&para;</a></h3>
+<p>The labs share a few files, so all of them have to be on the Pico before you run anything
+that draws or listens. In a terminal, from the <code>src/kits/study-buddy-base</code> folder:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./upload-code.sh
+</span></code></pre></div>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Quit Thonny First</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../../img/mascot/tip.png" />
+Only one program can talk to the Pico's USB port at a time, so press Stop and close Thonny's connection before you run <code>upload-code.sh</code>. If the script cannot find the Pico, name the port yourself, for example <code>PORT=/dev/cu.usbmodem14301 ./upload-code.sh</code>.</p>
+</div>
+<p>The script copies these things to the Pico:</p>
+<table>
+<thead>
+<tr>
+<th>File or folder</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config.py</code></td>
+<td>Every pin number, color, and setting, plus helper functions such as <code>init_display()</code> and <code>init_buttons()</code></td>
+</tr>
+<tr>
+<td><code>lib/gc9b72.py</code></td>
+<td>The display driver, which knows how to talk to the screen</td>
+</tr>
+<tr>
+<td><code>lib/vga1_8x16.py</code> and <code>lib/vga1_bold_16x32.py</code></td>
+<td>The two fonts: a small one and a big one</td>
+</tr>
+<tr>
+<td><code>lib/shapes.py</code></td>
+<td>Functions that draw circles, rings, polygons, and triangles</td>
+</tr>
+<tr>
+<td><code>wifi_time.py</code>, <code>secrets-template.py</code></td>
+<td>WiFi helpers (used by Lab 18 and the demo)</td>
+</tr>
+<tr>
+<td><code>01-blink-onboard-led.py</code> ... <code>19-pattern-game.py</code></td>
+<td>The nineteen labs</td>
+</tr>
+<tr>
+<td><code>main.py</code> and the <code>demo_*.py</code> files</td>
+<td>The finished demo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="your-wifi-secrets">Your WiFi Secrets<a class="headerlink" href="#your-wifi-secrets" title="Permanent link">&para;</a></h3>
+<p>Only Lab 18 and the clock and weather screens of the demo need the internet. They read your
+WiFi name and password from a file named <code>secrets.py</code>. To make one, copy
+<code>secrets-template.py</code> to <code>secrets.py</code> and fill in two lines:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">wifi_ssid</span> <span class="o">=</span> <span class="s2">"YourNetworkName"</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">wifi_pass</span> <span class="o">=</span> <span class="s2">"YourPassword"</span>
+</span></code></pre></div>
+<p><code>secrets.py</code> is listed in <code>.gitignore</code> so your password is never uploaded to GitHub. The Pico
+only joins <strong>2.4 GHz</strong> networks, not 5 GHz ones.</p>
+<h2 id="how-the-labs-are-organized">How the Labs Are Organized<a class="headerlink" href="#how-the-labs-are-organized" title="Permanent link">&para;</a></h2>
+<p>There are nineteen labs in three groups. Each lab is one program and one idea.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Labs</th>
+<th>The question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Does it work?</strong></td>
+<td>01 to 07</td>
+<td>"Is this part wired correctly?" One test per part, then one that uses them all.</td>
+</tr>
+<tr>
+<td><strong>How does it work?</strong></td>
+<td>08 to 18</td>
+<td>"What is really going on inside?" Color, angles, speed, buttons, timing, sound, the microphone, and the internet, one idea per lab.</td>
+</tr>
+<tr>
+<td><strong>Put it together</strong></td>
+<td>19</td>
+<td>"Can I build something with all of it?" A memory game.</td>
+</tr>
+</tbody>
+</table>
+<p>You can wire the kit one part at a time. Run each test as soon as its part is wired.</p>
+<table>
+<thead>
+<tr>
+<th>Lab</th>
+<th>Program</th>
+<th>Idea</th>
+<th>Parts you need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../01-blink/">01</a></td>
+<td><code>01-blink-onboard-led.py</code></td>
+<td>Does the Pico work?</td>
+<td>Pico</td>
+</tr>
+<tr>
+<td><a href="../02-probe/">02</a></td>
+<td><code>02-probe.py</code></td>
+<td>A hardware inspector that checks everything software can check</td>
+<td>Pico (plus any parts wired)</td>
+</tr>
+<tr>
+<td><a href="../03-buttons/">03</a></td>
+<td><code>03-buttons.py</code></td>
+<td>Buttons print when pressed</td>
+<td>Buttons</td>
+</tr>
+<tr>
+<td><a href="../04-hello-world/">04</a></td>
+<td><code>04-hello-world.py</code></td>
+<td>Text on the round screen</td>
+<td>Display</td>
+</tr>
+<tr>
+<td><a href="../05-speaker-tones/">05</a></td>
+<td><code>05-speaker-tones.py</code></td>
+<td>The speaker plays notes</td>
+<td>Amplifier, speaker</td>
+</tr>
+<tr>
+<td><a href="../06-listen-meter/">06</a></td>
+<td><code>06-listen-meter.py</code></td>
+<td>The microphone measures loudness</td>
+<td>Display, microphone</td>
+</tr>
+<tr>
+<td><a href="../07-record-playback/">07</a></td>
+<td><code>07-record-playback.py</code></td>
+<td>Record your voice and play it back</td>
+<td>Button, microphone, speaker, display</td>
+</tr>
+<tr>
+<td><a href="../08-color-mixing/">08</a></td>
+<td><code>08-color-mixing.py</code></td>
+<td>RGB565: how 16 bits make a color</td>
+<td>Display</td>
+</tr>
+<tr>
+<td><a href="../09-angles-to-pixels/">09</a></td>
+<td><code>09-angles-to-pixels.py</code></td>
+<td>Sine and cosine put things on a circle</td>
+<td>Display</td>
+</tr>
+<tr>
+<td><a href="../10-flicker-free-text/">10</a></td>
+<td><code>10-flicker-free-text.py</code></td>
+<td>Send only what changed</td>
+<td>Display</td>
+</tr>
+<tr>
+<td><a href="../11-button-bounce/">11</a></td>
+<td><code>11-button-bounce.py</code></td>
+<td>Edges and contact bounce</td>
+<td>Buttons, display</td>
+</tr>
+<tr>
+<td><a href="../12-one-loop-many-jobs/">12</a></td>
+<td><code>12-one-loop-many-jobs.py</code></td>
+<td>Check the clock, don't sleep</td>
+<td>LED, buttons, display</td>
+</tr>
+<tr>
+<td><a href="../13-modes-state-machine/">13</a></td>
+<td><code>13-modes-state-machine.py</code></td>
+<td>Modes as a state machine</td>
+<td>Buttons, display</td>
+</tr>
+<tr>
+<td><a href="../14-samples-make-sound/">14</a></td>
+<td><code>14-samples-make-sound.py</code></td>
+<td>Sample rate and aliasing</td>
+<td>Speaker, display</td>
+</tr>
+<tr>
+<td><a href="../15-sound-envelopes/">15</a></td>
+<td><code>15-sound-envelopes.py</code></td>
+<td>Why a pluck is not an organ</td>
+<td>Speaker, display</td>
+</tr>
+<tr>
+<td><a href="../16-mic-oscilloscope/">16</a></td>
+<td><code>16-mic-oscilloscope.py</code></td>
+<td>Draw the sound wave</td>
+<td>Microphone, display</td>
+</tr>
+<tr>
+<td><a href="../17-whistle-tuner/">17</a></td>
+<td><code>17-whistle-tuner.py</code></td>
+<td>Measure pitch</td>
+<td>Microphone, display</td>
+</tr>
+<tr>
+<td><a href="../18-network-layers/">18</a></td>
+<td><code>18-network-layers.py</code></td>
+<td>From radio waves to the weather</td>
+<td>WiFi, display</td>
+</tr>
+<tr>
+<td><a href="../19-pattern-game/">19</a></td>
+<td><code>19-pattern-game.py</code></td>
+<td>A memory game using everything</td>
+<td>The whole kit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-is-on-every-lab-page">What Is on Every Lab Page<a class="headerlink" href="#what-is-on-every-lab-page" title="Permanent link">&para;</a></h3>
+<p>Each lab page follows the same pattern, so you always know where to look:</p>
+<ol>
+<li><strong>Quick facts</strong>: the program file, the parts, and how long it takes.</li>
+<li><strong>The big idea</strong>: the one thing this lab teaches, in plain words.</li>
+<li><strong>Walking through the code</strong>: the important parts of the program, explained a few lines at a time.</li>
+<li><strong>Run it</strong> and <strong>what PASS looks like</strong>: how to start it and what you should see and hear.</li>
+<li><strong>If something goes wrong</strong>: the most common problems and the fix for each.</li>
+<li><strong>Try This</strong>: changes for you to make, with hints. This is where the real learning happens.</li>
+<li><strong>Check your understanding</strong>: questions to test yourself.</li>
+</ol>
+<h3 id="running-a-lab">Running a Lab<a class="headerlink" href="#running-a-lab" title="Permanent link">&para;</a></h3>
+<p>Open the lab's <code>.py</code> file in Thonny and press Run. Or, from a terminal:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mpremote<span class="w"> </span>run<span class="w"> </span><span class="m">04</span>-hello-world.py
+</span></code></pre></div>
+<p>Many labs run until you stop them. Press the red <strong>Stop</strong> button in Thonny, or <strong>Ctrl-C</strong> in a
+terminal. Labs that make sound say so at the top of their page, so you can lower the volume
+before you start.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Tests First, Then Ideas</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
+Notice the pattern: Labs 01 to 07 prove each part works, and Labs 08 to 19 explain <em>why</em> it works. A builder who tests each part alone can find a broken wire in minutes, because only one new thing could have gone wrong.</p>
+</div>
+<h2 id="the-finished-demo">The Finished Demo<a class="headerlink" href="#the-finished-demo" title="Permanent link">&para;</a></h2>
+<p>Once you have worked through the labs, upload the demo as the Pico's <code>main.py</code> and it will run
+every time the Pico gets power, with no computer needed. It starts as a <strong>showcase</strong> that
+flips through twelve screens, one for each thing the kit can do. <strong>Hold any button for one
+second</strong> to try the demo that is on the screen:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Demo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Clock and forecast</td>
+<td>Shows the time and the weather (needs WiFi)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Alarm clock</td>
+<td>Rings at the time you set</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Countdown timer</td>
+<td>Counts down from a preset</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Stopwatch</td>
+<td>Times laps</td>
+</tr>
+<tr>
+<td>5</td>
+<td>School events</td>
+<td>Shows a mascot and this week's events</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Tones</td>
+<td>Plays four kinds of wave and a tune</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Sound meter</td>
+<td>A volume meter for the microphone</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Recorder</td>
+<td>Records three seconds and plays it back</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Quote of the day</td>
+<td>Shows one of twenty quotes</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Spanish quiz</td>
+<td>Plays a Spanish word; you pick its meaning</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Flash cards</td>
+<td>Vocabulary cards you flip with a button</td>
+</tr>
+</tbody>
+</table>
+<p>Each demo uses ideas from one or more labs. When you finish Lab 19, you will be able to open
+any demo's program and read how it works.</p>
+<h2 id="what-you-should-already-know">What You Should Already Know<a class="headerlink" href="#what-you-should-already-know" title="Permanent link">&para;</a></h2>
+<p>These labs assume you finished the
+<a href="https://dmccreary.github.io/learning-micropython/">Learning MicroPython</a> course. If a lab uses
+an idea that you want to review, its page links to the exact chapter. Here are the chapters
+you will use most:</p>
+<table>
+<thead>
+<tr>
+<th>If you see this...</th>
+<th>Review this chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thonny, <code>mpremote</code>, <code>main.py</code></td>
+<td><a href="https://dmccreary.github.io/learning-micropython/chapters/03-micropython-environment/">MicroPython Environment</a></td>
+</tr>
+<tr>
+<td><code>Pin</code>, <code>value()</code>, pull-ups, debouncing</td>
+<td><a href="https://dmccreary.github.io/learning-micropython/chapters/06-digital-io-interrupts/">Digital Input, Output, and Interrupts</a></td>
+</tr>
+<tr>
+<td>PWM, volume, analog numbers</td>
+<td><a href="https://dmccreary.github.io/learning-micropython/chapters/07-analog-adc-pwm/">Analog Signals, ADC, and PWM</a></td>
+</tr>
+<tr>
+<td>SPI (how the display is driven)</td>
+<td><a href="https://dmccreary.github.io/learning-micropython/chapters/08-communication-protocols/">Communication Protocols</a></td>
+</tr>
+<tr>
+<td>Notes, scales, I2S</td>
+<td><a href="https://dmccreary.github.io/learning-micropython/chapters/18-sound-music-audio/">Sound, Music, and Audio</a></td>
+</tr>
+<tr>
+<td>WiFi, HTTP, JSON, NTP</td>
+<td><a href="https://dmccreary.github.io/learning-micropython/chapters/19-wireless-iot/">Wireless Connectivity and IoT</a></td>
+</tr>
+<tr>
+<td><code>ticks_ms()</code>, <code>ticks_diff()</code></td>
+<td><a href="https://dmccreary.github.io/learning-micropython/chapters/20-timers-multicore/">Timers and Multi-Core</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ready">Ready?<a class="headerlink" href="#ready" title="Permanent link">&para;</a></h2>
+<p>Start with <a href="../01-blink/">Lab 01: Blink the Onboard LED</a>. It takes two minutes, and it proves
+the most important thing of all: that your Pico and your tools are working.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Table of Contents">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Table of Contents
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../01-blink/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 01: Blink the Onboard LED">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 01: Blink the Onboard LED
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2171 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Build a memory game with colored wedges that light up and play notes. Repeat the growing pattern with the buttons, using a state machine, edge-detected buttons, precomputed shapes, and sound together.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/kits/study-buddy-base/19-pattern-game/">
+      
+      
+        <link rel="prev" href="../18-network-layers/">
+      
+      
+        <link rel="next" href="../../../schools/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Lab 19: Pattern Memory Game - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-19-pattern-memory-game" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 19: Pattern Memory Game
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../chapters/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kits
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Study Buddy Base Kit
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Study Buddy Base Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 01: Blink the Onboard LED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-probe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 02: The Hardware Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 03: Buttons on the Console
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 04: Hello World on the Display
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-speaker-tones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 05: Speaker Tones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-listen-meter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 06: Listen with the Microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-record-playback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 07: Hold to Record, Release to Play Back
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-color-mixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 08: How the Display Mixes Color
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-angles-to-pixels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 09: Angles to Pixels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-flicker-free-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-button-bounce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-one-loop-many-jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 12: One Loop, Many Jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-modes-state-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 13: Modes as a State Machine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-samples-make-sound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 14: Samples Make Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sound-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mic-oscilloscope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 16: A Microphone Oscilloscope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-whistle-tuner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-network-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 18: From Radio Waves to the Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-play" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Play
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea-every-part-every-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea: Every Part, Every Lab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-wedge-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The wedge table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drawing-a-wedge-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drawing a wedge, once
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sounds-made-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sounds, made once
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-games-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      The game's states
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-grow-the-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      SHOW: grow the pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listen-check-each-press" class="md-nav__link">
+    <span class="md-ellipsis">
+      LISTEN: check each press
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-show-the-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      OVER: show the score
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-play" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Play
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-learn" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Will Learn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea-every-part-every-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea: Every Part, Every Lab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walking-through-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Walking Through the Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Walking Through the Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-wedge-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      The wedge table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drawing-a-wedge-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drawing a wedge, once
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sounds-made-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sounds, made once
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-games-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      The game's states
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-grow-the-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      SHOW: grow the pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listen-check-each-press" class="md-nav__link">
+    <span class="md-ellipsis">
+      LISTEN: check each press
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-show-the-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      OVER: show the score
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run It
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-pass-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What PASS Looks Like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-something-goes-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      If Something Goes Wrong
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#try-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      Try This
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-your-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Your Understanding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/kits/study-buddy-base/19-pattern-game.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="lab-19-pattern-memory-game">Lab 19: Pattern Memory Game<a class="headerlink" href="#lab-19-pattern-memory-game" title="Permanent link">&para;</a></h1>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">Your Final Build</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
+You have learned colors, angles, fast drawing, buttons, timing, state machines, and sound, and now they all work together in one game. Your Study Buddy shows a pattern, you repeat it, and each round gets a little longer and a little faster. Let's listen closely, because the notes are your best clue!</p>
+</div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Program</strong></td>
+<td><code>19-pattern-game.py</code></td>
+</tr>
+<tr>
+<td><strong>Parts needed</strong></td>
+<td>The whole kit: display, buttons, speaker, and the onboard LED</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>40 minutes</td>
+</tr>
+<tr>
+<td><strong>Makes sound?</strong></td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td><strong>How to stop</strong></td>
+<td>Press <strong>Stop</strong> in Thonny, or Ctrl-C</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-play">How to Play<a class="headerlink" href="#how-to-play" title="Permanent link">&para;</a></h2>
+<p>The screen shows three wedges, one for each button:</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Wedge</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MODE</strong></td>
+<td>Red, at the top</td>
+<td>C5, 523 Hz</td>
+</tr>
+<tr>
+<td><strong>UP</strong></td>
+<td>Green, lower right</td>
+<td>E5, 659 Hz</td>
+</tr>
+<tr>
+<td><strong>DOWN</strong></td>
+<td>Blue, lower left</td>
+<td>G5, 784 Hz</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Press any button to start.</li>
+<li>The buddy lights wedges and plays their notes: <strong>watch and listen</strong>.</li>
+<li>When the onboard LED lights, it is <strong>your turn</strong>. Repeat the pattern with the buttons.</li>
+<li>If you are right, the next round adds one more step, and the steps come a little faster.</li>
+<li>If you are wrong, or wait 5 seconds, the game is over and shows your score.</li>
+</ol>
+<p>The three notes are C, E, and G, a <strong>C major chord</strong>, so any pattern you play sounds like a
+little tune.</p>
+<h2 id="what-you-will-learn">What You Will Learn<a class="headerlink" href="#what-you-will-learn" title="Permanent link">&para;</a></h2>
+<ul>
+<li>How several earlier ideas combine into <strong>one program</strong></li>
+<li>How to keep a game's memory in a <strong>list</strong> that grows</li>
+<li>How to <strong>precompute</strong> a shape once and replay it quickly</li>
+<li>How a <strong>state machine</strong> with four states runs a game</li>
+</ul>
+<h2 id="the-big-idea-every-part-every-lab">The Big Idea: Every Part, Every Lab<a class="headerlink" href="#the-big-idea-every-part-every-lab" title="Permanent link">&para;</a></h2>
+<p>This lab is a recap of the whole kit. Here is where each idea comes from:</p>
+<table>
+<thead>
+<tr>
+<th>Idea in the game</th>
+<th>From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A <strong>state machine</strong>: READY, SHOW, LISTEN, OVER</td>
+<td><a href="../13-modes-state-machine/">Lab 13</a></td>
+</tr>
+<tr>
+<td>A <strong>list</strong> as the game's memory that grows by one random step each round</td>
+<td>Course chapter on collections</td>
+</tr>
+<tr>
+<td><strong>Angles to pixels</strong> to build each wedge</td>
+<td><a href="../09-angles-to-pixels/">Lab 09</a></td>
+</tr>
+<tr>
+<td><strong>Send only what changed</strong>: a wedge is computed once, then replayed</td>
+<td><a href="../10-flicker-free-text/">Lab 10</a></td>
+</tr>
+<tr>
+<td><strong>Edges and debounce</strong> for the buttons</td>
+<td><a href="../11-button-bounce/">Lab 11</a></td>
+</tr>
+<tr>
+<td><strong>Not waiting</strong>: a quick second press is never missed</td>
+<td><a href="../12-one-loop-many-jobs/">Lab 12</a></td>
+</tr>
+<tr>
+<td><strong>Samples make sound</strong>: each wedge's note is made at the start</td>
+<td><a href="../14-samples-make-sound/">Lab 14</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Big Programs Are Small Ideas Combined</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
+The game has 300 lines but not one new idea. Every piece is something you have already built and tested on its own, and that is the secret of large programs: tested small parts, assembled carefully.</p>
+</div>
+<h2 id="walking-through-the-code">Walking Through the Code<a class="headerlink" href="#walking-through-the-code" title="Permanent link">&para;</a></h2>
+<h3 id="the-wedge-table">The wedge table<a class="headerlink" href="#the-wedge-table" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">WEDGES</span> <span class="o">=</span> <span class="p">((</span><span class="s2">"MODE"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">color565</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">523</span><span class="p">),</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>          <span class="p">(</span><span class="s2">"UP"</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">color565</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">659</span><span class="p">),</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>          <span class="p">(</span><span class="s2">"DOWN"</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">color565</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="mi">784</span><span class="p">))</span>
+</span></code></pre></div>
+<p>One row per wedge: its <strong>name</strong>, its <strong>middle angle</strong> (0, 120, and 240 degrees apart, evenly
+around the circle), its <strong>bright</strong> color, its <strong>dim</strong> color, and its <strong>note</strong> in hertz. A wedge
+shows its dim color most of the time and its bright color while it is "lit".</p>
+<h3 id="drawing-a-wedge-once">Drawing a wedge, once<a class="headerlink" href="#drawing-a-wedge-once" title="Permanent link">&para;</a></h3>
+<p>This is the cleverest part. Drawing a ring-shaped wedge with <code>shapes.poly()</code> works out where
+every row of the shape starts and ends, which takes a long time. But the wedge never changes
+shape, so the program does that work <strong>once, at the start</strong>, and remembers the result as a list of
+horizontal runs <code>(x, y, length)</code>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">RunRecorder</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">runs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">hline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">length</span><span class="p">))</span>
+</span></code></pre></div>
+<p><code>shapes.poly()</code> draws a filled shape by calling <code>display.hline(...)</code> for each row. The
+<code>RunRecorder</code> is a <strong>stand-in for the display</strong> that has an <code>hline</code> method that, instead of
+drawing, <strong>writes the call down</strong>. Pass the recorder to <code>shapes.poly()</code> and it fills in the list
+of runs without drawing a single pixel.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">paint</span><span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="n">lit</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">name</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">bright</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">WEDGES</span><span class="p">[</span><span class="n">which</span><span class="p">]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">color</span> <span class="o">=</span> <span class="n">bright</span> <span class="k">if</span> <span class="n">lit</span> <span class="k">else</span> <span class="n">dim</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">[</span><span class="n">which</span><span class="p">]:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="n">display</span><span class="o">.</span><span class="n">hline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Lighting a wedge now just <strong>replays</strong> the saved runs in a different color. That is fast enough
+that the light and the sound start together.</p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Stand-In Objects</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../../img/mascot/tip.png" />
+If a function only <em>calls methods</em> on an object you give it, you can hand it a fake object that has the same methods. The <code>RunRecorder</code> trick works for testing, for recording, and for sending the same drawing to two places at once.</p>
+</div>
+<p>The wedge's outline is built from two arcs: points every 5 degrees along the <strong>outer</strong> edge
+(radius 164), and back along the <strong>inner</strong> edge (radius 82). Each wedge is 110 degrees wide, which
+leaves 10 degrees of black between wedges.</p>
+<h3 id="sounds-made-once">Sounds, made once<a class="headerlink" href="#sounds-made-once" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">show_tones</span> <span class="o">=</span> <span class="p">[</span><span class="n">tone</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">TONE_MS</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">WEDGES</span><span class="p">]</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">press_tones</span> <span class="o">=</span> <span class="p">[</span><span class="n">tone</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">PRESS_MS</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">WEDGES</span><span class="p">]</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">buzz</span> <span class="o">=</span> <span class="n">tone</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="s2">"square"</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Calculating a sine wave takes time. So all the notes are made <strong>once at the start</strong>, while the
+screen says "getting ready". Playing a note later is just <code>audio.write(...)</code>. The game-over
+<strong>buzz</strong> is a 110 Hz <strong>square wave</strong>, which sounds harsh on purpose.</p>
+<h3 id="the-games-states">The game's states<a class="headerlink" href="#the-games-states" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">READY</span><span class="p">,</span> <span class="n">SHOW</span><span class="p">,</span> <span class="n">LISTEN</span><span class="p">,</span> <span class="n">OVER</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">state</span> <span class="o">=</span> <span class="n">READY</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">pattern</span> <span class="o">=</span> <span class="p">[]</span>                     <span class="c1"># the game's memory: wedge numbers</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>                     <span class="c1"># how far through the pattern you are</span>
+</span></code></pre></div>
+<p><code>range(4)</code> hands out the numbers 0, 1, 2, and 3 to four names, so the code can say <code>state == LISTEN</code> instead of <code>state == 2</code>.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>What happens</th>
+<th>Leaves when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>READY</strong></td>
+<td>Shows "READY" and your best score</td>
+<td>Any button press</td>
+</tr>
+<tr>
+<td><strong>SHOW</strong></td>
+<td>Adds a random step, plays the whole pattern</td>
+<td>The pattern has played</td>
+</tr>
+<tr>
+<td><strong>LISTEN</strong></td>
+<td>Waits for your presses</td>
+<td>You finish it, make a mistake, or time out</td>
+</tr>
+<tr>
+<td><strong>OVER</strong></td>
+<td>Shows your score, buzzes, and flashes the step you missed</td>
+<td>A press (after 1 second), or 4 seconds idle</td>
+</tr>
+</tbody>
+</table>
+<h3 id="show-grow-the-pattern">SHOW: grow the pattern<a class="headerlink" href="#show-grow-the-pattern" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">pattern</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">...</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">gap</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">LEAST_GAP_MS</span><span class="p">,</span> <span class="n">FIRST_GAP_MS</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">round_number</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">flash</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">show_tones</span><span class="p">[</span><span class="n">step</span><span class="p">],</span> <span class="n">TONE_MS</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The pattern is a <strong>list</strong> of numbers 0, 1, and 2. Each round <code>append</code>s one new random number. The
+<code>gap</code> between steps shrinks by 20 ms a round, from 300 ms down to a minimum of 60 ms. The
+<code>max(LEAST_GAP_MS, ...)</code> is the clamp trick from Lab 07: it stops the gap from shrinking below
+60 ms. By round 12, the game is as fast as it will go.</p>
+<p><code>flash()</code> lights the wedge, plays its note, waits for the note, and puts the light out.</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">It's Fine to Sleep Here (But Not in LISTEN)</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../../img/mascot/warning.png" />
+SHOW uses <code>time.sleep_ms</code> because while the buddy is playing the pattern, you are not supposed to press anything. LISTEN never sleeps for long, because a second quick press could be missed, as Lab 12 showed, so check the context before you decide that <code>sleep</code> is a bug.</p>
+</div>
+<h3 id="listen-check-each-press">LISTEN: check each press<a class="headerlink" href="#listen-check-each-press" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">if</span> <span class="n">button</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="o">...</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">if</span> <span class="n">button</span> <span class="o">!=</span> <span class="n">pattern</span><span class="p">[</span><span class="n">position</span><span class="p">]:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="n">game_over</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="k">continue</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">paint</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">audio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">press_tones</span><span class="p">[</span><span class="n">button</span><span class="p">])</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">lit</span> <span class="o">=</span> <span class="n">button</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">lit_until</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_add</span><span class="p">(</span><span class="n">now</span><span class="p">,</span> <span class="n">PRESS_MS</span><span class="p">)</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>        <span class="c1"># the whole pattern: right!</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>        <span class="o">...</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="n">state</span> <span class="o">=</span> <span class="n">SHOW</span>
+</span></code></pre></div>
+<p><code>pressed(now)</code> returns the number of a button that just went down, using the edge-and-debounce
+code from Lab 11, or <code>None</code>. For each press, the game checks it against the pattern at
+<code>position</code>:</p>
+<ul>
+<li><strong>Wrong?</strong> Game over.</li>
+<li><strong>Right?</strong> Light the wedge, play its note, and move on one step.</li>
+<li><strong>Reached the end?</strong> The round is won, and the state goes back to SHOW for a longer pattern.</li>
+</ul>
+<p>The wedge you press stays lit for <code>PRESS_MS</code> (200 ms), and the program checks <code>lit_until</code> with
+<code>ticks_diff</code> on later passes. It does <strong>not</strong> sleep: that is the Lab 12 technique, and it lets a quick next
+press be caught.</p>
+<p>If 5 seconds pass without any press (<code>TIMEOUT_MS</code>), the game ends too.</p>
+<h3 id="over-show-the-score">OVER: show the score<a class="headerlink" href="#over-show-the-score" title="Permanent link">&para;</a></h3>
+<p>The score is <code>len(pattern) - 1</code>, the number of rounds you completed (the round you failed does
+not count). The game keeps your <code>best</code> since you started, buzzes, and flashes the wedge you should
+have pressed three times, so you learn from the mistake. For a second, presses are ignored,
+because the wrong press may still be bouncing.</p>
+<h2 id="run-it">Run It<a class="headerlink" href="#run-it" title="Permanent link">&para;</a></h2>
+<p>Open <code>19-pattern-game.py</code> and press Run. When the screen says <strong>READY</strong>, press any button.</p>
+<h2 id="what-pass-looks-like">What PASS Looks Like<a class="headerlink" href="#what-pass-looks-like" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A pattern plays, with each wedge lighting up and sounding its note.</li>
+<li>The LED lights when it is your turn.</li>
+<li>The buttons light and sound their wedges.</li>
+<li>A right answer goes on to a longer pattern.</li>
+<li>A wrong one (or 5 seconds of waiting) buzzes, and shows your score and your best.</li>
+</ul>
+<p>The shell prints each round, for example <code>Round 3: MODE UP UP</code>, and <code>Game over: 2 right. Best: 2</code>.</p>
+<h2 id="if-something-goes-wrong">If Something Goes Wrong<a class="headerlink" href="#if-something-goes-wrong" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you see or hear</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The screen is blank</td>
+<td>Display wiring</td>
+<td>Run <a href="../04-hello-world/">Lab 04</a></td>
+</tr>
+<tr>
+<td>No sound</td>
+<td>Speaker wiring</td>
+<td>Run <a href="../05-speaker-tones/">Lab 05</a></td>
+</tr>
+<tr>
+<td>A button does nothing</td>
+<td>Wiring</td>
+<td>Run <a href="../03-buttons/">Lab 03</a></td>
+</tr>
+<tr>
+<td>Game ends on a correct press</td>
+<td>Bounce</td>
+<td>Raise <code>DEBOUNCE_MS</code></td>
+</tr>
+<tr>
+<td>A new game starts before you want it to</td>
+<td>A press in the OVER state starts a new game after 1 second</td>
+<td>Wait for READY, or raise the <code>1000</code> in the OVER state</td>
+</tr>
+<tr>
+<td><code>MemoryError</code> at "getting ready"</td>
+<td>Not enough RAM for the three notes</td>
+<td>Lower <code>TONE_MS</code> or <code>PRESS_MS</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-this">Try This<a class="headerlink" href="#try-this" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>A fourth wedge.</strong> There are only three buttons, but a long press could be a fourth. What
+   would have to change in <code>WEDGES</code> and <code>pressed()</code>?</li>
+<li><strong>Strict mode.</strong> Make the game end on the first mistake of a pattern you have already seen
+   twice. (Hint: you need to remember each round's result.)</li>
+<li><strong>Save the best score.</strong> Save the best score to a file (<code>open("best.txt", "w")</code>) so it
+   survives a power cycle. Read it back at the start.</li>
+<li><strong>Your own tune.</strong> Change the notes in <code>WEDGES</code>. Which three notes sound best together?</li>
+<li><strong>Harder and easier.</strong> Change <code>FIRST_GAP_MS</code> and <code>LEAST_GAP_MS</code>. What is the fastest you can
+   keep up with?</li>
+</ol>
+<details class="tip">
+<summary>Hint for number 3</summary>
+<p>Reading: wrap <code>open("best.txt")</code> in <code>try</code>/<code>except OSError</code> (the file will not exist the
+first time), and use <code>int(f.read())</code>. Writing: inside <code>game_over()</code>, when <code>best</code> goes up,
+open <code>"best.txt"</code> with <code>"w"</code> and write <code>str(best)</code>. Writing a file takes a few milliseconds, so
+only do it when the score <em>improves</em>. You met file handling in the
+<a href="https://dmccreary.github.io/learning-micropython/chapters/21-file-systems-debugging/">File Systems</a>
+chapter of the course.</p>
+</details>
+<details class="tip">
+<summary>Hint for number 1</summary>
+<p>A short press could be one wedge each, and a press held for more than 600 ms could be the
+fourth. You would need to measure how long a button was held, as in Lab 03's Try This.
+<code>WEDGES</code> would get a fourth row with its own angle (90 degrees apart instead of 120), and wedge widths
+would need to shrink.</p>
+</details>
+<h2 id="check-your-understanding">Check Your Understanding<a class="headerlink" href="#check-your-understanding" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Why does the game compute each wedge's runs once, instead of every time it lights?</li>
+<li>What does the <code>RunRecorder</code> do?</li>
+<li>Why is <code>time.sleep_ms</code> fine in the SHOW state but a problem in LISTEN?</li>
+<li>If you are in round 5, how many steps are in the pattern, and what is the score if you
+   fail it?</li>
+</ol>
+<details class="question">
+<summary>Answers</summary>
+<ol>
+<li>Filling a shape is slow. Doing it once and replaying the saved lines is fast enough for
+   the light and sound to start together.</li>
+<li>It stands in for the display. <code>shapes.poly()</code> calls its <code>hline</code>, and instead of drawing,
+   it records each line so the game can replay them later.</li>
+<li>In SHOW you are only watching, so freezing is harmless. In LISTEN, a sleep could make
+   the game miss a quick button press.</li>
+<li>Five steps. The score is <code>5 - 1 = 4</code>, because the round you failed does not count.</li>
+</ol>
+</details>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">You Built a Whole Game</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../../img/mascot/celebration.png" />
+You used a state machine, a growing list, precomputed shapes, debounced buttons, non-blocking timing, and synthesized notes in one working program, which makes you a real embedded programmer. Every part of your Study Buddy kit now has a job, and you know how each one works.</p>
+</div>
+<h2 id="where-next">Where Next<a class="headerlink" href="#where-next" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Run the finished demo.</strong> Copy <code>main.py</code> to the Pico and power it up. You can now read every
+  demo's source and understand it.</li>
+<li><strong>Build your own game.</strong> Reuse the wedge table, the state machine, and the tone maker for a new
+  game, such as a reaction timer or a rhythm game.</li>
+<li><strong>Keep going in the book.</strong> Chapter 12 uses the microphone for <strong>wake-word detection</strong>, and
+  Chapter 13 connects your Study Buddy to an AI agent.</li>
+</ul>
+<p><em>Related in this book:</em> <a href="../../../chapters/07-buttons-and-device-modes/">Chapter 7: Buttons, State Machines, and Device Modes</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../18-network-layers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 18: From Radio Waves to the Weather">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 18: From Radio Waves to the Weather
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../schools/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
