@@ -5,15 +5,20 @@ description: "Build three Dupont ribbon wiring harnesses for the Study Buddy kit
 
 # Wiring Harnesses
 
+![](../../img/display-harness-10cm.jpg)
+The photo above is a sample of our display harness for the large round smartwatch display.  Note the left end is female and is in the same order as the Dupont wire.  The right end is male an only the red power and brown ground wires have been moved.  The ends are hot-glued together to make sure they are all connected in a single block of wire.
+
 !!! mascot-welcome "One Plug Instead of Seven"
     ![Sage waving welcome](../../img/mascot/welcome.png){ class="mascot-admonition-img" }
     Loose jumper wires wiggle out of the breadboard, and one loose wire can cost an hour of debugging. In this guide you will turn a ribbon cable into three harnesses that plug in as blocks and land on the right pins every time. Let's listen closely!
 
 A **wiring harness** is a group of wires bundled in a fixed order so they connect as one unit.
 This kit needs three: one each for the display, the amplifier, and the microphone. Each
-harness is a strip of Dupont wires torn from a ribbon cable. The module end keeps the ribbon's
-original color order. At the Pico end, you move only the few wires that must move, so the block
-plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin.
+harness is a strip of Dupont wires torn from a 40-wire ribbon cable that has consistent color order. The module end (not the breadboard end) keeps the ribbon's
+original color order. At the breadboard Pico end, you move only the few wires that must move, so the block
+plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin.  Both ends have a thin strip of hot-glue applied to keep the right pins together to make it easy to plug the harness into the device and the breadboard.
+
+Note that you still **MUST** get the polarity of the wiring harness and the pin alignment correct.
 
 | | |
 |---|---|
@@ -24,13 +29,13 @@ plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin
 
 [![The finished Study Buddy kit on a clear acrylic stand. The round display stands upright and shows the Study Buddy Kit welcome screen. Behind it, rainbow ribbon harnesses run to the breadboard, and the round microphone board is mounted below the display.](../../img/study-buddy-front-view.jpg){ width="600" }](../../img/study-buddy-front-view.jpg)
 
-*The finished kit. All three harnesses run from the breadboard behind the display. Click any photo to see it full size.*
+*The finished kit mounted on a clear acrylic stand with felt feet. All three harnesses run from the breadboard behind the display. Click any photo to see it full size.*
 
 ## What You Need
 
 | Item | Notes |
 |------|-------|
-| A 40-wire **10 cm male-to-female** Dupont ribbon cable | One ribbon makes all three harnesses for one kit. Search for `dupont jumper wire 40 pin male to female 10cm`. The [Purchasing Guide](../../learning-graph/teachers-guide/index.md#dupont-ribbon-cable-male-to-female-20-cm) lists the 20 cm length, which also works but leaves loops of extra wire. |
+| A 40-wire **male-to-female** Dupont ribbon cable, **10 cm or 20 cm** | One ribbon makes all three harnesses for one kit. See [Choosing a Wire Length](#choosing-a-wire-length) below. |
 | The display, amplifier, and microphone with their header pins soldered on | The female ends of the ribbon push onto these pins. |
 | Your Pico 2 W on the breadboard | Pin 1 in breadboard row 1, as in the [circuit diagram](../../chapters/04-pico-kit-hardware/img/circuit-diagram.svg). |
 | Optional: hot glue gun, or narrow tape | Holds the male pins together as a block. |
@@ -40,12 +45,27 @@ A Dupont **male** end has a pin that pushes into a breadboard hole. A **female**
 socket that slides over a module's header pin. In every harness, the female ends go on the
 module and the male ends go in the breadboard.
 
+### Choosing a Wire Length
+
+Both lengths work, and the steps are the same for each. Pick the one that fits how far your
+parts sit from the breadboard.
+
+| Length | Best for | Search for |
+|--------|----------|------------|
+| 10 cm | **Compact builds**, where the display, amplifier and microphone sit very close to the breadboard and the Pico is oriented with the USB on the left side to shorten the distance. | `dupont jumper wire 40 pin male to female 10cm` |
+| 20 cm | **Spreading the parts out**, such as a display on its own stand or a speaker away from the microphone | `dupont jumper wire 40 pin male to female 20cm` (the ribbon in the [Purchasing Guide](../../learning-graph/teachers-guide/index.md#dupont-ribbon-cable-male-to-female-20-cm)) |
+
+Where a step says how far to peel wires apart, it gives the 10 cm length first and the 20 cm
+length in parentheses.
+
 ### The Ribbon's Color Order
 
 The wires in a Dupont ribbon follow the resistor color code, and the pattern repeats every ten
 wires:
 
 **brown, red, orange, yellow, green, blue, purple, gray, white, black**, then brown again.
+
+In all our kits, we try to keep the **red** color connected to the power rail.  This is 3.3 volts for the display and the microphone and 5 volts for the speaker.  You can use 3.3 volts for the speaker but the volume will not be as loud.
 
 Each harness is a strip of neighboring wires taken from this pattern. That is why the colors
 below are not random: they are simply where each strip falls on the ribbon. In all three
@@ -71,7 +91,7 @@ They fall every fifth row.
 
 The kit's pins were chosen so that each module's signal wires sit next to a GND pin. A harness
 that keeps its wires in the same order as those rows carries its own ground wire, so plugging
-in the block also connects the module's ground. You never need a separate ground wire.
+in the block also connects the module's ground. You never need a separate ground wire.  However, the red power wire is removed from breadboard block end.
 
 !!! mascot-thinking "Why the Ground Wire Matters Most"
     ![Sage thinking](../../img/mascot/thinking.png){ class="mascot-admonition-img" }
@@ -99,7 +119,7 @@ leaves room for only two wires beside pin 36. If your breadboard has room for th
 2. **At the Pico end, move only the wires that must move.** Each section lists the moves. Every
    other wire stays next to its neighbor from the ribbon.
 3. **Red goes to the right side.** Peel the red wire away from its neighbors along its whole
-   length, so it can reach across the Pico.
+   length (about 10 cm of a 20 cm wire), so it can reach across the Pico.
 
 To peel a strip, nick the gap between two wires with a fingernail and pull the wires apart
 slowly. The wires separate cleanly along their whole length.
@@ -129,9 +149,9 @@ VCC, orange on SCL, and so on down to gray on BL. SDO and TE stay bare.
 
 ### Step 3: Make two changes at the Pico end
 
-1. **Pull red out.** Peel the red wire away from brown and orange along its whole length. It goes to
+1. **Pull red out.** Peel the red wire away from brown and orange along its whole length (about 10 cm on 20 cm wires). It goes to
    3V3 on the right side.
-2. **Split purple and gray off.** Peel purple and gray away from blue for about 3 cm. Row 8 is a
+2. **Split purple and gray off.** Peel purple and gray away from blue for about 3 cm (5 cm). Row 8 is a
    Pico GND pin that the display does not need, so these two wires skip it.
 
 ### Step 4: Plug it into the breadboard
@@ -182,7 +202,7 @@ the pair onto GND and Vin, with **brown on GND** and red on Vin.
 The amplifier lists LRC before BCLK, but MicroPython needs BCLK on the lower pin, with LRC on the
 pin right after it. The ground pin sits between them on the Pico.
 
-1. **Swap blue and purple.** Peel blue and purple apart for about 3 cm and cross them, so purple
+1. **Swap blue and purple.** Peel blue and purple apart for about 3 cm (5 cm) and cross them, so purple
    (BCLK) comes first.
 2. **Put brown between them.** Bring the brown GND wire over to sit between purple and blue.
 
@@ -215,7 +235,7 @@ black, brown, red, orange.
 
 ### Step 2: Fold the strip around the two pin rows
 
-Split the strip between black and brown for about 2 cm, so it can bend into a U.
+Split the strip between black and brown for about 2 cm (3 cm), so it can bend into a U.
 
 1. Push the first three wires onto the top row, left to right: **gray on SCK**, white on WS,
    black on L/R.
@@ -227,7 +247,7 @@ under black (L/R).
 
 ### Step 3: Make two changes at the Pico end
 
-1. **Pull red out.** Peel it away along its whole length. It goes to 3V3 on the right side.
+1. **Pull red out.** Peel it away along its whole length (about 10 cm on 20 cm wires). It goes to 3V3 on the right side.
 2. **Move white past black and brown.** On the Pico, the ground pin comes between SCK and WS, so
    white (WS) moves down one place. Black and brown both go in the ground row, side by side.
    L/R tied to ground tells the microphone to send the left channel, which is what the kit
