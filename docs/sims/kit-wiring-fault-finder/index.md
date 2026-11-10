@@ -122,12 +122,12 @@ Each listing shows the wires of one part as "part pin to Pico pin or rail." The 
 
 | # | Part | Listing shown | Faulty line | Correct connection | What the learner would see (shown as feedback) |
 |---|---|---|---|---|---|
-| 1 | Microphone | SCK to GP10; WS to GP11; SD to GP12; L/R to GND; VDD to VBUS (5 V); GND to GND | VDD to VBUS (5 V) | VDD to 3V3 | The INMP441 is a 3.3 V part. A 5 V supply can damage it. |
-| 2 | Microphone | SCK to GP10; WS to GP13; SD to GP12; L/R to GND; VDD to 3V3; GND to GND | WS to GP13 | WS to GP11 | I2S() raises "invalid ws (must be sck+1)", and GP13 is also the MODE button. |
-| 3 | Amplifier | BCLK to GP20; LRC to GP22; DIN to GP19; GAIN to GP18; VIN to VBUS; GND to GND | LRC to GP22 | LRC to GP21 | I2S() raises an error because the left/right clock must be the pin right after the bit clock. |
-| 4 | Button MODE | One leg to GP13; the leg on the opposite side to 3V3 | Opposite leg to 3V3 | Opposite leg to GND | With a pull-up, the pin always reads 1, so test 03 never reports a press. |
+| 1 | Microphone | SCK to GP13; WS to GP14; SD to GP15; L/R to GND; VDD to VBUS (5 V); GND to GND | VDD to VBUS (5 V) | VDD to 3V3 | The INMP441 is a 3.3 V part. A 5 V supply can damage it. |
+| 2 | Microphone | SCK to GP13; WS to GP16; SD to GP15; L/R to GND; VDD to 3V3; GND to GND | WS to GP16 | WS to GP14 | I2S() raises "invalid ws (must be sck+1)", and GP16 is also the MODE button. |
+| 3 | Amplifier | BCLK to GP9; LRC to GP8; DIN to GP11; GAIN to GP12; VIN to VBUS; GND to GND | LRC to GP8 | LRC to GP10 | I2S() raises an error because the left/right clock must be the pin right after the bit clock. |
+| 4 | Button MODE | One leg to GP16; the leg on the opposite side to 3V3 | Opposite leg to 3V3 | Opposite leg to GND | With a pull-up, the pin always reads 1, so test 03 never reports a press. |
 | 5 | Display | SCL to GP2; SDA to GP3; RST to GP4; DC to GP5; CS to GP6; BL not connected; VCC to 3V3; GND to GND | BL not connected | BL to GP7 | The screen stays dark in test 04 because the backlight never turns on. |
-| 6 | Amplifier | BCLK to GP20; LRC to GP21; DIN to GP19; GAIN to GP18; VIN to VBUS; GND not connected | GND not connected | GND to GND | Test 05 is silent because the amplifier has no ground return. |
+| 6 | Amplifier | BCLK to GP9; LRC to GP10; DIN to GP11; GAIN to GP12; VIN to VBUS; GND not connected | GND not connected | GND to GND | Test 05 is silent because the amplifier has no ground return. |
 
 **Provenance:** The listings and symptoms come from the kit README and the headers of tests 03, 04, and 05 in `src/kits/study-buddy-base/`, and from the table "The Pin Assignment Table" in this chapter.
 
@@ -144,5 +144,5 @@ Each listing shows the wires of one part as "part pin to Pico pin or rail." The 
 
 **Starting State:** Listing 1 is shown with the pin assignment table beside it and the question "Which line does not match the table?"
 
-**Chapter Anchors:** The chapter states the microphone pins SCK GP10, WS GP11, SD GP12, the amplifier pins BCLK GP20, LRC GP21, DIN GP19, GAIN GP18, the display backlight on GP7, and the MODE button on GP13.
+**Chapter Anchors:** The chapter states the amplifier pins BCLK GP9, LRC GP10, DIN GP11, GAIN GP12, the microphone pins SCK GP13, WS GP14, SD GP15, the display backlight on GP7, and the MODE button on GP16.
 ```

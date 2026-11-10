@@ -16,8 +16,8 @@ policies and ask your school's privacy officer.
 | File | Parts needed | PASS looks like |
 |------|--------------|-----------------|
 | `listening_indicator.py` | none (a module; runs on a computer too) | Imported by the files below; defines `Listener`, `LedIndicator`, `StatusBarIndicator` |
-| `01-mute-switch.py` | Pico; optional: slide switch on GP9, microphone | Switch off: pin reads 1, microphone opens. Switch on: pin reads 0, "MIC OFF" |
-| `02-indicator-demo.py` | Display, MODE button, microphone; optional GP9 switch | LED and status bar change the instant MODE is pressed and released |
+| `01-mute-switch.py` | Pico; optional: slide switch on GP19, microphone | Switch off: pin reads 1, microphone opens. Switch on: pin reads 0, "MIC OFF" |
+| `02-indicator-demo.py` | Display, MODE button, microphone; optional GP19 switch | LED and status bar change the instant MODE is pressed and released |
 | `03-indicator-test.py` | none (computer or Pico) | Six scenarios ok, both broken listeners CAUGHT, no direct mic opens, PASS |
 | `04-wipe-buffers.py` | none (computer or Pico) | Buffer nonzero before, all zero after, PASS; on the Pico note "wipe ms" |
 | `tools/data_flow.py` | computer | The eight hops with who sees, where stored, how long; audio-volume arithmetic |
@@ -31,10 +31,10 @@ policies and ask your school's privacy officer.
 
 ## Wiring the optional mute switch
 
-GP9 is not used by anything in `config.py`. For a **software-visible** mute,
-wire a switch between GP9 and GND. For a **true hardware** mute, use a two-pole
+GP19 is not used by anything in `config.py`. For a **software-visible** mute,
+wire a switch between GP19 and GND. For a **true hardware** mute, use a two-pole
 slide switch: one pole in the microphone's VDD wire (3V3 to VDD), the other
-pole from GP9 to GND, so the program can show the state. Check with a
+pole from GP19 to GND, so the program can show the state. Check with a
 multimeter that the microphone's VDD pin reads about 0 V with the switch on.
 
 ## The most important tests for the book

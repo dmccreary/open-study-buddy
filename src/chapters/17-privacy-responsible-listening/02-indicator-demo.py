@@ -1,10 +1,10 @@
 # Chapter 17, Test 02: Hold MODE to listen, and the device says so
 # The first version of the listening indicator you can SEE. Hold MODE and the
 # microphone opens through the Listener: the onboard LED lights and the status
-# bar shows LISTENING. Let go and both go off. If a mute switch is wired to GP9
+# bar shows LISTENING. Let go and both go off. If a mute switch is wired to GP19
 # (see test 01), flipping it on shows "MIC OFF" and the microphone stays closed.
 #
-# Parts: display, MODE button, microphone. Optional: the GP9 mute switch.
+# Parts: display, MODE button, microphone. Optional: the GP19 mute switch.
 #
 # PASS: the LED and the status bar change the moment you press MODE, and go
 # back the moment you let go, every time. Try to catch the indicator being wrong.
@@ -12,7 +12,7 @@
 # Press Stop (Ctrl-C) to end it; the microphone is closed on the way out.
 
 NAME = "02-indicator-demo.py"
-VERSION = "1.0"
+VERSION = "1.1"
 print("{} v{}".format(NAME, VERSION))
 
 import time
@@ -21,7 +21,7 @@ from machine import Pin
 import config
 from listening_indicator import Listener, LedIndicator, StatusBarIndicator, OFF
 
-MUTE_SENSE_PIN = 9
+MUTE_SENSE_PIN = 19
 
 display = config.init_display()
 config.set_backlight(True)

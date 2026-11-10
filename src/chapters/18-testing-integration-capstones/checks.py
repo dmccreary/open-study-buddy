@@ -169,7 +169,8 @@ def check_mic(config, frames=12):
     except Exception as error:
         hint = ""
         if "sck+1" in str(error):
-            hint = " (word select must be the pin after the clock: SCK GP10, WS GP11)"
+            hint = " (word select must be the pin after the clock: SCK GP{}, WS GP{})".format(
+                config.MIC_SCK_PIN, config.MIC_SCK_PIN + 1)
         return FAIL, "microphone failed to start: {}{}".format(error, hint), []
     finally:
         if mic is not None:
@@ -179,8 +180,9 @@ def check_mic(config, frames=12):
     bits = sum(s["bits"] for s in stats) / len(stats)
     dc = sum(s["dc"] for s in stats) // len(stats)
     if hi == lo:
-        return FAIL, ("flat line: every sample is {}. Check SCK GP10, WS GP11, SD GP12; "
-                      "VDD on 3V3; GND and L/R on GND; the mute switch").format(lo), stats
+        return FAIL, ("flat line: every sample is {}. Check SCK GP{}, WS GP{}, SD GP{}; "
+                      "VDD on 3V3; GND and L/R on GND; the mute switch").format(
+                          lo, config.MIC_SCK_PIN, config.MIC_WS_PIN, config.MIC_SD_PIN), stats
     clipped = sum(s["clipped"] for s in stats)
     if clipped:
         return FAIL, ("{} samples at full scale: too loud, or the SD wire is picking up "

@@ -20,8 +20,8 @@ import sys
 MIC = [
     ("M1", "An error at start, and it says 'must be sck+1'?",
      "The WS (word select) wire is not on the pin after SCK",
-     "Compare with the pin table: SCK GP10, WS GP11",
-     "Move the wire back. Do not edit config.py: SCK on GP12 would need WS on GP13, the MODE button",
+     "Compare with the pin table: SCK GP13, WS GP14",
+     "Move the wire back. Do not edit config.py: SCK on GP15 would need WS on GP16, the MODE button",
      "kit README; Ch 4, 8"),
     ("M2", "An error at start, with another message?",
      "A previous run left the I2S block open, or memory is short (likely)",
@@ -53,7 +53,7 @@ MIC = [
 AUDIO = [
     ("A1", "Is the speaker silent, not distorted?",
      "No power or ground at the amplifier, or a signal wire is wrong",
-     "Probe 04; VIN and GND, then BCLK GP20, LRC GP21, DIN GP19",
+     "Probe 04; VIN and GND, then BCLK GP9, LRC GP10, DIN GP11",
      "Fix the wire. If I2S() raises an error, LRC must be right after BCLK",
      "kit test 05"),
     ("A2", "Does it crackle only when loud?",

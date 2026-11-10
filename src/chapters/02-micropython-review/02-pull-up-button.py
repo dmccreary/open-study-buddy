@@ -1,5 +1,5 @@
 # Chapter 2, Test 02: A pull-up button
-# Reads the MODE button (GP13) and prints each change. The pin is an input with
+# Reads the MODE button (GP16) and prints each change. The pin is an input with
 # the built-in pull-up, so it reads 1 when idle and 0 while pressed.
 # Needs the MODE button wired as in the kit README.
 #

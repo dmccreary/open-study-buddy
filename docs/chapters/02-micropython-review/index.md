@@ -203,9 +203,9 @@ Every kit lab imports `config.py` rather than repeating pin numbers. That is the
 ```python
 from machine import Pin
 
-BUTTON_MODE_PIN = 13
-BUTTON_INCREMENT_PIN = 14
-BUTTON_DECREMENT_PIN = 15
+BUTTON_MODE_PIN = 16
+BUTTON_INCREMENT_PIN = 17
+BUTTON_DECREMENT_PIN = 18
 
 
 def init_buttons():
@@ -261,12 +261,12 @@ The first argument, `0`, picks SPI block 0. The `baudrate` is the requested cloc
 
 ### GPIO Pins
 
-A **GPIO pin** (general-purpose input/output) is a metal pin the program can either read as a 0 or a 1, or drive to a 0 or a 1. The Pico's pins are labeled GP0, GP1, and so on, and the number in `Pin(13)` is the GP number, not the physical position on the board.
+A **GPIO pin** (general-purpose input/output) is a metal pin the program can either read as a 0 or a 1, or drive to a 0 or a 1. The Pico's pins are labeled GP0, GP1, and so on, and the number in `Pin(16)` is the GP number, not the physical position on the board.
 
 As an input, a pin reads a voltage and reports `1` for high (near 3.3 V) or `0` for low (near 0 V). As an output, it sets that voltage. A pin set up as an input with a **pull-up** is held at 1 by a built-in resistor until something connects it to ground. That is how the kit reads a button.
 
 ```python
-button = Pin(13, Pin.IN, Pin.PULL_UP)
+button = Pin(16, Pin.IN, Pin.PULL_UP)
 print(button.value())   # 1 when not pressed, 0 while pressed
 ```
 
@@ -286,10 +286,11 @@ The table below collects the pin facts from the kit, so you can see them in one 
 
 | Part | Pico pins | Pin mode |
 |------|-----------|----------|
-| Buttons MODE, UP, DOWN | GP13, GP14, GP15 | Input with pull-up |
 | Display clock, data, reset, data/command, chip select, backlight | GP2 to GP7 | SPI and outputs |
-| Microphone clock, word select, data | GP10, GP11, GP12 | I2S receive |
-| Amplifier data, bit clock, left/right clock | GP19, GP20, GP21 | I2S transmit |
+| Amplifier bit clock, left/right clock, data | GP9, GP10, GP11 | I2S transmit |
+| Amplifier gain | GP12 | Output, or left floating |
+| Microphone clock, word select, data | GP13, GP14, GP15 | I2S receive |
+| Buttons MODE, UP, DOWN | GP16, GP17, GP18 | Input with pull-up |
 
 ### Timers
 
@@ -321,7 +322,7 @@ def on_press(pin):
     global pressed
     pressed = True
 
-button = Pin(13, Pin.IN, Pin.PULL_UP)
+button = Pin(16, Pin.IN, Pin.PULL_UP)
 button.irq(trigger=Pin.IRQ_FALLING, handler=on_press)
 
 while True:

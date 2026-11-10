@@ -9,7 +9,7 @@
 # ASK and you decide.
 
 NAME = "04-speaker-probe.py"
-VERSION = "1.0"
+VERSION = "1.1"
 print("{} v{}".format(NAME, VERSION))
 
 import time
@@ -32,5 +32,7 @@ verdict, detail, rise = checks.check_speaker(config, with_mic=True)
 print()
 print("RESULT:", verdict, "-", detail)
 if verdict != checks.PASS:
-    print("If you heard nothing, check (Chapter 4): amplifier VIN and GND, then BCLK GP20,")
-    print("LRC GP21, DIN GP19. If it buzzes or crackles, lower VOLUME in config.py.")
+    print("If you heard nothing, check (Chapter 4): amplifier VIN and GND, then BCLK GP{},".format(
+        config.I2S_BCLK_PIN))
+    print("LRC GP{}, DIN GP{}. If it buzzes or crackles, lower VOLUME in config.py.".format(
+        config.I2S_LRC_PIN, config.I2S_DIN_PIN))

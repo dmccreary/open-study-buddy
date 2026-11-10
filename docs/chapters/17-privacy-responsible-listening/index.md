@@ -491,15 +491,15 @@ A **hardware mute switch** is a switch you can see and touch that stops the micr
 
 | | Software-visible mute | True hardware mute |
 |---|---|---|
-| Wiring | A switch between GP9 and GND | A switch in series with the microphone's VDD wire (3V3 to the switch, switch to VDD) |
+| Wiring | A switch between GP19 and GND | A switch in series with the microphone's VDD wire (3V3 to the switch, switch to VDD) |
 | What it cuts | Nothing physical. Firmware reads the pin and chooses to stop listening | The microphone's power |
 | If the code has a bug | The microphone may still listen | The microphone is off |
-| Can the program show the state? | Yes: it reads GP9 | Only if a second pole of the switch also grounds GP9 |
+| Can the program show the state? | Yes: it reads GP19 | Only if a second pole of the switch also grounds GP19 |
 | Parts | A switch | A two-pole slide switch |
 
-A switch to GND on a pin that firmware reads is a software-visible mute. It is useful, since the Listener closes the microphone and the screen says MIC OFF, but it is only a promise by the code. A switch in series with the microphone's 3V3 is a true hardware mute: with it open the microphone has no power, whatever the code does. The kit's recommended build is the two-pole version, with one pole in the VDD wire and the other from GP9 (physical pin 12) to GND. A multimeter on the microphone's VDD pin should read about 0 V with the switch on, which is a check anyone can make.
+A switch to GND on a pin that firmware reads is a software-visible mute. It is useful, since the Listener closes the microphone and the screen says MIC OFF, but it is only a promise by the code. A switch in series with the microphone's 3V3 is a true hardware mute: with it open the microphone has no power, whatever the code does. The kit's recommended build is the two-pole version, with one pole in the VDD wire and the other from GP19 (physical pin 25) to GND. A multimeter on the microphone's VDD pin should read about 0 V with the switch on, which is a check anyone can make.
 
-Cutting the microphone's clock line (SCK, GP10) is another way to stop it, since the part needs that clock to send data. Cutting power is simpler to explain and to verify.
+Cutting the microphone's clock line (SCK, GP13) is another way to stop it, since the part needs that clock to send data. Cutting power is simpler to explain and to verify.
 
 !!! mascot-warning "A Software Mute Is a Promise, Not a Wall"
     ![Sage warning](../../img/mascot/warning.png){ class="mascot-admonition-img" }
@@ -598,7 +598,7 @@ The template is `privacy-and-consent-plan-template.md` in the chapter folder, wi
 | Where processing happens | School server in the library (a Raspberry Pi) |
 | Outside services | None |
 | Agent permissions | Read the school calendar and speak; no sending, deleting, or web access |
-| Hardware mute and indicator | Two-pole switch cutting the microphone's 3V3 and reporting to GP9; status bar shows LISTENING or MIC OFF |
+| Hardware mute and indicator | Two-pole switch cutting the microphone's 3V3 and reporting to GP19; status bar shows LISTENING or MIC OFF |
 | Parent notice and opt-out | Letter home; opt-out students use a computer simulation with no grade penalty |
 | Always-on approval | Not applicable |
 
@@ -637,8 +637,8 @@ Test yourself with these questions, and click each one to reveal its answer.
 ??? question "A cloud speech service deletes your audio after 24 hours but keeps the text. Is the data gone? Click to expand"
     No. The transcript is still personal data and can be as revealing as audio. The Alexa case turned partly on transcripts that remained after recordings were deleted. Check what the service keeps, for how long, and whether you can turn it off.
 
-??? question "A friend says the microphone is off because the mute switch is wired to GP9. What would you check? Click to expand"
-    Whether the switch cuts power. A switch to GND on GP9 is only read by the program, which then chooses to stop listening, so a bug could leave the microphone running. For a true hardware mute the switch must be in series with the microphone's VDD, which you can confirm with a multimeter on VDD.
+??? question "A friend says the microphone is off because the mute switch is wired to GP19. What would you check? Click to expand"
+    Whether the switch cuts power. A switch to GND on GP19 is only read by the program, which then chooses to stop listening, so a bug could leave the microphone running. For a true hardware mute the switch must be in series with the microphone's VDD, which you can confirm with a multimeter on VDD.
 
 ??? question "Why is it not enough to delete `secrets.py` in a new commit after committing it by mistake? Click to expand"
     The file stays in the repository's history, where anyone with a copy can read it. Rotate the secret: change the Wi-Fi password or revoke the token.

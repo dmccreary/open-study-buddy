@@ -3,7 +3,7 @@
 # 200 microseconds for 40 ms and prints it as a string of 1s and 0s (one
 # character per 200 us). It repeats for 8 presses, prints how many times the pin
 # changed value and when it last changed, and finally suggests a debounce
-# time. Needs the MODE button (GP13).
+# time. Needs the MODE button (GP16).
 #
 # PASS: you see strings like 11110100100000000..., and a summary. Compare the
 # "last change" times with the 30 ms debounce in the kit. Real bounce is
@@ -13,7 +13,7 @@
 # by the Chapter 7 debounce activity, so you can paste your own switch into it.
 
 NAME = "02-bounce-capture.py"
-VERSION = "1.0"
+VERSION = "1.1"
 print("{} v{}".format(NAME, VERSION))
 
 import time
@@ -23,7 +23,7 @@ PRESSES = 8
 STEP_US = 200
 SAMPLES = 200                  # 200 x 200 us = 40 ms
 
-button = Pin(13, Pin.IN, Pin.PULL_UP)
+button = Pin(16, Pin.IN, Pin.PULL_UP)
 settle_times = []
 change_counts = []
 

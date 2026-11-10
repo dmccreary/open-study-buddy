@@ -315,7 +315,7 @@ The **I2S bus** is a three-wire serial connection designed for digital audio. Bo
 - **Word select** (WS or LRC): marks the start of each sample and whether it belongs to the left or right channel.
 - **Serial data** (SD or DIN): carries the audio bits themselves.
 
-The microphone is wired for **I2S receive**: SCK on GP10, WS on GP11, SD on GP12. The amplifier is wired for **I2S transmit**: BCLK on GP20, LRC on GP21, DIN on GP19. MicroPython's `machine.I2S` class requires word select to be the pin right after the bit clock, which is why each pair sits on neighboring pins.
+The microphone is wired for **I2S receive**: SCK on GP13, WS on GP14, SD on GP15. The amplifier is wired for **I2S transmit**: BCLK on GP9, LRC on GP10, DIN on GP11. MicroPython's `machine.I2S` class requires word select to be the pin right after the bit clock, which is why each pair sits on neighboring pins.
 
 See [Chapter 8: I2S Audio](chapters/08-i2s-audio/index.md) and the [I2S Signal Reader](sims/i2s-signal-reader/index.md).
 
@@ -396,9 +396,9 @@ The kit's **pin assignment table** is the one document you wire from and debug a
 | Part | Signals and Pico pins |
 |------|------------------------|
 | Display (SPI) | SCL GP2, SDA GP3, RST GP4, DC GP5, CS GP6, BL (backlight) GP7, VCC to 3V3 |
-| Microphone (I2S receive) | SCK GP10, WS GP11, SD GP12, L/R to GND, VDD to 3V3 |
-| Buttons | MODE GP13, UP GP14, DOWN GP15, other legs to GND |
-| Amplifier (I2S transmit) | DIN GP19, BCLK GP20, LRC GP21, GAIN GP18, VIN to VBUS or 3V3 |
+| Microphone (I2S receive) | SCK GP13, WS GP14, SD GP15, L/R to GND, VDD to 3V3 |
+| Buttons | MODE GP16, UP GP17, DOWN GP18, other legs to GND |
+| Amplifier (I2S transmit) | BCLK GP9, LRC GP10, DIN GP11, GAIN GP12, VIN to VBUS or 3V3 |
 
 Three rules hold the table together. Each GP pin appears once. The I2S pairs are neighbors, because word select must be the pin after the bit clock. And nothing connects to GP23, GP24, GP25, or GP29, which belong to the Pico 2 W's wireless chip.
 
@@ -415,7 +415,7 @@ The **machine library** is the MicroPython module that gives programs direct acc
 | `I2S` | The I2S audio bus | Reading the microphone, driving the amplifier |
 | `Timer` | A hardware timer that fires at regular intervals | Periodic checks without blocking the loop |
 
-For example, `Pin(13, Pin.IN, Pin.PULL_UP)` makes GP13 an input with an internal pull-up resistor, which is how the Mode button is read. A `Pin` can also trigger an **interrupt** on a falling edge, running a short handler the moment the button is pressed.
+For example, `Pin(16, Pin.IN, Pin.PULL_UP)` makes GP16 an input with an internal pull-up resistor, which is how the Mode button is read. A `Pin` can also trigger an **interrupt** on a falling edge, running a short handler the moment the button is pressed.
 
 The kit's `config.py` wraps these calls in helper functions such as `config.init_display()`, so the pin numbers live in one place.
 
@@ -453,11 +453,11 @@ See [Chapter 8](chapters/08-i2s-audio/index.md).
 
 ### How does the MAX98357A amplifier drive the speaker?
 
-The **MAX98357A** is an I2S digital audio amplifier on a small breakout board. The Pico uses **I2S transmit** to send it a stream of samples on three wires (DIN GP19, BCLK GP20, LRC GP21). The chip converts those numbers back into an electrical signal strong enough to move the **speaker** cone, so the whole path from sample to sound is digital until the last stage.
+The **MAX98357A** is an I2S digital audio amplifier on a small breakout board. The Pico uses **I2S transmit** to send it a stream of samples on three wires (BCLK GP9, LRC GP10, DIN GP11). The chip converts those numbers back into an electrical signal strong enough to move the **speaker** cone, so the whole path from sample to sound is digital until the last stage.
 
 It is a **Class-D amplifier**, which means its output switches fully on and off very rapidly instead of operating partly on. Switching wastes very little power as heat, so the board stays cool and runs from USB power.
 
-The Pico has two ways to give it sound. **Tone generation** builds samples for a pure frequency, such as an 880 Hz confirmation beep, usually by reading a precomputed **sine table** rather than calling `sin()` for every sample. **Stored audio playback** streams samples from a WAV file or a buffer, which is how spoken replies from the text-to-speech service are played. **Volume control** scales the samples before they are sent; the GAIN pin (GP18) sets the amplifier's gain, which the kit's `set_gain()` function picks in software, 9 dB by default.
+The Pico has two ways to give it sound. **Tone generation** builds samples for a pure frequency, such as an 880 Hz confirmation beep, usually by reading a precomputed **sine table** rather than calling `sin()` for every sample. **Stored audio playback** streams samples from a WAV file or a buffer, which is how spoken replies from the text-to-speech service are played. **Volume control** scales the samples before they are sent; the GAIN pin (GP12) sets the amplifier's gain, which the kit's `set_gain()` function picks in software, 9 dB by default.
 
 See [Chapter 8](chapters/08-i2s-audio/index.md) and [Chapter 4](chapters/04-pico-kit-hardware/index.md).
 
@@ -673,7 +673,7 @@ Work from the outside in, one cause at a time.
 
 1. **Power:** the INMP441 is a 3.3 V part. Check that VDD goes to 3V3, not VBUS. A 5 V supply can damage it.
 2. **Ground and channel select:** L/R and GND must both go to ground. L/R to ground selects the left channel, which is what the code reads.
-3. **I2S pins:** SCK must be GP10, WS GP11, and SD GP12. If WS is on the wrong pin, `I2S()` raises an error saying word select must be the pin after SCK, but a swapped SD wire just gives silence or noise.
+3. **I2S pins:** SCK must be GP13, WS GP14, and SD GP15. If WS is on the wrong pin, `I2S()` raises an error saying word select must be the pin after SCK, but a swapped SD wire just gives silence or noise.
 4. **Configuration:** check that the code uses receive mode, the right sample rate, and mono format.
 5. **Mute switch:** if your build has a hardware mute switch, make sure it is not cutting power.
 
@@ -973,11 +973,11 @@ See [Chapter 17](chapters/17-privacy-responsible-listening/index.md).
 
 ### What is the difference between a software mute and a true hardware mute?
 
-A **software-visible mute** is a switch wired between a pin (GP9) and ground. The firmware reads the pin and *chooses* to stop listening. It is useful, but it is only a promise by the code: if the program has a bug, the microphone may still be listening.
+A **software-visible mute** is a switch wired between a pin (GP19) and ground. The firmware reads the pin and *chooses* to stop listening. It is useful, but it is only a promise by the code: if the program has a bug, the microphone may still be listening.
 
 A **true hardware mute** puts the switch in series with the microphone's power wire, so when the switch is open the microphone has no power at all, whatever the code does. Anyone can verify it with a multimeter: the microphone's VDD pin should read about 0 V when muted.
 
-The kit's recommended build uses a **two-pole slide switch** that does both. One pole cuts the microphone's 3V3 power, and the other grounds GP9, so the program can also show "MIC OFF" on the screen and close the I2S bus. Pair it with a visible **listening indicator**, such as a red ring on the display or an LED, that is on whenever the microphone is open.
+The kit's recommended build uses a **two-pole slide switch** that does both. One pole cuts the microphone's 3V3 power, and the other grounds GP19, so the program can also show "MIC OFF" on the screen and close the I2S bus. Pair it with a visible **listening indicator**, such as a red ring on the display or an LED, that is on whenever the microphone is open.
 
 See [Chapter 17](chapters/17-privacy-responsible-listening/index.md) and the [Threat Model Sorter](sims/threat-model-sorter/index.md).
 

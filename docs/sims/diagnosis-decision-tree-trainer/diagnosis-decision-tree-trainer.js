@@ -15,7 +15,7 @@ let defaultTextSize = 16;
 
 const TREES = {
   mic: { name: 'Silent microphone', rows: [
-    ['M1', 'An error at start, and it says "must be sck+1"?', 'WS is not on the pin after SCK', 'Compare with the table: SCK GP10, WS GP11', 'Move the wire back. Do not edit config.py: SCK on GP12 would need WS on GP13, the MODE button'],
+    ['M1', 'An error at start, and it says "must be sck+1"?', 'WS is not on the pin after SCK', 'Compare with the table: SCK GP13, WS GP14', 'Move the wire back. Do not edit config.py: SCK on GP15 would need WS on GP16, the MODE button'],
     ['M2', 'An error at start, with another message?', 'A previous run left the I2S block open, or memory is short (likely)', 'Ctrl-D, run again, print gc.mem_free()', 'Close the microphone in a finally block'],
     ['M3', 'No error, but the spread is 0, a flat line?', 'Swapped SCK, WS, or SD wires; no power; or the mute switch is on', 'In order: SCK, WS, SD; VDD on 3V3, not 5 V; GND and L/R on GND; the mute switch', 'Re-seat the wires. A swapped microphone starts with no error and sends zeros'],
     ['M4', 'The loudness barely changes when you talk next to it?', 'L/R is on 3V3, so the microphone answers in the right slot while the program reads the left', 'Look at where L/R goes', 'Move L/R to GND'],
@@ -23,7 +23,7 @@ const TREES = {
     ['M6', null, 'The microphone works; the level you chose is the problem', 'Probe 03: does a clap jump several bits?', 'Calibrate the noise floor first; for quiet playback raise PLAYBACK_GAIN']
   ] },
   audio: { name: 'Distorted audio', rows: [
-    ['A1', 'Is the speaker silent, not distorted?', 'No power or ground at the amplifier, or a signal wire is wrong', 'Probe 04; VIN and GND, then BCLK GP20, LRC GP21, DIN GP19', 'Fix the wire. If I2S() raises an error, LRC must be right after BCLK'],
+    ['A1', 'Is the speaker silent, not distorted?', 'No power or ground at the amplifier, or a signal wire is wrong', 'Probe 04; VIN and GND, then BCLK GP9, LRC GP10, DIN GP11', 'Fix the wire. If I2S() raises an error, LRC must be right after BCLK'],
     ['A2', 'Does it crackle only when loud?', 'The samples clip: peaks are cut flat', 'Lower VOLUME; the crackle should go', 'Reduce VOLUME (test 05) or PLAYBACK_GAIN (test 07)'],
     ['A3', 'Is the pitch wrong?', 'The playback sample rate is not the recording rate', 'Print both rates', 'Use MIC_SAMPLE_RATE for both'],
     ['A4', 'Does it stutter or have gaps?', 'The loop takes longer than one 40 ms frame: a frame overrun', 'Wrap the microphone in OverrunCounter; read the summary', 'Redraw only changed regions, or slice big jobs'],

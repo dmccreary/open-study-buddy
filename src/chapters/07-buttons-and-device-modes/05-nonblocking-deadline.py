@@ -11,13 +11,13 @@
 # time; the non-blocking loop runs many thousands of passes.
 
 NAME = "05-nonblocking-deadline.py"
-VERSION = "1.0"
+VERSION = "1.1"
 print("{} v{}".format(NAME, VERSION))
 
 import time
 from machine import Pin
 
-button = Pin(13, Pin.IN, Pin.PULL_UP)
+button = Pin(16, Pin.IN, Pin.PULL_UP)
 SECONDS = 3
 
 print("Blocking: sleep(1) x", SECONDS)

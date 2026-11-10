@@ -37,7 +37,7 @@ budget. Please record:
 ## Optional measurement
 
 If you have a logic analyzer or oscilloscope, probe the microphone's SCK
-(GP10) while `02` runs. The chapter says the bit clock should be about
+(GP13) while `02` runs. The chapter says the bit clock should be about
 12,800 x 32 x 2 = 819,200 Hz. If you measure half that, the I2S bus is only
 clocking one channel's slot in MONO mode and the chapter's formula needs a note.
 This measurement is postponed until a logic analyzer or oscilloscope is available.

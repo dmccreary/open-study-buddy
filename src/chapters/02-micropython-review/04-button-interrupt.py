@@ -3,7 +3,7 @@
 #   raw edges   every falling edge the interrupt sees, bounce included
 #   interrupt   falling edges with a 30 ms debounce, counted in the ISR
 #   polling     presses a slow loop notices (checks the pin every POLL_MS)
-# Needs the MODE button (GP13).
+# Needs the MODE button (GP16).
 #
 # PASS: press the button quickly 20 times. Expect: raw edges >= interrupt, and
 # interrupt >= polling when POLL_MS is large. If raw edges is much bigger than
@@ -13,7 +13,7 @@
 # Ctrl-C prints the totals.
 
 NAME = "04-button-interrupt.py"
-VERSION = "1.0"
+VERSION = "1.1"
 print("{} v{}".format(NAME, VERSION))
 
 import time
@@ -22,7 +22,7 @@ from machine import Pin
 POLL_MS = 100          # try 5, 20, 100, 250
 DEBOUNCE_MS = 30
 
-button = Pin(13, Pin.IN, Pin.PULL_UP)
+button = Pin(16, Pin.IN, Pin.PULL_UP)
 
 raw_edges = 0
 irq_presses = 0

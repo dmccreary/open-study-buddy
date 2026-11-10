@@ -1,11 +1,11 @@
 # Chapter 17, Test 01: A mute switch you can see and measure
-# Watches a mute switch wired between GP9 and GND, and (if the microphone is
+# Watches a mute switch wired between GP19 and GND, and (if the microphone is
 # wired) opens it through the Listener and reports what the microphone sends.
 # Runs for 30 seconds. Flip the switch a few times while it runs.
 #
 # Two kinds of mute switch, and this file shows the difference:
 #
-#   SOFTWARE-VISIBLE mute: a switch from GP9 to GND. Firmware reads the pin and
+#   SOFTWARE-VISIBLE mute: a switch from GP19 to GND. Firmware reads the pin and
 #   chooses to stop listening. The microphone is still powered, so the mute
 #   only works as long as the program is honest. The Listener closes the
 #   microphone when the pin reads 0 and the status shows "MIC OFF".
@@ -13,10 +13,10 @@
 #   TRUE HARDWARE mute: a switch in series with the microphone's VDD (3V3)
 #   wire. With the switch open the microphone has no power, whatever the
 #   program does. Use a two-pole switch: one pole in the VDD wire, the other
-#   pole from GP9 to GND so the firmware can still SHOW the state.
+#   pole from GP19 to GND so the firmware can still SHOW the state.
 #
-# Parts: Pico. Optional: a slide switch on GP9 (the other leg to GND), the
-# microphone. GP9 is not used by anything in config.py (Chapter 4).
+# Parts: Pico. Optional: a slide switch on GP19 (the other leg to GND), the
+# microphone. GP19 is not used by anything in config.py (Chapter 4).
 #
 # PASS: with the switch off the pin reads 1 and the microphone opens; with the
 # switch on the pin reads 0, the microphone closes, and the shell says MIC OFF.
@@ -24,7 +24,7 @@
 # is cut ("spread" below): the chapter does not claim a number.
 
 NAME = "01-mute-switch.py"
-VERSION = "1.0"
+VERSION = "1.1"
 print("{} v{}".format(NAME, VERSION))
 
 import struct
@@ -34,7 +34,7 @@ from machine import Pin
 import config
 from listening_indicator import Listener, LedIndicator, LISTENING
 
-MUTE_SENSE_PIN = 9          # switch between this pin and GND; reads 0 = muted
+MUTE_SENSE_PIN = 19         # switch between this pin and GND; reads 0 = muted
 RUN_SECONDS = 30
 FRAME_BYTES = 2048          # 512 samples, 40 ms
 

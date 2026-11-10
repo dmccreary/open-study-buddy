@@ -57,7 +57,7 @@ Please record, so the chapter can replace estimates with measurements:
   against a fake Pico layer with a virtual clock, fake pins, a fake I2S that
   blocks like the real one, and synthetic sound. This catches typos and logic
   errors. It also checked the failure paths: a flat-line microphone, a
-  microphone WS wire on GP13, and missing font files.
+  microphone WS wire on GP16, and missing font files.
 - `09` uses synthetic frames (a fixed random seed). It shows how the logic
   behaves, not how a real clap, voice, or fan looks to your microphone.
 - Every number printed in the chapter from `08` and `09` is the output of this

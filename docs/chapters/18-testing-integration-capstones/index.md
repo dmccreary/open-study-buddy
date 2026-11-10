@@ -127,7 +127,7 @@ The four verdicts say what the program actually knows. `PASS` means it measured 
 | `06-wifi-probe.py` | Wi-Fi radio | Networks seen, channel, signal; joins if `secrets.py` exists | A 5 GHz-only network never appears |
 | `07-wiring-check.py` | All wires | The wire list from `config.py` and the pin-plan rules | It cannot see a wire |
 
-*Worked example.* You run `03-mic-probe.py` and the verdict says `FAIL - flat line: every sample is 12345`. A flat line means the microphone started with no error but sent the same number every time. The probe lists what to check, in the kit README's order: SCK on GP10, WS on GP11, SD on GP12; VDD on 3V3; GND and L/R on GND; and the Chapter 17 mute switch. You find SD and SCK swapped, fix them, and the next run prints a `PASS` line. (The numbers in this example are made up to show the format.)
+*Worked example.* You run `03-mic-probe.py` and the verdict says `FAIL - flat line: every sample is 12345`. A flat line means the microphone started with no error but sent the same number every time. The probe lists what to check, in the kit README's order: SCK on GP13, WS on GP14, SD on GP15; VDD on 3V3; GND and L/R on GND; and the Chapter 17 mute switch. You find SD and SCK swapped, fix them, and the next run prints a `PASS` line. (The numbers in this example are made up to show the format.)
 
 Every probe calls the same functions in `checks.py`, which is also what the self-test uses. One implementation means a bug is fixed once.
 
@@ -149,22 +149,22 @@ Every probe calls the same functions in `checks.py`, which is also what the self
 | Display | DC | GP5 | 7 |
 | Display | CS | GP6 | 9 |
 | Display | BL | GP7 | 10 |
-| Microphone | SCK | GP10 | 14 |
-| Microphone | WS | GP11 | 15 |
-| Microphone | SD | GP12 | 16 |
-| Button MODE | one leg | GP13 | 17 |
-| Button UP | one leg | GP14 | 19 |
-| Button DOWN | one leg | GP15 | 20 |
-| Amplifier | DIN | GP19 | 25 |
-| Amplifier | BCLK | GP20 | 26 |
-| Amplifier | LRC | GP21 | 27 |
-| Amplifier | GAIN | GP18 | 24 |
+| Microphone | SCK | GP13 | 17 |
+| Microphone | WS | GP14 | 19 |
+| Microphone | SD | GP15 | 20 |
+| Button MODE | one leg | GP16 | 21 |
+| Button UP | one leg | GP17 | 22 |
+| Button DOWN | one leg | GP18 | 24 |
+| Amplifier | DIN | GP11 | 15 |
+| Amplifier | BCLK | GP9 | 12 |
+| Amplifier | LRC | GP10 | 14 |
+| Amplifier | GAIN | GP12 | 16 |
 
 The power wires follow: display VCC and microphone VDD to 3V3 (header pin 36), amplifier VIN to VBUS or 3V3 (pin 40 or 36), and every GND, including the microphone's L/R and the buttons' other legs, to any GND pin. The tool prints these too. Sixteen signal wires are checked by the program; the power wires it cannot see, so you check those by eye.
 
 The method is a ritual. Print the list, put a finger on one wire at a time, say its part and Pico pin out loud, and tick it. Do power and ground last, and check that the microphone's VDD goes to 3V3, not 5 V (Chapter 4). Then run `check_pin_plan`, which tests three rules the table cannot show by itself: each I2S word-select pin is the clock pin plus one, no GP number is used twice, and none of GP23, GP24, GP25, or GP29 (the wireless chip's) is used.
 
-*Worked example.* The kit's `config.py` is edited so the microphone's WS is GP13, to match a wire placed there. The pin-plan check prints `FAIL - microphone word select GP13 must be GP11 (clock + 1); GP13 used by 'Microphone WS' and 'Button MODE one leg'`. It names the rule *and* the second victim, because GP13 is also the MODE button. The fix is the one the kit README gives: move the wire, and do not edit `config.py` to match the wrong wire.
+*Worked example.* The kit's `config.py` is edited so the microphone's WS is GP16, to match a wire placed there. The pin-plan check prints `FAIL - microphone word select GP16 must be GP14 (clock + 1); GP16 used by 'Microphone WS' and 'Button MODE one leg'`. It names the rule *and* the second victim, because GP16 is also the MODE button. The fix is the one the kit README gives: move the wire, and do not edit `config.py` to match the wrong wire.
 
 ## The Self-Test Program
 
@@ -184,15 +184,15 @@ A **self-test program** runs every check, prints a verdict per subsystem, and sh
 
 The speaker check borrows Chapter 8's finding that the device hears itself. On the test board a 1 kHz tone at volume 40 read 3.9 bits above the quiet room (about 15 times louder), so the check asks for half of that, 2.0 bits. This is a number from one board. If your speaker is quieter, or the microphone is farther away, the check says `ASK` instead of `FAIL`, because "the microphone did not hear it" is not proof that nobody could.
 
-*Worked example.* This is what the self-test prints when the microphone's WS wire is on GP13 (produced by running the real program against a fake Pico layer where the fault was simulated, so the timings are left out).
+*Worked example.* This is what the self-test prints when the microphone's WS wire is on GP16 (produced by running the real program against a fake Pico layer where the fault was simulated, so the timings are left out).
 
 ```
 Files       PASS config.py, driver and both fonts are present
 Memory      PASS heap 180,000 bytes free; a 3 s recording fits
-Pin plan    FAIL microphone word select GP13 must be GP11 (clock + 1); GP13 used by 'Microphone WS' and 'Button MODE one leg'
+Pin plan    FAIL microphone word select GP16 must be GP14 (clock + 1); GP16 used by 'Microphone WS' and 'Button MODE one leg'
 Buttons     PASS all three read 1 (not pressed); an unconnected wire also reads 1
 Display     PASS a person saw the ring and the text
-Microphone  FAIL microphone failed to start: invalid ws (must be sck+1) (word select must be the pin after the clock: SCK GP10, WS GP11)
+Microphone  FAIL microphone failed to start: invalid ws (must be sck+1) (word select must be the pin after the clock: SCK GP13, WS GP14)
 Speaker     PASS a person heard the beep
 Wi-Fi       PASS radio sees 2 network(s); no secrets.py, so no connection tried
 
@@ -211,7 +211,7 @@ The symptom is a level meter that never moves, or a probe that reports a flat li
 
 | Row | Ask | Likely cause | Quick test | Fix |
 |-----|-----|--------------|------------|-----|
-| M1 | An error at start, and it says `must be sck+1`? | WS is not on the pin after SCK | Compare with the table: SCK GP10, WS GP11 | Move the wire back. Do not edit `config.py`: SCK on GP12 would need WS on GP13, the MODE button |
+| M1 | An error at start, and it says `must be sck+1`? | WS is not on the pin after SCK | Compare with the table: SCK GP13, WS GP14 | Move the wire back. Do not edit `config.py`: SCK on GP15 would need WS on GP16, the MODE button |
 | M2 | An error at start, with another message? | A previous run left the I2S block open, or memory is short (likely) | Ctrl-D, run again, print `gc.mem_free()` | Close the microphone in a `finally` block |
 | M3 | No error, but the spread is 0 (a flat line)? | Swapped SCK, WS, or SD wires; no power; or the mute switch is on | In order: SCK, WS, SD; VDD on 3V3, not 5 V; GND and L/R on GND; the mute switch | Re-seat the wires. A swapped microphone starts with no error and sends zeros |
 | M4 | The loudness barely changes when you talk next to it? | L/R is on 3V3, so the microphone answers in the right slot while the program reads the left | Look at where L/R goes | Move L/R to GND |
@@ -224,7 +224,7 @@ The symptom is a sound that is wrong: silent, crackling, the wrong pitch, stutte
 
 | Row | Ask | Likely cause | Quick test | Fix |
 |-----|-----|--------------|------------|-----|
-| A1 | Is the speaker silent, not distorted? | No power or ground at the amplifier, or a signal wire is wrong | Probe 04; VIN and GND, then BCLK GP20, LRC GP21, DIN GP19 | Fix the wire. If `I2S()` raises an error, LRC must be right after BCLK |
+| A1 | Is the speaker silent, not distorted? | No power or ground at the amplifier, or a signal wire is wrong | Probe 04; VIN and GND, then BCLK GP9, LRC GP10, DIN GP11 | Fix the wire. If `I2S()` raises an error, LRC must be right after BCLK |
 | A2 | Does it crackle only when loud? | The samples clip: peaks are cut flat | Lower `VOLUME`; the crackle should go | Reduce `VOLUME` (test 05) or `PLAYBACK_GAIN` (test 07) |
 | A3 | Is the pitch wrong, too high and fast or too low and slow? | The playback sample rate is not the recording rate | Print both rates | Use `MIC_SAMPLE_RATE` for both |
 | A4 | Does it stutter or have gaps? | The loop takes longer than one 40 ms frame: a frame overrun | Wrap the microphone in `OverrunCounter`; read the summary | Redraw only changed regions, or slice big jobs |

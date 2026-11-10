@@ -19,19 +19,19 @@ let lineSelect, checkButton, nextButton, restartButton;
 // ---- Listings (spec order) ----
 const listings = [
   { part: 'Microphone',
-    lines: ['SCK to GP10', 'WS to GP11', 'SD to GP12', 'L/R to GND', 'VDD to VBUS (5 V)', 'GND to GND'],
+    lines: ['SCK to GP13', 'WS to GP14', 'SD to GP15', 'L/R to GND', 'VDD to VBUS (5 V)', 'GND to GND'],
     faulty: 'VDD to VBUS (5 V)', fix: 'VDD to 3V3', error: false, effect: 'no error, can damage the mic',
     symptom: 'The INMP441 is a 3.3 V part. A 5 V supply can damage it.' },
   { part: 'Microphone',
-    lines: ['SCK to GP10', 'WS to GP13', 'SD to GP12', 'L/R to GND', 'VDD to 3V3', 'GND to GND'],
-    faulty: 'WS to GP13', fix: 'WS to GP11', error: true, effect: 'error message from I2S()',
-    symptom: 'I2S() raises "invalid ws (must be sck+1)", and GP13 is also the MODE button.' },
+    lines: ['SCK to GP13', 'WS to GP16', 'SD to GP15', 'L/R to GND', 'VDD to 3V3', 'GND to GND'],
+    faulty: 'WS to GP16', fix: 'WS to GP14', error: true, effect: 'error message from I2S()',
+    symptom: 'I2S() raises "invalid ws (must be sck+1)", and GP16 is also the MODE button.' },
   { part: 'Amplifier',
-    lines: ['BCLK to GP20', 'LRC to GP22', 'DIN to GP19', 'GAIN to GP18', 'VIN to VBUS', 'GND to GND'],
-    faulty: 'LRC to GP22', fix: 'LRC to GP21', error: true, effect: 'error message from I2S()',
+    lines: ['BCLK to GP9', 'LRC to GP8', 'DIN to GP11', 'GAIN to GP12', 'VIN to VBUS', 'GND to GND'],
+    faulty: 'LRC to GP8', fix: 'LRC to GP10', error: true, effect: 'error message from I2S()',
     symptom: 'I2S() raises an error because the left/right clock must be the pin right after the bit clock.' },
   { part: 'Button MODE',
-    lines: ['One leg to GP13', 'Opposite leg to 3V3'],
+    lines: ['One leg to GP16', 'Opposite leg to 3V3'],
     faulty: 'Opposite leg to 3V3', fix: 'Opposite leg to GND', error: false, effect: 'no error, button seems dead',
     symptom: 'With a pull-up, the pin always reads 1, so test 03 never reports a press.' },
   { part: 'Display',
@@ -39,7 +39,7 @@ const listings = [
     faulty: 'BL not connected', fix: 'BL to GP7', error: false, effect: 'no error, dark screen',
     symptom: 'The screen stays dark in test 04 because the backlight never turns on.' },
   { part: 'Amplifier',
-    lines: ['BCLK to GP20', 'LRC to GP21', 'DIN to GP19', 'GAIN to GP18', 'VIN to VBUS', 'GND not connected'],
+    lines: ['BCLK to GP9', 'LRC to GP10', 'DIN to GP11', 'GAIN to GP12', 'VIN to VBUS', 'GND not connected'],
     faulty: 'GND not connected', fix: 'GND to GND', error: false, effect: 'no error, no sound',
     symptom: 'Test 05 is silent because the amplifier has no ground return.' }
 ];
@@ -51,12 +51,12 @@ const pinTable = [
     ['SCL', 'GP2'], ['SDA', 'GP3'], ['RST', 'GP4'], ['DC', 'GP5'],
     ['CS', 'GP6'], ['BL', 'GP7'], ['VCC', '3V3'], ['GND', 'GND']] },
   { part: 'Microphone', key: 'Microphone', entries: [
-    ['SCK', 'GP10'], ['WS', 'GP11'], ['SD', 'GP12'], ['L/R', 'GND'],
+    ['SCK', 'GP13'], ['WS', 'GP14'], ['SD', 'GP15'], ['L/R', 'GND'],
     ['VDD', '3V3'], ['GND', 'GND']] },
   { part: 'Buttons', key: 'Button MODE', entries: [
-    ['MODE', 'GP13'], ['UP', 'GP14'], ['DOWN', 'GP15'], ['other legs', 'GND', true]] },
+    ['MODE', 'GP16'], ['UP', 'GP17'], ['DOWN', 'GP18'], ['other legs', 'GND', true]] },
   { part: 'Amplifier', key: 'Amplifier', entries: [
-    ['DIN', 'GP19'], ['BCLK', 'GP20'], ['LRC', 'GP21'], ['GAIN', 'GP18'],
+    ['BCLK', 'GP9'], ['LRC', 'GP10'], ['DIN', 'GP11'], ['GAIN', 'GP12'],
     ['VIN', 'VBUS or 3V3', true], ['GND', 'GND', true]] }
 ];
 
@@ -291,7 +291,7 @@ function drawListing(x, y, w) {
 // Entries flow left to right in a grid; a long entry spans extra columns.
 function drawPinTable(x, y, w) {
   const L = listings[listingIndex];
-  // 12px at narrow widths so "MODE → GP13" does not run into "UP → GP14"
+  // 12px at narrow widths so "MODE → GP16" does not run into "UP → GP17"
   const fs = canvasWidth < 560 ? 12 : 15;
   const rowH = (canvasWidth < 560 ? 13 : fs) + 5;
   noStroke();

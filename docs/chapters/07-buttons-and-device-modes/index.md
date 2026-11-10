@@ -59,9 +59,9 @@ The kit wires three buttons, each with its other leg to ground and an internal p
 
 | Button | Pin | Role in this book |
 |--------|-----|-------------------|
-| Mode | GP13 | The main action: hold to talk, and move through screens |
-| Up | GP14 | Raise the current value, such as the volume |
-| Down | GP15 | Lower the current value |
+| Mode | GP16 | The main action: hold to talk, and move through screens |
+| Up | GP17 | Raise the current value, such as the volume |
+| Down | GP18 | Lower the current value |
 
 ### The Mode Button
 

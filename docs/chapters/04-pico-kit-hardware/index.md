@@ -260,9 +260,9 @@ The board has six pins.
 
 | Pin | Connects to | Job |
 |-----|-------------|-----|
-| SCK | GP10 | Serial clock from the Pico |
-| WS | GP11 | Word select from the Pico |
-| SD | GP12 | Serial data, microphone to Pico |
+| SCK | GP13 | Serial clock from the Pico |
+| WS | GP14 | Word select from the Pico |
+| SD | GP15 | Serial data, microphone to Pico |
 | L/R | GND | Picks the left channel (3V3 would pick right) |
 | VDD | 3V3 | Power, a 3.3 V part |
 | GND | GND | Ground |
@@ -271,7 +271,7 @@ The board has six pins.
 
 !!! mascot-tip "Two Wires You Can Swap by Accident"
     ![Sage giving a tip](../../img/mascot/tip.png){ class="mascot-admonition-img" }
-    The microphone's SCK and WS wires, and also SCK and SD, are easy to swap because the board's pin labels are tiny. A swapped microphone starts without any error and sends only zeros, so test 02 prints "flat line." Check in this order: SCK on GP10, WS on GP11, SD on GP12.
+    The microphone's SCK and WS wires, and also SCK and SD, are easy to swap because the board's pin labels are tiny. A swapped microphone starts without any error and sends only zeros, so test 02 prints "flat line." Check in this order: SCK on GP13, WS on GP14, SD on GP15.
 
 ## The Voice: Amplifier and Speaker
 
@@ -293,10 +293,10 @@ The **MAX98357A** combines a digital-to-analog converter and a class-D amplifier
 
 | Pin | Connects to | Job |
 |-----|-------------|-----|
-| BCLK | GP20 | Bit clock from the Pico |
-| LRC | GP21 | Left/right (word select) clock from the Pico |
-| DIN | GP19 | Audio data from the Pico |
-| GAIN | GP18 | Sets loudness: the Pico can float it, pull it low, or push it high |
+| BCLK | GP9 | Bit clock from the Pico |
+| LRC | GP10 | Left/right (word select) clock from the Pico |
+| DIN | GP11 | Audio data from the Pico |
+| GAIN | GP12 | Sets loudness: the Pico can float it, pull it low, or push it high |
 | VIN | VBUS (5 V) or 3V3 | Power |
 | GND | GND | Ground |
 | Output terminals | Speaker | The amplified sound |
@@ -311,7 +311,7 @@ The GAIN pin has three settings, chosen by what the pin is tied to. The kit's `s
 
 !!! mascot-warning "BCLK and LRC Must Be Neighbors"
     ![Sage warning](../../img/mascot/warning.png){ class="mascot-admonition-img" }
-    MicroPython's I2S needs the left/right clock on the pin right after the bit clock. Here BCLK is GP20 and LRC is GP21. If you move one without the other, `I2S()` raises an error. The same rule holds for the microphone: SCK on GP10 and WS on GP11.
+    MicroPython's I2S needs the left/right clock on the pin right after the bit clock. Here BCLK is GP9 and LRC is GP10. If you move one without the other, `I2S()` raises an error. The same rule holds for the microphone: SCK on GP13 and WS on GP14.
 
 ## The Hands: Push Buttons
 
@@ -321,7 +321,7 @@ A **push button** (also called a tactile switch) is a switch that connects two w
 
 That construction creates a common mistake. If you wire the button with both of its wires on the *same* side, the button is always connected and always reads "pressed." Place the button so that the two wires go to legs on opposite sides.
 
-*Worked example.* To wire MODE, put one leg's wire on GP13 (physical pin 17) and the opposite side's wire on any GND. The kit's `config.init_buttons()` then sets GP13 as an input with a pull-up. The button reads 1 when released and 0 while pressed. Test 03 confirms it by printing each press and release.
+*Worked example.* To wire MODE, put one leg's wire on GP16 (physical pin 21) and the opposite side's wire on any GND. The kit's `config.init_buttons()` then sets GP16 as an input with a pull-up. The button reads 1 when released and 0 while pressed. Test 03 confirms it by printing each press and release.
 
 ### The Pull-Up Resistor
 
@@ -335,7 +335,7 @@ A **pull-down resistor** is the mirror image: it gently connects the pin to grou
 | Pull-down, pin driven low first | 40 zeros |
 | Pull-down, pin driven high first | 40 ones (the pull-down did not pull it low) |
 
-`src/chapters/04-pico-kit-hardware/03-floating-pin-demo.py` repeats this test on your board.
+These measurements were made before the kit's buttons moved to GP16, GP17 and GP18. `src/chapters/04-pico-kit-hardware/03-floating-pin-demo.py` repeats the test on your board, using GP20, which the kit leaves free.
 
 #### Diagram: Pull-Up Button Circuit
 
@@ -423,23 +423,23 @@ A **pin assignment table** is a table that lists, for every part, which Pico pin
 | Display | CS | GP6 | 9 |
 | Display | BL | GP7 | 10 |
 | Display | VCC, GND | 3V3, GND | 36, any GND |
-| Microphone | SCK | GP10 | 14 |
-| Microphone | WS | GP11 | 15 |
-| Microphone | SD | GP12 | 16 |
-| Microphone | L/R, GND | GND | any GND |
-| Microphone | VDD | 3V3 | 36 |
-| Button MODE | one leg | GP13 | 17 |
-| Button UP | one leg | GP14 | 19 |
-| Button DOWN | one leg | GP15 | 20 |
-| Buttons | other legs | GND | any GND |
-| Amplifier | DIN | GP19 | 25 |
-| Amplifier | BCLK | GP20 | 26 |
-| Amplifier | LRC | GP21 | 27 |
-| Amplifier | GAIN | GP18 | 24 |
+| Amplifier | BCLK | GP9 | 12 |
+| Amplifier | LRC | GP10 | 14 |
+| Amplifier | DIN | GP11 | 15 |
+| Amplifier | GAIN | GP12 | 16 |
 | Amplifier | VIN | VBUS or 3V3 | 40 or 36 |
 | Amplifier | GND | GND | any GND |
+| Microphone | SCK | GP13 | 17 |
+| Microphone | WS | GP14 | 19 |
+| Microphone | SD | GP15 | 20 |
+| Microphone | L/R, GND | GND | any GND |
+| Microphone | VDD | 3V3 | 36 |
+| Button MODE | one leg | GP16 | 21 |
+| Button UP | one leg | GP17 | 22 |
+| Button DOWN | one leg | GP18 | 24 |
+| Buttons | other legs | GND | any GND |
 
-Three rules hold the table together. First, each GP pin appears once, so no two wires share a pin. Second, the I2S pairs are neighbors: microphone SCK and WS on GP10 and GP11, amplifier BCLK and LRC on GP20 and GP21. Third, nothing connects to GP23, GP24, GP25, or GP29, which belong to the wireless chip.
+Three rules hold the table together. First, each GP pin appears once, so no two wires share a pin. Second, the I2S pairs are neighbors: amplifier BCLK and LRC on GP9 and GP10, microphone SCK and WS on GP13 and GP14. Third, nothing connects to GP23, GP24, GP25, or GP29, which belong to the wireless chip.
 
 #### Diagram: Wiring Diagram
 
@@ -494,12 +494,12 @@ Each listing shows the wires of one part as "part pin to Pico pin or rail." The 
 
 | # | Part | Listing shown | Faulty line | Correct connection | What the learner would see (shown as feedback) |
 |---|---|---|---|---|---|
-| 1 | Microphone | SCK to GP10; WS to GP11; SD to GP12; L/R to GND; VDD to VBUS (5 V); GND to GND | VDD to VBUS (5 V) | VDD to 3V3 | The INMP441 is a 3.3 V part. A 5 V supply can damage it. |
-| 2 | Microphone | SCK to GP10; WS to GP13; SD to GP12; L/R to GND; VDD to 3V3; GND to GND | WS to GP13 | WS to GP11 | I2S() raises "invalid ws (must be sck+1)", and GP13 is also the MODE button. |
-| 3 | Amplifier | BCLK to GP20; LRC to GP22; DIN to GP19; GAIN to GP18; VIN to VBUS; GND to GND | LRC to GP22 | LRC to GP21 | I2S() raises an error because the left/right clock must be the pin right after the bit clock. |
-| 4 | Button MODE | One leg to GP13; the leg on the opposite side to 3V3 | Opposite leg to 3V3 | Opposite leg to GND | With a pull-up, the pin always reads 1, so test 03 never reports a press. |
+| 1 | Microphone | SCK to GP13; WS to GP14; SD to GP15; L/R to GND; VDD to VBUS (5 V); GND to GND | VDD to VBUS (5 V) | VDD to 3V3 | The INMP441 is a 3.3 V part. A 5 V supply can damage it. |
+| 2 | Microphone | SCK to GP13; WS to GP16; SD to GP15; L/R to GND; VDD to 3V3; GND to GND | WS to GP16 | WS to GP14 | I2S() raises "invalid ws (must be sck+1)", and GP16 is also the MODE button. |
+| 3 | Amplifier | BCLK to GP9; LRC to GP8; DIN to GP11; GAIN to GP12; VIN to VBUS; GND to GND | LRC to GP8 | LRC to GP10 | I2S() raises an error because the left/right clock must be the pin right after the bit clock. |
+| 4 | Button MODE | One leg to GP16; the leg on the opposite side to 3V3 | Opposite leg to 3V3 | Opposite leg to GND | With a pull-up, the pin always reads 1, so test 03 never reports a press. |
 | 5 | Display | SCL to GP2; SDA to GP3; RST to GP4; DC to GP5; CS to GP6; BL not connected; VCC to 3V3; GND to GND | BL not connected | BL to GP7 | The screen stays dark in test 04 because the backlight never turns on. |
-| 6 | Amplifier | BCLK to GP20; LRC to GP21; DIN to GP19; GAIN to GP18; VIN to VBUS; GND not connected | GND not connected | GND to GND | Test 05 is silent because the amplifier has no ground return. |
+| 6 | Amplifier | BCLK to GP9; LRC to GP10; DIN to GP11; GAIN to GP12; VIN to VBUS; GND not connected | GND not connected | GND to GND | Test 05 is silent because the amplifier has no ground return. |
 
 **Provenance:** The listings and symptoms come from the kit README and the headers of tests 03, 04, and 05 in `src/kits/study-buddy-base/`, and from the table "The Pin Assignment Table" in this chapter.
 
@@ -516,7 +516,7 @@ Each listing shows the wires of one part as "part pin to Pico pin or rail." The 
 
 **Starting State:** Listing 1 is shown with the pin assignment table beside it and the question "Which line does not match the table?"
 
-**Chapter Anchors:** The chapter states the microphone pins SCK GP10, WS GP11, SD GP12, the amplifier pins BCLK GP20, LRC GP21, DIN GP19, GAIN GP18, the display backlight on GP7, and the MODE button on GP13.
+**Chapter Anchors:** The chapter states the amplifier pins BCLK GP9, LRC GP10, DIN GP11, GAIN GP12, the microphone pins SCK GP13, WS GP14, SD GP15, the display backlight on GP7, and the MODE button on GP16.
 </details>
 
 ## Putting It All Together
@@ -536,7 +536,7 @@ Key takeaways:
 Test yourself with these two questions, and click each one to reveal its answer.
 
 ??? question "Your microphone starts without errors, but test 02 reports a flat line. What do you check first? Click to expand"
-    The SCK, WS, and SD wires: SCK on GP10, WS on GP11, SD on GP12. A swapped microphone sends only zeros without any error. Then check that VDD is on 3V3 and that GND and L/R are both on ground.
+    The SCK, WS, and SD wires: SCK on GP13, WS on GP14, SD on GP15. A swapped microphone sends only zeros without any error. Then check that VDD is on 3V3 and that GND and L/R are both on ground.
 
 ??? question "Why does coloring one pixel take 13 bytes of SPI traffic? Click to expand"
     The driver must tell the controller which column and row to write (two commands with four bytes of range each), send the write-memory command, and then send the two bytes of the color. The overhead is far larger than the pixel, so Chapters 5 and 6 send whole rectangles at once.

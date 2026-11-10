@@ -18,7 +18,7 @@
 
 - **Listening mode:** push-to-talk
 - **Why this mode is needed:** The devices only need to hear a question after a student presses the Mode button.
-- **Hardware mute and indicator:** Each device has a two-pole slide switch that cuts the microphone's 3V3 supply (true hardware mute) and reports the state to the program on GP9; the status bar shows LISTENING while the microphone is open and MIC OFF when muted.
+- **Hardware mute and indicator:** Each device has a two-pole slide switch that cuts the microphone's 3V3 supply (true hardware mute) and reports the state to the program on GP19; the status bar shows LISTENING while the microphone is open and MIC OFF when muted.
 
 ## 3. Data
 

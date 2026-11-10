@@ -74,13 +74,13 @@ The **serial data line** carries the audio bits themselves, one per bit-clock ti
 
 | Signal | Job | Microphone pin | Amplifier pin |
 |--------|-----|----------------|---------------|
-| Bit clock (`sck`) | One tick per bit | SCK, GP10 | BCLK, GP20 |
-| Word select (`ws`) | Marks each word and its channel | WS, GP11 | LRC, GP21 |
-| Serial data (`sd`) | The audio bits | SD, GP12 (to the Pico) | DIN, GP19 (from the Pico) |
+| Bit clock (`sck`) | One tick per bit | SCK, GP13 | BCLK, GP9 |
+| Word select (`ws`) | Marks each word and its channel | WS, GP14 | LRC, GP10 |
+| Serial data (`sd`) | The audio bits | SD, GP15 (to the Pico) | DIN, GP11 (from the Pico) |
 
 A standard I2S frame carries two slots, left and right, so the bit clock ticks \( \text{rate} \times \text{bits per slot} \times 2 \) times a second. For the kit's microphone (12,800 samples per second, 32 bits per slot) that is \( 12{,}800 \times 32 \times 2 = 819{,}200 \) ticks per second, and for the speaker test (16,000 samples per second, 16 bits) it is 512,000.
 
-Here is the rule you met in Chapter 4, now with its reason. MicroPython's I2S on the Pico drives the clock and word-select lines with one hardware program that needs them on *adjacent pins*, so `ws` must be the pin number right after `sck`. The microphone's SCK is GP10 and WS is GP11, and the amplifier's BCLK is GP20 and LRC is GP21.
+Here is the rule you met in Chapter 4, now with its reason. MicroPython's I2S on the Pico drives the clock and word-select lines with one hardware program that needs them on *adjacent pins*, so `ws` must be the pin number right after `sck`. The amplifier's BCLK is GP9 and LRC is GP10, and the microphone's SCK is GP13 and WS is GP14.
 
 !!! mascot-warning "ws Must Be sck Plus One"
     ![Sage warning](../../img/mascot/warning.png){ class="mascot-admonition-img" }
@@ -168,9 +168,9 @@ The **machine.I2S class** is MicroPython's way to run an I2S bus. You create one
 | Argument | Meaning | Microphone (receive) | Speaker (transmit) |
 |----------|---------|---------------------|--------------------|
 | id | Which I2S block (0 or 1) | 1 | 0 |
-| `sck` | Bit clock pin | GP10 | GP20 |
-| `ws` | Word select pin | GP11 | GP21 |
-| `sd` | Serial data pin | GP12 | GP19 |
+| `sck` | Bit clock pin | GP13 | GP9 |
+| `ws` | Word select pin | GP14 | GP10 |
+| `sd` | Serial data pin | GP15 | GP11 |
 | `mode` | Direction | `I2S.RX` | `I2S.TX` |
 | `bits` | Bits per sample | 32 | 16 |
 | `format` | Channel layout | `I2S.MONO` | `I2S.MONO` |
@@ -182,7 +182,7 @@ The two I2S blocks are independent. The microphone is on block 1 and the speaker
 Remember the Chapter 2 rule for hardware: always call `deinit()`, in a `finally` block. The kit hides the setup of the microphone behind `config.init_microphone()`, shown here in full so you can see all the arguments in use.
 
 ```python
-mic = I2S(1, sck=Pin(10), ws=Pin(11), sd=Pin(12),
+mic = I2S(1, sck=Pin(13), ws=Pin(14), sd=Pin(15),
           mode=I2S.RX, bits=32, format=I2S.MONO,
           rate=12800, ibuf=40000)
 ```

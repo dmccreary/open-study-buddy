@@ -1,11 +1,502 @@
 ---
 title: Teacher's Guide
-description: Teacher's Guide for Open Study Buddy, including a Purchasing Guide with every Study Buddy base kit part, AliExpress, eBay and Amazon price ranges, classroom totals, AliExpress lead times, and where to buy each one.
+description: Teacher's Guide for Open Study Buddy - how to teach with the chapters, kit labs, MicroSims, glossary, FAQ and learning graph, how to handle a listening device in a classroom, how to customize the book, and a Purchasing Guide for every kit part.
 ---
 
 # Teacher's Guide
 
-This page holds the Purchasing Guide section of the Teacher's Guide for Open Study Buddy.
+This guide is for teachers, club leaders and mentors who run *Open Study Buddy* with a group of
+students. It explains every part of the book, how to use it in class, how to run a classroom
+that builds a device with a microphone in it, and how to make your own copy. The
+[Purchasing Guide](#purchasing-guide) at the end lists every part to order. No technical
+background is assumed: each technical term is defined the first time it appears.
+
+## About This Textbook
+
+### What Is an Intelligent Textbook?
+
+An **intelligent textbook** is a digital textbook that goes beyond text and pictures. It adds
+interactive simulations, a searchable glossary, answers to common questions, and a map of how
+the concepts depend on each other.
+
+### The Five Levels of Intelligent Textbooks
+
+Intelligent textbooks are grouped into five levels by how interactive and adaptive they are:
+
+<iframe src="https://dmccreary.github.io/intelligent-textbooks/sims/book-levels/main.html" height="500px" width="100%" scrolling="no"
+  style="overflow: hidden;"></iframe>
+
+| Level | Name | Description | Example features |
+|-------|------|-------------|------------------|
+| **Level 1** | Static Digital | A PDF or basic web version of a print textbook | Text and images only |
+| **Level 2** | Interactive | Adds simulations, self-checks and a searchable glossary | MicroSims, self-check questions, search |
+| **Level 3** | Adaptive | Adjusts content to each student's performance | Personalized learning paths |
+| **Level 4** | AI-Assisted | Adds an AI tutor that answers student questions | Chatbot, automated feedback |
+| **Level 5** | Fully Adaptive AI | Learns from student interactions and adapts continuously | Real-time content generation |
+
+**This book is a Level 2 intelligent textbook.** The device students build is a personal AI
+agent, but the book itself does not track students or adapt to them.
+
+### What Makes This Book Different
+
+- **Students build a real device.** Over 18 chapters, students write every line of MicroPython
+  for a desk companion that listens, shows what it heard on a round display, speaks answers
+  aloud, and announces tests and due dates from the school calendar.
+- **It is open from end to end.** The school, not a vendor, decides where the agent behind the
+  device runs and which data it may touch. There is no subscription.
+- **It teaches responsible listening.** A device with a microphone in a classroom raises real
+  privacy questions, and the book treats them as part of the engineering (Chapter 17).
+- **45 MicroSims** let students explore ideas such as sample rate, FFT bins and frame budgets
+  in the browser, with no software to install.
+- **A learning graph** maps how all 326 concepts in the book build on each other.
+- **Sage the Owl**, a friendly guide character, appears in every chapter with tips, warnings
+  and encouragement.
+- **It is free.** The book is licensed under Creative Commons for non-commercial use.
+
+## Before You Start
+
+### Who the Book Is For
+
+The main audience is high school students in grades 9–12. Motivated middle school students,
+college undergraduates, coding clubs and hobbyists can also use it.
+
+Students should already have finished the
+[Learning MicroPython](https://dmccreary.github.io/learning-micropython/) course or have the
+same experience. That means they can put MicroPython on a Raspberry Pi Pico, use Thonny, write
+loops and functions, read a button and drive a display. Chapter 2 is a refresher, not a first
+introduction. No signal-processing, networking or AI experience is needed.
+
+### What You Need
+
+| Item | When it is first needed | Notes |
+|------|------------------------|-------|
+| One Study Buddy base kit per student or pair | Chapter 4 | See the [Purchasing Guide](#purchasing-guide) |
+| A computer per student or pair with Thonny installed | Chapter 2 | Windows, Mac, Linux or a Raspberry Pi all work |
+| A Micro-USB **data** cable per kit | Chapter 2 | Charge-only cables look the same but cannot program the Pico |
+| A Wi-Fi network the Pico can join | Chapter 13 | See the network note below |
+| A Raspberry Pi or computer to run the class server | Chapters 15–16 | Runs the MQTT broker and the buddy server |
+| Soldering iron, wire strippers, small screwdriver | Before Chapter 4 | Only if your microphone and amplifier boards come without headers soldered on |
+
+!!! note "Check your school network early"
+    The Pico 2 W joins ordinary password-protected Wi-Fi networks. Many school networks need a
+    sign-in page or a separate login for each user, and a Pico cannot get past either. Before
+    Chapter 13, ask your technology staff for a network the devices can join, or run a small
+    classroom router that is not connected to the internet.
+
+## Using the Chapters
+
+### Chapter Sequence
+
+The book has [18 chapters](../../chapters/index.md). Each chapter adds one idea and ends with a
+working device feature, so students should work through them in order.
+
+| Chapters | Topic area |
+|----------|------------|
+| 1–2 | Foundations: personal agents, the Study Buddy architecture, a MicroPython refresher |
+| 3–4 | Sound basics and the kit hardware: sampling, wiring all five parts, power and ground |
+| 5–7 | Display and buttons: pixels and color, redrawing only what changed, debouncing, device modes |
+| 8–12 | Audio and signal processing: I2S recording and playback, the FFT, fast MicroPython, push-to-talk, wake words |
+| 13–16 | Networking: Wi-Fi and HTTP, streaming and security, MQTT alerts, the school agent and calendar |
+| 17–18 | Responsibility and integration: privacy and consent, testing, capstone projects |
+
+### What Each Chapter Contains
+
+1. **Summary**: what the chapter covers and what students will build.
+2. **Concepts Covered**: the concepts from the learning graph that the chapter teaches.
+3. **Prerequisites**: the earlier chapters it builds on.
+4. **A welcome from Sage**: the chapter's goal in a sentence or two.
+5. **Main content**: explanations, tables, code, and embedded MicroSims.
+6. **A recap**, usually titled "Putting It All Together", with a list of key takeaways.
+7. **Self-check questions**: two or more questions whose answers appear when clicked.
+8. **A celebration from Sage**, then a one-line preview of the next chapter.
+
+Below each MicroSim is a collapsed **specification** block. It lists the MicroSim's Bloom's
+Taxonomy level, learning objective, common misconceptions, and how a student shows mastery.
+These blocks are useful for lesson planning. Students can skip them.
+
+### Suggested Classroom Use
+
+- **Before class**: assign the reading. Ask students to try each MicroSim as they reach it.
+- **During class**: put a MicroSim on the projector. Ask students to predict what a control will
+  do before you change it, then test the prediction. Then move to the kits for the hands-on
+  work.
+- **After class**: use the self-check questions at the end of the chapter as an exit ticket or
+  a review.
+- **Pacing**: the chapters run from about 4,700 to 11,300 words, and most mix reading with
+  hands-on work. As a planning estimate, allow about one week per chapter, which fits the
+  book into one semester. Chapters 9, 10, 16 and 18 are the longest and may need more time.
+
+## Using the Kit Labs
+
+The [Study Buddy Base Kit](../../kits/study-buddy-base/index.md) section holds 19 short labs that
+run on the kit. They work alongside the chapters.
+
+- **Part 1, labs 01–07 ("Does It Work?")** has one test per part. Students wire one part, run
+  its test, and only then add the next part. This finds wiring mistakes while there is only one
+  place to look.
+- **Part 2, labs 08–19 ("How Does It Work?")** teaches one idea per lab, from how the display
+  mixes color to a memory game that uses the whole kit. Each lab says what a pass looks like
+  and ends with "Try This" changes.
+
+The table below suggests where each lab fits. It is a suggestion based on each lab's topic,
+not a requirement.
+
+| Labs | Topic | Fits with |
+|------|-------|-----------|
+| 01–07 | Wiring and testing each part | Chapter 4 |
+| 08–10 | Color, angles to pixels, flicker-free text | Chapters 5–6 |
+| 11–13 | Button bounce, one loop doing many jobs, state machines | Chapter 7 |
+| 14–15 | How samples make sound, envelopes | Chapters 3 and 8 |
+| 16–17 | Microphone oscilloscope, whistle tuner | Chapters 8–11 |
+| 18 | Wi-Fi, IP, time, HTTP and JSON | Chapter 13 |
+| 19 | Pattern memory game | Any time after Chapter 7 |
+
+### Tips for Running the Labs
+
+- **Work in pairs.** One student wires while the other checks each wire against the pin table,
+  then they swap.
+- **Keep the pin table on paper.** Most problems are a wire in the wrong row of the
+  breadboard. The [Kit Wiring Fault Finder](../../sims/kit-wiring-fault-finder/index.md)
+  MicroSim practises tracing these faults.
+- **Run lab 02, the hardware probe, whenever something stops working.** It checks the parts it
+  can see and reports wiring that breaks the rules.
+- **Plan for sound.** Labs 05 and 07 and several later labs play sound. Run the quiet labs
+  first, or provide earbuds or set a low volume if many kits share one room.
+
+## Using the MicroSims
+
+### What Is a MicroSim?
+
+A **MicroSim** (short for micro-simulation) is a small interactive simulation that runs in a
+web browser. Students change a value with a slider, button or menu and see the result at once.
+MicroSims work on any device with a current browser, with nothing to install.
+
+### MicroSims in This Book
+
+The book has 45 MicroSims. Chapters embed them in **iframes**, which show one web page inside
+another, so they load with the chapter. The full list is on the
+[MicroSims page](../../sims/index.md).
+
+| Technology | What it is good for | Examples |
+|------------|--------------------|----------|
+| **p5.js** (41 MicroSims) | Animations and controls students can change | [Sampling Explorer](../../sims/sampling-explorer/index.md), [FFT Bin Calculator](../../sims/fft-bin-calculator/index.md), [RGB565 Color Mixer](../../sims/rgb565-color-mixer/index.md) |
+| **vis-network** (3 MicroSims) | Diagrams of connected parts | [Study Buddy Architecture Explorer](../../sims/study-buddy-architecture-explorer/index.md), [Kit Import Map](../../sims/kit-import-map/index.md), [Learning Graph Viewer](../../sims/graph-viewer/index.md) |
+
+### The Colored Dots in the Navigation
+
+Each MicroSim has a colored dot beside its name in the left navigation:
+
+| Dot | Status | Meaning |
+|-----|--------|---------|
+| Red | Scaffold | The design is written but the MicroSim is not built yet |
+| Orange | Built | The MicroSim works but the author has not reviewed it yet |
+| Green | Approved | The author has tested it and approved it for students |
+
+Most MicroSims are orange right now. Try an orange MicroSim yourself before you rely on it in a
+lesson, and report anything that looks wrong (see [Feedback](#feedback)).
+
+### Tips for Using MicroSims in Class
+
+1. **Project them.** Ask the class to predict what will happen before you move a control.
+2. **Then let students explore.** Give them 5–10 minutes on their own devices.
+3. **Connect back to the text.** Each MicroSim sits next to the idea it shows. After using it,
+   have students reread the paragraph above it.
+4. **Plan for the internet.** MicroSims need a connection unless you run a local copy of the
+   book (see [Customizing Your Own Copy](#customizing-your-own-copy)).
+
+!!! tip "Put a MicroSim on any web page"
+    You can show any MicroSim on a page you control, such as a Google Site, Canvas, Schoology or
+    a plain HTML file, by pasting this HTML:
+
+    ```html
+    <iframe src="https://dmccreary.github.io/open-study-buddy/sims/kit-wiring-fault-finder/main.html"
+        width="100%" height="622px" scrolling="no"></iframe>
+    ```
+
+    Replace `kit-wiring-fault-finder` with the name of any MicroSim from the
+    [MicroSims page](../../sims/index.md). Each MicroSim's own page shows the right height.
+
+## Using the Glossary
+
+The [glossary](../../glossary.md) defines all 326 concepts in the book in alphabetical order.
+Each definition is short, precise, and does not use the term to define itself.
+
+- **Find a term** with Ctrl+F (Cmd+F on a Mac) on the glossary page, or with the search bar
+  at the top of any page.
+- **Preview vocabulary** by having students look up a chapter's concepts before reading it.
+- **Ask students to write their own definitions** after a chapter, then compare them with the
+  glossary.
+
+## Using the FAQ
+
+The [FAQ](../../faq.md) (Frequently Asked Questions) answers 90 questions students are likely to
+ask. The questions are grouped into six categories: Getting Started, Core Concepts, Technical
+Details, Common Challenges, Best Practices, and Advanced Topics. Each answer links to the chapter
+that covers the idea.
+
+- **Start a discussion** with two or three FAQ questions before you show the answers.
+- **Send students to the Common Challenges questions** when they are stuck outside class.
+- **Use it to review** before an assessment.
+
+## Assessment
+
+The book does not have separate quiz pages yet. It offers three kinds of assessment:
+
+- **Self-check questions** at the end of every chapter. Students click a question to reveal
+  its answer. They work as exit tickets or warm-ups.
+- **Lab pass conditions.** Every kit lab says what a pass looks like, so a pass is a quick
+  hands-on check you can sign off.
+- **Capstone projects** in Chapter 18. Chapter 18 gives four starter projects and a 20-point
+  rubric with six criteria: function, calibration, reliability, privacy, user testing, and code
+  and notes. It also gives a user-testing method in which students watch three or more
+  classmates use their device.
+
+The MicroSim specification blocks give each MicroSim's **Bloom's Taxonomy** level. Bloom's
+Taxonomy sorts thinking skills from simplest to most complex: Remember, Understand, Apply,
+Analyze, Evaluate and Create. Use these levels to choose activities that match your goals.
+
+## A Listening Device in Your Classroom
+
+The Study Buddy has a microphone, so plan how you will handle privacy before the microphone
+chapters. Chapter 17 teaches students to do this, and the same ideas apply to you.
+
+- **Push-to-talk is the default.** The device listens only while a student holds a button.
+- **Always-on listening needs approval.** The wake-word mode ("Hey Pico") listens all the
+  time. The book treats it as an advanced option that should stay off until a parent or
+  guardian, the student and the school have each agreed in writing. Chapter 17 explains who
+  approves what and what records to keep.
+- **Do not store audio.** The capstone rubric gives points for a device that keeps no
+  recordings, and for one that tells people what it hears and keeps.
+- **Use the synthetic schools for demos.** The [Schools](../../schools/index.md) section
+  includes Cedar Ridge High School, an invented school with its own mascot and calendar. Demos
+  can use it and never need real student or school data.
+- **Talk to your school first.** Ask your school's technology or privacy staff before any
+  device sends audio off the device, even on the school network.
+
+This guide explains ideas, not the law. Your school's own policies and staff decide what is
+allowed.
+
+## Customizing the Buddy for Your School
+
+Chapter 16 sets up the agent for one school: the school name, its mascot on the round display,
+its voice, a custom wake phrase, and a calendar with `TEST:` and `DUE:` titles that become
+spoken reminders. The [Schools](../../schools/index.md) section shows finished examples and
+holds pages for real organizations that are piloting the kit. To add your school, contact the
+author through the [contact page](../../contact.md).
+
+## The Learning Graph
+
+A **learning graph** is a map of how the book's concepts depend on each other. It is a
+**directed acyclic graph** (DAG): each arrow points from a concept to one that builds on it,
+and no chain of arrows loops back to where it started. This book's graph has 326 concepts.
+
+- **Check prerequisites**: before you teach a concept, see which concepts it needs.
+- **Find gaps**: when a student is stuck, trace back to the earlier concepts they need.
+- **Compare with your syllabus**: see which concepts your course already covers.
+- **Extend**: let advanced students follow the graph ahead of the class.
+
+Open the [Learning Graph Viewer](../../sims/graph-viewer/index.md) to explore it.
+
+## Sage the Owl: The Book's Guide Character
+
+A **pedagogical agent** is a character who guides students through a textbook. Research has
+found that such characters can raise students' interest and how much they feel they learned;
+this is called the **persona effect**. This book's character is **Sage the Owl**, whose
+catchphrase is "Let's listen closely!"
+
+Sage appears in colored callout boxes called **admonitions**:
+
+| Type | Purpose | How often |
+|------|---------|-----------|
+| Welcome | Introduces the chapter's goal | Once, at the start of each chapter |
+| Thinking | Points out a key idea | A few times per chapter |
+| Tip | Gives practical advice | Where the material calls for it |
+| Warning | Warns about a common mistake | Where the material calls for it |
+| Encourage | Supports students on a hard idea | Where students may struggle |
+| Celebration | Marks what the chapter achieved | Once, at the end of each chapter |
+
+Sage appears a handful of times in each chapter, never twice in a row.
+
+- **Read Sage's boxes aloud.** They are written to be spoken.
+- **Use the Thinking boxes as discussion prompts.** They mark the ideas that matter most.
+- **Point frustrated students to the Encourage boxes.** They are placed where the material gets
+  hard.
+
+## Feedback
+
+The book is developed in the open on **GitHub**, a website where people build software and
+documents together. You do not need to program to report a problem.
+
+A **GitHub issue** is like a support ticket: a numbered report that the author and others can
+discuss. To open one:
+
+1. Go to the book's [GitHub repository](https://github.com/dmccreary/open-study-buddy).
+2. Click the **Issues** tab, then **New issue**.
+3. Give it a clear title, such as "Lab 06 meter does not move" or "Broken link in Chapter 13".
+4. Say which page or lab, what you expected, what happened, and your browser or kit if it matters.
+5. Click **Submit new issue**.
+
+Opening an issue needs a free GitHub account. If you would rather not make one, use the
+[contact page](../../contact.md). Reports of typos, broken links, MicroSims that misbehave,
+labs that fail on real hardware, and pages that are hard to read for students with
+disabilities are all welcome.
+
+## Understanding the License
+
+A **license** says what others may do with a piece of work. A **Creative Commons (CC)
+license** is a standard, plain-language license for creative and educational work. This book
+uses **CC BY-NC-SA 4.0**:
+
+| Code | Name | Meaning |
+|------|------|---------|
+| **BY** | Attribution | Give credit to the author, Dan McCreary |
+| **NC** | Non-Commercial | Do not use it to make money |
+| **SA** | Share-Alike | Share any changed version under the same license |
+| **4.0** | Version | The current version of the license |
+
+**You can:**
+
+- copy the book or any chapter for your students
+- share the link with teachers, students and parents
+- print chapters for class
+- change it: add examples, remove sections, reorder chapters
+- translate it
+- build your own version from it
+
+**You cannot:**
+
+- sell it or charge students for access
+- remove the credit to the author
+- share a changed version under a different license
+- present it as your own work
+
+The full legal text is on the [License](../../license.md) page.
+
+## Customizing Your Own Copy
+
+You can make your own version of the book, with your own examples, colors and school.
+
+### Key Terms
+
+- **Repository (repo)**: the folder on GitHub that holds all of a project's files.
+- **Git**: a tool that records every change to the files, when and by whom.
+- **Fork**: your own copy of a repository, kept in your GitHub account.
+- **Clone**: a copy of a repository downloaded to your computer.
+- **Markdown**: a simple text format. `**bold**` makes **bold**, `# Heading` makes a heading,
+  and a line starting with `-` makes a bullet point.
+- **MkDocs**: the program that turns the book's Markdown files into a website.
+- **mkdocs.yml**: the settings file for the website: title, menu, colors and features.
+
+### Step 1: Copy the Book
+
+Make a free account at [github.com](https://github.com) if you do not have one. Then either:
+
+- **Fork it** (easiest): open the [repository](https://github.com/dmccreary/open-study-buddy)
+  and click **Fork** at the top right, or
+- **Clone it** (to work on your computer): install [Git](https://git-scm.com/), open a
+  terminal, and run:
+
+```bash
+git clone https://github.com/dmccreary/open-study-buddy.git
+```
+
+The kit's MicroPython code is in the `src/kits/study-buddy-base` folder. The book's pages are
+Markdown files in the `docs` folder, and you can edit them in any text editor.
+
+### Step 2: Change the Title, Colors and Logo
+
+Open `mkdocs.yml`. The title and author are near the top:
+
+```yaml
+site_name: 'Open Study Buddy'
+site_description: 'An interactive intelligent textbook to support the low-cost Open Study Buddy personal agent hardware for students.'
+site_author: 'Dan McCreary'
+```
+
+The colors are in the `palette` section. This book uses amber and orange:
+
+```yaml
+    primary: 'amber'    # try blue, red, purple, teal, green, indigo...
+    accent: 'orange'
+```
+
+The logo in the top-left corner is `docs/img/mascot/neutral.png`, set by the `logo:` line in
+`mkdocs.yml`. Point that line at your own image to change it.
+
+### Step 3: Preview Your Changes
+
+1. Install Python 3.8 or newer from [python.org](https://www.python.org/).
+2. Install MkDocs with the Material theme:
+
+    ```bash
+    pip install mkdocs-material
+    ```
+
+3. In a terminal, go to the project folder and start the preview:
+
+    ```bash
+    cd open-study-buddy
+    mkdocs serve
+    ```
+
+4. Open `http://127.0.0.1:8000/open-study-buddy/` in your browser. The page reloads each time
+   you save a file.
+
+### Step 4: Publish Your Version
+
+To publish your copy as a free website with GitHub Pages, run:
+
+```bash
+mkdocs gh-deploy
+```
+
+Your book appears at `https://YOUR-USERNAME.github.io/open-study-buddy/` within a few minutes.
+
+## Analytics and Student Data
+
+**Web analytics** measures how visitors use a site: which pages they read, for how long, and on
+what devices. It can show which chapters students skip or spend the longest on.
+
+### Adding Google Analytics to Your Copy
+
+This book does not have Google Analytics turned on. To add it to your own copy:
+
+1. Sign in at [analytics.google.com](https://analytics.google.com/) and create a **property**,
+   Google's name for a site it tracks.
+2. Google gives you a **Measurement ID** that looks like `G-XXXXXXXXXX`.
+3. In `mkdocs.yml`, find the `analytics` lines near the end, remove the `#` at the start of
+   each, and put in your ID:
+
+    ```yaml
+    extra:
+      analytics:
+        provider: google
+        property: G-YOUR-MEASUREMENT-ID
+    ```
+
+4. Publish again. Data starts appearing within a day or two.
+
+Google Analytics reports totals, such as page views and devices. It does not report what each
+named student did.
+
+### Tracking Individual Students (Advanced)
+
+**xAPI** (the Experience API) is a standard for recording detailed learning events, such as
+"this student moved this slider" or "this student passed lab 06". The records are kept in an
+**LRS** (Learning Record Store), a database built for learning records.
+
+Before you collect data about individual students, check these laws:
+
+- **FERPA** (Family Educational Rights and Privacy Act): the U.S. law that protects student
+  education records.
+- **COPPA** (Children's Online Privacy Protection Act): the U.S. law with extra rules for
+  children under 13.
+- **State laws**: many U.S. states have their own student-privacy laws.
+- **GDPR** (General Data Protection Regulation): the European Union law that applies to students
+  in the EU.
+
+Anonymous totals are the safest choice. If you want to track individual students, talk to your
+school or district's data privacy officer first.
 
 ## Purchasing Guide
 
@@ -235,7 +726,7 @@ chapter where the buddy speaks. It turns I²S audio from the Pico into power for
 
 A digital-to-analog converter and a 3 W class-D amplifier on one small board, with seven pins
 (LRC, BCLK, DIN, GAIN, SD, GND, VIN) and a two-screw output terminal. The kit drives its GAIN pin
-from GP18 so software can pick 6, 9 or 12 dB. Buy the mono **MAX98357A** breakout, not the
+from GP12 so software can pick 6, 9 or 12 dB. Buy the mono **MAX98357A** breakout, not the
 analog PAM8403 boards or the larger stereo TDM boards that show up in the same searches.
 
 **Prep work:** Some minor soldering required on most listings. The seven-pin header and the
@@ -309,7 +800,7 @@ ships like any other small packet.
 **Used for:** [Chapter 7: Buttons, State Machines, and Device Modes](../../chapters/07-buttons-and-device-modes/index.md)
 and push-to-talk in [Chapter 11](../../chapters/11-mic-calibration-push-to-talk/index.md).
 
-Standard 6×6 mm, four-leg, through-hole tactile switches. Each one connects GP13, GP14 or GP15 to
+Standard 6×6 mm, four-leg, through-hole tactile switches. Each one connects GP16, GP17 or GP18 to
 GND and uses the Pico's internal pull-up, so no resistor is needed. Colored caps are optional but
 help students tell Mode from Up and Down.
 
