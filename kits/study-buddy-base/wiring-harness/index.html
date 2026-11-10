@@ -1,0 +1,2420 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Build three Dupont ribbon wiring harnesses for the Study Buddy kit (display, amplifier and microphone) so each one plugs into the breadboard as a block, with its ground wire landing on a Pico GND pin.">
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      
+        <link rel="canonical" href="https://dmccreary.github.io/open-study-buddy/kits/study-buddy-base/wiring-harness/">
+      
+      
+        <link rel="prev" href="../intro/">
+      
+      
+        <link rel="next" href="../01-blink/">
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Wiring Harnesses - Open Study Buddy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/extra.css">
+    
+      <link rel="stylesheet" href="../../../css/mascot.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wiring-harnesses" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Open Study Buddy" class="md-header__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Open Study Buddy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Wiring Harnesses
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Open Study Buddy" class="md-nav__button md-logo" aria-label="Open Study Buddy" data-md-component="logo">
+      
+  <img src="../../../img/mascot/neutral.png" alt="logo">
+
+    </a>
+    Open Study Buddy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmccreary/open-study-buddy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course-description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Course Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../chapters/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kits
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Kits
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Study Buddy Base Kit
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Study Buddy Base Kit
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Wiring Harnesses
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Wiring Harnesses
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Need
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What You Need">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ribbons-color-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ribbon's Color Order
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea-every-fifth-row-is-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea: Every Fifth Row Is Ground
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Three Rules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-wiring-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Wiring Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-1-the-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harness 1: The Display
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Harness 1: The Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-peel-an-8-wire-strip-from-brown-to-gray" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Peel an 8-wire strip from brown to gray
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-plug-the-female-ends-onto-the-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Plug the female ends onto the display
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-two-changes-at-the-pico-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Make two changes at the Pico end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-plug-it-into-the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Plug it into the breadboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-2-the-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harness 2: The Amplifier
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Harness 2: The Amplifier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-peel-a-7-wire-strip-from-blue-to-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Peel a 7-wire strip from blue to red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-remove-the-black-wire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Remove the black wire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-plug-the-female-ends-onto-the-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Plug the female ends onto the amplifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-make-two-changes-at-the-pico-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Make two changes at the Pico end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-plug-it-into-the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Plug it into the breadboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-3-the-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harness 3: The Microphone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Harness 3: The Microphone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-peel-a-6-wire-strip-from-gray-to-orange" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Peel a 6-wire strip from gray to orange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-fold-the-strip-around-the-two-pin-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Fold the strip around the two pin rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-two-changes-at-the-pico-end_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Make two changes at the Pico end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-plug-it-into-the-breadboard_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Plug it into the breadboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finishing-the-harnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finishing the Harnesses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-before-you-power-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Before You Power On
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-blink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 01: Blink the Onboard LED
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-probe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 02: The Hardware Probe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 03: Buttons on the Console
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 04: Hello World on the Display
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-speaker-tones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 05: Speaker Tones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-listen-meter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 06: Listen with the Microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-record-playback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 07: Hold to Record, Release to Play Back
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-color-mixing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 08: How the Display Mixes Color
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-angles-to-pixels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 09: Angles to Pixels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-flicker-free-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 10: Flicker-Free Text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-button-bounce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 11: What a Button Press Really Looks Like
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-one-loop-many-jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 12: One Loop, Many Jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-modes-state-machine/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 13: Modes as a State Machine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-samples-make-sound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 14: Samples Make Sound
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-sound-envelopes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 15: Envelopes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-mic-oscilloscope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 16: A Microphone Oscilloscope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-whistle-tuner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 17: A Whistle Tuner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-network-layers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 18: From Radio Waves to the Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-pattern-game/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 19: Pattern Memory Game
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../schools/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Schools
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../learning-graph/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Learning Graph
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../sims/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    MicroSims
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-need" class="md-nav__link">
+    <span class="md-ellipsis">
+      What You Need
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What You Need">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ribbons-color-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ribbon's Color Order
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea-every-fifth-row-is-ground" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Big Idea: Every Fifth Row Is Ground
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-three-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Three Rules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-wiring-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Wiring Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-1-the-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harness 1: The Display
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Harness 1: The Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-peel-an-8-wire-strip-from-brown-to-gray" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Peel an 8-wire strip from brown to gray
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-plug-the-female-ends-onto-the-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Plug the female ends onto the display
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-two-changes-at-the-pico-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Make two changes at the Pico end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-plug-it-into-the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Plug it into the breadboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-2-the-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harness 2: The Amplifier
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Harness 2: The Amplifier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-peel-a-7-wire-strip-from-blue-to-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Peel a 7-wire strip from blue to red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-remove-the-black-wire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Remove the black wire
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-plug-the-female-ends-onto-the-amplifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Plug the female ends onto the amplifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-make-two-changes-at-the-pico-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Make two changes at the Pico end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-plug-it-into-the-breadboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Plug it into the breadboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-3-the-microphone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harness 3: The Microphone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Harness 3: The Microphone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-peel-a-6-wire-strip-from-gray-to-orange" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Peel a 6-wire strip from gray to orange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-fold-the-strip-around-the-two-pin-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Fold the strip around the two pin rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-two-changes-at-the-pico-end_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Make two changes at the Pico end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-plug-it-into-the-breadboard_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Plug it into the breadboard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finishing-the-harnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finishing the Harnesses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-before-you-power-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Before You Power On
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/dmccreary/open-study-buddy/blob/main/docs/kits/study-buddy-base/wiring-harness.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="wiring-harnesses">Wiring Harnesses<a class="headerlink" href="#wiring-harnesses" title="Permanent link">&para;</a></h1>
+<div class="admonition mascot-welcome">
+<p class="admonition-title">One Plug Instead of Seven</p>
+<p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
+Loose jumper wires wiggle out of the breadboard, and one loose wire can cost an hour of debugging. In this guide you will turn a ribbon cable into three harnesses that plug in as blocks and land on the right pins every time. Let's listen closely!</p>
+</div>
+<p>A <strong>wiring harness</strong> is a group of wires bundled in a fixed order so they connect as one unit.
+This kit needs three: one each for the display, the amplifier, and the microphone. Each
+harness is a strip of Dupont wires torn from a ribbon cable. The module end keeps the ribbon's
+original color order. At the Pico end, you move only the few wires that must move, so the block
+plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Builds</strong></td>
+<td>Three harnesses: display (8 wires), amplifier (6 wires), microphone (6 wires)</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td>About 30 minutes for all three</td>
+</tr>
+<tr>
+<td><strong>Do it before</strong></td>
+<td><a href="../04-hello-world/">Lab 04</a> (display), <a href="../05-speaker-tones/">Lab 05</a> (amplifier), <a href="../06-listen-meter/">Lab 06</a> (microphone)</td>
+</tr>
+<tr>
+<td><strong>Power</strong></td>
+<td>Unplug the Pico's USB cable while you build and plug in harnesses</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../../../img/study-buddy-front-view.jpg"><img alt="The finished Study Buddy kit on a clear acrylic stand. The round display stands upright and shows the Study Buddy Kit welcome screen. Behind it, rainbow ribbon harnesses run to the breadboard, and the round microphone board is mounted below the display." src="../../../img/study-buddy-front-view.jpg" width="600" /></a></p>
+<p><em>The finished kit. All three harnesses run from the breadboard behind the display. Click any photo to see it full size.</em></p>
+<h2 id="what-you-need">What You Need<a class="headerlink" href="#what-you-need" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A 40-wire male-to-female Dupont ribbon cable, 20 cm</td>
+<td>One ribbon makes all three harnesses for one kit. See the <a href="../../../learning-graph/teachers-guide/#dupont-ribbon-cable-male-to-female-20-cm">Purchasing Guide</a>.</td>
+</tr>
+<tr>
+<td>The display, amplifier, and microphone with their header pins soldered on</td>
+<td>The female ends of the ribbon push onto these pins.</td>
+</tr>
+<tr>
+<td>Your Pico 2 W on the breadboard</td>
+<td>Pin 1 in breadboard row 1, as in the <a href="../../../chapters/04-pico-kit-hardware/img/circuit-diagram.svg">circuit diagram</a>.</td>
+</tr>
+<tr>
+<td>Optional: hot glue gun, or narrow tape</td>
+<td>Holds the male pins together as a block.</td>
+</tr>
+<tr>
+<td>Optional: a small paper tag for each harness</td>
+<td>Write "DISPLAY", "AMP" or "MIC" on it.</td>
+</tr>
+</tbody>
+</table>
+<p>A Dupont <strong>male</strong> end has a pin that pushes into a breadboard hole. A <strong>female</strong> end has a
+socket that slides over a module's header pin. In every harness, the female ends go on the
+module and the male ends go in the breadboard.</p>
+<h3 id="the-ribbons-color-order">The Ribbon's Color Order<a class="headerlink" href="#the-ribbons-color-order" title="Permanent link">&para;</a></h3>
+<p>The wires in a Dupont ribbon follow the resistor color code, and the pattern repeats every ten
+wires:</p>
+<p><strong>brown, red, orange, yellow, green, blue, purple, gray, white, black</strong>, then brown again.</p>
+<p>Each harness is a strip of neighboring wires taken from this pattern. That is why the colors
+below are not random: they are simply where each strip falls on the ribbon. In all three
+harnesses, <strong>brown is ground and red is power</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">If your ribbon has a different color order</p>
+<p>Some ribbons use other colors. The method still works: peel a strip of the right length,
+write down its colors in order, and use your own colors in the tables below. What matters
+is the <strong>order</strong> of the wires, not their colors.</p>
+</div>
+<h2 id="the-big-idea-every-fifth-row-is-ground">The Big Idea: Every Fifth Row Is Ground<a class="headerlink" href="#the-big-idea-every-fifth-row-is-ground" title="Permanent link">&para;</a></h2>
+<p>The Pico's left edge has 20 pins, and the breadboard row number equals the Pico's physical pin
+number: pin 1 is in row 1, pin 20 in row 20. Four of those pins are <strong>GND</strong>: rows 3, 8, 13 and 18.
+They fall every fifth row.</p>
+<table>
+<thead>
+<tr>
+<th>Rows</th>
+<th>Pico pins</th>
+<th>Who uses them</th>
+<th>GND row inside the block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 to 10</td>
+<td>GND, GP2, GP3, GP4, GP5, GND, GP6, GP7</td>
+<td>Display</td>
+<td>3 (row 8 stays empty)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>GP8</td>
+<td>Nobody: a one-row gap</td>
+<td></td>
+</tr>
+<tr>
+<td>12 to 16</td>
+<td>GP9, GND, GP10, GP11, GP12</td>
+<td>Amplifier</td>
+<td>13</td>
+</tr>
+<tr>
+<td>17 to 20</td>
+<td>GP13, GND, GP14, GP15</td>
+<td>Microphone</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
+<p>The kit's pins were chosen so that each module's signal wires sit next to a GND pin. A harness
+that keeps its wires in the same order as those rows carries its own ground wire, so plugging
+in the block also connects the module's ground. You never need a separate ground wire.</p>
+<div class="admonition mascot-thinking">
+<p class="admonition-title">Why the Ground Wire Matters Most</p>
+<p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
+A signal is a voltage <em>measured against ground</em>. If a module's GND wire is missing, its signals have nothing to be measured against, and the module fails in confusing ways instead of with a clear error. A harness that carries its own ground makes that mistake much harder.</p>
+</div>
+<p>Power is the exception. The 3.3 V pin (3V3, pin 36) and the 5 V pin (VBUS, pin 40) are on the
+Pico's <strong>right</strong> edge, so every red wire leaves its harness and crosses to the right side.</p>
+<table>
+<thead>
+<tr>
+<th>Red wire from</th>
+<th>Goes to</th>
+<th>Right-side row</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display VCC</td>
+<td>3V3 (pin 36)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Microphone VDD</td>
+<td>3V3 (pin 36)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Amplifier Vin</td>
+<td>VBUS (pin 40), 5 V from USB</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The microphone is a 3.3 V part, so its red wire must go to 3V3, never VBUS. The amplifier works
+on either. It goes to VBUS here because the Pico covers most holes in each breadboard row, which
+leaves room for only two wires beside pin 36. If your breadboard has room for three wires in the
+3V3 row, the amplifier can use 3V3 instead, as the
+<a href="../../../chapters/04-pico-kit-hardware/img/circuit-diagram.svg">circuit diagram</a> shows.</p>
+<h2 id="the-three-rules">The Three Rules<a class="headerlink" href="#the-three-rules" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Keep the original color order at the module end.</strong> Push the strip's female ends onto the
+   module's pins in order, starting with the wire named in each section.</li>
+<li><strong>At the Pico end, move only the wires that must move.</strong> Each section lists the moves. Every
+   other wire stays next to its neighbor from the ribbon.</li>
+<li><strong>Red goes to the right side.</strong> Peel the red wire away from its neighbors for about 10 cm so
+   it can reach across the Pico.</li>
+</ol>
+<p>To peel a strip, nick the gap between two wires with a fingernail and pull the wires apart
+slowly. The wires separate cleanly along their whole length.</p>
+<h2 id="the-wiring-diagram">The Wiring Diagram<a class="headerlink" href="#the-wiring-diagram" title="Permanent link">&para;</a></h2>
+<p>Each panel shows one harness. The colored squares at the top are the female ends on the module,
+in ribbon order. The squares at the bottom are breadboard rows beside the Pico. Click the
+diagram to see it larger.</p>
+<p><a href="../img/wiring-harness.svg"><img alt="Diagram of the three wiring harnesses. Display: brown GND to row 3, orange SCL to row 4, yellow SDA to row 5, green RST to row 6, blue DC to row 7, row 8 empty, purple CS to row 9, gray BL to row 10, red VCC to 3V3. Amplifier: purple BCLK to row 12, brown GND to row 13, blue LRC to row 14, gray DIN to row 15, white GAIN to row 16, SD with no wire, red Vin to VBUS. Microphone: gray SCK to row 17, brown GND and black L/R to row 18, white WS to row 19, orange SD to row 20, red VDD to 3V3." src="../img/wiring-harness.svg" /></a></p>
+<h2 id="harness-1-the-display">Harness 1: The Display<a class="headerlink" href="#harness-1-the-display" title="Permanent link">&para;</a></h2>
+<p>The display's header has ten pads: <strong>GND, VCC, SCL, SDA, RST, DC, CS, BL</strong>, then SDO and TE.
+Only the first eight get a wire.</p>
+<h3 id="step-1-peel-an-8-wire-strip-from-brown-to-gray">Step 1: Peel an 8-wire strip from brown to gray<a class="headerlink" href="#step-1-peel-an-8-wire-strip-from-brown-to-gray" title="Permanent link">&para;</a></h3>
+<p>Peel a strip of eight wires that starts with <strong>brown</strong> and ends with <strong>gray</strong>: brown, red,
+orange, yellow, green, blue, purple, gray. These are the display colors used in <code>config.py</code>.</p>
+<h3 id="step-2-plug-the-female-ends-onto-the-display">Step 2: Plug the female ends onto the display<a class="headerlink" href="#step-2-plug-the-female-ends-onto-the-display" title="Permanent link">&para;</a></h3>
+<p>Push the strip onto the display's first eight pads, with <strong>brown on GND</strong>. Red then lands on
+VCC, orange on SCL, and so on down to gray on BL. SDO and TE stay bare.</p>
+<h3 id="step-3-make-two-changes-at-the-pico-end">Step 3: Make two changes at the Pico end<a class="headerlink" href="#step-3-make-two-changes-at-the-pico-end" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Pull red out.</strong> Peel the red wire away from brown and orange for about 10 cm. It goes to
+   3V3 on the right side.</li>
+<li><strong>Split purple and gray off.</strong> Peel purple and gray away from blue for about 5 cm. Row 8 is a
+   Pico GND pin that the display does not need, so these two wires skip it.</li>
+</ol>
+<h3 id="step-4-plug-it-into-the-breadboard">Step 4: Plug it into the breadboard<a class="headerlink" href="#step-4-plug-it-into-the-breadboard" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Wire</th>
+<th>Display pin</th>
+<th>Breadboard row</th>
+<th>Pico pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>brown</td>
+<td>GND</td>
+<td>3</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>orange</td>
+<td>SCL</td>
+<td>4</td>
+<td>GP2</td>
+</tr>
+<tr>
+<td>yellow</td>
+<td>SDA</td>
+<td>5</td>
+<td>GP3</td>
+</tr>
+<tr>
+<td>green</td>
+<td>RST</td>
+<td>6</td>
+<td>GP4</td>
+</tr>
+<tr>
+<td>blue</td>
+<td>DC</td>
+<td>7</td>
+<td>GP5</td>
+</tr>
+<tr>
+<td>(none)</td>
+<td></td>
+<td>8</td>
+<td>GND, left empty</td>
+</tr>
+<tr>
+<td>purple</td>
+<td>CS</td>
+<td>9</td>
+<td>GP6</td>
+</tr>
+<tr>
+<td>gray</td>
+<td>BL</td>
+<td>10</td>
+<td>GP7</td>
+</tr>
+<tr>
+<td>red</td>
+<td>VCC</td>
+<td>5, right side</td>
+<td>3V3 (pin 36)</td>
+</tr>
+</tbody>
+</table>
+<p>The block of five (brown to blue) goes in rows 3 to 7, and the pair (purple and gray) goes in
+rows 9 and 10. Check it with <a href="../04-hello-world/">Lab 04</a>: "Hello World!" should appear inside a
+cyan ring.</p>
+<h2 id="harness-2-the-amplifier">Harness 2: The Amplifier<a class="headerlink" href="#harness-2-the-amplifier" title="Permanent link">&para;</a></h2>
+<p>The MAX98357A's header has seven pins: <strong>LRC, BCLK, DIN, GAIN, SD, GND, Vin</strong>. SD (shutdown) is
+not used.</p>
+<h3 id="step-1-peel-a-7-wire-strip-from-blue-to-red">Step 1: Peel a 7-wire strip from blue to red<a class="headerlink" href="#step-1-peel-a-7-wire-strip-from-blue-to-red" title="Permanent link">&para;</a></h3>
+<p>Peel a strip of seven wires that starts with <strong>blue</strong> and ends with <strong>red</strong>: blue, purple, gray,
+white, black, brown, red. This strip crosses the place where the color pattern starts over,
+which is how brown and red end up on GND and Vin.</p>
+<h3 id="step-2-remove-the-black-wire">Step 2: Remove the black wire<a class="headerlink" href="#step-2-remove-the-black-wire" title="Permanent link">&para;</a></h3>
+<p>The black wire lines up with SD. Peel it off the strip completely and set it aside. You now
+have a strip of four (blue, purple, gray, white) and a pair (brown, red).</p>
+<div class="admonition mascot-warning">
+<p class="admonition-title">SD Must Never Go to Ground</p>
+<p><img alt="Sage warning" class="mascot-admonition-img" src="../../../img/mascot/warning.png" />
+Pulling the amplifier's SD pin to ground switches the amplifier off, so a black wire from SD plugged into a GND row gives you a silent speaker and no error. Leave SD with no wire at all; the board's own resistor keeps the amplifier on.</p>
+</div>
+<h3 id="step-3-plug-the-female-ends-onto-the-amplifier">Step 3: Plug the female ends onto the amplifier<a class="headerlink" href="#step-3-plug-the-female-ends-onto-the-amplifier" title="Permanent link">&para;</a></h3>
+<p>Push the four-wire strip onto LRC, BCLK, DIN and GAIN, with <strong>blue on LRC</strong>. Leave SD bare. Push
+the pair onto GND and Vin, with <strong>brown on GND</strong> and red on Vin.</p>
+<h3 id="step-4-make-two-changes-at-the-pico-end">Step 4: Make two changes at the Pico end<a class="headerlink" href="#step-4-make-two-changes-at-the-pico-end" title="Permanent link">&para;</a></h3>
+<p>The amplifier lists LRC before BCLK, but MicroPython needs BCLK on the lower pin, with LRC on the
+pin right after it. The ground pin sits between them on the Pico.</p>
+<ol>
+<li><strong>Swap blue and purple.</strong> Peel blue and purple apart for about 5 cm and cross them, so purple
+   (BCLK) comes first.</li>
+<li><strong>Put brown between them.</strong> Bring the brown GND wire over to sit between purple and blue.</li>
+</ol>
+<p>Red goes to VBUS on the right side.</p>
+<h3 id="step-5-plug-it-into-the-breadboard">Step 5: Plug it into the breadboard<a class="headerlink" href="#step-5-plug-it-into-the-breadboard" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Wire</th>
+<th>Amplifier pin</th>
+<th>Breadboard row</th>
+<th>Pico pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>purple</td>
+<td>BCLK</td>
+<td>12</td>
+<td>GP9</td>
+</tr>
+<tr>
+<td>brown</td>
+<td>GND</td>
+<td>13</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>blue</td>
+<td>LRC</td>
+<td>14</td>
+<td>GP10</td>
+</tr>
+<tr>
+<td>gray</td>
+<td>DIN</td>
+<td>15</td>
+<td>GP11</td>
+</tr>
+<tr>
+<td>white</td>
+<td>GAIN</td>
+<td>16</td>
+<td>GP12</td>
+</tr>
+<tr>
+<td>red</td>
+<td>Vin</td>
+<td>1, right side</td>
+<td>VBUS (pin 40)</td>
+</tr>
+</tbody>
+</table>
+<p>The five wires form one block in rows 12 to 16. Gray and white never move: they are still
+neighbors from the ribbon. Check it with <a href="../05-speaker-tones/">Lab 05</a>: you should hear a beep,
+a scale, and three volumes.</p>
+<h2 id="harness-3-the-microphone">Harness 3: The Microphone<a class="headerlink" href="#harness-3-the-microphone" title="Permanent link">&para;</a></h2>
+<p>The INMP441 board has two rows of three pins. With the board's label facing you, the top row is
+<strong>SCK, WS, L/R</strong> and the bottom row is <strong>SD, VDD, GND</strong>, with GND under L/R.</p>
+<h3 id="step-1-peel-a-6-wire-strip-from-gray-to-orange">Step 1: Peel a 6-wire strip from gray to orange<a class="headerlink" href="#step-1-peel-a-6-wire-strip-from-gray-to-orange" title="Permanent link">&para;</a></h3>
+<p>Peel a strip of six wires that starts with <strong>gray</strong> and ends with <strong>orange</strong>: gray, white,
+black, brown, red, orange.</p>
+<h3 id="step-2-fold-the-strip-around-the-two-pin-rows">Step 2: Fold the strip around the two pin rows<a class="headerlink" href="#step-2-fold-the-strip-around-the-two-pin-rows" title="Permanent link">&para;</a></h3>
+<p>Split the strip between black and brown for about 3 cm, so it can bend into a U.</p>
+<ol>
+<li>Push the first three wires onto the top row, left to right: <strong>gray on SCK</strong>, white on WS,
+   black on L/R.</li>
+<li>Fold the strip down around the right edge of the board. The next three wires go onto the
+   bottom row, right to left: <strong>brown on GND</strong>, red on VDD, orange on SD.</li>
+</ol>
+<p>The order never changes. The strip simply wraps around the board, so brown (GND) sits right
+under black (L/R).</p>
+<h3 id="step-3-make-two-changes-at-the-pico-end_1">Step 3: Make two changes at the Pico end<a class="headerlink" href="#step-3-make-two-changes-at-the-pico-end_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Pull red out.</strong> Peel it away for about 10 cm. It goes to 3V3 on the right side.</li>
+<li><strong>Move white past black and brown.</strong> On the Pico, the ground pin comes between SCK and WS, so
+   white (WS) moves down one place. Black and brown both go in the ground row, side by side.
+   L/R tied to ground tells the microphone to send the left channel, which is what the kit
+   reads.</li>
+</ol>
+<h3 id="step-4-plug-it-into-the-breadboard_1">Step 4: Plug it into the breadboard<a class="headerlink" href="#step-4-plug-it-into-the-breadboard_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Wire</th>
+<th>Microphone pin</th>
+<th>Breadboard row</th>
+<th>Pico pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gray</td>
+<td>SCK</td>
+<td>17</td>
+<td>GP13</td>
+</tr>
+<tr>
+<td>brown</td>
+<td>GND</td>
+<td>18</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>black</td>
+<td>L/R</td>
+<td>18 (the next hole out)</td>
+<td>GND</td>
+</tr>
+<tr>
+<td>white</td>
+<td>WS</td>
+<td>19</td>
+<td>GP14</td>
+</tr>
+<tr>
+<td>orange</td>
+<td>SD</td>
+<td>20</td>
+<td>GP15</td>
+</tr>
+<tr>
+<td>red</td>
+<td>VDD</td>
+<td>5, right side</td>
+<td>3V3 (pin 36)</td>
+</tr>
+</tbody>
+</table>
+<p>Check it with <a href="../06-listen-meter/">Lab 06</a>: the meter should move when you talk.</p>
+<h2 id="finishing-the-harnesses">Finishing the Harnesses<a class="headerlink" href="#finishing-the-harnesses" title="Permanent link">&para;</a></h2>
+<p>Once a harness works, lock its Pico end in place so it plugs in as one block every time:</p>
+<ul>
+<li><strong>Hot Glue it.</strong> Line the male pins up in a spare row of the breadboard with the same spacing they
+  will have beside the Pico, then put a thin bead of hot glue across the plastic housings, not
+  the metal pins. Let it cool before you pull the block out.</li>
+<li><strong>Or tape it.</strong> A narrow wrap of tape around the housings works too, and is easier to undo.</li>
+<li><strong>Label it.</strong> Tape a tag to each harness. A harness with "MIC" on it can't be swapped with the
+  amplifier's by mistake.</li>
+</ul>
+<p><a href="../../../img/study-buddy-rear-view.jpg"><img alt="The breadboard seen from behind. Glued black Dupont housings hold the harness pins in blocks beside the Pico, and red power wires loop across to the Pico's other side." src="../../../img/study-buddy-rear-view.jpg" width="600" /></a></p>
+<p><em>Rear view: each harness ends in a block of black housings glued together, plugged in beside the
+Pico. The red power wires leave their blocks and cross to the other side.</em></p>
+<div class="admonition mascot-tip">
+<p class="admonition-title">Hot Glue the Blocks You Built</p>
+<p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../../img/mascot/tip.png" />
+Hot glue the display as two blocks (rows 3 to 7, and rows 9 to 10), the amplifier as one block of five, and the microphone as one block of four plus the black wire. Leave every red wire loose so it can reach the right side.</p>
+</div>
+<h2 id="check-before-you-power-on">Check Before You Power On<a class="headerlink" href="#check-before-you-power-on" title="Permanent link">&para;</a></h2>
+<p>Unplug the USB cable, then check each harness against its table:</p>
+<ol>
+<li>Each <strong>brown</strong> wire is in a GND row: 3, 13 or 18.</li>
+<li>Each <strong>red</strong> wire is on the right side: display and microphone in row 5 (3V3), the amplifier
+   in row 1 (VBUS). The microphone's red wire is <strong>not</strong> in row 1.</li>
+<li>Row 8 is empty, and row 11 is empty.</li>
+<li>The amplifier's SD pin has no wire.</li>
+<li>Every wire is pushed all the way into its hole.</li>
+</ol>
+<p><a href="../../../img/study-buddy-side-view.jpg"><img alt="Side view of the kit. Ribbon harnesses run from blocks beside the Pico to the amplifier board with its green speaker terminal, and on to the back of the upright round display." src="../../../img/study-buddy-side-view.jpg" width="600" /></a></p>
+<p><em>Side view: the ribbons run from the blocks beside the Pico to the amplifier (center, with the
+green speaker terminal) and the display (right).</em></p>
+<p>Then plug in the USB cable and run <a href="../02-probe/">Lab 02, the hardware probe</a>. It checks the pin
+plan and the parts it can see, and reports any wiring that breaks the rules.</p>
+<div class="admonition mascot-celebration">
+<p class="admonition-title">Three Harnesses, Zero Loose Wires</p>
+<p><img alt="Sage celebrating" class="mascot-admonition-img" src="../../../img/mascot/celebration.png" />
+You turned a flat ribbon into three harnesses that each carry their own ground and plug in as blocks. Now a module comes off and goes back on in seconds, and the wires stay in order every time.</p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../intro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../01-blink/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 01: Blink the Onboard LED">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 01: Blink the Onboard LED
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Dan McCreary. Licensed under <a href="license/">CC BY-NC-SA 4.0</a> for non-commercial use.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.action.edit", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

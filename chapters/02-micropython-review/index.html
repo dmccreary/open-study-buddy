@@ -2168,9 +2168,9 @@ If <code>mpremote</code> says it cannot open the port, Thonny is probably still 
 <p>Every kit lab imports <code>config.py</code> rather than repeating pin numbers. That is the <strong>config file pattern</strong>: put every hardware fact in one module, and let every other file ask it. Here is a trimmed piece of the kit's <code>config.py</code>.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">machine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pin</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">BUTTON_MODE_PIN</span> <span class="o">=</span> <span class="mi">13</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">BUTTON_INCREMENT_PIN</span> <span class="o">=</span> <span class="mi">14</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">BUTTON_DECREMENT_PIN</span> <span class="o">=</span> <span class="mi">15</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">BUTTON_MODE_PIN</span> <span class="o">=</span> <span class="mi">16</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">BUTTON_INCREMENT_PIN</span> <span class="o">=</span> <span class="mi">17</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">BUTTON_DECREMENT_PIN</span> <span class="o">=</span> <span class="mi">18</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">init_buttons</span><span class="p">():</span>
@@ -2237,9 +2237,9 @@ Think of <code>config.py</code> as the kit's address book. Programs look up wher
 </span></code></pre></div>
 <p>The first argument, <code>0</code>, picks SPI block 0. The <code>baudrate</code> is the requested clock speed in bits per second, <code>sck</code> is the clock pin, and <code>mosi</code> is the pin that carries data from the Pico to the display. Chapter 5 explains each of these. The point for now is that every piece of hardware follows the same recipe: choose a block, hand it the pins, and it returns an object you can use.</p>
 <h3 id="gpio-pins">GPIO Pins<a class="headerlink" href="#gpio-pins" title="Permanent link">&para;</a></h3>
-<p>A <strong>GPIO pin</strong> (general-purpose input/output) is a metal pin the program can either read as a 0 or a 1, or drive to a 0 or a 1. The Pico's pins are labeled GP0, GP1, and so on, and the number in <code>Pin(13)</code> is the GP number, not the physical position on the board.</p>
+<p>A <strong>GPIO pin</strong> (general-purpose input/output) is a metal pin the program can either read as a 0 or a 1, or drive to a 0 or a 1. The Pico's pins are labeled GP0, GP1, and so on, and the number in <code>Pin(16)</code> is the GP number, not the physical position on the board.</p>
 <p>As an input, a pin reads a voltage and reports <code>1</code> for high (near 3.3 V) or <code>0</code> for low (near 0 V). As an output, it sets that voltage. A pin set up as an input with a <strong>pull-up</strong> is held at 1 by a built-in resistor until something connects it to ground. That is how the kit reads a button.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>   <span class="c1"># 1 when not pressed, 0 while pressed</span>
 </span></code></pre></div>
 <p>The button's other leg goes to ground, so pressing it connects the pin to 0 V and the reading flips from 1 to 0. This surprises many builders: <em>pressed</em> reads as 0. The kit's labs write <code>button.value() == 0</code> to mean "pressed."</p>
@@ -2265,24 +2265,29 @@ A code bug that looks like a broken button is often a flipped test: writing <cod
 </thead>
 <tbody>
 <tr>
-<td>Buttons MODE, UP, DOWN</td>
-<td>GP13, GP14, GP15</td>
-<td>Input with pull-up</td>
-</tr>
-<tr>
 <td>Display clock, data, reset, data/command, chip select, backlight</td>
 <td>GP2 to GP7</td>
 <td>SPI and outputs</td>
 </tr>
 <tr>
+<td>Amplifier bit clock, left/right clock, data</td>
+<td>GP9, GP10, GP11</td>
+<td>I2S transmit</td>
+</tr>
+<tr>
+<td>Amplifier gain</td>
+<td>GP12</td>
+<td>Output, or left floating</td>
+</tr>
+<tr>
 <td>Microphone clock, word select, data</td>
-<td>GP10, GP11, GP12</td>
+<td>GP13, GP14, GP15</td>
 <td>I2S receive</td>
 </tr>
 <tr>
-<td>Amplifier data, bit clock, left/right clock</td>
-<td>GP19, GP20, GP21</td>
-<td>I2S transmit</td>
+<td>Buttons MODE, UP, DOWN</td>
+<td>GP16, GP17, GP18</td>
+<td>Input with pull-up</td>
 </tr>
 </tbody>
 </table>
@@ -2308,7 +2313,7 @@ A code bug that looks like a broken button is often a flipped test: writing <cod
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="k">global</span> <span class="n">pressed</span>
 </span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">pressed</span> <span class="o">=</span> <span class="kc">True</span>
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">button</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="n">trigger</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">IRQ_FALLING</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">on_press</span><span class="p">)</span>
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
 </span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>

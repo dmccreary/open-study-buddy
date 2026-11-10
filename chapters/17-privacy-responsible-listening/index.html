@@ -3014,7 +3014,7 @@ A list like this can feel heavy, and that is normal. You already do this when yo
 <tbody>
 <tr>
 <td>Wiring</td>
-<td>A switch between GP9 and GND</td>
+<td>A switch between GP19 and GND</td>
 <td>A switch in series with the microphone's VDD wire (3V3 to the switch, switch to VDD)</td>
 </tr>
 <tr>
@@ -3029,8 +3029,8 @@ A list like this can feel heavy, and that is normal. You already do this when yo
 </tr>
 <tr>
 <td>Can the program show the state?</td>
-<td>Yes: it reads GP9</td>
-<td>Only if a second pole of the switch also grounds GP9</td>
+<td>Yes: it reads GP19</td>
+<td>Only if a second pole of the switch also grounds GP19</td>
 </tr>
 <tr>
 <td>Parts</td>
@@ -3039,8 +3039,8 @@ A list like this can feel heavy, and that is normal. You already do this when yo
 </tr>
 </tbody>
 </table>
-<p>A switch to GND on a pin that firmware reads is a software-visible mute. It is useful, since the Listener closes the microphone and the screen says MIC OFF, but it is only a promise by the code. A switch in series with the microphone's 3V3 is a true hardware mute: with it open the microphone has no power, whatever the code does. The kit's recommended build is the two-pole version, with one pole in the VDD wire and the other from GP9 (physical pin 12) to GND. A multimeter on the microphone's VDD pin should read about 0 V with the switch on, which is a check anyone can make.</p>
-<p>Cutting the microphone's clock line (SCK, GP10) is another way to stop it, since the part needs that clock to send data. Cutting power is simpler to explain and to verify.</p>
+<p>A switch to GND on a pin that firmware reads is a software-visible mute. It is useful, since the Listener closes the microphone and the screen says MIC OFF, but it is only a promise by the code. A switch in series with the microphone's 3V3 is a true hardware mute: with it open the microphone has no power, whatever the code does. The kit's recommended build is the two-pole version, with one pole in the VDD wire and the other from GP19 (physical pin 25) to GND. A multimeter on the microphone's VDD pin should read about 0 V with the switch on, which is a check anyone can make.</p>
+<p>Cutting the microphone's clock line (SCK, GP13) is another way to stop it, since the part needs that clock to send data. Cutting power is simpler to explain and to verify.</p>
 <div class="admonition mascot-warning">
 <p class="admonition-title">A Software Mute Is a Promise, Not a Wall</p>
 <p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
@@ -3195,7 +3195,7 @@ Notice the design move: instead of promising to keep two things in sync, put the
 </tr>
 <tr>
 <td>Hardware mute and indicator</td>
-<td>Two-pole switch cutting the microphone's 3V3 and reporting to GP9; status bar shows LISTENING or MIC OFF</td>
+<td>Two-pole switch cutting the microphone's 3V3 and reporting to GP19; status bar shows LISTENING or MIC OFF</td>
 </tr>
 <tr>
 <td>Parent notice and opt-out</td>
@@ -3237,8 +3237,8 @@ Notice the design move: instead of promising to keep two things in sync, put the
 <p>No. The transcript is still personal data and can be as revealing as audio. The Alexa case turned partly on transcripts that remained after recordings were deleted. Check what the service keeps, for how long, and whether you can turn it off.</p>
 </details>
 <details class="question">
-<summary>A friend says the microphone is off because the mute switch is wired to GP9. What would you check? Click to expand</summary>
-<p>Whether the switch cuts power. A switch to GND on GP9 is only read by the program, which then chooses to stop listening, so a bug could leave the microphone running. For a true hardware mute the switch must be in series with the microphone's VDD, which you can confirm with a multimeter on VDD.</p>
+<summary>A friend says the microphone is off because the mute switch is wired to GP19. What would you check? Click to expand</summary>
+<p>Whether the switch cuts power. A switch to GND on GP19 is only read by the program, which then chooses to stop listening, so a bug could leave the microphone running. For a true hardware mute the switch must be in series with the microphone's VDD, which you can confirm with a multimeter on VDD.</p>
 </details>
 <details class="question">
 <summary>Why is it not enough to delete <code>secrets.py</code> in a new commit after committing it by mistake? Click to expand</summary>

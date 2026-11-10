@@ -2132,7 +2132,7 @@ In this chapter you will build the tools that find a bad wire in minutes, put ev
 </tr>
 </tbody>
 </table>
-<p><em>Worked example.</em> You run <code>03-mic-probe.py</code> and the verdict says <code>FAIL - flat line: every sample is 12345</code>. A flat line means the microphone started with no error but sent the same number every time. The probe lists what to check, in the kit README's order: SCK on GP10, WS on GP11, SD on GP12; VDD on 3V3; GND and L/R on GND; and the Chapter 17 mute switch. You find SD and SCK swapped, fix them, and the next run prints a <code>PASS</code> line. (The numbers in this example are made up to show the format.)</p>
+<p><em>Worked example.</em> You run <code>03-mic-probe.py</code> and the verdict says <code>FAIL - flat line: every sample is 12345</code>. A flat line means the microphone started with no error but sent the same number every time. The probe lists what to check, in the kit README's order: SCK on GP13, WS on GP14, SD on GP15; VDD on 3V3; GND and L/R on GND; and the Chapter 17 mute switch. You find SD and SCK swapped, fix them, and the next run prints a <code>PASS</code> line. (The numbers in this example are made up to show the format.)</p>
 <p>Every probe calls the same functions in <code>checks.py</code>, which is also what the self-test uses. One implementation means a bug is fixed once.</p>
 <div class="admonition mascot-thinking">
 <p class="admonition-title">A Probe Asks One Question</p>
@@ -2191,68 +2191,68 @@ Notice what makes a probe powerful: it removes everything but the part under sus
 <tr>
 <td>Microphone</td>
 <td>SCK</td>
-<td>GP10</td>
-<td>14</td>
-</tr>
-<tr>
-<td>Microphone</td>
-<td>WS</td>
-<td>GP11</td>
-<td>15</td>
-</tr>
-<tr>
-<td>Microphone</td>
-<td>SD</td>
-<td>GP12</td>
-<td>16</td>
-</tr>
-<tr>
-<td>Button MODE</td>
-<td>one leg</td>
 <td>GP13</td>
 <td>17</td>
 </tr>
 <tr>
-<td>Button UP</td>
-<td>one leg</td>
+<td>Microphone</td>
+<td>WS</td>
 <td>GP14</td>
 <td>19</td>
 </tr>
 <tr>
-<td>Button DOWN</td>
-<td>one leg</td>
+<td>Microphone</td>
+<td>SD</td>
 <td>GP15</td>
 <td>20</td>
 </tr>
 <tr>
+<td>Button MODE</td>
+<td>one leg</td>
+<td>GP16</td>
+<td>21</td>
+</tr>
+<tr>
+<td>Button UP</td>
+<td>one leg</td>
+<td>GP17</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Button DOWN</td>
+<td>one leg</td>
+<td>GP18</td>
+<td>24</td>
+</tr>
+<tr>
 <td>Amplifier</td>
 <td>DIN</td>
-<td>GP19</td>
-<td>25</td>
+<td>GP11</td>
+<td>15</td>
 </tr>
 <tr>
 <td>Amplifier</td>
 <td>BCLK</td>
-<td>GP20</td>
-<td>26</td>
+<td>GP9</td>
+<td>12</td>
 </tr>
 <tr>
 <td>Amplifier</td>
 <td>LRC</td>
-<td>GP21</td>
-<td>27</td>
+<td>GP10</td>
+<td>14</td>
 </tr>
 <tr>
 <td>Amplifier</td>
 <td>GAIN</td>
-<td>GP18</td>
-<td>24</td>
+<td>GP12</td>
+<td>16</td>
 </tr>
 </tbody>
 </table>
 <p>The power wires follow: display VCC and microphone VDD to 3V3 (header pin 36), amplifier VIN to VBUS or 3V3 (pin 40 or 36), and every GND, including the microphone's L/R and the buttons' other legs, to any GND pin. The tool prints these too. Sixteen signal wires are checked by the program; the power wires it cannot see, so you check those by eye.</p>
 <p>The method is a ritual. Print the list, put a finger on one wire at a time, say its part and Pico pin out loud, and tick it. Do power and ground last, and check that the microphone's VDD goes to 3V3, not 5 V (Chapter 4). Then run <code>check_pin_plan</code>, which tests three rules the table cannot show by itself: each I2S word-select pin is the clock pin plus one, no GP number is used twice, and none of GP23, GP24, GP25, or GP29 (the wireless chip's) is used.</p>
-<p><em>Worked example.</em> The kit's <code>config.py</code> is edited so the microphone's WS is GP13, to match a wire placed there. The pin-plan check prints <code>FAIL - microphone word select GP13 must be GP11 (clock + 1); GP13 used by 'Microphone WS' and 'Button MODE one leg'</code>. It names the rule <em>and</em> the second victim, because GP13 is also the MODE button. The fix is the one the kit README gives: move the wire, and do not edit <code>config.py</code> to match the wrong wire.</p>
+<p><em>Worked example.</em> The kit's <code>config.py</code> is edited so the microphone's WS is GP16, to match a wire placed there. The pin-plan check prints <code>FAIL - microphone word select GP16 must be GP14 (clock + 1); GP16 used by 'Microphone WS' and 'Button MODE one leg'</code>. It names the rule <em>and</em> the second victim, because GP16 is also the MODE button. The fix is the one the kit README gives: move the wire, and do not edit <code>config.py</code> to match the wrong wire.</p>
 <h2 id="the-self-test-program">The Self-Test Program<a class="headerlink" href="#the-self-test-program" title="Permanent link">&para;</a></h2>
 <p>A <strong>self-test program</strong> runs every check, prints a verdict per subsystem, and shows a summary on the display. <code>selftest.py</code> is built from the same <code>checks.py</code> functions as the probes. You run it after assembling, after every change, and, if you like, at power-up.</p>
 <table>
@@ -2312,13 +2312,13 @@ Notice what makes a probe powerful: it removes everything but the part under sus
 </tbody>
 </table>
 <p>The speaker check borrows Chapter 8's finding that the device hears itself. On the test board a 1 kHz tone at volume 40 read 3.9 bits above the quiet room (about 15 times louder), so the check asks for half of that, 2.0 bits. This is a number from one board. If your speaker is quieter, or the microphone is farther away, the check says <code>ASK</code> instead of <code>FAIL</code>, because "the microphone did not hear it" is not proof that nobody could.</p>
-<p><em>Worked example.</em> This is what the self-test prints when the microphone's WS wire is on GP13 (produced by running the real program against a fake Pico layer where the fault was simulated, so the timings are left out).</p>
+<p><em>Worked example.</em> This is what the self-test prints when the microphone's WS wire is on GP16 (produced by running the real program against a fake Pico layer where the fault was simulated, so the timings are left out).</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Files       PASS config.py, driver and both fonts are present
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Memory      PASS heap 180,000 bytes free; a 3 s recording fits
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Pin plan    FAIL microphone word select GP13 must be GP11 (clock + 1); GP13 used by 'Microphone WS' and 'Button MODE one leg'
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Pin plan    FAIL microphone word select GP16 must be GP14 (clock + 1); GP16 used by 'Microphone WS' and 'Button MODE one leg'
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Buttons     PASS all three read 1 (not pressed); an unconnected wire also reads 1
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Display     PASS a person saw the ring and the text
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Microphone  FAIL microphone failed to start: invalid ws (must be sck+1) (word select must be the pin after the clock: SCK GP10, WS GP11)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Microphone  FAIL microphone failed to start: invalid ws (must be sck+1) (word select must be the pin after the clock: SCK GP13, WS GP14)
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Speaker     PASS a person heard the beep
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Wi-Fi       PASS radio sees 2 network(s); no secrets.py, so no connection tried
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
@@ -2344,8 +2344,8 @@ Notice what makes a probe powerful: it removes everything but the part under sus
 <td>M1</td>
 <td>An error at start, and it says <code>must be sck+1</code>?</td>
 <td>WS is not on the pin after SCK</td>
-<td>Compare with the table: SCK GP10, WS GP11</td>
-<td>Move the wire back. Do not edit <code>config.py</code>: SCK on GP12 would need WS on GP13, the MODE button</td>
+<td>Compare with the table: SCK GP13, WS GP14</td>
+<td>Move the wire back. Do not edit <code>config.py</code>: SCK on GP15 would need WS on GP16, the MODE button</td>
 </tr>
 <tr>
 <td>M2</td>
@@ -2401,7 +2401,7 @@ Notice what makes a probe powerful: it removes everything but the part under sus
 <td>A1</td>
 <td>Is the speaker silent, not distorted?</td>
 <td>No power or ground at the amplifier, or a signal wire is wrong</td>
-<td>Probe 04; VIN and GND, then BCLK GP20, LRC GP21, DIN GP19</td>
+<td>Probe 04; VIN and GND, then BCLK GP9, LRC GP10, DIN GP11</td>
 <td>Fix the wire. If <code>I2S()</code> raises an error, LRC must be right after BCLK</td>
 </tr>
 <tr>

@@ -2508,17 +2508,17 @@ The Pico does not keep a copy of the picture, because the controller does. That 
 <tbody>
 <tr>
 <td>SCK</td>
-<td>GP10</td>
+<td>GP13</td>
 <td>Serial clock from the Pico</td>
 </tr>
 <tr>
 <td>WS</td>
-<td>GP11</td>
+<td>GP14</td>
 <td>Word select from the Pico</td>
 </tr>
 <tr>
 <td>SD</td>
-<td>GP12</td>
+<td>GP15</td>
 <td>Serial data, microphone to Pico</td>
 </tr>
 <tr>
@@ -2542,7 +2542,7 @@ The Pico does not keep a copy of the picture, because the controller does. That 
 <div class="admonition mascot-tip">
 <p class="admonition-title">Two Wires You Can Swap by Accident</p>
 <p><img alt="Sage giving a tip" class="mascot-admonition-img" src="../../img/mascot/tip.png" />
-The microphone's SCK and WS wires, and also SCK and SD, are easy to swap because the board's pin labels are tiny. A swapped microphone starts without any error and sends only zeros, so test 02 prints "flat line." Check in this order: SCK on GP10, WS on GP11, SD on GP12.</p>
+The microphone's SCK and WS wires, and also SCK and SD, are easy to swap because the board's pin labels are tiny. A swapped microphone starts without any error and sends only zeros, so test 02 prints "flat line." Check in this order: SCK on GP13, WS on GP14, SD on GP15.</p>
 </div>
 <h2 id="the-voice-amplifier-and-speaker">The Voice: Amplifier and Speaker<a class="headerlink" href="#the-voice-amplifier-and-speaker" title="Permanent link">&para;</a></h2>
 <h3 id="the-speaker">The Speaker<a class="headerlink" href="#the-speaker" title="Permanent link">&para;</a></h3>
@@ -2564,22 +2564,22 @@ The microphone's SCK and WS wires, and also SCK and SD, are easy to swap because
 <tbody>
 <tr>
 <td>BCLK</td>
-<td>GP20</td>
+<td>GP9</td>
 <td>Bit clock from the Pico</td>
 </tr>
 <tr>
 <td>LRC</td>
-<td>GP21</td>
+<td>GP10</td>
 <td>Left/right (word select) clock from the Pico</td>
 </tr>
 <tr>
 <td>DIN</td>
-<td>GP19</td>
+<td>GP11</td>
 <td>Audio data from the Pico</td>
 </tr>
 <tr>
 <td>GAIN</td>
-<td>GP18</td>
+<td>GP12</td>
 <td>Sets loudness: the Pico can float it, pull it low, or push it high</td>
 </tr>
 <tr>
@@ -2625,13 +2625,13 @@ The microphone's SCK and WS wires, and also SCK and SD, are easy to swap because
 <div class="admonition mascot-warning">
 <p class="admonition-title">BCLK and LRC Must Be Neighbors</p>
 <p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
-MicroPython's I2S needs the left/right clock on the pin right after the bit clock. Here BCLK is GP20 and LRC is GP21. If you move one without the other, <code>I2S()</code> raises an error. The same rule holds for the microphone: SCK on GP10 and WS on GP11.</p>
+MicroPython's I2S needs the left/right clock on the pin right after the bit clock. Here BCLK is GP9 and LRC is GP10. If you move one without the other, <code>I2S()</code> raises an error. The same rule holds for the microphone: SCK on GP13 and WS on GP14.</p>
 </div>
 <h2 id="the-hands-push-buttons">The Hands: Push Buttons<a class="headerlink" href="#the-hands-push-buttons" title="Permanent link">&para;</a></h2>
 <h3 id="the-push-button">The Push Button<a class="headerlink" href="#the-push-button" title="Permanent link">&para;</a></h3>
 <p>A <strong>push button</strong> (also called a tactile switch) is a switch that connects two wires only while you press it. The small square ones in the kit have four legs, but they are really two pairs. The two legs on one side are joined inside the button all the time, and pressing the button joins the two sides together.</p>
 <p>That construction creates a common mistake. If you wire the button with both of its wires on the <em>same</em> side, the button is always connected and always reads "pressed." Place the button so that the two wires go to legs on opposite sides.</p>
-<p><em>Worked example.</em> To wire MODE, put one leg's wire on GP13 (physical pin 17) and the opposite side's wire on any GND. The kit's <code>config.init_buttons()</code> then sets GP13 as an input with a pull-up. The button reads 1 when released and 0 while pressed. Test 03 confirms it by printing each press and release.</p>
+<p><em>Worked example.</em> To wire MODE, put one leg's wire on GP16 (physical pin 21) and the opposite side's wire on any GND. The kit's <code>config.init_buttons()</code> then sets GP16 as an input with a pull-up. The button reads 1 when released and 0 while pressed. Test 03 confirms it by printing each press and release.</p>
 <h3 id="the-pull-up-resistor">The Pull-Up Resistor<a class="headerlink" href="#the-pull-up-resistor" title="Permanent link">&para;</a></h3>
 <p>A <strong>pull-up resistor</strong> is a resistor that gently connects a pin to 3.3 V, so the pin has a definite value when nothing else is driving it. Without it, a button that is not pressed leaves the pin <em>floating</em>, which means it picks up stray signals and reads unpredictably. (On the board used to test this book, an unconnected GP16 happened to hold steady at 0, but nothing guarantees that.) With the pull-up, the pin reads 1 until the button connects it to ground, and then reads 0. The Pico has pull-up resistors built in, which <code>Pin.PULL_UP</code> turns on, so the buttons need no extra parts.</p>
 <p>A <strong>pull-down resistor</strong> is the mirror image: it gently connects the pin to ground, so the pin reads 0 until something connects it to 3.3 V. The Pico has these built in too (<code>Pin.PULL_DOWN</code>), but there is a catch on the Pico 2 W. On the test board, GP16 and GP17 kept reading 1 with the pull-down turned on once the pin had been driven or pulled high, and did not fall back to 0. A third pin, GP9, did not do this. Driving the pin low first made it read 0. The pull-ups showed no problem, reading 1 every time. This looks like a known quirk of the RP2350 pads (check Raspberry Pi's RP2350 errata for the details). It is one more reason the kit's buttons use pull-ups, and if you ever need a pull-down, drive the pin low for a moment first or use a real resistor.</p>
@@ -2657,7 +2657,7 @@ MicroPython's I2S needs the left/right clock on the pin right after the bit cloc
 </tr>
 </tbody>
 </table>
-<p><code>src/chapters/04-pico-kit-hardware/03-floating-pin-demo.py</code> repeats this test on your board.</p>
+<p>These measurements were made before the kit's buttons moved to GP16, GP17 and GP18. <code>src/chapters/04-pico-kit-hardware/03-floating-pin-demo.py</code> repeats the test on your board, using GP20, which the kit leaves free.</p>
 <h4 id="diagram-pull-up-button-circuit">Diagram: Pull-Up Button Circuit<a class="headerlink" href="#diagram-pull-up-button-circuit" title="Permanent link">&para;</a></h4>
 <iframe src="../../sims/pull-up-button-circuit/main.html" width="100%" height="562px" scrolling="no"></iframe>
 
@@ -2836,22 +2836,58 @@ MicroPython's I2S needs the left/right clock on the pin right after the bit cloc
 <td>36, any GND</td>
 </tr>
 <tr>
-<td>Microphone</td>
-<td>SCK</td>
+<td>Amplifier</td>
+<td>BCLK</td>
+<td>GP9</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>LRC</td>
 <td>GP10</td>
 <td>14</td>
 </tr>
 <tr>
-<td>Microphone</td>
-<td>WS</td>
+<td>Amplifier</td>
+<td>DIN</td>
 <td>GP11</td>
 <td>15</td>
 </tr>
 <tr>
-<td>Microphone</td>
-<td>SD</td>
+<td>Amplifier</td>
+<td>GAIN</td>
 <td>GP12</td>
 <td>16</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>VIN</td>
+<td>VBUS or 3V3</td>
+<td>40 or 36</td>
+</tr>
+<tr>
+<td>Amplifier</td>
+<td>GND</td>
+<td>GND</td>
+<td>any GND</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>SCK</td>
+<td>GP13</td>
+<td>17</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>WS</td>
+<td>GP14</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>SD</td>
+<td>GP15</td>
+<td>20</td>
 </tr>
 <tr>
 <td>Microphone</td>
@@ -2868,20 +2904,20 @@ MicroPython's I2S needs the left/right clock on the pin right after the bit cloc
 <tr>
 <td>Button MODE</td>
 <td>one leg</td>
-<td>GP13</td>
-<td>17</td>
+<td>GP16</td>
+<td>21</td>
 </tr>
 <tr>
 <td>Button UP</td>
 <td>one leg</td>
-<td>GP14</td>
-<td>19</td>
+<td>GP17</td>
+<td>22</td>
 </tr>
 <tr>
 <td>Button DOWN</td>
 <td>one leg</td>
-<td>GP15</td>
-<td>20</td>
+<td>GP18</td>
+<td>24</td>
 </tr>
 <tr>
 <td>Buttons</td>
@@ -2889,45 +2925,9 @@ MicroPython's I2S needs the left/right clock on the pin right after the bit cloc
 <td>GND</td>
 <td>any GND</td>
 </tr>
-<tr>
-<td>Amplifier</td>
-<td>DIN</td>
-<td>GP19</td>
-<td>25</td>
-</tr>
-<tr>
-<td>Amplifier</td>
-<td>BCLK</td>
-<td>GP20</td>
-<td>26</td>
-</tr>
-<tr>
-<td>Amplifier</td>
-<td>LRC</td>
-<td>GP21</td>
-<td>27</td>
-</tr>
-<tr>
-<td>Amplifier</td>
-<td>GAIN</td>
-<td>GP18</td>
-<td>24</td>
-</tr>
-<tr>
-<td>Amplifier</td>
-<td>VIN</td>
-<td>VBUS or 3V3</td>
-<td>40 or 36</td>
-</tr>
-<tr>
-<td>Amplifier</td>
-<td>GND</td>
-<td>GND</td>
-<td>any GND</td>
-</tr>
 </tbody>
 </table>
-<p>Three rules hold the table together. First, each GP pin appears once, so no two wires share a pin. Second, the I2S pairs are neighbors: microphone SCK and WS on GP10 and GP11, amplifier BCLK and LRC on GP20 and GP21. Third, nothing connects to GP23, GP24, GP25, or GP29, which belong to the wireless chip.</p>
+<p>Three rules hold the table together. First, each GP pin appears once, so no two wires share a pin. Second, the I2S pairs are neighbors: amplifier BCLK and LRC on GP9 and GP10, microphone SCK and WS on GP13 and GP14. Third, nothing connects to GP23, GP24, GP25, or GP29, which belong to the wireless chip.</p>
 <h4 id="diagram-wiring-diagram">Diagram: Wiring Diagram<a class="headerlink" href="#diagram-wiring-diagram" title="Permanent link">&para;</a></h4>
 <figure>
 <p><img src="img/circuit-diagram.svg" alt="Wiring diagram showing the GC9B72 display, MAX98357A amplifier, INMP441 microphone, and three buttons each wired to a Raspberry Pi Pico 2 W, with every wire colored and labeled with its pin">
@@ -3020,7 +3020,7 @@ Do not wire all five parts and then run everything. Add one part, run its test f
 <tr>
 <td>1</td>
 <td>Microphone</td>
-<td>SCK to GP10; WS to GP11; SD to GP12; L/R to GND; VDD to VBUS (5 V); GND to GND</td>
+<td>SCK to GP13; WS to GP14; SD to GP15; L/R to GND; VDD to VBUS (5 V); GND to GND</td>
 <td>VDD to VBUS (5 V)</td>
 <td>VDD to 3V3</td>
 <td>The INMP441 is a 3.3 V part. A 5 V supply can damage it.</td>
@@ -3028,23 +3028,23 @@ Do not wire all five parts and then run everything. Add one part, run its test f
 <tr>
 <td>2</td>
 <td>Microphone</td>
-<td>SCK to GP10; WS to GP13; SD to GP12; L/R to GND; VDD to 3V3; GND to GND</td>
-<td>WS to GP13</td>
-<td>WS to GP11</td>
-<td>I2S() raises "invalid ws (must be sck+1)", and GP13 is also the MODE button.</td>
+<td>SCK to GP13; WS to GP16; SD to GP15; L/R to GND; VDD to 3V3; GND to GND</td>
+<td>WS to GP16</td>
+<td>WS to GP14</td>
+<td>I2S() raises "invalid ws (must be sck+1)", and GP16 is also the MODE button.</td>
 </tr>
 <tr>
 <td>3</td>
 <td>Amplifier</td>
-<td>BCLK to GP20; LRC to GP22; DIN to GP19; GAIN to GP18; VIN to VBUS; GND to GND</td>
-<td>LRC to GP22</td>
-<td>LRC to GP21</td>
+<td>BCLK to GP9; LRC to GP8; DIN to GP11; GAIN to GP12; VIN to VBUS; GND to GND</td>
+<td>LRC to GP8</td>
+<td>LRC to GP10</td>
 <td>I2S() raises an error because the left/right clock must be the pin right after the bit clock.</td>
 </tr>
 <tr>
 <td>4</td>
 <td>Button MODE</td>
-<td>One leg to GP13; the leg on the opposite side to 3V3</td>
+<td>One leg to GP16; the leg on the opposite side to 3V3</td>
 <td>Opposite leg to 3V3</td>
 <td>Opposite leg to GND</td>
 <td>With a pull-up, the pin always reads 1, so test 03 never reports a press.</td>
@@ -3060,7 +3060,7 @@ Do not wire all five parts and then run everything. Add one part, run its test f
 <tr>
 <td>6</td>
 <td>Amplifier</td>
-<td>BCLK to GP20; LRC to GP21; DIN to GP19; GAIN to GP18; VIN to VBUS; GND not connected</td>
+<td>BCLK to GP9; LRC to GP10; DIN to GP11; GAIN to GP12; VIN to VBUS; GND not connected</td>
 <td>GND not connected</td>
 <td>GND to GND</td>
 <td>Test 05 is silent because the amplifier has no ground return.</td>
@@ -3078,7 +3078,7 @@ Do not wire all five parts and then run everything. Add one part, run its test f
 </ol>
 <p><strong>Feedback:</strong> 6 listings, fixed order, one attempt each. Correct: "Correct: <symptom text>". Incorrect: "Not quite. The faulty line is <faulty line>: <symptom text>". The correct line is revealed right after each selection, and a running score "n of 6" is shown.</p>
 <p><strong>Starting State:</strong> Listing 1 is shown with the pin assignment table beside it and the question "Which line does not match the table?"</p>
-<p><strong>Chapter Anchors:</strong> The chapter states the microphone pins SCK GP10, WS GP11, SD GP12, the amplifier pins BCLK GP20, LRC GP21, DIN GP19, GAIN GP18, the display backlight on GP7, and the MODE button on GP13.</p>
+<p><strong>Chapter Anchors:</strong> The chapter states the amplifier pins BCLK GP9, LRC GP10, DIN GP11, GAIN GP12, the microphone pins SCK GP13, WS GP14, SD GP15, the display backlight on GP7, and the MODE button on GP16.</p>
 </details>
 <h2 id="putting-it-all-together">Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
 <p>You now have the five parts, the rules that connect them, and a table to check every wire against. The Pico is the brain and the Wi-Fi link. The round display and its controller are the eyes. The INMP441 and its built-in converter are the ears. The MAX98357A and a speaker are the voice. Three buttons wired to ground with built-in pull-ups are the hands.</p>
@@ -3095,7 +3095,7 @@ Do not wire all five parts and then run everything. Add one part, run its test f
 <p>Test yourself with these two questions, and click each one to reveal its answer.</p>
 <details class="question">
 <summary>Your microphone starts without errors, but test 02 reports a flat line. What do you check first? Click to expand</summary>
-<p>The SCK, WS, and SD wires: SCK on GP10, WS on GP11, SD on GP12. A swapped microphone sends only zeros without any error. Then check that VDD is on 3V3 and that GND and L/R are both on ground.</p>
+<p>The SCK, WS, and SD wires: SCK on GP13, WS on GP14, SD on GP15. A swapped microphone sends only zeros without any error. Then check that VDD is on 3V3 and that GND and L/R are both on ground.</p>
 </details>
 <details class="question">
 <summary>Why does coloring one pixel take 13 bytes of SPI traffic? Click to expand</summary>

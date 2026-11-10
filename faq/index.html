@@ -2896,7 +2896,7 @@ Stuck on a wire, a number, or a design choice? Somebody has almost certainly ask
 <li><strong>Word select</strong> (WS or LRC): marks the start of each sample and whether it belongs to the left or right channel.</li>
 <li><strong>Serial data</strong> (SD or DIN): carries the audio bits themselves.</li>
 </ul>
-<p>The microphone is wired for <strong>I2S receive</strong>: SCK on GP10, WS on GP11, SD on GP12. The amplifier is wired for <strong>I2S transmit</strong>: BCLK on GP20, LRC on GP21, DIN on GP19. MicroPython's <code>machine.I2S</code> class requires word select to be the pin right after the bit clock, which is why each pair sits on neighboring pins.</p>
+<p>The microphone is wired for <strong>I2S receive</strong>: SCK on GP13, WS on GP14, SD on GP15. The amplifier is wired for <strong>I2S transmit</strong>: BCLK on GP9, LRC on GP10, DIN on GP11. MicroPython's <code>machine.I2S</code> class requires word select to be the pin right after the bit clock, which is why each pair sits on neighboring pins.</p>
 <p>See <a href="../chapters/08-i2s-audio/">Chapter 8: I2S Audio</a> and the <a href="../sims/i2s-signal-reader/">I2S Signal Reader</a>.</p>
 <h3 id="why-cant-i-just-redraw-the-whole-screen-every-time-something-changes">Why can't I just redraw the whole screen every time something changes?<a class="headerlink" href="#why-cant-i-just-redraw-the-whole-screen-every-time-something-changes" title="Permanent link">&para;</a></h3>
 <p>Because the screen holds a lot of data and the link to it is slow compared with the audio clock. A 360 × 360 display has 129,600 pixels. At 2 bytes per pixel in RGB565 color, one full frame is 259,200 bytes, about 259 KB.</p>
@@ -2949,15 +2949,15 @@ Stuck on a wire, a number, or a design choice? Somebody has almost certainly ask
 </tr>
 <tr>
 <td>Microphone (I2S receive)</td>
-<td>SCK GP10, WS GP11, SD GP12, L/R to GND, VDD to 3V3</td>
+<td>SCK GP13, WS GP14, SD GP15, L/R to GND, VDD to 3V3</td>
 </tr>
 <tr>
 <td>Buttons</td>
-<td>MODE GP13, UP GP14, DOWN GP15, other legs to GND</td>
+<td>MODE GP16, UP GP17, DOWN GP18, other legs to GND</td>
 </tr>
 <tr>
 <td>Amplifier (I2S transmit)</td>
-<td>DIN GP19, BCLK GP20, LRC GP21, GAIN GP18, VIN to VBUS or 3V3</td>
+<td>BCLK GP9, LRC GP10, DIN GP11, GAIN GP12, VIN to VBUS or 3V3</td>
 </tr>
 </tbody>
 </table>
@@ -2996,7 +2996,7 @@ Stuck on a wire, a number, or a design choice? Somebody has almost certainly ask
 </tr>
 </tbody>
 </table>
-<p>For example, <code>Pin(13, Pin.IN, Pin.PULL_UP)</code> makes GP13 an input with an internal pull-up resistor, which is how the Mode button is read. A <code>Pin</code> can also trigger an <strong>interrupt</strong> on a falling edge, running a short handler the moment the button is pressed.</p>
+<p>For example, <code>Pin(16, Pin.IN, Pin.PULL_UP)</code> makes GP16 an input with an internal pull-up resistor, which is how the Mode button is read. A <code>Pin</code> can also trigger an <strong>interrupt</strong> on a falling edge, running a short handler the moment the button is pressed.</p>
 <p>The kit's <code>config.py</code> wraps these calls in helper functions such as <code>config.init_display()</code>, so the pin numbers live in one place.</p>
 <p>See <a href="../chapters/02-micropython-review/">Chapter 2</a> and the <a href="../sims/kit-import-map/">Kit Import Map</a>.</p>
 <h3 id="what-is-rgb565-color">What is RGB565 color?<a class="headerlink" href="#what-is-rgb565-color" title="Permanent link">&para;</a></h3>
@@ -3015,9 +3015,9 @@ Stuck on a wire, a number, or a design choice? Somebody has almost certainly ask
 <p>The driver keeps its own ring buffer so audio is not lost while your code is briefly busy. On the test board, the microphone's 40,000-byte internal buffer measured about 0.4 seconds deep, roughly 9.8 frames, which is less than the arithmetic suggests; the chapter explains a likely but unconfirmed reason.</p>
 <p>See <a href="../chapters/08-i2s-audio/">Chapter 8</a>.</p>
 <h3 id="how-does-the-max98357a-amplifier-drive-the-speaker">How does the MAX98357A amplifier drive the speaker?<a class="headerlink" href="#how-does-the-max98357a-amplifier-drive-the-speaker" title="Permanent link">&para;</a></h3>
-<p>The <strong>MAX98357A</strong> is an I2S digital audio amplifier on a small breakout board. The Pico uses <strong>I2S transmit</strong> to send it a stream of samples on three wires (DIN GP19, BCLK GP20, LRC GP21). The chip converts those numbers back into an electrical signal strong enough to move the <strong>speaker</strong> cone, so the whole path from sample to sound is digital until the last stage.</p>
+<p>The <strong>MAX98357A</strong> is an I2S digital audio amplifier on a small breakout board. The Pico uses <strong>I2S transmit</strong> to send it a stream of samples on three wires (BCLK GP9, LRC GP10, DIN GP11). The chip converts those numbers back into an electrical signal strong enough to move the <strong>speaker</strong> cone, so the whole path from sample to sound is digital until the last stage.</p>
 <p>It is a <strong>Class-D amplifier</strong>, which means its output switches fully on and off very rapidly instead of operating partly on. Switching wastes very little power as heat, so the board stays cool and runs from USB power.</p>
-<p>The Pico has two ways to give it sound. <strong>Tone generation</strong> builds samples for a pure frequency, such as an 880 Hz confirmation beep, usually by reading a precomputed <strong>sine table</strong> rather than calling <code>sin()</code> for every sample. <strong>Stored audio playback</strong> streams samples from a WAV file or a buffer, which is how spoken replies from the text-to-speech service are played. <strong>Volume control</strong> scales the samples before they are sent; the GAIN pin (GP18) sets the amplifier's gain, which the kit's <code>set_gain()</code> function picks in software, 9 dB by default.</p>
+<p>The Pico has two ways to give it sound. <strong>Tone generation</strong> builds samples for a pure frequency, such as an 880 Hz confirmation beep, usually by reading a precomputed <strong>sine table</strong> rather than calling <code>sin()</code> for every sample. <strong>Stored audio playback</strong> streams samples from a WAV file or a buffer, which is how spoken replies from the text-to-speech service are played. <strong>Volume control</strong> scales the samples before they are sent; the GAIN pin (GP12) sets the amplifier's gain, which the kit's <code>set_gain()</code> function picks in software, 9 dB by default.</p>
 <p>See <a href="../chapters/08-i2s-audio/">Chapter 8</a> and <a href="../chapters/04-pico-kit-hardware/">Chapter 4</a>.</p>
 <h3 id="what-is-rms-loudness-and-how-is-it-measured-in-decibels">What is RMS loudness and how is it measured in decibels?<a class="headerlink" href="#what-is-rms-loudness-and-how-is-it-measured-in-decibels" title="Permanent link">&para;</a></h3>
 <p><strong>RMS loudness</strong> (root mean square) measures a signal's strength: square every sample, average the squares, and take the square root. Squaring makes negative and positive swings count equally, so RMS reflects how much energy the sound has. A louder room produces a higher RMS value.</p>
@@ -3221,7 +3221,7 @@ Stuck on a wire, a number, or a design choice? Somebody has almost certainly ask
 <ol>
 <li><strong>Power:</strong> the INMP441 is a 3.3 V part. Check that VDD goes to 3V3, not VBUS. A 5 V supply can damage it.</li>
 <li><strong>Ground and channel select:</strong> L/R and GND must both go to ground. L/R to ground selects the left channel, which is what the code reads.</li>
-<li><strong>I2S pins:</strong> SCK must be GP10, WS GP11, and SD GP12. If WS is on the wrong pin, <code>I2S()</code> raises an error saying word select must be the pin after SCK, but a swapped SD wire just gives silence or noise.</li>
+<li><strong>I2S pins:</strong> SCK must be GP13, WS GP14, and SD GP15. If WS is on the wrong pin, <code>I2S()</code> raises an error saying word select must be the pin after SCK, but a swapped SD wire just gives silence or noise.</li>
 <li><strong>Configuration:</strong> check that the code uses receive mode, the right sample rate, and mono format.</li>
 <li><strong>Mute switch:</strong> if your build has a hardware mute switch, make sure it is not cutting power.</li>
 </ol>
@@ -3472,9 +3472,9 @@ Stuck on a wire, a number, or a design choice? Somebody has almost certainly ask
 <p>Any signer can stop the process at any step, and push-to-talk remains the working mode meanwhile. The code's <code>ALWAYS_ON_APPROVED</code> flag starts <code>False</code>, and changing it is the <em>last</em> step, not the approval itself. The arithmetic matters: even a small false-accept rate across 25 devices and a full school day can mean dozens of unintended uploads.</p>
 <p>See <a href="../chapters/17-privacy-responsible-listening/">Chapter 17</a>.</p>
 <h3 id="what-is-the-difference-between-a-software-mute-and-a-true-hardware-mute">What is the difference between a software mute and a true hardware mute?<a class="headerlink" href="#what-is-the-difference-between-a-software-mute-and-a-true-hardware-mute" title="Permanent link">&para;</a></h3>
-<p>A <strong>software-visible mute</strong> is a switch wired between a pin (GP9) and ground. The firmware reads the pin and <em>chooses</em> to stop listening. It is useful, but it is only a promise by the code: if the program has a bug, the microphone may still be listening.</p>
+<p>A <strong>software-visible mute</strong> is a switch wired between a pin (GP19) and ground. The firmware reads the pin and <em>chooses</em> to stop listening. It is useful, but it is only a promise by the code: if the program has a bug, the microphone may still be listening.</p>
 <p>A <strong>true hardware mute</strong> puts the switch in series with the microphone's power wire, so when the switch is open the microphone has no power at all, whatever the code does. Anyone can verify it with a multimeter: the microphone's VDD pin should read about 0 V when muted.</p>
-<p>The kit's recommended build uses a <strong>two-pole slide switch</strong> that does both. One pole cuts the microphone's 3V3 power, and the other grounds GP9, so the program can also show "MIC OFF" on the screen and close the I2S bus. Pair it with a visible <strong>listening indicator</strong>, such as a red ring on the display or an LED, that is on whenever the microphone is open.</p>
+<p>The kit's recommended build uses a <strong>two-pole slide switch</strong> that does both. One pole cuts the microphone's 3V3 power, and the other grounds GP19, so the program can also show "MIC OFF" on the screen and close the I2S bus. Pair it with a visible <strong>listening indicator</strong>, such as a red ring on the display or an LED, that is on whenever the microphone is open.</p>
 <p>See <a href="../chapters/17-privacy-responsible-listening/">Chapter 17</a> and the <a href="../sims/threat-model-sorter/">Threat Model Sorter</a>.</p>
 <h3 id="what-are-the-honest-limits-of-template-matching-wake-word-detection">What are the honest limits of template-matching wake-word detection?<a class="headerlink" href="#what-are-the-honest-limits-of-template-matching-wake-word-detection" title="Permanent link">&para;</a></h3>
 <p>A template matcher on a 12,800 Hz microphone is a modest detector. It is an excellent way to learn how wake-word detection works, and with careful enrollment and a tuned threshold it can work for one person in one room. It is not a replacement for commercial products.</p>

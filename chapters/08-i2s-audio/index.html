@@ -1878,25 +1878,25 @@ In this chapter you will record your own voice into memory and play it back thro
 <tr>
 <td>Bit clock (<code>sck</code>)</td>
 <td>One tick per bit</td>
-<td>SCK, GP10</td>
-<td>BCLK, GP20</td>
+<td>SCK, GP13</td>
+<td>BCLK, GP9</td>
 </tr>
 <tr>
 <td>Word select (<code>ws</code>)</td>
 <td>Marks each word and its channel</td>
-<td>WS, GP11</td>
-<td>LRC, GP21</td>
+<td>WS, GP14</td>
+<td>LRC, GP10</td>
 </tr>
 <tr>
 <td>Serial data (<code>sd</code>)</td>
 <td>The audio bits</td>
-<td>SD, GP12 (to the Pico)</td>
-<td>DIN, GP19 (from the Pico)</td>
+<td>SD, GP15 (to the Pico)</td>
+<td>DIN, GP11 (from the Pico)</td>
 </tr>
 </tbody>
 </table>
 <p>A standard I2S frame carries two slots, left and right, so the bit clock ticks <span class="arithmatex">\( \text{rate} \times \text{bits per slot} \times 2 \)</span> times a second. For the kit's microphone (12,800 samples per second, 32 bits per slot) that is <span class="arithmatex">\( 12{,}800 \times 32 \times 2 = 819{,}200 \)</span> ticks per second, and for the speaker test (16,000 samples per second, 16 bits) it is 512,000.</p>
-<p>Here is the rule you met in Chapter 4, now with its reason. MicroPython's I2S on the Pico drives the clock and word-select lines with one hardware program that needs them on <em>adjacent pins</em>, so <code>ws</code> must be the pin number right after <code>sck</code>. The microphone's SCK is GP10 and WS is GP11, and the amplifier's BCLK is GP20 and LRC is GP21.</p>
+<p>Here is the rule you met in Chapter 4, now with its reason. MicroPython's I2S on the Pico drives the clock and word-select lines with one hardware program that needs them on <em>adjacent pins</em>, so <code>ws</code> must be the pin number right after <code>sck</code>. The amplifier's BCLK is GP9 and LRC is GP10, and the microphone's SCK is GP13 and WS is GP14.</p>
 <div class="admonition mascot-warning">
 <p class="admonition-title">ws Must Be sck Plus One</p>
 <p><img alt="Sage warning" class="mascot-admonition-img" src="../../img/mascot/warning.png" />
@@ -2040,20 +2040,20 @@ If you swap or move these two wires, <code>I2S()</code> raises an error such as 
 <tr>
 <td><code>sck</code></td>
 <td>Bit clock pin</td>
-<td>GP10</td>
-<td>GP20</td>
+<td>GP13</td>
+<td>GP9</td>
 </tr>
 <tr>
 <td><code>ws</code></td>
 <td>Word select pin</td>
-<td>GP11</td>
-<td>GP21</td>
+<td>GP14</td>
+<td>GP10</td>
 </tr>
 <tr>
 <td><code>sd</code></td>
 <td>Serial data pin</td>
-<td>GP12</td>
-<td>GP19</td>
+<td>GP15</td>
+<td>GP11</td>
 </tr>
 <tr>
 <td><code>mode</code></td>
@@ -2089,7 +2089,7 @@ If you swap or move these two wires, <code>I2S()</code> raises an error such as 
 </table>
 <p>The two I2S blocks are independent. The microphone is on block 1 and the speaker is on block 0, so they can run at the same time without fighting each other. Three methods do the work: <code>readinto(buf)</code> fills a buffer with samples from the microphone, <code>write(buf)</code> sends a buffer of samples to the amplifier, and <code>deinit()</code> shuts the bus down and releases its pins. By default <code>readinto</code> and <code>write</code> <em>block</em>, which means they wait until the work is done, and that waiting is what keeps your loop in step with the audio.</p>
 <p>Remember the Chapter 2 rule for hardware: always call <code>deinit()</code>, in a <code>finally</code> block. The kit hides the setup of the microphone behind <code>config.init_microphone()</code>, shown here in full so you can see all the arguments in use.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mic</span> <span class="o">=</span> <span class="n">I2S</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">ws</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">sd</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mic</span> <span class="o">=</span> <span class="n">I2S</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">),</span> <span class="n">ws</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">14</span><span class="p">),</span> <span class="n">sd</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>          <span class="n">mode</span><span class="o">=</span><span class="n">I2S</span><span class="o">.</span><span class="n">RX</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">I2S</span><span class="o">.</span><span class="n">MONO</span><span class="p">,</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>          <span class="n">rate</span><span class="o">=</span><span class="mi">12800</span><span class="p">,</span> <span class="n">ibuf</span><span class="o">=</span><span class="mi">40000</span><span class="p">)</span>
 </span></code></pre></div>
