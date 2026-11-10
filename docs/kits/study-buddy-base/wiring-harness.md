@@ -22,6 +22,10 @@ plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin
 | **Do it before** | [Lab 04](04-hello-world.md) (display), [Lab 05](05-speaker-tones.md) (amplifier), [Lab 06](06-listen-meter.md) (microphone) |
 | **Power** | Unplug the Pico's USB cable while you build and plug in harnesses |
 
+[![The finished Study Buddy kit on a clear acrylic stand. The round display stands upright and shows the Study Buddy Kit welcome screen. Behind it, rainbow ribbon harnesses run to the breadboard, and the round microphone board is mounted below the display.](../../img/study-buddy-front-view.jpg){ width="600" }](../../img/study-buddy-front-view.jpg)
+
+*The finished kit. All three harnesses run from the breadboard behind the display. Click any photo to see it full size.*
+
 ## What You Need
 
 | Item | Notes |
@@ -246,16 +250,21 @@ Check it with [Lab 06](06-listen-meter.md): the meter should move when you talk.
 
 Once a harness works, lock its Pico end in place so it plugs in as one block every time:
 
-- **Glue it.** Line the male pins up in a spare row of the breadboard with the same spacing they
+- **Hot Glue it.** Line the male pins up in a spare row of the breadboard with the same spacing they
   will have beside the Pico, then put a thin bead of hot glue across the plastic housings, not
   the metal pins. Let it cool before you pull the block out.
 - **Or tape it.** A narrow wrap of tape around the housings works too, and is easier to undo.
 - **Label it.** Tape a tag to each harness. A harness with "MIC" on it can't be swapped with the
   amplifier's by mistake.
 
-!!! mascot-tip "Glue the Blocks You Built"
+[![The breadboard seen from behind. Glued black Dupont housings hold the harness pins in blocks beside the Pico, and red power wires loop across to the Pico's other side.](../../img/study-buddy-rear-view.jpg){ width="600" }](../../img/study-buddy-rear-view.jpg)
+
+*Rear view: each harness ends in a block of black housings glued together, plugged in beside the
+Pico. The red power wires leave their blocks and cross to the other side.*
+
+!!! mascot-tip "Hot Glue the Blocks You Built"
     ![Sage giving a tip](../../img/mascot/tip.png){ class="mascot-admonition-img" }
-    Glue the display as two blocks (rows 3 to 7, and rows 9 to 10), the amplifier as one block of five, and the microphone as one block of four plus the black wire. Leave every red wire loose so it can reach the right side.
+    Hot glue the display as two blocks (rows 3 to 7, and rows 9 to 10), the amplifier as one block of five, and the microphone as one block of four plus the black wire. Leave every red wire loose so it can reach the right side.
 
 ## Check Before You Power On
 
@@ -267,6 +276,11 @@ Unplug the USB cable, then check each harness against its table:
 3. Row 8 is empty, and row 11 is empty.
 4. The amplifier's SD pin has no wire.
 5. Every wire is pushed all the way into its hole.
+
+[![Side view of the kit. Ribbon harnesses run from blocks beside the Pico to the amplifier board with its green speaker terminal, and on to the back of the upright round display.](../../img/study-buddy-side-view.jpg){ width="600" }](../../img/study-buddy-side-view.jpg)
+
+*Side view: the ribbons run from the blocks beside the Pico to the amplifier (center, with the
+green speaker terminal) and the display (right).*
 
 Then plug in the USB cable and run [Lab 02, the hardware probe](02-probe.md). It checks the pin
 plan and the parts it can see, and reports any wiring that breaks the rules.
