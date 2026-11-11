@@ -13,6 +13,17 @@ Every program you can run on the Study Buddy, with a picture of what it puts
 on the round screen. Use it to find a sample to try, a program to take apart,
 or an idea for your own project.
 
+**76 samples in all:** 47 that run today and 29 ideas waiting to be built.
+
+| Section | Samples |
+|---|---:|
+| [The Labs](#the-labs) | 19 |
+| [The Demos](#the-demos) | 12 |
+| [Smart Clock Faces](#smart-clock-faces) | 16 |
+| [Future Clock Faces](#future-clock-faces) | 16 |
+| [Future Study Tools](#future-study-tools) | 13 |
+| **Total** | **76** |
+
 Each card has a difficulty level:
 
 <span class="osb-level osb-beginner">Beginner</span> short programs, one
