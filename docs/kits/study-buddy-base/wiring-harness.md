@@ -5,8 +5,9 @@ description: "Build three Dupont ribbon wiring harnesses for the Study Buddy kit
 
 # Wiring Harnesses
 
-![](../../img/display-harness-10cm.jpg)
-The photo above is a sample of our display harness for the large round smartwatch display.  Note the left end is female and is in the same order as the Dupont wire.  The right end is male an only the red power and brown ground wires have been moved.  The ends are hot-glued together to make sure they are all connected in a single block of wire.
+![A finished 10 cm display harness. On the left, eight female sockets are hot-glued in ribbon order: brown, red, orange, yellow, green, blue, purple, gray. On the right, seven male pins are hot-glued in one block, with brown moved between blue and purple, and the red wire loose on its own male pin.](../../img/display-harness-10cm.jpg)
+
+The photo above is a sample of our display harness for the large round smartwatch display.  Note the left end is female and is in the same order as the Dupont wire.  The right end is male and only the red power and brown ground wires have been moved.  The ends are hot-glued together to make sure they are all connected in a single block of wire.
 
 !!! mascot-welcome "One Plug Instead of Seven"
     ![Sage waving welcome](../../img/mascot/welcome.png){ class="mascot-admonition-img" }
@@ -59,6 +60,8 @@ Where a step says how far to peel wires apart, it gives the 10 cm length first a
 length in parentheses.
 
 ### The Ribbon's Color Order
+
+![A 40-wire 10 cm male-to-female Dupont ribbon cable, with male pins on the left and female sockets on the right. The colors repeat brown, red, orange, yellow, green, blue, purple, gray, white, black.](../../img/dupont-ribon-cable-10-cm.jpg)
 
 The wires in a Dupont ribbon follow the resistor color code, and the pattern repeats every ten
 wires:
