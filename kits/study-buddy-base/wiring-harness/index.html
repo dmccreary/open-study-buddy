@@ -1875,6 +1875,8 @@
 
 
 <h1 id="wiring-harnesses">Wiring Harnesses<a class="headerlink" href="#wiring-harnesses" title="Permanent link">&para;</a></h1>
+<p><img alt="A finished 10 cm display harness. On the left, eight female sockets are hot-glued in ribbon order: brown, red, orange, yellow, green, blue, purple, gray. On the right, seven male pins are hot-glued in one block, with brown moved between blue and purple, and the red wire loose on its own male pin." src="../../../img/display-harness-10cm.jpg" /></p>
+<p>The photo above is a sample of our display harness for the large round smartwatch display.  Note the left end is female and is in the same order as the Dupont wire.  The right end is male and only the red power and brown ground wires have been moved.  The ends are hot-glued together to make sure they are all connected in a single block of wire.</p>
 <div class="admonition mascot-welcome">
 <p class="admonition-title">One Plug Instead of Seven</p>
 <p><img alt="Sage waving welcome" class="mascot-admonition-img" src="../../../img/mascot/welcome.png" />
@@ -1882,9 +1884,10 @@ Loose jumper wires wiggle out of the breadboard, and one loose wire can cost an 
 </div>
 <p>A <strong>wiring harness</strong> is a group of wires bundled in a fixed order so they connect as one unit.
 This kit needs three: one each for the display, the amplifier, and the microphone. Each
-harness is a strip of Dupont wires torn from a ribbon cable. The module end keeps the ribbon's
-original color order. At the Pico end, you move only the few wires that must move, so the block
-plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin.</p>
+harness is a strip of Dupont wires torn from a 40-wire ribbon cable that has consistent color order. The module end (not the breadboard end) keeps the ribbon's
+original color order. At the breadboard Pico end, you move only the few wires that must move, so the block
+plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin.  Both ends have a thin strip of hot-glue applied to keep the right pins together to make it easy to plug the harness into the device and the breadboard.</p>
+<p>Note that you still <strong>MUST</strong> get the polarity of the wiring harness and the pin alignment correct.</p>
 <table>
 <thead>
 <tr>
@@ -1912,7 +1915,7 @@ plugs into the breadboard beside the Pico with its ground wire on a Pico GND pin
 </tbody>
 </table>
 <p><a href="../../../img/study-buddy-front-view.jpg"><img alt="The finished Study Buddy kit on a clear acrylic stand. The round display stands upright and shows the Study Buddy Kit welcome screen. Behind it, rainbow ribbon harnesses run to the breadboard, and the round microphone board is mounted below the display." src="../../../img/study-buddy-front-view.jpg" width="600" /></a></p>
-<p><em>The finished kit. All three harnesses run from the breadboard behind the display. Click any photo to see it full size.</em></p>
+<p><em>The finished kit mounted on a clear acrylic stand with felt feet. All three harnesses run from the breadboard behind the display. Click any photo to see it full size.</em></p>
 <h2 id="what-you-need">What You Need<a class="headerlink" href="#what-you-need" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1961,7 +1964,7 @@ parts sit from the breadboard.</p>
 <tbody>
 <tr>
 <td>10 cm</td>
-<td><strong>Compact builds</strong>, where the display, amplifier and microphone sit very close to the breadboard</td>
+<td><strong>Compact builds</strong>, where the display, amplifier and microphone sit very close to the breadboard and the Pico is oriented with the USB on the left side to shorten the distance.</td>
 <td><code>dupont jumper wire 40 pin male to female 10cm</code></td>
 </tr>
 <tr>
@@ -1974,9 +1977,11 @@ parts sit from the breadboard.</p>
 <p>Where a step says how far to peel wires apart, it gives the 10 cm length first and the 20 cm
 length in parentheses.</p>
 <h3 id="the-ribbons-color-order">The Ribbon's Color Order<a class="headerlink" href="#the-ribbons-color-order" title="Permanent link">&para;</a></h3>
+<p><img alt="A 40-wire 10 cm male-to-female Dupont ribbon cable, with male pins on the left and female sockets on the right. The colors repeat brown, red, orange, yellow, green, blue, purple, gray, white, black." src="../../../img/dupont-ribon-cable-10-cm.jpg" /></p>
 <p>The wires in a Dupont ribbon follow the resistor color code, and the pattern repeats every ten
 wires:</p>
 <p><strong>brown, red, orange, yellow, green, blue, purple, gray, white, black</strong>, then brown again.</p>
+<p>In all our kits, we try to keep the <strong>red</strong> color connected to the power rail.  This is 3.3 volts for the display and the microphone and 5 volts for the speaker.  You can use 3.3 volts for the speaker but the volume will not be as loud.</p>
 <p>Each harness is a strip of neighboring wires taken from this pattern. That is why the colors
 below are not random: they are simply where each strip falls on the ribbon. In all three
 harnesses, <strong>brown is ground and red is power</strong>.</p>
@@ -2028,7 +2033,7 @@ They fall every fifth row.</p>
 </table>
 <p>The kit's pins were chosen so that each module's signal wires sit next to a GND pin. A harness
 that keeps its wires in the same order as those rows carries its own ground wire, so plugging
-in the block also connects the module's ground. You never need a separate ground wire.</p>
+in the block also connects the module's ground. You never need a separate ground wire.  However, the red power wire is removed from breadboard block end.</p>
 <div class="admonition mascot-thinking">
 <p class="admonition-title">Why the Ground Wire Matters Most</p>
 <p><img alt="Sage thinking" class="mascot-admonition-img" src="../../../img/mascot/thinking.png" />
