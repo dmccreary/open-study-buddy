@@ -46,6 +46,10 @@ A Dupont **male** end has a pin that pushes into a breadboard hole. A **female**
 socket that slides over a module's header pin. In every harness, the female ends go on the
 module and the male ends go in the breadboard.
 
+!!! mascot-warning "Check for Forked Pin Tips"
+    ![Sage warning](../../img/mascot/warning.png){ class="mascot-admonition-img" }
+    Most Dupont male pins are folded from flat sheet metal, so the seam can open into a small fork at the tip. A fork that has spread apart can catch on a breadboard clip or stretch it, leaving the next wire in that hole loose. Before you plug a harness in, gently squeeze any spread tips closed with needle-nose pliers.
+
 ### Choosing a Wire Length
 
 Both lengths work, and the steps are the same for each. Pick the one that fits how far your
@@ -87,7 +91,7 @@ They fall every fifth row.
 
 | Rows | Pico pins | Who uses them | GND row inside the block |
 |------|-----------|---------------|--------------------------|
-| 3 to 10 | GND, GP2, GP3, GP4, GP5, GND, GP6, GP7 | Display | 3 (row 8 stays empty) |
+| 4 to 10 | GP2, GP3, GP4, GP5, GND, GP6, GP7 | Display | 8 (row 3, also GND, stays empty) |
 | 11 | GP8 | Nobody: a one-row gap | |
 | 12 to 16 | GP9, GND, GP10, GP11, GP12 | Amplifier | 13 |
 | 17 to 20 | GP13, GND, GP14, GP15 | Microphone | 18 |
@@ -133,7 +137,7 @@ Each panel shows one harness. The colored squares at the top are the female ends
 in ribbon order. The squares at the bottom are breadboard rows beside the Pico. Click the
 diagram to see it larger.
 
-[![Diagram of the three wiring harnesses. Display: brown GND to row 3, orange SCL to row 4, yellow SDA to row 5, green RST to row 6, blue DC to row 7, row 8 empty, purple CS to row 9, gray BL to row 10, red VCC to 3V3. Amplifier: purple BCLK to row 12, brown GND to row 13, blue LRC to row 14, gray DIN to row 15, white GAIN to row 16, SD with no wire, red Vin to VBUS. Microphone: gray SCK to row 17, brown GND and black L/R to row 18, white WS to row 19, orange SD to row 20, red VDD to 3V3.](img/wiring-harness.svg)](img/wiring-harness.svg)
+[![Diagram of the three wiring harnesses. Display: orange SCL to row 4, yellow SDA to row 5, green RST to row 6, blue DC to row 7, brown GND to row 8, purple CS to row 9, gray BL to row 10, row 3 empty, red VCC to 3V3. Amplifier: purple BCLK to row 12, brown GND to row 13, blue LRC to row 14, gray DIN to row 15, white GAIN to row 16, SD with no wire, red Vin to VBUS. Microphone: gray SCK to row 17, brown GND and black L/R to row 18, white WS to row 19, orange SD to row 20, red VDD to 3V3.](img/wiring-harness.svg)](img/wiring-harness.svg)
 
 ## Harness 1: The Display
 
@@ -152,27 +156,29 @@ VCC, orange on SCL, and so on down to gray on BL. SDO and TE stay bare.
 
 ### Step 3: Make two changes at the Pico end
 
-1. **Pull red out.** Peel the red wire away from brown and orange along its whole length (about 10 cm on 20 cm wires). It goes to
-   3V3 on the right side.
-2. **Split purple and gray off.** Peel purple and gray away from blue for about 3 cm (5 cm). Row 8 is a
-   Pico GND pin that the display does not need, so these two wires skip it.
+1. **Pull red out.** Peel the red wire away from brown and orange along its whole length (about
+   10 cm on 20 cm wires). It goes to 3V3 on the right side.
+2. **Move brown between blue and purple.** With red gone, brown is free at the Pico end. Peel
+   purple away from blue for about 3 cm (5 cm), lay brown across the other wires, and put it in
+   the gap. Row 8 is a Pico GND pin, so brown lands on ground in the middle of the block.
 
 ### Step 4: Plug it into the breadboard
 
 | Wire | Display pin | Breadboard row | Pico pin |
 |------|-------------|----------------|----------|
-| brown | GND | 3 | GND |
+| (none) | | 3 | GND, left empty |
 | orange | SCL | 4 | GP2 |
 | yellow | SDA | 5 | GP3 |
 | green | RST | 6 | GP4 |
 | blue | DC | 7 | GP5 |
-| (none) | | 8 | GND, left empty |
+| brown | GND | 8 | GND |
 | purple | CS | 9 | GP6 |
 | gray | BL | 10 | GP7 |
 | red | VCC | 5, right side | 3V3 (pin 36) |
 
-The block of five (brown to blue) goes in rows 3 to 7, and the pair (purple and gray) goes in
-rows 9 and 10. Check it with [Lab 04](04-hello-world.md): "Hello World!" should appear inside a
+All seven wires form one block in rows 4 to 10, with brown in the middle on row 8, as in the
+photo at the top of this page. Row 3 is also a GND pin, but the display needs only one ground,
+so it stays empty. Check it with [Lab 04](04-hello-world.md): "Hello World!" should appear inside a
 cyan ring.
 
 ## Harness 2: The Amplifier
@@ -287,16 +293,16 @@ Pico. The red power wires leave their blocks and cross to the other side.*
 
 !!! mascot-tip "Hot Glue the Blocks You Built"
     ![Sage giving a tip](../../img/mascot/tip.png){ class="mascot-admonition-img" }
-    Hot glue the display as two blocks (rows 3 to 7, and rows 9 to 10), the amplifier as one block of five, and the microphone as one block of four plus the black wire. Leave every red wire loose so it can reach the right side.
+    Hot glue the display as one block of seven (rows 4 to 10), the amplifier as one block of five, and the microphone as one block of four plus the black wire. Leave every red wire loose so it can reach the right side.
 
 ## Check Before You Power On
 
 Unplug the USB cable, then check each harness against its table:
 
-1. Each **brown** wire is in a GND row: 3, 13 or 18.
+1. Each **brown** wire is in a GND row: 8, 13 or 18.
 2. Each **red** wire is on the right side: display and microphone in row 5 (3V3), the amplifier
    in row 1 (VBUS). The microphone's red wire is **not** in row 1.
-3. Row 8 is empty, and row 11 is empty.
+3. Row 3 is empty, and row 11 is empty.
 4. The amplifier's SD pin has no wire.
 5. Every wire is pushed all the way into its hole.
 
