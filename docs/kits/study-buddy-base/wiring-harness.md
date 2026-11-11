@@ -83,6 +83,17 @@ harnesses, **brown is ground and red is power**.
     write down its colors in order, and use your own colors in the tables below. What matters
     is the **order** of the wires, not their colors.
 
+### Forked Tip of Make Dupont Connectors
+
+Dupont connectors are noted for their exceptionally low cost.  The get this cost
+by stamping the male ends from sheets of metal.  One downside is that the tips
+of some Dupont connectors are not a smooth round pin, but have a forked tip.
+
+![](../../img/forked-tip-of-male-dupont-connector.jpg)
+
+Be careful when you press the male pins into the breadboard to make sure the tips
+do not catch onto the edges of the pins within the breadboard.
+
 ## The Big Idea: Every Fifth Row Is Ground
 
 The Pico's left edge has 20 pins, and the breadboard row number equals the Pico's physical pin
