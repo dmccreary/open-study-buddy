@@ -82,6 +82,8 @@ nav:
           - "Lab 18: From Radio Waves to the Weather": kits/study-buddy-base/18-network-layers.md
           - "Lab 19: Pattern Memory Game": kits/study-buddy-base/19-pattern-game.md
 
+  - Sample Gallery: gallery/index.md
+
   - Schools:
       - Overview: schools/index.md
       - Cedar Ridge High School:
@@ -238,8 +240,8 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  # Currency-safe math: inline is \(...\) only, never single $. Run
-  # book-installer feature 5 (KaTeX) to add the renderer.
+  # Currency-safe KaTeX math: inline is \(...\) only, never single $.
+  # Display math is $$...$$ or \[...\]. Rendered by docs/js/katex.js.
   - pymdownx.arithmatex:
       generic: true
       inline_syntax: ['round']
@@ -249,10 +251,13 @@ markdown_extensions:
 extra_css:
   - css/extra.css
   - css/mascot.css
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
 
-# Custom JavaScript — uncomment once a corresponding file exists
-# extra_javascript:
-#   - js/extra.js
+# Custom JavaScript
+extra_javascript:
+  - js/katex.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
 
 # Exclude prompt scratch files and TODOs from build/search/sitemap
 exclude_docs: |

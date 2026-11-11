@@ -118,3 +118,21 @@
 .md-status--approved:hover:after { background-color: #1b5e20; }
 .md-status--implemented:hover:after  { background-color: #1565c0; }
 .md-status--instrumented:hover:after { background-color: #00695c; }
+
+/* Sample Gallery (docs/gallery/index.md): difficulty badges on the cards.
+   Colors follow the usual ski-slope idea: green easy, blue middle, black hard.
+   "Idea" marks concept art for a sample nobody has written yet. */
+.osb-level {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 0.3rem;
+}
+.osb-beginner     { background-color: #2e7d32; }
+.osb-intermediate { background-color: #1565c0; }
+.osb-advanced     { background-color: #37474f; }
+.osb-idea         { background-color: #8e24aa; }
+.grid.cards img.osb-screen { width: 220px; display: block; margin: 0 auto; }

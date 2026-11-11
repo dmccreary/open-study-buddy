@@ -175,6 +175,9 @@ VCC, orange on SCL, and so on down to gray on BL. SDO and TE stay bare.
 
 ### Step 4: Plug it into the breadboard
 
+![](../../img/study-buddy-rear-view.jpg)
+Rear view of the Open Study Buddy with the USB connector on the lower right.  Row 1 of the breadboard is on the right in this view.  The orange wire on the display harness is in row 4.
+
 | Wire | Display pin | Breadboard row | Pico pin |
 |------|-------------|----------------|----------|
 | (none) | | 3 | GND, left empty |
